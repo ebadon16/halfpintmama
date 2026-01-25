@@ -72,6 +72,18 @@ export function getPostsByCategory(category: string): PostMeta[] {
   return getAllPosts().filter((post) => post.category === category);
 }
 
+export function getPostsBySubcategory(category: string, keywords: string[], excludeKeywords: string[] = []): PostMeta[] {
+  return getAllPosts().filter(post =>
+    post.category === category &&
+    keywords.some(keyword =>
+      post.title.toLowerCase().includes(keyword.toLowerCase())
+    ) &&
+    !excludeKeywords.some(keyword =>
+      post.title.toLowerCase().includes(keyword.toLowerCase())
+    )
+  );
+}
+
 export function getAllCategories(): string[] {
   const posts = getAllPosts();
   const categories = [...new Set(posts.map((post) => post.category))];

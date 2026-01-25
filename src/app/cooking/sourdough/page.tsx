@@ -1,24 +1,24 @@
-import { getPostsByCategory, formatDate } from "@/lib/posts";
+import { getPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Cooking & Baking | Half Pint Mama",
-  description: "Sourdough recipes, healthy snacks, and kitchen adventures from a mama who loves to bake.",
+  title: "Sourdough Loaves & Bread | Half Pint Mama",
+  description: "Master the art of sourdough bread baking with tested recipes from a Pediatric ER RN turned sourdough mama.",
 };
 
-export default function CookingPage() {
-  const posts = getPostsByCategory("cooking");
+export default function SourdoughPage() {
+  const posts = getPostsBySubcategory("cooking", ["sourdough", "loaf", "bread", "starter"], ["discard"]);
 
   return (
     <div className="bg-cream">
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Subcategory Navigation */}
         <div className="flex flex-wrap gap-3 mb-8 justify-center">
-          <Link href="/cooking" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">
+          <Link href="/cooking" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
             All Recipes
           </Link>
-          <Link href="/cooking/sourdough" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
+          <Link href="/cooking/sourdough" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">
             Sourdough Loaves
           </Link>
           <Link href="/cooking/discard" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
@@ -35,10 +35,11 @@ export default function CookingPage() {
         <div className="mb-12">
           <span className="text-5xl mb-4 block">🍞</span>
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
-            Cooking & Baking
+            Sourdough Loaves & Bread
           </h1>
           <p className="text-charcoal/70 text-lg max-w-2xl">
-            Sourdough obsessed? Me too! From starter to finished loaf, plus healthy snacks and treats the whole family will love.
+            From your first starter to picture-perfect loaves. These recipes are tested with nurse-level precision
+            to help you bake bread your family will love.
           </p>
         </div>
 
@@ -58,7 +59,7 @@ export default function CookingPage() {
 
         {posts.length === 0 && (
           <p className="text-center text-charcoal/60 py-12">
-            No posts yet. Check back soon!
+            No sourdough posts yet. Check back soon!
           </p>
         )}
       </div>

@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/start-here", label: "Start Here" },
+  { href: "/start-here", label: "New? Start Here!" },
   { href: "/cooking", label: "Recipes" },
   { href: "/mama-life", label: "Mama Life" },
   { href: "/travel", label: "Travel" },
@@ -24,7 +25,15 @@ export function Header() {
         {/* Decorative circle */}
         <div className="absolute -top-20 -right-10 w-64 h-64 bg-white/10 rounded-full blur-sm" />
 
-        <Link href="/" className="relative z-10">
+        <Link href="/" className="relative z-10 flex flex-col items-center">
+          <Image
+            src="/logo.jpg"
+            alt="Half Pint Mama"
+            width={120}
+            height={120}
+            className="rounded-full shadow-lg mb-2"
+            priority
+          />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl font-semibold text-[#FAF7F2] drop-shadow-sm">
             Half Pint Mama
           </h1>

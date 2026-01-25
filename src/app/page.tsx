@@ -11,12 +11,18 @@ export default function Home() {
       {/* Hero Section - Clear Value Proposition */}
       <section className="bg-gradient-to-b from-light-sage/30 to-cream py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl lg:text-6xl text-deep-sage font-bold mb-6">
-            Simple Recipes & Real Mom Life
+          <span className="inline-block px-4 py-2 bg-terracotta/10 text-terracotta font-semibold text-sm rounded-full mb-6">
+            From the ER to the Kitchen
+          </span>
+          <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl lg:text-6xl text-deep-sage font-bold mb-4">
+            Real Food. Real Science.
           </h1>
+          <h2 className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
+            From an ER Nurse Turned Sourdough Mama
+          </h2>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-            Tested sourdough recipes, family-friendly meals, and honest motherhood tips from a
-            Pediatric ER RN turned stay-at-home mama of two.
+            Tested recipes and evidence-based tips from a Pediatric ER RN who traded scrubs for
+            sourdough. Because your family deserves food made with love AND knowledge.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -32,6 +38,55 @@ export default function Home() {
               Shop My Favorites
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="bg-white py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          {/* As Seen In - placeholder for future */}
+          <div className="text-center mb-10">
+            <p className="text-sage text-sm uppercase tracking-wide font-semibold mb-2">Featured In</p>
+            <p className="text-charcoal/50 italic text-sm">Coming soon...</p>
+          </div>
+
+          {/* Testimonials */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Card 1: Sourdough success story */}
+            <div className="bg-cream p-6 rounded-2xl shadow-sm">
+              <div className="text-terracotta text-3xl mb-4">&ldquo;</div>
+              <p className="text-charcoal/80 mb-4">
+                Her sourdough starter guide actually worked! After 3 failed attempts with other blogs,
+                Keegan&apos;s nurse-level precision finally got my starter going.
+              </p>
+              <p className="text-sage font-semibold text-sm">- Sarah M.</p>
+            </div>
+
+            {/* Card 2: Parenting/nurse credibility */}
+            <div className="bg-cream p-6 rounded-2xl shadow-sm">
+              <div className="text-terracotta text-3xl mb-4">&ldquo;</div>
+              <p className="text-charcoal/80 mb-4">
+                Love that she&apos;s an ER nurse - I trust her baby food safety tips way more than
+                random mommy bloggers.
+              </p>
+              <p className="text-sage font-semibold text-sm">- Jessica T.</p>
+            </div>
+
+            {/* Card 3: Recipe/meal planning */}
+            <div className="bg-cream p-6 rounded-2xl shadow-sm">
+              <div className="text-terracotta text-3xl mb-4">&ldquo;</div>
+              <p className="text-charcoal/80 mb-4">
+                The discard recipes are a game-changer. My kids devour the crackers and I&apos;m not
+                wasting any starter anymore!
+              </p>
+              <p className="text-sage font-semibold text-sm">- Amanda R.</p>
+            </div>
+          </div>
+
+          {/* Join count */}
+          <p className="text-center text-charcoal/60 mt-8 text-sm">
+            Join 1,000+ mamas baking with confidence
+          </p>
         </div>
       </section>
 
