@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPosts, getPostBySlug, formatDate } from "@/lib/posts";
+import { getAllPosts, getPostBySlug, getPostsByCategory, formatDate } from "@/lib/posts";
+import { PostCard } from "@/components/PostCard";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -47,6 +48,30 @@ const categoryColors: Record<string, string> = {
   "mama-life": "bg-deep-sage",
 };
 
+// Product recommendations based on category
+const categoryProducts: Record<string, Array<{ name: string; note: string; link: string }>> = {
+  cooking: [
+    { name: "Kitchen Scale", note: "Essential for baking", link: "#" },
+    { name: "Dutch Oven", note: "Perfect crust every time", link: "#" },
+    { name: "Proofing Basket", note: "Beautiful loaves", link: "#" },
+  ],
+  travel: [
+    { name: "Travel Stroller", note: "One-hand fold", link: "#" },
+    { name: "Packing Cubes", note: "Stay organized", link: "#" },
+    { name: "Portable Sound Machine", note: "Sleep anywhere", link: "#" },
+  ],
+  diy: [
+    { name: "Craft Scissors", note: "Quality matters", link: "#" },
+    { name: "Hot Glue Gun", note: "Craft essential", link: "#" },
+    { name: "Cardboard Cutter", note: "Clean cuts", link: "#" },
+  ],
+  "mama-life": [
+    { name: "Baby Monitor", note: "Peace of mind", link: "#" },
+    { name: "Sound Machine", note: "Better sleep", link: "#" },
+    { name: "Toddler Plates", note: "No-spill meals", link: "#" },
+  ],
+};
+
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
@@ -57,6 +82,12 @@ export default async function PostPage({ params }: PageProps) {
 
   const badgeColor = categoryColors[post.category] || "bg-sage";
   const categoryLabel = categoryLabels[post.category] || post.category;
+  const products = categoryProducts[post.category] || categoryProducts.cooking;
+
+  // Get related posts from same category, excluding current post
+  const relatedPosts = getPostsByCategory(post.category)
+    .filter(p => p.slug !== slug)
+    .slice(0, 3);
 
   return (
     <div className="bg-cream">
@@ -109,7 +140,64 @@ export default async function PostPage({ params }: PageProps) {
           <div dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} />
         </div>
 
-        {/* Footer */}
+        {/* Mid-Post Email Signup CTA */}
+        <div className="my-10 p-6 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl">
+          <div className="flex items-start gap-4">
+            <span className="text-4xl">📬</span>
+            <div className="flex-1">
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
+                Enjoying this post?
+              </h3>
+              <p className="text-charcoal/70 text-sm mb-4">
+                Get more recipes, tips, and real mom moments delivered to your inbox weekly. Plus a free sourdough starter guide!
+              </p>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  className="flex-1 px-4 py-2 rounded-full border-2 border-sage/30 focus:outline-none focus:border-sage text-sm"
+                />
+                <button className="px-4 py-2 gradient-cta text-white font-semibold rounded-full text-sm hover:shadow-md transition-all whitespace-nowrap">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Products Mentioned / Related Products */}
+        <div className="my-10 p-6 bg-white rounded-2xl shadow-md">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal">
+              Products I Recommend
+            </h3>
+            <Link href="/products" className="text-terracotta text-sm hover:text-deep-sage transition-colors">
+              View all &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-3 gap-3">
+            {products.map((product, i) => (
+              <a
+                key={i}
+                href={product.link}
+                className="text-center p-3 bg-cream rounded-xl hover:shadow-md transition-all group"
+              >
+                <div className="w-12 h-12 bg-warm-beige/50 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                  <span className="text-2xl">🛒</span>
+                </div>
+                <h4 className="text-xs font-medium text-charcoal group-hover:text-terracotta transition-colors line-clamp-2">
+                  {product.name}
+                </h4>
+                <p className="text-xs text-sage mt-1">{product.note}</p>
+              </a>
+            ))}
+          </div>
+          <p className="text-xs text-charcoal/50 mt-4 text-center">
+            As an Amazon Associate, I earn from qualifying purchases.
+          </p>
+        </div>
+
+        {/* Footer - Navigation */}
         <footer className="mt-12 pt-8 border-t border-light-sage">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <Link
@@ -127,6 +215,55 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         </footer>
       </article>
+
+      {/* Related Posts Section */}
+      {relatedPosts.length > 0 && (
+        <section className="bg-white py-12">
+          <div className="max-w-6xl mx-auto px-4">
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-6 text-center">
+              You Might Also Like
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedPosts.map((relatedPost) => (
+                <PostCard
+                  key={relatedPost.slug}
+                  slug={relatedPost.slug}
+                  title={relatedPost.title}
+                  excerpt={relatedPost.excerpt}
+                  category={relatedPost.category}
+                  date={formatDate(relatedPost.date)}
+                  image={relatedPost.image}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Want More? Join My List - Bottom CTA */}
+      <section className="py-12">
+        <div className="max-w-2xl mx-auto px-4">
+          <div className="gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
+            <span className="text-5xl block mb-4">💌</span>
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
+              Want More? Join My List!
+            </h2>
+            <p className="text-white/90 mb-6 max-w-md mx-auto">
+              Weekly recipes, honest mom moments, and exclusive content. Plus get my free sourdough starter guide when you subscribe!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
+              <input
+                type="email"
+                placeholder="Your email"
+                className="flex-1 px-4 py-3 rounded-full text-charcoal focus:outline-none"
+              />
+              <button className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-colors whitespace-nowrap">
+                Join Free
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
