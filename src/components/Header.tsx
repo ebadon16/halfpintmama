@@ -9,8 +9,7 @@ const navLinks = [
   { href: "/start-here", label: "New? Start Here!" },
   { href: "/cooking", label: "Recipes" },
   { href: "/mama-life", label: "Mama Life" },
-  { href: "/travel", label: "Travel" },
-  { href: "/diy", label: "DIY" },
+  { href: "/lifestyle", label: "Travel & DIY" },
   { href: "/products", label: "Favorites" },
   { href: "/about", label: "About" },
 ];

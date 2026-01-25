@@ -18,11 +18,11 @@ export default function Home() {
             Real Food. Real Science.
           </h1>
           <h2 className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
-            From an ER Nurse Turned Sourdough Mama
+            From a Pediatric ER RN & Sourdough-Obsessed Mama
           </h2>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-            Tested recipes and evidence-based tips from a Pediatric ER RN who traded scrubs for
-            sourdough. Because your family deserves food made with love AND knowledge.
+            Tested recipes and evidence-based tips from a Pediatric ER RN who brings nurse-level
+            precision to sourdough. Because your family deserves food made with love AND knowledge.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -234,7 +234,7 @@ export default function Home() {
             <input
               type="email"
               placeholder="Your email"
-              className="flex-1 px-4 py-3 rounded-full text-charcoal focus:outline-none focus:ring-2 focus:ring-white/50"
+              className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white"
             />
             <button className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-colors whitespace-nowrap">
               Send My Guide

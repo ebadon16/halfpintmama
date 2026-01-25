@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "About | Half Pint Mama",
-  description: "Meet Keegan - a Pediatric ER RN turned stay-at-home mama sharing real life in Central Texas.",
+  description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real life in Central Texas.",
 };
 
 export default function AboutPage() {
@@ -20,7 +20,7 @@ export default function AboutPage() {
         {/* Main Content */}
         <div className="bg-white rounded-2xl p-8 shadow-md mb-8">
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            I&apos;m a Pediatric ER RN turned stay-at-home mama, sharing the beautiful chaos of life
+            I&apos;m a Pediatric ER RN and mama of two, sharing the beautiful chaos of life
             with my toddler Porter, baby Reese, and our chocolate lab Stout. This is where you&apos;ll
             find real talk about motherhood, my sourdough obsession, family travel adventures, and
             all the little things that make life sweet.
