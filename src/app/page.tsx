@@ -1,40 +1,11 @@
 import { PostCard } from "@/components/PostCard";
+import { getAllPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
 
-// Placeholder posts - will be replaced with actual content from markdown files
-const featuredPosts = [
-  {
-    slug: "first-artisan-sourdough-loaf",
-    title: "The Simple, No-Stress Guide to Your First Artisan Sourdough Loaf",
-    excerpt: "Learn to make beautiful artisan sourdough bread with this beginner-friendly guide. No fancy equipment needed.",
-    category: "cooking",
-    date: "January 15, 2026",
-    image: "",
-  },
-  {
-    slug: "sourdough-starter-simple",
-    title: "How to Make a Sourdough Starter (Simple, no scale)",
-    excerpt: "Start your sourdough journey with this easy, no-scale-needed starter guide that actually works.",
-    category: "cooking",
-    date: "November 19, 2025",
-  },
-  {
-    slug: "homesteading-suburbs",
-    title: "Homesteading in the Suburbs",
-    excerpt: "Bringing homestead living to suburban life with simple, practical tips for any backyard.",
-    category: "mama-life",
-    date: "November 4, 2025",
-  },
-  {
-    slug: "diy-buzz-lightyear-costume",
-    title: "DIY Buzz Lightyear Costume (Made from Cardboard!)",
-    excerpt: "Create an amazing Halloween costume with just cardboard and creativity. Step-by-step instructions included.",
-    category: "diy",
-    date: "October 28, 2025",
-  },
-];
-
 export default function Home() {
+  const allPosts = getAllPosts();
+  const featuredPosts = allPosts.slice(0, 4);
+
   return (
     <div className="bg-cream">
       {/* Hero Section */}
@@ -65,7 +36,15 @@ export default function Home() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {featuredPosts.map((post) => (
-            <PostCard key={post.slug} {...post} />
+            <PostCard
+              key={post.slug}
+              slug={post.slug}
+              title={post.title}
+              excerpt={post.excerpt}
+              category={post.category}
+              date={formatDate(post.date)}
+              image={post.image}
+            />
           ))}
         </div>
 
@@ -74,7 +53,7 @@ export default function Home() {
             href="/posts"
             className="inline-block px-8 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
           >
-            View All Posts
+            View All {allPosts.length} Posts
           </Link>
         </div>
       </section>
