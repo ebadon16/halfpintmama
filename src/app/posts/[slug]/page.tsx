@@ -119,6 +119,7 @@ export default async function PostPage({ params }: PageProps) {
               fill
               className="object-cover"
               priority
+              unoptimized
             />
           </div>
         )}

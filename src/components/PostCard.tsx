@@ -32,6 +32,7 @@ export function PostCard({ slug, title, excerpt, category, date, image }: PostCa
               alt={title}
               fill
               className="object-cover"
+              unoptimized
             />
           )}
         </div>
