@@ -171,11 +171,6 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         )}
 
-        {/* Recipe Card - for cooking posts with recipe data */}
-        {post.category === "cooking" && post.recipe && (
-          <RecipeCard recipe={post.recipe} title={post.title} />
-        )}
-
         {/* Content */}
         <div
           className="prose prose-base max-w-none
@@ -194,6 +189,11 @@ export default async function PostPage({ params }: PageProps) {
           {/* Simple markdown rendering - convert basic markdown to HTML */}
           <div dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} />
         </div>
+
+        {/* Recipe Card - for cooking posts with recipe data (at end of content) */}
+        {post.category === "cooking" && post.recipe && (
+          <RecipeCard recipe={post.recipe} title={post.title} />
+        )}
 
         {/* Rate & Review CTA - Prominent placement after content */}
         <CommentsPreview postSlug={slug} />
