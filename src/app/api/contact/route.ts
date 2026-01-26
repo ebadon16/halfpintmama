@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
-const API_KEY = process.env.MAILERLITE_API_KEY;
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const CONTACT_EMAIL = "keegan@halfpintmama.com";
 
 export async function POST(request: Request) {
   try {
@@ -13,61 +14,46 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!API_KEY) {
-      console.error("MAILERLITE_API_KEY is not set");
+    if (!RESEND_API_KEY) {
+      console.error("RESEND_API_KEY is not set");
       return NextResponse.json(
         { error: "Server configuration error" },
         { status: 500 }
       );
     }
 
-    // Add subscriber to MailerLite with contact form details in custom fields
-    const response = await fetch(
-      "https://connect.mailerlite.com/api/subscribers",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${API_KEY}`,
-        },
-        body: JSON.stringify({
-          email: email.toLowerCase().trim(),
-          fields: {
-            name: name || "",
-            last_name: "",
-            company: subject || "Contact Form",
-            message: message || "",
-          },
-          groups: ["177693621388051535"],
-          status: "active",
-        }),
-      }
-    );
-
-    const data = await response.json();
+    // Send email via Resend
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "Half Pint Mama <noreply@halfpintmama.com>",
+        to: CONTACT_EMAIL,
+        reply_to: email,
+        subject: `Contact Form: ${subject || "New Message"}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name || "Not provided"}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Subject:</strong> ${subject || "Not provided"}</p>
+          <hr />
+          <p><strong>Message:</strong></p>
+          <p>${message || "No message"}</p>
+        `,
+      }),
+    });
 
     if (!response.ok) {
-      // If subscriber already exists, that's okay for contact form
-      if (data.message?.includes("already")) {
-        // Still a success - they submitted the form
-        console.log(`Contact form from existing subscriber: ${email}`);
-      } else {
-        console.error("MailerLite error:", data);
-        return NextResponse.json(
-          { error: "Failed to submit" },
-          { status: 500 }
-        );
-      }
+      const error = await response.json();
+      console.error("Resend error:", error);
+      return NextResponse.json(
+        { error: "Failed to send message" },
+        { status: 500 }
+      );
     }
-
-    // Log the contact form submission for your records
-    console.log("=== CONTACT FORM SUBMISSION ===");
-    console.log(`Name: ${name}`);
-    console.log(`Email: ${email}`);
-    console.log(`Subject: ${subject}`);
-    console.log(`Message: ${message}`);
-    console.log("================================");
 
     return NextResponse.json({ success: true });
   } catch (error) {
