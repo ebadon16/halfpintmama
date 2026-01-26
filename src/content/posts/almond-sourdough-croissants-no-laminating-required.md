@@ -5,7 +5,29 @@ slug: "almond-sourdough-croissants-no-laminating-required"
 category: "cooking"
 excerpt: "Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait."
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg"
-tags: ["sourdough", "pastry", "breakfast"]
+tags: ["sourdough", "pastry", "breakfast", "almond"]
+servings: 8
+prepTime: "30 min"
+cookTime: "30 min"
+totalTime: "12-36 hours"
+ingredients:
+  - "1/2 cup active sourdough starter (100g)"
+  - "1 1/4 cups filtered warm water (300g)"
+  - "1 tsp salt (6g)"
+  - "3 cups all-purpose flour (375g)"
+  - "1/2 cup cold unsalted butter (113g)"
+  - "1/2 cup softened unsalted butter (113g)"
+  - "1/4 cup organic cane sugar (50g)"
+  - "2 tbsp brown sugar (25g)"
+  - "1 cup + 1 tbsp blanched almond flour (112g)"
+  - "1 tbsp all-purpose flour (8g)"
+  - "1/4 tsp fine salt"
+  - "1 large egg"
+  - "1/2 tsp vanilla extract"
+  - "1/4 tsp almond extract"
+  - "1 tbsp heavy cream"
+  - "Sliced almonds for topping"
+  - "Powdered sugar (optional)"
 ---
 
 Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait.
@@ -17,6 +39,8 @@ This recipe uses a genius method where you grate cold butter right into the doug
 I've been working on this recipe for a while now, and after quite a few fails along the way, I really think I've nailed it. These have become a special weekend treat in our house, and I'm so excited to finally share them with you.
 
 Let's make some croissants!
+
+*this post contains affiliate links, in which I may earn a small commission at no additional cost to you—thanks for your support*
 
 ![Almond sourdough croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
