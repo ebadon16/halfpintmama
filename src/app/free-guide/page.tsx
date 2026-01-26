@@ -1,9 +1,89 @@
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "Free Sourdough Starter Guide | Half Pint Mama",
-  description: "Get my free step-by-step guide to creating and maintaining a healthy sourdough starter. Perfect for beginners!",
-};
+import { useState } from "react";
+
+function SignupForm({ source }: { source: string }) {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, firstName, source }),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        setEmail("");
+        setFirstName("");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div className="bg-light-sage/30 rounded-lg p-6 text-center">
+        <span className="text-3xl block mb-2">🎉</span>
+        <p className="text-deep-sage font-semibold">Check your inbox!</p>
+        <p className="text-charcoal/70 text-sm">Your free guide is on its way.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {firstName !== undefined && (
+        <div>
+          <label htmlFor={`firstName-${source}`} className="block text-sm font-medium text-charcoal mb-1">
+            First Name
+          </label>
+          <input
+            type="text"
+            id={`firstName-${source}`}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Your first name"
+            className="w-full px-4 py-3 border-2 border-warm-beige rounded-lg focus:outline-none focus:border-sage transition-colors"
+          />
+        </div>
+      )}
+      <div>
+        <label htmlFor={`email-${source}`} className="block text-sm font-medium text-charcoal mb-1">
+          Email Address
+        </label>
+        <input
+          type="email"
+          id={`email-${source}`}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@example.com"
+          required
+          className="w-full px-4 py-3 border-2 border-warm-beige rounded-lg focus:outline-none focus:border-sage transition-colors"
+        />
+      </div>
+      {status === "error" && (
+        <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
+      )}
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="w-full py-4 gradient-cta text-white font-semibold rounded-lg hover:shadow-lg transition-all text-lg disabled:opacity-50"
+      >
+        {status === "loading" ? "Sending..." : "Send Me the Free Guide!"}
+      </button>
+    </form>
+  );
+}
 
 export default function FreeGuidePage() {
   return (
@@ -64,36 +144,7 @@ export default function FreeGuidePage() {
 
               {/* Signup Form */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
-                <form className="space-y-4">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-charcoal mb-1">
-                      First Name
-                    </label>
-                    <input
-                      type="text"
-                      id="firstName"
-                      placeholder="Your first name"
-                      className="w-full px-4 py-3 border-2 border-warm-beige rounded-lg focus:outline-none focus:border-sage transition-colors"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-1">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      placeholder="you@example.com"
-                      className="w-full px-4 py-3 border-2 border-warm-beige rounded-lg focus:outline-none focus:border-sage transition-colors"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-4 gradient-cta text-white font-semibold rounded-lg hover:shadow-lg transition-all text-lg"
-                  >
-                    Send Me the Free Guide!
-                  </button>
-                </form>
+                <SignupForm source="free-guide-hero" />
                 <p className="text-charcoal/50 text-xs text-center mt-4">
                   No spam, ever. Unsubscribe anytime.
                 </p>
@@ -212,19 +263,7 @@ export default function FreeGuidePage() {
           </p>
 
           <div className="bg-white rounded-2xl shadow-lg p-6">
-            <form className="space-y-4">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="w-full px-4 py-3 border-2 border-warm-beige rounded-lg focus:outline-none focus:border-sage transition-colors"
-              />
-              <button
-                type="submit"
-                className="w-full py-4 gradient-cta text-white font-semibold rounded-lg hover:shadow-lg transition-all text-lg"
-              >
-                Get the Free Guide
-              </button>
-            </form>
+            <SignupForm source="free-guide-bottom" />
           </div>
 
           <p className="text-charcoal/50 text-sm mt-6">
