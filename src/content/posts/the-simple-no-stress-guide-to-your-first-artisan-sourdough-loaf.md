@@ -3,8 +3,24 @@ title: "The Simple, No-Stress Guide to Your First Artisan Sourdough Loaf"
 date: "2026-01-15"
 slug: "the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf"
 category: "cooking"
-excerpt: ""
+excerpt: "A beginner-friendly guide to making your first beautiful artisan sourdough loaf at home."
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/screenshot-2026-01-15-at-11.00.31-am.png?w=1024"
+tags: ["sourdough", "bread", "beginner-friendly"]
+servings: 1
+prepTime: "30 min"
+cookTime: "45 min"
+totalTime: "12-24 hours"
+ingredients:
+  - "1 cup active sourdough starter"
+  - "1 1/2 cups warm water"
+  - "4 cups bread flour"
+  - "1 1/2 tsp salt"
+nutrition:
+  calories: 120
+  protein: 4
+  carbs: 24
+  fat: 1
+  fiber: 1
 ---
 
 If sourdough has ever felt intimidating, this post is for you. I’ve been wanting to share this recipe for a while, through a little trial and error I think I’ve perfected this one! Prior to starting sourdough I never considered myself a baker. It felt way too exact for me, I’m definitely more type B in the kitchen. I’ve learned sourdough can actually be very forgiving and does not need to be this exact science. You can work with your schedule and I’ll show you the method I use in my own kitchen to make a classic artisan sourdough loaf. It’s crispy on the outside, with a soft and chewy center. There’s no scale (though if using a scale is your thing, I’ll include measurements), no complicated math, and no pressure to be perfect.

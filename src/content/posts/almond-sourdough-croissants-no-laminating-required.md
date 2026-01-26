@@ -5,6 +5,7 @@ slug: "almond-sourdough-croissants-no-laminating-required"
 category: "cooking"
 excerpt: "Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait."
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg"
+tags: ["sourdough", "pastry", "breakfast"]
 ---
 
 Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait.

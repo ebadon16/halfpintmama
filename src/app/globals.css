@@ -137,4 +137,59 @@ html {
     border-bottom: 1px solid #ccc;
     padding-bottom: 10pt;
   }
+
+  /* Recipe card print styles */
+  .recipe-card {
+    border: 2px solid #333 !important;
+    padding: 15pt !important;
+    margin-bottom: 20pt !important;
+    page-break-inside: avoid;
+  }
+
+  .recipe-card h2 {
+    font-size: 14pt !important;
+    margin-bottom: 10pt !important;
+  }
+
+  .recipe-card h3,
+  .recipe-card h4 {
+    font-size: 11pt !important;
+    margin-bottom: 8pt !important;
+  }
+
+  /* Ingredient checklist print */
+  .ingredient-checklist input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12pt !important;
+    height: 12pt !important;
+    border: 1pt solid #333 !important;
+    margin-right: 8pt !important;
+  }
+
+  .ingredient-checklist li {
+    margin-bottom: 4pt !important;
+    font-size: 10pt !important;
+  }
+
+  /* Nutrition facts print */
+  .nutrition-facts {
+    background: #f5f5f5 !important;
+    border: 1pt solid #ccc !important;
+    padding: 10pt !important;
+  }
+
+  /* Recipe scaler - hide on print */
+  .recipe-scaler {
+    display: none !important;
+  }
+
+  /* Show print-only elements */
+  [data-print-show] {
+    display: block !important;
+  }
+
+  [data-print-hide] {
+    display: none !important;
+  }
 }

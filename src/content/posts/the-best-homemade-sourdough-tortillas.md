@@ -5,6 +5,7 @@ slug: "the-best-homemade-sourdough-tortillas"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/image-4.jpg?w=965"
+tags: ["sourdough", "easy", "beginner-friendly"]
 ---
 
 Soft, pillowy, and made with real ingredients, these homemade sourdough tortillas are easier than you think. You're going to have a hard time going back to  store bought!

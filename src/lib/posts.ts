@@ -4,6 +4,24 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
+export interface NutritionInfo {
+  calories?: number;
+  protein?: number;
+  carbs?: number;
+  fat?: number;
+  fiber?: number;
+  sugar?: number;
+}
+
+export interface RecipeInfo {
+  servings?: number;
+  prepTime?: string;
+  cookTime?: string;
+  totalTime?: string;
+  ingredients?: string[];
+  nutrition?: NutritionInfo;
+}
+
 export interface Post {
   slug: string;
   title: string;
@@ -12,6 +30,8 @@ export interface Post {
   excerpt: string;
   image: string;
   content: string;
+  tags: string[];
+  recipe?: RecipeInfo;
 }
 
 export interface PostMeta {
@@ -21,6 +41,7 @@ export interface PostMeta {
   category: string;
   excerpt: string;
   image: string;
+  tags: string[];
 }
 
 export function getAllPosts(): PostMeta[] {
@@ -41,6 +62,7 @@ export function getAllPosts(): PostMeta[] {
         category: data.category || 'uncategorized',
         excerpt: data.excerpt || '',
         image: data.image || '',
+        tags: data.tags || [],
       };
     })
     .sort((a, b) => (a.date > b.date ? -1 : 1));
@@ -54,6 +76,18 @@ export function getPostBySlug(slug: string): Post | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
 
+    // Build recipe info if any recipe fields exist
+    const recipe: RecipeInfo | undefined = (data.servings || data.prepTime || data.cookTime || data.ingredients || data.nutrition)
+      ? {
+          servings: data.servings,
+          prepTime: data.prepTime,
+          cookTime: data.cookTime,
+          totalTime: data.totalTime,
+          ingredients: data.ingredients,
+          nutrition: data.nutrition,
+        }
+      : undefined;
+
     return {
       slug,
       title: data.title || slug,
@@ -61,6 +95,8 @@ export function getPostBySlug(slug: string): Post | null {
       category: data.category || 'uncategorized',
       excerpt: data.excerpt || '',
       image: data.image || '',
+      tags: data.tags || [],
+      recipe,
       content,
     };
   } catch {
@@ -88,6 +124,28 @@ export function getAllCategories(): string[] {
   const posts = getAllPosts();
   const categories = [...new Set(posts.map((post) => post.category))];
   return categories;
+}
+
+export function getPostsByTag(tag: string): PostMeta[] {
+  return getAllPosts().filter((post) =>
+    post.tags.some((t) => t.toLowerCase() === tag.toLowerCase())
+  );
+}
+
+export function getAllTags(): { tag: string; count: number }[] {
+  const posts = getAllPosts();
+  const tagCounts = new Map<string, number>();
+
+  posts.forEach((post) => {
+    post.tags.forEach((tag) => {
+      const normalizedTag = tag.toLowerCase();
+      tagCounts.set(normalizedTag, (tagCounts.get(normalizedTag) || 0) + 1);
+    });
+  });
+
+  return Array.from(tagCounts.entries())
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
 }
 
 export function formatDate(dateString: string): string {

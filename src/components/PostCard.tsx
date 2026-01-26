@@ -11,6 +11,7 @@ interface PostCardProps {
   category: string;
   date: string;
   image?: string;
+  tags?: string[];
 }
 
 const categoryColors: Record<string, string> = {
@@ -21,7 +22,7 @@ const categoryColors: Record<string, string> = {
   default: "bg-sage",
 };
 
-export function PostCard({ slug, title, excerpt, category, date, image }: PostCardProps) {
+export function PostCard({ slug, title, excerpt, category, date, image, tags }: PostCardProps) {
   const badgeColor = categoryColors[category] || categoryColors.default;
 
   return (
@@ -51,9 +52,19 @@ export function PostCard({ slug, title, excerpt, category, date, image }: PostCa
 
         {/* Content */}
         <div className="p-5">
-          <span className={`inline-block px-3 py-1 ${badgeColor} text-white text-xs font-semibold rounded-full uppercase tracking-wide mb-3`}>
-            {category.replace("-", " ")}
-          </span>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <span className={`inline-block px-3 py-1 ${badgeColor} text-white text-xs font-semibold rounded-full uppercase tracking-wide`}>
+              {category.replace("-", " ")}
+            </span>
+            {tags && tags.length > 0 && tags.slice(0, 2).map((tag) => (
+              <span
+                key={tag}
+                className="inline-block px-2 py-0.5 bg-warm-beige text-charcoal/70 text-xs rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
 
           <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2 leading-tight group-hover:text-deep-sage transition-colors">
             {title}

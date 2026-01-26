@@ -5,6 +5,7 @@ slug: "3-ingredient-fruit-roll-ups"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3945-1.jpg?w=844"
+tags: ["healthy", "snacks", "kid-friendly", "easy"]
 ---
 
 Lately, I’ve been looking for easy and cost-effective ways to make snacks for my kids at home. With our grocery bill soaring, I’m trying to get creative to cut costs while ensuring we have healthy options. I also love knowing exactly what goes into the food we snack on. It’s astonishing how many ingredients are listed on the back of a box for kids’ snacks—store-bought fruit roll-ups, for example, have around 18 ingredients! I’ve discovered I can make them at home with just three simple ingredients, and my toddler is now obsessed with these homemade apple and blueberry fruit roll-ups!

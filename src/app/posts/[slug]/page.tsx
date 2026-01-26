@@ -9,6 +9,7 @@ import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { RecipeCard } from "@/components/RecipeCard";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -168,6 +169,11 @@ export default async function PostPage({ params }: PageProps) {
               unoptimized
             />
           </div>
+        )}
+
+        {/* Recipe Card - for cooking posts with recipe data */}
+        {post.category === "cooking" && post.recipe && (
+          <RecipeCard recipe={post.recipe} title={post.title} />
         )}
 
         {/* Content */}

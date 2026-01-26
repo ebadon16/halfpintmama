@@ -5,6 +5,7 @@ slug: "easy-sourdough-discard-crackers"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9563.jpg?w=572"
+tags: ["sourdough", "discard", "snacks", "easy"]
 ---
 
 Perfectly crispy, simple, and oh so addicting.

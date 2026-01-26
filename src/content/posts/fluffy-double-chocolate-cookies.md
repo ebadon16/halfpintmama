@@ -3,8 +3,28 @@ title: "Fluffy Double Chocolate Cookies"
 date: "2025-07-01"
 slug: "fluffy-double-chocolate-cookies"
 category: "cooking"
-excerpt: ""
+excerpt: "Rich and chocolatey yet somehow still light and fluffy—the best kind of treat."
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/07/img_7335.jpg?w=768"
+tags: ["cookies", "chocolate", "dessert", "kid-friendly"]
+servings: 12
+prepTime: "10 min"
+cookTime: "12 min"
+ingredients:
+  - "1 cup almond flour"
+  - "1/2 cup cocoa powder"
+  - "1/2 cup maple syrup"
+  - "1/4 cup coconut oil, melted"
+  - "1 egg"
+  - "1 tsp vanilla extract"
+  - "1/2 tsp baking soda"
+  - "1/4 tsp salt"
+  - "1/2 cup chocolate chips"
+nutrition:
+  calories: 150
+  protein: 3
+  carbs: 18
+  fat: 8
+  sugar: 12
 ---
 
 Baking with my toddler is always a little messy, a little chaotic, and completely worth it. The other night, we set out to make a simple batch of flourless chocolate cookies—but as any mom knows, plans (and recipes) sometimes need a little adjusting. We wanted to do a chocolate version of my fluffy peanut butter cookies. Little sister was down to sleep for the night, my other little helper was on his step stool, enthusiastically dumping ingredients (and taste-testing cocoa powder straight from the spoon), we realized our dough needed just a bit more structure. A quick pantry check led us to add some almond flour, and just like that, our fudgy, naturally sweetened cookies came together. They’re rich and chocolatey, let somehow still light and fluffy— the best kind of treat.
