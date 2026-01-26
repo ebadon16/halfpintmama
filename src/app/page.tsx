@@ -32,66 +32,10 @@ export default function Home() {
               Get My Free Sourdough Starter Guide
             </Link>
             <Link
-              href="/start-here"
-              className="px-8 py-4 bg-white text-deep-sage font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-sage hover:bg-sage hover:text-white transition-all text-lg"
-            >
-              New? Start Here!
-            </Link>
-            <Link
               href="/shop"
               className="px-8 py-4 bg-terracotta/10 text-terracotta font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-terracotta hover:bg-terracotta hover:text-white transition-all text-lg"
             >
               Shop My Favorites
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Not Sure Where to Start - Moved up */}
-      <section className="bg-white py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-3 text-center">
-            Not Sure Where to Start?
-          </h2>
-          <p className="text-charcoal/70 text-center mb-8 max-w-xl mx-auto">
-            I&apos;ve got you covered. Pick your path:
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Path 1: Sourdough */}
-            <Link href="/start-here#sourdough" className="bg-gradient-to-br from-terracotta/10 to-soft-pink/10 p-6 rounded-2xl border-2 border-transparent hover:border-terracotta transition-all group">
-              <div className="text-5xl mb-4">🍞</div>
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal group-hover:text-terracotta transition-colors mb-2">
-                New to Sourdough?
-              </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                Start your sourdough journey with my beginner-friendly guides, from creating your first starter to baking your first loaf.
-              </p>
-              <span className="text-terracotta font-medium text-sm">Start baking &rarr;</span>
-            </Link>
-
-            {/* Path 2: New Parent */}
-            <Link href="/start-here#parenting" className="bg-gradient-to-br from-sage/10 to-light-sage/20 p-6 rounded-2xl border-2 border-transparent hover:border-sage transition-all group">
-              <div className="text-5xl mb-4">👶</div>
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal group-hover:text-sage transition-colors mb-2">
-                New Parent?
-              </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                Real talk from an ER nurse and mama. Tips for surviving (and thriving) with babies and toddlers.
-              </p>
-              <span className="text-sage font-medium text-sm">Get support &rarr;</span>
-            </Link>
-
-            {/* Path 3: Quick Recipes */}
-            <Link href="/start-here#recipes" className="bg-gradient-to-br from-deep-sage/10 to-sage/10 p-6 rounded-2xl border-2 border-transparent hover:border-deep-sage transition-all group">
-              <div className="text-5xl mb-4">🥗</div>
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal group-hover:text-deep-sage transition-colors mb-2">
-                Looking for Recipes?
-              </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                Family-tested recipes that even picky toddlers approve. Quick weeknight meals to elaborate weekend bakes.
-              </p>
-              <span className="text-deep-sage font-medium text-sm">Find recipes &rarr;</span>
             </Link>
           </div>
         </div>

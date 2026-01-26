@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/start-here", label: "New? Start Here!" },
   { href: "/cooking", label: "Recipes" },
   { href: "/mama-life", label: "Mama Life Blog" },
   { href: "/lifestyle", label: "Travel & DIY" },
@@ -29,25 +27,12 @@ export function Header() {
   return (
     <header className="bg-cream">
       {/* Main Header with Banner */}
-      <div className="relative">
-        {/* Banner Background */}
+      <Link href="/" className="block">
         <div
-          className="w-full h-48 md:h-56 bg-cover bg-center bg-no-repeat"
+          className="w-full h-32 md:h-40 bg-contain bg-center bg-no-repeat bg-cream"
           style={{ backgroundImage: "url('/banner.png')" }}
         />
-
-        {/* Logo Overlay */}
-        <Link href="/" className="absolute inset-0 flex items-center justify-center">
-          <Image
-            src="/logo.png"
-            alt="Half Pint Mama"
-            width={160}
-            height={160}
-            className="drop-shadow-lg hover:scale-105 transition-transform"
-            priority
-          />
-        </Link>
-      </div>
+      </Link>
 
       {/* Navigation */}
       <nav className="bg-cream sticky top-0 z-50 shadow-sm">

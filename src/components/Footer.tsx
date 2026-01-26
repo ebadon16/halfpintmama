@@ -22,11 +22,6 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/start-here" className="text-charcoal/80 hover:text-terracotta transition-colors">
-                  Start Here
-                </Link>
-              </li>
-              <li>
                 <Link href="/cooking" className="text-charcoal/80 hover:text-terracotta transition-colors">
                   Cooking & Baking
                 </Link>
