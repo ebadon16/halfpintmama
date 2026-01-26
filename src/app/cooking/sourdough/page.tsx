@@ -3,7 +3,7 @@ import { PostCard } from "@/components/PostCard";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Sourdough Loaves & Bread | Half Pint Mama",
+  title: "Sourdough & Bread | Half Pint Mama",
   description: "Master the art of sourdough bread baking with tested recipes from a Pediatric ER RN turned sourdough mama.",
 };
 
@@ -19,7 +19,7 @@ export default function SourdoughPage() {
             All Recipes
           </Link>
           <Link href="/cooking/sourdough" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">
-            Sourdough Loaves
+            Sourdough
           </Link>
           <Link href="/cooking/discard" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
             Discard Recipes
@@ -35,7 +35,7 @@ export default function SourdoughPage() {
         <div className="mb-12">
           <span className="text-5xl mb-4 block">🍞</span>
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
-            Sourdough Loaves & Bread
+            Sourdough & Bread
           </h1>
           <p className="text-charcoal/70 text-lg max-w-2xl">
             From your first starter to picture-perfect loaves. These recipes are tested with nurse-level precision

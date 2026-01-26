@@ -5,15 +5,14 @@ export const metadata = {
   description: "Digital downloads, printables, and favorite products from Half Pint Mama.",
 };
 
-// Best seller products
-const bestSellers = [
+// Coming soon products
+const comingSoonProducts = [
   {
     id: 1,
     title: "Sourdough Starter Guide",
     description: "Step-by-step guide to creating and maintaining a healthy sourdough starter. Includes feeding schedule, troubleshooting guide, and 5 beginner recipes.",
     benefits: ["20+ page PDF", "Printable feeding chart", "Video tutorials included"],
     icon: "🍞",
-    link: "#",
   },
   {
     id: 2,
@@ -21,47 +20,6 @@ const bestSellers = [
     description: "Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days.",
     benefits: ["Nurse-approved tips", "Recovery guidance", "Mental health resources"],
     icon: "📖",
-    link: "#",
-  },
-];
-
-// Coming soon digital products
-const comingSoonProducts = [
-  {
-    id: 1,
-    title: "Weekly Meal Planner Bundle",
-    description: "Take the stress out of dinner time. 4-week rotating menu with grocery lists, prep guides, and kid-approved recipes.",
-    icon: "📋",
-  },
-  {
-    id: 2,
-    title: "Travel Packing Checklist Bundle",
-    description: "Never forget the essentials! Age-specific packing lists for babies, toddlers, and preschoolers.",
-    icon: "✈️",
-  },
-  {
-    id: 3,
-    title: "Toddler Activity Cards",
-    description: "50 screen-free activity ideas for toddlers using items you already have at home.",
-    icon: "🎨",
-  },
-  {
-    id: 4,
-    title: "Baby's First Foods Tracker",
-    description: "Track your baby's food journey with this allergen tracker, reaction log, and meal planning guide.",
-    icon: "🥑",
-  },
-  {
-    id: 5,
-    title: "Sourdough Masterclass",
-    description: "Video course taking you from zero to confident sourdough baker. Live Q&A sessions and technique videos.",
-    icon: "🎓",
-  },
-  {
-    id: 6,
-    title: "Digital Recipe Vault",
-    description: "Searchable database of all my recipes. Save favorites, create meal plans, generate shopping lists.",
-    icon: "📚",
   },
 ];
 
@@ -118,16 +76,16 @@ export default function ShopPage() {
           </p>
         </div>
 
-        {/* Best Sellers */}
+        {/* Coming Soon */}
         <section className="mb-16">
           <div className="flex justify-between items-center mb-8">
             <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-terracotta inline-block">
-              Best Sellers
+              Coming Soon
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {bestSellers.map((product) => (
+            {comingSoonProducts.map((product) => (
               <div
                 key={product.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border-2 border-terracotta/20"
@@ -152,38 +110,6 @@ export default function ShopPage() {
                   </ul>
                   <div className="text-center p-3 bg-light-sage/30 rounded-full">
                     <span className="text-deep-sage font-semibold">Coming Soon</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Coming Soon Digital Products */}
-        <section className="mb-16">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 pb-3 border-b-4 border-sage inline-block">
-            Coming Soon
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {comingSoonProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-md border-2 border-dashed border-sage/30"
-              >
-                <div className="h-24 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 flex items-center justify-center">
-                  <span className="text-5xl">{product.icon}</span>
-                </div>
-
-                <div className="p-5">
-                  <h3 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal mb-2">
-                    {product.title}
-                  </h3>
-                  <p className="text-charcoal/70 text-sm mb-4 line-clamp-2">
-                    {product.description}
-                  </p>
-                  <div className="text-center">
-                    <span className="text-charcoal/50 text-sm font-medium">Coming Soon</span>
                   </div>
                 </div>
               </div>

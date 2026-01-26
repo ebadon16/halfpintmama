@@ -19,7 +19,7 @@ export default function DiscardPage() {
             All Recipes
           </Link>
           <Link href="/cooking/sourdough" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
-            Sourdough Loaves
+            Sourdough
           </Link>
           <Link href="/cooking/discard" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">
             Discard Recipes

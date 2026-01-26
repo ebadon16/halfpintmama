@@ -213,38 +213,26 @@ export default function Home() {
                 @halfpint.mama
               </a>
 
-              {/* Instagram Embed */}
-              <div className="space-y-3">
-                <a
-                  href="https://www.instagram.com/halfpint.mama/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <div className="grid grid-cols-3 gap-1">
-                    {[1, 2, 3, 4, 5, 6].map((i) => (
-                      <div key={i} className="aspect-square bg-warm-beige/50 rounded flex items-center justify-center hover:opacity-80 transition-opacity">
-                        <span className="text-charcoal/20 text-xs">📷</span>
-                      </div>
-                    ))}
-                  </div>
-                </a>
-                <a
-                  href="https://www.instagram.com/halfpint.mama/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full hover:bg-terracotta hover:text-white transition-all"
-                >
-                  Follow on Instagram
-                </a>
+              {/* Instagram Embed Widget */}
+              <div className="mb-4">
+                <iframe
+                  src="https://www.instagram.com/halfpint.mama/embed"
+                  className="w-full border-0 rounded-lg overflow-hidden"
+                  height="400"
+                  scrolling="no"
+                  allowTransparency={true}
+                  title="Instagram Feed"
+                />
               </div>
 
-              {/* Stats */}
-              <div className="mt-4 pt-4 border-t border-light-sage text-center">
-                <p className="text-charcoal/60 text-xs">
-                  Join our community of mamas!
-                </p>
-              </div>
+              <a
+                href="https://www.instagram.com/halfpint.mama/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full hover:bg-terracotta hover:text-white transition-all"
+              >
+                Follow on Instagram
+              </a>
             </div>
           </aside>
         </div>
