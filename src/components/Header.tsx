@@ -30,15 +30,15 @@ export function Header() {
       {/* Main Header with Banner */}
       <Link
         href="/"
-        className="block w-full h-44 md:h-52 lg:h-60"
-        style={{
-          backgroundImage: "url('https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/banner.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-        }}
+        className="block w-full"
         aria-label="Half Pint Mama - Home"
-      />
+      >
+        <img
+          src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/banner.png"
+          alt="Half Pint Mama"
+          className="w-full h-auto block"
+        />
+      </Link>
 
       {/* Navigation */}
       <nav className="bg-cream sticky top-0 z-50 shadow-sm">
