@@ -36,8 +36,7 @@ export function Header() {
         <img
           src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/banner.png"
           alt="Half Pint Mama"
-          className="w-full block"
-          style={{ maxHeight: "320px", objectFit: "cover", objectPosition: "center" }}
+          className="w-full block md:max-h-80 md:object-contain"
         />
       </Link>
 
