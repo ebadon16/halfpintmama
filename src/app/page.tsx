@@ -115,7 +115,7 @@ export default function Home() {
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {/* Product Card 1 */}
-                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
                   <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
                     <span className="text-4xl">🥣</span>
                   </div>
@@ -124,7 +124,7 @@ export default function Home() {
                 </a>
 
                 {/* Product Card 2 */}
-                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
                   <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
                     <span className="text-4xl">🍳</span>
                   </div>
@@ -133,7 +133,7 @@ export default function Home() {
                 </a>
 
                 {/* Product Card 3 */}
-                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
                   <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
                     <span className="text-4xl">📖</span>
                   </div>
@@ -142,7 +142,7 @@ export default function Home() {
                 </a>
 
                 {/* Product Card 4 */}
-                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
                   <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
                     <span className="text-4xl">🫙</span>
                   </div>

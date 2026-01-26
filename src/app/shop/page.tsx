@@ -34,7 +34,7 @@ const affiliateCategories = [
       { name: "Dutch Oven", note: "For that perfect crust" },
       { name: "Bread Lame", note: "Beautiful scoring" },
     ],
-    link: "/products#sourdough",
+    link: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
     title: "Baby & Toddler Must-Haves",
@@ -46,7 +46,7 @@ const affiliateCategories = [
       { name: "Sound Machine", note: "Sleep essential" },
       { name: "Toddler Plates", note: "Suction bottoms" },
     ],
-    link: "/products#baby",
+    link: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
     title: "Travel Gear",
@@ -58,7 +58,7 @@ const affiliateCategories = [
       { name: "Portable White Noise", note: "Sleep anywhere" },
       { name: "Snack Bag", note: "Insulated pick" },
     ],
-    link: "/products#travel",
+    link: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
 ];
 
@@ -164,12 +164,14 @@ export default function ShopPage() {
                   ))}
                 </ul>
 
-                <Link
+                <a
                   href={category.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full hover:bg-terracotta hover:text-white transition-all"
                 >
                   Shop This Collection
-                </Link>
+                </a>
               </div>
             ))}
           </div>
