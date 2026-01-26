@@ -5,6 +5,9 @@ import { useState, useEffect } from "react";
 export function EmailPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     // Check if user has already dismissed or subscribed
@@ -27,10 +30,42 @@ export function EmailPopup() {
     localStorage.setItem("emailPopupDismissed", "true");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    handleDismiss();
+
+    if (!email.trim()) {
+      setStatus("error");
+      setMessage("Please enter your email");
+      return;
+    }
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, source: "popup" }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setMessage(data.message);
+        localStorage.setItem("emailPopupDismissed", "true");
+        // Auto-close after 3 seconds
+        setTimeout(() => {
+          setIsVisible(false);
+        }, 3000);
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong");
+      }
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
+    }
   };
 
   if (!isVisible || isDismissed) {
@@ -61,39 +96,55 @@ export function EmailPopup() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6">
-          <p className="text-charcoal/70 text-center mb-4 text-sm">
-            Join 1,000+ mamas who are baking with confidence. Get my step-by-step starter guide delivered straight to your inbox.
-          </p>
+        {status === "success" ? (
+          <div className="p-8 text-center">
+            <div className="text-4xl mb-3">🎉</div>
+            <p className="text-green-600 font-medium">{message}</p>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="p-6">
+            <p className="text-charcoal/70 text-center mb-4 text-sm">
+              Join 1,000+ mamas who are baking with confidence. Get my step-by-step starter guide delivered straight to your inbox.
+            </p>
 
-          <input
-            type="email"
-            placeholder="Enter your email"
-            required
-            className="w-full px-4 py-3 rounded-full text-charcoal border-2 border-sage/50 focus:outline-none focus:border-sage mb-3"
-          />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              disabled={status === "loading"}
+              className="w-full px-4 py-3 rounded-full text-charcoal border-2 border-sage/50 focus:outline-none focus:border-sage mb-3 disabled:opacity-50"
+            />
 
-          <button
-            type="submit"
-            className="w-full px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
-          >
-            Send My Free Guide
-          </button>
+            {status === "error" && (
+              <p className="text-red-500 text-sm mb-3 text-center">{message}</p>
+            )}
 
-          <p className="text-charcoal/50 text-xs text-center mt-3">
-            No spam, ever. Unsubscribe anytime.
-          </p>
-        </form>
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="w-full px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all disabled:opacity-50"
+            >
+              {status === "loading" ? "Sending..." : "Send My Free Guide"}
+            </button>
+
+            <p className="text-charcoal/50 text-xs text-center mt-3">
+              No spam, ever. Unsubscribe anytime.
+            </p>
+          </form>
+        )}
 
         {/* Maybe later link */}
-        <div className="pb-4 text-center">
-          <button
-            onClick={handleDismiss}
-            className="text-charcoal/50 text-sm hover:text-charcoal transition-colors"
-          >
-            Maybe later
-          </button>
-        </div>
+        {status !== "success" && (
+          <div className="pb-4 text-center">
+            <button
+              onClick={handleDismiss}
+              className="text-charcoal/50 text-sm hover:text-charcoal transition-colors"
+            >
+              Maybe later
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

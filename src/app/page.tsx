@@ -1,4 +1,5 @@
 import { PostCard } from "@/components/PostCard";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
 
@@ -132,30 +133,7 @@ export default function Home() {
       </div>
 
       {/* Email Signup with Lead Magnet */}
-      <section className="max-w-4xl mx-auto px-4 py-12">
-        <div className="gradient-cta rounded-2xl p-8 md:p-10 text-center text-white shadow-lg">
-          <div className="text-5xl mb-4">📬</div>
-          <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold mb-3">
-            Get My Free Sourdough Starter Guide
-          </h2>
-          <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Plus weekly recipes, mom tips, and exclusive content. Join 1,000+ mamas who are baking and thriving!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white"
-            />
-            <button className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-colors whitespace-nowrap">
-              Send My Guide
-            </button>
-          </div>
-          <p className="text-white/60 text-xs mt-4">
-            No spam, unsubscribe anytime. I respect your inbox.
-          </p>
-        </div>
-      </section>
+      <HomeEmailSignup />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { ShareButtons } from "@/components/ShareButtons";
 import { Comments, CommentsPreview } from "@/components/Comments";
 import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
+import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -188,29 +189,7 @@ export default async function PostPage({ params }: PageProps) {
         <CommentsPreview postSlug={slug} />
 
         {/* Mid-Post Email Signup CTA */}
-        <div className="my-10 p-6 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl">
-          <div className="flex items-start gap-4">
-            <span className="text-4xl">📬</span>
-            <div className="flex-1">
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
-                Enjoying this post?
-              </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                Get more recipes, tips, and real mom moments delivered to your inbox weekly. Plus a free sourdough starter guide!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-2 rounded-full border-2 border-sage focus:outline-none focus:border-deep-sage text-sm"
-                />
-                <button className="px-4 py-2 gradient-cta text-white font-semibold rounded-full text-sm hover:shadow-md transition-all whitespace-nowrap">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <PostEmailSignup />
 
         {/* Footer - Navigation */}
         <footer className="mt-12 pt-8 border-t border-light-sage">
@@ -259,29 +238,7 @@ export default async function PostPage({ params }: PageProps) {
       <Comments postSlug={slug} />
 
       {/* Want More? Join My List - Bottom CTA */}
-      <section className="py-12">
-        <div className="max-w-2xl mx-auto px-4">
-          <div className="gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
-            <span className="text-5xl block mb-4">💌</span>
-            <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
-              Want More? Join My List!
-            </h2>
-            <p className="text-white/90 mb-6 max-w-md mx-auto">
-              Weekly recipes, honest mom moments, and exclusive content. Plus get my free sourdough starter guide when you subscribe!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:border-white"
-              />
-              <button className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-colors whitespace-nowrap">
-                Join Free
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <BottomEmailCTA />
     </div>
   );
 }
