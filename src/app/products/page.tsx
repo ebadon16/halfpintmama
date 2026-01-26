@@ -8,37 +8,25 @@ const affiliateCategories = [
     title: "Sourdough Essentials",
     description: "Everything you need to start and maintain your sourdough journey. These are the exact tools in my kitchen.",
     icon: "🥖",
-    products: [
-      { name: "Proofing Basket Set", note: "Best for beginners" },
-      { name: "Kitchen Scale", note: "Precision matters" },
-      { name: "Dutch Oven", note: "For that perfect crust" },
-      { name: "Bread Lame", note: "Beautiful scoring" },
-    ],
-    link: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
+    link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/34LAO012O5RIR?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
     title: "Baby & Toddler Must-Haves",
     description: "The gear that survived two babies and countless adventures. Only the stuff that actually works.",
     icon: "👶",
-    products: [
-      { name: "Travel High Chair", note: "Lifesaver for trips" },
-      { name: "Snack Containers", note: "No-spill favorites" },
-      { name: "Sound Machine", note: "Sleep essential" },
-      { name: "Toddler Plates", note: "Suction bottoms" },
-    ],
-    link: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
+    link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/3K7AEMTLYQWAA?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
     title: "Travel Gear",
     description: "What we pack for every adventure. Road trips, flights, and everything in between with two littles.",
     icon: "🧳",
-    products: [
-      { name: "Travel Stroller", note: "One-hand fold" },
-      { name: "Packing Cubes", note: "Organization key" },
-      { name: "Portable White Noise", note: "Sleep anywhere" },
-      { name: "Snack Bag", note: "Insulated pick" },
-    ],
-    link: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
+    link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/2SYTGUP5EUSC?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
+  },
+  {
+    title: "Kitchen Favorites",
+    description: "Beyond sourdough - the tools and gadgets that make cooking with kids around actually manageable.",
+    icon: "🍳",
+    link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/3C6A7CTB9S2CX?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
 ];
 
@@ -89,38 +77,26 @@ export default function ProductsPage() {
 
       {/* Products I Actually Use */}
       <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {affiliateCategories.map((category) => (
-            <div
+            <a
               key={category.title}
-              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all"
+              href={category.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all group"
             >
               <div className="text-4xl mb-3">{category.icon}</div>
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal group-hover:text-terracotta transition-colors mb-2">
                 {category.title}
               </h3>
               <p className="text-charcoal/70 text-sm mb-4">
                 {category.description}
               </p>
-
-              <ul className="space-y-2 mb-4">
-                {category.products.map((product, i) => (
-                  <li key={i} className="flex justify-between text-sm">
-                    <span className="text-charcoal">{product.name}</span>
-                    <span className="text-sage text-xs">{product.note}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={category.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full hover:bg-terracotta hover:text-white transition-all"
-              >
-                Shop This Collection
-              </a>
-            </div>
+              <span className="inline-block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full group-hover:bg-terracotta group-hover:text-white transition-all">
+                Shop Collection
+              </span>
+            </a>
           ))}
         </div>
       </section>

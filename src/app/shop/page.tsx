@@ -9,14 +9,8 @@ export const metadata = {
 const comingSoonProducts = [
   {
     id: 1,
-    title: "Sourdough Starter Guide",
-    description: "Step-by-step guide to creating and maintaining a healthy sourdough starter. Includes feeding schedule, troubleshooting guide, and 5 beginner recipes.",
-    icon: "🍞",
-  },
-  {
-    id: 2,
     title: "The Postpartum Mama Book",
-    description: "Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days.",
+    description: "Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days—plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.",
     icon: "📖",
   },
 ];
@@ -43,7 +37,7 @@ export default function ShopPage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="max-w-lg mx-auto">
             {comingSoonProducts.map((product) => (
               <div
                 key={product.id}
