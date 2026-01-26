@@ -3,6 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllPosts, getPostBySlug, getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { ShareButtons } from "@/components/ShareButtons";
+import { Comments } from "@/components/Comments";
+import { PrintButton } from "@/components/PrintButton";
+import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -48,6 +52,13 @@ const categoryColors: Record<string, string> = {
   "mama-life": "bg-deep-sage",
 };
 
+// Calculate reading time
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const words = content.trim().split(/\s+/).length;
+  return Math.ceil(words / wordsPerMinute);
+}
+
 // Product recommendations based on category
 const categoryProducts: Record<string, Array<{ name: string; note: string; link: string }>> = {
   cooking: [
@@ -89,9 +100,48 @@ export default async function PostPage({ params }: PageProps) {
     .filter(p => p.slug !== slug)
     .slice(0, 3);
 
+  const readingTime = calculateReadingTime(post.content);
+
   return (
     <div className="bg-cream">
+      {/* Structured Data for SEO */}
+      {post.category === "cooking" ? (
+        <RecipeSchema
+          title={post.title}
+          description={post.excerpt}
+          image={post.image}
+          datePublished={post.date}
+          slug={slug}
+        />
+      ) : (
+        <BlogPostSchema
+          title={post.title}
+          description={post.excerpt}
+          image={post.image}
+          datePublished={post.date}
+          slug={slug}
+          category={categoryLabel}
+        />
+      )}
+
       <article className="max-w-3xl mx-auto px-4 py-12">
+        {/* Breadcrumbs */}
+        <nav className="mb-6 text-sm" aria-label="Breadcrumb">
+          <ol className="flex items-center gap-2 text-charcoal/60">
+            <li>
+              <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>
+            </li>
+            <li>/</li>
+            <li>
+              <Link href={`/${post.category}`} className="hover:text-terracotta transition-colors">
+                {categoryLabel}
+              </Link>
+            </li>
+            <li>/</li>
+            <li className="text-charcoal/80 truncate max-w-[200px]">{post.title}</li>
+          </ol>
+        </nav>
+
         {/* Header */}
         <header className="mb-8">
           <Link
@@ -105,9 +155,26 @@ export default async function PostPage({ params }: PageProps) {
             {post.title}
           </h1>
 
-          <p className="text-sage font-medium">
-            {formatDate(post.date)}
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <p className="text-sage font-medium">
+              {formatDate(post.date)}
+            </p>
+            <span className="hidden sm:block text-charcoal/30">|</span>
+            <p className="text-charcoal/60 text-sm flex items-center gap-1">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {readingTime} min read
+            </p>
+          </div>
+
+          {/* Share & Print Buttons */}
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-4">
+            <ShareButtons title={post.title} slug={slug} />
+            {post.category === "cooking" && (
+              <PrintButton title={post.title} />
+            )}
+          </div>
         </header>
 
         {/* Featured Image */}
@@ -240,6 +307,9 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         </section>
       )}
+
+      {/* Comments Section */}
+      <Comments postSlug={slug} />
 
       {/* Want More? Join My List - Bottom CTA */}
       <section className="py-12">

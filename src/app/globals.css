@@ -60,3 +60,81 @@ html {
   background: var(--light-sage);
   color: var(--charcoal);
 }
+
+/* Print styles */
+@media print {
+  /* Hide non-essential elements */
+  header,
+  footer,
+  nav,
+  button,
+  .gradient-cta,
+  [data-print-hide],
+  [class*="email"],
+  [class*="subscribe"],
+  [class*="sidebar"] {
+    display: none !important;
+  }
+
+  /* Reset backgrounds and colors */
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Make content full width */
+  article {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure images print well */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* Handle page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    color: black !important;
+  }
+
+  p, li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* Show URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  /* Don't show URL for internal links */
+  a[href^="/"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* Recipe card styling for print */
+  .prose {
+    max-width: 100% !important;
+  }
+
+  /* Print header */
+  article:before {
+    content: "halfpintmama.com";
+    display: block;
+    text-align: center;
+    font-size: 10pt;
+    color: #666;
+    margin-bottom: 20pt;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10pt;
+  }
+}
