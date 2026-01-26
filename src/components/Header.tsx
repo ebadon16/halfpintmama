@@ -29,14 +29,11 @@ export function Header() {
   return (
     <header className="bg-cream">
       {/* Main Header with Banner */}
-      <Link href="/" className="block relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
-        <Image
+      <Link href="/" className="block w-full bg-cream">
+        <img
           src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/banner.png"
           alt="Half Pint Mama"
-          fill
-          className="object-cover object-center"
-          priority
-          unoptimized
+          className="w-full h-auto max-h-64 object-contain mx-auto"
         />
       </Link>
 
