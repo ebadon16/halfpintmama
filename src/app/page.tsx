@@ -185,6 +185,39 @@ export default function Home() {
 
           {/* Sidebar */}
           <aside className="lg:w-80 flex-shrink-0">
+            {/* Shop My Favorites Links */}
+            <div className="bg-white p-6 rounded-2xl shadow-md mb-6">
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
+                Shop My Favorites
+              </h3>
+              <div className="space-y-3">
+                <a
+                  href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 bg-[#FF9900]/10 rounded-xl hover:bg-[#FF9900]/20 transition-all group"
+                >
+                  <span className="text-2xl">🛒</span>
+                  <div>
+                    <p className="font-semibold text-charcoal group-hover:text-[#FF9900] transition-colors text-sm">Amazon Storefront</p>
+                    <p className="text-charcoal/60 text-xs">Shop all my favorites</p>
+                  </div>
+                </a>
+                <a
+                  href="https://tr.ee/-4hpXd9Zfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-all group"
+                >
+                  <span className="text-2xl">💗</span>
+                  <div>
+                    <p className="font-semibold text-charcoal group-hover:text-pink-600 transition-colors text-sm">LTK Shop</p>
+                    <p className="text-charcoal/60 text-xs">Outfit & home picks</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
             {/* Postpartum Meal eBook Promo */}
             <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/20 p-6 rounded-2xl mb-6 border-2 border-terracotta/20">
               <div className="text-4xl mb-3">🍽️</div>

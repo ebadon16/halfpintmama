@@ -203,6 +203,36 @@ export default function ProductsPage() {
         </div>
       </section>
 
+      {/* Shop Links */}
+      <section className="max-w-4xl mx-auto px-4 py-8">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 px-6 py-4 bg-[#FF9900]/10 rounded-2xl hover:bg-[#FF9900]/20 transition-all group border-2 border-[#FF9900]/20"
+          >
+            <span className="text-3xl">🛒</span>
+            <div className="text-left">
+              <p className="font-semibold text-charcoal group-hover:text-[#FF9900] transition-colors">Amazon Storefront</p>
+              <p className="text-charcoal/60 text-sm">Shop all my favorites</p>
+            </div>
+          </a>
+          <a
+            href="https://tr.ee/-4hpXd9Zfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-3 px-6 py-4 bg-pink-50 rounded-2xl hover:bg-pink-100 transition-all group border-2 border-pink-200"
+          >
+            <span className="text-3xl">💗</span>
+            <div className="text-left">
+              <p className="font-semibold text-charcoal group-hover:text-pink-600 transition-colors">LTK Shop</p>
+              <p className="text-charcoal/60 text-sm">Outfit & home picks</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
       {/* Quick Nav */}
       <section className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex flex-wrap justify-center gap-3">
@@ -279,7 +309,7 @@ export default function ProductsPage() {
             <input
               type="email"
               placeholder="Your email"
-              className="flex-1 px-4 py-3 rounded-full text-charcoal focus:outline-none"
+              className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white"
             />
             <button className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-colors">
               Subscribe
