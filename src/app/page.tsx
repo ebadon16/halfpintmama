@@ -15,10 +15,10 @@ export default function Home() {
             From the ER to the Kitchen
           </span>
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl lg:text-6xl text-deep-sage font-bold mb-4">
-            Real Food. Real Science.
+            Real Food. Simple Recipes.
           </h1>
           <h2 className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
-            From a Pediatric ER RN & Sourdough-Obsessed Mama
+            From a Sourdough-Obsessed Mama & Pediatric ER RN
           </h2>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
             Tested recipes and evidence-based tips from a Pediatric ER RN who brings nurse-level
@@ -41,110 +41,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Proof Section */}
-      <section className="bg-white py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          {/* As Seen In - placeholder for future */}
-          <div className="text-center mb-10">
-            <p className="text-sage text-sm uppercase tracking-wide font-semibold mb-2">Featured In</p>
-            <p className="text-charcoal/50 italic text-sm">Coming soon...</p>
-          </div>
-
-          {/* Testimonials */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Card 1: Sourdough success story */}
-            <div className="bg-cream p-6 rounded-2xl shadow-sm">
-              <div className="text-terracotta text-3xl mb-4">&ldquo;</div>
-              <p className="text-charcoal/80 mb-4">
-                Her sourdough starter guide actually worked! After 3 failed attempts with other blogs,
-                Keegan&apos;s nurse-level precision finally got my starter going.
-              </p>
-              <p className="text-sage font-semibold text-sm">- Sarah M.</p>
-            </div>
-
-            {/* Card 2: Parenting/nurse credibility */}
-            <div className="bg-cream p-6 rounded-2xl shadow-sm">
-              <div className="text-terracotta text-3xl mb-4">&ldquo;</div>
-              <p className="text-charcoal/80 mb-4">
-                Love that she&apos;s an ER nurse - I trust her baby food safety tips way more than
-                random mommy bloggers.
-              </p>
-              <p className="text-sage font-semibold text-sm">- Jessica T.</p>
-            </div>
-
-            {/* Card 3: Recipe/meal planning */}
-            <div className="bg-cream p-6 rounded-2xl shadow-sm">
-              <div className="text-terracotta text-3xl mb-4">&ldquo;</div>
-              <p className="text-charcoal/80 mb-4">
-                The discard recipes are a game-changer. My kids devour the crackers and I&apos;m not
-                wasting any starter anymore!
-              </p>
-              <p className="text-sage font-semibold text-sm">- Amanda R.</p>
-            </div>
-          </div>
-
-          {/* Join count */}
-          <p className="text-center text-charcoal/60 mt-8 text-sm">
-            Join 1,000+ mamas baking with confidence
-          </p>
-        </div>
-      </section>
-
-      {/* Shop My Favorites - Amazon Affiliate Grid */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-terracotta inline-block">
-            Shop My Kitchen Favorites
-          </h2>
-          <Link href="/products" className="text-terracotta hover:text-deep-sage font-medium transition-colors">
-            View All &rarr;
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {/* Product Card 1 */}
-          <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-            <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-              <span className="text-4xl">🥣</span>
-            </div>
-            <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Sourdough Proofing Basket</h3>
-            <p className="text-sage text-sm mt-1">My go-to for perfect loaves</p>
-          </a>
-
-          {/* Product Card 2 */}
-          <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-            <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-              <span className="text-4xl">🍳</span>
-            </div>
-            <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Dutch Oven</h3>
-            <p className="text-sage text-sm mt-1">Essential for crusty bread</p>
-          </a>
-
-          {/* Product Card 3 */}
-          <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-            <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-              <span className="text-4xl">📖</span>
-            </div>
-            <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Kitchen Scale</h3>
-            <p className="text-sage text-sm mt-1">Precision baking must-have</p>
-          </a>
-
-          {/* Product Card 4 */}
-          <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-            <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-              <span className="text-4xl">🫙</span>
-            </div>
-            <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Starter Jar Set</h3>
-            <p className="text-sage text-sm mt-1">Keep your starter happy</p>
-          </a>
-        </div>
-
-        <p className="text-center text-charcoal/50 text-xs mt-4">
-          As an Amazon Associate, I earn from qualifying purchases.
-        </p>
-      </section>
-
-      {/* Start Here - Visitor Paths */}
+      {/* Not Sure Where to Start - Moved up */}
       <section className="bg-white py-12">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-3 text-center">
@@ -174,7 +71,7 @@ export default function Home() {
                 New Parent?
               </h3>
               <p className="text-charcoal/70 text-sm mb-4">
-                Real talk from an ER nurse turned mama. Tips for surviving (and thriving) with babies and toddlers.
+                Real talk from an ER nurse and mama. Tips for surviving (and thriving) with babies and toddlers.
               </p>
               <span className="text-sage font-medium text-sm">Get support &rarr;</span>
             </Link>
@@ -194,31 +91,164 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest Posts */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-sage inline-block">
-            Latest from the Blog
-          </h2>
-          <Link href="/posts" className="text-sage hover:text-deep-sage font-medium transition-colors">
-            View All {allPosts.length} Posts &rarr;
-          </Link>
-        </div>
+      {/* Main Content with Sidebar */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Main Content */}
+          <div className="flex-1">
+            {/* Shop My Favorites - Amazon Affiliate Grid */}
+            <section className="mb-12">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-terracotta inline-block">
+                  Shop My Kitchen Favorites
+                </h2>
+                <Link href="/products" className="text-terracotta hover:text-deep-sage font-medium transition-colors">
+                  View All &rarr;
+                </Link>
+              </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {featuredPosts.map((post) => (
-            <PostCard
-              key={post.slug}
-              slug={post.slug}
-              title={post.title}
-              excerpt={post.excerpt}
-              category={post.category}
-              date={formatDate(post.date)}
-              image={post.image}
-            />
-          ))}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {/* Product Card 1 */}
+                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
+                    <span className="text-4xl">🥣</span>
+                  </div>
+                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Sourdough Proofing Basket</h3>
+                  <p className="text-sage text-sm mt-1">My go-to for perfect loaves</p>
+                </a>
+
+                {/* Product Card 2 */}
+                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
+                    <span className="text-4xl">🍳</span>
+                  </div>
+                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Dutch Oven</h3>
+                  <p className="text-sage text-sm mt-1">Essential for crusty bread</p>
+                </a>
+
+                {/* Product Card 3 */}
+                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
+                    <span className="text-4xl">📖</span>
+                  </div>
+                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Kitchen Scale</h3>
+                  <p className="text-sage text-sm mt-1">Precision baking must-have</p>
+                </a>
+
+                {/* Product Card 4 */}
+                <a href="#" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
+                    <span className="text-4xl">🫙</span>
+                  </div>
+                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Starter Jar Set</h3>
+                  <p className="text-sage text-sm mt-1">Keep your starter happy</p>
+                </a>
+              </div>
+
+              <p className="text-center text-charcoal/50 text-xs mt-4">
+                As an Amazon Associate, I earn from qualifying purchases.
+              </p>
+            </section>
+
+            {/* Latest Posts */}
+            <section>
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-sage inline-block">
+                  Latest from the Blog
+                </h2>
+                <Link href="/posts" className="text-sage hover:text-deep-sage font-medium transition-colors">
+                  View All {allPosts.length} Posts &rarr;
+                </Link>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {featuredPosts.map((post) => (
+                  <PostCard
+                    key={post.slug}
+                    slug={post.slug}
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    category={post.category}
+                    date={formatDate(post.date)}
+                    image={post.image}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <aside className="lg:w-80 flex-shrink-0">
+            {/* Postpartum Meal eBook Promo */}
+            <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/20 p-6 rounded-2xl mb-6 border-2 border-terracotta/20">
+              <div className="text-4xl mb-3">🍽️</div>
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
+                Postpartum Meal Guide
+              </h3>
+              <p className="text-charcoal/70 text-sm mb-4">
+                Nourishing, easy-to-prep meals for new mamas. Nurse-approved recipes to fuel your recovery and keep you energized.
+              </p>
+              <div className="text-center p-3 bg-white/80 rounded-full mb-3">
+                <span className="text-terracotta font-semibold text-sm">Coming Soon</span>
+              </div>
+              <Link
+                href="/free-guide"
+                className="block text-center text-terracotta font-medium text-sm hover:text-deep-sage transition-colors"
+              >
+                Join waitlist &rarr;
+              </Link>
+            </div>
+
+            {/* Instagram Feed */}
+            <div className="bg-white p-6 rounded-2xl shadow-md">
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
+                Follow Along
+              </h3>
+              <a
+                href="https://www.instagram.com/halfpint.mama/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-terracotta hover:text-deep-sage font-medium text-sm transition-colors block mb-4"
+              >
+                @halfpint.mama
+              </a>
+
+              {/* Instagram Embed */}
+              <div className="space-y-3">
+                <a
+                  href="https://www.instagram.com/halfpint.mama/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="grid grid-cols-3 gap-1">
+                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                      <div key={i} className="aspect-square bg-warm-beige/50 rounded flex items-center justify-center hover:opacity-80 transition-opacity">
+                        <span className="text-charcoal/20 text-xs">📷</span>
+                      </div>
+                    ))}
+                  </div>
+                </a>
+                <a
+                  href="https://www.instagram.com/halfpint.mama/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full hover:bg-terracotta hover:text-white transition-all"
+                >
+                  Follow on Instagram
+                </a>
+              </div>
+
+              {/* Stats */}
+              <div className="mt-4 pt-4 border-t border-light-sage text-center">
+                <p className="text-charcoal/60 text-xs">
+                  Join our community of mamas!
+                </p>
+              </div>
+            </div>
+          </aside>
         </div>
-      </section>
+      </div>
 
       {/* Email Signup with Lead Magnet */}
       <section className="max-w-4xl mx-auto px-4 py-12">
@@ -242,49 +272,6 @@ export default function Home() {
           </div>
           <p className="text-white/60 text-xs mt-4">
             No spam, unsubscribe anytime. I respect your inbox.
-          </p>
-        </div>
-      </section>
-
-      {/* Instagram Feed Placeholder */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
-        <div className="text-center mb-8">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-2">
-            Follow Along on Instagram
-          </h2>
-          <a href="https://instagram.com/halfpintmama" target="_blank" rel="noopener noreferrer" className="text-terracotta hover:text-deep-sage font-medium transition-colors">
-            @halfpintmama
-          </a>
-        </div>
-
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div key={i} className="aspect-square bg-warm-beige/50 rounded-lg flex items-center justify-center">
-              <span className="text-charcoal/30 text-sm">IG Post</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Coming Soon Teaser */}
-      <section className="bg-deep-sage/5 py-12">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
-            Coming Soon
-          </h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            <div className="bg-white px-6 py-3 rounded-full shadow-sm">
-              <span className="text-charcoal/70">Premium Meal Plans</span>
-            </div>
-            <div className="bg-white px-6 py-3 rounded-full shadow-sm">
-              <span className="text-charcoal/70">Online Courses</span>
-            </div>
-            <div className="bg-white px-6 py-3 rounded-full shadow-sm">
-              <span className="text-charcoal/70">Recipe Vault</span>
-            </div>
-          </div>
-          <p className="text-charcoal/60 mt-4 text-sm">
-            Sign up for my newsletter to be the first to know when these launch!
           </p>
         </div>
       </section>
