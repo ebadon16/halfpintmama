@@ -11,14 +11,12 @@ const comingSoonProducts = [
     id: 1,
     title: "Sourdough Starter Guide",
     description: "Step-by-step guide to creating and maintaining a healthy sourdough starter. Includes feeding schedule, troubleshooting guide, and 5 beginner recipes.",
-    benefits: ["20+ page PDF", "Printable feeding chart", "Video tutorials included"],
     icon: "🍞",
   },
   {
     id: 2,
     title: "The Postpartum Mama Book",
     description: "Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days.",
-    benefits: ["Nurse-approved tips", "Recovery guidance", "Mental health resources"],
     icon: "📖",
   },
 ];
@@ -98,16 +96,9 @@ export default function ShopPage() {
                   <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-2">
                     {product.title}
                   </h3>
-                  <p className="text-charcoal/70 mb-4">
+                  <p className="text-charcoal/70 mb-6">
                     {product.description}
                   </p>
-                  <ul className="space-y-1 mb-6">
-                    {product.benefits.map((benefit, i) => (
-                      <li key={i} className="text-sm text-charcoal/70 flex items-center gap-2">
-                        <span className="text-sage">✓</span> {benefit}
-                      </li>
-                    ))}
-                  </ul>
                   <div className="text-center p-3 bg-light-sage/30 rounded-full">
                     <span className="text-deep-sage font-semibold">Coming Soon</span>
                   </div>

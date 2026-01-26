@@ -1,5 +1,5 @@
 ---
-title: "3-Ingredient Fruit Roll Ups- Mango &amp; Apple"
+title: "3-Ingredient Fruit Roll Ups - Mango & Apple"
 date: "2025-02-10"
 slug: "3-ingredient-fruit-roll-ups-mango-apple"
 category: "cooking"

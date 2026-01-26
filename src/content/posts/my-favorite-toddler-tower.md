@@ -2,7 +2,7 @@
 title: "My favorite Toddler Tower"
 date: "2024-03-21"
 slug: "my-favorite-toddler-tower"
-category: "travel"
+category: "mama-life"
 excerpt: ""
 image: "https://halfpintmama.com/wp-content/uploads/2024/03/img_6676.jpg?w=768"
 ---

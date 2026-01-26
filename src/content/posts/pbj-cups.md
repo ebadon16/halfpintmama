@@ -1,5 +1,5 @@
 ---
-title: "PB&amp;J Cups"
+title: "PB&J Cups"
 date: "2025-04-03"
 slug: "pbj-cups"
 category: "cooking"

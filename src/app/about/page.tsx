@@ -71,6 +71,25 @@ export default function AboutPage() {
           </p>
         </div>
 
+        {/* Free Sourdough Guide Section */}
+        <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/10 rounded-2xl p-8 shadow-md mb-8 border-2 border-terracotta/20">
+          <div className="text-center">
+            <span className="text-5xl mb-4 block">🍞</span>
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
+              Get My Free Sourdough Starter Guide
+            </h2>
+            <p className="text-charcoal/70 mb-6 max-w-lg mx-auto">
+              Ready to start your sourdough journey? Sign up for my free guide with everything you need to create and maintain a healthy starter.
+            </p>
+            <Link
+              href="/free-guide"
+              className="inline-block px-8 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
+            >
+              Get the Free Guide
+            </Link>
+          </div>
+        </div>
+
         {/* Connect Section */}
         <div className="bg-white rounded-2xl p-8 shadow-md">
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-6">

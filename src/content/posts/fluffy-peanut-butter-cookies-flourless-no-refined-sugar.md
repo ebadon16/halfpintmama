@@ -1,5 +1,5 @@
 ---
-title: "Fluffy Peanut Butter Cookies (Flourless &amp; No Refined Sugar)"
+title: "Fluffy Peanut Butter Cookies (Flourless & No Refined Sugar)"
 date: "2025-06-10"
 slug: "fluffy-peanut-butter-cookies-flourless-no-refined-sugar"
 category: "cooking"
