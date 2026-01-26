@@ -30,13 +30,13 @@ export function Header() {
       {/* Main Header with Banner */}
       <Link
         href="/"
-        className="block w-full"
+        className="block w-full bg-[#f5f1eb]"
         aria-label="Half Pint Mama - Home"
       >
         <img
           src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/banner.png"
           alt="Half Pint Mama"
-          className="w-full block md:max-h-80 md:object-contain"
+          className="w-full block md:max-h-72 md:object-cover md:object-[center_60%]"
         />
       </Link>
 
