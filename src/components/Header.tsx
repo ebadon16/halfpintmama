@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { SearchButton } from "./SearchBar";
@@ -28,10 +29,14 @@ export function Header() {
   return (
     <header className="bg-cream">
       {/* Main Header with Banner */}
-      <Link href="/" className="block">
-        <div
-          className="w-full aspect-[1920/1200] max-h-80 bg-cover bg-center"
-          style={{ backgroundImage: "url('/banner.png?v=2')" }}
+      <Link href="/" className="block relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
+        <Image
+          src="/banner.png"
+          alt="Half Pint Mama"
+          fill
+          className="object-cover object-center"
+          priority
+          unoptimized
         />
       </Link>
 
