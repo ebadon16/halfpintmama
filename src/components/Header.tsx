@@ -30,13 +30,15 @@ export function Header() {
       {/* Main Header with Banner */}
       <Link
         href="/"
-        className="block w-full"
+        className="block w-full overflow-hidden"
+        style={{ maxHeight: "200px" }}
         aria-label="Half Pint Mama - Home"
       >
         <img
           src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/banner.png"
           alt="Half Pint Mama"
           className="w-full h-auto block"
+          style={{ marginTop: "-5%" }}
         />
       </Link>
 
