@@ -34,7 +34,7 @@ export function Header() {
         aria-label="Half Pint Mama - Home"
       >
         <img
-          src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/banner.png"
+          src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/hp-banner.png"
           alt="Half Pint Mama"
           className="w-full h-auto block"
         />
