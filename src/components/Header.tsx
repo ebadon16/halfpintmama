@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -10,12 +11,20 @@ const navLinks = [
   { href: "/cooking", label: "Recipes" },
   { href: "/mama-life", label: "Mama Life Blog" },
   { href: "/lifestyle", label: "Travel & DIY" },
-  { href: "/products", label: "Favorites" },
+  { href: "/products", label: "Favorite Products" },
   { href: "/about", label: "About" },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
+  };
 
   return (
     <header className="gradient-header text-cream">
@@ -67,7 +76,11 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage hover:border-sage transition-all whitespace-nowrap"
+              className={`px-4 py-2 rounded-full border-2 font-semibold text-sm transition-all whitespace-nowrap ${
+                isActive(link.href)
+                  ? "bg-sage border-sage text-white"
+                  : "border-light-sage text-deep-sage hover:bg-light-sage hover:border-sage"
+              }`}
             >
               {link.label}
             </Link>
@@ -75,7 +88,11 @@ export function Header() {
           {/* Shop button - highlighted */}
           <Link
             href="/shop"
-            className="px-5 py-2 gradient-cta text-white font-semibold text-sm rounded-full hover:shadow-md transition-all whitespace-nowrap ml-2"
+            className={`px-5 py-2 font-semibold text-sm rounded-full transition-all whitespace-nowrap ml-2 ${
+              isActive("/shop")
+                ? "bg-deep-sage text-white"
+                : "gradient-cta text-white hover:shadow-md"
+            }`}
           >
             Shop
           </Link>
@@ -89,7 +106,11 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="px-6 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all"
+                className={`px-6 py-2 rounded-full border-2 font-semibold text-sm transition-all ${
+                  isActive(link.href)
+                    ? "bg-sage border-sage text-white"
+                    : "border-light-sage text-deep-sage hover:bg-light-sage"
+                }`}
               >
                 {link.label}
               </Link>
@@ -97,7 +118,11 @@ export function Header() {
             <Link
               href="/shop"
               onClick={() => setIsMenuOpen(false)}
-              className="px-6 py-2 gradient-cta text-white font-semibold text-sm rounded-full mt-2"
+              className={`px-6 py-2 font-semibold text-sm rounded-full mt-2 ${
+                isActive("/shop")
+                  ? "bg-deep-sage text-white"
+                  : "gradient-cta text-white"
+              }`}
             >
               Shop
             </Link>

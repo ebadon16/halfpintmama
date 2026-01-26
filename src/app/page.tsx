@@ -24,7 +24,7 @@ export default function Home() {
             Tested recipes and evidence-based tips from a Pediatric ER RN who brings nurse-level
             precision to sourdough. Because your family deserves food made with love AND knowledge.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
               href="/free-guide"
               className="px-8 py-4 gradient-cta text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg"
@@ -32,8 +32,14 @@ export default function Home() {
               Get My Free Sourdough Starter Guide
             </Link>
             <Link
-              href="/shop"
+              href="/start-here"
               className="px-8 py-4 bg-white text-deep-sage font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-sage hover:bg-sage hover:text-white transition-all text-lg"
+            >
+              New? Start Here!
+            </Link>
+            <Link
+              href="/shop"
+              className="px-8 py-4 bg-terracotta/10 text-terracotta font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-terracotta hover:bg-terracotta hover:text-white transition-all text-lg"
             >
               Shop My Favorites
             </Link>
