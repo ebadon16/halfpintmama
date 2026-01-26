@@ -123,7 +123,7 @@ export default function FreeGuidePage() {
                   </div>
                   <div className="flex items-center gap-3 text-sm text-charcoal/70">
                     <span className="text-sage text-lg">✓</span>
-                    5 beginner-friendly recipes
+                    4 beginner-friendly recipes
                   </div>
                   <div className="flex items-center gap-3 text-sm text-charcoal/70">
                     <span className="text-sage text-lg">✓</span>
@@ -168,7 +168,7 @@ export default function FreeGuidePage() {
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Day-by-Day Guide</h3>
               <p className="text-charcoal/70 text-sm">
-                Exactly what to do each day for 7 days. No guessing, just follow along.
+                Exactly what to do each day for 9 days. No guessing, just follow along.
               </p>
             </div>
 
@@ -188,109 +188,27 @@ export default function FreeGuidePage() {
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Beginner Recipes</h3>
               <p className="text-charcoal/70 text-sm">
-                5 recipes to try with your new starter, from simple loaves to sourdough pancakes.
+                4 recipes to try with your new starter, from simple loaves to sourdough pancakes.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonial/Social Proof */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 text-center">
-            What Others Are Saying
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-2xl shadow-md">
-              <div className="flex items-center gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} className="text-terracotta">★</span>
-                ))}
-              </div>
-              <p className="text-charcoal/70 mb-4 italic">
-                &quot;I tried starting sourdough three times before finding this guide. Finally made my first successful loaf! The day-by-day format made it so easy to follow.&quot;
-              </p>
-              <p className="font-medium text-charcoal">- Sarah M.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-2xl shadow-md">
-              <div className="flex items-center gap-1 mb-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span key={star} className="text-terracotta">★</span>
-                ))}
-              </div>
-              <p className="text-charcoal/70 mb-4 italic">
-                &quot;The troubleshooting section saved my starter! It was doing something weird and I found the exact answer in the guide. Now I bake every week.&quot;
-              </p>
-              <p className="font-medium text-charcoal">- Jessica T.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About the Author */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="md:flex items-center gap-8">
-            <div className="text-center md:text-left mb-6 md:mb-0">
-              <div className="text-8xl">👩‍🍳</div>
-            </div>
-            <div>
-              <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-3">
-                Hi, I&apos;m Keegan!
-              </h2>
-              <p className="text-charcoal/70 mb-4">
-                I&apos;m a former Pediatric ER nurse turned stay-at-home mama who fell in love with sourdough during my first maternity leave. Now I bake multiple loaves every week and share everything I&apos;ve learned with my community of 1,000+ home bakers.
-              </p>
-              <p className="text-charcoal/70">
-                This guide is exactly what I wish I had when I started. No complicated techniques, no expensive equipment - just simple steps that work.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16">
-        <div className="max-w-xl mx-auto px-4 text-center">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-4">
-            Ready to Start Your Sourdough Journey?
-          </h2>
-          <p className="text-charcoal/70 mb-8">
-            Join 1,000+ home bakers who started with this free guide.
-          </p>
-
-          <div className="bg-white rounded-2xl shadow-lg p-6">
-            <SignupForm source="free-guide-bottom" />
-          </div>
-
-          <p className="text-charcoal/50 text-sm mt-6">
-            Plus, you&apos;ll get my weekly newsletter with recipes and tips. Unsubscribe anytime.
-          </p>
-        </div>
-      </section>
-
-      {/* Waitlist for Future Products */}
+      {/* Coming Soon */}
       <section className="py-12 bg-deep-sage/5">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
+          <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
             Coming Soon
           </h3>
-          <p className="text-charcoal/70 mb-4">
-            Subscribe to be first to know when these launch:
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <span className="bg-white px-4 py-2 rounded-full text-sm text-charcoal/70">
-              Sourdough Masterclass Course
-            </span>
-            <span className="bg-white px-4 py-2 rounded-full text-sm text-charcoal/70">
-              Premium Meal Plans
-            </span>
-            <span className="bg-white px-4 py-2 rounded-full text-sm text-charcoal/70">
-              Half Pint Membership
-            </span>
+          <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-md">
+            <span className="text-5xl block mb-3">📖</span>
+            <h4 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal mb-2">
+              The Postpartum Mama Book
+            </h4>
+            <p className="text-charcoal/70 text-sm">
+              Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days—plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
+            </p>
           </div>
         </div>
       </section>
