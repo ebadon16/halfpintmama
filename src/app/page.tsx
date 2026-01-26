@@ -15,13 +15,13 @@ export default function Home() {
             From the ER to the Kitchen
           </span>
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl lg:text-6xl text-deep-sage font-bold mb-4">
-            Real Food. Simple Recipes.
+            Real Food. From Scratch.
           </h1>
           <h2 className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
-            From a Sourdough-Obsessed Mama & Pediatric ER RN
+            From a Pediatric ER RN & Sourdough-Obsessed Mama
           </h2>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-            I&apos;m Keegan - a Pediatric ER RN turned mama of two. Whether you&apos;re here for sourdough, parenting tips, or quick family recipes, I&apos;ve got something for you.
+            Bringing an intentional, practical approach to nourishing a home. Here you&apos;ll find tried and true from scratch recipes, tested in real life between shifts, changing seasons, and motherhood.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link

@@ -1,5 +1,6 @@
 import { getPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
 export const metadata = {
@@ -37,10 +38,11 @@ export default function SnacksPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Snacks & Finger Foods
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Healthy, homemade snacks that even the pickiest eaters will love. Perfect for lunchboxes, road trips,
             or afternoon munchies.
           </p>
+          <SearchBar placeholder="Search snack recipes..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,5 +1,6 @@
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 
 export const metadata = {
   title: "Family Travel | Half Pint Mama",
@@ -17,9 +18,10 @@ export default function TravelPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Family Travel
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Adventures with toddlers and a baby! Tips for keeping little ones happy on the road and guides to family-friendly destinations.
           </p>
+          <SearchBar placeholder="Search travel posts..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

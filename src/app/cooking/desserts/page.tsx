@@ -1,5 +1,6 @@
 import { getPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
 export const metadata = {
@@ -37,10 +38,11 @@ export default function DessertsPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Desserts & Sweet Treats
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Life is sweeter with homemade treats! Cookies, cakes, truffles, and more - all tested and approved
             by my little taste testers at home.
           </p>
+          <SearchBar placeholder="Search dessert recipes..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

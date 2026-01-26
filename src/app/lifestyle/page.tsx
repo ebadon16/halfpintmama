@@ -1,5 +1,6 @@
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 
 export const metadata = {
   title: "Travel & DIY | Half Pint Mama",
@@ -18,10 +19,11 @@ export default function LifestylePage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Travel & DIY
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Adventures with toddlers and creative projects. From family-friendly destinations to
             handmade costumes and crafts - making memories together.
           </p>
+          <SearchBar placeholder="Search travel & DIY..." className="max-w-md" />
         </div>
 
         {/* Travel Section */}

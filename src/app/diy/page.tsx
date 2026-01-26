@@ -1,5 +1,6 @@
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 
 export const metadata = {
   title: "DIY Projects | Half Pint Mama",
@@ -17,9 +18,10 @@ export default function DIYPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             DIY Projects
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Crafts, costumes, and creative projects. From cardboard costumes to party decorations - making memories with our hands.
           </p>
+          <SearchBar placeholder="Search DIY projects..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

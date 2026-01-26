@@ -1,5 +1,6 @@
 import { getPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
 export const metadata = {
@@ -37,10 +38,11 @@ export default function SourdoughPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Sourdough & Bread
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             From your first starter to picture-perfect loaves. These recipes are tested with nurse-level precision
             to help you bake bread your family will love.
           </p>
+          <SearchBar placeholder="Search sourdough recipes..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

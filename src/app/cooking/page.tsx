@@ -1,5 +1,6 @@
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
 export const metadata = {
@@ -37,9 +38,10 @@ export default function CookingPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Cooking & Baking
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Sourdough obsessed? Me too! From starter to finished loaf, plus healthy snacks and treats the whole family will love.
           </p>
+          <SearchBar placeholder="Search recipes..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

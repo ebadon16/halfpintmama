@@ -1,5 +1,6 @@
 import { getPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
 export const metadata = {
@@ -37,10 +38,11 @@ export default function DiscardPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Sourdough Discard Recipes
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Don&apos;t throw away that discard! It&apos;s full of flavor and can be transformed into crackers, pancakes,
             pizza dough, and so much more. Here are my family&apos;s favorites.
           </p>
+          <SearchBar placeholder="Search discard recipes..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

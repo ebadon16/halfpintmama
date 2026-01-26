@@ -59,29 +59,6 @@ function calculateReadingTime(content: string): number {
   return Math.ceil(words / wordsPerMinute);
 }
 
-// Product recommendations based on category
-const categoryProducts: Record<string, Array<{ name: string; note: string; link: string }>> = {
-  cooking: [
-    { name: "Kitchen Scale", note: "Essential for baking", link: "#" },
-    { name: "Dutch Oven", note: "Perfect crust every time", link: "#" },
-    { name: "Proofing Basket", note: "Beautiful loaves", link: "#" },
-  ],
-  travel: [
-    { name: "Travel Stroller", note: "One-hand fold", link: "#" },
-    { name: "Packing Cubes", note: "Stay organized", link: "#" },
-    { name: "Portable Sound Machine", note: "Sleep anywhere", link: "#" },
-  ],
-  diy: [
-    { name: "Craft Scissors", note: "Quality matters", link: "#" },
-    { name: "Hot Glue Gun", note: "Craft essential", link: "#" },
-    { name: "Cardboard Cutter", note: "Clean cuts", link: "#" },
-  ],
-  "mama-life": [
-    { name: "Baby Monitor", note: "Peace of mind", link: "#" },
-    { name: "Sound Machine", note: "Better sleep", link: "#" },
-    { name: "Toddler Plates", note: "No-spill meals", link: "#" },
-  ],
-};
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
@@ -93,7 +70,6 @@ export default async function PostPage({ params }: PageProps) {
 
   const badgeColor = categoryColors[post.category] || "bg-sage";
   const categoryLabel = categoryLabels[post.category] || post.category;
-  const products = categoryProducts[post.category] || categoryProducts.cooking;
 
   // Get related posts from same category, excluding current post
   const relatedPosts = getPostsByCategory(post.category)
@@ -191,9 +167,6 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         )}
 
-        {/* Rate & Review CTA - Top of content */}
-        <CommentsPreview postSlug={slug} />
-
         {/* Content */}
         <div
           className="prose prose-lg max-w-none
@@ -237,38 +210,6 @@ export default async function PostPage({ params }: PageProps) {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Products Mentioned / Related Products */}
-        <div className="my-10 p-6 bg-white rounded-2xl shadow-md">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal">
-              Products I Recommend
-            </h3>
-            <Link href="/products" className="text-terracotta text-sm hover:text-deep-sage transition-colors">
-              View all &rarr;
-            </Link>
-          </div>
-          <div className="grid grid-cols-3 gap-3">
-            {products.map((product, i) => (
-              <a
-                key={i}
-                href={product.link}
-                className="text-center p-3 bg-cream rounded-xl hover:shadow-md transition-all group"
-              >
-                <div className="w-12 h-12 bg-warm-beige/50 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                  <span className="text-2xl">🛒</span>
-                </div>
-                <h4 className="text-xs font-medium text-charcoal group-hover:text-terracotta transition-colors line-clamp-2">
-                  {product.name}
-                </h4>
-                <p className="text-xs text-sage mt-1">{product.note}</p>
-              </a>
-            ))}
-          </div>
-          <p className="text-xs text-charcoal/50 mt-4 text-center">
-            As an Amazon Associate, I earn from qualifying purchases.
-          </p>
         </div>
 
         {/* Footer - Navigation */}

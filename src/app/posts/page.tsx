@@ -1,5 +1,6 @@
 import { getAllPosts, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 
 export const metadata = {
   title: "All Posts | Half Pint Mama",
@@ -15,9 +16,10 @@ export default function PostsPage() {
         <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
           All Posts
         </h1>
-        <p className="text-charcoal/70 text-lg mb-12">
+        <p className="text-charcoal/70 text-lg mb-6">
           {posts.length} recipes, guides, and stories
         </p>
+        <SearchBar placeholder="Search all posts..." className="max-w-md mb-12" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post) => (

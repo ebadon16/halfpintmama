@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "About | Half Pint Mama",
-  description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real life in Central Texas.",
+  description: "Meet Keegan - a Pediatric ER RN and mama of two on a mission to get back to the basics with real food, simple recipes, and intentional living.",
 };
 
 export default function AboutPage() {
@@ -10,20 +10,19 @@ export default function AboutPage() {
     <div className="bg-cream">
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
-        <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
-          Hey, I&apos;m Keegan!
+        <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-2">
+          Hey, I&apos;m Keegan
         </h1>
-        <p className="text-sage text-xl italic mb-8">
-          Living my best mom era in Central Texas
-        </p>
+        <p className="text-4xl mb-8">👋</p>
 
         {/* Main Content */}
         <div className="bg-white rounded-2xl p-8 shadow-md mb-8">
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            I&apos;m a Pediatric ER RN and mama of two, sharing the beautiful chaos of life
-            with my toddler Porter, baby Reese, and our chocolate lab Stout. This is where you&apos;ll
-            find real talk about motherhood, my sourdough obsession, family travel adventures, and
-            all the little things that make life sweet.
+            I&apos;m a mama on a mission to get back to the basics—real food, simple recipes, and intentional living.
+          </p>
+
+          <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
+            I&apos;m a Pediatric ER RN and a mama of two, sharing life&apos;s beautiful chaos with my kids and our chocolate lab. My nursing background shapes the way I approach the kitchen and home—thoughtful, practical, and rooted in what truly nourishes a family. Around here, you&apos;ll find honest conversations about motherhood, my deep love for sourdough, and the small, everyday rhythms that make a home feel steady and good.
           </p>
 
           {/* Highlight Box */}
@@ -33,40 +32,42 @@ export default function AboutPage() {
             </h3>
             <ul className="space-y-3 text-charcoal">
               <li className="flex items-start gap-3">
-                <span>🌿</span>
-                <span>Can&apos;t function without my morning black coffee</span>
+                <span>☕</span>
+                <span>I can&apos;t function without my morning black coffee</span>
               </li>
               <li className="flex items-start gap-3">
                 <span>🌿</span>
-                <span>Would rather be outside than inside (always)</span>
+                <span>I&apos;ll always choose outside over inside</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🌿</span>
-                <span>Currently obsessed with homesteading in the suburbs</span>
+                <span>🏡</span>
+                <span>Currently homesteading… in the suburbs</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🌿</span>
-                <span>Sourdough starter has a permanent spot on my counter</span>
+                <span>🍞</span>
+                <span>My sourdough starter has a permanent place on the counter</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🌿</span>
-                <span>That first sip of a cold beer? Chef&apos;s kiss</span>
+                <span>📚</span>
+                <span>You probably don&apos;t want to know what I&apos;m reading on my Kindle</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🌿</span>
-                <span>Pretty chill mama (mostly) navigating two under two</span>
+                <span>🍺</span>
+                <span>That first sip of a cold beer? Absolute perfection</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span>💚</span>
+                <span>Mostly a pretty chill mama, navigating life with a preschooler and a toddler</span>
               </li>
             </ul>
           </div>
 
-          <p className="text-charcoal/80 leading-relaxed mb-6">
-            Half Pint Mama started as a way to document our family adventures and share what works
-            (and what hilariously doesn&apos;t) in our house. Whether you&apos;re here for the sourdough
-            recipes, travel tips, or just some real talk about mom life - I&apos;m so glad you&apos;re here!
+          <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
+            Half Pint Mama started as a place to share what&apos;s working in our home—real food, simple routines, and from-scratch recipes tested in the margins of real life. Whether you&apos;re just beginning your sourdough journey or looking for tried and true recipes you can trust, you&apos;ll find food here made with care, real ingredients, and a practical approach rooted in experience—both in nursing and motherhood.
           </p>
 
           <p className="text-sage italic text-lg">
-            Thanks for following along! 💚
+            Thanks so much for being here—I&apos;m really glad you found your way to my kitchen 🤍
           </p>
         </div>
 
@@ -78,7 +79,7 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-3 gap-4">
             <a
-              href="https://www.instagram.com/halfpint.mama/"
+              href="https://www.instagram.com/Halfpint.mama"
               target="_blank"
               rel="noopener noreferrer"
               className="gradient-cta text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
@@ -89,13 +90,13 @@ export default function AboutPage() {
             </a>
 
             <a
-              href="https://www.facebook.com/HalfPintMama"
+              href="https://www.youtube.com/@HalfPintMama"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-sage text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
             >
-              <div className="text-3xl mb-2">👋</div>
-              <div className="font-semibold">Facebook</div>
+              <div className="text-3xl mb-2">🎬</div>
+              <div className="font-semibold">YouTube</div>
               <div className="text-sm text-white/80">Half Pint Mama</div>
             </a>
 

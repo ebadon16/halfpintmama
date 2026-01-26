@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { SearchButton } from "./SearchBar";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -29,7 +30,7 @@ export function Header() {
       {/* Main Header with Banner */}
       <Link href="/" className="block">
         <div
-          className="w-full h-48 md:h-64 lg:h-72 bg-cover bg-center"
+          className="w-full aspect-[4.8/1] bg-cover bg-center"
           style={{ backgroundImage: "url('/banner.png')" }}
         />
       </Link>
@@ -45,12 +46,15 @@ export function Header() {
           >
             {isMenuOpen ? "Close" : "Menu"}
           </button>
-          <Link
-            href="/shop"
-            className="px-4 py-2 gradient-cta text-white font-semibold text-sm rounded-full"
-          >
-            Shop
-          </Link>
+          <div className="flex items-center gap-2">
+            <SearchButton />
+            <Link
+              href="/shop"
+              className="px-4 py-2 gradient-cta text-white font-semibold text-sm rounded-full"
+            >
+              Shop
+            </Link>
+          </div>
         </div>
 
         {/* Desktop nav */}
@@ -68,10 +72,12 @@ export function Header() {
               {link.label}
             </Link>
           ))}
+          {/* Search button */}
+          <SearchButton className="ml-1" />
           {/* Shop button - highlighted */}
           <Link
             href="/shop"
-            className={`px-5 py-2 font-semibold text-sm rounded-full transition-all whitespace-nowrap ml-2 ${
+            className={`px-5 py-2 font-semibold text-sm rounded-full transition-all whitespace-nowrap ml-1 ${
               isActive("/shop")
                 ? "bg-deep-sage text-white"
                 : "gradient-cta text-white hover:shadow-md"

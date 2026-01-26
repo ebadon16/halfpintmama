@@ -1,5 +1,6 @@
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { SearchBar } from "@/components/SearchBar";
 
 export const metadata = {
   title: "Mama Life | Half Pint Mama",
@@ -17,9 +18,10 @@ export default function MamaLifePage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Mama Life
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
             Real talk about motherhood - the beautiful chaos, the hard days, and everything in between. Tips, thoughts, and honest reflections.
           </p>
+          <SearchBar placeholder="Search mama life posts..." className="max-w-md" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
