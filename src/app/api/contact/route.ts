@@ -37,9 +37,8 @@ export async function POST(request: Request) {
             name: name || "",
             last_name: "",
             company: subject || "Contact Form",
-            // Store message in a custom field - you may need to create this in MailerLite
           },
-          groups: [], // You can add a group ID for "Contact Form" if you create one
+          groups: ["177693621388051535"],
           status: "active",
         }),
       }
