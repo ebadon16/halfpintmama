@@ -4,7 +4,7 @@ date: "2026-01-26"
 slug: "almond-sourdough-croissants-no-laminating-required"
 category: "cooking"
 excerpt: "Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait."
-image: ""
+image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg"
 ---
 
 Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait.
@@ -16,6 +16,8 @@ This recipe uses a genius method where you grate cold butter right into the doug
 I've been working on this recipe for a while now, and after quite a few fails along the way, I really think I've nailed it. These have become a special weekend treat in our house, and I'm so excited to finally share them with you.
 
 Let's make some croissants!
+
+![Almond sourdough croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 ## What You Need
 
@@ -65,6 +67,8 @@ In a large bowl, combine your active starter, warm water, and salt. Using a Dani
 
 Add your flour and mix until a shaggy dough forms. Cover with a damp towel and let it sit for 1 hour.
 
+![Shaggy dough in bowl](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0805.jpg)
+
 #### Step 2: First stretch and fold
 
 After the hour is up, do your first set of stretch and folds. If you've made artisan sourdough before, this will feel familiar! Grab one side of the dough, stretch it up, and fold it over to the center. Rotate the bowl and repeat on all four sides.
@@ -76,6 +80,8 @@ Cover with your damp towel again. From here on out, you'll be waiting 30 minutes
 After 30 minutes, here's where the magic happens. Take your cold butter and use a box grater to grate about a third of it (roughly 2–3 tablespoons) directly onto your dough.
 
 Do your stretch and folds right on top of the grated butter. This will start incorporating it into the dough. Cover and wait 30 minutes.
+
+![Grated butter on dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0812.jpg)
 
 #### Step 4: Third stretch and fold + butter
 
@@ -91,11 +97,15 @@ Do one more set of stretch and folds—no butter this time. This is your fifth s
 
 Cover with your damp towel and let the dough sit at room temperature for 4 hours.
 
+![Dough after stretch and folds](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/image-5.jpg)
+
 #### Step 7: Long ferment
 
 After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and place it in the fridge. You're going to let this do a long ferment for 12–36 hours.
 
 This is where the sourdough works its magic and develops that amazing flavor. I usually make my dough in the evening and then bake the next morning or even the following day.
+
+![Dough ready for long ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
 
 ### Part 2: Making the Almond Cream Filling (Bake Day)
 
@@ -109,6 +119,8 @@ Add in the almond flour, all-purpose flour, salt, egg, vanilla extract, almond e
 
 Pop this in the fridge while you roll out your croissants. It's easier to work with when it's slightly chilled.
 
+![Almond cream filling](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0863.jpg)
+
 ### Part 3: Shaping the Croissants
 
 #### Step 9: Roll out the dough
@@ -116,6 +128,8 @@ Pop this in the fridge while you roll out your croissants. It's easier to work w
 Take your dough out of the fridge and place it on a well-floured surface. Using your hands, shape it into a rough rectangle.
 
 Flour the top of your dough (this is important—otherwise the butter will stick to your rolling pin!) and roll it out into a rectangle about ½ inch thick.
+
+![Rolling out the dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0865.jpg)
 
 #### Step 10: Cut into pieces
 
@@ -131,6 +145,8 @@ Starting from both short ends, roll the dough inward until the two rolls meet in
 
 Repeat with the remaining 7 pieces of dough.
 
+![Shaped croissants ready for rising](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0866.jpg)
+
 #### Step 12: Final rise
 
 Cover your shaped croissants with a dish towel and let them rise for about 1 hour. They should look noticeably puffy when ready.
@@ -141,6 +157,8 @@ Preheat your oven to 425°F (220°C).
 
 With whatever almond cream filling you have left, spread a little on top of each croissant. Sprinkle with sliced almonds.
 
+![Croissants topped with almonds ready to bake](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0867.jpg)
+
 Bake at 425°F for 10 minutes. Then rotate your pan, reduce the temperature to 350°F (175°C), and bake for an additional 18–20 minutes, or until beautifully browned on top.
 
 **Pro tip:** Because of all that butter, these like to brown a lot on the bottom. I place an empty baking sheet on the rack below to act as a buffer—it keeps them from burning and works like a charm!
@@ -148,6 +166,8 @@ Bake at 425°F for 10 minutes. Then rotate your pan, reduce the temperature to 3
 #### Step 14: Cool slightly and enjoy
 
 Let the croissants cool for just a few minutes (if you can resist!). Sprinkle some powdered sugar (totally optional) on them and enjoy them warm. They're absolutely incredible fresh out of the oven.
+
+![Freshly baked almond sourdough croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0869.jpg)
 
 ## Storage Tips
 
