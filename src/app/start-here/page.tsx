@@ -19,9 +19,27 @@ export default function StartHerePage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-6">
             Welcome! Let Me Help You Get Started
           </h1>
-          <p className="text-charcoal/80 text-lg leading-relaxed max-w-2xl mx-auto">
-            I&apos;m Keegan - a Pediatric ER RN turned stay-at-home mama of two. Whether you&apos;re here for sourdough, parenting tips, or quick family recipes, I&apos;ve got something for you.
-          </p>
+        </div>
+      </section>
+
+      {/* About Me - Moved to Top */}
+      <section className="max-w-4xl mx-auto px-4 py-12">
+        <div className="bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl p-8 md:flex items-center gap-8">
+          <div className="text-8xl mb-6 md:mb-0">👩‍👧‍👦</div>
+          <div>
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-3">
+              A Little About Me
+            </h2>
+            <p className="text-charcoal/70 mb-4">
+              I&apos;m a former Pediatric ER nurse who traded scrubs for sweatpants when I became a mama to Porter (toddler) and Reese (baby). Our chocolate lab Stout completes our crew. I started this blog to share what I&apos;ve learned about sourdough, family life, and finding joy in the chaos.
+            </p>
+            <Link
+              href="/about"
+              className="inline-block text-terracotta font-medium hover:text-deep-sage transition-colors"
+            >
+              Read my full story &rarr;
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -198,27 +216,6 @@ export default function StartHerePage() {
           </div>
         </section>
       )}
-
-      {/* About Me Quick */}
-      <section className="max-w-4xl mx-auto px-4 py-12">
-        <div className="bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl p-8 md:flex items-center gap-8">
-          <div className="text-8xl mb-6 md:mb-0">👩‍👧‍👦</div>
-          <div>
-            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-3">
-              A Little About Me
-            </h2>
-            <p className="text-charcoal/70 mb-4">
-              I&apos;m a former Pediatric ER nurse who traded scrubs for sweatpants when I became a stay-at-home mama to Porter (toddler) and Reese (baby). Our chocolate lab Stout completes our crew. I started this blog to share what I&apos;ve learned about sourdough, family life, and finding joy in the chaos.
-            </p>
-            <Link
-              href="/about"
-              className="inline-block text-terracotta font-medium hover:text-deep-sage transition-colors"
-            >
-              Read my full story &rarr;
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Newsletter */}
       <section className="max-w-4xl mx-auto px-4 py-12">

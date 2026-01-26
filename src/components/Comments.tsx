@@ -17,9 +17,73 @@ interface CommentsProps {
   postSlug: string;
 }
 
+interface CommentsPreviewProps {
+  postSlug: string;
+}
+
 // Storage key for comments
 const getStorageKey = (slug: string) => `hpm_comments_${slug}`;
 const getRatingsKey = (slug: string) => `hpm_ratings_${slug}`;
+
+// Preview component to show at top of post
+export function CommentsPreview({ postSlug }: CommentsPreviewProps) {
+  const [averageRating, setAverageRating] = useState(0);
+  const [totalRatings, setTotalRatings] = useState(0);
+  const [commentCount, setCommentCount] = useState(0);
+
+  useEffect(() => {
+    const storedComments = localStorage.getItem(getStorageKey(postSlug));
+    const storedRatings = localStorage.getItem(getRatingsKey(postSlug));
+
+    if (storedComments) {
+      const comments = JSON.parse(storedComments);
+      setCommentCount(comments.length);
+    }
+
+    if (storedRatings) {
+      const ratings = JSON.parse(storedRatings);
+      setAverageRating(ratings.average);
+      setTotalRatings(ratings.total);
+    }
+  }, [postSlug]);
+
+  const scrollToComments = () => {
+    const commentsSection = document.getElementById("comments-section");
+    if (commentsSection) {
+      commentsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="bg-gradient-to-r from-terracotta/10 to-soft-pink/10 rounded-2xl p-6 my-8 border-2 border-terracotta/20">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="text-center sm:text-left">
+          <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
+            Rate & Review This Recipe
+          </h3>
+          {totalRatings > 0 ? (
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
+              <RatingSummary averageRating={averageRating} totalRatings={totalRatings} />
+              <span className="text-charcoal/50">|</span>
+              <span className="text-sm text-charcoal/70">{commentCount} comment{commentCount !== 1 ? "s" : ""}</span>
+            </div>
+          ) : (
+            <p className="text-charcoal/70 text-sm">Be the first to rate this recipe!</p>
+          )}
+        </div>
+        <button
+          onClick={scrollToComments}
+          className="px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all flex items-center gap-2"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+          </svg>
+          Leave a Review
+        </button>
+      </div>
+    </div>
+  );
+}
 
 export function Comments({ postSlug }: CommentsProps) {
   const [comments, setComments] = useState<Comment[]>([]);
@@ -160,7 +224,7 @@ export function Comments({ postSlug }: CommentsProps) {
   );
 
   return (
-    <section className="bg-cream py-12">
+    <section id="comments-section" className="bg-cream py-12">
       <div className="max-w-3xl mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">

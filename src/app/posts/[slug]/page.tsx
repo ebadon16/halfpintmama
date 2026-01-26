@@ -4,7 +4,7 @@ import Image from "next/image";
 import { getAllPosts, getPostBySlug, getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
-import { Comments } from "@/components/Comments";
+import { Comments, CommentsPreview } from "@/components/Comments";
 import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
 
@@ -207,6 +207,9 @@ export default async function PostPage({ params }: PageProps) {
           {/* Simple markdown rendering - convert basic markdown to HTML */}
           <div dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} />
         </div>
+
+        {/* Rate & Review CTA - Prominent placement after content */}
+        <CommentsPreview postSlug={slug} />
 
         {/* Mid-Post Email Signup CTA */}
         <div className="my-10 p-6 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl">

@@ -1,6 +1,7 @@
 import { PostCard } from "@/components/PostCard";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
+import { InstagramTicker } from "@/components/InstagramTicker";
 
 export default function Home() {
   const allPosts = getAllPosts();
@@ -21,8 +22,7 @@ export default function Home() {
             From a Sourdough-Obsessed Mama & Pediatric ER RN
           </h2>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-            Tested recipes and evidence-based tips from a Pediatric ER RN who brings nurse-level
-            precision to sourdough. Because your family deserves food made with love AND knowledge.
+            I&apos;m Keegan - a Pediatric ER RN turned mama of two. Whether you&apos;re here for sourdough, parenting tips, or quick family recipes, I&apos;ve got something for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
@@ -238,44 +238,12 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Instagram Feed */}
-            <div className="bg-white p-6 rounded-2xl shadow-md">
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
-                Follow Along
-              </h3>
-              <a
-                href="https://www.instagram.com/halfpint.mama/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-terracotta hover:text-deep-sage font-medium text-sm transition-colors block mb-4"
-              >
-                @halfpint.mama
-              </a>
-
-              {/* Instagram Embed Widget */}
-              <div className="mb-4">
-                <iframe
-                  src="https://www.instagram.com/halfpint.mama/embed"
-                  className="w-full border-0 rounded-lg overflow-hidden"
-                  height="400"
-                  scrolling="no"
-                  allowTransparency={true}
-                  title="Instagram Feed"
-                />
-              </div>
-
-              <a
-                href="https://www.instagram.com/halfpint.mama/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full hover:bg-terracotta hover:text-white transition-all"
-              >
-                Follow on Instagram
-              </a>
-            </div>
           </aside>
         </div>
       </div>
+
+      {/* Instagram Ticker */}
+      <InstagramTicker />
 
       {/* Email Signup with Lead Magnet */}
       <section className="max-w-4xl mx-auto px-4 py-12">
