@@ -31,7 +31,7 @@ export function Header() {
       <Link href="/" className="block">
         <div
           className="w-full aspect-[1920/1200] max-h-80 bg-cover bg-center"
-          style={{ backgroundImage: "url('/banner.png')" }}
+          style={{ backgroundImage: "url('/banner.png?v=2')" }}
         />
       </Link>
 
