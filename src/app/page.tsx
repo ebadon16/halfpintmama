@@ -46,60 +46,6 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main Content */}
           <div className="flex-1">
-            {/* Shop My Favorites - Amazon Affiliate Grid */}
-            <section className="mb-12">
-              <div className="flex justify-between items-center mb-8">
-                <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-terracotta inline-block">
-                  Shop My Kitchen Favorites
-                </h2>
-                <Link href="/products" className="text-terracotta hover:text-deep-sage font-medium transition-colors">
-                  View All &rarr;
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {/* Product Card 1 */}
-                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-                    <span className="text-4xl">🥣</span>
-                  </div>
-                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Sourdough Proofing Basket</h3>
-                  <p className="text-sage text-sm mt-1">My go-to for perfect loaves</p>
-                </a>
-
-                {/* Product Card 2 */}
-                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-                    <span className="text-4xl">🍳</span>
-                  </div>
-                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Dutch Oven</h3>
-                  <p className="text-sage text-sm mt-1">Essential for crusty bread</p>
-                </a>
-
-                {/* Product Card 3 */}
-                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-                    <span className="text-4xl">📖</span>
-                  </div>
-                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Kitchen Scale</h3>
-                  <p className="text-sage text-sm mt-1">Precision baking must-have</p>
-                </a>
-
-                {/* Product Card 4 */}
-                <a href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB" target="_blank" rel="noopener noreferrer" className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all group">
-                  <div className="aspect-square bg-warm-beige/50 rounded-lg mb-3 flex items-center justify-center">
-                    <span className="text-4xl">🫙</span>
-                  </div>
-                  <h3 className="font-medium text-charcoal group-hover:text-terracotta transition-colors text-sm">Starter Jar Set</h3>
-                  <p className="text-sage text-sm mt-1">Keep your starter happy</p>
-                </a>
-              </div>
-
-              <p className="text-center text-charcoal/50 text-xs mt-4">
-                As an Amazon Associate, I earn from qualifying purchases.
-              </p>
-            </section>
-
             {/* Latest Posts */}
             <section>
               <div className="flex justify-between items-center mb-8">
