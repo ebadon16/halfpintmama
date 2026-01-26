@@ -2,7 +2,7 @@
 title: "Amazon products for a roadtrip with kids"
 date: "2024-05-02"
 slug: "amazon-products-for-a-roadtrip-with-kids"
-category: "cooking"
+category: "travel"
 excerpt: ""
 image: "https://halfpintmama.com/wp-content/uploads/2024/04/img_2413-1.jpg?w=683"
 ---

@@ -14,6 +14,19 @@ export default function CookingPage() {
   return (
     <div className="bg-cream">
       <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* My Saved Recipes Button */}
+        <div className="flex justify-center mb-6">
+          <Link
+            href="/favorites"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-terracotta text-white font-semibold rounded-full hover:bg-terracotta/90 transition-all shadow-md"
+          >
+            <svg className="w-5 h-5" fill="currentColor" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            My Saved Recipes
+          </Link>
+        </div>
+
         {/* Subcategory Navigation */}
         <div className="flex flex-wrap gap-3 mb-8 justify-center">
           <Link href="/cooking" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">

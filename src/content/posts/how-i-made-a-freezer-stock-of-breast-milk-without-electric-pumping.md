@@ -2,7 +2,7 @@
 title: "How I made a freezer stock of breast milk without electric pumping"
 date: "2024-04-11"
 slug: "how-i-made-a-freezer-stock-of-breast-milk-without-electric-pumping"
-category: "cooking"
+category: "mama-life"
 excerpt: ""
 image: "https://halfpintmama.com/wp-content/uploads/2024/04/image-1.jpg?w=1024"
 ---
