@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { FavoriteButton } from "./FavoriteButton";
 
 interface PostCardProps {
   slug: string;
@@ -22,8 +25,17 @@ export function PostCard({ slug, title, excerpt, category, date, image }: PostCa
   const badgeColor = categoryColors[category] || categoryColors.default;
 
   return (
-    <Link href={`/posts/${slug}`} className="group">
-      <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group relative">
+      {/* Favorite Button */}
+      <div className="absolute top-3 right-3 z-10">
+        <FavoriteButton
+          slug={slug}
+          title={title}
+          className="p-2 bg-white/90 rounded-full shadow-md hover:bg-white"
+        />
+      </div>
+
+      <Link href={`/posts/${slug}`}>
         {/* Image */}
         <div className="relative h-52 bg-gradient-to-br from-light-sage to-warm-beige">
           {image && (
@@ -55,7 +67,7 @@ export function PostCard({ slug, title, excerpt, category, date, image }: PostCa
             {date}
           </p>
         </div>
-      </article>
-    </Link>
+      </Link>
+    </article>
   );
 }

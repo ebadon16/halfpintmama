@@ -46,6 +46,11 @@ export function Footer() {
                   Search
                 </Link>
               </li>
+              <li>
+                <Link href="/favorites" className="text-charcoal/80 hover:text-terracotta transition-colors">
+                  My Saved Recipes
+                </Link>
+              </li>
             </ul>
           </div>
 

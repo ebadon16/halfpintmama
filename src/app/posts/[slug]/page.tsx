@@ -8,6 +8,7 @@ import { Comments, CommentsPreview } from "@/components/Comments";
 import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
+import { FavoriteButton } from "@/components/FavoriteButton";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -145,9 +146,10 @@ export default async function PostPage({ params }: PageProps) {
             </p>
           </div>
 
-          {/* Share & Print Buttons */}
+          {/* Share, Save & Print Buttons */}
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-4">
             <ShareButtons title={post.title} slug={slug} />
+            <FavoriteButton slug={slug} title={post.title} showText={true} className="text-charcoal/60 hover:text-terracotta" />
             {post.category === "cooking" && (
               <PrintButton title={post.title} />
             )}
