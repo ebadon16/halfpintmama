@@ -31,7 +31,7 @@ export function Header() {
       {/* Main Header with Banner */}
       <Link href="/" className="block relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
         <Image
-          src="/banner.png"
+          src="/site-banner.png"
           alt="Half Pint Mama"
           fill
           className="object-cover object-center"
