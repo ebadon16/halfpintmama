@@ -4,16 +4,16 @@ date: "2024-03-17"
 slug: "protein-pb-cups"
 category: "cooking"
 excerpt: ""
-image: "https://halfpintmama.com/wp-content/uploads/2024/03/img_6557-1-2.jpg?w=681"
+image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6557-1-2.jpg?w=681"
 ---
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/img_6557-1-2.jpg?w=681)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6557-1-2.jpg?w=681)
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/untitled_artwork-1.jpg?w=732)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/untitled_artwork-1.jpg?w=732)
 
 ## Ingredients 
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/image-1.jpg?w=1024)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/image-1.jpg?w=1024)
 
 **Oat Mixture**
 
@@ -59,7 +59,7 @@ Please note all links are affiliate links and we do make commission from them.
 
 Protein Powder
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/img_6502.jpg?w=768)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6502.jpg?w=768)
 
 [Link to Ascent Protein Powder](https://amzn.to/3PvUaGq)
 
@@ -67,7 +67,7 @@ This is one of the “cleanest” protein powders we have found and it taste gre
 
 Toddler Tower
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/img_6682.jpg?w=768)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6682.jpg?w=768)
 
 [Link to Toddler Tower](https://amzn.to/3wXFCZu)
 

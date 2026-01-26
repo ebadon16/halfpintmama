@@ -97,7 +97,7 @@ Baking with a toddler is equal parts joyful and messy, turning a simple recipe i
 
 Toddler Tower
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/img_6682.jpg?w=768)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6682.jpg?w=768)
 
 [Link to Toddler Tower](https://amzn.to/3wXFCZu)
 

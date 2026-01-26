@@ -4,12 +4,12 @@ date: "2024-03-21"
 slug: "my-favorite-toddler-tower"
 category: "mama-life"
 excerpt: ""
-image: "https://halfpintmama.com/wp-content/uploads/2024/03/img_6676.jpg?w=768"
+image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6676.jpg?w=768"
 ---
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/img_6676.jpg?w=768)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6676.jpg?w=768)
 
-![](https://halfpintmama.com/wp-content/uploads/2024/03/img_2377.jpeg?w=683)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_2377.jpeg?w=683)
 
 This is an affiliated link, that earns us commission. If this post helped you please use the link to help support the blog! 
 [Link to Toddler Tower](https://amzn.to/3VtNNaf)

@@ -4,16 +4,16 @@ date: "2024-04-11"
 slug: "how-i-made-a-freezer-stock-of-breast-milk-without-electric-pumping"
 category: "mama-life"
 excerpt: ""
-image: "https://halfpintmama.com/wp-content/uploads/2024/04/image-1.jpg?w=1024"
+image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/image-1.jpg?w=1024"
 ---
 
-![](https://halfpintmama.com/wp-content/uploads/2024/04/image-1.jpg?w=1024)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/image-1.jpg?w=1024)
 
-![](https://halfpintmama.com/wp-content/uploads/2024/04/untitled_artwork-1.jpg?w=683)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/untitled_artwork-1.jpg?w=683)
 
 ### What I used…
 
-![](https://halfpintmama.com/wp-content/uploads/2024/04/img_7253-1.jpg?w=698)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/img_7253-1.jpg?w=698)
 
 Check it out here on Amazon (Affiliate Link)…
 

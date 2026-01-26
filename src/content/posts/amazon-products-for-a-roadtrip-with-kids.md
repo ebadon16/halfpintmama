@@ -4,14 +4,14 @@ date: "2024-05-02"
 slug: "amazon-products-for-a-roadtrip-with-kids"
 category: "travel"
 excerpt: ""
-image: "https://halfpintmama.com/wp-content/uploads/2024/04/img_2413-1.jpg?w=683"
+image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/img_2413-1.jpg?w=683"
 ---
 
-![](https://halfpintmama.com/wp-content/uploads/2024/04/img_2413-1.jpg?w=683)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/img_2413-1.jpg?w=683)
 
-![](https://halfpintmama.com/wp-content/uploads/2024/04/img_7571.jpg?w=768)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/img_7571.jpg?w=768)
 
-![](https://halfpintmama.com/wp-content/uploads/2024/04/img_2414-1.jpg?w=683)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/04/img_2414-1.jpg?w=683)
 
 Here are some Amazon products we used during our first long car ride with our 2 year old and 2 month old! All links are affiliate links and earn us commission.
 
@@ -59,7 +59,7 @@ Here are some Amazon products we used during our first long car ride with our 2 
 
 [Tackle Box 🔗](https://amzn.to/3Qtrdem)
 
-![](https://halfpintmama.com/wp-content/uploads/2024/05/img_7479.jpg?w=768)
+![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/05/img_7479.jpg?w=768)
 
 Bonus Item:
 
