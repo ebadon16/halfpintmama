@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { SearchButton } from "./SearchBar";
+import bannerImage from "@/assets/banner.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -31,12 +32,11 @@ export function Header() {
       {/* Main Header with Banner */}
       <Link href="/" className="block relative w-full h-48 md:h-56 lg:h-64 overflow-hidden">
         <Image
-          src="/hpm-banner-2026.png"
+          src={bannerImage}
           alt="Half Pint Mama"
           fill
           className="object-cover object-center"
           priority
-          unoptimized
         />
       </Link>
 
