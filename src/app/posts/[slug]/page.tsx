@@ -102,7 +102,7 @@ export default async function PostPage({ params }: PageProps) {
         />
       )}
 
-      <article className="max-w-3xl mx-auto px-4 py-12">
+      <article className="max-w-2xl mx-auto px-4 py-8">
         {/* Breadcrumbs */}
         <nav className="mb-6 text-sm" aria-label="Breadcrumb">
           <ol className="flex items-center gap-2 text-charcoal/60">
@@ -121,15 +121,15 @@ export default async function PostPage({ params }: PageProps) {
         </nav>
 
         {/* Header */}
-        <header className="mb-8">
+        <header className="mb-6">
           <Link
             href={`/${post.category}`}
-            className={`inline-block px-3 py-1 ${badgeColor} text-white text-xs font-semibold rounded-full uppercase tracking-wide mb-4`}
+            className={`inline-block px-3 py-1 ${badgeColor} text-white text-xs font-semibold rounded-full uppercase tracking-wide mb-3`}
           >
             {categoryLabel}
           </Link>
 
-          <h1 className="font-[family-name:var(--font-crimson)] text-3xl md:text-4xl lg:text-5xl text-charcoal font-semibold leading-tight mb-4">
+          <h1 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl text-charcoal font-semibold leading-tight mb-3">
             {post.title}
           </h1>
 
@@ -158,7 +158,7 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Featured Image */}
         {post.image && (
-          <div className="relative w-full h-64 md:h-96 mb-8 rounded-2xl overflow-hidden">
+          <div className="relative w-full h-48 md:h-64 mb-6 rounded-xl overflow-hidden">
             <Image
               src={post.image}
               alt={post.title}
@@ -172,16 +172,18 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Content */}
         <div
-          className="prose prose-lg max-w-none
+          className="prose prose-base max-w-none
             prose-headings:font-[family-name:var(--font-crimson)]
             prose-headings:text-charcoal
-            prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
-            prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
-            prose-p:text-charcoal/80 prose-p:leading-relaxed
+            prose-h2:text-xl prose-h2:mt-6 prose-h2:mb-3 prose-h2:font-semibold
+            prose-h3:text-lg prose-h3:mt-5 prose-h3:mb-2 prose-h3:font-semibold
+            prose-h4:text-base prose-h4:mt-4 prose-h4:mb-2 prose-h4:font-semibold
+            prose-p:text-charcoal/80 prose-p:leading-relaxed prose-p:my-3
             prose-a:text-terracotta prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-charcoal
-            prose-ul:my-4 prose-li:text-charcoal/80
-            prose-img:rounded-xl prose-img:shadow-md"
+            prose-strong:text-charcoal prose-strong:font-semibold
+            prose-ul:my-3 prose-ul:pl-5
+            prose-li:text-charcoal/80 prose-li:my-1
+            prose-img:rounded-lg prose-img:shadow-sm"
         >
           {/* Simple markdown rendering - convert basic markdown to HTML */}
           <div dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} />
@@ -194,7 +196,7 @@ export default async function PostPage({ params }: PageProps) {
         <PostEmailSignup />
 
         {/* Footer - Navigation */}
-        <footer className="mt-12 pt-8 border-t border-light-sage">
+        <footer className="mt-8 pt-6 border-t border-light-sage">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <Link
               href="/posts"
@@ -253,9 +255,10 @@ function renderMarkdown(content: string): string {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     // Then restore markdown image/link syntax that got escaped
-    .replace(/!\[\]\(([^)]+)\)/g, '<img src="$1" alt="" class="w-full rounded-xl my-4" />')
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="w-full rounded-xl my-4" />')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    // Images: centered, max-width constrained, smaller
+    .replace(/!\[\]\(([^)]+)\)/g, '<figure class="my-4 flex justify-center"><img src="$1" alt="" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<figure class="my-4 flex justify-center"><img src="$2" alt="$1" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-terracotta font-medium hover:underline">$1</a>')
     // Headers
     .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -267,16 +270,16 @@ function renderMarkdown(content: string): string {
     // Lists
     .replace(/^- (.+)$/gm, '<li>$1</li>')
     // Wrap consecutive li tags in ul
-    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+    .replace(/(<li>.*<\/li>\n?)+/g, '<ul class="space-y-1">$&</ul>')
     // Paragraphs - wrap lines that aren't already wrapped
-    .replace(/^(?!<[hulo]|<img|<a)(.+)$/gm, '<p>$1</p>')
+    .replace(/^(?!<[hulo]|<fig|<a)(.+)$/gm, '<p>$1</p>')
     // Clean up empty paragraphs
     .replace(/<p>\s*<\/p>/g, '')
     // Fix nested tags
     .replace(/<p>(<h[1-4]>)/g, '$1')
     .replace(/(<\/h[1-4]>)<\/p>/g, '$1')
-    .replace(/<p>(<ul>)/g, '$1')
+    .replace(/<p>(<ul)/g, '$1')
     .replace(/(<\/ul>)<\/p>/g, '$1')
-    .replace(/<p>(<img)/g, '$1')
-    .replace(/(\/?>)<\/p>/g, '$1');
+    .replace(/<p>(<figure)/g, '$1')
+    .replace(/(<\/figure>)<\/p>/g, '$1');
 }
