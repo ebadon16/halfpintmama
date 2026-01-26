@@ -11,8 +11,8 @@ const affiliateCategories = [
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/34LAO012O5RIR?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
-    title: "Baby & Toddler Must-Haves",
-    description: "The gear that survived two babies and countless adventures. Only the stuff that actually works.",
+    title: "Baby-Led Weaning",
+    description: "Everything you need to start your baby on solids the BLW way. Safe, practical, and parent-tested.",
     icon: "👶",
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/3K7AEMTLYQWAA?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
@@ -23,9 +23,9 @@ const affiliateCategories = [
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/2SYTGUP5EUSC?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
-    title: "Kitchen Favorites",
-    description: "Beyond sourdough - the tools and gadgets that make cooking with kids around actually manageable.",
-    icon: "🍳",
+    title: "Preschool at Home",
+    description: "Our favorite learning tools, books, and activities for teaching littles at home.",
+    icon: "📚",
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/3C6A7CTB9S2CX?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
 ];
