@@ -37,6 +37,7 @@ export async function POST(request: Request) {
             name: name || "",
             last_name: "",
             company: subject || "Contact Form",
+            message: message || "",
           },
           groups: ["177693621388051535"],
           status: "active",
