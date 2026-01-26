@@ -9,7 +9,7 @@ export const metadata = {
 };
 
 export default function SnacksPage() {
-  const posts = getPostsBySubcategory("cooking", ["cracker", "snack", "roll-up", "granola", "popsicle", "bite"]);
+  const posts = getPostsBySubcategory("cooking", ["cracker", "snack", "roll-up", "roll up", "granola", "popsicle", "bite", "pinwheel"]);
 
   return (
     <div className="bg-cream">

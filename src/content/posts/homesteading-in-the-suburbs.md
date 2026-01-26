@@ -2,7 +2,7 @@
 title: "Homesteading in the Suburbs"
 date: "2025-11-04"
 slug: "homesteading-in-the-suburbs"
-category: "cooking"
+category: "mama-life"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/pexels-photo-30785707.jpg?w=683"
 ---
