@@ -20,22 +20,20 @@ export default function ContactPage() {
     setError("");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_KEY", // Get free key at web3forms.com
-          subject: `Half Pint Mama Contact: ${formData.subject}`,
-          from_name: formData.name,
+          name: formData.name,
           email: formData.email,
+          subject: formData.subject,
           message: formData.message,
         }),
       });
 
-      const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         setIsSubmitted(true);
       } else {
         setError("Something went wrong. Please try again.");
