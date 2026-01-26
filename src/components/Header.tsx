@@ -27,27 +27,25 @@ export function Header() {
   };
 
   return (
-    <header className="gradient-header text-cream">
-      {/* Main Header */}
-      <div className="text-center py-8 px-4 relative overflow-hidden">
-        {/* Decorative circle */}
-        <div className="absolute -top-20 -right-10 w-64 h-64 bg-white/10 rounded-full blur-sm" />
+    <header className="bg-cream">
+      {/* Main Header with Banner */}
+      <div className="relative">
+        {/* Banner Background */}
+        <div
+          className="w-full h-48 md:h-56 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/banner.png')" }}
+        />
 
-        <Link href="/" className="relative z-10 flex flex-col items-center">
+        {/* Logo Overlay */}
+        <Link href="/" className="absolute inset-0 flex items-center justify-center">
           <Image
-            src="/logo.jpg"
+            src="/logo.png"
             alt="Half Pint Mama"
-            width={120}
-            height={120}
-            className="rounded-full shadow-lg mb-2"
+            width={160}
+            height={160}
+            className="drop-shadow-lg hover:scale-105 transition-transform"
             priority
           />
-          <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl font-semibold text-[#FAF7F2] drop-shadow-sm">
-            Half Pint Mama
-          </h1>
-          <p className="text-[#E8DDD0] italic mt-2">
-            Simple Recipes & Real Mom Life
-          </p>
         </Link>
       </div>
 

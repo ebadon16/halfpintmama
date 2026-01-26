@@ -191,6 +191,9 @@ export default async function PostPage({ params }: PageProps) {
           </div>
         )}
 
+        {/* Rate & Review CTA - Top of content */}
+        <CommentsPreview postSlug={slug} />
+
         {/* Content */}
         <div
           className="prose prose-lg max-w-none

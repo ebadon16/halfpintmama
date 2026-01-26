@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  /* Half Pint Mama Brand Colors */
-  --cream: #FAF7F2;
-  --warm-beige: #E8DDD0;
-  --sage: #9CAF88;
-  --deep-sage: #6B7F5F;
-  --terracotta: #C17B68;
-  --soft-pink: #E8B4A8;
-  --charcoal: #3D3D3D;
-  --light-sage: #D4E0CC;
+  /* Half Pint Mama Brand Colors - Matched to Logo */
+  --cream: #F5F1E8;
+  --warm-beige: #E6DFD3;
+  --sage: #7B8F6E;
+  --deep-sage: #5C6B52;
+  --terracotta: #C4835F;
+  --soft-pink: #D4A894;
+  --charcoal: #3A3A38;
+  --light-sage: #D1DCCA;
 
   --background: var(--cream);
   --foreground: var(--charcoal);

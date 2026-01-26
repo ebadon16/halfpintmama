@@ -225,7 +225,7 @@ export function Comments({ postSlug }: CommentsProps) {
 
   return (
     <section id="comments-section" className="bg-cream py-12">
-      <div className="max-w-3xl mx-auto px-4">
+      <div className="max-w-3xl mx-auto px-4 border-2 border-light-sage rounded-2xl bg-white p-6 shadow-sm">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
