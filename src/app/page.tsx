@@ -1,7 +1,6 @@
 import { PostCard } from "@/components/PostCard";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
-import { InstagramTicker } from "@/components/InstagramTicker";
 
 export default function Home() {
   const allPosts = getAllPosts();
@@ -131,9 +130,6 @@ export default function Home() {
           </aside>
         </div>
       </div>
-
-      {/* Instagram Ticker */}
-      <InstagramTicker />
 
       {/* Email Signup with Lead Magnet */}
       <section className="max-w-4xl mx-auto px-4 py-12">

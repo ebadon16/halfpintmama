@@ -29,7 +29,7 @@ export function Header() {
       {/* Main Header with Banner */}
       <Link href="/" className="block">
         <div
-          className="w-full h-32 md:h-40 bg-contain bg-center bg-no-repeat bg-cream"
+          className="w-full h-48 md:h-64 lg:h-72 bg-cover bg-center"
           style={{ backgroundImage: "url('/banner.png')" }}
         />
       </Link>
