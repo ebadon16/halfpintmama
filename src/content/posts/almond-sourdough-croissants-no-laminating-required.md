@@ -30,7 +30,7 @@ ingredients:
   - "Powdered sugar (optional)"
 ---
 
-![Almond Sourdough Croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg)
+![Hero croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg)
 
 Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait.
 
@@ -67,7 +67,7 @@ Let's make some croissants!
 - ¼ teaspoon almond extract
 - 1 tablespoon heavy cream
 
-![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
+![Croissant closeup](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 *For Topping:*
 
@@ -76,12 +76,12 @@ Let's make some croissants!
 
 *Equipment:*
 
-- [Danish whisk](https://amzn.to/danishwhisk) or wooden spoon
-- [Box grater](https://amzn.to/boxgrater)
-- [Rolling pin](https://amzn.to/rollingpin)
-- [Pastry cutter](https://amzn.to/pastrycutter)
-- Lined [baking sheet](https://amzn.to/bakingsheet)
-- [Plastic wrap](https://amzn.to/plasticwrap) or [beeswax wrap](https://amzn.to/beeswaxwrap)
+- Danish whisk or wooden spoon
+- Box grater
+- Rolling pin
+- Pastry cutter
+- Lined baking sheet
+- Plastic wrap or beeswax wrap
 - Clean dish towel
 
 ## Step-by-Step Instructions
@@ -124,7 +124,7 @@ Cover with your damp towel and let the dough sit at room temperature for 4 hours
 
 **Step 7: Long ferment**
 
-![Dough ready for ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
+![Dough in bowl](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
 
 After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and place it in the fridge. You're going to let this do a long ferment for 12–36 hours.
 
@@ -166,7 +166,7 @@ Starting from both short ends, roll the dough inward until the two rolls meet in
 
 Repeat with the remaining 7 pieces of dough.
 
-![Shaped croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0866.jpg)
+![Shaped croissants on baking sheet](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0866.jpg)
 
 **Step 12: Final rise**
 
