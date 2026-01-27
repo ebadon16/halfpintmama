@@ -22,7 +22,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Add subscriber to MailerLite
+    // Add subscriber to MailerLite with group assignment
+    const MAILERLITE_GROUP_ID = "177682078317413870"; // New Subscribers group
+
     const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
       method: "POST",
       headers: {
@@ -32,6 +34,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         email: email.toLowerCase().trim(),
+        groups: [MAILERLITE_GROUP_ID],
         fields: {
           source: source || "website",
         },
