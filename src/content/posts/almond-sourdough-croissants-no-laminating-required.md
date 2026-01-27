@@ -181,7 +181,7 @@ Using a pastry cutter, cut down the middle lengthwise. Then make 3 cuts on each 
 
 #### Step 11: Roll and fill each croissant
 
-<!-- IMG: Croissant -9.jpeg | LAYOUT: float-right | SIZE: small -->
+<!-- IMG: Croissant -9.jpeg | LAYOUT: center | SIZE: medium -->
 
 Working with one rectangle at a time, use your rolling pin to roll it out even thinner—about ¼ inch thick—both lengthwise and widthwise. Add more flour as needed.
 

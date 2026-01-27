@@ -201,10 +201,10 @@ export default async function PostPage({ params }: PageProps) {
             prose-headings:font-[family-name:var(--font-crimson)]
             prose-headings:font-bold
             prose-h1:text-[36px] prose-h1:text-[#4A3728] prose-h1:mb-[40px] prose-h1:mt-0
-            prose-h2:text-[28px] prose-h2:text-charcoal prose-h2:mt-[32px] prose-h2:mb-[16px]
-            prose-h3:text-[22px] prose-h3:text-charcoal prose-h3:mt-[24px] prose-h3:mb-[12px]
-            prose-h4:text-[18px] prose-h4:text-charcoal prose-h4:mt-[20px] prose-h4:mb-[8px]
-            prose-p:text-[16px] prose-p:text-charcoal/80 prose-p:leading-[1.6] prose-p:my-[16px]
+            prose-h2:text-[28px] prose-h2:text-charcoal prose-h2:mt-[48px] prose-h2:mb-[16px]
+            prose-h3:text-[22px] prose-h3:text-charcoal prose-h3:mt-[32px] prose-h3:mb-[12px]
+            prose-h4:text-[18px] prose-h4:text-charcoal prose-h4:mt-[24px] prose-h4:mb-[8px]
+            prose-p:text-[16px] prose-p:text-charcoal/80 prose-p:leading-[1.6] prose-p:mb-[16px]
             prose-a:text-terracotta prose-a:no-underline hover:prose-a:underline
             prose-strong:text-charcoal prose-strong:font-semibold
             prose-ul:my-[16px] prose-ul:pl-5
