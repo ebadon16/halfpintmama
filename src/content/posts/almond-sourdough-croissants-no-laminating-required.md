@@ -53,44 +53,6 @@ Let's make some croissants!
 
 *this post contains affiliate links, in which I may earn a small commission at no additional cost to you—thanks for your support*
 
-## What You Need
-
-*For the Croissant Dough:*
-
-- ½ cup active sourdough starter (100g)
-- 1¼ cups filtered warm water (300g)
-- 1 teaspoon salt (6g)
-- 3 cups all-purpose flour (375g)
-- ½ cup unsalted butter, cold (8 tablespoons / 113g)
-
-*For the Almond Cream Filling:*
-
-- ½ cup unsalted butter, softened at room temperature (8 tablespoons / 113g)
-- ¼ cup organic cane sugar (50g)
-- 2 tablespoons brown sugar (25g)
-- 1 cup + 1 tablespoon blanched fine almond flour (112g)
-- 1 tablespoon all-purpose flour (8g)
-- ¼ teaspoon fine salt
-- 1 large egg
-- ½ teaspoon vanilla extract
-- ¼ teaspoon almond extract
-- 1 tablespoon heavy cream
-
-*For Topping:*
-
-- Sliced almonds
-- Powdered sugar (optional)
-
-*Equipment:*
-
-- Danish whisk or wooden spoon
-- Box grater
-- Rolling pin
-- Pastry cutter
-- Lined baking sheet
-- Plastic wrap or beeswax wrap
-- Clean dish towel
-
 ![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 ## Step-by-Step Instructions

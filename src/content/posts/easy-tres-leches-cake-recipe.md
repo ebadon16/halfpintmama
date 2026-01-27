@@ -45,40 +45,6 @@ Let’s walk through it together.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6024.jpg?w=768)
 
-### **Step-by-Step**
-
-#### **Ingredients**
-
-**For the Cake**
-
-- 1 box Betty Crocker® SuperMoist® yellow cake mix
-
-- 1 1/4 cups water
-
-- 1 tablespoon vegetable oil
-
-- 2 teaspoons vanilla extract
-
-- 4 eggs
-
-**For the Glaze (the "tres leches")**
-
-- 1 (12-ounce) can evaporated milk
-
-- 1 (14-ounce) can sweetened condensed milk
-
-- 1 cup half-and-half
-
-**For the Whipped Topping**
-
-- 2 cups heavy whipping cream
-
-- 2 tablespoons powdered sugar
-
-- 1 teaspoon vanilla extract
-
-- Optional: sliced fresh strawberries or cinnamon for garnish
-
 ### **Step 1: Bake the Cake**
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5970.jpg?w=1024)
@@ -119,46 +85,4 @@ This cake gets better as it sits! Store any leftovers covered in the fridge for 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6024.jpg?w=768)
 
-## **Quick Reference Recipe for Mom’s Tres Leches Cake**
-
-**Cake Ingredients:**
-
-- 1 box Betty Crocker® SuperMoist® yellow cake mix
-
-- 1¼ cups water
-
-- 1 tbsp vegetable oil
-
-- 2 tsp vanilla
-
-- 4 eggs
-
-**Glaze:**
-
-- 1 can evaporated milk (12 oz)
-
-- 1 can sweetened condensed milk (14 oz)
-
-- 1 cup half-and-half
-
-**Topping:**
-
-- 2 cups heavy cream
-
-- 2 tbsp powdered sugar
-
-- 1 tsp vanilla
-
-**Instructions:**
-
-- Bake cake as directed. Cool 5 min.
-
-- Poke holes all over cake.
-
-- Mix and pour milks over cake. Chill 1 hour.
-
-- Whip cream with sugar and vanilla. Spread over cake.
-
-- Top with strawberries if desired. Store in fridge.
-
-This cake is a beautiful balance of tradition and ease. From birthday parties to “just because” nights, it never fails to bring people together—and that’s what great recipes are all about.
+This cake is a beautiful balance of tradition and ease. From birthday parties to "just because" nights, it never fails to bring people together—and that's what great recipes are all about.

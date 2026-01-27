@@ -35,40 +35,6 @@ These chocolate chip cookies are made with almond flour are a delicious, guilt-f
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 2 cups almond flour
-
-[Amazon link](https://amzn.to/4e0qdHT)
-
-- ¼ cup coconut oil (melted) 
-
-- ¼ cup maple syrup
-
-- 1 tsp vanilla extract
-
-- ½ tsp baking soda
-
-- a pinch of salt
-
-- ½ cup dark chocolate chips
-
-We used Bake Believe Dark chocolate from Costco
-
-**Equipment**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Glass Bowls](https://amzn.to/4h8Pylm)
-
-[Silicone Spatula](https://amzn.to/4h8Pylm)
-
-[Whisk](https://amzn.to/4jmxQfx)
-
-[Cookie Scoop](https://amzn.to/3CqHJYQ)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3888-1.jpg?w=1024)

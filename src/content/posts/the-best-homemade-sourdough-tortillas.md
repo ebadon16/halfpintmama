@@ -36,43 +36,7 @@ I love that this recipe uses simple pantry ingredients and my trusty sourdough s
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/image-4.jpg?w=965)
 
-## What You Need
-
 *this post contains affiliate links, in which I may earn a small commission at no additional cost to you—thanks for your support*
-
-**Dry Ingredients:**
-
-- 2¾ cups all-purpose flour (344g)
-
-- 1 teaspoon salt (6g)
-
-- 1 teaspoon baking powder (4g)
-
-**Wet Ingredients:**
-
-- ⅓ cup olive oil (72g)
-
-- ¾ cup warm filtered water (180g)
-
-- ½ cup sourdough starter, unfed/discard (100g) 
-
-I've actually used active before too and it works great.
-
-**Equipment:**
-
-[Danish whisk](https://amzn.to/4qzV44Z)
-
-[Rolling pin](https://amzn.to/3NwM0PO)
-
-[Dough cutter](https://amzn.to/4sZ9kGg)
-
-[Cast iron skillet](https://amzn.to/4pOFYY3) or [Blackstone griddle](https://amzn.to/4a5XgeG)
-
-[Parchment paper](https://amzn.to/4rbpo64)
-
-[Kitchen scale](https://amzn.to/469aQvo) (optional)
-
-[Clean dish towel](https://amzn.to/4raadKd)
 
 ## Step-by-Step Instructions
 
@@ -185,48 +149,6 @@ Homemade tortillas are one of those things that feel fancy but are actually supe
 
 If you make these sourdough tortillas, I'd love to hear about it! Tag me so I can see your creations or leave a comment bellow!
 
-## Sourdough Tortillas Recipe
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0853-1.jpg?w=768)
-
-**Yields:** 16 tortillas
-
-### Ingredients
-
-**Dry:**
-
-- 2¾ cups all-purpose flour (344g)
-
-- 1 teaspoon salt (6g)
-
-- 1 teaspoon baking powder (4g)
-
-**Wet:**
-
-- ⅓ cup olive oil (72g)
-
-- ¾ cup warm filtered water (180g)
-
-- ½ cup sourdough starter (100g)
-
-### Instructions
-
-- Whisk together flour, salt, and baking powder in a large bowl. Make a well in the center.
-
-- In a separate bowl, mix sourdough starter, olive oil, and warm water.
-
-- Pour wet ingredients into the well. Mix until a dough forms.
-
-- Knead on a floured surface for 2–3 minutes until smooth.
-
-- Divide into 16 equal pieces. Roll each into a smooth ball.
-
-- Cover with a towel and rest for 20 minutes.
-
-- Roll each ball into a 6-inch tortilla.
-
-- Cook on a medium-heat, oiled cast iron for 50 seconds–1 minute until bubbly. Flip and cook 20–30 seconds more.
-
-- Keep covered with a dish towel to stay warm and enjoy!
 
 These sourdough tortillas will definitely change your taco game forever!

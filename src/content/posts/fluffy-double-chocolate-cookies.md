@@ -45,26 +45,6 @@ Let’s bake!
 
 ### Step-by-Step Recipe
 
-**Ingredients**
-
-- 2 large eggs
-
-- 1/3 cup of maple syrup 
-
-- 1 tsp of vanilla extract (optional)
-
-- 1/4 cup of unsweetened cocoa powder
-
-- 1/4 cup of melted unsalted butter or coconut oil
-
-- 1 tbsp of baking powder
-
-- a pinch of salt (optional)
-
-- 1 cup of almond flour
-
-- 1/4 cup of mini dark chocolate chips (optional)
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/07/img_7313.jpg?w=768)
 
 Step 1: Preheat and prep

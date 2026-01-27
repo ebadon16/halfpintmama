@@ -82,36 +82,4 @@ Bake for 15 minutes and then stir.  This makes sure it browns evenly. Bake anoth
 
 Once golden and fragrant, remove from the oven and let it cool completely on the pan. (This is the hardest part, don’t mess with it because it crisps up as it cools!) Once cooled, break into clusters and store in an airtight jar. It’ll stay fresh for up to about two weeks. Though it rarely lasts that long in our house.
 
-**Homemade Fall Granola**
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9502-3.jpg?w=985)
-
-Ingredients
-
-½ cup coconut oil (melted) 
-
-½ cup maple syrup 
-
-½ cup pumpkin puree 
-
-2 cups old-fashioned rolled oats 
-
-1 cup chopped pecans 
-
-1 cup chopped cashews 
-
-½ cup pumpkin seeds 
-
-2 tsp pumpkin pie spice 
-
-1 tsp flaked sea salt (or ½ tsp fine salt)
-
-Instructions
-
-Preheat oven to 350°F and line a baking sheet with parchment paper. 
-
-Whisk together coconut oil, maple syrup, and pumpkin puree in a large bowl. 
-
-Add oats, nuts, seeds, pumpkin pie spice, and salt. Stir until evenly coated. 
-
-Spread evenly on baking sheet and bake 15 minutes and then stir. Bake an additional 10 minutes or until golden brown. Cool completely before breaking apart and storing.

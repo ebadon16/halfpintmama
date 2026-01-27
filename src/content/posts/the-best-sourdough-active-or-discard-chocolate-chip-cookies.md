@@ -47,48 +47,6 @@ Both methods result in delicious, chewy cookies, but if you want the full benefi
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- ½ cup (1 stick) unsalted butter, browned (113g)
-
-- 1 cup + 2 tbsp all-purpose flour (130g)
-
-- 1 tsp cornstarch (3g)
-
-- ½ tsp baking soda (3g)
-
-- ½ tsp fine salt (3g)
-
-- ½ cup sourdough starter (120g) *(discard or active, both work!)*
-
-- ⅔ cup packed light brown sugar (133g)
-
-- ¼ cup granulated sugar (50g)
-
-- 1 large egg yolk, room temperature
-
-- 1 tsp vanilla extract
-
-- 1 cup chocolate chips (or more to top with!)
-
-**Equipment**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Glass Bowls](https://amzn.to/4h8Pylm)
-
-[Silicone Spatula](https://amzn.to/4h8Pylm)
-
-[Whisk](https://amzn.to/4jmxQfx)
-
-[Cookie Scoop](https://amzn.to/3CqHJYQ)
-
-[Mixer](https://amzn.to/4i2PgfO)
-
-[Silicone Sheets](https://amzn.to/42Y7GKa)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/image.jpg?w=1024)

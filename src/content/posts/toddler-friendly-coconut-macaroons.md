@@ -30,36 +30,6 @@ These toddler-friendly coconut macaroons are a great way to offer a naturally sw
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 1 ½ cups unsweetened shredded coconut
-
-- 2 egg whites
-
-- 2 tbsp maple syrup
-
-- 1 tsp vanilla extract
-
-- A pinch of salt (optional)
-
-**Equipment**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Glass Bowls](https://amzn.to/4h8Pylm)
-
-[Silicone Spatula](https://amzn.to/4h8Pylm)
-
-[Whisk](https://amzn.to/4jmxQfx)
-
-[Cookie Scoop](https://amzn.to/3CqHJYQ)
-
-[Mixer](https://amzn.to/4i2PgfO)
-
-[Silicone Sheets](https://amzn.to/42Y7GKa)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4721-1.jpg)

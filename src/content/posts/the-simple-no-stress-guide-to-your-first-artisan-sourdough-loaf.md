@@ -82,16 +82,6 @@ Use your starter at peak rise and has at least doubled. Active starter should lo
 
 Making the Dough
 
-**Ingredients**
-
-1 cup active sourdough starter (240 g)
-
-1½ cups filtered, lukewarm water (360 g)
-
-2 teaspoons fine salt (10 g)
-
-4 cups all-purpose flour (480 g)
-
 **Mixing the Dough**
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/screenshot-2026-01-15-at-11.01.30-am.png?w=1024)
@@ -205,30 +195,4 @@ If I bake at 9am my bread is typically cooled and ready to cut into for lunch th
 
 *Plan for roughly 12 hours from feeding your starter to shaping your dough* *that first day.*
 
-Quick Reference Artisan Sourdough Recipe
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0478.jpg?w=1024)
-
-**Ingredients**
-
-1 cup active starter (240 g)
-
-1½ cups lukewarm filtered water (360 g)
-
-2 tsp fine salt (10 g)
-
-4 cups all-purpose flour (480 g)
-
-**Method**
-
-Mix starter, water, and salt. Add flour and mix until shaggy. 
-
-Rest 1 hour. 
-
-Stretch & fold every 30 min (4–5 times). 
-
-Bulk ferment on counter for roughly 4 hours. 
-
-Shape, place in banneton and refrigerate 12–24 hours. 
-
-Bake at 450°F (20 min lid on), then 425°F (20 min lid off). Cool at least 1 hour before slicing.

@@ -75,28 +75,4 @@ This is the kind of homestead-style recipe I can make right here in my suburban 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/image-5.jpg?w=851)
 
-**Easy Sourdough Discard Crackers**
-
-Ingredients
-
-~1 cup sourdough discard (any amount works- this is going to depend on how big your baking sheet is)
-
-[Everything bagel seasoning](https://amzn.to/47r4PKm) (or your favorite blend)
-
-Instructions
-
-Preheat oven to 350°F. Line a baking sheet with parchment paper. 
-
-Spread discard as thin as possible across the parchment. 
-
-Sprinkle with seasoning of choice. 
-
-Bake 10 minutes. Remove, cut or tear into pieces, and return to oven. Bake 10 minutes more, or until golden and crisp. 
-
-Cool completely before storing.
-
-Storage: Airtight container, up to 1 week.
-
-Tip: The thinner you spread it, the crispier they’ll be!
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/image-6.jpg?w=902)

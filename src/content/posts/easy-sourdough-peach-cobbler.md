@@ -141,50 +141,6 @@ Cobbler too pale, still jiggly: Bake 5–10 minutes longer; center should no lon
 
 Soggy spots: Peaches were overly juicy—next time, pat them dry or add up to 1 tsp flour tossed with the peaches.
 
-**Quick Reference Recipe- Easy Sourdough Peach Cobbler**
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/image.jpg?w=1024)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8829-1.jpg?w=768)
-
-**Dry Ingredients:**
-
-1 cup all-purpose flour
-
-½ tsp salt 
-
-1 ½ tsp baking powder
-
-¾ cup cane sugar
-
-**Wet Ingredients:**
-
-½ cup active or discard sourdough starter 
-
-4 tbsp butter (½ stick), melted 
-
-1 tsp vanilla extract
-
-**Fruit:**
-
-2 cups fresh peaches, sliced
-
-**Topping:**
-
-¼ cup cane sugar
-
-Instructions:
-
-In a bowl, whisk together the flour, salt, baking powder, and sugar. 
-
-Stir the wet ingredients together in a separate bowl- sourdough starter (active or discard), melted butter, and vanilla until smooth.
-
-Add wet ingredients to dry ingredients, mix until just incorporated.
-
-(Optional) Cover and let ferment at room temperature for up to 8 hours. You can bake right away if you prefer but I 
-
-When ready to bake-Preheat oven to 350°F. 
-
-Grease a baking dish. Pour the batter into the dish, then scatter peaches on top (they will sink slightly as it bakes). Sprinkle ¼ cup sugar evenly over the top. 
-
-Bake for 50–55 minutes, until golden brown and set. Serve warm with vanilla ice cream.

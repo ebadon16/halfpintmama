@@ -38,24 +38,6 @@ These pinwheels are the kind of snack that disappears from a plate before you ca
 
 Total time you should plan for (including chilling): 2–3 hours.
 
-Ingredients — puff pastry
-
-2 cups (375 g) all-purpose flour
-
-1 tsp (6 g) fine salt 
-
-10 tbsp (226 g) cold unsalted butter, cut into cubes (keep butter very cold)
-
-1/2 cup (180 ml) cold water
-
-Ingredients — filling
-
-About 1 lb of sliced chicken (lots of different options here-I’ll include more in the details description) 
-
-6 slices bacon, cooked crisp and chopped 
-
-About 2 cups shredded Monterey Jack cheese (shred it yourself for best melt) (save some for topping)
-
 Equipment
 
 *links are affiliate and may earn a commission at not additional cost to you-thank you for the support*
@@ -134,30 +116,3 @@ Dips: Serve with ranch, honey mustard, or a mild salsa — kids especially love 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8972.jpg?w=768)
 
-Quick reference recipe 
-
-Ingredients - puff pastry
-
-2 cups (375 g) all-purpose flour
-
-1 tsp (6 g) fine salt
-
-10 tbsp (226 g) cold unsalted butter, cut into cubes (keep butter very cold)
-
-1/2 cup (180 ml) cold water
-
-Ingredients - filling
-
-About 1 lb of sliced chicken (lots of different options here-I'll include more in the details description)
-
-6 slices bacon, cooked crisp and chopped About 2 cups shredded Monterey Jack cheese (shred it yourself for best melt) (save some for topping)
-
-Instructions 
-
-Make puff pastry or use store bought: Mix flour + salt in food processor, add cut in cold butter pulsing a few times; add cold water to form shaggy dough. Chill 20–30 min. Turn dough: Roll into rectangle, fold into thirds. Rotate and fold again into square. Wrap in plastic and chill 1-2 hour. 
-
-Prep filling: I used sliced chicken (see details for other options), bacon cooked and chopped , shredded Colby Jack cheese. 
-
-Assemble: Roll pastry to 12×16”, spread filling leaving 1/2” border. Put filling-don’t over fill. Roll tightly into log; wrap in plastic and chill 20–30 min. 
-
-Slice & bake: Preheat 375°F. Slice log into rounds, place on parchment, top with shredded cheese. Bake 16–22 minutes until golden.

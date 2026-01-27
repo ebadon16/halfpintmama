@@ -40,46 +40,6 @@ Made with just a few pantry staples, these crackers come together quickly in a f
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 1 cup shredded (finely) cheddar cheese (mild or sharp, depending on toddler's taste)
-
-- 1/2 cup all-purpose flour
-
-- 1/2 cup whole wheat flour (if you don't have, or don't want that whole grain taste switch out for all-purpose flour making the total 1 cup)
-
-- 1 tsp salt
-
-- 1 tsp cane sugar (can use granulated sugar as well-optional)
-
-- 1 tsp baking powder
-
-- 1/2 tsp onion powder
-
-- 1/2 tsp garlic powder
-
-- 1/2 tsp paprika
-
-- 2 tbsp cold unsalted butter (cut into cubes)
-
-- 1/4 cup of cold water
-
-**Equipment**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Large Caraway Baking Sheet](https://amzn.to/448kSeI)
-
-[Mini heart shaped cookie cutter](https://amzn.to/41cCV2U)
-
-[Silicone baking mat](https://amzn.to/3CMuX7g)
-
-[Rolling pin](https://amzn.to/42TNcSS)
-
-[Food Processor](https://amzn.to/3TuYwPq)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7075-1.jpg?w=768)

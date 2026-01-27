@@ -37,30 +37,6 @@ These cookies are a little crunchy from the cornmeal, buttery and sweet from the
 
 The sourdough adds flavor and a subtle chew, while the cornmeal gives a pleasant grainy texture. Chilling/fermenting the dough lets flavors deepen and helps control spread so you get nice edges and a soft center.
 
-Ingredients
-
-1 cup (120 g) all-purpose flour
-
-½ cup (72 g) cornmeal (fine is best) 
-
-½ tsp baking soda 
-
-½ tsp baking powder
-
-½ tsp salt 
-
-10 tbsp (142 g) unsalted butter (room temperature)
-
-⅔ cup (127 g) of cane sugar 
-
-¼ cup (48 g) light brown sugar (packed)  
-
-¼ cup (84 g) honey 
-
-1 large egg yolk 
-
-½ cup (100 g) active sourdough starter (see notes- discard can work too)
-
 *all links are affiliate and may earn me a commission with no extra cost to you-thanks for your support*
 
 Step-by-step
@@ -118,46 +94,3 @@ Cookies spread too much: chill dough longer
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8944-2.jpg?w=768)
 
-Quick Reference Recipe
-
-***Sourdough Cornbread Cookies***
-
-Ingredients
-
-1 cup (120 g) all-purpose flour
-
-½ cup (72 g) cornmeal (fine is best)
-
-½ tsp baking soda
-
-½ tsp baking powder
-
-½ tsp salt
-
-10 tbsp (142 g) unsalted butter (room temperature)
-
-⅔/ Cup (127 g) of cane sugar
-
-¼ cup (48 g) light brown sugar (packed)
-
-¼ cup (84 g) honey
-
-1 large egg yolk
-
-½ cup (100 g) active sourdough starter (see notes- discard can work too)
-
-Instructions:
-
-Whisk dry ingredients. 
-
-Cream butter + sugars 2–3 min. 
-
-Add honey, yolk and starter to your mixer.
-
-Fold in dry mix and just combine. 
-
-Chill ≥1 hour (12–24h for more tang). 
-
-Scoop on lined baking sheet; may need to refrigerate for 30 more min after scooped. Bake 10–12 min at 350°F. 
-
-Cool 5 min and enjoy!

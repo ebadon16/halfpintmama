@@ -127,44 +127,6 @@ Once cooled, store in an airtight container for up to a week. They definitely do
 
 For an extra treat, spread with peanut butter and sandwich two together.
 
-Sourdough Copycat Ritz Crackers Recipe
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9805-1-1.jpg?w=768)
-
-Ingredients
-
-1½ cups all-purpose flour 
-
-2 tsp baking powder 
-
-1 tbsp organic cane sugar
-
-½ tsp salt 
-
-½ cup sourdough starter (active or discard)
-
- 6 tbsp cold unsalted butter, cubed 
-
-2 tbsp olive oil 
-
-⅓ cup water*
-
-*Melted butter + extra salt for tossing
-
-Instructions
-
-Combine flour, baking powder, sugar, and salt in a food processor.
-
-Cut in butter until mixture resembles coarse crumbs. 
-
-Add sourdough starter, olive oil, and water (*may need more see full recipe for explanation). 
-
-Mix until dough forms. Divide into 3 discs, wrap, and refrigerate for 1hour (up to 24 for long fermentation). 
-
-Roll each portion thin between parchment paper, cut shapes, and poke holes with a fork. 
-
-Bake at 400°F for 10–12 minutes until golden. 
-
-While hot, toss in melted butter and sprinkle with salt. Cool completely before storing.
 
 Buttery, flaky, and full of that homemade charm. These sourdough Ritz crackers are perfect for snacking, lunchboxes, or spreading with peanut butter for a nostalgic little bite of comfort.

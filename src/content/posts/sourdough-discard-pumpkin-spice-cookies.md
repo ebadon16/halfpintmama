@@ -117,60 +117,6 @@ Bake for about **15 minutes**, just until the edges are set and golden brown.  T
 
 Let the cookies cool on the baking sheet for about 5 minutes, then transfer to a wire rack. The texture settles into this perfect balance of soft, chewy centers with lightly crisp edges.
 
-## **Quick Reference Recipe**
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/image-2.jpg?w=1024)
-
-## **Sourdough Discard Pumpkin Spice Cookies**
-
-**Ingredients**
-
-- 1¼ cups (165 g) all-purpose flour
-
-- ½ tsp baking soda (3 g)
-
-- ½ tsp ground cinnamon (2 g)
-
-- ¼ tsp ground ginger (1 g)
-
-- ¼ tsp ground nutmeg (1 g)
-
-- ¼ tsp fine salt (1 g)
-
-- ½ cup (113 g) unsalted butter, room temperature
-
-- ⅔ cup (133 g) packed light brown sugar
-
-- ¼ cup (50 g) granulated sugar
-
-- ¼ cup (60 g) pumpkin purée
-
-- ½ cup (100 g) sourdough discard (unfed)
-
-Cinnamon Sugar Coating
-
-- 1/3 cup granulated sugar (66g)
-
-- 1/2 tsp ground cinnamon (2g)
-
-- 1/4 tsp ground ginger (1g)
-
-**Instructions**
-
-- Cream butter, brown sugar, and granulated sugar until light and fluffy.
-
-- Mix in pumpkin purée and sourdough discard until smooth.
-
-- In another bowl, whisk together flour, baking soda, cinnamon, ginger, nutmeg, and salt.
-
-- Stir dry mixture into wet until just combined.
-
-- Cover and refrigerate dough for at least 1 hour or overnight for best results.
-
-- Preheat oven to 350°F (175°C). Scoop dough (about 3 tbsp each) and roll into cinnamon sugar coating. Place onto a parchment-lined baking sheet and press slightly with fingers.
-
-- Bake 15 minutes, until edges are set/browned and centers soft.
-
-- Cool 5 minutes on the pan, then transfer to a rack.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9242-1.jpg?w=768)

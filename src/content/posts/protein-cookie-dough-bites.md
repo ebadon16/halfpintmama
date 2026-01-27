@@ -30,38 +30,6 @@ instructions:
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 1 scoop of vanilla protein powder
-
-[Amazon link for clean protein powder we love!](https://amzn.to/4iUt87M)
-
-- 1 Cup Almond Flour
-
-[Amazon Link](https://amzn.to/4e0qdHT)
-
-- ¼ cup peanut butter
-
-really any nut butter will work or sunflower butter for nut-free
-
-- 2 tbsp of maple syrup
-
-- ½ tsp vanilla extract
-
-- 3 tbsp natural sprinkles (dye-free for a healthier option)
-
-[Amazon link](https://amzn.to/4liH4ur)
-
-- [Amazon Link](https://amzn.to/4260slu)
-
-- 1-2 TBSP of milk*
-
-We used whole milk because we had it but almond milk would work as well
-
-- The 1-2 TBSP of added milk gets it to the right consistency- depending on specific brands you use this may have to be slightly adjusted
-
-![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5347.jpg)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5407-1.jpg?w=669)

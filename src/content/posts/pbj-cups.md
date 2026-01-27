@@ -29,24 +29,6 @@ instructions:
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 1 ½ cups rolled oats
-
-- ½ cup natural peanut butter (or sunflower butter for nut-free)
-
-- ¼ cup honey (or maple syrup for under 1-year-olds)
-
-- 1 & ½ tsp vanilla extract
-
-- 2 tbsp ground flaxseeds (optional, for extra fiber)
-
-- ¼ cup milk (dairy or non-dairy)
-
-- Your favorite natural fruit spread/jam
-
-![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5584-1.jpg?w=604)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5585-1.jpg?w=590)

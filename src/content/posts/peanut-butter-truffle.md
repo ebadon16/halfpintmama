@@ -33,38 +33,6 @@ These peanut butter truffles are a delicious, guilt-free treat that satisfies yo
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-**Peanut Butter Truffle Inside**
-
-- 1 Cup of PB Fit Powder
-
-[Amazon link](https://amzn.to/3YmbAIV)
-
-- 1/3 Cup Almond Flour
-
-[Amazon link](https://amzn.to/4e0qdHT)
-
-- 1/4 Cup Swerve powder sugar
-
-[Amazon Link](https://amzn.to/4fqhwI1)
-
-- 1/4 Cup milk & 2 TBSP*
-
-We used whole milk because we had it but almond milk would work as well
-
-- * the 2 TBSP of added milk gets it to the right consistency for, depending on specific brands you use this may have to be adjusted 
-
-**Chocolate Topping**
-
-- 1 Cup dark chocolate chips
-
-We used Bake Believe Dark chocolate from Costco 
-
-- 1 TBSP coconut oil (optional)
-
-![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/10/image.jpg?w=766)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/10/img_1822-1.jpg?w=590)

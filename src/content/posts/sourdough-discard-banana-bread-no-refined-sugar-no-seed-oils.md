@@ -96,48 +96,6 @@ Place in the preheated oven and bake for **50 minutes**, or until a toothpick in
 **Step 8: Cool and enjoy**
 Let the banana bread cool in the pan for 10–15 minutes before transferring it to a wire rack. Slice once cooled—or sneak a warm slice if you just can’t wait. I love adding a little butter to my slice while it’s still hot!
 
-### Quick-Reference Recipe
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_6831.jpg?w=768)
-
-**Sourdough Discard Banana Bread (No Refined Sugar, No Seed Oils)**
-
-**Ingredients:**
-
-- 2 mashed ripe bananas
-
-- 1/2 cup sourdough discard
-
-- 1 egg
-
-- 1/3 melted coconut oil
-
-- 3/4 cup maple syrup
-
-- 2 tsp vanilla extract
-
-- 1 cup all-purpose flour
-
-- 1 tsp baking soda
-
-- Pinch of salt
-
-- 1 tsp cinnamon
-
-**Instructions:**
-
-- Preheat oven to 350°F. Grease or line a loaf pan.
-
-- In a large bowl, mash bananas. Stir in discard, eggs, melted fat, maple syrup, and vanilla.
-
-- In a separate bowl, mix flour, baking soda, salt, and cinnamon.
-
-- Add dry to wet and stir gently to combine.
-
-- Pour batter into pan, smooth top.
-
-- Bake for 50 min, until toothpick comes out clean.
-
-- Cool 10–15 minutes in pan, then transfer to wire rack.
 
 **Storage:** Keeps 2–3 days at room temp, or up to 1 week in the fridge. Freezes beautifully in slices.

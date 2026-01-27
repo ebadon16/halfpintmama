@@ -35,36 +35,6 @@ These peanut butter mini chocolate chip cookies are made with almond flour are a
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 1 cup of almond flour
-
-[Amazon link](https://amzn.to/4e0qdHT)
-
-- ¼ cup natural peanut butter (smooth & unsweetened)
-
-- ¼ cup of  maple syrup
-
-- ½ tsp vanilla extract
-
-- ¼ tsp cinnamon (optional)
-
-- ¼ tsp baking soda
-
-- ¼ cup mini chocolate chips (I used dark chocolate)
-
-**Equipment**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Glass Bowls](https://amzn.to/4h8Pylm)
-
-[Silicone Spatula](https://amzn.to/4h8Pylm)
-
-[Cookie Scoop](https://amzn.to/3CqHJYQ)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5248-2-1.jpg?w=589)

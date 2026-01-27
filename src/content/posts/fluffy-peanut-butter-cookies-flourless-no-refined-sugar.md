@@ -39,18 +39,6 @@ Let’s bake!
 
 ### Step-by-Step Recipe
 
-**Ingredients**
-
-- 2 large eggs
-
-- 1/3 cup of maple syrup 
-
-- 1 tsp of vanilla extract 
-
-- 1 cup of peanut butter
-
-- 1 tbsp of baking powder
-
 Step 1: Preheat and prep
 Set your oven to 350°F (177°C). Line a large baking sheet with parchment paper or a [Silicone Sheet](https://amzn.to/42Y7GKa). I also love using our [Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u) because I don't have to put anything else down and it's already nonstick.
 

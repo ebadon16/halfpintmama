@@ -28,34 +28,6 @@ Lately, I've been looking for easy and cost-effective ways to make snacks for my
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 2 apples (peeled and chopped)
-
-- 1 cup of diced mangos (I used frozen)
-
-- 1.5 tsp lemon juice
-
-- 2 tbsp of honey (optional)
-
-**Baking Equipment :**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Kitchen Shears](https://amzn.to/4h3pXtK)
-
-[Blender](https://amzn.to/42l5V9R)
-
-[Food Processor](https://amzn.to/42nNwsO)
-
-[Silicone Baking Mat](https://amzn.to/42nNwsO)
-
-[Glass Storage Bowl](https://amzn.to/42nNwsO)
-
-![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4606-1.jpg?w=1024)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4605-1.jpg?w=1024)

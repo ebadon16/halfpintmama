@@ -68,33 +68,6 @@ Freeze for at about 6 hours, or overnight if you can. Once fully frozen, run the
 
 Now you’ve got a batch of refreshing, fruit-filled popsicles perfect for snack time, post-nap treats, or backyard cool-downs!
 
-### **Quick Recipe Card**
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/07/img_7673.jpg?w=768)
-
-**Healthy Mango Coconut Popsicles**
-*Yields: 6–8 popsicles (depending on size of molds) | Prep Time: 5 min | Freeze Time: 6 hours*
-
-**Ingredients:**
-
-- 2 cups fresh mango (about 2 large mangoes)
-
-- 1 cup full-fat coconut milk
-
-- 1 tbsp honey *(optional if mangoes are very ripe; avoid for babies under 1; or increase for additional sweetness)*
-
-- 1 tsp vanilla extract *(optional)*
-
-**Instructions:**
-
-- Add mango, coconut milk, honey, and vanilla to a blender or food processor.
-
-- Blend until completely smooth.
-
-- Pour into popsicle molds.
-
-- Freeze for about 6 hours or until solid.
-
-- Enjoy on those hot summer days!
 
 These are a summer staple in our home—and a perfect way to sneak in fruit and healthy fats with zero complaints!!

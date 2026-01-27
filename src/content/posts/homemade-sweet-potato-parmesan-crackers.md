@@ -32,34 +32,6 @@ Making homemade sweet potato crackers for my toddler is a fun and nutritious way
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 1 cup mashed sweet potato (cooked and cooled)
-
-- 1 cup whole wheat flour
-
-- 2 tbsp of melted coconut oil
-
-- A pinch of salt
-
-- 1/3 cup grated Parmesan cheese
-
-- 1/4 tsp baking powder 
-
-**Equipment**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Glass Bowls](https://amzn.to/4h8Pylm)
-
-[Star shaped cookie cutter](https://amzn.to/41cCV2U)
-
-[Silicone baking mat](https://amzn.to/3CMuX7g)
-
-[Rolling pin](https://amzn.to/42TNcSS)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4615-1.jpg?w=1024)

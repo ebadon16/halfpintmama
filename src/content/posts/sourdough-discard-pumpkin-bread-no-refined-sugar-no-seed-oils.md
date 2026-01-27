@@ -98,52 +98,6 @@ Place in the preheated oven and bake for **50 minutes**, or until a toothpick i
 **Step 7: Cool and enjoy**
 Let the pumpkin bread cool in the pan for 10–15 minutes before transferring it to a wire rack. Slice once cooled—or sneak a warm slice if you just can’t wait. I love adding a little butter to my slice while it’s still hot!
 
-### Quick-Reference Recipe
-
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9266-1.jpg?w=551)
-
-**Sourdough Discard Pumpkin Bread (No Refined Sugar, No Seed Oils)**
-
-**Ingredients:**
-
-- 1/2 cup sourdough discard (unfed)
-
-- 2/3 cup of pumpkin purée
-
-- 1 egg
-
-- 1/3 cup melted coconut oil
-
-- 1/2 cup maple syrup
-
-- 1 teaspoon vanilla extract
-
-- 1 cup all-purpose flour
-
-- 2 teaspoon cinnamon 
-
-- 1/2  teaspoon of pumpkin spice
-
-- 1/2 teaspoon baking soda
-
-- 1/4 teaspoons of nutmeg
-
-- 1/4 teaspoon of salt
-
-**Instructions:**
-
-- Preheat oven to 350°F. Grease or line a loaf pan.
-
-- In a large bowl mix in discard, pumpkin purée, eggs, melted coconut oil, maple syrup, and vanilla.
-
-- In a separate bowl, mix flour, cinnamon, pumpkin spice, baking soda, nutmeg and salt.
-
-- Add dry to wet and stir gently until just combined.
-
-- Pour batter into pan, smooth top.
-
-- Bake for 50 min, until toothpick comes out clean.
-
-- Cool 10–15 minutes in pan, then transfer to wire rack.
 
 **Storage:** Keeps 2–3 days at room temp, or up to 1 week in the fridge. Freezes beautifully in slices.

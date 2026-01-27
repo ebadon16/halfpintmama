@@ -36,40 +36,6 @@ If you've been craving something sweet but still want to keep things wholesome, 
 
 ### Step-by-Step Instructions:
 
-**Ingredients:**
-
-- **Shortbread:** 
-
-- 1 cup almond flour,
-
-- 2 tbsp maple syrup
-
-- 2 tbsp coconut oil (melted)
-
-- 1/2 tsp vanilla
-
-- pinch of salt
-
-- **Caramel:** 
-
-- 1 cup of Medjool dates (softened; see step-by-strep instructions), 
-
-- 2 tbsp peanut butter, 
-
-- 1-2 tbsp of milk (I use whole milk)
-
-- 1/2 tsp vanilla
-
-- pinch of salt
-
-- **Chocolate:** 
-
-- 1/4 cup coconut oil (melted)
-
-- 1/4 cup cocoa powder
-
-- 2-3 tbsp maple syrup
-
 #### Shortbread Layer (The Base)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5983.jpg?w=768)
@@ -121,53 +87,5 @@ Store in the fridge for up to a week or freeze for longer storage.
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6010.jpg?w=768)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6004.jpg?w=768)
-
-### Recipe:
-
-**Ingredients:**
-
-- **Shortbread:** 
-
-- 1 cup almond flour,
-
-- 2 tbsp maple syrup
-
-- 2 tbsp coconut oil (melted)
-
-- 1/2 tsp vanilla
-
-- pinch of salt
-
-- **Caramel:** 
-
-- 1 cup of Medjool dates (softened; see step-by-strep instructions), 
-
-- 2 tbsp peanut butter, 
-
-- 1-2 tbsp od milk, 
-
-- 1/2 tsp vanilla
-
-- pinch of salt
-
-- **Chocolate:** 
-
-- 1/4 cup coconut oil (melted)
-
-- 1/4 cup cocoa powder
-
-- 2-3 tbsp maple syrup
-
-**Instructions:**
-
-- Mix shortbread ingredients, press into lined pan, chill.
-
-- Blend caramel ingredients in food processor, spread over shortbread, freeze.
-
-- Once firm, slice into bars.
-
-- Mix chocolate topping, dip bars, chill again.
-
-- Enjoy! Store in fridge or freezer.
 
 These bars are so good, you'll wonder how you ever lived without them. Healthy snacking has never tasted so much like pure indulgence!

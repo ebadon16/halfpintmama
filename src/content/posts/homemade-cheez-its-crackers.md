@@ -33,36 +33,6 @@ Making homemade Cheez-Its for your toddler is a great way to offer a healthier, 
 
 *all links are affiliate and earn commission*
 
-## Ingredients
-
-- 1 cup shredded cheddar cheese
-
-- 2 tbsp grated Parmesan cheese
-
-- 3/4 cup whole wheat flour
-
-- 1/4 tsp garlic powder (optional)
-
-- 1/4 tsp salt (optional)
-
-- 2 tbsp unsalted butter, cold and cubed
-
-- 2-3 tbsp cold water
-
-**Equipment**
-
-[Stainless Steel Baking Sheets](https://amzn.to/40in5lI)
-
-[Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u)
-
-[Silicone baking mat](https://amzn.to/3CMuX7g)
-
-[Rolling pin](https://amzn.to/42TNcSS)
-
-[Pastry Cutters](https://amzn.to/3CTRM9f)
-
-[Food Processor](https://amzn.to/430euqH)
-
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4715-1.jpg?w=1024)
