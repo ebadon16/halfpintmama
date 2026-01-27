@@ -5,6 +5,22 @@ slug: "sourdough-cornbread-cookie"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/image-1.jpg?w=873"
+tags: ["sourdough", "cookies", "dessert"]
+servings: 18
+prepTime: "15 min"
+cookTime: "12 min"
+ingredients:
+  - "1 cup all-purpose flour"
+  - "1/2 cup cornmeal (fine)"
+  - "1/2 tsp baking soda"
+  - "1/2 tsp baking powder"
+  - "1/2 tsp salt"
+  - "10 tbsp unsalted butter, room temperature"
+  - "2/3 cup cane sugar"
+  - "1/4 cup light brown sugar, packed"
+  - "1/4 cup honey"
+  - "1 large egg yolk"
+  - "1/2 cup sourdough starter"
 ---
 
 These cookies are a little crunchy from the cornmeal, buttery and sweet from the sugars and honey, with a gentle tang from sourdough starter. They bake up tender in the middle with golden edges. Think of cornbread drenched in butter and honey all rolled into a cookie, um yes please.

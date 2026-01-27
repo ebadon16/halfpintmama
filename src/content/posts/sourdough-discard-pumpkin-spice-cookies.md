@@ -5,6 +5,25 @@ slug: "sourdough-discard-pumpkin-spice-cookies"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/image-3.jpg?w=1024"
+tags: ["sourdough", "cookies", "pumpkin"]
+servings: 18
+prepTime: "20 min"
+cookTime: "15 min"
+ingredients:
+  - "1 1/4 cups all-purpose flour"
+  - "1/2 tsp baking soda"
+  - "1/2 tsp ground cinnamon"
+  - "1/4 tsp ground ginger"
+  - "1/4 tsp ground nutmeg"
+  - "1/4 tsp fine salt"
+  - "1/2 cup unsalted butter, room temperature"
+  - "2/3 cup packed light brown sugar"
+  - "1/4 cup granulated sugar"
+  - "1/4 cup pumpkin puree"
+  - "1/2 cup sourdough discard"
+  - "1/3 cup granulated sugar (for coating)"
+  - "1/2 tsp ground cinnamon (for coating)"
+  - "1/4 tsp ground ginger (for coating)"
 ---
 
 There’s something so comforting about finding new ways to use up sourdough discard and this batch of soft, spiced pumpkin cookies do just that. These are everything I love about fall baking. Super cozy, fragrant, and just a little tangy from the sourdough.

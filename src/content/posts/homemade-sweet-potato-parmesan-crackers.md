@@ -5,6 +5,17 @@ slug: "homemade-sweet-potato-parmesan-crackers"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4600-1.jpg?w=1024"
+tags: ["snacks", "kid-friendly", "crackers"]
+servings: 30
+prepTime: "15 min"
+cookTime: "18 min"
+ingredients:
+  - "1 cup mashed sweet potato, cooked and cooled"
+  - "1 cup whole wheat flour"
+  - "2 tbsp melted coconut oil"
+  - "Pinch of salt"
+  - "1/3 cup grated Parmesan cheese"
+  - "1/4 tsp baking powder"
 ---
 
 Making homemade sweet potato crackers for my toddler is a fun and nutritious way to offer a crunchy, wholesome snack without preservatives or artificial ingredients. These crackers are packed with vitamins from the sweet potato, fiber from whole grains, and a hint of natural sweetness that little ones love. By baking them at home, you can control the ingredients, adjust the texture for tiny teeth, and even add flavors like mild spices or cheese for variety. This particular recipe adds in some parmesan cheese!

@@ -5,6 +5,17 @@ slug: "protein-cookie-dough-bites"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5360.jpg?w=768"
+tags: ["snacks", "protein", "no-bake", "kid-friendly"]
+servings: 15
+prepTime: "15 min"
+ingredients:
+  - "1 scoop vanilla protein powder"
+  - "1 cup almond flour"
+  - "1/4 cup peanut butter"
+  - "2 tbsp maple syrup"
+  - "1/2 tsp vanilla extract"
+  - "3 tbsp natural sprinkles"
+  - "1-2 tbsp milk"
 ---
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5360.jpg?w=768)

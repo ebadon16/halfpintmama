@@ -5,6 +5,23 @@ slug: "sourdough-discard-pumpkin-bread-no-refined-sugar-no-seed-oils"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9266.jpg?w=551"
+tags: ["sourdough", "bread", "pumpkin", "healthy"]
+servings: 10
+prepTime: "15 min"
+cookTime: "50 min"
+ingredients:
+  - "1/2 cup sourdough discard"
+  - "2/3 cup pumpkin puree"
+  - "1 egg"
+  - "1/3 cup melted coconut oil"
+  - "1/2 cup maple syrup"
+  - "1 tsp vanilla extract"
+  - "1 cup all-purpose flour"
+  - "2 tsp cinnamon"
+  - "1/2 tsp pumpkin spice"
+  - "1/2 tsp baking soda"
+  - "1/4 tsp nutmeg"
+  - "1/4 tsp salt"
 ---
 
 There’s something so satisfying about finding ways to use up sourdough discard. This fall favorite is a cozy and nourishing pumpkin bread. This recipe is naturally sweetened with pure maple syrup and pumpkin purée. It uses no seed oils, and is perfect for slow autumn mornings or a wholesome afternoon snack. This has a subtle spiced flavor paired with a little tang from the sourdough. 

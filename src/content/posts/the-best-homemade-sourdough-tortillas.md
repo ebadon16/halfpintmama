@@ -6,6 +6,16 @@ category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/image-4.jpg?w=965"
 tags: ["sourdough", "easy", "beginner-friendly"]
+servings: 16
+prepTime: "30 min"
+cookTime: "20 min"
+ingredients:
+  - "2 3/4 cups all-purpose flour (344g)"
+  - "1 tsp salt"
+  - "1 tsp baking powder"
+  - "1/3 cup olive oil"
+  - "3/4 cup warm filtered water"
+  - "1/2 cup sourdough starter (100g)"
 ---
 
 Soft, pillowy, and made with real ingredients, these homemade sourdough tortillas are easier than you think. You're going to have a hard time going back to  store bought!

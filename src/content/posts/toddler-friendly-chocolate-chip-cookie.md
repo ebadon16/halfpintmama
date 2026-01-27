@@ -5,6 +5,18 @@ slug: "toddler-friendly-chocolate-chip-cookie"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3919-1.jpg?w=1017"
+tags: ["cookies", "kid-friendly", "gluten-free"]
+servings: 18
+prepTime: "10 min"
+cookTime: "10 min"
+ingredients:
+  - "2 cups almond flour"
+  - "1/4 cup coconut oil, melted"
+  - "1/4 cup maple syrup"
+  - "1 tsp vanilla extract"
+  - "1/2 tsp baking soda"
+  - "Pinch of salt"
+  - "1/2 cup dark chocolate chips"
 ---
 
 Making healthy treats for my toddler is something we both enjoy doing! My three year old is always involved in the preparation. We both have quite the sweet tooth so I am always making up healthy alternatives to get "our fix". Swapping out refined sugar for natural sweeteners helps develop their taste for wholesome flavors without the extra sugar. Plus, involving my toddler in the baking process adds an extra layer of excitement and encourages him to try new foods!

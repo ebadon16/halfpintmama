@@ -6,6 +6,11 @@ category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9563.jpg?w=572"
 tags: ["sourdough", "discard", "snacks", "easy"]
+prepTime: "5 min"
+cookTime: "20 min"
+ingredients:
+  - "1 cup sourdough discard"
+  - "Everything bagel seasoning (or your favorite blend)"
 ---
 
 Perfectly crispy, simple, and oh so addicting.

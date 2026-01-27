@@ -5,6 +5,23 @@ slug: "easy-tres-leches-cake-recipe"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6025.jpg?w=768"
+tags: ["dessert", "cake", "easy"]
+servings: 12
+prepTime: "15 min"
+cookTime: "35 min"
+ingredients:
+  - "1 box Betty Crocker SuperMoist yellow cake mix"
+  - "1 1/4 cups water"
+  - "1 tbsp vegetable oil"
+  - "2 tsp vanilla extract"
+  - "4 eggs"
+  - "1 can evaporated milk (12 oz)"
+  - "1 can sweetened condensed milk (14 oz)"
+  - "1 cup half-and-half"
+  - "2 cups heavy whipping cream"
+  - "2 tbsp powdered sugar"
+  - "1 tsp vanilla extract"
+  - "Fresh strawberries (optional)"
 ---
 
 ## **My Mom's Tres Leches Cake**

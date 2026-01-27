@@ -6,6 +6,13 @@ category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/07/img_7664.jpg?w=768"
 tags: ["healthy", "snacks", "kid-friendly", "no-sugar"]
+servings: 8
+prepTime: "5 min"
+ingredients:
+  - "2 cups fresh mango chunks"
+  - "1 cup full-fat coconut milk"
+  - "1 tbsp honey (optional)"
+  - "1 tsp vanilla extract (optional)"
 ---
 
 On hot afternoons, there’s nothing my toddler loves more than a popsicle—and I love knowing exactly what’s in it. These healthy mango coconut popsicles are a quick and nourishing treat made with just four wholesome ingredients. They’re creamy, naturally sweetened, and full of real fruit flavor—without any added dyes or refined sugar. Plus, they’re fun for little hands to help with!

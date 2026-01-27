@@ -5,6 +5,20 @@ slug: "homemade-fall-granola"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9507.jpg?w=1024"
+tags: ["breakfast", "snacks", "healthy"]
+servings: 8
+prepTime: "10 min"
+cookTime: "25 min"
+ingredients:
+  - "1/2 cup coconut oil, melted"
+  - "1/2 cup maple syrup"
+  - "1/2 cup pumpkin puree"
+  - "2 cups old-fashioned rolled oats"
+  - "1 cup chopped pecans"
+  - "1 cup chopped cashews"
+  - "1/2 cup pumpkin seeds"
+  - "2 tsp pumpkin pie spice"
+  - "1 tsp flaked sea salt"
 ---
 
 This Homemade Pumpkin Maple Granola has become a fall staple in our house. It’s crunchy, spiced, with just the right balance of sweet and salty. Reminds me of a crisp autumn morning with my little ones cozied up next to me.

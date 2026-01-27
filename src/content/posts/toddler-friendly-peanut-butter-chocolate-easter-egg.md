@@ -5,6 +5,16 @@ slug: "toddler-friendly-peanut-butter-chocolate-easter-egg"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5779-1.jpg?w=587"
+tags: ["dessert", "no-bake", "kid-friendly", "holiday"]
+servings: 20
+prepTime: "20 min"
+ingredients:
+  - "1 cup PB Fit powder"
+  - "1/3 cup almond flour"
+  - "1/4 cup Swerve powdered sugar"
+  - "1/4 cup + 2 tbsp milk"
+  - "1 cup dark chocolate chips"
+  - "1 tbsp coconut oil (optional)"
 ---
 
 This toddler-friendly peanut butter chocolate Easter egg recipe is a fun, no-bake treat that’s perfect for little hands to help with! Made with simple ingredients like creamy peanut butter-the filling is soft, naturally sweetened, and easy to shape into egg-like ovals. After chilling, the eggs are gently dipped in melted chocolate and can be decorated if you would like. These treats are a hit with kids and parents alike—delicious, festive, and easy enough to make together as a holiday activity!

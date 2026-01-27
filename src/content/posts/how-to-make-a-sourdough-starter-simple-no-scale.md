@@ -5,6 +5,12 @@ slug: "how-to-make-a-sourdough-starter-simple-no-scale"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9701-1.jpg?w=768"
+tags: ["sourdough", "beginner-friendly", "guide"]
+prepTime: "9 days"
+ingredients:
+  - "1/2 cup wheat flour (day 0)"
+  - "All-purpose flour (days 1-8)"
+  - "Filtered water"
 ---
 
 There’s something magical about creating your own sourdough starter. For me this felt  like the beginning of my homestead journey. This simple mixture of flour and water that turns into a living, breathing kitchen staple. When I first began baking sourdough, I was intimidated by all the overly complicated guides out there. Well I’m here to let you know, it doesn’t have to be complicated.

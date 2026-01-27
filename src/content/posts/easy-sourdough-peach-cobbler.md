@@ -5,6 +5,20 @@ slug: "easy-sourdough-peach-cobbler"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8830-1.jpg?w=768"
+tags: ["sourdough", "dessert", "easy"]
+servings: 8
+prepTime: "15 min"
+cookTime: "55 min"
+ingredients:
+  - "1 cup all-purpose flour"
+  - "3/4 cup cane sugar"
+  - "1 1/2 tsp baking powder"
+  - "1/2 tsp salt"
+  - "1/2 cup sourdough starter (active or discard)"
+  - "4 tbsp butter, melted"
+  - "1 tsp vanilla extract"
+  - "2 cups fresh peaches, sliced"
+  - "1/4 cup cane sugar (for topping)"
 ---
 
 There’s something so comforting about peach cobbler—it’s rustic, simple, and brimming with summer flavor. If you’re like me and not ready for fall yet, I’m hanging onto summer one cobbler at a time. This sourdough version adds a little twist by incorporating active or discard starter, which gives the cobbler base a subtle tang and a tender, cake-like texture. It’s the perfect way to use up a little extra sourdough starter while creating a dessert that feels both nostalgic and special.

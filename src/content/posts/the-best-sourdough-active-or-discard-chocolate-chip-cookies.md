@@ -5,6 +5,22 @@ slug: "the-best-sourdough-active-or-discard-chocolate-chip-cookies"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4904-1-edited.jpg?w=1024"
+tags: ["sourdough", "cookies", "dessert"]
+servings: 24
+prepTime: "20 min"
+cookTime: "12 min"
+ingredients:
+  - "1/2 cup unsalted butter, browned"
+  - "1 cup + 2 tbsp all-purpose flour"
+  - "1 tsp cornstarch"
+  - "1/2 tsp baking soda"
+  - "1/2 tsp fine salt"
+  - "1/2 cup sourdough starter"
+  - "2/3 cup packed light brown sugar"
+  - "1/4 cup granulated sugar"
+  - "1 large egg yolk"
+  - "1 tsp vanilla extract"
+  - "1 cup chocolate chips"
 ---
 
 Sourdough cookies are a fantastic way to enjoy a classic sweet treat while incorporating the benefits of natural fermentation. Using sourdough starter (either active or discard) in cookie dough enhances the flavor, adding a slight tang and depth that balances sweetness beautifully. The fermentation process also helps break down gluten and phytic acid, making the cookies easier to digest while potentially improving nutrient absorption. Plus, sourdough cookies often have a chewier texture and richer taste, making them a unique twist on traditional recipes.

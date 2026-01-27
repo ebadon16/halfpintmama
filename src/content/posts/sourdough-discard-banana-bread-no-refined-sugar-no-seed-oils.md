@@ -5,6 +5,21 @@ slug: "sourdough-discard-banana-bread-no-refined-sugar-no-seed-oils"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_6823.jpg?w=768"
+tags: ["sourdough", "bread", "healthy"]
+servings: 10
+prepTime: "15 min"
+cookTime: "50 min"
+ingredients:
+  - "2 ripe bananas, mashed"
+  - "1/2 cup sourdough discard"
+  - "1 egg"
+  - "1/3 cup melted coconut oil"
+  - "3/4 cup maple syrup"
+  - "2 tsp vanilla extract"
+  - "1 cup all-purpose flour"
+  - "1 tsp baking soda"
+  - "Pinch of salt"
+  - "1 tsp cinnamon"
 ---
 
 There’s something so satisfying about finding ways to use up sourdough discard—especially when it turns into something as cozy and nourishing as banana bread. This recipe is sweetened naturally with ripe bananas and maple syrup, uses no seed oils, and is perfect for a slow morning or a wholesome afternoon snack. It’s easy to make, adaptable, and full of that warm, slightly tangy flavor that sourdough lovers appreciate.

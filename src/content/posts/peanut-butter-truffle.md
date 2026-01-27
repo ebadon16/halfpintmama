@@ -5,6 +5,16 @@ slug: "peanut-butter-truffle"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/10/img_1798-1.jpg?w=591"
+tags: ["dessert", "no-bake", "kid-friendly"]
+servings: 20
+prepTime: "20 min"
+ingredients:
+  - "1 cup PB Fit powder"
+  - "1/3 cup almond flour"
+  - "1/4 cup Swerve powdered sugar"
+  - "1/4 cup + 2 tbsp milk"
+  - "1 cup dark chocolate chips"
+  - "1 tbsp coconut oil (optional)"
 ---
 
 Making healthy treats for my toddler is something we both enjoy doing! My two and a half year old is always involved in the preparation. We both have quite the sweet tooth so I am always making up healthy alternatives to get "our fix". Simple ingredients like oats, bananas, yogurt, and berries become the foundation for so many of our delicious snacks. Swapping out sugar for natural sweeteners helps develop their taste for wholesome flavors without the extra sugar.  Plus, involving my toddler in the baking process adds an extra layer of excitement and encourages him to try new foods! 

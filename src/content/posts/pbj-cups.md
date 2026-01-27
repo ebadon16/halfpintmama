@@ -5,6 +5,17 @@ slug: "pbj-cups"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5583-1.jpg?w=598"
+tags: ["snacks", "kid-friendly", "no-bake"]
+servings: 12
+prepTime: "15 min"
+ingredients:
+  - "1 1/2 cups rolled oats"
+  - "1/2 cup natural peanut butter"
+  - "1/4 cup honey or maple syrup"
+  - "1 1/2 tsp vanilla extract"
+  - "2 tbsp ground flaxseeds (optional)"
+  - "1/4 cup milk"
+  - "Your favorite fruit jam or jelly"
 ---
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5583-1.jpg?w=598)

@@ -5,6 +5,21 @@ slug: "healthy-ish-twix-recipe"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6004.jpg?w=768"
+tags: ["dessert", "healthy", "no-bake", "kid-friendly"]
+servings: 8
+prepTime: "20 min"
+ingredients:
+  - "1 cup almond flour"
+  - "2 tbsp maple syrup"
+  - "2 tbsp coconut oil, melted"
+  - "1/2 tsp vanilla extract"
+  - "Pinch of salt"
+  - "1 cup Medjool dates, pitted and softened"
+  - "2 tbsp peanut butter"
+  - "1-2 tbsp milk"
+  - "1/4 cup coconut oil, melted"
+  - "1/4 cup cocoa powder"
+  - "2-3 tbsp maple syrup"
 ---
 
 If you've been craving something sweet but still want to keep things wholesome, these Healthy Twix Bars with Dates are about to be your new favorite treat! They capture all the magic of the classic Twix bar — a crunchy shortbread base, a gooey caramel layer, and a rich chocolate topping — but they're naturally sweetened with dates, gluten-free, and made without refined sugars. Plus, they're no-bake, which means you can whip them up easily without ever turning on the oven. I especially love making these with my toddler, who enjoys helping press the shortbread into the pan and sneaking little tastes of the date caramel. It's a fun and easy recipe to involve little ones in the kitchen! Perfect for a snack, dessert, or even a sneaky breakfast treat!

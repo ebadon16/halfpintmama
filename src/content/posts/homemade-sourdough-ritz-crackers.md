@@ -1,10 +1,24 @@
 ---
-title: "Homemade Sourdough “Ritz” Crackers"
+title: "Homemade Sourdough \"Ritz\" Crackers"
 date: "2025-11-11"
 slug: "homemade-sourdough-ritz-crackers"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9805.jpg?w=768"
+tags: ["sourdough", "snacks", "crackers"]
+servings: 40
+prepTime: "20 min"
+cookTime: "12 min"
+ingredients:
+  - "1 1/2 cups all-purpose flour"
+  - "2 tsp baking powder"
+  - "1 tbsp organic cane sugar"
+  - "1/2 tsp salt"
+  - "1/2 cup sourdough starter"
+  - "6 tbsp cold unsalted butter, cubed"
+  - "2 tbsp olive oil"
+  - "1/3 cup water"
+  - "Melted butter and salt for tossing"
 ---
 
 *These copycat Ritz crackers have the added benefit of sourdough* and *are buttery, crisp, and made with real ingredients!*

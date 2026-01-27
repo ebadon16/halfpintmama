@@ -5,6 +5,19 @@ slug: "homemade-pinwheels-chicken-bacon-jack"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8973.jpg?w=768"
+tags: ["snacks", "appetizer", "kid-friendly"]
+servings: 16
+prepTime: "30 min"
+cookTime: "20 min"
+totalTime: "2-3 hours"
+ingredients:
+  - "2 cups all-purpose flour"
+  - "1 tsp fine salt"
+  - "10 tbsp cold unsalted butter, cubed"
+  - "1/2 cup cold water"
+  - "1 lb sliced chicken"
+  - "6 slices bacon, cooked and chopped"
+  - "2 cups shredded Monterey Jack cheese"
 ---
 
 Homemade puff pastry + shredded chicken, crisp bacon, and shredded Monterey Jack — flaky, cheesy party bites.

@@ -5,6 +5,18 @@ slug: "mini-sourdough-discard-pizzas"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/05/image-3.jpg?w=1024"
+tags: ["sourdough", "kid-friendly", "lunch"]
+servings: 12
+prepTime: "10 min"
+cookTime: "15 min"
+ingredients:
+  - "3/4 cup sourdough discard"
+  - "1/2 tsp sugar"
+  - "1/2 tsp salt"
+  - "1/2 tsp Italian seasoning"
+  - "Marinara or pizza sauce"
+  - "Shredded mozzarella cheese"
+  - "Mini pepperoni (optional)"
 ---
 
 These are made in a muffin tin and such a fun recipe to use up sourdough discard. Not only do you get to satisfy pizza cravings but this is definitely kid-approved. This is a lunch favorite in our house

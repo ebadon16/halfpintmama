@@ -5,6 +5,21 @@ slug: "homemade-snacks-for-a-long-car-ride"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5090-1-edited.jpg"
+tags: ["snacks", "kid-friendly", "travel"]
+servings: 12
+prepTime: "20 min"
+cookTime: "20 min"
+ingredients:
+  - "1 1/4 cups rolled oats"
+  - "1/2 cup whole wheat flour"
+  - "1/4 cup sourdough starter"
+  - "1/4 cup ground flaxseeds (optional)"
+  - "1/4 cup honey or maple syrup"
+  - "1/4 cup coconut oil, melted"
+  - "1/2 tsp vanilla extract"
+  - "1/4 tsp cinnamon (optional)"
+  - "1/4 cup mini chocolate chips"
+  - "1/4 tsp salt"
 ---
 
 Packing homemade or thoughtfully chosen snacks for a long car ride with a toddler and baby is a game-changer for keeping everyone happy and stress-free. 

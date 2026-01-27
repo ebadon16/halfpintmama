@@ -5,6 +5,17 @@ slug: "protein-pb-cups"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6557-1-2.jpg?w=681"
+tags: ["snacks", "protein", "no-bake"]
+servings: 12
+prepTime: "15 min"
+ingredients:
+  - "1 1/2 cups old fashioned oats"
+  - "1/2 cup maple syrup"
+  - "1 tbsp coconut oil, melted"
+  - "1 scoop protein powder"
+  - "1 cup peanut butter"
+  - "1 cup dark chocolate chips"
+  - "2 tbsp coconut oil"
 ---
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6557-1-2.jpg?w=681)

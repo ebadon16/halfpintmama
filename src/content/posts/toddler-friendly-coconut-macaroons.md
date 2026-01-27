@@ -5,6 +5,16 @@ slug: "toddler-friendly-coconut-macaroons"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4720-1.jpg?w=1024"
+tags: ["cookies", "kid-friendly", "gluten-free", "dairy-free"]
+servings: 15
+prepTime: "10 min"
+cookTime: "14 min"
+ingredients:
+  - "1 1/2 cups unsweetened shredded coconut"
+  - "2 egg whites"
+  - "2 tbsp maple syrup"
+  - "1 tsp vanilla extract"
+  - "Pinch of salt (optional)"
 ---
 
 These toddler-friendly coconut macaroons are a great way to offer a naturally sweet, nutritious treat without refined sugars or artificial ingredients. They have a soft, chewy texture that’s easy for little hands to hold and enjoy. Made with simple pantry staples like shredded coconut, egg whites, and maple syrup, they provide a boost of healthy fats and natural sweetness. Plus, they’re free from common allergens like dairy and gluten, making them a great option for kids with dietary sensitivities. Whether served as a snack or a special treat, these macaroons are a delicious, wholesome choice that little ones will love!

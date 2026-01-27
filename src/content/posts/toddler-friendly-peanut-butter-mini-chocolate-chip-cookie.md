@@ -5,6 +5,18 @@ slug: "toddler-friendly-peanut-butter-mini-chocolate-chip-cookie"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5191.jpg?w=768"
+tags: ["cookies", "kid-friendly", "gluten-free", "peanut butter"]
+servings: 15
+prepTime: "10 min"
+cookTime: "10 min"
+ingredients:
+  - "1 cup almond flour"
+  - "1/4 cup natural peanut butter"
+  - "1/4 cup maple syrup"
+  - "1/2 tsp vanilla extract"
+  - "1/4 tsp cinnamon (optional)"
+  - "1/4 tsp baking soda"
+  - "1/4 cup mini dark chocolate chips"
 ---
 
 Making healthy treats for my toddler is something we both enjoy doing! My three year old is always involved in the preparation. We both have quite the sweet tooth so I am always making up healthy alternatives to get "our fix". Swapping out refined sugar for natural sweeteners helps develop their taste for wholesome flavors without the extra sugar. Plus, involving my toddler in the baking process adds an extra layer of excitement and encourages him to try new foods!

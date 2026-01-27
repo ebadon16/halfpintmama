@@ -5,6 +5,22 @@ slug: "homemade-cheesy-crackers"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7099.jpg?w=768"
+tags: ["snacks", "kid-friendly", "crackers"]
+servings: 40
+prepTime: "20 min"
+cookTime: "15 min"
+ingredients:
+  - "1 cup finely shredded cheddar cheese"
+  - "1/2 cup all-purpose flour"
+  - "1/2 cup whole wheat flour"
+  - "1 tsp salt"
+  - "1 tsp cane sugar (optional)"
+  - "1 tsp baking powder"
+  - "1/2 tsp onion powder"
+  - "1/2 tsp garlic powder"
+  - "1/2 tsp paprika"
+  - "2 tbsp cold unsalted butter, cubed"
+  - "1/4 cup cold water"
 ---
 
 Simple Ingredients | No Preservatives | Made for Little Hands

@@ -5,6 +5,16 @@ slug: "fluffy-peanut-butter-cookies-flourless-no-refined-sugar"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/image-2.jpg?w=1024"
+tags: ["cookies", "peanut butter", "flourless", "kid-friendly"]
+servings: 18
+prepTime: "10 min"
+cookTime: "12 min"
+ingredients:
+  - "2 large eggs"
+  - "1/3 cup maple syrup"
+  - "1 tsp vanilla extract"
+  - "1 cup peanut butter"
+  - "1 tbsp baking powder"
 ---
 
 Soft, Simple, Naturally Sweet

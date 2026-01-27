@@ -5,6 +5,18 @@ slug: "homemade-cheez-its-crackers"
 category: "cooking"
 excerpt: ""
 image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4702-1.jpg?w=1024"
+tags: ["snacks", "kid-friendly", "crackers"]
+servings: 40
+prepTime: "15 min"
+cookTime: "15 min"
+ingredients:
+  - "1 cup shredded cheddar cheese"
+  - "2 tbsp grated Parmesan cheese"
+  - "3/4 cup whole wheat flour"
+  - "1/4 tsp garlic powder (optional)"
+  - "1/4 tsp salt (optional)"
+  - "2 tbsp unsalted butter, cold and cubed"
+  - "2-3 tbsp cold water"
 ---
 
 Making homemade Cheez-Its for your toddler is a great way to offer a healthier, preservative-free snack packed with real cheese and simple ingredients. These bite-sized crackers are crispy, cheesy, and are baked instead of fried. Making them a lighter alternative to store-bought options. Whether for snack time or on-the-go munching, these toddler-friendly homemade Cheez-Its are sure to be a hit!
