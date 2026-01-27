@@ -120,7 +120,7 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
           {/* Finished Product Image */}
           <div className="flex flex-col gap-4">
             {image && (
-              <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-md">
+              <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-md print:w-48 print:h-48 print:aspect-auto print:shadow-none">
                 <Image
                   src={image}
                   alt={title}
