@@ -46,7 +46,7 @@ Let's make some croissants!
 
 ## What You Need
 
-### *For the Croissant Dough:*
+**For the Croissant Dough:**
 
 - 1/2 cup active sourdough starter (100g)
 - 1 1/4 cups filtered warm water (300g)
@@ -54,7 +54,7 @@ Let's make some croissants!
 - 3 cups all-purpose flour (375g)
 - 1/2 cup unsalted butter, cold (8 tablespoons / 113g)
 
-### *For the Almond Cream Filling:*
+**For the Almond Cream Filling:**
 
 - 1/2 cup unsalted butter, softened at room temperature (8 tablespoons / 113g)
 - 1/4 cup organic cane sugar (50g)
@@ -67,14 +67,12 @@ Let's make some croissants!
 - 1/4 teaspoon almond extract
 - 1 tablespoon heavy cream
 
-![Almond croissants with filling](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
-
-### *For Topping:*
+**For Topping:**
 
 - Sliced almonds
 - Powdered sugar (optional)
 
-### *Equipment:*
+**Equipment:**
 
 - [Danish whisk](https://amzn.to/danishwhisk) or wooden spoon
 - [Box grater](https://amzn.to/boxgrater)
@@ -84,9 +82,11 @@ Let's make some croissants!
 - [Plastic wrap](https://amzn.to/plasticwrap) or [beeswax wrap](https://amzn.to/beeswaxwrap)
 - Clean dish towel
 
+![Almond sourdough croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
+
 ## Step-by-Step Instructions
 
-### Part 1: Making the Dough (Day 1)
+**Part 1: Making the Dough (Day 1)**
 
 **Step 1: Mix the dough**
 
@@ -102,7 +102,7 @@ Cover with your damp towel again. From here on out, you'll be waiting 30 minutes
 
 **Step 3: Second stretch and fold + butter**
 
-![Grating butter onto dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0812.jpg)
+![Grated butter on dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0812.jpg)
 
 After 30 minutes, here's where the magic happens. Take your cold butter and use a box grater to grate about a third of it (roughly 2–3 tablespoons) directly onto your dough.
 
@@ -122,6 +122,8 @@ Do one more set of stretch and folds—no butter this time. This is your fifth s
 
 Cover with your damp towel and let the dough sit at room temperature for 4 hours.
 
+![Dough after stretch and folds](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/image-5.jpg)
+
 **Step 7: Long ferment**
 
 ![Dough ready for long ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
@@ -130,7 +132,7 @@ After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and plac
 
 This is where the sourdough works its magic and develops that amazing flavor. I usually make my dough in the evening and then bake the next morning or even the following day.
 
-### Part 2: Making the Almond Cream Filling (Bake Day)
+**Part 2: Making the Almond Cream Filling (Bake Day)**
 
 **Step 8: Make the filling**
 
@@ -142,11 +144,13 @@ Add in the almond flour, all-purpose flour, salt, egg, vanilla extract, almond e
 
 Pop this in the fridge while you roll out your croissants. It's easier to work with when it's slightly chilled.
 
-### Part 3: Shaping the Croissants
+![Almond cream filling](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0863.jpg)
 
-**Step 9: Roll out the dough**
+**Part 3: Shaping the Croissants**
 
 ![Rolling out the dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0865.jpg)
+
+**Step 9: Roll out the dough**
 
 Take your dough out of the fridge and place it on a well-floured surface. Using your hands, shape it into a rough rectangle.
 
