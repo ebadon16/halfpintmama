@@ -16,6 +16,7 @@ interface Comment {
 interface CommentsProps {
   postSlug: string;
   postTitle: string;
+  category?: string;
 }
 
 interface CommentsPreviewProps {
@@ -91,7 +92,8 @@ export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
   );
 }
 
-export function Comments({ postSlug, postTitle }: CommentsProps) {
+export function Comments({ postSlug, postTitle, category }: CommentsProps) {
+  const isRecipe = category === "cooking";
   const [comments, setComments] = useState<Comment[]>([]);
   const [averageRating, setAverageRating] = useState(0);
   const [totalRatings, setTotalRatings] = useState(0);
@@ -364,7 +366,7 @@ export function Comments({ postSlug, postTitle }: CommentsProps) {
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                   className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors resize-none"
-                  placeholder={replyingTo ? "Write your reply..." : "Share your experience with this recipe..."}
+                  placeholder={replyingTo ? "Write your reply..." : isRecipe ? "Share your experience with this recipe..." : "Share your thoughts..."}
                 />
               </div>
 
@@ -399,7 +401,7 @@ export function Comments({ postSlug, postTitle }: CommentsProps) {
                 No comments yet
               </h3>
               <p className="text-charcoal/60 mb-4">
-                Be the first to share your thoughts on this recipe!
+                {isRecipe ? "Be the first to share your thoughts on this recipe!" : "Be the first to share your thoughts!"}
               </p>
               <button
                 onClick={() => setShowForm(true)}
