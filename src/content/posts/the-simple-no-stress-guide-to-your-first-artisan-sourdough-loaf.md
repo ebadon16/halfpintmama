@@ -13,7 +13,7 @@ totalTime: "12-24 hours"
 ingredients:
   - "1 cup active sourdough starter (230g)"
   - "1 1/2 cups warm water (360g)"
-  - "4 cups bread flour (480g)"
+  - "4 cups all-purpose flour (480g)"
   - "2 tsp salt (9g)"
 instructions:
   - "Mix starter, water, and salt; add flour until shaggy dough forms"
@@ -85,7 +85,7 @@ Use your starter at peak rise when it has at least doubled. Active starter shoul
 
 - 1 cup active sourdough starter (230g)
 - 1½ cups warm water (360g)
-- 4 cups bread flour (480g)
+- 4 cups all-purpose flour (480g)
 - 2 tsp salt (9g)
 
 #### Mixing the Dough
