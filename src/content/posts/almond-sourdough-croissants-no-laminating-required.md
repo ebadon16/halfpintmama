@@ -67,8 +67,6 @@ Let's make some croissants!
 - ¼ teaspoon almond extract
 - 1 tablespoon heavy cream
 
-![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
-
 *For Topping:*
 
 - Sliced almonds
@@ -83,6 +81,8 @@ Let's make some croissants!
 - Lined [baking sheet](https://amzn.to/bakingsheet)
 - [Plastic wrap](https://amzn.to/plasticwrap) or [beeswax wrap](https://amzn.to/beeswaxwrap)
 - Clean dish towel
+
+![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 ## Step-by-Step Instructions
 
