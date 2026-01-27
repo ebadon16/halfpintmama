@@ -28,23 +28,25 @@ instructions:
   - "Cool completely before breaking apart"
 ---
 
-This Homemade Pumpkin Maple Granola has become a fall staple in our house. It’s crunchy, spiced, with just the right balance of sweet and salty. Reminds me of a crisp autumn morning with my little ones cozied up next to me.
+This Homemade Pumpkin Maple Granola has become a fall staple in our house. It's crunchy, spiced, with just the right balance of sweet and salty. Reminds me of a crisp autumn morning with my little ones cozied up next to me.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9507.jpg?w=1024)
 
-I love how easy this recipe is to whip together and of course my toddlers love stirring everything together. You can toss it over yogurt, sprinkle it on top of warm oatmeal for a little crunch, or just eat it by the handful as a snack. I also eat it like cereal with just a bowl of cold milk. Unlike most store bought granolas, you know exactly what’s in it this granola. It’s all real ingredients, wholesome fats and natural sweetness.
+I love how easy this recipe is to whip together and of course my toddlers love stirring everything together. You can toss it over yogurt, sprinkle it on top of warm oatmeal for a little crunch, or just eat it by the handful as a snack. I also eat it like cereal with just a bowl of cold milk. Unlike most store bought granolas, you know exactly what's in it this granola. It's all real ingredients, wholesome fats and natural sweetness.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9503.jpg?w=1024)
 
-**all links are affiliate and may earn me a commission with no extra cost to you-thanks for your support**
+*all links are affiliate and may earn me a commission with no extra cost to you-thanks for your support*
 
-**Step-by-Step Guide**
+---
 
-**Step 1: Preheat and Prep**
+## Step-by-Step Instructions
 
-Start by preheating your oven to 350°F (175°C). Line a large baking sheet with parchment paper. You could also use  a [Silicone Sheet](https://amzn.to/42Y7GKa) instead of parchment paper. I also love using our [Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u) because I don’t have to put anything else down and it’s already nonstick. 
+#### Step 1: Preheat and Prep
 
-**Step 2: Mix the Wet Ingredients**
+Start by preheating your oven to 350°F (175°C). Line a large baking sheet with parchment paper. You could also use  a [Silicone Sheet](https://amzn.to/42Y7GKa) instead of parchment paper. I also love using our [Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u) because I don't have to put anything else down and it's already nonstick.
+
+#### Step 2: Mix the Wet Ingredients
 
 In a large [mixing bowl](https://amzn.to/4oaTw0k), [whisk](https://amzn.to/4o3cE09) together:
 
@@ -52,7 +54,7 @@ In a large [mixing bowl](https://amzn.to/4oaTw0k), [whisk](https://amzn.to/4o3cE
 
 This trio creates the perfect base. The coconut oil helps everything crisp, the maple syrup adds natural sweetness, and the pumpkin puree gives it that warm fall flavor.
 
-**Step 3: Add the Dry Ingredients**
+#### Step 3: Add the Dry Ingredients
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9513.jpg?w=1024)
 
@@ -66,7 +68,7 @@ To your wet mixture, add:
 
 Stir well until every oat and nut is evenly coated. This ensures every bite bakes up golden and flavorful.
 
-**Step 4: Spread and Bake**
+#### Step 4: Spread and Bake
 
 Spread the mixture evenly onto your prepared [baking sheet](https://amzn.to/40mKz9u). Press it down slightly with the back of a spoon.
 
@@ -74,12 +76,12 @@ Spread the mixture evenly onto your prepared [baking sheet](https://amzn.to/40mK
 
 Bake for 15 minutes and then stir.  This makes sure it browns evenly. Bake another 10 minutes or until golden brown. Keep a close eye toward the end, nuts can go from perfectly toasted to burnt quickly!
 
-**Step 5: Cool and Enjoy**
+#### Step 5: Cool and Enjoy
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9503-1.jpg?w=1024)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9506.jpg?w=1024)
 
-Once golden and fragrant, remove from the oven and let it cool completely on the pan. (This is the hardest part, don’t mess with it because it crisps up as it cools!) Once cooled, break into clusters and store in an airtight jar. It’ll stay fresh for up to about two weeks. Though it rarely lasts that long in our house.
+Once golden and fragrant, remove from the oven and let it cool completely on the pan. (This is the hardest part, don't mess with it because it crisps up as it cools!) Once cooled, break into clusters and store in an airtight jar. It'll stay fresh for up to about two weeks. Though it rarely lasts that long in our house.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/10/img_9502-3.jpg?w=985)

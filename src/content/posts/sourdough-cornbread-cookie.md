@@ -39,58 +39,63 @@ The sourdough adds flavor and a subtle chew, while the cornmeal gives a pleasant
 
 *all links are affiliate and may earn me a commission with no extra cost to you-thanks for your support*
 
-Step-by-step
+---
+
+## Step-by-Step Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_9011.jpg?w=1024)
 
-1. Prep & measure
+#### Step 1: Prep & measure
 
 Bring the butter to room temperature so it creams easily. For your dry mix- whisk together the flour, cornmeal, baking soda, baking powder, and salt in a bowl. Set aside.
 
-2. Cream butter & sugars
+#### Step 2: Cream butter & sugars
 
-In a stand mixer (or with a hand mixer), beat the butter, cane sugar, and brown sugar on medium speed until light and slightly fluffy — about 2–3 minutes. Scrape the bowl once or twice. You can use an even swap of granulated sugar- I’ve just recently started to use only cane sugar and I’ve had good results with it.
+In a stand mixer (or with a hand mixer), beat the butter, cane sugar, and brown sugar on medium speed until light and slightly fluffy — about 2–3 minutes. Scrape the bowl once or twice. You can use an even swap of granulated sugar- I've just recently started to use only cane sugar and I've had good results with it.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_9010.jpg?w=1024)
 
-3. Add honey, yolk & starter
+#### Step 3: Add honey, yolk & starter
 
 Beat in the honey, then the egg yolk, and finally the sourdough starter. Mix until smooth. The batter will be glossy and a bit loose at this stage.
 
-> 
-Starter note: for this recipe I used active sourdough starter-fed, fully bubbly at peak rise. You can definitely use discard for this cookie but you may find the dough to be a little drier — see troubleshooting below.
+> Starter note: for this recipe I used active sourdough starter-fed, fully bubbly at peak rise. You can definitely use discard for this cookie but you may find the dough to be a little drier — see troubleshooting below.
 
-4. Combine with dry ingredients
+#### Step 4: Combine with dry ingredients
 
 I like to fold my dry mix into the dough until just combined. Avoid overmixing; you want the dough uniform but not overworked.
 
-5. Chill the dough (important)
+#### Step 5: Chill the dough (important)
 
 Cover the bowl and refrigerate at least 1 hour. Chilling firms the butter, reduces spread, and lets the sourdough flavor mellow. For a deeper tang and even better texture, refrigerate 12–24 hours (fermentation in the fridge is delicious here). I definitely prefer a long fermentation, even a few hours is great. I like to prep the dough in the morning and bake that night after dinner. Sometimes making sourdough cookies can give you a really bread like consistency- I feel like a long fermentation negates this!
 
-6. Scoop & shape
+#### Step 6: Scoop & shape
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8939.jpg?w=768)
 
 When ready to bake, line a large baking sheet with parchment paper or a [Silicone Sheet](https://amzn.to/42Y7GKa). I also love using our [Caraway Stainless Steel Baking Sheet](https://amzn.to/40mKz9u) because I don't have to put anything else down and it's already nonstick. This is the [larger one](https://amzn.to/46HREpa) that I used for these cookies. I used a [3 tbsp cookie scoop](https://amzn.to/41Ssp0U) so my cookies were pretty large. You can use any size you would like, just adjust cook time- smaller cookie=shorter cook time. These do spread so leave enough room between your cookies. Optional but definitely recommend: roll your dough in a mixture of 2 tbsp cane sugar and 1 tbsp of cornmeal (whisked together before). At this point if your dough is feeling very soft I recommend putting the baking sheet with the dough in the refrigerator for another 30 minutes. This helps the cookies not spread too much while they bake.
 
-7. Bake
+#### Step 7: Bake
 
 Bake at 350°F for 10–12 minutes, until edges are golden and centers still look slightly soft. If chilled very cold, you may need an extra 1–2 minutes.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8940.jpg?w=768)
 
-8. Cool
+#### Step 8: Cool
 
 Let cookies rest on the baking sheet for 5 minutes to set, then transfer to a wire rack to cool completely. They firm up as they cool but stay tender inside.
 
-*Troubleshooting & tips*
+---
 
-Dough too dry (stiff starter/discard): add 1 tbsp milk or water, mix, then chill. 
+## Troubleshooting & Tips
 
-Cookies spread too much: chill dough longer
+- **Dough too dry (stiff starter/discard):** add 1 tbsp milk or water, mix, then chill.
+- **Cookies spread too much:** chill dough longer
+
+---
+
+## Storage Tips
 
 **Make-ahead & storage**: Dough: can be refrigerated up to 48 hours or frozen scoops for up to 3 months (bake from frozen, add 1–2 minutes). For your baked cookies: store in an airtight container at room temp for 3–4 days, or freeze up to 2 months.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/09/img_8944-2.jpg?w=768)
-

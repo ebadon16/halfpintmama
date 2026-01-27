@@ -37,52 +37,57 @@ If sourdough has ever felt intimidating, this post is for you. I’ve been wanti
 
 I’ll walk you through the process step by step, explaining what the dough should look and feel like along the way. Then at the end, you’ll find a quick reference recipe you can come back to once you’ve baked a few loaves. This method works whether you keep your starter on the counter or in the fridge, and it’s flexible enough for real life. Keep in mind that sourdough is pretty temperature/environment dependent so everything I’m sharing here works for me in central Texas (my house is typically around 72°F).
 
-*this post contains affiliate links- in which I may earn a small commission at no additional cost to you-thanks for your support*
+*this post contains affiliate links—in which I may earn a small commission at no additional cost to you—thanks for your support*
 
-Two Starter Techniques
+---
 
-**Counter Technique**
+## Two Starter Techniques
+
+### Counter Technique
 
 If you keep your starter on the counter:
 
 Feed it daily following the Day 2 feeding instructions below. You can start your dough as soon as your starter is active and reliably doubling.
 
-**Fridge Technique**
+### Fridge Technique
 
 If you keep your starter in the fridge:
 
-Feed it once a week. If you’re going on vacation, your starter can usually go up to 2 weeks without a feeding.
+Feed it once a week. If you're going on vacation, your starter can usually go up to 2 weeks without a feeding.
 
-Feeding Your Starter
+---
 
-*Day 1 (Evening)*
+## Feeding Your Starter
+
+#### Day 1 (Evening)
 
 Remove your starter from the fridge and leave it on the counter overnight.
 
-*you can remove your starter from the fridge the day you want to make your bread just remember after feeding it may take a couple extra hours to rise compared to a counter starter
+*You can remove your starter from the fridge the day you want to make your bread—just remember after feeding it may take a couple extra hours to rise compared to a counter starter.*
 
-*Day 2 (Morning)*
+#### Day 2 (Morning)
 
-Discard ¼ cup of starter (up to ½ cup if you have a large amount). Discard can be saved in a sealed jar in the fridge for 1–2 weeks for crackers, pancakes, English muffins, etc. Feed your starter: ¼ cup lukewarm filtered water (can be either room temperature water or warmed for in the microwave for about 10 seconds) and ½ cup of all purpose flour. Mix well.
+Discard ¼ cup of starter (up to ½ cup if you have a large amount). Discard can be saved in a sealed jar in the fridge for 1–2 weeks for crackers, pancakes, English muffins, etc. Feed your starter: ¼ cup lukewarm filtered water (can be either room temperature water or warmed in the microwave for about 10 seconds) and ½ cup of all purpose flour. Mix well.
 
-*this is the what I feed my starter because of the higher ratio of flour is has a pretty thick consistency. This is what I prefer but if you have a different preference for your feeding ratio, stick to what works for you. At the peak rise you just need 1 cup of active starter to work with.
+*This is what I feed my starter because of the higher ratio of flour it has a pretty thick consistency. This is what I prefer but if you have a different preference for your feeding ratio, stick to what works for you. At the peak rise you just need 1 cup of active starter to work with.*
 
-Let sit for 3–4 hours, or until it reaches peak rise. At peak, the starter looks domed on top and full of bubbles. It should have at least doubled. This is the timing for me in the south, depending on where you are (temps play a big role) it can take up to 12 hours to reach peak. So adjust your bakers schedule accordingly.
+Let sit for 3–4 hours, or until it reaches peak rise. At peak, the starter looks domed on top and full of bubbles. It should have at least doubled. This is the timing for me in the south—depending on where you are (temps play a big role) it can take up to 12 hours to reach peak. So adjust your baker's schedule accordingly.
 
-> 
-Tip: When on the counter, cover with a loose lid (not screwed on or clamped down) or clean dish towel. In the fridge, keep the lid tightly sealed.
+**Tip:** When on the counter, cover with a loose lid (not screwed on or clamped down) or clean dish towel. In the fridge, keep the lid tightly sealed.
 
-**When Is Starter Ready to Bake With?**
+#### When Is Starter Ready to Bake With?
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0614.jpg?w=768)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0615.jpg?w=768)
 
-Use your starter at peak rise and has at least doubled. Active starter should look bubbly and airy and will often float in water. 
+Use your starter at peak rise when it has at least doubled. Active starter should look bubbly and airy and will often float in water.
 
-Making the Dough
+---
 
-**Mixing the Dough**
+## Making the Dough
+
+#### Mixing the Dough
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/screenshot-2026-01-15-at-11.01.30-am.png?w=1024)
 
@@ -93,7 +98,7 @@ In a [large bowl](https://amzn.to/4bdipF1), mix: Starter, water and salt. I like
 > 
 I place my dough in the warmest part of my kitchen. For me that’s on the counter between my stove and cooktop.
 
-**Stretch & Fold Process**
+#### Stretch & Fold Process
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/screenshot-2026-01-15-at-11.02.36-am.png?w=892)
 
@@ -109,7 +114,7 @@ Perform 4–5 stretch-and-folds: Grab one side of the dough, stretch upward, and
 
 This process strengthens the gluten naturally and allows for a better rise and texture. The sticky dough becomes easier to handle by creating a strong, elastic network without vigorous kneading, resulting in an open crumb and good oven spring. 
 
-**Bulk Fermentation**
+#### Bulk Fermentation
 
 After the final stretch and fold, cover the dough with a damp towel (may need to rewet). Let ferment at room temperature for about 4 hours, until roughly almost doubled.
 
@@ -118,7 +123,7 @@ After the final stretch and fold, cover the dough with a damp towel (may need to
 > 
 Optional: If you need flexibility (kids, bedtime, life), you can refrigerate the dough for 30–60 minutes to slow fermentation before shaping.
 
-**Shaping the Dough**
+#### Shaping the Dough
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/screenshot-2026-01-15-at-11.04.54-am.png?w=1024)
 
@@ -134,13 +139,15 @@ From here roll and tighten the dough by pushing it away from you, then pulling i
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/screenshot-2026-01-15-at-11.06.05-am.png?w=1024)
 
-**Cold Proof (Final Rise)**
+#### Cold Proof (Final Rise)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/screenshot-2026-01-15-at-11.09.10-am.png?w=1024)
 
 Lightly flour the top of the dough. Generously flour your [banneton](https://amzn.to/3ZjzF3S). Place the dough upside down (smooth side down) in the banneton. Cover tightly with [plastic wrap](https://amzn.to/49Jh2eL) ([elastic version](https://amzn.to/4sJ6W67)) or [beeswax](https://amzn.to/3YGIPaA). Refrigerate for 12–24 hours.
 
-Baking the Bread
+---
+
+## Baking the Bread
 
 Preheat oven to 450°F with the [Dutch oven](https://amzn.to/4bslyR6) inside. Remove dough from fridge and place (turn the banneton upside down) onto [parchment paper](https://amzn.to/4sFdnai) or a [silicone sheet](https://amzn.to/4qpR9Yw). Once the oven is preheated score the dough with a [bread lame](https://amzn.to/3LBrKf6).
 
@@ -162,11 +169,15 @@ Bake at 450°F for 20 minutes, lid on Reduce to 425°F, remove lid, bake 20 more
 
 Remove bread and cool for at least 1 hour on a [cooling rack](https://amzn.to/49prJ7o) before slicing to avoid gumminess.
 
-**Storage**
+---
+
+## Storage Tips
 
 Store in a beeswax bag or sealed plastic bag. Best enjoyed within a few days. I find since my bread doesn’t have any preservatives it goes bad within 1 week or 7 days. 
 
-Example Baker’s Schedule
+---
+
+## Example Baker's Schedule
 
 *This is just a guide: adjust to your life and how your dough is looking!*
 

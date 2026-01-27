@@ -32,34 +32,50 @@ Making homemade sweet potato crackers for my toddler is a fun and nutritious way
 
 *all links are affiliate and earn commission*
 
+---
+
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4615-1.jpg?w=1024)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4614-1.jpg?w=1024)
 
-Preheat your oven to 350°F and line a baking sheet with parchment paper or silicone  baking sheet. In a mixing bowl, combine your wet ingredients- the melted coconut oil and smashed sweet potato. In another bowl combine your dry ingredients- flour, salt and baking powder. Mix your dry ingredients into your wet ingredients and add in the parmesan cheese. 
+#### Step 1: Prep and mix
+
+Preheat your oven to 350°F and line a baking sheet with parchment paper or silicone  baking sheet. In a mixing bowl, combine your wet ingredients- the melted coconut oil and smashed sweet potato. In another bowl combine your dry ingredients- flour, salt and baking powder. Mix your dry ingredients into your wet ingredients and add in the parmesan cheese.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4612-1.jpg?w=1024)
 
-Mix dough together with your hands. At this point if your dough is too sticky add a little more flour; if too dry, add a tsp of water at a time. 
+#### Step 2: Knead the dough
+
+Mix dough together with your hands. At this point if your dough is too sticky add a little more flour; if too dry, add a tsp of water at a time.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4611-1.jpg?w=1024)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4608-1.jpg?w=1024)
 
-Lightly flour a surface and roll out the dough to about ⅛-inch thick. 
+#### Step 3: Roll the dough
+
+Lightly flour a surface and roll out the dough to about ⅛-inch thick.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4607-1.jpg?w=1024)
+
+#### Step 4: Cut into shapes
 
 Use a knife or small cookie cutters to create cracker shapes—I love using fun shapes to make them extra exciting for my toddler!
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4603-1.jpg)
 
+#### Step 5: Bake and cool
+
 Let the crackers cool completely before serving. They will crisp up a bit more as they cool.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4599-1.jpg?w=1024)
 
- Keep in an airtight container for up to 5 days, or freeze for up to 3 months.
+---
+
+## Storage Tips
+
+Keep in an airtight container for up to 5 days, or freeze for up to 3 months.
 
 The Parmesan adds a deliciously savory touch while keeping the crackers nutritious and toddler-friendly!

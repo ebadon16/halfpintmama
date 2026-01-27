@@ -30,15 +30,23 @@ instructions:
 
 *all links are affiliate and earn commission*
 
+---
+
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5407-1.jpg?w=669)
+
+#### Step 1: Mix dry ingredients
 
 Combine all dry ingredients (almond flour, protein powder and sprinkles) into a bowl and then stir together. This is an edible cookie no so with no raw eggs or all purpose flour it is safe to eat. This is great because my toddler is pretty fast to tryout what he's mixing together.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5408-1.jpg?w=699)
 
+#### Step 2: Mix wet ingredients
+
 In a separate bowl combine the wet ingredients (nut butter, maple syrup, vanilla extract) and stir together.
+
+#### Step 3: Combine and add milk
 
 Add to dry ingredients and start to stir.
 
@@ -46,13 +54,21 @@ Add milk at this time and stir until dough forms. Start with 1 TBSP of milk and 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5354.jpg?w=768)
 
+#### Step 4: Roll and chill
+
 Roll into balls and place on parchment paper lined baking sheet. I would say we did roughly about 1 TBSP size, but you can make these as small or big as you would like. Place in the refrigerator for at least 20-30 minutes.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5409-1.jpg?w=619)
 
+#### Step 5: Enjoy
+
 Now they are ready to enjoy! These are toddler friendly and no bake. The perfect snack, that feels like a treat, while being packed with protein and healthy fats!
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5410-1.jpg?w=612)
+
+---
+
+## Storage Tips
 
 Store in an airtight container in the refrigerator for up to a week.
 
@@ -62,11 +78,13 @@ Store in an airtight container in the refrigerator for up to a week.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5359.jpg)
 
+---
+
 ### Baking with a Toddler
 
 Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it's filled with so many amazing moments.
 
-Toddler Tower
+### Toddler Tower
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6682.jpg?w=768)
 

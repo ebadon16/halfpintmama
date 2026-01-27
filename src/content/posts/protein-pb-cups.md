@@ -30,19 +30,25 @@ instructions:
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/untitled_artwork-1.jpg?w=732)
 
-### Amazon Product Recommendations
+---
+
+## Amazon Product Recommendations
 
 Please note all links are affiliate links and we do make commission from them.
 
-Protein Powder
+---
+
+### Protein Powder
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6502.jpg?w=768)
 
 [Link to Ascent Protein Powder](https://amzn.to/3PvUaGq)
 
-This is one of the “cleanest” protein powders we have found and it taste great without the artificial sweeteners!
+This is one of the "cleanest" protein powders we have found and it taste great without the artificial sweeteners!
 
-Toddler Tower
+---
+
+### Toddler Tower
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6682.jpg?w=768)
 

@@ -33,19 +33,27 @@ Making homemade Cheez-Its for your toddler is a great way to offer a healthier, 
 
 *all links are affiliate and earn commission*
 
+---
+
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4715-1.jpg?w=1024)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4714-1.jpg?w=1024)
 
+#### Step 1: Blend ingredients
+
 Preheat your oven to 350°F and line a baking sheet with parchment paper or silicone baking sheet. In a food processor, blend the cheese, flour, garlic powder, and salt. Add the cold butter cubes and pulse until the mixture looks crumbly.  Slowly add 2-3 tbsp of cold water, one at a time, and blend until a dough forms. If it's too dry, add another tbsp of water. I used 3 tbsp of water this time.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4711-1.jpg?w=858)
 
+#### Step 2: Knead the dough
+
 On a floured surface mix dough together with your hands. Kneed until a ball of dough forms.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4710-2-1.jpg?w=907)
+
+#### Step 3: Roll out the dough
 
 On a floured surface, using a rolling pin- roll out the dough to about 1/8-inch thickness. If you are having a hard time working with the dough you can roll it out between two pieces of parchment paper.
 
@@ -53,13 +61,21 @@ On a floured surface, using a rolling pin- roll out the dough to about 1/8-inch 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4708-1.jpg?w=1024)
 
+#### Step 4: Cut and bake
+
 Use a knife, pizza cutter or pastry cutter to cut small squares (about 1-inch) and poke a hole in the center of each with a toothpick for that classic Cheez-It look! Transfer to the baking sheet and bake for 12-15 minutes, or until golden and crisp.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4707-1.jpg?w=1024)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4706-1.jpg?w=1024)
 
- Let them cool completely and enjoy! These  will crisp up more as they cool. You can add additional salt to the top as needed for taste, depending on your personal preference.
+#### Step 5: Cool and enjoy
+
+Let them cool completely and enjoy! These  will crisp up more as they cool. You can add additional salt to the top as needed for taste, depending on your personal preference.
+
+---
+
+## Storage Tips
 
 Store in an airtight container for up to a week at room temperature.
 

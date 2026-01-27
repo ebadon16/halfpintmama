@@ -40,23 +40,37 @@ Made with just a few pantry staples, these crackers come together quickly in a f
 
 *all links are affiliate and earn commission*
 
+---
+
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7075-1.jpg?w=768)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7077-1.jpg?w=768)
 
+#### Step 1: Shred the cheese
+
 Use a [grater](https://amzn.to/45twXxl) or food processor grating attachment to shred your cheddar cheese as finely as possible. This helps it blend evenly into the dough and melt beautifully during baking. You want the cheese to almost disappear into the flour as it bakes—creating that crisp, savory bite toddlers love.
+
+#### Step 2: Process ingredients
 
 Add the shredded cheese to a [Food Processor](https://amzn.to/3TuYwPq) and pulse a few times to break it down even further. Then, add the flour, salt, baking powder and any spices you'd like, I've listed in the ingredients what we use. Pulse until the mixture looks evenly combined.
 
+#### Step 3: Add butter and water
+
 Next, add the cold butter cubes and cold water. Typically 1/4 cup gives us the right consistency but you can add more if needed. Pulse again just until the dough starts to look crumbly and damp, like coarse wet sand.
+
+#### Step 4: Knead the dough
 
 Turn the crumbly dough out onto a lightly floured surface. Use your hands to gently knead and press the mixture together. It may feel crumbly at first, but with a little pressure and warmth from your hands, it should form a smooth dough.  At this point if your dough is too sticky add a little more flour; if too dry, add a tsp of water at a time.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7079.jpg?w=768)
 
+#### Step 5: Chill the dough
+
 Divide the dough into two equal parts, shape each into a disc, wrap in plastic wrap or beeswax wrap, and refrigerate for at least 1 hour. This rest time helps the butter firm back up and makes the dough easier to roll out without sticking or tearing.
+
+#### Step 6: Prep for baking
 
 When you're ready to bake, preheat your oven to 350°F (175°C) and line a baking sheet with parchment paper or a [Silicone baking mat](https://amzn.to/3CMuX7g). I like using our [Large Caraway Baking Sheet](https://amzn.to/448kSeI) because I don't need to line it with anything, it's naturally nonstick and nontoxic. Pull one dough disc from the fridge and leave the other in until you're ready to roll it.
 
@@ -64,9 +78,13 @@ When you're ready to bake, preheat your oven to 350°F (175°C) and line a bakin
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7085.jpg?w=768)
 
+#### Step 7: Roll and cut
+
 On a lightly floured surface, roll the dough out to about 1/8-inch thickness—thin enough to crisp, but thick enough to hold together in little toddler hands. Use a small cookie cutter (I used this [Mini heart shaped cookie cutter](https://amzn.to/41cCV2U)) or just slice into bite-sized squares with a knife or [pastry cutter](https://amzn.to/441kdvj). These crackers definitely give a gold fish vibe so you can use this [cutte](https://amzn.to/4469nnX)r as well. Re-roll any scraps and keep cutting until all the dough is used.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7089.jpg?w=768)
+
+#### Step 8: Add finishing touches
 
 Optional: Use a skewer or toothpick to poke a tiny hole in the center of each cracker to help them bake evenly and give that "store-bought" look.
 
@@ -74,18 +92,21 @@ If you'd like, sprinkle a few of the crackers with flaky sea salt before baking�
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7094.jpg?w=768)
 
+#### Step 9: Bake
+
 Place the cut crackers on your prepared baking sheet and bake for 12-15 minutes, or until the edges are just beginning to turn golden. For a crispier result, you can bake an extra minute or two, but keep a close eye—they can go from golden to too dark quickly.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/06/img_7095.jpg?w=768)
 
+#### Step 10: Cool and store
+
 Let the crackers cool completely on the baking sheet or a wire rack. They'll continue to crisp up as they cool. Store in an airtight container for up to 5 days at room temperature, or freeze for longer shelf life.
+
+---
 
 ### Tips for Toddlers
 
 - Use mild cheddar instead of a sharp cheddar for sensitive toddler taste buds.
-
 - Let your toddler help cut out shapes—it's a great sensory activity!
-
 - All the seasonings including the sugar and salt are technically optional so leave out or include what you want for your family.
-
 - Depending on shape of cracker and age of child, beware of potential choking hazards.

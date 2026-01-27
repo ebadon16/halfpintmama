@@ -30,9 +30,13 @@ These toddler-friendly coconut macaroons are a great way to offer a naturally sw
 
 *all links are affiliate and earn commission*
 
+---
+
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4721-1.jpg)
+
+#### Step 1: Preheat Oven
 
 Preheat your oven to 325°F and line a baking sheet with parchment paper or silicone baking mat.
 
@@ -40,13 +44,19 @@ Preheat your oven to 325°F and line a baking sheet with parchment paper or sili
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4724-1.jpg?w=990)
 
+#### Step 2: Mix Ingredients
+
 In a stand up mixer, combine the egg whites, maple syrup, vanilla extract, and salt (optional) until slightly frothy. Add the shredded coconut (unsweetened) with silicone spatula until everything is well coated. You could also use an electric hand mixer or whisk by hand. You just want to make sure your egg white mixture is frothy before adding the shredded coconut.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4723-1.jpg?w=1024)
 
+#### Step 3: Shape the Macaroons
+
 Using a small spoon, cookie scoop (we used about 1.5 tbsp size scoop) or your hands, scoop out small portions and gently press them into little mounds on the baking sheet.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4722-1.jpg)
+
+#### Step 4: Bake
 
 Bake for about 11-14 minutes at 325°F. You want the edges to be browned
 

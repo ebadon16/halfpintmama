@@ -17,7 +17,9 @@ Creating Valentine's garlands is a fun way to add a festive touch to your party,
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4121-1.jpg?w=1024)
 
-### Tools/Materials
+---
+
+## Tools/Materials
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/image-1-1.jpg?w=968)
 
@@ -29,59 +31,97 @@ Creating Valentine's garlands is a fun way to add a festive touch to your party,
 
 The basics you would need are colored construction paper or cardstock, scissors, either a glue stick, tape, or a stapler. In the link above I've put all the tools I used.
 
-#### Hearts in Line Garland
+---
+
+## Hearts in Line Garland
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4128-2-1.jpg?w=1024)
 
-**Cut the Strips**: Cut the cardstock into strips approximately 1 inch wide and 6–8 inches long. You can adjust the length to make larger or smaller hearts.
+#### Step 1: Cut the Strips
+
+Cut the cardstock into strips approximately 1 inch wide and 6–8 inches long. You can adjust the length to make larger or smaller hearts.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4132-1.jpg?w=1024)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4131-1.jpg?w=1024)
 
-**Create the First Heart**: I then took all the strips and folded them in half to form a crease. Bring the two loose ends together to create a heart shape, and staple them at the bottom where they meet.
+#### Step 2: Create the First Heart
 
-**Add the Next Heart**: Take another strip and put it in the middle of the tip of the completed heart. Staple together. Now, repeat the process of bringing the ends together to form a new heart. Staple the ends together at the bottom.
+I then took all the strips and folded them in half to form a crease. Bring the two loose ends together to create a heart shape, and staple them at the bottom where they meet.
+
+#### Step 3: Add the Next Heart
+
+Take another strip and put it in the middle of the tip of the completed heart. Staple together. Now, repeat the process of bringing the ends together to form a new heart. Staple the ends together at the bottom.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4129-2-1.jpg?w=1024)
 
-**Continue the Chain**: Repeat the process, adding each new strip to the previous heart before shaping and stapling.
+#### Step 4: Continue the Chain
 
-**Finish the Garland**: Once you’ve made the garland as long as you like, staple the last hearts ends together. Now you can hang it wherever you want a festive touch.
+Repeat the process, adding each new strip to the previous heart before shaping and stapling.
 
-#### Classic Chain Garland
+#### Step 5: Finish the Garland
+
+Once you've made the garland as long as you like, staple the last hearts ends together. Now you can hang it wherever you want a festive touch.
+
+---
+
+## Classic Chain Garland
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4125-2-1.jpg?w=1024)
 
-**Prepare the Paper**: Cut your paper into strips about 1 inch wide and 6 inches long. You can adjust the size for larger or smaller chains. Use a mix of colors to create a vibrant garland or stick to one color for a classic look.
+#### Step 1: Prepare the Paper
+
+Cut your paper into strips about 1 inch wide and 6 inches long. You can adjust the size for larger or smaller chains. Use a mix of colors to create a vibrant garland or stick to one color for a classic look.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4126-2-1.jpg?w=1024)
 
-**Create the First Link**: Take one strip, curl it into a loop, and secure the ends together using glue, tape, or a staple.
+#### Step 2: Create the First Link
 
-**Add More Links**: Slide a second strip through the first loop, curl it into a loop, and secure the ends. Repeat this process, linking each strip through the previous one.
+Take one strip, curl it into a loop, and secure the ends together using glue, tape, or a staple.
 
-**Keep Going**: Continue adding links until your chain is the desired length.
+#### Step 3: Add More Links
 
-**Display Your Garland**: Once complete, hang your garland on walls, around windows, or drape it across furniture for a cheerful decorative touch.
+Slide a second strip through the first loop, curl it into a loop, and secure the ends. Repeat this process, linking each strip through the previous one.
 
-#### Accordion Heart Garland
+#### Step 4: Keep Going
+
+Continue adding links until your chain is the desired length.
+
+#### Step 5: Display Your Garland
+
+Once complete, hang your garland on walls, around windows, or drape it across furniture for a cheerful decorative touch.
+
+---
+
+## Accordion Heart Garland
 
 Making a heart garland by rounding the sides of paper, folding it accordion-style, and using a stapler is a creative and beautiful project. Here's how to do it:
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4121-2-1.jpg?w=1024)
 
-**Prepare the Paper**: I cut the paper in half (hamburger style). You can adjust the length for larger or smaller hearts. Round the edges of each piece of paper by trimming the top corners to create a semi circle on each end.
+#### Step 1: Prepare the Paper
 
-**Fold Accordion-Style**: Lay the paper flat and begin folding it back and forth, like a fan, in even sections. Each fold should be about 1/2 inch to 1 inch wide, depending on the look you want. Make sure the folds are crisp.
+I cut the paper in half (hamburger style). You can adjust the length for larger or smaller hearts. Round the edges of each piece of paper by trimming the top corners to create a semi circle on each end.
 
-**Form the Heart Shape**: Once the paper is fully folded, hold it tightly in the center and fold it in half to form a "V" shape. The folded edge will be the bottom point of the heart.
+#### Step 2: Fold Accordion-Style
 
-**Secure the Heart**: Staple or glue the folded center of the "V" to hold the heart together. Gently pull apart the folded paper to spread it into a fan shape, completing the heart. Adjust the folds to make it even.
+Lay the paper flat and begin folding it back and forth, like a fan, in even sections. Each fold should be about 1/2 inch to 1 inch wide, depending on the look you want. Make sure the folds are crisp.
 
-**Connect the Hearts**: Repeat the process for additional hearts. Connect together with a yearn or ribbon, evenly spacing out the hearts and stapling or gluing the string on the back.
+#### Step 3: Form the Heart Shape
 
-**Finish and Hang**: Continue until your garland is the desired length. Then hang it along a wall, window, or mantel for a festive decoration!
+Once the paper is fully folded, hold it tightly in the center and fold it in half to form a "V" shape. The folded edge will be the bottom point of the heart.
+
+#### Step 4: Secure the Heart
+
+Staple or glue the folded center of the "V" to hold the heart together. Gently pull apart the folded paper to spread it into a fan shape, completing the heart. Adjust the folds to make it even.
+
+#### Step 5: Connect the Hearts
+
+Repeat the process for additional hearts. Connect together with a yearn or ribbon, evenly spacing out the hearts and stapling or gluing the string on the back.
+
+#### Step 6: Finish and Hang
+
+Continue until your garland is the desired length. Then hang it along a wall, window, or mantel for a festive decoration!
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_4124-1.jpg?w=1024)
 

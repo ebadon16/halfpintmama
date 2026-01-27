@@ -34,21 +34,23 @@ If you've been craving something sweet but still want to keep things wholesome, 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6004.jpg?w=768)
 
-### Step-by-Step Instructions:
+---
 
-#### Shortbread Layer (The Base)
+## Step-by-Step Instructions
+
+### Shortbread Layer (The Base)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5983.jpg?w=768)
 
-In a bowl, combine 1 cup almond flour (or oat flour for nut-free), 2 tablespoons maple syrup, 2 tablespoons melted coconut oil, 1/2 teaspoon of vanilla extract and a pinch of salt. Mix until it's crumbly but the dough can be pressed down. 
+In a bowl, combine 1 cup almond flour (or oat flour for nut-free), 2 tablespoons maple syrup, 2 tablespoons melted coconut oil, 1/2 teaspoon of vanilla extract and a pinch of salt. Mix until it's crumbly but the dough can be pressed down.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5990.jpg?w=768)
 
 Press the dough firmly into a small parchment-lined loaf pan or dish. Chill in the freezer while you prepare the caramel.
 
-- 
+---
 
-#### Caramel Layer (Date-Based)
+### Caramel Layer (Date-Based)
 
 Prepare 1 cup of Medjool dates by removing the pit/seed and letting them soften up in hot water. Drain the water and move the dates to the food processor.
 
@@ -64,9 +66,9 @@ Spread the caramel evenly over the chilled shortbread base. Freeze for about 45 
 
 Once firm, slice into bars.
 
-- 
+---
 
-#### Chocolate Layer (DIY Chocolate Option)
+### Chocolate Layer (DIY Chocolate Option)
 
 You can either make your own chocolate layer or melt dark chocolate chips with a little coconut oil.
 
@@ -76,7 +78,7 @@ Alternatively, melt about 3/4 cup dark chocolate chips with 1 teaspoon coconut o
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5998.jpg?w=768)
 
-Dip the firmed caramel-topped shortbread bars into the chocolate to coat the top, letting any excess drip off. I did it both ways with coating the entire bar in chocolate and then did some that just coated the top date layer, so whichever you would like. 
+Dip the firmed caramel-topped shortbread bars into the chocolate to coat the top, letting any excess drip off. I did it both ways with coating the entire bar in chocolate and then did some that just coated the top date layer, so whichever you would like.
 
 Chill again for about 20–30 minutes until the chocolate is set.
 
@@ -87,5 +89,7 @@ Store in the fridge for up to a week or freeze for longer storage.
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6010.jpg?w=768)
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_6004.jpg?w=768)
+
+---
 
 These bars are so good, you'll wonder how you ever lived without them. Healthy snacking has never tasted so much like pure indulgence!

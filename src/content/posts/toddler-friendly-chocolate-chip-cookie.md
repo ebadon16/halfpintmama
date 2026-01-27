@@ -29,31 +29,41 @@ instructions:
 
 Making healthy treats for my toddler is something we both enjoy doing! My three year old is always involved in the preparation. We both have quite the sweet tooth so I am always making up healthy alternatives to get "our fix". Swapping out refined sugar for natural sweeteners helps develop their taste for wholesome flavors without the extra sugar. Plus, involving my toddler in the baking process adds an extra layer of excitement and encourages him to try new foods!
 
-These chocolate chip cookies are made with almond flour are a delicious, guilt-free treat that satisfies your sweet tooth without added sugar or artificial ingredients. Made with simple ingredients and they’re easy to prepare.
+These chocolate chip cookies are made with almond flour are a delicious, guilt-free treat that satisfies your sweet tooth without added sugar or artificial ingredients. Made with simple ingredients and they're easy to prepare.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3919-1.jpg?w=1017)
 
 *all links are affiliate and earn commission*
 
+---
+
 ## Instructions
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3888-1.jpg?w=1024)
 
-Preheat your oven to 350°F and line a baking sheet with parchment paper. In a mixing bowl, combine the melted coconut oil, maple syrup, and vanilla extract with a whisk until smooth. Combine all dry ingredients into a separate bowl and then mix together. 
+#### Step 1: Prepare Wet and Dry Ingredients
+
+Preheat your oven to 350°F and line a baking sheet with parchment paper. In a mixing bowl, combine the melted coconut oil, maple syrup, and vanilla extract with a whisk until smooth. Combine all dry ingredients into a separate bowl and then mix together.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3889-1.jpg?w=1024)
 
-Combine the dry ingredients into the wet ingredients with a silicone spatula. Do this until dough forms. 
+#### Step 2: Combine Ingredients
+
+Combine the dry ingredients into the wet ingredients with a silicone spatula. Do this until dough forms.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3895-1.jpg?w=1024)
 
-One great thing about this dough is there is no raw eggs so it is safe to eat. My toddler is pretty fast to tryout what he's mixing together. 
+One great thing about this dough is there is no raw eggs so it is safe to eat. My toddler is pretty fast to tryout what he's mixing together.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3905-1.jpg?w=1024)
+
+#### Step 3: Add Chocolate Chips
 
 Fold in the dark chocolate chips.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/image-3.jpg?w=869)
+
+#### Step 4: Shape and Bake
 
 We scooped roughly 1.5 tablespoon-sized portions of the dough with a cookie scoop onto the prepared baking sheet. You could also roll into a ball with your hands. Then flatten slightly with your fingers. Or use the back of a spoon. Feel free to make these as small or large as you would like.
 
@@ -71,11 +81,13 @@ These cookies are gluten-free, grain-free, and naturally sweetened, making them 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3915-1.jpg?w=853)
 
-## **Baking with a Toddler**
+---
 
-Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it’s filled with so many amazing moments.
+### Baking with a Toddler
 
-Toddler Tower
+Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it's filled with so many amazing moments.
+
+#### Toddler Tower
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6682.jpg?w=768)
 

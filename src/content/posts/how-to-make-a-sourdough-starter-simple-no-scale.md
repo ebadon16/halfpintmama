@@ -25,33 +25,27 @@ There’s something magical about creating your own sourdough starter. For me th
 
 This is the exact step by step method I use and recommend if you’re ready to bake your own homemade sourdough bread. It’s simple, no scale needed, and only takes 9 days to build a strong, bubbly starter.
 
-*Let’s get your starter going!*
+*Let's get your starter going!*
 
-What You Need
+*this post contains affiliate links—in which I may earn a small commission at no additional cost to you—thanks for your support*
 
-*this post contains affiliate links- in which I may earn a small commission in no additional cost to you-thanks for your support*
+---
 
-[Wheat flour](https://amzn.to/49XxwkY) (for day 0)
+## What You Need
 
-[All-purpose flour](https://amzn.to/4r7coii) (for days 1–8)
+- [Wheat flour](https://amzn.to/49XxwkY) (for day 0)
+- [All-purpose flour](https://amzn.to/4r7coii) (for days 1–8) — I recommend organic and unbleached
+- Filtered water
+- [A clean jar](https://amzn.to/3LIKTeZ) (at least 16 oz) — I recommend having 2 because as your starter rises and falls the jar will get a little crusty so you will want to switch it out to the clean jar
+- Small [spatula](https://amzn.to/3LKmXIg) or [skinny spurtle](https://amzn.to/3M8ldZa)
+- [Measuring cups](https://amzn.to/4plhDtf)
+- A loose lid or [cloth](https://amzn.to/444sOyc) to cover
 
-- I recommend organic and unbleached 
+---
 
-Filtered water 
+## The Daily Breakdown
 
-[A clean jar](https://amzn.to/3LIKTeZ) (at least 16 oz)
-
-- I recommend having 2 because as your starter rises and falls the jar will get a little crusty so you will want to switch it out to the clean jar
-
-Small [spatula](https://amzn.to/3LKmXIg) or [skinny spurtle](https://amzn.to/3M8ldZa)
-
-[Measuring cups](https://amzn.to/4plhDtf)
-
-A loose lid or [cloth](https://amzn.to/444sOyc) to cover
-
-The Daily Breakdown
-
-**Day 0: Create Your Starter**
+#### Day 0: Create Your Starter
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9550.jpg?w=768)
 
@@ -63,7 +57,7 @@ In a clean jar, combine:
 
 Stir until no dry spots remain. The mixture should be thick but stirrable, almost like pancake batter. Cover loosely with your dish towel and leave it on your counter. Pick the warmest spot in your kitchen. For me this is on my counter in between my stove and oven.
 
-**Days 1–2: Feed the Baby Starter**
+#### Days 1–2: Feed the Baby Starter
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9560.jpg?w=768)
 
@@ -79,7 +73,7 @@ No discarding yet!
 
 If you notice a water on the top, that is just your starters way of saying it’s hungry. Stir it in and feed like normal.
 
-**Days 3–8: Strengthen & Build**
+#### Days 3–8: Strengthen & Build
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9632.jpg?w=768)
 
@@ -93,7 +87,7 @@ Discard about half of the starter. Throw this away (it is not mature enough to b
 
 Mix well. By day 6–8, you should see predictable rising and falling cycles.
 
-**Day 8: Your Starter Is Ready to Bake!**
+#### Day 8: Your Starter Is Ready to Bake!
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9688.jpg?w=816)
 
@@ -113,9 +107,11 @@ If it’s still sluggish, don’t panic, keep feeding daily until it becomes str
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/11/img_9715.jpg?w=768)
 
-Troubleshooting Tips
+---
 
-***My starter isn’t bubbling.***
+## Troubleshooting Tips
+
+**My starter isn't bubbling.**
 
 Totally normal in the first few days.
 
@@ -123,13 +119,13 @@ Try:
 
 Moving to a warmer spot (70–75°F is ideal). Making sure you’re using filtered water (chlorine can slow fermentation).
 
-***It smells weird.***
+**It smells weird.**
 
 A slight tang or even a little funk is normal early on. This should get better by the end.
 
 If you see pink, orange, or fuzzy mold then toss and restart.
 
-***It’s too thick or too runny.***
+**It's too thick or too runny.**
 
 You’re aiming for pancake batter.
 
@@ -137,13 +133,13 @@ Add a splash of water if it’s too thick. Add a spoonful of flour if too runny.
 
 This doesn’t have to be exact, your starter will forgive you.
 
-***There’s liquid on top (hooch).***
+**There's liquid on top (hooch).**
 
 This is just your starter saying, “Hey, I’m hungry!”
 
 Stir it in and feed as normal.
 
-***It rises but doesn’t double.***
+**It rises but doesn't double.**
 
 Give it another few days of consistent discarding and feeding.
 
@@ -151,21 +147,25 @@ Starters build strength just like muscles, repetition matters.
 
 You can also try doing some 12 hrs feeds instead of 24 hour feeds.
 
-How to Care for Your Finished Starter
+---
+
+## How to Care for Your Finished Starter
 
 Once your starter is mature, you have two options:
 
-**Bake often:**
+### Bake Often
 
 Keep it on the counter and feed daily. You can do that same ratio of ½ cup all-purpose flour ¼ cup filtered water.
 
-**Bake occasionally:**
+### Bake Occasionally
 
 Store it in the fridge and feed once weekly. It can go up to 2 weeks without a feed in the fridge. Just remember to secure the top with a lid that either screws on or clamps in place.
 
 Either way, your starter can last years if cared for!
 
-Final Thoughts
+---
+
+## Final Thoughts
 
 Starting a sourdough starter is one of the most rewarding things you can do in your kitchen. It’s slow, grounding, and a reminder that homemade doesn’t have to be complicated. Day by day, you’re literally growing something that will feed your family and that feels like homesteading at its core.
 
