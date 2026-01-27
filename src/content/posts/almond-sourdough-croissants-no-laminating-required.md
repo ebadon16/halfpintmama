@@ -46,33 +46,35 @@ Let's make some croissants!
 
 ## What You Need
 
-**For the Croissant Dough:**
+*For the Croissant Dough:*
 
-- 1/2 cup active sourdough starter (100g)
-- 1 1/4 cups filtered warm water (300g)
+- ½ cup active sourdough starter (100g)
+- 1¼ cups filtered warm water (300g)
 - 1 teaspoon salt (6g)
 - 3 cups all-purpose flour (375g)
-- 1/2 cup unsalted butter, cold (8 tablespoons / 113g)
+- ½ cup unsalted butter, cold (8 tablespoons / 113g)
 
-**For the Almond Cream Filling:**
+*For the Almond Cream Filling:*
 
-- 1/2 cup unsalted butter, softened at room temperature (8 tablespoons / 113g)
-- 1/4 cup organic cane sugar (50g)
+- ½ cup unsalted butter, softened at room temperature (8 tablespoons / 113g)
+- ¼ cup organic cane sugar (50g)
 - 2 tablespoons brown sugar (25g)
 - 1 cup + 1 tablespoon blanched fine almond flour (112g)
 - 1 tablespoon all-purpose flour (8g)
-- 1/4 teaspoon fine salt
+- ¼ teaspoon fine salt
 - 1 large egg
-- 1/2 teaspoon vanilla extract
-- 1/4 teaspoon almond extract
+- ½ teaspoon vanilla extract
+- ¼ teaspoon almond extract
 - 1 tablespoon heavy cream
 
-**For Topping:**
+![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
+
+*For Topping:*
 
 - Sliced almonds
 - Powdered sugar (optional)
 
-**Equipment:**
+*Equipment:*
 
 - [Danish whisk](https://amzn.to/danishwhisk) or wooden spoon
 - [Box grater](https://amzn.to/boxgrater)
@@ -81,8 +83,6 @@ Let's make some croissants!
 - Lined [baking sheet](https://amzn.to/bakingsheet)
 - [Plastic wrap](https://amzn.to/plasticwrap) or [beeswax wrap](https://amzn.to/beeswaxwrap)
 - Clean dish towel
-
-![Almond sourdough croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 ## Step-by-Step Instructions
 
@@ -102,7 +102,7 @@ Cover with your damp towel again. From here on out, you'll be waiting 30 minutes
 
 **Step 3: Second stretch and fold + butter**
 
-![Grated butter on dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0812.jpg)
+![Grating butter](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0812.jpg)
 
 After 30 minutes, here's where the magic happens. Take your cold butter and use a box grater to grate about a third of it (roughly 2–3 tablespoons) directly onto your dough.
 
@@ -126,7 +126,7 @@ Cover with your damp towel and let the dough sit at room temperature for 4 hours
 
 **Step 7: Long ferment**
 
-![Dough ready for long ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
+![Dough ready for ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
 
 After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and place it in the fridge. You're going to let this do a long ferment for 12–36 hours.
 
@@ -148,13 +148,13 @@ Pop this in the fridge while you roll out your croissants. It's easier to work w
 
 **Part 3: Shaping the Croissants**
 
-![Rolling out the dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0865.jpg)
+![Rolling out dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0865.jpg)
 
 **Step 9: Roll out the dough**
 
 Take your dough out of the fridge and place it on a well-floured surface. Using your hands, shape it into a rough rectangle.
 
-Flour the top of your dough (this is important—otherwise the butter will stick to your rolling pin!) and roll it out into a rectangle about 1/2 inch thick.
+Flour the top of your dough (this is important—otherwise the butter will stick to your rolling pin!) and roll it out into a rectangle about ½ inch thick.
 
 **Step 10: Cut into pieces**
 
@@ -162,7 +162,7 @@ Using a pastry cutter, cut down the middle lengthwise. Then make 3 cuts on each 
 
 **Step 11: Roll and fill each croissant**
 
-Working with one rectangle at a time, use your rolling pin to roll it out even thinner—about 1/4 inch thick—both lengthwise and widthwise. Add more flour as needed.
+Working with one rectangle at a time, use your rolling pin to roll it out even thinner—about ¼ inch thick—both lengthwise and widthwise. Add more flour as needed.
 
 Take your almond cream filling out of the fridge. Spread a thicker layer of filling along both short edges, and a thinner layer throughout the rest of the dough.
 
@@ -170,7 +170,7 @@ Starting from both short ends, roll the dough inward until the two rolls meet in
 
 Repeat with the remaining 7 pieces of dough.
 
-![Shaped croissants ready for rising](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0866.jpg)
+![Shaped croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0866.jpg)
 
 **Step 12: Final rise**
 
@@ -178,21 +178,21 @@ Cover your shaped croissants with a dish towel and let them rise for about 1 hou
 
 **Step 13: Top and bake**
 
+![Topped croissants ready to bake](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0867.jpg)
+
 Preheat your oven to 425°F (220°C).
 
 With whatever almond cream filling you have left, spread a little on top of each croissant. Sprinkle with sliced almonds.
-
-![Croissants topped with almonds ready to bake](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0867.jpg)
 
 Bake at 425°F for 10 minutes. Then rotate your pan, reduce the temperature to 350°F (175°C), and bake for an additional 18–20 minutes, or until beautifully browned on top.
 
 **Pro tip:** Because of all that butter, these like to brown a lot on the bottom. I place an empty baking sheet on the rack below to act as a buffer—it keeps them from burning and works like a charm!
 
+![Baked croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0869.jpg)
+
 **Step 14: Cool slightly and enjoy**
 
 Let the croissants cool for just a few minutes (if you can resist!). Sprinkle some powdered sugar (totally optional) on them and enjoy them warm. They're absolutely incredible fresh out of the oven.
-
-![Freshly baked almond sourdough croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0869.jpg)
 
 ## Storage Tips
 
@@ -222,4 +222,4 @@ My family really, really loves these. They're the perfect weekend baking project
 
 If you make these, please tag me—I'd love to see how they turn out!
 
-![Inside of almond croissant](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg)
+![Inside of croissant](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg)
