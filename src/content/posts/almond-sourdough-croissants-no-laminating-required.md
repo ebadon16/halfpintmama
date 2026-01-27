@@ -67,8 +67,6 @@ Let's make some croissants!
 - ¼ teaspoon almond extract
 - 1 tablespoon heavy cream
 
-![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
-
 *For Topping:*
 
 - Sliced almonds
@@ -83,6 +81,8 @@ Let's make some croissants!
 - Lined [baking sheet](https://amzn.to/bakingsheet)
 - [Plastic wrap](https://amzn.to/plasticwrap) or [beeswax wrap](https://amzn.to/beeswaxwrap)
 - Clean dish towel
+
+![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 ## Step-by-Step Instructions
 
@@ -122,8 +122,6 @@ Do one more set of stretch and folds—no butter this time. This is your fifth s
 
 Cover with your damp towel and let the dough sit at room temperature for 4 hours.
 
-![Dough after stretch and folds](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/image-5.jpg)
-
 **Step 7: Long ferment**
 
 ![Dough ready for ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
@@ -143,8 +141,6 @@ In a bowl, cream together the softened butter, cane sugar, and brown sugar until
 Add in the almond flour, all-purpose flour, salt, egg, vanilla extract, almond extract, and heavy cream. Mix until everything is well combined.
 
 Pop this in the fridge while you roll out your croissants. It's easier to work with when it's slightly chilled.
-
-![Almond cream filling](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0863.jpg)
 
 **Part 3: Shaping the Croissants**
 
@@ -203,8 +199,6 @@ Let the croissants cool for just a few minutes (if you can resist!). Sprinkle so
 **Freezer:** These freeze really well! Let them cool completely, then wrap individually in plastic wrap and place in a freezer safe bag. They'll keep for up to 2 months.
 
 To reheat from frozen, unwrap and bake at 350°F for 10–15 minutes until warmed through and crispy again.
-
-![Croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0869.jpg)
 
 ## Troubleshooting Tips
 
