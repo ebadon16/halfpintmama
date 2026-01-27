@@ -216,7 +216,7 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Recipe Card - for cooking posts with recipe data (at end of content) */}
         {post.category === "cooking" && post.recipe && (
-          <RecipeCard recipe={post.recipe} title={post.title} />
+          <RecipeCard recipe={post.recipe} title={post.title} image={post.image} />
         )}
 
         {/* Rate & Review CTA - Prominent placement after content */}

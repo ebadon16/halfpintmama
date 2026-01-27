@@ -10,9 +10,10 @@ import { NutritionFacts } from "./NutritionFacts";
 interface RecipeCardProps {
   recipe: RecipeInfo;
   title: string;
+  image?: string;
 }
 
-export function RecipeCard({ recipe, title }: RecipeCardProps) {
+export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
   const baseServings = recipe.servings || 1;
   const [servings, setServings] = useState(baseServings);
   const scale = servings / baseServings;
@@ -97,7 +98,7 @@ export function RecipeCard({ recipe, title }: RecipeCardProps) {
         </div>
       )}
 
-      {/* Scaler + Ingredients */}
+      {/* Scaler + Ingredients + Image */}
       {hasIngredients && (
         <div id="ingredient-checklist" className="grid md:grid-cols-2 gap-6 mb-6">
           <div>
@@ -116,16 +117,28 @@ export function RecipeCard({ recipe, title }: RecipeCardProps) {
             />
           </div>
 
-          {/* Nutrition */}
-          {hasNutrition && (
-            <div>
+          {/* Finished Product Image */}
+          <div className="flex flex-col gap-4">
+            {image && (
+              <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-md">
+                <Image
+                  src={image}
+                  alt={title}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+            )}
+            {/* Nutrition */}
+            {hasNutrition && (
               <NutritionFacts
                 nutrition={recipe.nutrition!}
                 scale={1}
                 servings={servings}
               />
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
 
