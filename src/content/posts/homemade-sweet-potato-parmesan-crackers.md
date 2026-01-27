@@ -91,33 +91,3 @@ Let the crackers cool completely before serving. They will crisp up a bit more a
  Keep in an airtight container for up to 5 days, or freeze for up to 3 months.
 
 The Parmesan adds a deliciously savory touch while keeping the crackers nutritious and toddler-friendly!
-
-## Recipe
-
-### Homemade Sweet Potato Parmesan Crackers
-
-**Ingredients:**
-
-- 1 cup mashed sweet potato (cooked and cooled)
-
-- 1 cup whole wheat flour
-
-- 2 tbsp of melted coconut oil
-
-- A pinch of salt
-
-- 1/3 cup grated Parmesan cheese
-
-- 1/4 tsp baking powder 
-
-**Instructions:**
-
-- **Preheat Oven:** Set your oven to 350°F** **and line a baking sheet with parchment paper or silicone baking sheet.
-
-- **Mix the Dough:** In a bowl, combine all the ingredients. Mix together with hands until a dough forms. If the dough is too sticky, add a little more flour; if too dry, add a teaspoon of water at a time.
-
-- **Roll & Cut:** Lightly flour a surface and roll out the dough to about ⅛-inch thick. Use a knife or small cookie cutters to create cracker shapes.
-
-- **Bake:** Place the crackers on the baking sheet and bake for 15-18 minutes, or until they are firm and lightly golden.
-
-- **Cool & Serve:** Let the crackers cool completely before serving.

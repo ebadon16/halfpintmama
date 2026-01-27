@@ -24,7 +24,7 @@ instructions:
   - "Cool completely before serving"
 ---
 
-These toddler-friendly coconut macaroons are a great way to offer a naturally sweet, nutritious treat without refined sugars or artificial ingredients. They have a soft, chewy texture that’s easy for little hands to hold and enjoy. Made with simple pantry staples like shredded coconut, egg whites, and maple syrup, they provide a boost of healthy fats and natural sweetness. Plus, they’re free from common allergens like dairy and gluten, making them a great option for kids with dietary sensitivities. Whether served as a snack or a special treat, these macaroons are a delicious, wholesome choice that little ones will love!
+These toddler-friendly coconut macaroons are a great way to offer a naturally sweet, nutritious treat without refined sugars or artificial ingredients. They have a soft, chewy texture that's easy for little hands to hold and enjoy. Made with simple pantry staples like shredded coconut, egg whites, and maple syrup, they provide a boost of healthy fats and natural sweetness. Plus, they're free from common allergens like dairy and gluten, making them a great option for kids with dietary sensitivities. Whether served as a snack or a special treat, these macaroons are a delicious, wholesome choice that little ones will love!
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4720-1.jpg?w=1024)
 
@@ -64,7 +64,7 @@ These toddler-friendly coconut macaroons are a great way to offer a naturally 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4721-1.jpg)
 
-Preheat your oven to 325°F and line a baking sheet with parchment paper or silicone baking mat. 
+Preheat your oven to 325°F and line a baking sheet with parchment paper or silicone baking mat.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4728-1.jpg?w=1024)
 
@@ -84,34 +84,6 @@ Let them cool completely- they will firm up a little as they cool and now they a
 
 These can be stored in a airtight container for up to 3 days at room temperature or in the fridge for up to a week.
 
-These toddler-friendly coconut macaroons are naturally sweet, soft, and easy to hold—making them a perfect treat for little hands! With only 4 ingredients and no refined sugar these are a great chewy sweet treat!
+These toddler-friendly coconut macaroons are naturally sweet, soft, and easy to hold—making them a perfect treat for little hands! With only 4 ingredients and no refined sugar these are a great chewy sweet treat!
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/02/img_4719-1.jpg?w=674)
-
-## Recipe
-
-### Toddler Friendly** Coconut Macaroons**
-
-**Ingredients:**
-
-- 1 ½ cups unsweetened shredded coconut
-
-- 2 egg whites
-
-- 2 tbsp maple syrup
-
-- 1 tsp vanilla extract
-
-- A pinch of salt (optional)
-
-**Instructions:**
-
-- **Preheat oven** to **325°F **and line a baking sheet with parchment paper or silicone baking mat.
-
-- **Mix ingredients**: In a bowl, whisk the egg whites, maple syrup, vanilla extract and salt (optional) until slightly frothy. I used a stand up mixer, you could also use an electric hand mixer or whisk by hand. Add the shredded coconut and mix with silicone spatula until everything is well coated.
-
-- **Shape the macaroons**: Using a small spoon, cookie scoop or your hands, scoop out small portions and gently press them into little mounds on the baking sheet.
-
-- **Bake** for **11-14 minutes**, or until the edges turn golden brown.
-
-- **Cool & serve**: Let the macaroons cool completely before serving!

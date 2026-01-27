@@ -105,40 +105,6 @@ These cookies are gluten-free, grain-free, and naturally sweetened, making them 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/01/img_3915-1.jpg?w=853)
 
-## Recipe
-
-### Toddler Friendly** Chocolate Chip Cookies**
-
-**Ingredients:**
-
-- 2 cups almond flour
-
-- ¼ cup coconut oil (melted)
-
-- ¼ cup maple syrup
-
-- 1 tsp vanilla extract
-
-- ½ tsp baking soda
-
-- A pinch of salt
-
-- ½ cup dark chocolate chips
-
-**Instructions:**
-
-- **Preheat Oven:** Preheat your oven to 350°F and line with parchment paper.
-
-- **Mix Wet Ingredients:** In a mixing bowl, combine the melted coconut oil, maple syrup, and vanilla extract until smooth.
-
-- **Add Dry Ingredients:** Stir in the almond flour, baking soda, and salt  in a separate bowl and mix together. Combine the wet and dry ingredients until a dough forms. Fold in the dark chocolate chips.
-
-- **Shape Cookies:** Scoop about 1.5 tablespoon-sized portions of the dough onto the prepared baking sheet. Flatten slightly with your fingers.
-
-- **Bake:** Bake for about 10 minutes, the edges should be golden brown.
-
-- **Cool:** Allow the cookies to cool and enjoy!
-
 ## **Baking with a Toddler**
 
 Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it’s filled with so many amazing moments.

@@ -79,36 +79,6 @@ Now they are ready to enjoy! Store in an airtight container in the fridge for up
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/image.jpg?w=1024)
 
-## Recipe
-
-**PB&J Cups**
-
-- 1 ½ cups rolled oats
-
-- ½ cup natural peanut butter (or sunflower butter for nut-free)
-
-- ¼ cup honey (or maple syrup for under 1-year-olds)
-
-- 1 & ½ tsp vanilla extract
-
-- 2 tbsp ground flaxseeds (optional, for extra fiber)
-
-- ¼ cup milk (dairy or non-dairy)
-
-- Your favorite natural fruit spread/jam
-
-**Instructions**
-
-Combine all the ingredients into a bowl and stir together.
-
-Line a mini muffin tin with liners or lightly grease it.
-
-Scoop about 1 tablespoon of the oat mixture into each cup and press down. Make a area in the center for the jelly to go, pushing the oat mixture up the sides a little.
-
-Add 1 teaspoon of fruit jelly/jam in the center. Top with another layer of the oat mixture, pressing gently to cover the jam. Refrigerate for at least 1 hour to firm up.
-
-Now they are ready to enjoy!
-
 ### Baking with a Toddler
 
 Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it’s filled with so many amazing moments.

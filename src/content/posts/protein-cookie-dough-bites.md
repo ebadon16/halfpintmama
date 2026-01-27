@@ -44,7 +44,7 @@ instructions:
 
 really any nut butter will work or sunflower butter for nut-free
 
-- 2 tbsp of maple syrup 
+- 2 tbsp of maple syrup
 
 - ½ tsp vanilla extract
 
@@ -70,7 +70,7 @@ Combine all dry ingredients (almond flour, protein powder and sprinkles) into a 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5408-1.jpg?w=699)
 
-In a separate bowl combine the wet ingredients (nut butter, maple syrup, vanilla extract) and stir together. 
+In a separate bowl combine the wet ingredients (nut butter, maple syrup, vanilla extract) and stir together.
 
 Add to dry ingredients and start to stir.
 
@@ -78,7 +78,7 @@ Add milk at this time and stir until dough forms. Start with 1 TBSP of milk and 
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5354.jpg?w=768)
 
-Roll into balls and place on parchment paper lined baking sheet. I would say we did roughly about 1 TBSP size, but you can make these as small or big as you would like. Place in the refrigerator for at least 20-30 minutes. 
+Roll into balls and place on parchment paper lined baking sheet. I would say we did roughly about 1 TBSP size, but you can make these as small or big as you would like. Place in the refrigerator for at least 20-30 minutes.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5409-1.jpg?w=619)
 
@@ -94,37 +94,9 @@ Store in an airtight container in the refrigerator for up to a week.
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5359.jpg)
 
-## Recipe
-
-**Protein Cookie Dough Bites**
-
-- 1 Scoop of Vanilla Protein Powder
-
-- 1 Cup Almond Flour
-
-- ¼ cup peanut butter
-
-- 2 tbsp of maple syrup 
-
-- ½ tsp vanilla extract
-
-- 3 tbsp natural sprinkles 
-
-- 1-2 TBSP of milk
-
-**Instructions**
-
-Combine all dry ingredients (almond flour, protein powder and sprinkles) into a bowl and then stir together. 
-
-In a separate bowl combine the wet ingredients (nut butter, maple syrup, vanilla extract) and stir together.  Add to dry ingredients and stir. Add milk at this time. Continue to stir and add additional TBSP of milk one at a time to get the right consistency. For us this took 2 additional TBSP of milk.
-
-Roll into balls and place on parchment paper lined baking sheet. Place in the refrigerator for at least 20-30 minutes.
-
-Now they are ready to enjoy!
-
 ### Baking with a Toddler
 
-Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it’s filled with so many amazing moments.
+Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it's filled with so many amazing moments.
 
 Toddler Tower
 

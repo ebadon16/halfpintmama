@@ -93,42 +93,6 @@ I wanted to recreate the classic Reese’s Peanut Butter Easter Eggs with a slig
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5774.jpg?w=768)
 
-## Recipe
-
-**Peanut Butter Truffle Inside**
-
-- 1 Cup of PB Fit Powder
-
-- 1/3 Cup Almond Flour
-
-- 1/4 Cup Swerve powder sugar
-
-- 1/4 Cup milk & 2 TBSP*
-
-We used whole milk because we had it but almond milk would work as well
-
-- * the 2 TBSP of added milk gets it to the right consistency- depending on specific brands you use this may have to be adjusted
-
-**Chocolate Topping**
-
-- 1 Cup dark chocolate chips
-
-- 1 TBSP coconut oil (optional)
-
-**Instructions**
-
-Combine all dry ingredients into a bowl, stir together.
-
-Add milk at this time and stir. Continue to stir and add additional TBSP of milk one at a time to get the right consistency. For us this took 2 additional TBSP of milk.
-
-Form into a egg-like, oval shapeand place on parchment paper lined baking sheet. Place in the refrigerator for 1 hour.
-
-Melt down dark chocolate. I added a little coconut oil, this is optional.
-
-After the dough eggs have cooled in the refrigerator, use a fork to dip them into the melted dark chocolate. Once all eggs are covered in chocolate return to the fridge for about 2 hours.
-
-Now they are ready to enjoy!
-
 ### Baking with a Toddler
 
 Baking with a toddler is equal parts joyful and messy, turning a simple recipe into a delightful adventure. Little hands eager to pour, stir, and sneak tastes make the kitchen come alive with laughter and curiosity. Measuring ingredients becomes a mini math lesson, it is practice with dexterity and a sensory activity like no other. While flour might end up on the floor as much as in the bowl, these spills and smudges create memories just as sweet as the treats themselves. I am always so amazed what little humans can do with practice and a little patience. Baking with a toddler may take a bit longer, but it’s filled with so many amazing moments.
