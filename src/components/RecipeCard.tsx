@@ -88,7 +88,7 @@ export function RecipeCard({ recipe, title }: RecipeCardProps) {
 
       {/* Scaler + Ingredients */}
       {hasIngredients && (
-        <div className="grid md:grid-cols-2 gap-6 mb-6">
+        <div id="ingredient-checklist" className="grid md:grid-cols-2 gap-6 mb-6">
           <div>
             {recipe.servings && (
               <div className="mb-4" data-print-hide>
