@@ -197,17 +197,18 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Content */}
         <div
-          className="prose prose-base max-w-none
+          className="prose max-w-none
             prose-headings:font-[family-name:var(--font-crimson)]
-            prose-headings:text-charcoal
-            prose-h2:text-xl prose-h2:mt-6 prose-h2:mb-3 prose-h2:font-semibold
-            prose-h3:text-lg prose-h3:mt-5 prose-h3:mb-2 prose-h3:font-semibold
-            prose-h4:text-base prose-h4:mt-4 prose-h4:mb-2 prose-h4:font-semibold
-            prose-p:text-charcoal/80 prose-p:leading-relaxed prose-p:my-3
+            prose-headings:font-bold
+            prose-h1:text-[36px] prose-h1:text-[#4A3728] prose-h1:mb-[40px] prose-h1:mt-0
+            prose-h2:text-[28px] prose-h2:text-charcoal prose-h2:mt-[32px] prose-h2:mb-[16px]
+            prose-h3:text-[22px] prose-h3:text-charcoal prose-h3:mt-[24px] prose-h3:mb-[12px]
+            prose-h4:text-[18px] prose-h4:text-charcoal prose-h4:mt-[20px] prose-h4:mb-[8px]
+            prose-p:text-[16px] prose-p:text-charcoal/80 prose-p:leading-[1.6] prose-p:my-[16px]
             prose-a:text-terracotta prose-a:no-underline hover:prose-a:underline
             prose-strong:text-charcoal prose-strong:font-semibold
-            prose-ul:my-3 prose-ul:pl-5
-            prose-li:text-charcoal/80 prose-li:my-1
+            prose-ul:my-[16px] prose-ul:pl-5
+            prose-li:text-[16px] prose-li:text-charcoal/80 prose-li:my-1 prose-li:leading-[1.6]
             prose-img:rounded-lg prose-img:shadow-sm"
         >
           {/* Simple markdown rendering - convert basic markdown to HTML */}

@@ -45,7 +45,7 @@ instructions:
 
 # Almond Sourdough Croissants (No Laminating Required!)
 
-<!-- IMG: Croissant -1.jpeg | LAYOUT: center | SIZE: large -->
+<!-- IMG: Croissant -1.jpeg | LAYOUT: center | SIZE: medium -->
 
 Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait.
 
@@ -117,7 +117,7 @@ Cover with your damp towel again. From here on out, you'll be waiting 30 minutes
 
 #### Step 3: Second stretch and fold + butter
 
-<!-- IMG: Croissant -3.jpeg, Croissant -4.jpeg, Croissant -5.jpeg | LAYOUT: grid-3 | SIZE: medium -->
+<!-- IMG: Croissant -3.jpeg, Croissant -4.jpeg, Croissant -5 2.jpeg | LAYOUT: grid-3 | SIZE: small -->
 
 After 30 minutes, here's where the magic happens. Take your cold butter and use a box grater to grate about a third of it (roughly 2–3 tablespoons) directly onto your dough.
 
@@ -129,7 +129,7 @@ Grate another third of your butter onto the dough. Do your stretch and folds. Co
 
 #### Step 5: Fourth stretch and fold + butter
 
-<!-- IMG: Croissant -6.jpeg | LAYOUT: float-right | SIZE: small -->
+<!-- IMG: Croissant -5.jpeg | LAYOUT: float-right | SIZE: small -->
 
 Grate the last third of your butter onto the dough. Do your stretch and folds. Cover and wait 30 minutes.
 
@@ -141,7 +141,7 @@ Cover with your damp towel and let the dough sit at room temperature for 4 hours
 
 #### Step 7: Long ferment
 
-<!-- IMG: Croissant -7.jpeg | LAYOUT: float-right | SIZE: medium -->
+<!-- IMG: Croissant -6.jpeg | LAYOUT: float-right | SIZE: small -->
 
 After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and place it in the fridge. You're going to let this do a long ferment for 12–36 hours.
 
@@ -167,7 +167,7 @@ Pop this in the fridge while you roll out your croissants. It's easier to work w
 
 #### Step 9: Roll out the dough
 
-<!-- IMG: Croissant -8.jpeg | LAYOUT: float-left | SIZE: medium -->
+<!-- IMG: Croissant -7.jpeg | LAYOUT: center | SIZE: medium -->
 
 Take your dough out of the fridge and place it on a well-floured surface. Using your hands, shape it into a rough rectangle.
 
@@ -175,27 +175,27 @@ Flour the top of your dough (this is important—otherwise the butter will stick
 
 #### Step 10: Cut into pieces
 
-<!-- IMG: Croissant -9.jpeg | LAYOUT: center | SIZE: large -->
+<!-- IMG: Croissant -8.jpeg | LAYOUT: center | SIZE: medium -->
 
 Using a pastry cutter, cut down the middle lengthwise. Then make 3 cuts on each side, giving you 8 smaller rectangles total.
 
 #### Step 11: Roll and fill each croissant
 
-<!-- IMG: Croissant -10.jpeg | LAYOUT: float-right | SIZE: small -->
+<!-- IMG: Croissant -9.jpeg | LAYOUT: float-right | SIZE: small -->
 
 Working with one rectangle at a time, use your rolling pin to roll it out even thinner—about ¼ inch thick—both lengthwise and widthwise. Add more flour as needed.
 
-<!-- IMG: Croissant -11.jpeg, Croissant -12.jpeg | LAYOUT: grid-2 | SIZE: medium -->
+<!-- IMG: Croissant -10.jpeg, Croissant -11.jpeg | LAYOUT: grid-2 | SIZE: small -->
 
 Take your almond cream filling out of the fridge. Spread a thicker layer of filling along both short edges, and a thinner layer throughout the rest of the dough.
 
-<!-- IMG: Croissant -13.jpeg, Croissant -14.jpeg, Croissant -15.jpeg, Croissant -16.jpeg | LAYOUT: grid-2x2 | SIZE: medium -->
+<!-- IMG: Croissant -12.jpeg, Croissant -13.jpeg, Croissant -14.jpeg, Croissant -15.jpeg | LAYOUT: grid-2x2 | SIZE: small -->
 
 Starting from both short ends, roll the dough inward until the two rolls meet in the middle. Flip it over so the seam side is down and place on a lined baking sheet.
 
 Repeat with the remaining 7 pieces of dough.
 
-<!-- IMG: Croissant -17.jpeg, Croissant -18.jpeg | LAYOUT: grid-2 | SIZE: medium -->
+<!-- IMG: Croissant -16.jpeg, Croissant -17.jpeg | LAYOUT: grid-2 | SIZE: small -->
 
 #### Step 12: Final rise
 
@@ -207,7 +207,7 @@ Cover your shaped croissants with a dish towel and let them rise for about 1 hou
 
 #### Step 13: Top and bake
 
-<!-- IMG: Croissant -19.jpeg | LAYOUT: float-right | SIZE: medium -->
+<!-- IMG: Croissant -18.jpeg | LAYOUT: float-right | SIZE: small -->
 
 Preheat your oven to 425°F (220°C).
 
@@ -217,7 +217,7 @@ Bake at 425°F for 10 minutes. Then rotate your pan, reduce the temperature to 3
 
 **Pro tip:** Because of all that butter, these like to brown a lot on the bottom. I place an empty baking sheet on the rack below to act as a buffer—it keeps them from burning and works like a charm!
 
-<!-- IMG: Croissant -20.jpeg | LAYOUT: center | SIZE: large -->
+<!-- IMG: Croissant -19.jpeg | LAYOUT: center | SIZE: medium -->
 
 #### Step 14: Cool slightly and enjoy
 
@@ -259,7 +259,7 @@ My family really, really loves these. They're the perfect weekend baking project
 
 If you make these, please tag me—I'd love to see how they turn out!
 
-<!-- IMG: Croissant -1.jpeg | LAYOUT: center | SIZE: large -->
+<!-- IMG: Croissant -20.jpeg | LAYOUT: center | SIZE: medium -->
 
 ---
 
