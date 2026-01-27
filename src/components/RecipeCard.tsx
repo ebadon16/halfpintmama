@@ -38,9 +38,9 @@ export function RecipeCard({ recipe, title }: RecipeCardProps) {
         <Image
           src="/logo.png"
           alt="Half Pint Mama"
-          width={64}
-          height={64}
-          className="rounded-full flex-shrink-0"
+          width={80}
+          height={80}
+          className="rounded-full flex-shrink-0 -mt-1 -mr-1"
         />
       </div>
 
