@@ -279,16 +279,52 @@ export default async function PostPage({ params }: PageProps) {
 
 // Simple markdown to HTML converter
 function renderMarkdown(content: string): string {
-  return content
-    // Escape HTML entities first
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    // Then restore markdown image/link syntax that got escaped
-    // Images: centered, max-width constrained, smaller
-    .replace(/!\[\]\(([^)]+)\)/g, '<figure class="my-4 flex justify-center"><img src="$1" alt="" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>')
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<figure class="my-4 flex justify-center"><img src="$2" alt="$1" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-terracotta font-medium hover:underline">$1</a>')
+  // First, process custom image comments before other transformations
+  let processed = content;
+
+  // Process image comments: <!-- IMG: filename(s) | LAYOUT: x | SIZE: x -->
+  const imgRegex = /<!--\s*IMG:\s*([^|]+)\|\s*LAYOUT:\s*(\S+)\s*\|\s*SIZE:\s*(\S+)\s*-->/g;
+
+  processed = processed.replace(imgRegex, (match, files, layout, size) => {
+    const fileList = files.split(',').map((f: string) => f.trim());
+    const layoutClass = layout.trim();
+    const sizeClass = size.trim();
+
+    // Size classes
+    const sizeStyles: Record<string, string> = {
+      'small': 'max-w-[220px]',
+      'medium': 'max-w-[380px]',
+      'large': 'max-w-[600px] w-full',
+    };
+    const imgSize = sizeStyles[sizeClass] || sizeStyles['medium'];
+
+    // Generate image tags
+    const imgTags = fileList.map((file: string) => {
+      const src = `/images/${file}`;
+      return `<img src="${src}" alt="" class="rounded-lg shadow-sm object-cover ${imgSize}" loading="lazy" />`;
+    });
+
+    // Layout handling
+    if (layoutClass === 'center') {
+      return `%%FIGURE_START%%<figure class="my-6 flex justify-center">${imgTags[0]}</figure>%%FIGURE_END%%`;
+    } else if (layoutClass === 'float-right') {
+      return `%%FIGURE_START%%<figure class="float-right ml-6 mb-4 mt-2 ${imgSize}">${imgTags[0]}</figure>%%FIGURE_END%%`;
+    } else if (layoutClass === 'float-left') {
+      return `%%FIGURE_START%%<figure class="float-left mr-6 mb-4 mt-2 ${imgSize}">${imgTags[0]}</figure>%%FIGURE_END%%`;
+    } else if (layoutClass === 'grid-2') {
+      return `%%FIGURE_START%%<figure class="my-6 grid grid-cols-2 gap-4">${imgTags.slice(0, 2).map((img: string) => `<div class="flex justify-center">${img}</div>`).join('')}</figure>%%FIGURE_END%%`;
+    } else if (layoutClass === 'grid-3') {
+      return `%%FIGURE_START%%<figure class="my-6 grid grid-cols-3 gap-3">${imgTags.slice(0, 3).map((img: string) => `<div class="flex justify-center">${img}</div>`).join('')}</figure>%%FIGURE_END%%`;
+    } else if (layoutClass === 'grid-2x2') {
+      return `%%FIGURE_START%%<figure class="my-6 grid grid-cols-2 gap-4">${imgTags.slice(0, 4).map((img: string) => `<div class="flex justify-center">${img}</div>`).join('')}</figure>%%FIGURE_END%%`;
+    }
+
+    // Default: centered
+    return `%%FIGURE_START%%<figure class="my-6 flex justify-center">${imgTags[0]}</figure>%%FIGURE_END%%`;
+  });
+
+  // Now process regular markdown
+  processed = processed
     // Headers
     .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -297,12 +333,19 @@ function renderMarkdown(content: string): string {
     // Bold and italic
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    // Markdown images
+    .replace(/!\[\]\(([^)]+)\)/g, '%%FIGURE_START%%<figure class="my-4 flex justify-center"><img src="$1" alt="" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>%%FIGURE_END%%')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '%%FIGURE_START%%<figure class="my-4 flex justify-center"><img src="$2" alt="$1" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>%%FIGURE_END%%')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-terracotta font-medium hover:underline">$1</a>')
     // Lists
     .replace(/^- (.+)$/gm, '<li>$1</li>')
     // Wrap consecutive li tags in ul
     .replace(/(<li>.*<\/li>\n?)+/g, '<ul class="space-y-1">$&</ul>')
+    // Horizontal rules
+    .replace(/^---$/gm, '<hr class="my-8 border-light-sage" />')
     // Paragraphs - wrap lines that aren't already wrapped
-    .replace(/^(?!<[hulo]|<fig|<a)(.+)$/gm, '<p>$1</p>')
+    .replace(/^(?!<[hulo]|%%FIGURE|<a|<hr)(.+)$/gm, '<p>$1</p>')
     // Clean up empty paragraphs
     .replace(/<p>\s*<\/p>/g, '')
     // Fix nested tags
@@ -310,6 +353,11 @@ function renderMarkdown(content: string): string {
     .replace(/(<\/h[1-4]>)<\/p>/g, '$1')
     .replace(/<p>(<ul)/g, '$1')
     .replace(/(<\/ul>)<\/p>/g, '$1')
-    .replace(/<p>(<figure)/g, '$1')
-    .replace(/(<\/figure>)<\/p>/g, '$1');
+    .replace(/<p>(<hr)/g, '$1')
+    .replace(/(<hr[^>]*>)<\/p>/g, '$1')
+    // Restore figure markers
+    .replace(/%%FIGURE_START%%/g, '')
+    .replace(/%%FIGURE_END%%/g, '');
+
+  return processed;
 }

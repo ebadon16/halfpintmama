@@ -4,7 +4,7 @@ date: "2026-01-26"
 slug: "almond-sourdough-croissants-no-laminating-required"
 category: "cooking"
 excerpt: "Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait."
-image: "https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg"
+image: "/images/Croissant -1.jpeg"
 tags: ["sourdough", "pastry", "breakfast", "almond"]
 servings: 8
 prepTime: "30 min"
@@ -45,7 +45,7 @@ instructions:
 
 # Almond Sourdough Croissants (No Laminating Required!)
 
-<!-- IMG: hero-croissants.jpg | LAYOUT: center | SIZE: medium -->
+<!-- IMG: Croissant -1.jpeg | LAYOUT: center | SIZE: large -->
 
 Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait.
 
@@ -57,7 +57,7 @@ I've been working on this recipe for a while now, and after quite a few fails al
 
 Let's make some croissants!
 
-*\*this post contains affiliate links, in which I may earn a small commission at no additional cost to you—thanks for your support\**
+*This post contains affiliate links, in which I may earn a small commission at no additional cost to you—thanks for your support!*
 
 ---
 
@@ -82,7 +82,7 @@ Let's make some croissants!
 - ¼ teaspoon almond extract
 - 1 tablespoon heavy cream
 
-<!-- IMG: croissants-closeup.jpg | LAYOUT: float-right | SIZE: medium -->
+<!-- IMG: Croissant -2.jpeg | LAYOUT: float-right | SIZE: medium -->
 
 ### For Topping:
 - Sliced almonds
@@ -117,7 +117,7 @@ Cover with your damp towel again. From here on out, you'll be waiting 30 minutes
 
 #### Step 3: Second stretch and fold + butter
 
-<!-- IMG: butter-box.jpg, butter-grating.jpg, dough-with-butter.jpg | LAYOUT: grid-3 | SIZE: medium -->
+<!-- IMG: Croissant -3.jpeg, Croissant -4.jpeg, Croissant -5.jpeg | LAYOUT: grid-3 | SIZE: medium -->
 
 After 30 minutes, here's where the magic happens. Take your cold butter and use a box grater to grate about a third of it (roughly 2–3 tablespoons) directly onto your dough.
 
@@ -129,7 +129,7 @@ Grate another third of your butter onto the dough. Do your stretch and folds. Co
 
 #### Step 5: Fourth stretch and fold + butter
 
-<!-- IMG: hand-grating-butter.jpg | LAYOUT: float-right | SIZE: small -->
+<!-- IMG: Croissant -6.jpeg | LAYOUT: float-right | SIZE: small -->
 
 Grate the last third of your butter onto the dough. Do your stretch and folds. Cover and wait 30 minutes.
 
@@ -141,7 +141,7 @@ Cover with your damp towel and let the dough sit at room temperature for 4 hours
 
 #### Step 7: Long ferment
 
-<!-- IMG: fermented-dough.jpg | LAYOUT: float-right | SIZE: medium -->
+<!-- IMG: Croissant -7.jpeg | LAYOUT: float-right | SIZE: medium -->
 
 After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and place it in the fridge. You're going to let this do a long ferment for 12–36 hours.
 
@@ -167,7 +167,7 @@ Pop this in the fridge while you roll out your croissants. It's easier to work w
 
 #### Step 9: Roll out the dough
 
-<!-- IMG: rolling-dough.jpg | LAYOUT: float-left | SIZE: medium -->
+<!-- IMG: Croissant -8.jpeg | LAYOUT: float-left | SIZE: medium -->
 
 Take your dough out of the fridge and place it on a well-floured surface. Using your hands, shape it into a rough rectangle.
 
@@ -175,27 +175,27 @@ Flour the top of your dough (this is important—otherwise the butter will stick
 
 #### Step 10: Cut into pieces
 
-<!-- IMG: dough-cut-pieces.jpg | LAYOUT: center | SIZE: large -->
+<!-- IMG: Croissant -9.jpeg | LAYOUT: center | SIZE: large -->
 
 Using a pastry cutter, cut down the middle lengthwise. Then make 3 cuts on each side, giving you 8 smaller rectangles total.
 
 #### Step 11: Roll and fill each croissant
 
-<!-- IMG: single-piece-rolled.jpg | LAYOUT: float-right | SIZE: small -->
+<!-- IMG: Croissant -10.jpeg | LAYOUT: float-right | SIZE: small -->
 
 Working with one rectangle at a time, use your rolling pin to roll it out even thinner—about ¼ inch thick—both lengthwise and widthwise. Add more flour as needed.
 
-<!-- IMG: dough-with-filling-1.jpg, dough-with-filling-2.jpg | LAYOUT: grid-2 | SIZE: medium -->
+<!-- IMG: Croissant -11.jpeg, Croissant -12.jpeg | LAYOUT: grid-2 | SIZE: medium -->
 
 Take your almond cream filling out of the fridge. Spread a thicker layer of filling along both short edges, and a thinner layer throughout the rest of the dough.
 
-<!-- IMG: rolling-step-1.jpg, rolling-step-2.jpg, rolling-step-3.jpg, rolling-step-4.jpg | LAYOUT: grid-2x2 | SIZE: medium -->
+<!-- IMG: Croissant -13.jpeg, Croissant -14.jpeg, Croissant -15.jpeg, Croissant -16.jpeg | LAYOUT: grid-2x2 | SIZE: medium -->
 
 Starting from both short ends, roll the dough inward until the two rolls meet in the middle. Flip it over so the seam side is down and place on a lined baking sheet.
 
 Repeat with the remaining 7 pieces of dough.
 
-<!-- IMG: single-shaped.jpg, all-eight-shaped.jpg | LAYOUT: grid-2 | SIZE: medium -->
+<!-- IMG: Croissant -17.jpeg, Croissant -18.jpeg | LAYOUT: grid-2 | SIZE: medium -->
 
 #### Step 12: Final rise
 
@@ -207,7 +207,7 @@ Cover your shaped croissants with a dish towel and let them rise for about 1 hou
 
 #### Step 13: Top and bake
 
-<!-- IMG: topped-before-baking.jpg | LAYOUT: float-right | SIZE: medium -->
+<!-- IMG: Croissant -19.jpeg | LAYOUT: float-right | SIZE: medium -->
 
 Preheat your oven to 425°F (220°C).
 
@@ -217,7 +217,7 @@ Bake at 425°F for 10 minutes. Then rotate your pan, reduce the temperature to 3
 
 **Pro tip:** Because of all that butter, these like to brown a lot on the bottom. I place an empty baking sheet on the rack below to act as a buffer—it keeps them from burning and works like a charm!
 
-<!-- IMG: baked-croissants.jpg | LAYOUT: center | SIZE: large -->
+<!-- IMG: Croissant -20.jpeg | LAYOUT: center | SIZE: large -->
 
 #### Step 14: Cool slightly and enjoy
 
@@ -227,7 +227,7 @@ Let the croissants cool for just a few minutes (if you can resist!). Sprinkle so
 
 ## Storage Tips
 
-<!-- IMG: croissant-layers-closeup.jpg | LAYOUT: float-right | SIZE: medium -->
+<!-- IMG: Croissant -2.jpeg | LAYOUT: float-right | SIZE: medium -->
 
 **Room Temperature:** Store in an airtight container at room temperature for up to 2 days. They're best enjoyed fresh, but you can revive them by warming in a 300°F oven for 5–10 minutes.
 
@@ -259,7 +259,7 @@ My family really, really loves these. They're the perfect weekend baking project
 
 If you make these, please tag me—I'd love to see how they turn out!
 
-<!-- IMG: final-hero-hand.jpg | LAYOUT: center | SIZE: large -->
+<!-- IMG: Croissant -1.jpeg | LAYOUT: center | SIZE: large -->
 
 ---
 
@@ -314,27 +314,3 @@ If you make these, please tag me—I'd love to see how they turn out!
 7. Cool slightly, sprinkle with powdered sugar and enjoy warm!
 
 Flaky, buttery, and filled with that dreamy almond cream—these croissants are a weekend baking project your whole family will thank you for.
-
----
-
-<!--
-===========================================
-IMAGE LAYOUT REFERENCE FOR THIS POST
-===========================================
-
-LAYOUT OPTIONS USED:
-- center: Image centered, block display
-- float-right: Image floats right, text wraps left
-- float-left: Image floats left, text wraps right
-- grid-2: Two images side by side
-- grid-3: Three images in a row
-- grid-2x2: Four images in 2x2 grid
-
-SIZE OPTIONS:
-- small: ~200-250px wide
-- medium: ~350-400px wide
-- large: ~600-700px wide or full content width
-
-TOTAL IMAGES IN THIS POST: 19
-===========================================
--->

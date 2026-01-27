@@ -61,6 +61,37 @@ html {
   color: var(--charcoal);
 }
 
+/* Clearfix for floated images in prose */
+.prose::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Float image styles */
+.prose figure.float-right,
+.prose figure.float-left {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose figure.float-right {
+  float: right;
+  margin-left: 1.5rem;
+}
+
+.prose figure.float-left {
+  float: left;
+  margin-right: 1.5rem;
+}
+
+/* Clear floats after certain elements */
+.prose h2,
+.prose h3,
+.prose hr {
+  clear: both;
+}
+
 /* Print styles */
 @media print {
   /* Hide non-essential elements */
