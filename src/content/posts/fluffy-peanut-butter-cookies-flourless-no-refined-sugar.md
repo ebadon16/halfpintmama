@@ -15,6 +15,14 @@ ingredients:
   - "1 tsp vanilla extract"
   - "1 cup peanut butter"
   - "1 tbsp baking powder"
+instructions:
+  - "Preheat oven to 350°F and line a baking sheet"
+  - "Beat eggs until frothy, about 1 minute"
+  - "Add maple syrup and vanilla; beat on high for 2 minutes until thick and pale"
+  - "Fold in peanut butter and baking powder until just combined"
+  - "Scoop 1.5 tbsp of dough onto sheet"
+  - "Bake 10-12 minutes until puffed and golden on edges"
+  - "Cool and enjoy"
 ---
 
 Soft, Simple, Naturally Sweet

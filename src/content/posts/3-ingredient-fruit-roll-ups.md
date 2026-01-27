@@ -13,6 +13,12 @@ ingredients:
   - "2 apples, peeled and chopped"
   - "1 cup blueberries"
   - "1.5 tsp lemon juice"
+instructions:
+  - "Blend apples, blueberries, and lemon juice until smooth"
+  - "Pour onto a silicone mat or parchment-lined baking sheet"
+  - "Spread thin and even"
+  - "Dehydrate at 170°F for 5-6 hours until no longer sticky"
+  - "Cut into strips and roll up"
 ---
 
 Lately, I’ve been looking for easy and cost-effective ways to make snacks for my kids at home. With our grocery bill soaring, I’m trying to get creative to cut costs while ensuring we have healthy options. I also love knowing exactly what goes into the food we snack on. It’s astonishing how many ingredients are listed on the back of a box for kids’ snacks—store-bought fruit roll-ups, for example, have around 18 ingredients! I’ve discovered I can make them at home with just three simple ingredients, and my toddler is now obsessed with these homemade apple and blueberry fruit roll-ups!

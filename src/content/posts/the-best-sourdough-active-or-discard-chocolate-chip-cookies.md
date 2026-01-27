@@ -21,6 +21,14 @@ ingredients:
   - "1 large egg yolk"
   - "1 tsp vanilla extract"
   - "1 cup chocolate chips"
+instructions:
+  - "Brown butter and let cool slightly"
+  - "Whisk flour, cornstarch, baking soda, and salt"
+  - "Beat browned butter with both sugars until combined"
+  - "Add egg yolk, vanilla, and sourdough starter"
+  - "Fold in dry ingredients, then chocolate chips"
+  - "Chill dough at least 30 min (up to 48 hours for best flavor)"
+  - "Bake at 350°F for 10-12 minutes until edges golden"
 ---
 
 Sourdough cookies are a fantastic way to enjoy a classic sweet treat while incorporating the benefits of natural fermentation. Using sourdough starter (either active or discard) in cookie dough enhances the flavor, adding a slight tang and depth that balances sweetness beautifully. The fermentation process also helps break down gluten and phytic acid, making the cookies easier to digest while potentially improving nutrient absorption. Plus, sourdough cookies often have a chewier texture and richer taste, making them a unique twist on traditional recipes.

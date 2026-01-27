@@ -11,6 +11,12 @@ cookTime: "20 min"
 ingredients:
   - "1 cup sourdough discard"
   - "Everything bagel seasoning (or your favorite blend)"
+instructions:
+  - "Preheat oven to 350°F"
+  - "Spread sourdough discard thin on parchment-lined baking sheet"
+  - "Sprinkle with everything bagel seasoning"
+  - "Bake for 15-20 minutes until golden and crispy"
+  - "Break into crackers and enjoy"
 ---
 
 Perfectly crispy, simple, and oh so addicting.

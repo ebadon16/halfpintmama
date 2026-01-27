@@ -11,6 +11,12 @@ ingredients:
   - "1/2 cup wheat flour (day 0)"
   - "All-purpose flour (days 1-8)"
   - "Filtered water"
+instructions:
+  - "Day 0: Mix 1/2 cup wheat flour with 1/2 cup water; cover loosely"
+  - "Days 1-2: Add 1/2 cup flour and 1/4 cup water daily (no discard yet)"
+  - "Days 3-8: Discard half, add 1/2 cup flour and 1/4 cup water daily"
+  - "By Day 8: Starter should double in 4-6 hours and pass float test"
+  - "Store on counter (feed daily) or in fridge (feed weekly)"
 ---
 
 There’s something magical about creating your own sourdough starter. For me this felt  like the beginning of my homestead journey. This simple mixture of flour and water that turns into a living, breathing kitchen staple. When I first began baking sourdough, I was intimidated by all the overly complicated guides out there. Well I’m here to let you know, it doesn’t have to be complicated.

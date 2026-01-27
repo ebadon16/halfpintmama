@@ -19,6 +19,14 @@ ingredients:
   - "1 tsp vanilla extract"
   - "2 cups fresh peaches, sliced"
   - "1/4 cup cane sugar (for topping)"
+instructions:
+  - "Preheat oven to 350°F and grease a baking dish"
+  - "Mix flour, sugar, baking powder, and salt in a bowl"
+  - "Add sourdough starter, melted butter, and vanilla; stir until combined"
+  - "Pour batter into prepared baking dish"
+  - "Arrange peach slices on top and sprinkle with remaining sugar"
+  - "Bake for 50-55 minutes until golden brown"
+  - "Serve warm with ice cream"
 ---
 
 There’s something so comforting about peach cobbler—it’s rustic, simple, and brimming with summer flavor. If you’re like me and not ready for fall yet, I’m hanging onto summer one cobbler at a time. This sourdough version adds a little twist by incorporating active or discard starter, which gives the cobbler base a subtle tang and a tender, cake-like texture. It’s the perfect way to use up a little extra sourdough starter while creating a dessert that feels both nostalgic and special.

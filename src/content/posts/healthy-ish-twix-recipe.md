@@ -20,6 +20,14 @@ ingredients:
   - "1/4 cup coconut oil, melted"
   - "1/4 cup cocoa powder"
   - "2-3 tbsp maple syrup"
+instructions:
+  - "Mix almond flour, maple syrup, coconut oil, vanilla, and salt for shortbread"
+  - "Press into lined pan and chill in freezer"
+  - "Blend softened dates, peanut butter, milk, vanilla, and salt until smooth"
+  - "Spread caramel over shortbread and freeze 45 minutes until firm"
+  - "Slice into bars"
+  - "Mix melted coconut oil, cocoa powder, and maple syrup for chocolate"
+  - "Dip bars in chocolate and chill 20-30 minutes until set"
 ---
 
 If you've been craving something sweet but still want to keep things wholesome, these Healthy Twix Bars with Dates are about to be your new favorite treat! They capture all the magic of the classic Twix bar — a crunchy shortbread base, a gooey caramel layer, and a rich chocolate topping — but they're naturally sweetened with dates, gluten-free, and made without refined sugars. Plus, they're no-bake, which means you can whip them up easily without ever turning on the oven. I especially love making these with my toddler, who enjoys helping press the shortbread into the pan and sneaking little tastes of the date caramel. It's a fun and easy recipe to involve little ones in the kitchen! Perfect for a snack, dessert, or even a sneaky breakfast treat!

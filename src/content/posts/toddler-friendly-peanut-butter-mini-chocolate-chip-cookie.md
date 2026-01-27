@@ -17,6 +17,14 @@ ingredients:
   - "1/4 tsp cinnamon (optional)"
   - "1/4 tsp baking soda"
   - "1/4 cup mini dark chocolate chips"
+instructions:
+  - "Preheat oven to 350°F and line baking sheet"
+  - "Mix all ingredients except chocolate chips until dough forms"
+  - "Fold in mini chocolate chips"
+  - "Scoop 1.5 tbsp portions onto sheet"
+  - "Flatten with fork in criss-cross pattern"
+  - "Bake 8-10 minutes until edges are golden"
+  - "Cool and enjoy"
 ---
 
 Making healthy treats for my toddler is something we both enjoy doing! My three year old is always involved in the preparation. We both have quite the sweet tooth so I am always making up healthy alternatives to get "our fix". Swapping out refined sugar for natural sweeteners helps develop their taste for wholesome flavors without the extra sugar. Plus, involving my toddler in the baking process adds an extra layer of excitement and encourages him to try new foods!

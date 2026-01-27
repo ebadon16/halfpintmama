@@ -15,6 +15,14 @@ ingredients:
   - "1/4 cup + 2 tbsp milk"
   - "1 cup dark chocolate chips"
   - "1 tbsp coconut oil (optional)"
+instructions:
+  - "Mix PB Fit powder, almond flour, and Swerve in a bowl"
+  - "Add milk and stir until dough forms"
+  - "Roll into small balls and place on parchment-lined sheet"
+  - "Refrigerate for 1 hour"
+  - "Melt chocolate chips with coconut oil"
+  - "Dip each truffle in chocolate, let excess drip off"
+  - "Refrigerate until chocolate sets, about 2 hours"
 ---
 
 Making healthy treats for my toddler is something we both enjoy doing! My two and a half year old is always involved in the preparation. We both have quite the sweet tooth so I am always making up healthy alternatives to get "our fix". Simple ingredients like oats, bananas, yogurt, and berries become the foundation for so many of our delicious snacks. Swapping out sugar for natural sweeteners helps develop their taste for wholesome flavors without the extra sugar.  Plus, involving my toddler in the baking process adds an extra layer of excitement and encourages him to try new foods! 

@@ -20,6 +20,14 @@ ingredients:
   - "1/4 tsp cinnamon (optional)"
   - "1/4 cup mini chocolate chips"
   - "1/4 tsp salt"
+instructions:
+  - "Preheat oven to 350°F and line an 8x8 pan"
+  - "Mix dry ingredients: oats, flour, flaxseeds, cinnamon, salt"
+  - "Whisk wet ingredients: sourdough, coconut oil, honey, vanilla"
+  - "Combine wet and dry, fold in chocolate chips"
+  - "Press firmly into pan"
+  - "Bake 18-22 minutes until golden brown"
+  - "Cool completely before slicing into bars"
 ---
 
 Packing homemade or thoughtfully chosen snacks for a long car ride with a toddler and baby is a game-changer for keeping everyone happy and stress-free. 

@@ -15,6 +15,14 @@ ingredients:
   - "1/4 cup + 2 tbsp milk"
   - "1 cup dark chocolate chips"
   - "1 tbsp coconut oil (optional)"
+instructions:
+  - "Mix PB Fit powder, almond flour, and Swerve in a bowl"
+  - "Add milk and stir until dough forms"
+  - "Shape into egg-like ovals and place on lined sheet"
+  - "Refrigerate 1 hour until firm"
+  - "Melt chocolate with coconut oil"
+  - "Dip each egg in chocolate, let excess drip off"
+  - "Refrigerate 2 hours until chocolate sets"
 ---
 
 This toddler-friendly peanut butter chocolate Easter egg recipe is a fun, no-bake treat that’s perfect for little hands to help with! Made with simple ingredients like creamy peanut butter-the filling is soft, naturally sweetened, and easy to shape into egg-like ovals. After chilling, the eggs are gently dipped in melted chocolate and can be decorated if you would like. These treats are a hit with kids and parents alike—delicious, festive, and easy enough to make together as a holiday activity!

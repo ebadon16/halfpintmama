@@ -16,6 +16,14 @@ ingredients:
   - "1 cup peanut butter"
   - "1 cup dark chocolate chips"
   - "2 tbsp coconut oil"
+instructions:
+  - "Combine oats, maple syrup, 1 tbsp coconut oil, protein powder, and peanut butter"
+  - "Coat muffin tin with coconut oil"
+  - "Press 1 tbsp mixture into each cup"
+  - "Melt chocolate chips with 2 tbsp coconut oil"
+  - "Pour chocolate over oat cups"
+  - "Freeze for at least 2 hours until set"
+  - "Store in freezer"
 ---
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2024/03/img_6557-1-2.jpg?w=681)

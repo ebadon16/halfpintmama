@@ -15,6 +15,13 @@ ingredients:
   - "2 tbsp maple syrup"
   - "1 tsp vanilla extract"
   - "Pinch of salt (optional)"
+instructions:
+  - "Preheat oven to 325°F and line baking sheet"
+  - "Whisk egg whites, maple syrup, vanilla, and salt until slightly frothy"
+  - "Fold in shredded coconut until well coated"
+  - "Scoop into small mounds on baking sheet"
+  - "Bake 11-14 minutes until edges are golden brown"
+  - "Cool completely before serving"
 ---
 
 These toddler-friendly coconut macaroons are a great way to offer a naturally sweet, nutritious treat without refined sugars or artificial ingredients. They have a soft, chewy texture that’s easy for little hands to hold and enjoy. Made with simple pantry staples like shredded coconut, egg whites, and maple syrup, they provide a boost of healthy fats and natural sweetness. Plus, they’re free from common allergens like dairy and gluten, making them a great option for kids with dietary sensitivities. Whether served as a snack or a special treat, these macaroons are a delicious, wholesome choice that little ones will love!

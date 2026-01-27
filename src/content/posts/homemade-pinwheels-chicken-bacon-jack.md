@@ -18,6 +18,14 @@ ingredients:
   - "1 lb sliced chicken"
   - "6 slices bacon, cooked and chopped"
   - "2 cups shredded Monterey Jack cheese"
+instructions:
+  - "Make puff pastry: pulse flour and salt, add butter, then cold water"
+  - "Chill dough 20-30 min, then fold into thirds twice and chill 1-2 hours"
+  - "Prep filling: cook and chop bacon, slice chicken"
+  - "Roll pastry to 12x16 inches, spread filling leaving 1/2 inch border"
+  - "Roll tightly into log and chill 20-30 minutes"
+  - "Preheat oven to 375°F; slice log into rounds"
+  - "Place on baking sheet, top with cheese, bake 16-22 minutes until golden"
 ---
 
 Homemade puff pastry + shredded chicken, crisp bacon, and shredded Monterey Jack — flaky, cheesy party bites.

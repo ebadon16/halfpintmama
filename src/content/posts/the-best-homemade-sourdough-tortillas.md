@@ -16,6 +16,14 @@ ingredients:
   - "1/3 cup olive oil"
   - "3/4 cup warm filtered water"
   - "1/2 cup sourdough starter (100g)"
+instructions:
+  - "Mix flour, salt, and baking powder in large bowl"
+  - "Add olive oil, warm water, and sourdough starter; mix until dough forms"
+  - "Knead until smooth and elastic"
+  - "Cover and rest 20-30 minutes"
+  - "Divide into 16 balls and roll each very thin"
+  - "Cook in hot dry skillet about 30 seconds per side until bubbles form"
+  - "Keep warm in towel while cooking remaining tortillas"
 ---
 
 Soft, pillowy, and made with real ingredients, these homemade sourdough tortillas are easier than you think. You're going to have a hard time going back to  store bought!

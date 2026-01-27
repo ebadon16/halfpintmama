@@ -17,6 +17,14 @@ ingredients:
   - "Marinara or pizza sauce"
   - "Shredded mozzarella cheese"
   - "Mini pepperoni (optional)"
+instructions:
+  - "Preheat oven to 400°F and grease a mini muffin tin"
+  - "Mix sourdough discard, sugar, salt, and Italian seasoning"
+  - "Spoon about 1 tbsp into each muffin cup"
+  - "Bake 8-10 minutes until edges are golden"
+  - "Add sauce, cheese, and toppings"
+  - "Bake 5 more minutes until cheese melts"
+  - "Cool slightly and enjoy"
 ---
 
 These are made in a muffin tin and such a fun recipe to use up sourdough discard. Not only do you get to satisfy pizza cravings but this is definitely kid-approved. This is a lunch favorite in our house

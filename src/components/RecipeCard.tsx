@@ -18,6 +18,7 @@ export function RecipeCard({ recipe, title }: RecipeCardProps) {
 
   const hasTimeInfo = recipe.prepTime || recipe.cookTime || recipe.totalTime;
   const hasIngredients = recipe.ingredients && recipe.ingredients.length > 0;
+  const hasInstructions = recipe.instructions && recipe.instructions.length > 0;
   const hasNutrition = recipe.nutrition && Object.keys(recipe.nutrition).length > 0;
 
   if (!hasTimeInfo && !hasIngredients && !hasNutrition) {
@@ -125,6 +126,28 @@ export function RecipeCard({ recipe, title }: RecipeCardProps) {
           scale={1}
           servings={servings}
         />
+      )}
+
+      {/* Instructions */}
+      {hasInstructions && (
+        <div className="mt-6 pt-6 border-t border-light-sage">
+          <h3 className="font-[family-name:var(--font-crimson)] text-lg font-bold text-deep-sage mb-4 flex items-center gap-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+            Instructions
+          </h3>
+          <ol className="space-y-3">
+            {recipe.instructions!.map((step, index) => (
+              <li key={index} className="flex gap-3">
+                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-sage text-white text-sm font-bold flex items-center justify-center">
+                  {index + 1}
+                </span>
+                <span className="text-charcoal/80 leading-relaxed">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
       )}
 
       {/* Print note */}

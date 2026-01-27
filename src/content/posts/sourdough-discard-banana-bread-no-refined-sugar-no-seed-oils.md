@@ -20,6 +20,14 @@ ingredients:
   - "1 tsp baking soda"
   - "Pinch of salt"
   - "1 tsp cinnamon"
+instructions:
+  - "Preheat oven to 350°F and grease a 9x5 loaf pan"
+  - "Mash bananas in large bowl; stir in discard, egg, coconut oil, maple syrup, vanilla"
+  - "In separate bowl, mix flour, baking soda, salt, cinnamon"
+  - "Add dry to wet and stir gently until just combined"
+  - "Pour into pan and smooth top"
+  - "Bake 50 minutes until toothpick comes out clean"
+  - "Cool 10-15 minutes before slicing"
 ---
 
 There’s something so satisfying about finding ways to use up sourdough discard—especially when it turns into something as cozy and nourishing as banana bread. This recipe is sweetened naturally with ripe bananas and maple syrup, uses no seed oils, and is perfect for a slow morning or a wholesome afternoon snack. It’s easy to make, adaptable, and full of that warm, slightly tangy flavor that sourdough lovers appreciate.

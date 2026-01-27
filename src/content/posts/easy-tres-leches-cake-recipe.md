@@ -22,6 +22,15 @@ ingredients:
   - "2 tbsp powdered sugar"
   - "1 tsp vanilla extract"
   - "Fresh strawberries (optional)"
+instructions:
+  - "Preheat oven to 350°F and grease a 9x13 inch pan"
+  - "Mix cake mix, water, oil, vanilla, and eggs; beat until smooth"
+  - "Pour into pan and bake 30-35 minutes until golden"
+  - "Let cool, then poke holes all over with a fork"
+  - "Mix evaporated milk, condensed milk, and half-and-half; pour over cake"
+  - "Refrigerate for at least 4 hours or overnight"
+  - "Whip heavy cream with powdered sugar and vanilla until stiff peaks form"
+  - "Spread whipped cream on top and garnish with strawberries"
 ---
 
 ## **My Mom's Tres Leches Cake**

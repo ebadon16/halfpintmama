@@ -19,6 +19,14 @@ ingredients:
   - "1/2 tsp baking soda"
   - "1/4 tsp salt"
   - "1/2 cup chocolate chips"
+instructions:
+  - "Preheat oven to 350°F and line baking sheet"
+  - "Whisk dry: almond flour, cocoa powder, baking soda, salt"
+  - "Mix wet: egg, maple syrup, melted coconut oil, vanilla"
+  - "Combine wet and dry ingredients"
+  - "Fold in chocolate chips"
+  - "Scoop onto sheet and flatten slightly"
+  - "Bake 10-12 minutes until set but soft in center"
 nutrition:
   calories: 150
   protein: 3

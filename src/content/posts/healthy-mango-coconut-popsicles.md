@@ -13,6 +13,12 @@ ingredients:
   - "1 cup full-fat coconut milk"
   - "1 tbsp honey (optional)"
   - "1 tsp vanilla extract (optional)"
+instructions:
+  - "Add mango, coconut milk, honey, and vanilla to blender"
+  - "Blend until completely smooth"
+  - "Pour into popsicle molds"
+  - "Freeze for about 6 hours or until solid"
+  - "Run molds under warm water to release and enjoy"
 ---
 
 On hot afternoons, there’s nothing my toddler loves more than a popsicle—and I love knowing exactly what’s in it. These healthy mango coconut popsicles are a quick and nourishing treat made with just four wholesome ingredients. They’re creamy, naturally sweetened, and full of real fruit flavor—without any added dyes or refined sugar. Plus, they’re fun for little hands to help with!

@@ -28,6 +28,15 @@ ingredients:
   - "1 tbsp heavy cream"
   - "Sliced almonds for topping"
   - "Powdered sugar (optional)"
+instructions:
+  - "Mix starter, water, salt, and flour; rest 30 min then stretch and fold"
+  - "Grate cold butter into dough during folds (4-5 folds over 2 hours)"
+  - "Bulk ferment 3-4 hours, then refrigerate overnight"
+  - "Make almond cream: cream butter, sugars, flour, egg, extracts"
+  - "Roll dough into rectangle, cut triangles, add almond cream"
+  - "Roll from base to tip and shape into crescents"
+  - "Proof 2-3 hours, brush with cream, top with almonds"
+  - "Bake at 400°F for 25-30 minutes until golden"
 ---
 
 ![Almond Sourdough Croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg)

@@ -19,6 +19,7 @@ export interface RecipeInfo {
   cookTime?: string;
   totalTime?: string;
   ingredients?: string[];
+  instructions?: string[];
   nutrition?: NutritionInfo;
 }
 
@@ -77,13 +78,14 @@ export function getPostBySlug(slug: string): Post | null {
     const { data, content } = matter(fileContents);
 
     // Build recipe info if any recipe fields exist
-    const recipe: RecipeInfo | undefined = (data.servings || data.prepTime || data.cookTime || data.ingredients || data.nutrition)
+    const recipe: RecipeInfo | undefined = (data.servings || data.prepTime || data.cookTime || data.ingredients || data.instructions || data.nutrition)
       ? {
           servings: data.servings,
           prepTime: data.prepTime,
           cookTime: data.cookTime,
           totalTime: data.totalTime,
           ingredients: data.ingredients,
+          instructions: data.instructions,
           nutrition: data.nutrition,
         }
       : undefined;

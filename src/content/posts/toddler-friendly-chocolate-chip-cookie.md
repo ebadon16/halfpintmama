@@ -17,6 +17,14 @@ ingredients:
   - "1/2 tsp baking soda"
   - "Pinch of salt"
   - "1/2 cup dark chocolate chips"
+instructions:
+  - "Preheat oven to 350°F and line baking sheet"
+  - "Mix coconut oil, maple syrup, and vanilla until smooth"
+  - "In separate bowl, combine almond flour, baking soda, and salt"
+  - "Add wet to dry ingredients and stir until dough forms"
+  - "Fold in chocolate chips"
+  - "Scoop 1.5 tbsp portions onto sheet and flatten slightly"
+  - "Bake about 10 minutes until edges are browned"
 ---
 
 Making healthy treats for my toddler is something we both enjoy doing! My three year old is always involved in the preparation. We both have quite the sweet tooth so I am always making up healthy alternatives to get "our fix". Swapping out refined sugar for natural sweeteners helps develop their taste for wholesome flavors without the extra sugar. Plus, involving my toddler in the baking process adds an extra layer of excitement and encourages him to try new foods!

@@ -17,6 +17,14 @@ ingredients:
   - "1/4 tsp salt (optional)"
   - "2 tbsp unsalted butter, cold and cubed"
   - "2-3 tbsp cold water"
+instructions:
+  - "Preheat oven to 350°F and line baking sheet"
+  - "Blend cheese, flour, garlic powder, and salt in food processor"
+  - "Add butter and pulse until crumbly; add water until dough forms"
+  - "Knead dough and roll to 1/8 inch thick"
+  - "Cut into 1-inch squares and poke holes in center"
+  - "Bake 12-15 minutes until golden and crisp"
+  - "Cool completely before serving"
 ---
 
 Making homemade Cheez-Its for your toddler is a great way to offer a healthier, preservative-free snack packed with real cheese and simple ingredients. These bite-sized crackers are crispy, cheesy, and are baked instead of fried. Making them a lighter alternative to store-bought options. Whether for snack time or on-the-go munching, these toddler-friendly homemade Cheez-Its are sure to be a hit!

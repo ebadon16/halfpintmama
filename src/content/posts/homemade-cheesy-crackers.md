@@ -21,6 +21,14 @@ ingredients:
   - "1/2 tsp paprika"
   - "2 tbsp cold unsalted butter, cubed"
   - "1/4 cup cold water"
+instructions:
+  - "Pulse cheese in food processor; add flour and spices until combined"
+  - "Add butter and water; pulse until dough forms"
+  - "Knead on floured surface, divide in half, wrap and chill 1 hour"
+  - "Preheat oven to 350°F and line baking sheet"
+  - "Roll dough to 1/8 inch thick and cut into shapes"
+  - "Bake 12-15 minutes until golden at edges"
+  - "Cool completely before serving"
 ---
 
 Simple Ingredients | No Preservatives | Made for Little Hands

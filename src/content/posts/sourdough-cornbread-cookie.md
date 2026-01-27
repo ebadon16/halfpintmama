@@ -21,6 +21,14 @@ ingredients:
   - "1/4 cup honey"
   - "1 large egg yolk"
   - "1/2 cup sourdough starter"
+instructions:
+  - "Whisk flour, cornmeal, baking soda, baking powder, and salt"
+  - "Cream butter with both sugars until light and fluffy"
+  - "Beat in honey, egg yolk, and sourdough starter"
+  - "Fold in dry ingredients until just combined"
+  - "Chill dough at least 1 hour (or up to 24 hours for deeper flavor)"
+  - "Scoop dough onto lined baking sheet"
+  - "Bake at 350°F for 10-12 minutes until edges are golden"
 ---
 
 These cookies are a little crunchy from the cornmeal, buttery and sweet from the sugars and honey, with a gentle tang from sourdough starter. They bake up tender in the middle with golden edges. Think of cornbread drenched in butter and honey all rolled into a cookie, um yes please.

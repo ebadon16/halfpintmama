@@ -19,6 +19,14 @@ ingredients:
   - "2 tbsp olive oil"
   - "1/3 cup water"
   - "Melted butter and salt for tossing"
+instructions:
+  - "Whisk flour, baking powder, sugar, and salt in a bowl"
+  - "Add sourdough starter and cut in cold butter until pea-sized crumbs"
+  - "Add olive oil and water; mix until dough forms"
+  - "Wrap and chill for 30 minutes"
+  - "Roll dough to 1/16 inch, poke holes with fork, cut into rounds"
+  - "Bake at 400°F for 10-12 minutes until golden"
+  - "Toss warm crackers with melted butter and salt"
 ---
 
 *These copycat Ritz crackers have the added benefit of sourdough* and *are buttery, crisp, and made with real ingredients!*

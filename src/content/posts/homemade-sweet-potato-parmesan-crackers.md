@@ -16,6 +16,14 @@ ingredients:
   - "Pinch of salt"
   - "1/3 cup grated Parmesan cheese"
   - "1/4 tsp baking powder"
+instructions:
+  - "Preheat oven to 375°F and line baking sheet"
+  - "Mix sweet potato, flour, coconut oil, salt, Parmesan, and baking powder"
+  - "Knead until smooth dough forms"
+  - "Roll between parchment to 1/8 inch thick"
+  - "Cut into squares or shapes"
+  - "Bake 15-18 minutes until golden and crispy"
+  - "Cool completely before serving"
 ---
 
 Making homemade sweet potato crackers for my toddler is a fun and nutritious way to offer a crunchy, wholesome snack without preservatives or artificial ingredients. These crackers are packed with vitamins from the sweet potato, fiber from whole grains, and a hint of natural sweetness that little ones love. By baking them at home, you can control the ingredients, adjust the texture for tiny teeth, and even add flavors like mild spices or cheese for variety. This particular recipe adds in some parmesan cheese!

@@ -19,6 +19,13 @@ ingredients:
   - "1/2 cup pumpkin seeds"
   - "2 tsp pumpkin pie spice"
   - "1 tsp flaked sea salt"
+instructions:
+  - "Preheat oven to 350°F and line baking sheet"
+  - "Whisk coconut oil, maple syrup, and pumpkin puree in a large bowl"
+  - "Add oats, nuts, seeds, pumpkin pie spice, and salt; stir until coated"
+  - "Spread evenly on baking sheet"
+  - "Bake 15 minutes, stir, then bake another 10 minutes until golden"
+  - "Cool completely before breaking apart"
 ---
 
 This Homemade Pumpkin Maple Granola has become a fall staple in our house. It’s crunchy, spiced, with just the right balance of sweet and salty. Reminds me of a crisp autumn morning with my little ones cozied up next to me.

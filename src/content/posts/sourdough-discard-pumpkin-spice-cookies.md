@@ -24,6 +24,14 @@ ingredients:
   - "1/3 cup granulated sugar (for coating)"
   - "1/2 tsp ground cinnamon (for coating)"
   - "1/4 tsp ground ginger (for coating)"
+instructions:
+  - "Cream butter with both sugars until light and fluffy"
+  - "Mix in pumpkin puree and sourdough discard"
+  - "Whisk flour, baking soda, spices, and salt; add to wet mixture"
+  - "Chill dough at least 1 hour (overnight for best results)"
+  - "Mix coating: sugar, cinnamon, ginger"
+  - "Scoop dough, roll in coating, place on lined sheet"
+  - "Bake at 350°F for 15 minutes until edges are set"
 ---
 
 There’s something so comforting about finding new ways to use up sourdough discard and this batch of soft, spiced pumpkin cookies do just that. These are everything I love about fall baking. Super cozy, fragrant, and just a little tangy from the sourdough.

@@ -22,6 +22,14 @@ ingredients:
   - "1/2 tsp baking soda"
   - "1/4 tsp nutmeg"
   - "1/4 tsp salt"
+instructions:
+  - "Preheat oven to 350°F and grease a 9x5 loaf pan"
+  - "Mix wet ingredients: discard, pumpkin, egg, coconut oil, maple syrup, vanilla"
+  - "In separate bowl, whisk flour, cinnamon, pumpkin spice, baking soda, nutmeg, salt"
+  - "Add dry to wet and stir until just combined"
+  - "Pour into pan and smooth top"
+  - "Bake 50 minutes until toothpick comes out clean"
+  - "Cool 10-15 minutes before slicing"
 ---
 
 There’s something so satisfying about finding ways to use up sourdough discard. This fall favorite is a cozy and nourishing pumpkin bread. This recipe is naturally sweetened with pure maple syrup and pumpkin purée. It uses no seed oils, and is perfect for slow autumn mornings or a wholesome afternoon snack. This has a subtle spiced flavor paired with a little tang from the sourdough. 

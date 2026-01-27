@@ -16,6 +16,13 @@ ingredients:
   - "2 tbsp ground flaxseeds (optional)"
   - "1/4 cup milk"
   - "Your favorite fruit jam or jelly"
+instructions:
+  - "Combine oats, peanut butter, honey, vanilla, flaxseeds, and milk"
+  - "Mix until well combined"
+  - "Press mixture into muffin tin cups, forming a well in center"
+  - "Add a spoonful of jam into each well"
+  - "Refrigerate for at least 1 hour until firm"
+  - "Pop out of muffin tin and enjoy"
 ---
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/04/img_5583-1.jpg?w=598)

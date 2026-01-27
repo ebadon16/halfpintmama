@@ -16,6 +16,14 @@ ingredients:
   - "1/2 tsp vanilla extract"
   - "3 tbsp natural sprinkles"
   - "1-2 tbsp milk"
+instructions:
+  - "Combine dry ingredients: almond flour, protein powder, sprinkles"
+  - "In separate bowl, mix peanut butter, maple syrup, vanilla"
+  - "Add wet to dry ingredients and stir"
+  - "Add milk 1 tbsp at a time until dough forms"
+  - "Roll into balls and place on parchment-lined sheet"
+  - "Refrigerate 20-30 minutes until firm"
+  - "Store in airtight container in fridge"
 ---
 
 ![](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2025/03/img_5360.jpg?w=768)

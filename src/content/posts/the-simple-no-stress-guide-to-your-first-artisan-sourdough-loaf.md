@@ -15,6 +15,14 @@ ingredients:
   - "1 1/2 cups warm water"
   - "4 cups bread flour"
   - "1 1/2 tsp salt"
+instructions:
+  - "Mix starter, water, and salt; add flour until shaggy dough forms"
+  - "Rest 1 hour covered"
+  - "Stretch and fold every 30 min (4-5 times)"
+  - "Bulk ferment on counter about 4 hours until doubled"
+  - "Shape, place in floured banneton, cover and refrigerate 12-24 hours"
+  - "Bake in Dutch oven at 450°F: 20 min lid on, then 425°F 20 min lid off"
+  - "Cool at least 1 hour before slicing"
 nutrition:
   calories: 120
   protein: 4
