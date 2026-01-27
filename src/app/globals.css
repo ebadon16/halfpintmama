@@ -85,57 +85,57 @@ html {
   }
 
   /* RECIPE-ONLY PRINT MODE */
-  body.print-recipe-only * {
+  /* Hide site header and footer from layout */
+  body.print-recipe-only > header,
+  body.print-recipe-only > footer {
     display: none !important;
   }
 
-  body.print-recipe-only .recipe-card,
-  body.print-recipe-only .recipe-card * {
-    display: block !important;
+  /* Hide siblings of article (related posts section, comments, CTAs) */
+  body.print-recipe-only article ~ * {
+    display: none !important;
   }
 
-  body.print-recipe-only .recipe-card {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
+  /* Hide all direct children of article except recipe-card */
+  body.print-recipe-only article > nav,
+  body.print-recipe-only article > header,
+  body.print-recipe-only article > footer,
+  body.print-recipe-only article > .prose,
+  body.print-recipe-only article > div:not(.recipe-card) {
+    display: none !important;
+  }
+
+  /* Ensure containers in the path to recipe-card are visible */
+  body.print-recipe-only main,
+  body.print-recipe-only main > div,
+  body.print-recipe-only article {
+    display: block !important;
+    max-width: 100% !important;
+    padding: 0 !important;
     margin: 0 !important;
-    padding: 20pt !important;
-    border: none !important;
-    box-shadow: none !important;
+    background: white !important;
   }
 
-  body.print-recipe-only .recipe-card .grid {
-    display: grid !important;
-  }
-
-  body.print-recipe-only .recipe-card .flex {
-    display: flex !important;
-  }
-
-  body.print-recipe-only .recipe-card ol {
+  /* Style the recipe card for printing */
+  body.print-recipe-only .recipe-card {
     display: block !important;
-    list-style: none !important;
+    position: relative !important;
+    margin: 0 auto !important;
+    padding: 20pt !important;
+    border: 2px solid #333 !important;
+    box-shadow: none !important;
+    background: white !important;
+    max-width: 100% !important;
   }
 
-  body.print-recipe-only .recipe-card li {
-    display: flex !important;
-  }
-
-  body.print-recipe-only .recipe-card span {
-    display: inline !important;
-  }
-
-  body.print-recipe-only .recipe-card svg {
-    display: inline-block !important;
-  }
-
-  body.print-recipe-only .recipe-card input[type="checkbox"] {
-    display: inline-block !important;
-  }
-
+  /* Hide interactive elements within recipe card */
   body.print-recipe-only .recipe-card [data-print-hide] {
     display: none !important;
+  }
+
+  /* Show print-only elements */
+  body.print-recipe-only [data-print-show] {
+    display: block !important;
   }
 
   /* Make content full width */
