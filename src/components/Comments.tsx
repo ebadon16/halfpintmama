@@ -15,6 +15,7 @@ interface Comment {
 
 interface CommentsProps {
   postSlug: string;
+  postTitle: string;
 }
 
 interface CommentsPreviewProps {
@@ -90,12 +91,13 @@ export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
   );
 }
 
-export function Comments({ postSlug }: CommentsProps) {
+export function Comments({ postSlug, postTitle }: CommentsProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [averageRating, setAverageRating] = useState(0);
   const [totalRatings, setTotalRatings] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
+  const [replyingToComment, setReplyingToComment] = useState<Comment | null>(null);
   const [formData, setFormData] = useState({
     author: "",
     email: "",
@@ -144,9 +146,6 @@ export function Comments({ postSlug }: CommentsProps) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
     const newComment: Comment = {
       id: Date.now().toString(),
       author: formData.author,
@@ -155,6 +154,27 @@ export function Comments({ postSlug }: CommentsProps) {
       rating: replyingTo ? 0 : formData.rating,
       date: new Date().toISOString(),
     };
+
+    // Send email notification
+    try {
+      await fetch("/api/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          author: formData.author,
+          email: formData.email,
+          content: formData.content,
+          rating: replyingTo ? 0 : formData.rating,
+          postSlug,
+          postTitle,
+          isReply: !!replyingTo,
+          replyToAuthor: replyingToComment?.author,
+          replyToEmail: replyingToComment?.email,
+        }),
+      });
+    } catch (error) {
+      console.error("Failed to send notification:", error);
+    }
 
     if (replyingTo) {
       // Add as reply
@@ -177,6 +197,7 @@ export function Comments({ postSlug }: CommentsProps) {
     setFormData({ author: "", email: "", content: "", rating: 0 });
     setShowForm(false);
     setReplyingTo(null);
+    setReplyingToComment(null);
     setIsSubmitting(false);
     setSubmitSuccess(true);
     setTimeout(() => setSubmitSuccess(false), 3000);
@@ -214,6 +235,7 @@ export function Comments({ postSlug }: CommentsProps) {
           <button
             onClick={() => {
               setReplyingTo(comment.id);
+              setReplyingToComment(comment);
               setShowForm(true);
             }}
             className="text-sm text-terracotta hover:text-deep-sage transition-colors"
@@ -248,6 +270,7 @@ export function Comments({ postSlug }: CommentsProps) {
               onClick={() => {
                 setShowForm(true);
                 setReplyingTo(null);
+                setReplyingToComment(null);
               }}
               className="px-5 py-2.5 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
             >
@@ -274,6 +297,7 @@ export function Comments({ postSlug }: CommentsProps) {
                 onClick={() => {
                   setShowForm(false);
                   setReplyingTo(null);
+                  setReplyingToComment(null);
                 }}
                 className="text-charcoal/50 hover:text-charcoal transition-colors"
               >

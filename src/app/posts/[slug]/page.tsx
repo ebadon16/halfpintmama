@@ -269,7 +269,7 @@ export default async function PostPage({ params }: PageProps) {
       )}
 
       {/* Comments Section */}
-      <Comments postSlug={slug} />
+      <Comments postSlug={slug} postTitle={post.title} />
 
       {/* Want More? Join My List - Bottom CTA */}
       <BottomEmailCTA />
