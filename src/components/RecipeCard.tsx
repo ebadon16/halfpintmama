@@ -19,8 +19,10 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
   const scale = servings / baseServings;
 
   const hasTimeInfo = recipe.prepTime || recipe.cookTime || recipe.totalTime;
-  const hasIngredients = recipe.ingredients && recipe.ingredients.length > 0;
-  const hasInstructions = recipe.instructions && recipe.instructions.length > 0;
+  const hasIngredients = (recipe.ingredients && recipe.ingredients.length > 0) ||
+                         (recipe.ingredientSections && recipe.ingredientSections.length > 0);
+  const hasInstructions = (recipe.instructions && recipe.instructions.length > 0) ||
+                          (recipe.instructionSections && recipe.instructionSections.length > 0);
   const hasNutrition = recipe.nutrition && Object.keys(recipe.nutrition).length > 0;
 
   if (!hasTimeInfo && !hasIngredients && !hasNutrition) {
@@ -112,7 +114,8 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
               </div>
             )}
             <IngredientChecklist
-              ingredients={recipe.ingredients!}
+              ingredients={recipe.ingredients}
+              ingredientSections={recipe.ingredientSections}
               scale={scale}
             />
           </div>
@@ -160,16 +163,38 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
             </svg>
             Instructions
           </h3>
-          <ol className="space-y-3">
-            {recipe.instructions!.map((step, index) => (
-              <li key={index} className="flex gap-3">
-                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-sage text-white text-sm font-bold flex items-center justify-center">
-                  {index + 1}
-                </span>
-                <span className="text-charcoal/80 leading-relaxed">{step}</span>
-              </li>
-            ))}
-          </ol>
+          {recipe.instructionSections && recipe.instructionSections.length > 0 ? (
+            <div className="space-y-6">
+              {recipe.instructionSections.map((section, sectionIndex) => (
+                <div key={sectionIndex}>
+                  <h4 className="font-[family-name:var(--font-crimson)] text-base font-semibold text-deep-sage mb-3">
+                    {section.title}
+                  </h4>
+                  <ol className="space-y-3">
+                    {section.steps.map((step, stepIndex) => (
+                      <li key={stepIndex} className="flex gap-3">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-sage text-white text-sm font-bold flex items-center justify-center">
+                          {stepIndex + 1}
+                        </span>
+                        <span className="text-charcoal/80 leading-relaxed">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+            </div>
+          ) : recipe.instructions ? (
+            <ol className="space-y-3">
+              {recipe.instructions.map((step, index) => (
+                <li key={index} className="flex gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-sage text-white text-sm font-bold flex items-center justify-center">
+                    {index + 1}
+                  </span>
+                  <span className="text-charcoal/80 leading-relaxed">{step}</span>
+                </li>
+              ))}
+            </ol>
+          ) : null}
         </div>
       )}
 

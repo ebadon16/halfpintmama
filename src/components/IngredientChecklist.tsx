@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { IngredientSection } from "@/lib/posts";
 
 interface IngredientChecklistProps {
-  ingredients: string[];
+  ingredients?: string[];
+  ingredientSections?: IngredientSection[];
   scale?: number;
 }
 
@@ -63,21 +65,67 @@ function scaleIngredient(ingredient: string, scale: number): string {
   return ingredient;
 }
 
-export function IngredientChecklist({ ingredients, scale = 1 }: IngredientChecklistProps) {
-  const [checked, setChecked] = useState<Set<number>>(new Set());
+export function IngredientChecklist({ ingredients, ingredientSections, scale = 1 }: IngredientChecklistProps) {
+  // Flatten all ingredients for counting
+  const allIngredients: { ingredient: string; sectionIndex: number; itemIndex: number }[] = [];
 
-  const toggleIngredient = (index: number) => {
+  if (ingredientSections && ingredientSections.length > 0) {
+    ingredientSections.forEach((section, sectionIndex) => {
+      section.items.forEach((item, itemIndex) => {
+        allIngredients.push({ ingredient: item, sectionIndex, itemIndex });
+      });
+    });
+  } else if (ingredients) {
+    ingredients.forEach((item, index) => {
+      allIngredients.push({ ingredient: item, sectionIndex: 0, itemIndex: index });
+    });
+  }
+
+  const [checked, setChecked] = useState<Set<string>>(new Set());
+
+  const getKey = (sectionIndex: number, itemIndex: number) => `${sectionIndex}-${itemIndex}`;
+
+  const toggleIngredient = (sectionIndex: number, itemIndex: number) => {
+    const key = getKey(sectionIndex, itemIndex);
     const newChecked = new Set(checked);
-    if (newChecked.has(index)) {
-      newChecked.delete(index);
+    if (newChecked.has(key)) {
+      newChecked.delete(key);
     } else {
-      newChecked.add(index);
+      newChecked.add(key);
     }
     setChecked(newChecked);
   };
 
   const clearAll = () => setChecked(new Set());
-  const checkAll = () => setChecked(new Set(ingredients.map((_, i) => i)));
+  const checkAll = () => {
+    const allKeys = allIngredients.map(({ sectionIndex, itemIndex }) => getKey(sectionIndex, itemIndex));
+    setChecked(new Set(allKeys));
+  };
+
+  const renderIngredientItem = (ingredient: string, sectionIndex: number, itemIndex: number) => {
+    const key = getKey(sectionIndex, itemIndex);
+    return (
+      <li key={key} className="flex items-start gap-3">
+        <label className="flex items-start gap-3 cursor-pointer group w-full">
+          <input
+            type="checkbox"
+            checked={checked.has(key)}
+            onChange={() => toggleIngredient(sectionIndex, itemIndex)}
+            className="mt-1 w-5 h-5 rounded border-2 border-sage text-sage focus:ring-sage cursor-pointer"
+          />
+          <span
+            className={`transition-all ${
+              checked.has(key)
+                ? "line-through text-charcoal/40"
+                : "text-charcoal/80 group-hover:text-charcoal"
+            }`}
+          >
+            {scaleIngredient(ingredient, scale)}
+          </span>
+        </label>
+      </li>
+    );
+  };
 
   return (
     <div className="ingredient-checklist">
@@ -102,32 +150,31 @@ export function IngredientChecklist({ ingredients, scale = 1 }: IngredientCheckl
         </div>
       </div>
 
-      <ul className="space-y-2">
-        {ingredients.map((ingredient, index) => (
-          <li key={index} className="flex items-start gap-3">
-            <label className="flex items-start gap-3 cursor-pointer group w-full">
-              <input
-                type="checkbox"
-                checked={checked.has(index)}
-                onChange={() => toggleIngredient(index)}
-                className="mt-1 w-5 h-5 rounded border-2 border-sage text-sage focus:ring-sage cursor-pointer"
-              />
-              <span
-                className={`transition-all ${
-                  checked.has(index)
-                    ? "line-through text-charcoal/40"
-                    : "text-charcoal/80 group-hover:text-charcoal"
-                }`}
-              >
-                {scaleIngredient(ingredient, scale)}
-              </span>
-            </label>
-          </li>
-        ))}
-      </ul>
+      {ingredientSections && ingredientSections.length > 0 ? (
+        <div className="space-y-4">
+          {ingredientSections.map((section, sectionIndex) => (
+            <div key={sectionIndex}>
+              <h4 className="font-[family-name:var(--font-crimson)] text-base font-semibold text-deep-sage mb-2">
+                {section.title}
+              </h4>
+              <ul className="space-y-2">
+                {section.items.map((item, itemIndex) =>
+                  renderIngredientItem(item, sectionIndex, itemIndex)
+                )}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ) : ingredients ? (
+        <ul className="space-y-2">
+          {ingredients.map((ingredient, index) =>
+            renderIngredientItem(ingredient, 0, index)
+          )}
+        </ul>
+      ) : null}
 
       <p className="mt-3 text-sm text-charcoal/50">
-        {checked.size} of {ingredients.length} ingredients checked
+        {checked.size} of {allIngredients.length} ingredients checked
       </p>
     </div>
   );

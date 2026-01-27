@@ -10,37 +10,47 @@ servings: 8
 prepTime: "30 min"
 cookTime: "30 min"
 totalTime: "12-36 hours"
-ingredients:
-  - "1/2 cup active sourdough starter (100g)"
-  - "1 1/4 cups filtered warm water (300g)"
-  - "1 tsp salt (6g)"
-  - "3 cups all-purpose flour (375g)"
-  - "1/2 cup cold unsalted butter (113g)"
-  - "1/2 cup softened unsalted butter (113g)"
-  - "1/4 cup organic cane sugar (50g)"
-  - "2 tbsp brown sugar (25g)"
-  - "1 cup + 1 tbsp blanched almond flour (112g)"
-  - "1 tbsp all-purpose flour (8g)"
-  - "1/4 tsp fine salt"
-  - "1 large egg"
-  - "1/2 tsp vanilla extract"
-  - "1/4 tsp almond extract"
-  - "1 tbsp heavy cream"
-  - "Sliced almonds for topping"
-  - "Powdered sugar (optional)"
-instructions:
-  - "Mix starter, water, salt, and flour; rest 1 hour"
-  - "Do first stretch and fold, rest 30 min"
-  - "Grate 1/3 cold butter into dough, stretch and fold, rest 30 min"
-  - "Repeat butter grating and folds two more times"
-  - "Final stretch and fold (no butter), rest 4 hours at room temp"
-  - "Cover and refrigerate 12-36 hours"
-  - "Make almond cream: cream butter with sugars, add almond flour, flour, salt, egg, extracts, and cream"
-  - "Roll dough to 1/2 inch thick rectangle, cut into 8 pieces"
-  - "Roll each piece to 1/4 inch, spread filling, roll both ends to meet in middle"
-  - "Rise 1 hour covered"
-  - "Top with remaining filling and sliced almonds"
-  - "Bake at 425°F for 10 min, then 350°F for 18-20 min until golden"
+ingredientSections:
+  - title: "Croissant Dough"
+    items:
+      - "1/2 cup active sourdough starter (100g)"
+      - "1 1/4 cups filtered warm water (300g)"
+      - "1 tsp salt (6g)"
+      - "3 cups all-purpose flour (375g)"
+      - "1/2 cup cold unsalted butter (113g)"
+  - title: "Almond Cream Filling"
+    items:
+      - "1/2 cup softened unsalted butter (113g)"
+      - "1/4 cup organic cane sugar (50g)"
+      - "2 tbsp brown sugar (25g)"
+      - "1 cup + 1 tbsp blanched almond flour (112g)"
+      - "1 tbsp all-purpose flour (8g)"
+      - "1/4 tsp fine salt"
+      - "1 large egg"
+      - "1/2 tsp vanilla extract"
+      - "1/4 tsp almond extract"
+      - "1 tbsp heavy cream"
+  - title: "Topping"
+    items:
+      - "Sliced almonds"
+      - "Powdered sugar (optional)"
+instructionSections:
+  - title: "Day 1 – Dough"
+    steps:
+      - "Mix starter, water, salt, and flour; rest 1 hour"
+      - "Do first stretch and fold, rest 30 min"
+      - "Grate 1/3 cold butter into dough, stretch and fold, rest 30 min"
+      - "Repeat butter grating and folds two more times"
+      - "Final stretch and fold (no butter), rest 4 hours at room temp"
+      - "Cover and refrigerate 12-36 hours"
+  - title: "Bake Day – Filling & Shaping"
+    steps:
+      - "Make almond cream: cream butter with sugars, add almond flour, flour, salt, egg, extracts, and cream"
+      - "Roll dough to 1/2 inch thick rectangle, cut into 8 pieces"
+      - "Roll each piece to 1/4 inch, spread filling, roll both ends to meet in middle"
+      - "Rise 1 hour covered"
+      - "Top with remaining filling and sliced almonds"
+      - "Bake at 425°F for 10 min, then 350°F for 18-20 min until golden"
 ---
 
 # Almond Sourdough Croissants (No Laminating Required!)
@@ -260,57 +270,3 @@ My family really, really loves these. They're the perfect weekend baking project
 If you make these, please tag me—I'd love to see how they turn out!
 
 <!-- IMG: Croissant -20.jpeg | LAYOUT: center | SIZE: medium -->
-
----
-
-## Almond Sourdough Croissants Recipe
-
-**Yields:** 8 croissants
-
-### Ingredients
-
-**Croissant Dough:**
-- ½ cup active sourdough starter (100g)
-- 1¼ cups filtered warm water (300g)
-- 1 teaspoon salt (6g)
-- 3 cups all-purpose flour (375g)
-- ½ cup cold unsalted butter (113g)
-
-**Almond Cream Filling:**
-- ½ cup unsalted butter, softened (113g)
-- ¼ cup organic cane sugar (50g)
-- 2 tablespoons brown sugar (25g)
-- 1 cup + 1 tablespoon blanched fine almond flour (112g)
-- 1 tablespoon all-purpose flour (8g)
-- ¼ teaspoon fine salt
-- 1 large egg
-- ½ teaspoon vanilla extract
-- ¼ teaspoon almond extract
-- 1 tablespoon heavy cream
-
-**Topping:**
-- Sliced almonds
-- Powdered sugar (optional)
-
-### Instructions
-
-**Day 1 – Dough:**
-
-1. Mix starter, warm water, and salt until milky. Add flour and combine. Cover with a damp towel and rest for 1 hour.
-2. Do first stretch and fold. Cover and rest for 30 minutes.
-3. Grate ⅓ of cold butter into dough. Stretch and fold. Cover and rest for 30 minutes.
-4. Repeat step 3 two more times with remaining butter.
-5. Do a final stretch and fold (no butter). Cover and rest at room temperature for 4 hours.
-6. Cover with plastic wrap and refrigerate 12–36 hours.
-
-**Bake Day – Filling & Shaping:**
-
-1. Make filling: Cream softened butter with both sugars. Add almond flour, all-purpose flour, salt, egg, extracts, and cream. Mix well. Refrigerate.
-2. Roll chilled dough into a ½-inch thick rectangle on a floured surface. Cut into 8 smaller rectangles.
-3. Roll each piece to ¼-inch thick. Spread filling (thicker on edges). Roll both sides inward to meet in the middle. Flip seam-side down onto lined baking sheet.
-4. Cover and rise 1 hour until puffy.
-5. Top with remaining filling and sliced almonds.
-6. Bake at 425°F for 10 minutes. Rotate pan, reduce to 350°F, bake 18–20 minutes until golden. (Place an empty baking sheet on the rack below to prevent burning.)
-7. Cool slightly, sprinkle with powdered sugar and enjoy warm!
-
-Flaky, buttery, and filled with that dreamy almond cream—these croissants are a weekend baking project your whole family will thank you for.

@@ -13,13 +13,25 @@ export interface NutritionInfo {
   sugar?: number;
 }
 
+export interface IngredientSection {
+  title: string;
+  items: string[];
+}
+
+export interface InstructionSection {
+  title: string;
+  steps: string[];
+}
+
 export interface RecipeInfo {
   servings?: number;
   prepTime?: string;
   cookTime?: string;
   totalTime?: string;
   ingredients?: string[];
+  ingredientSections?: IngredientSection[];
   instructions?: string[];
+  instructionSections?: InstructionSection[];
   nutrition?: NutritionInfo;
 }
 
@@ -78,14 +90,16 @@ export function getPostBySlug(slug: string): Post | null {
     const { data, content } = matter(fileContents);
 
     // Build recipe info if any recipe fields exist
-    const recipe: RecipeInfo | undefined = (data.servings || data.prepTime || data.cookTime || data.ingredients || data.instructions || data.nutrition)
+    const recipe: RecipeInfo | undefined = (data.servings || data.prepTime || data.cookTime || data.ingredients || data.ingredientSections || data.instructions || data.instructionSections || data.nutrition)
       ? {
           servings: data.servings,
           prepTime: data.prepTime,
           cookTime: data.cookTime,
           totalTime: data.totalTime,
           ingredients: data.ingredients,
+          ingredientSections: data.ingredientSections,
           instructions: data.instructions,
+          instructionSections: data.instructionSections,
           nutrition: data.nutrition,
         }
       : undefined;
