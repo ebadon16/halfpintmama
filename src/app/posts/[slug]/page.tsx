@@ -326,11 +326,11 @@ function renderMarkdown(content: string): string {
 
   // Now process regular markdown
   processed = processed
-    // Headers
-    .replace(/^#### (.+)$/gm, '<h4>$1</h4>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // Headers with inline styles
+    .replace(/^#### (.+)$/gm, '<h4 style="font-family: Crimson Text, Georgia, serif; font-size: 18px; font-weight: 700; color: #3A3A38; margin-top: 24px; margin-bottom: 8px;">$1</h4>')
+    .replace(/^### (.+)$/gm, '<h3 style="font-family: Crimson Text, Georgia, serif; font-size: 22px; font-weight: 700; color: #3A3A38; margin-top: 32px; margin-bottom: 12px;">$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2 style="font-family: Crimson Text, Georgia, serif; font-size: 28px; font-weight: 700; color: #3A3A38; margin-top: 48px; margin-bottom: 16px;">$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1 style="font-family: Crimson Text, Georgia, serif; font-size: 36px; font-weight: 700; color: #4A3728; margin-bottom: 40px;">$1</h1>')
     // Bold and italic
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
