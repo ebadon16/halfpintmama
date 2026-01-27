@@ -30,7 +30,7 @@ ingredients:
   - "Powdered sugar (optional)"
 ---
 
-![Hero croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg)
+![Almond Sourdough Croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0893.jpg)
 
 Flaky, buttery, and filled with homemade almond cream—these sourdough croissants are so much easier than the traditional method and absolutely worth the wait.
 
@@ -67,8 +67,6 @@ Let's make some croissants!
 - ¼ teaspoon almond extract
 - 1 tablespoon heavy cream
 
-![Croissant closeup](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
-
 *For Topping:*
 
 - Sliced almonds
@@ -83,6 +81,8 @@ Let's make some croissants!
 - Lined baking sheet
 - Plastic wrap or beeswax wrap
 - Clean dish towel
+
+![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 ## Step-by-Step Instructions
 
@@ -115,6 +115,8 @@ Grate another third of your butter onto the dough. Do your stretch and folds. Co
 **Step 5: Fourth stretch and fold + butter**
 
 Grate the last third of your butter onto the dough. Do your stretch and folds. Cover and wait 30 minutes.
+
+![Dough with butter](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0812.jpg)
 
 **Step 6: Fifth and final stretch and fold**
 
