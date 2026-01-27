@@ -19,6 +19,7 @@ interface CommentsProps {
 
 interface CommentsPreviewProps {
   postSlug: string;
+  category?: string;
 }
 
 // Storage key for comments
@@ -26,10 +27,14 @@ const getStorageKey = (slug: string) => `hpm_comments_${slug}`;
 const getRatingsKey = (slug: string) => `hpm_ratings_${slug}`;
 
 // Preview component to show at top of post
-export function CommentsPreview({ postSlug }: CommentsPreviewProps) {
+export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
   const [averageRating, setAverageRating] = useState(0);
   const [totalRatings, setTotalRatings] = useState(0);
   const [commentCount, setCommentCount] = useState(0);
+
+  const isRecipe = category === "cooking";
+  const title = isRecipe ? "Rate & Review This Recipe" : "Rate & Review";
+  const emptyText = isRecipe ? "Be the first to rate this recipe!" : "Be the first to leave a review!";
 
   useEffect(() => {
     const storedComments = localStorage.getItem(getStorageKey(postSlug));
@@ -59,7 +64,7 @@ export function CommentsPreview({ postSlug }: CommentsPreviewProps) {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-center sm:text-left">
           <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
-            Rate & Review This Recipe
+            {title}
           </h3>
           {totalRatings > 0 ? (
             <div className="flex items-center gap-2 justify-center sm:justify-start">
@@ -68,7 +73,7 @@ export function CommentsPreview({ postSlug }: CommentsPreviewProps) {
               <span className="text-sm text-charcoal/70">{commentCount} comment{commentCount !== 1 ? "s" : ""}</span>
             </div>
           ) : (
-            <p className="text-charcoal/70 text-sm">Be the first to rate this recipe!</p>
+            <p className="text-charcoal/70 text-sm">{emptyText}</p>
           )}
         </div>
         <button

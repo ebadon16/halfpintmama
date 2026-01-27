@@ -220,7 +220,7 @@ export default async function PostPage({ params }: PageProps) {
         )}
 
         {/* Rate & Review CTA - Prominent placement after content */}
-        <CommentsPreview postSlug={slug} />
+        <CommentsPreview postSlug={slug} category={post.category} />
 
         {/* Mid-Post Email Signup CTA */}
         <PostEmailSignup />
