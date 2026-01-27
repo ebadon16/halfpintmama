@@ -53,11 +53,49 @@ Let's make some croissants!
 
 *this post contains affiliate links, in which I may earn a small commission at no additional cost to you—thanks for your support*
 
+## What You Need
+
+### For the Croissant Dough:
+
+- ½ cup active sourdough starter (100g)
+- 1¼ cups filtered warm water (300g)
+- 1 teaspoon salt (6g)
+- 3 cups all-purpose flour (375g)
+- ½ cup unsalted butter, cold (8 tablespoons / 113g)
+
+### For the Almond Cream Filling:
+
+- ½ cup unsalted butter, softened at room temperature (8 tablespoons / 113g)
+- ¼ cup organic cane sugar (50g)
+- 2 tablespoons brown sugar (25g)
+- 1 cup + 1 tablespoon blanched fine almond flour (112g)
+- 1 tablespoon all-purpose flour (8g)
+- ¼ teaspoon fine salt
+- 1 large egg
+- ½ teaspoon vanilla extract
+- ¼ teaspoon almond extract
+- 1 tablespoon heavy cream
+
+### For Topping:
+
+- Sliced almonds
+- Powdered sugar (optional)
+
+### Equipment:
+
+- Danish whisk or wooden spoon
+- Box grater
+- Rolling pin
+- Pastry cutter
+- Lined baking sheet
+- Plastic wrap or beeswax wrap
+- Clean dish towel
+
 ![Almond croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0798.jpg)
 
 ## Step-by-Step Instructions
 
-**Part 1: Making the Dough (Day 1)**
+### Part 1: Making the Dough (Day 1)
 
 **Step 1: Mix the dough**
 
@@ -95,13 +133,13 @@ Cover with your damp towel and let the dough sit at room temperature for 4 hours
 
 **Step 7: Long ferment**
 
-![Dough ready for ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
-
 After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and place it in the fridge. You're going to let this do a long ferment for 12–36 hours.
 
 This is where the sourdough works its magic and develops that amazing flavor. I usually make my dough in the evening and then bake the next morning or even the following day.
 
-**Part 2: Making the Almond Cream Filling (Bake Day)**
+![Dough ready for ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
+
+### Part 2: Making the Almond Cream Filling (Bake Day)
 
 **Step 8: Make the filling**
 
@@ -113,11 +151,11 @@ Add in the almond flour, all-purpose flour, salt, egg, vanilla extract, almond e
 
 Pop this in the fridge while you roll out your croissants. It's easier to work with when it's slightly chilled.
 
-**Part 3: Shaping the Croissants**
-
-![Rolling out dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0865.jpg)
+### Part 3: Shaping the Croissants
 
 **Step 9: Roll out the dough**
+
+![Rolling out dough](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0865.jpg)
 
 Take your dough out of the fridge and place it on a well-floured surface. Using your hands, shape it into a rough rectangle.
 
@@ -145,11 +183,11 @@ Cover your shaped croissants with a dish towel and let them rise for about 1 hou
 
 **Step 13: Top and bake**
 
-![Topped croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0867.jpg)
-
 Preheat your oven to 425°F (220°C).
 
 With whatever almond cream filling you have left, spread a little on top of each croissant. Sprinkle with sliced almonds.
+
+![Topped croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0867.jpg)
 
 Bake at 425°F for 10 minutes. Then rotate your pan, reduce the temperature to 350°F (175°C), and bake for an additional 18–20 minutes, or until beautifully browned on top.
 
