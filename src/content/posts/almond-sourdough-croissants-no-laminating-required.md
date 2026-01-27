@@ -116,8 +116,6 @@ Grate another third of your butter onto the dough. Do your stretch and folds. Co
 
 Grate the last third of your butter onto the dough. Do your stretch and folds. Cover and wait 30 minutes.
 
-![Dough with butter](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0812.jpg)
-
 **Step 6: Fifth and final stretch and fold**
 
 Do one more set of stretch and folds—no butter this time. This is your fifth stretch and fold total.
@@ -126,7 +124,7 @@ Cover with your damp towel and let the dough sit at room temperature for 4 hours
 
 **Step 7: Long ferment**
 
-![Dough in bowl](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
+![Dough ready for ferment](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0818.jpg)
 
 After the 4-hour rise, cover the bowl with plastic wrap or beeswax wrap and place it in the fridge. You're going to let this do a long ferment for 12–36 hours.
 
@@ -168,7 +166,7 @@ Starting from both short ends, roll the dough inward until the two rolls meet in
 
 Repeat with the remaining 7 pieces of dough.
 
-![Shaped croissants on baking sheet](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0866.jpg)
+![Shaped croissants](https://bloghalfpintmama.wordpress.com/wp-content/uploads/2026/01/img_0866.jpg)
 
 **Step 12: Final rise**
 
