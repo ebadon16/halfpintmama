@@ -1,15 +1,32 @@
 "use client";
 
+import { useEffect } from "react";
+
 interface PrintButtonProps {
   title: string;
 }
 
 export function PrintButton({ title }: PrintButtonProps) {
+  useEffect(() => {
+    // Clean up class after print dialog closes
+    const handleAfterPrint = () => {
+      document.body.classList.remove("print-recipe-only");
+    };
+
+    window.addEventListener("afterprint", handleAfterPrint);
+    return () => window.removeEventListener("afterprint", handleAfterPrint);
+  }, []);
+
   const handlePrint = () => {
-    // Add print-specific title
+    // Add class to only print recipe card
+    document.body.classList.add("print-recipe-only");
+
+    // Set print-specific title
     const originalTitle = document.title;
-    document.title = `${title} | Half Pint Mama`;
+    document.title = `${title} - Recipe | Half Pint Mama`;
+
     window.print();
+
     document.title = originalTitle;
   };
 

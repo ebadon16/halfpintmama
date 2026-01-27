@@ -84,6 +84,60 @@ html {
     line-height: 1.5;
   }
 
+  /* RECIPE-ONLY PRINT MODE */
+  body.print-recipe-only * {
+    display: none !important;
+  }
+
+  body.print-recipe-only .recipe-card,
+  body.print-recipe-only .recipe-card * {
+    display: block !important;
+  }
+
+  body.print-recipe-only .recipe-card {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20pt !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  body.print-recipe-only .recipe-card .grid {
+    display: grid !important;
+  }
+
+  body.print-recipe-only .recipe-card .flex {
+    display: flex !important;
+  }
+
+  body.print-recipe-only .recipe-card ol {
+    display: block !important;
+    list-style: none !important;
+  }
+
+  body.print-recipe-only .recipe-card li {
+    display: flex !important;
+  }
+
+  body.print-recipe-only .recipe-card span {
+    display: inline !important;
+  }
+
+  body.print-recipe-only .recipe-card svg {
+    display: inline-block !important;
+  }
+
+  body.print-recipe-only .recipe-card input[type="checkbox"] {
+    display: inline-block !important;
+  }
+
+  body.print-recipe-only .recipe-card [data-print-hide] {
+    display: none !important;
+  }
+
   /* Make content full width */
   article {
     max-width: 100% !important;
@@ -126,8 +180,8 @@ html {
     max-width: 100% !important;
   }
 
-  /* Print header */
-  article:before {
+  /* Print header - only show when not in recipe-only mode */
+  body:not(.print-recipe-only) article:before {
     content: "halfpintmama.com";
     display: block;
     text-align: center;
