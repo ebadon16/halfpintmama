@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EmailPopup } from "@/components/EmailPopup";
+import { Analytics } from "@vercel/analytics/react";
 
 const crimsonText = Crimson_Text({
   variable: "--font-crimson",
@@ -43,6 +44,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <EmailPopup />
+        <Analytics />
       </body>
     </html>
   );
