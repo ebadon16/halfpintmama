@@ -108,24 +108,22 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Postpartum Meal eBook Promo */}
-            <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/20 p-6 rounded-2xl mb-6 border-2 border-terracotta/20">
-              <div className="text-4xl mb-3">🍽️</div>
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
-                Postpartum Meal Guide
+            {/* Popular Tags */}
+            <div className="bg-white p-6 rounded-2xl shadow-md mb-6">
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
+                Browse by Topic
               </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
-                Nourishing, easy-to-prep meals for new mamas. Nurse-approved recipes to fuel your recovery and keep you energized.
-              </p>
-              <div className="text-center p-3 bg-white/80 rounded-full mb-3">
-                <span className="text-terracotta font-semibold text-sm">Coming Soon</span>
+              <div className="flex flex-wrap gap-2">
+                {["sourdough", "kid-friendly", "snacks", "cookies", "healthy", "no-bake", "dessert", "crackers"].map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/tags/${tag}`}
+                    className="px-3 py-1.5 bg-light-sage/30 text-deep-sage text-sm rounded-full hover:bg-sage hover:text-white transition-all"
+                  >
+                    {tag}
+                  </Link>
+                ))}
               </div>
-              <Link
-                href="/free-guide"
-                className="block text-center text-terracotta font-medium text-sm hover:text-deep-sage transition-colors"
-              >
-                Join waitlist &rarr;
-              </Link>
             </div>
 
           </aside>
