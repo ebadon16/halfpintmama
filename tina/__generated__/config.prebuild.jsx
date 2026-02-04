@@ -187,15 +187,12 @@ var config_default = defineConfig({
               }
             ]
           },
-          // Body — plain textarea to preserve custom <!-- IMG: ... --> syntax
+          // Body — rich-text editor with inline image support
           {
-            type: "string",
+            type: "rich-text",
             name: "body",
             label: "Body",
-            isBody: true,
-            ui: {
-              component: "textarea"
-            }
+            isBody: true
           }
         ]
       }

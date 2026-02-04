@@ -123,7 +123,7 @@ type Post implements Node & Document {
   instructions: [String]
   instructionSections: [PostInstructionSections]
   nutrition: PostNutrition
-  body: String
+  body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -173,6 +173,12 @@ input PostNutritionFilter {
   sugar: NumberFilter
 }
 
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
 input PostFilter {
   title: StringFilter
   date: DatetimeFilter
@@ -190,7 +196,7 @@ input PostFilter {
   instructions: StringFilter
   instructionSections: PostInstructionSectionsFilter
   nutrition: PostNutritionFilter
-  body: StringFilter
+  body: RichTextFilter
 }
 
 type PostConnectionEdges {
@@ -259,7 +265,7 @@ input PostMutation {
   instructions: [String]
   instructionSections: [PostInstructionSectionsMutation]
   nutrition: PostNutritionMutation
-  body: String
+  body: JSON
 }
 
 schema {
