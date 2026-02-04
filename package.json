@@ -3,19 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "tinacms build && next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@tinacms/cli": "^2.1.4",
     "@vercel/analytics": "^1.6.1",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "next": "16.1.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "resend": "^6.8.0"
+    "resend": "^6.8.0",
+    "tinacms": "^3.4.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
