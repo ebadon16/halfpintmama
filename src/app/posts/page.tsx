@@ -7,8 +7,8 @@ export const metadata = {
   description: "Browse all recipes, travel guides, DIY projects, and mama life posts.",
 };
 
-export default function PostsPage() {
-  const posts = getAllPosts();
+export default async function PostsPage() {
+  const posts = await getAllPosts();
 
   return (
     <div className="bg-cream">

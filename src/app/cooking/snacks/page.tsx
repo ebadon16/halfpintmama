@@ -8,8 +8,8 @@ export const metadata = {
   description: "Healthy homemade snacks for the whole family including crackers, granola, and more from a Pediatric ER RN.",
 };
 
-export default function SnacksPage() {
-  const posts = getPostsBySubcategory("cooking", ["cracker", "snack", "roll-up", "roll up", "granola", "popsicle", "bite", "pinwheel"]);
+export default async function SnacksPage() {
+  const posts = await getPostsBySubcategory("cooking", ["cracker", "snack", "roll-up", "roll up", "granola", "popsicle", "bite", "pinwheel"]);
 
   return (
     <div className="bg-cream">

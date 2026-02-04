@@ -7,9 +7,9 @@ export const metadata = {
   description: "Family travel guides, DIY projects, crafts, and adventures with kids.",
 };
 
-export default function LifestylePage() {
-  const travelPosts = getPostsByCategory("travel");
-  const diyPosts = getPostsByCategory("diy");
+export default async function LifestylePage() {
+  const travelPosts = await getPostsByCategory("travel");
+  const diyPosts = await getPostsByCategory("diy");
 
   return (
     <div className="bg-cream">

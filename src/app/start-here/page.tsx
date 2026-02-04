@@ -7,9 +7,9 @@ export const metadata = {
   description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey, navigating new parenthood, or looking for family recipes.",
 };
 
-export default function StartHerePage() {
-  const cookingPosts = getPostsByCategory("cooking").slice(0, 3);
-  const mamaLifePosts = getPostsByCategory("mama-life").slice(0, 3);
+export default async function StartHerePage() {
+  const cookingPosts = (await getPostsByCategory("cooking")).slice(0, 3);
+  const mamaLifePosts = (await getPostsByCategory("mama-life")).slice(0, 3);
 
   return (
     <div className="bg-cream">

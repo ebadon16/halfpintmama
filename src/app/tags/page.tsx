@@ -6,8 +6,8 @@ export const metadata = {
   description: "Browse all tags and find posts by topic",
 };
 
-export default function TagsPage() {
-  const tags = getAllTags();
+export default async function TagsPage() {
+  const tags = await getAllTags();
 
   return (
     <div className="bg-cream min-h-screen">

@@ -3,9 +3,9 @@ import { getAllPosts } from "@/lib/posts";
 
 type ChangeFrequency = "daily" | "weekly" | "monthly" | "always" | "hourly" | "yearly" | "never";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://halfpintmama.com";
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

@@ -8,8 +8,8 @@ export const metadata = {
   description: "Master the art of sourdough bread baking with tested recipes from a Pediatric ER RN turned sourdough mama.",
 };
 
-export default function SourdoughPage() {
-  const posts = getPostsBySubcategory("cooking", ["sourdough", "loaf", "bread", "starter"], ["discard"]);
+export default async function SourdoughPage() {
+  const posts = await getPostsBySubcategory("cooking", ["sourdough", "loaf", "bread", "starter"], ["discard"]);
 
   return (
     <div className="bg-cream">

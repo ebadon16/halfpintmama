@@ -37,9 +37,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# tinacms
-# tina/__generated__/ is committed so Tina Cloud can index the branch
-
 # typescript
 *.tsbuildinfo
 next-env.d.ts

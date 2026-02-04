@@ -8,8 +8,8 @@ export const metadata = {
   description: "Sourdough recipes, healthy snacks, and kitchen adventures from a mama who loves to bake.",
 };
 
-export default function CookingPage() {
-  const posts = getPostsByCategory("cooking");
+export default async function CookingPage() {
+  const posts = await getPostsByCategory("cooking");
 
   return (
     <div className="bg-cream">

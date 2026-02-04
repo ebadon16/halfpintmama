@@ -7,8 +7,8 @@ export const metadata = {
   description: "Creative DIY projects, costumes, crafts, and hands-on fun for the whole family.",
 };
 
-export default function DIYPage() {
-  const posts = getPostsByCategory("diy");
+export default async function DIYPage() {
+  const posts = await getPostsByCategory("diy");
 
   return (
     <div className="bg-cream">

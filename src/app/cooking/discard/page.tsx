@@ -8,8 +8,8 @@ export const metadata = {
   description: "Never waste sourdough discard again! Delicious recipes for crackers, pancakes, and more from a Pediatric ER RN.",
 };
 
-export default function DiscardPage() {
-  const posts = getPostsBySubcategory("cooking", ["discard"]);
+export default async function DiscardPage() {
+  const posts = await getPostsBySubcategory("cooking", ["discard"]);
 
   return (
     <div className="bg-cream">

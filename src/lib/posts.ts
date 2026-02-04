@@ -1,8 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-
-const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+import { client } from "@/sanity/client";
+import type { PortableTextBlock } from "@portabletext/react";
 
 export interface NutritionInfo {
   calories?: number;
@@ -42,7 +39,7 @@ export interface Post {
   category: string;
   excerpt: string;
   image: string;
-  content: string;
+  content: PortableTextBlock[];
   tags: string[];
   recipe?: RecipeInfo;
 }
@@ -57,104 +54,83 @@ export interface PostMeta {
   tags: string[];
 }
 
-export function getAllPosts(): PostMeta[] {
-  const fileNames = fs.readdirSync(postsDirectory);
+// GROQ projections
+const postMetaProjection = `{
+  "slug": slug.current,
+  title,
+  date,
+  category,
+  excerpt,
+  "image": coalesce(image.asset->url, externalImageUrl, ""),
+  "tags": coalesce(tags, [])
+}`;
 
-  const posts = fileNames
-    .filter((fileName) => fileName.endsWith('.md'))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.md$/, '');
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data } = matter(fileContents);
+const postFullProjection = `{
+  "slug": slug.current,
+  title,
+  date,
+  category,
+  excerpt,
+  "image": coalesce(image.asset->url, externalImageUrl, ""),
+  "tags": coalesce(tags, []),
+  "content": coalesce(body, []),
+  recipe
+}`;
 
-      return {
-        slug,
-        title: data.title || slug,
-        date: data.date || '',
-        category: data.category || 'uncategorized',
-        excerpt: data.excerpt || '',
-        image: data.image || '',
-        tags: data.tags || [],
-      };
-    })
-    .sort((a, b) => (a.date > b.date ? -1 : 1));
-
-  return posts;
-}
-
-export function getPostBySlug(slug: string): Post | null {
-  try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
-
-    // Build recipe info if any recipe fields exist
-    const recipe: RecipeInfo | undefined = (data.servings || data.prepTime || data.cookTime || data.ingredients || data.ingredientSections || data.instructions || data.instructionSections || data.nutrition)
-      ? {
-          servings: data.servings,
-          prepTime: data.prepTime,
-          cookTime: data.cookTime,
-          totalTime: data.totalTime,
-          ingredients: data.ingredients,
-          ingredientSections: data.ingredientSections,
-          instructions: data.instructions,
-          instructionSections: data.instructionSections,
-          nutrition: data.nutrition,
-        }
-      : undefined;
-
-    return {
-      slug,
-      title: data.title || slug,
-      date: data.date || '',
-      category: data.category || 'uncategorized',
-      excerpt: data.excerpt || '',
-      image: data.image || '',
-      tags: data.tags || [],
-      recipe,
-      content,
-    };
-  } catch {
-    return null;
-  }
-}
-
-export function getPostsByCategory(category: string): PostMeta[] {
-  return getAllPosts().filter((post) => post.category === category);
-}
-
-export function getPostsBySubcategory(category: string, keywords: string[], excludeKeywords: string[] = []): PostMeta[] {
-  return getAllPosts().filter(post =>
-    post.category === category &&
-    keywords.some(keyword =>
-      post.title.toLowerCase().includes(keyword.toLowerCase())
-    ) &&
-    !excludeKeywords.some(keyword =>
-      post.title.toLowerCase().includes(keyword.toLowerCase())
-    )
+export async function getAllPosts(): Promise<PostMeta[]> {
+  return client.fetch(
+    `*[_type == "post"] | order(date desc) ${postMetaProjection}`
   );
 }
 
-export function getAllCategories(): string[] {
-  const posts = getAllPosts();
-  const categories = [...new Set(posts.map((post) => post.category))];
-  return categories;
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  const post = await client.fetch(
+    `*[_type == "post" && slug.current == $slug][0] ${postFullProjection}`,
+    { slug }
+  );
+  return post || null;
 }
 
-export function getPostsByTag(tag: string): PostMeta[] {
-  return getAllPosts().filter((post) =>
-    post.tags.some((t) => t.toLowerCase() === tag.toLowerCase())
+export async function getPostsByCategory(category: string): Promise<PostMeta[]> {
+  return client.fetch(
+    `*[_type == "post" && category == $category] | order(date desc) ${postMetaProjection}`,
+    { category }
   );
 }
 
-export function getAllTags(): { tag: string; count: number }[] {
-  const posts = getAllPosts();
+export async function getPostsBySubcategory(
+  category: string,
+  keywords: string[],
+  excludeKeywords: string[] = []
+): Promise<PostMeta[]> {
+  const posts = await getPostsByCategory(category);
+  return posts.filter(
+    (post) =>
+      keywords.some((kw) => post.title.toLowerCase().includes(kw.toLowerCase())) &&
+      !excludeKeywords.some((kw) => post.title.toLowerCase().includes(kw.toLowerCase()))
+  );
+}
+
+export async function getAllCategories(): Promise<string[]> {
+  return client.fetch(
+    `array::unique(*[_type == "post"].category)`
+  );
+}
+
+export async function getPostsByTag(tag: string): Promise<PostMeta[]> {
+  return client.fetch<PostMeta[]>(
+    `*[_type == "post" && $tag in tags] | order(date desc) ${postMetaProjection}`,
+    { tag: tag.toLowerCase() } as Record<string, string>
+  );
+}
+
+export async function getAllTags(): Promise<{ tag: string; count: number }[]> {
+  const posts: PostMeta[] = await getAllPosts();
   const tagCounts = new Map<string, number>();
 
   posts.forEach((post) => {
-    post.tags.forEach((tag) => {
-      const normalizedTag = tag.toLowerCase();
+    post.tags.forEach((t) => {
+      const normalizedTag = t.toLowerCase();
       tagCounts.set(normalizedTag, (tagCounts.get(normalizedTag) || 0) + 1);
     });
   });
@@ -166,9 +142,9 @@ export function getAllTags(): { tag: string; count: number }[] {
 
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }

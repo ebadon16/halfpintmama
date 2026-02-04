@@ -1,0 +1,139 @@
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
+import type { PortableTextBlock } from "@portabletext/react";
+import Image from "next/image";
+import { urlFor } from "@/sanity/client";
+
+const sizeStyles: Record<string, string> = {
+  small: "max-w-[220px]",
+  medium: "max-w-[380px]",
+  large: "max-w-[600px] w-full",
+};
+
+const components: PortableTextComponents = {
+  block: {
+    h2: ({ children }) => (
+      <h2
+        className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-12 mb-4"
+        style={{ fontSize: "28px" }}
+      >
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3
+        className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-8 mb-3"
+        style={{ fontSize: "22px" }}
+      >
+        {children}
+      </h3>
+    ),
+    h4: ({ children }) => (
+      <h4
+        className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-6 mb-2"
+        style={{ fontSize: "18px" }}
+      >
+        {children}
+      </h4>
+    ),
+    normal: ({ children }) => (
+      <p className="text-charcoal/80 leading-relaxed mb-4" style={{ fontSize: "16px" }}>
+        {children}
+      </p>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-sage pl-4 italic text-charcoal/70 my-4">
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => <ul className="space-y-1 my-4 pl-5">{children}</ul>,
+    number: ({ children }) => <ol className="space-y-1 my-4 pl-5 list-decimal">{children}</ol>,
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="text-charcoal/80 leading-relaxed" style={{ fontSize: "16px" }}>
+        {children}
+      </li>
+    ),
+    number: ({ children }) => (
+      <li className="text-charcoal/80 leading-relaxed" style={{ fontSize: "16px" }}>
+        {children}
+      </li>
+    ),
+  },
+  marks: {
+    strong: ({ children }) => <strong className="text-charcoal font-semibold">{children}</strong>,
+    em: ({ children }) => <em>{children}</em>,
+    link: ({ children, value }) => (
+      <a
+        href={value?.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1 text-terracotta font-medium hover:underline"
+      >
+        {children}
+      </a>
+    ),
+  },
+  types: {
+    image: ({ value }) => {
+      if (!value?.asset) return null;
+      const size = value.size || "medium";
+      const layout = value.layout || "center";
+      const imgSize = sizeStyles[size] || sizeStyles.medium;
+
+      const imgEl = (
+        <Image
+          src={urlFor(value).url()}
+          alt={value.alt || ""}
+          width={600}
+          height={400}
+          className={`rounded-lg shadow-sm object-cover ${imgSize}`}
+          unoptimized
+        />
+      );
+
+      if (layout === "float-right") {
+        return <figure className={`float-right ml-6 mb-4 mt-2 ${imgSize}`}>{imgEl}</figure>;
+      }
+      if (layout === "float-left") {
+        return <figure className={`float-left mr-6 mb-4 mt-2 ${imgSize}`}>{imgEl}</figure>;
+      }
+      return <figure className="my-6 flex justify-center">{imgEl}</figure>;
+    },
+    externalImage: ({ value }) => {
+      if (!value?.url) return null;
+      const size = value.size || "medium";
+      const layout = value.layout || "center";
+      const imgSize = sizeStyles[size] || sizeStyles.medium;
+
+      const imgEl = (
+        <Image
+          src={value.url}
+          alt={value.alt || ""}
+          width={600}
+          height={400}
+          className={`rounded-lg shadow-sm object-cover ${imgSize}`}
+          unoptimized
+        />
+      );
+
+      if (layout === "float-right") {
+        return <figure className={`float-right ml-6 mb-4 mt-2 ${imgSize}`}>{imgEl}</figure>;
+      }
+      if (layout === "float-left") {
+        return <figure className={`float-left mr-6 mb-4 mt-2 ${imgSize}`}>{imgEl}</figure>;
+      }
+      return <figure className="my-6 flex justify-center">{imgEl}</figure>;
+    },
+  },
+};
+
+interface PortableTextRendererProps {
+  value: PortableTextBlock[];
+}
+
+export function PortableTextRenderer({ value }: PortableTextRendererProps) {
+  return <PortableText value={value} components={components} />;
+}

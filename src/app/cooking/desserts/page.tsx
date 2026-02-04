@@ -8,8 +8,8 @@ export const metadata = {
   description: "Delicious dessert recipes including cookies, cakes, and chocolate treats from a Pediatric ER RN.",
 };
 
-export default function DessertsPage() {
-  const posts = getPostsBySubcategory("cooking", ["cookie", "cake", "truffle", "chocolate", "cobbler", "macaroon", "dessert", "sweet", "twix", "cups", "egg"]);
+export default async function DessertsPage() {
+  const posts = await getPostsBySubcategory("cooking", ["cookie", "cake", "truffle", "chocolate", "cobbler", "macaroon", "dessert", "sweet", "twix", "cups", "egg"]);
 
   return (
     <div className="bg-cream">

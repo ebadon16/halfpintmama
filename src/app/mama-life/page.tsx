@@ -7,8 +7,8 @@ export const metadata = {
   description: "Real talk about motherhood, parenting tips, and navigating life with little ones.",
 };
 
-export default function MamaLifePage() {
-  const posts = getPostsByCategory("mama-life");
+export default async function MamaLifePage() {
+  const posts = await getPostsByCategory("mama-life");
 
   return (
     <div className="bg-cream">

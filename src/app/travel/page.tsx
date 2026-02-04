@@ -7,8 +7,8 @@ export const metadata = {
   description: "Family travel guides, tips for traveling with toddlers and babies, and adventure stories.",
 };
 
-export default function TravelPage() {
-  const posts = getPostsByCategory("travel");
+export default async function TravelPage() {
+  const posts = await getPostsByCategory("travel");
 
   return (
     <div className="bg-cream">

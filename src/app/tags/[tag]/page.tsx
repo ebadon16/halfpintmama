@@ -8,7 +8,7 @@ interface TagPageProps {
 }
 
 export async function generateStaticParams() {
-  const tags = getAllTags();
+  const tags = await getAllTags();
   return tags.map(({ tag }) => ({ tag: encodeURIComponent(tag) }));
 }
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: TagPageProps) {
 export default async function TagPage({ params }: TagPageProps) {
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
-  const posts = getPostsByTag(decodedTag);
+  const posts = await getPostsByTag(decodedTag);
 
   if (posts.length === 0) {
     notFound();

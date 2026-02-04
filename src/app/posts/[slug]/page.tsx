@@ -10,13 +10,15 @@ import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { RecipeCard } from "@/components/RecipeCard";
+import { PortableTextRenderer } from "@/components/PortableTextRenderer";
+import type { PortableTextBlock } from "@portabletext/react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
+  const posts = await getAllPosts();
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -24,7 +26,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return { title: "Post Not Found" };
@@ -55,17 +57,28 @@ const categoryColors: Record<string, string> = {
   "mama-life": "bg-deep-sage",
 };
 
-// Calculate reading time
-function calculateReadingTime(content: string): number {
+// Calculate reading time from Portable Text blocks
+function calculateReadingTime(content: PortableTextBlock[]): number {
   const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
-  return Math.ceil(words / wordsPerMinute);
+  let wordCount = 0;
+
+  for (const block of content) {
+    if (block._type === "block" && Array.isArray(block.children)) {
+      for (const child of block.children as { text?: string }[]) {
+        if (child.text) {
+          wordCount += child.text.trim().split(/\s+/).length;
+        }
+      }
+    }
+  }
+
+  return Math.ceil(wordCount / wordsPerMinute);
 }
 
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -75,7 +88,7 @@ export default async function PostPage({ params }: PageProps) {
   const categoryLabel = categoryLabels[post.category] || post.category;
 
   // Get related posts from same category, excluding current post
-  const relatedPosts = getPostsByCategory(post.category)
+  const relatedPosts = (await getPostsByCategory(post.category))
     .filter(p => p.slug !== slug)
     .slice(0, 3);
 
@@ -211,8 +224,7 @@ export default async function PostPage({ params }: PageProps) {
             prose-li:text-[16px] prose-li:text-charcoal/80 prose-li:my-1 prose-li:leading-[1.6]
             prose-img:rounded-lg prose-img:shadow-sm"
         >
-          {/* Simple markdown rendering - convert basic markdown to HTML */}
-          <div dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }} />
+          <PortableTextRenderer value={post.content} />
         </div>
 
         {/* Recipe Card - for cooking posts with recipe data (at end of content) */}
@@ -233,7 +245,7 @@ export default async function PostPage({ params }: PageProps) {
               href="/posts"
               className="text-sage hover:text-deep-sage font-medium transition-colors"
             >
-              ← All Posts
+              &larr; All Posts
             </Link>
             <Link
               href={`/${post.category}`}
@@ -276,89 +288,4 @@ export default async function PostPage({ params }: PageProps) {
       <BottomEmailCTA />
     </div>
   );
-}
-
-// Simple markdown to HTML converter
-function renderMarkdown(content: string): string {
-  // First, process custom image comments before other transformations
-  let processed = content;
-
-  // Process image comments: <!-- IMG: filename(s) | LAYOUT: x | SIZE: x -->
-  const imgRegex = /<!--\s*IMG:\s*([^|]+)\|\s*LAYOUT:\s*(\S+)\s*\|\s*SIZE:\s*(\S+)\s*-->/g;
-
-  processed = processed.replace(imgRegex, (match, files, layout, size) => {
-    const fileList = files.split(',').map((f: string) => f.trim());
-    const layoutClass = layout.trim();
-    const sizeClass = size.trim();
-
-    // Size classes
-    const sizeStyles: Record<string, string> = {
-      'small': 'max-w-[220px]',
-      'medium': 'max-w-[380px]',
-      'large': 'max-w-[600px] w-full',
-    };
-    const imgSize = sizeStyles[sizeClass] || sizeStyles['medium'];
-
-    // Generate image tags
-    const imgTags = fileList.map((file: string) => {
-      const src = `/images/${file}`;
-      return `<img src="${src}" alt="" class="rounded-lg shadow-sm object-cover ${imgSize}" loading="lazy" />`;
-    });
-
-    // Layout handling
-    if (layoutClass === 'center') {
-      return `%%FIGURE_START%%<figure class="my-6 flex justify-center">${imgTags[0]}</figure>%%FIGURE_END%%`;
-    } else if (layoutClass === 'float-right') {
-      return `%%FIGURE_START%%<figure class="float-right ml-6 mb-4 mt-2 ${imgSize}">${imgTags[0]}</figure>%%FIGURE_END%%`;
-    } else if (layoutClass === 'float-left') {
-      return `%%FIGURE_START%%<figure class="float-left mr-6 mb-4 mt-2 ${imgSize}">${imgTags[0]}</figure>%%FIGURE_END%%`;
-    } else if (layoutClass === 'grid-2') {
-      return `%%FIGURE_START%%<figure class="my-6 grid grid-cols-2 gap-4">${imgTags.slice(0, 2).map((img: string) => `<div class="flex justify-center">${img}</div>`).join('')}</figure>%%FIGURE_END%%`;
-    } else if (layoutClass === 'grid-3') {
-      return `%%FIGURE_START%%<figure class="my-6 grid grid-cols-3 gap-3">${imgTags.slice(0, 3).map((img: string) => `<div class="flex justify-center">${img}</div>`).join('')}</figure>%%FIGURE_END%%`;
-    } else if (layoutClass === 'grid-2x2') {
-      return `%%FIGURE_START%%<figure class="my-6 grid grid-cols-2 gap-4">${imgTags.slice(0, 4).map((img: string) => `<div class="flex justify-center">${img}</div>`).join('')}</figure>%%FIGURE_END%%`;
-    }
-
-    // Default: centered
-    return `%%FIGURE_START%%<figure class="my-6 flex justify-center">${imgTags[0]}</figure>%%FIGURE_END%%`;
-  });
-
-  // Now process regular markdown
-  processed = processed
-    // Headers with inline styles
-    .replace(/^#### (.+)$/gm, '<h4 style="font-family: Crimson Text, Georgia, serif; font-size: 18px; font-weight: 700; color: #3A3A38; margin-top: 24px; margin-bottom: 8px;">$1</h4>')
-    .replace(/^### (.+)$/gm, '<h3 style="font-family: Crimson Text, Georgia, serif; font-size: 22px; font-weight: 700; color: #3A3A38; margin-top: 32px; margin-bottom: 12px;">$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2 style="font-family: Crimson Text, Georgia, serif; font-size: 28px; font-weight: 700; color: #3A3A38; margin-top: 48px; margin-bottom: 16px;">$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1 style="font-family: Crimson Text, Georgia, serif; font-size: 36px; font-weight: 700; color: #4A3728; margin-bottom: 40px;">$1</h1>')
-    // Bold and italic
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-    // Markdown images
-    .replace(/!\[\]\(([^)]+)\)/g, '%%FIGURE_START%%<figure class="my-4 flex justify-center"><img src="$1" alt="" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>%%FIGURE_END%%')
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '%%FIGURE_START%%<figure class="my-4 flex justify-center"><img src="$2" alt="$1" class="max-w-sm md:max-w-md rounded-lg shadow-sm" /></figure>%%FIGURE_END%%')
-    // Links
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-terracotta font-medium hover:underline">$1</a>')
-    // Lists
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    // Wrap consecutive li tags in ul
-    .replace(/(<li>.*<\/li>\n?)+/g, '<ul class="space-y-1">$&</ul>')
-    // Horizontal rules
-    .replace(/^---$/gm, '<hr class="my-8 border-light-sage" />')
-    // Paragraphs - wrap lines that aren't already wrapped
-    .replace(/^(?!<[hulo]|%%FIGURE|<a|<hr)(.+)$/gm, '<p>$1</p>')
-    // Clean up empty paragraphs
-    .replace(/<p>\s*<\/p>/g, '')
-    // Fix nested tags
-    .replace(/<p>(<h[1-4]>)/g, '$1')
-    .replace(/(<\/h[1-4]>)<\/p>/g, '$1')
-    .replace(/<p>(<ul)/g, '$1')
-    .replace(/(<\/ul>)<\/p>/g, '$1')
-    .replace(/<p>(<hr)/g, '$1')
-    .replace(/(<hr[^>]*>)<\/p>/g, '$1')
-    // Restore figure markers
-    .replace(/%%FIGURE_START%%/g, '')
-    .replace(/%%FIGURE_END%%/g, '');
-
-  return processed;
 }
