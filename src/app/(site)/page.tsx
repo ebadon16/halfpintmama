@@ -3,6 +3,8 @@ import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export default async function Home() {
   const allPosts = await getAllPosts();
   const featuredPosts = allPosts.slice(0, 4);

@@ -2,6 +2,8 @@ import { getAllPosts, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "All Posts | Half Pint Mama",
   description: "Browse all recipes, travel guides, DIY projects, and mama life posts.",

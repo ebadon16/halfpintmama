@@ -2,6 +2,8 @@ import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Family Travel | Half Pint Mama",
   description: "Family travel guides, tips for traveling with toddlers and babies, and adventure stories.",

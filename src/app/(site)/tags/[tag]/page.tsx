@@ -3,6 +3,8 @@ import { getPostsByTag, getAllTags, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { notFound } from "next/navigation";
 
+export const revalidate = 60;
+
 interface TagPageProps {
   params: Promise<{ tag: string }>;
 }

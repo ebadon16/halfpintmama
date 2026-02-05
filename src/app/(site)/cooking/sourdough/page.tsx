@@ -3,6 +3,8 @@ import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Sourdough & Bread | Half Pint Mama",
   description: "Master the art of sourdough bread baking with tested recipes from a Pediatric ER RN turned sourdough mama.",

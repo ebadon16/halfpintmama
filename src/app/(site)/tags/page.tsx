@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getAllTags } from "@/lib/posts";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Tags | Half Pint Mama",
   description: "Browse all tags and find posts by topic",

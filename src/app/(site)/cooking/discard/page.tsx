@@ -3,6 +3,8 @@ import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Sourdough Discard Recipes | Half Pint Mama",
   description: "Never waste sourdough discard again! Delicious recipes for crackers, pancakes, and more from a Pediatric ER RN.",

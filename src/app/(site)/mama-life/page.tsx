@@ -2,6 +2,8 @@ import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Mama Life | Half Pint Mama",
   description: "Real talk about motherhood, parenting tips, and navigating life with little ones.",

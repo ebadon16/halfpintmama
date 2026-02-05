@@ -3,6 +3,8 @@ import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Desserts & Sweet Treats | Half Pint Mama",
   description: "Delicious dessert recipes including cookies, cakes, and chocolate treats from a Pediatric ER RN.",

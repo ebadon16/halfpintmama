@@ -3,6 +3,8 @@ import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Snacks & Finger Foods | Half Pint Mama",
   description: "Healthy homemade snacks for the whole family including crackers, granola, and more from a Pediatric ER RN.",

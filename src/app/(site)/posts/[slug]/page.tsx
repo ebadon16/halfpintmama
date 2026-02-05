@@ -13,6 +13,8 @@ import { RecipeCard } from "@/components/RecipeCard";
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 import type { PortableTextBlock } from "@portabletext/react";
 
+export const revalidate = 60;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }

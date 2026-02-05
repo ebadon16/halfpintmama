@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 
+export const revalidate = 60;
+
 export const metadata = {
   title: "Start Here | Half Pint Mama",
   description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey, navigating new parenthood, or looking for family recipes.",
