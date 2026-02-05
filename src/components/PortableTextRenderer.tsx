@@ -105,7 +105,7 @@ const components: PortableTextComponents = {
       const imgEl = (
         <Image
           src={urlFor(value).url()}
-          alt={value.alt || ""}
+          alt={value.alt || "Image from post"}
           width={600}
           height={400}
           sizes={sizesAttr[size] || sizesAttr.medium}
@@ -130,7 +130,7 @@ const components: PortableTextComponents = {
       const imgEl = (
         <Image
           src={value.url}
-          alt={value.alt || ""}
+          alt={value.alt || "Image from post"}
           width={600}
           height={400}
           sizes={sizesAttr[size] || sizesAttr.medium}
@@ -160,7 +160,7 @@ const components: PortableTextComponents = {
               <Image
                 key={img._key || i}
                 src={urlFor(img).url()}
-                alt={img.alt || ""}
+                alt={img.alt || "Image from post"}
                 width={600}
                 height={400}
                 sizes={gridSizes}
