@@ -43,6 +43,8 @@ export function SearchBar({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={placeholder}
+        aria-label="Search"
+        maxLength={200}
         className={`w-full ${sizeClasses[size]} pr-10 border-2 border-light-sage rounded-full focus:outline-none focus:border-sage bg-white text-charcoal placeholder:text-charcoal/50`}
       />
       <button

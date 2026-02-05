@@ -69,6 +69,7 @@ export function PostEmailSignup() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"
+              aria-label="Email address"
               disabled={status === "loading"}
               className="flex-1 px-4 py-2 rounded-full border-2 border-sage focus:outline-none focus:border-deep-sage text-sm disabled:opacity-50"
             />
@@ -163,6 +164,7 @@ export function BottomEmailCTA() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"
+              aria-label="Email address"
               disabled={status === "loading"}
               className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:border-white disabled:opacity-50"
             />

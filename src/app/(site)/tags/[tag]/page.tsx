@@ -20,6 +20,14 @@ export async function generateMetadata({ params }: TagPageProps) {
   return {
     title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
     description: `Browse all posts tagged with "${decodedTag}"`,
+    alternates: {
+      canonical: `/tags/${tag}`,
+    },
+    openGraph: {
+      title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
+      description: `Browse all posts tagged with "${decodedTag}"`,
+      images: ["/logo.jpg"],
+    },
   };
 }
 

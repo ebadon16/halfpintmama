@@ -17,7 +17,7 @@ export async function GET() {
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category>${post.category}</category>
-      ${post.image ? `<enclosure url="${post.image}" type="image/jpeg"/>` : ""}
+      ${post.image ? `<enclosure url="${post.image.replace(/&/g, "&amp;")}" type="image/jpeg"/>` : ""}
     </item>`
     )
     .join("");

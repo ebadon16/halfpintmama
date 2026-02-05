@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
 import { escapeHtml } from "@/lib/sanitize";
+import { rateLimit } from "@/lib/rate-limit";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "keegan@halfpintmama.com";
@@ -21,6 +22,11 @@ interface CommentData {
 
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    if (!rateLimit(ip, 10, 60_000)) {
+      return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+    }
+
     const data: CommentData = await request.json();
     const { author, email, content, rating, postSlug, postTitle, isReply, replyToAuthor, replyToEmail } = data;
 
@@ -109,8 +115,8 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // If this is a reply, notify the original commenter
-    if (isReply && replyToEmail && replyToEmail !== email) {
+    // If this is a reply, notify the original commenter (only if valid email)
+    if (isReply && replyToEmail && typeof replyToEmail === "string" && EMAIL_REGEX.test(replyToEmail.trim()) && replyToEmail !== email) {
       await resend.emails.send({
         from: "Half Pint Mama <notifications@halfpintmama.com>",
         to: replyToEmail,

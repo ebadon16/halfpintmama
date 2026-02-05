@@ -25,6 +25,12 @@ export function EmailPopup() {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleDismiss = useCallback(() => {
+    setIsVisible(false);
+    setIsDismissed(true);
+    localStorage.setItem("emailPopupDismissed", "true");
+  }, []);
+
   // Focus trap + Escape key
   useEffect(() => {
     if (!isVisible) return;
@@ -59,13 +65,7 @@ export function EmailPopup() {
     firstInput?.focus();
 
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isVisible]);
-
-  const handleDismiss = useCallback(() => {
-    setIsVisible(false);
-    setIsDismissed(true);
-    localStorage.setItem("emailPopupDismissed", "true");
-  }, []);
+  }, [isVisible, handleDismiss]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

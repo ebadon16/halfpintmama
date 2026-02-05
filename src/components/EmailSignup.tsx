@@ -78,6 +78,7 @@ export function EmailSignup({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={placeholder}
+          aria-label="Email address"
           disabled={status === "loading"}
           className={`flex-1 px-4 py-3 rounded-full border-2 border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white text-charcoal disabled:opacity-50 ${inputClassName}`}
         />

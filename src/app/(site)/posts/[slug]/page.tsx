@@ -37,10 +37,14 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `${post.title} | Half Pint Mama`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/posts/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: post.image ? [post.image] : [],
+      url: `https://halfpintmama.com/posts/${slug}`,
+      images: post.image ? [post.image] : ["/logo.jpg"],
     },
   };
 }
@@ -98,6 +102,22 @@ export default async function PostPage({ params }: PageProps) {
 
   return (
     <div className="bg-cream">
+      {/* BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://halfpintmama.com" },
+              { "@type": "ListItem", position: 2, name: categoryLabel, item: `https://halfpintmama.com/${post.category}` },
+              { "@type": "ListItem", position: 3, name: post.title },
+            ],
+          }),
+        }}
+      />
+
       {/* Structured Data for SEO */}
       {post.category === "cooking" ? (
         <RecipeSchema

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { escapeHtml } from "@/lib/sanitize";
+import { rateLimit } from "@/lib/rate-limit";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const CONTACT_EMAIL = "keegan@halfpintmama.com";
@@ -8,6 +9,11 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    if (!rateLimit(ip, 5, 60_000)) {
+      return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+    }
+
     const { name, email, subject, message } = await request.json();
 
     // Validate required fields

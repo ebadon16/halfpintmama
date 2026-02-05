@@ -73,6 +73,7 @@ export function HomeEmailSignup() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email"
+            aria-label="Email address"
             disabled={status === "loading"}
             className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white disabled:opacity-50"
           />

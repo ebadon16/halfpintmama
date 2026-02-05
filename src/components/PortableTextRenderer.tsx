@@ -9,6 +9,12 @@ const sizeStyles: Record<string, string> = {
   large: "max-w-[600px] w-full",
 };
 
+const sizesAttr: Record<string, string> = {
+  small: "220px",
+  medium: "380px",
+  large: "(max-width: 600px) 100vw, 600px",
+};
+
 function getYouTubeId(url: string): string | null {
   const patterns = [
     /(?:youtube\.com\/watch\?v=)([^&\s]+)/,
@@ -102,6 +108,7 @@ const components: PortableTextComponents = {
           alt={value.alt || ""}
           width={600}
           height={400}
+          sizes={sizesAttr[size] || sizesAttr.medium}
           className={`rounded-lg shadow-sm object-cover ${imgSize}`}
         />
       );
@@ -126,6 +133,7 @@ const components: PortableTextComponents = {
           alt={value.alt || ""}
           width={600}
           height={400}
+          sizes={sizesAttr[size] || sizesAttr.medium}
           className={`rounded-lg shadow-sm object-cover ${imgSize}`}
         />
       );
@@ -141,6 +149,9 @@ const components: PortableTextComponents = {
     imageGrid: ({ value }) => {
       if (!value?.images?.length) return null;
       const cols = value.columns === "3" ? "md:grid-cols-3" : "md:grid-cols-2";
+      const gridSizes = value.columns === "3"
+        ? "(max-width: 768px) 100vw, 33vw"
+        : "(max-width: 768px) 100vw, 50vw";
       return (
         <div className={`my-6 grid grid-cols-1 ${cols} gap-4`}>
           {value.images.map((img: { asset?: { _ref?: string }; alt?: string; _key?: string }, i: number) => {
@@ -152,6 +163,7 @@ const components: PortableTextComponents = {
                 alt={img.alt || ""}
                 width={600}
                 height={400}
+                sizes={gridSizes}
                 className="rounded-lg shadow-sm object-cover w-full"
               />
             );

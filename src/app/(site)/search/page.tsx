@@ -29,6 +29,7 @@ function SearchContent() {
     if (initialQuery) {
       performSearch(initialQuery);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialQuery]);
 
   const performSearch = async (searchQuery: string, category = selectedCategory, start = startDate, end = endDate) => {
@@ -90,6 +91,7 @@ function SearchContent() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for sourdough, recipes, tips..."
             aria-label="Search the blog"
+            maxLength={200}
             className="flex-1 px-6 py-4 border-2 border-sage rounded-full focus:outline-none focus:border-deep-sage text-lg"
           />
           <button
