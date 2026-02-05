@@ -61,7 +61,7 @@ const postMetaProjection = `{
   date,
   category,
   excerpt,
-  "image": coalesce(image.asset->url, externalImageUrl, ""),
+  "image": coalesce(image.asset->url, ""),
   "tags": coalesce(tags, [])
 }`;
 
@@ -71,7 +71,7 @@ const postFullProjection = `{
   date,
   category,
   excerpt,
-  "image": coalesce(image.asset->url, externalImageUrl, ""),
+  "image": coalesce(image.asset->url, ""),
   "tags": coalesce(tags, []),
   "content": coalesce(body, []),
   recipe

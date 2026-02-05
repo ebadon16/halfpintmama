@@ -57,12 +57,6 @@ export const post = defineType({
       },
     }),
     defineField({
-      name: "externalImageUrl",
-      title: "External Image URL",
-      type: "url",
-      description: "For legacy WordPress image URLs. Use Image field for new uploads.",
-    }),
-    defineField({
       name: "tags",
       title: "Tags",
       type: "array",

@@ -119,7 +119,7 @@ CSS variables in `globals.css`:
 
 - **Hosting**: Vercel
 - **Repo**: https://github.com/ebadon16/halfpintmama
-- **Domain**: halfpintmama.com (DNS at WordPress.com)
+- **Domain**: halfpintmama.com
 
 Push to `master` branch triggers automatic deployment.
 
