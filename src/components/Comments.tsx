@@ -43,14 +43,18 @@ export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
     const storedRatings = localStorage.getItem(getRatingsKey(postSlug));
 
     if (storedComments) {
-      const comments = JSON.parse(storedComments);
-      setCommentCount(comments.length);
+      try {
+        const comments = JSON.parse(storedComments);
+        setCommentCount(comments.length);
+      } catch { /* corrupted data — ignore */ }
     }
 
     if (storedRatings) {
-      const ratings = JSON.parse(storedRatings);
-      setAverageRating(ratings.average);
-      setTotalRatings(ratings.total);
+      try {
+        const ratings = JSON.parse(storedRatings);
+        setAverageRating(ratings.average);
+        setTotalRatings(ratings.total);
+      } catch { /* corrupted data — ignore */ }
     }
   }, [postSlug]);
 
@@ -115,13 +119,17 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
     const storedRatings = localStorage.getItem(getRatingsKey(postSlug));
 
     if (storedComments) {
-      setComments(JSON.parse(storedComments));
+      try {
+        setComments(JSON.parse(storedComments));
+      } catch { /* corrupted data — ignore */ }
     }
 
     if (storedRatings) {
-      const ratings = JSON.parse(storedRatings);
-      setAverageRating(ratings.average);
-      setTotalRatings(ratings.total);
+      try {
+        const ratings = JSON.parse(storedRatings);
+        setAverageRating(ratings.average);
+        setTotalRatings(ratings.total);
+      } catch { /* corrupted data — ignore */ }
     }
   }, [postSlug]);
 
