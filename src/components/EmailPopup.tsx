@@ -104,7 +104,7 @@ export function EmailPopup() {
         ) : (
           <form onSubmit={handleSubmit} className="p-6">
             <p className="text-charcoal/70 text-center mb-4 text-sm">
-              Join 1,000+ mamas who are baking with confidence. Get my step-by-step starter guide delivered straight to your inbox.
+              Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes and mom tips.
             </p>
 
             <input

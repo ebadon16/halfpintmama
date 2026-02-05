@@ -65,7 +65,7 @@ export function HomeEmailSignup() {
           Get My Free Sourdough Starter Guide
         </h2>
         <p className="text-white/90 mb-6 max-w-xl mx-auto">
-          Plus weekly recipes, mom tips, and exclusive content. Join 1,000+ mamas who are baking and thriving!
+          Plus weekly recipes, mom tips, and exclusive content delivered straight to your inbox.
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
           <input
