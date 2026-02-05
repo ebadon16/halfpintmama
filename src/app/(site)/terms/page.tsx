@@ -13,7 +13,7 @@ export default function TermsOfServicePage() {
 
         <div className="bg-white rounded-2xl p-8 shadow-md prose prose-sage max-w-none">
           <p className="text-charcoal/70 mb-6">
-            <strong>Last updated:</strong> {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            <strong>Last updated:</strong> February 4, 2026
           </p>
 
           <p className="text-charcoal/80 mb-6">
