@@ -1,6 +1,8 @@
 export const metadata = {
   title: "Terms of Service | Half Pint Mama",
   description: "Terms of service for Half Pint Mama website.",
+  alternates: { canonical: "https://halfpintmama.com/terms" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default function TermsOfServicePage() {

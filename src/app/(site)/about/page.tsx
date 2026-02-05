@@ -3,6 +3,8 @@ import Link from "next/link";
 export const metadata = {
   title: "About | Half Pint Mama",
   description: "Meet Keegan - a Pediatric ER RN and mama of two on a mission to get back to the basics with real food, simple recipes, and intentional living.",
+  alternates: { canonical: "https://halfpintmama.com/about" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default function AboutPage() {

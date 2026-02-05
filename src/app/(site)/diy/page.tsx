@@ -7,6 +7,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "DIY Projects | Half Pint Mama",
   description: "Creative DIY projects, costumes, crafts, and hands-on fun for the whole family.",
+  alternates: { canonical: "https://halfpintmama.com/diy" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function DIYPage() {

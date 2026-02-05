@@ -8,6 +8,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "Snacks & Finger Foods | Half Pint Mama",
   description: "Healthy homemade snacks for the whole family including crackers, granola, and more from a Pediatric ER RN.",
+  alternates: { canonical: "https://halfpintmama.com/cooking/snacks" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function SnacksPage() {

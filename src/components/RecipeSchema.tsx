@@ -1,15 +1,30 @@
+import type { RecipeInfo } from "@/lib/posts";
+
 interface RecipeSchemaProps {
   title: string;
   description: string;
   image?: string;
   datePublished: string;
   slug: string;
+  recipe?: RecipeInfo;
 }
 
-export function RecipeSchema({ title, description, image, datePublished, slug }: RecipeSchemaProps) {
+export function RecipeSchema({ title, description, image, datePublished, slug, recipe }: RecipeSchemaProps) {
   const baseUrl = "https://halfpintmama.com";
 
-  const schema = {
+  // Flatten ingredient sections into a single array if needed
+  const ingredients = recipe?.ingredients?.length
+    ? recipe.ingredients
+    : recipe?.ingredientSections?.flatMap((s) => s.items) ?? [];
+
+  // Build HowToStep objects from instructions
+  const instructions = recipe?.instructions?.length
+    ? recipe.instructions.map((step) => ({ "@type": "HowToStep" as const, text: step }))
+    : recipe?.instructionSections?.flatMap((s) =>
+        s.steps.map((step) => ({ "@type": "HowToStep" as const, text: step }))
+      ) ?? [];
+
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Recipe",
     name: title,
@@ -34,6 +49,25 @@ export function RecipeSchema({ title, description, image, datePublished, slug }:
     recipeCuisine: "American",
     keywords: `${title}, sourdough, recipe, homemade`,
   };
+
+  if (ingredients.length > 0) schema.recipeIngredient = ingredients;
+  if (instructions.length > 0) schema.recipeInstructions = instructions;
+  if (recipe?.prepTime) schema.prepTime = recipe.prepTime;
+  if (recipe?.cookTime) schema.cookTime = recipe.cookTime;
+  if (recipe?.totalTime) schema.totalTime = recipe.totalTime;
+  if (recipe?.servings) schema.recipeYield = `${recipe.servings} servings`;
+
+  if (recipe?.nutrition) {
+    const n = recipe.nutrition;
+    const nutrition: Record<string, string> = { "@type": "NutritionInformation" };
+    if (n.calories) nutrition.calories = `${n.calories} calories`;
+    if (n.protein) nutrition.proteinContent = `${n.protein} g`;
+    if (n.carbs) nutrition.carbohydrateContent = `${n.carbs} g`;
+    if (n.fat) nutrition.fatContent = `${n.fat} g`;
+    if (n.fiber) nutrition.fiberContent = `${n.fiber} g`;
+    if (n.sugar) nutrition.sugarContent = `${n.sugar} g`;
+    schema.nutrition = nutrition;
+  }
 
   return (
     <script

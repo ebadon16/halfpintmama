@@ -13,15 +13,17 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setIsFavorite(favorites.some((f: { slug: string }) => f.slug === slug));
+    let favorites: { slug: string }[] = [];
+    try { favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
+    setIsFavorite(favorites.some((f) => f.slug === slug));
   }, [slug]);
 
   const toggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    let favorites: { slug: string; title?: string; savedAt?: string }[] = [];
+    try { favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
 
     if (isFavorite) {
       const newFavorites = favorites.filter((f: { slug: string }) => f.slug !== slug);

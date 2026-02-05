@@ -129,7 +129,7 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
                   alt={title}
                   fill
                   className="object-cover"
-                  unoptimized
+                  sizes="(max-width: 672px) 100vw, 300px"
                 />
               </div>
             )}

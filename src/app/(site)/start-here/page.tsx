@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { EmailSignup } from "@/components/EmailSignup";
 
 export const revalidate = 60;
 
 export const metadata = {
   title: "Start Here | Half Pint Mama",
   description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey, navigating new parenthood, or looking for family recipes.",
+  alternates: { canonical: "https://halfpintmama.com/start-here" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function StartHerePage() {
@@ -228,16 +231,13 @@ export default async function StartHerePage() {
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
             Get weekly recipes, parenting tips, and exclusive content delivered to your inbox. Plus a free sourdough starter guide when you subscribe!
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email"
-              className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white"
-            />
-            <button className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-colors whitespace-nowrap">
-              Subscribe
-            </button>
-          </div>
+          <EmailSignup
+            source="website"
+            buttonText="Subscribe"
+            placeholder="Your email"
+            className="max-w-md mx-auto"
+            buttonClassName="bg-deep-sage text-white hover:bg-charcoal"
+          />
         </div>
       </section>
     </div>

@@ -8,6 +8,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "Sourdough Discard Recipes | Half Pint Mama",
   description: "Never waste sourdough discard again! Delicious recipes for crackers, pancakes, and more from a Pediatric ER RN.",
+  alternates: { canonical: "https://halfpintmama.com/cooking/discard" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function DiscardPage() {

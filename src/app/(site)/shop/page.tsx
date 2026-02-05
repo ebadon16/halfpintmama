@@ -3,6 +3,8 @@ import Link from "next/link";
 export const metadata = {
   title: "Shop | Half Pint Mama",
   description: "Digital downloads, printables, and favorite products from Half Pint Mama.",
+  alternates: { canonical: "https://halfpintmama.com/shop" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 // Coming soon products

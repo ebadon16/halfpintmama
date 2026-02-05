@@ -103,7 +103,6 @@ const components: PortableTextComponents = {
           width={600}
           height={400}
           className={`rounded-lg shadow-sm object-cover ${imgSize}`}
-          unoptimized
         />
       );
 
@@ -128,7 +127,6 @@ const components: PortableTextComponents = {
           width={600}
           height={400}
           className={`rounded-lg shadow-sm object-cover ${imgSize}`}
-          unoptimized
         />
       );
 
@@ -155,7 +153,6 @@ const components: PortableTextComponents = {
                 width={600}
                 height={400}
                 className="rounded-lg shadow-sm object-cover w-full"
-                unoptimized
               />
             );
           })}

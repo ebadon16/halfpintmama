@@ -1,6 +1,8 @@
 export const metadata = {
   title: "Products We Love | Half Pint Mama",
   description: "Curated product recommendations for sourdough baking, baby gear, and family travel. Real reviews from real life with littles.",
+  alternates: { canonical: "https://halfpintmama.com/products" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 const affiliateCategories = [

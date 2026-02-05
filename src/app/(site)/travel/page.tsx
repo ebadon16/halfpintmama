@@ -7,6 +7,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "Family Travel | Half Pint Mama",
   description: "Family travel guides, tips for traveling with toddlers and babies, and adventure stories.",
+  alternates: { canonical: "https://halfpintmama.com/travel" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function TravelPage() {

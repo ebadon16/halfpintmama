@@ -8,6 +8,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "Cooking & Baking | Half Pint Mama",
   description: "Sourdough recipes, healthy snacks, and kitchen adventures from a mama who loves to bake.",
+  alternates: { canonical: "https://halfpintmama.com/cooking" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function CookingPage() {

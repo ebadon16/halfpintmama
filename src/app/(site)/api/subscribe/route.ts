@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const VALID_SOURCES = ["website", "popup", "homepage", "post-mid", "post-bottom", "free-guide-hero"];
+
 export async function POST(request: NextRequest) {
   try {
     const { email, source } = await request.json();
 
     // Validate email
-    if (!email || !email.includes("@")) {
+    if (!email || typeof email !== "string" || !EMAIL_REGEX.test(email.trim())) {
       return NextResponse.json(
         { error: "Please enter a valid email address" },
         { status: 400 }
@@ -36,7 +39,7 @@ export async function POST(request: NextRequest) {
         email: email.toLowerCase().trim(),
         groups: [MAILERLITE_GROUP_ID],
         fields: {
-          source: source || "website",
+          source: VALID_SOURCES.includes(source) ? source : "website",
         },
       }),
     });

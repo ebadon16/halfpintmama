@@ -7,6 +7,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "Mama Life | Half Pint Mama",
   description: "Real talk about motherhood, parenting tips, and navigating life with little ones.",
+  alternates: { canonical: "https://halfpintmama.com/mama-life" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function MamaLifePage() {

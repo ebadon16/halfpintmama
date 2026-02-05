@@ -106,6 +106,7 @@ export default async function PostPage({ params }: PageProps) {
           image={post.image}
           datePublished={post.date}
           slug={slug}
+          recipe={post.recipe}
         />
       ) : (
         <BlogPostSchema
@@ -205,7 +206,7 @@ export default async function PostPage({ params }: PageProps) {
               fill
               className="object-cover"
               priority
-              unoptimized
+              sizes="(max-width: 672px) 100vw, 672px"
             />
           </div>
         )}

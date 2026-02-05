@@ -8,6 +8,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "Sourdough & Bread | Half Pint Mama",
   description: "Master the art of sourdough bread baking with tested recipes from a Pediatric ER RN turned sourdough mama.",
+  alternates: { canonical: "https://halfpintmama.com/cooking/sourdough" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function SourdoughPage() {

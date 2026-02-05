@@ -7,6 +7,8 @@ export const revalidate = 60;
 export const metadata = {
   title: "All Posts | Half Pint Mama",
   description: "Browse all recipes, travel guides, DIY projects, and mama life posts.",
+  alternates: { canonical: "https://halfpintmama.com/posts" },
+  openGraph: { images: ["/logo.jpg"] },
 };
 
 export default async function PostsPage() {

@@ -1,7 +1,20 @@
+import type { Metadata } from "next";
 import { PostCard } from "@/components/PostCard";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Half Pint Mama | Real Food. From Scratch.",
+  description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood from a Pediatric ER RN turned mama in Central Texas.",
+  openGraph: {
+    title: "Half Pint Mama | Real Food. From Scratch.",
+    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood.",
+    images: ["/logo.jpg"],
+    url: "https://halfpintmama.com",
+  },
+  alternates: { canonical: "https://halfpintmama.com" },
+};
 
 export const revalidate = 60;
 

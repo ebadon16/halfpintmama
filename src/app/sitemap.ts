@@ -1,11 +1,11 @@
 import { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getAllTags } from "@/lib/posts";
 
 type ChangeFrequency = "daily" | "weekly" | "monthly" | "always" | "hourly" | "yearly" | "never";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://halfpintmama.com";
-  const posts = await getAllPosts();
+  const [posts, tags] = await Promise.all([getAllPosts(), getAllTags()]);
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
@@ -15,6 +15,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/cooking/discard",
     "/cooking/desserts",
     "/cooking/snacks",
+    "/travel",
+    "/diy",
     "/lifestyle",
     "/mama-life",
     "/start-here",
@@ -23,6 +25,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/shop",
     "/products",
     "/search",
+    "/favorites",
+    "/free-guide",
+    "/tags",
     "/privacy",
     "/terms",
   ].map((route) => ({
@@ -40,5 +45,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...postPages];
+  // Tag pages
+  const tagPages: MetadataRoute.Sitemap = tags.map((t) => ({
+    url: `${baseUrl}/tags/${t.tag}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as ChangeFrequency,
+    priority: 0.5,
+  }));
+
+  return [...staticPages, ...postPages, ...tagPages];
 }

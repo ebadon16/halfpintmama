@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { SearchButton } from "./SearchBar";
@@ -33,10 +34,13 @@ export function Header() {
         className="block w-full"
         aria-label="Half Pint Mama - Home"
       >
-        <img
-          src="https://raw.githubusercontent.com/ebadon16/halfpintmama/master/src/assets/hpm-banner-v2.png"
+        <Image
+          src="/hpm-banner-2026.png"
           alt="Half Pint Mama"
+          width={1920}
+          height={1200}
           className="w-full h-auto block"
+          priority
         />
       </Link>
 
@@ -48,6 +52,8 @@ export function Header() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="px-4 py-2 text-deep-sage font-semibold"
             aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMenuOpen ? "Close" : "Menu"}
           </button>
@@ -94,7 +100,7 @@ export function Header() {
 
         {/* Mobile nav */}
         {isMenuOpen && (
-          <div className="md:hidden flex flex-col items-center gap-2 py-4 px-4 bg-cream border-t border-light-sage">
+          <div id="mobile-menu" className="md:hidden flex flex-col items-center gap-2 py-4 px-4 bg-cream border-t border-light-sage">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

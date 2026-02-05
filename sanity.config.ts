@@ -7,8 +7,8 @@ export default defineConfig({
   name: "halfpintmama",
   title: "Half Pint Mama",
 
-  projectId: "qmwfv5mj",
-  dataset: "production",
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "qmwfv5mj",
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
 
   plugins: [structureTool(), visionTool()],
 

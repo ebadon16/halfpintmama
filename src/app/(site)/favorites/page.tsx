@@ -15,7 +15,8 @@ export default function FavoritesPage() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("favorites") || "[]");
+    let stored: FavoriteItem[] = [];
+    try { stored = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
     setFavorites(stored);
     setIsLoaded(true);
   }, []);

@@ -45,8 +45,7 @@ function SearchContent() {
       const response = await fetch(`/api/search?${params.toString()}`);
       const data = await response.json();
       setResults(data.results || []);
-    } catch (error) {
-      console.error("Search error:", error);
+    } catch {
       setResults([]);
     } finally {
       setIsSearching(false);
@@ -90,6 +89,7 @@ function SearchContent() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for sourdough, recipes, tips..."
+            aria-label="Search the blog"
             className="flex-1 px-6 py-4 border-2 border-sage rounded-full focus:outline-none focus:border-deep-sage text-lg"
           />
           <button
@@ -124,8 +124,9 @@ function SearchContent() {
         {/* Date Range */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div>
-            <label className="block text-sm text-charcoal/70 mb-1">From:</label>
+            <label htmlFor="search-start-date" className="block text-sm text-charcoal/70 mb-1">From:</label>
             <input
+              id="search-start-date"
               type="date"
               value={startDate}
               onChange={(e) => handleDateChange(e.target.value, endDate)}
@@ -133,8 +134,9 @@ function SearchContent() {
             />
           </div>
           <div>
-            <label className="block text-sm text-charcoal/70 mb-1">To:</label>
+            <label htmlFor="search-end-date" className="block text-sm text-charcoal/70 mb-1">To:</label>
             <input
+              id="search-end-date"
               type="date"
               value={endDate}
               onChange={(e) => handleDateChange(startDate, e.target.value)}

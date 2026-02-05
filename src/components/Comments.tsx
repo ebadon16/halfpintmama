@@ -182,8 +182,8 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
           replyToEmail: replyingToComment?.email,
         }),
       });
-    } catch (error) {
-      console.error("Failed to send notification:", error);
+    } catch {
+      // Notification failed silently — comment still saved locally
     }
 
     if (replyingTo) {
