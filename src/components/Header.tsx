@@ -35,11 +35,11 @@ export function Header() {
         aria-label="Half Pint Mama - Home"
       >
         <Image
-          src="/hpm-banner-2026.png"
+          src="/hpm-banner-v2.png"
           alt="Half Pint Mama"
           width={1920}
-          height={1200}
-          className="w-full max-h-[150px] object-cover object-center block"
+          height={280}
+          className="w-full h-auto block"
           priority
           sizes="100vw"
         />
