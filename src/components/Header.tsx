@@ -39,8 +39,9 @@ export function Header() {
           alt="Half Pint Mama"
           width={1920}
           height={1200}
-          className="w-full h-auto block"
+          className="w-full max-h-[280px] object-cover object-center block"
           priority
+          sizes="100vw"
         />
       </Link>
 

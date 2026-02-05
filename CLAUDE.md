@@ -39,15 +39,31 @@ Static Generation (generateStaticParams)
 | File | Purpose |
 |------|---------|
 | `src/lib/posts.ts` | Core library — async GROQ queries to Sanity |
+| `src/lib/sanitize.ts` | Shared `escapeHtml()` utility for XSS prevention |
+| `src/lib/rate-limit.ts` | In-memory rate limiter for API routes |
 | `src/sanity/client.ts` | Sanity client + image URL builder |
 | `src/sanity/schemas/post.ts` | Post document schema for Sanity Studio |
 | `sanity.config.ts` | Sanity Studio configuration |
 | `src/app/studio/[[...tool]]/page.tsx` | Embedded Sanity Studio at /studio |
-| `src/app/posts/[slug]/page.tsx` | Dynamic post page with Portable Text rendering |
+| `src/app/(site)/posts/[slug]/page.tsx` | Dynamic post page with Portable Text rendering |
 | `src/components/PortableTextRenderer.tsx` | Maps Portable Text to styled React elements |
 | `src/components/PostCard.tsx` | Reusable post card component |
 | `src/components/Header.tsx` | Site navigation |
 | `src/components/Footer.tsx` | Site footer |
+| `src/components/EmailSignup.tsx` | Reusable email signup form (connects to MailerLite) |
+| `src/components/EmailPopup.tsx` | Timed email popup with focus trap + a11y |
+| `src/components/Comments.tsx` | Comment/review system with Sanity storage |
+| `src/components/RecipeSchema.tsx` | JSON-LD structured data for recipes + blog posts |
+| `src/components/SearchBar.tsx` | Search input component |
+
+### API Routes
+
+| Route | Purpose | Rate Limit |
+|-------|---------|------------|
+| `api/contact` | Contact form → Resend email | 5/min |
+| `api/comments` | Comment notifications → Resend email | 10/min |
+| `api/subscribe` | Newsletter signup → MailerLite | 5/min |
+| `api/search` | Server-side post search | — |
 
 ### Category Pages
 
@@ -105,14 +121,21 @@ CSS variables in `globals.css`:
 - **Repo**: https://github.com/ebadon16/halfpintmama
 - **Domain**: halfpintmama.com (DNS at WordPress.com)
 
-Push to `main` branch triggers automatic deployment.
+Push to `master` branch triggers automatic deployment.
+
+## Implemented Features
+
+- **Newsletter**: EmailSignup, HomeEmailSignup, PostEmailSignup, EmailPopup → MailerLite API
+- **Comments/Reviews**: Star ratings + replies with email notifications via Resend
+- **Search**: Full-text search with category/date filters via `/api/search`
+- **Contact Form**: Email via Resend with rate limiting + validation
+- **Favorites**: Client-side localStorage with FavoriteButton component
+- **RSS Feed**: Auto-generated at `/feed.xml`
+- **SEO**: Canonical URLs, OG tags, JSON-LD (Recipe, BlogPost, BreadcrumbList) on all pages
 
 ## Future Features (Not Yet Implemented)
 
 - **Shop page**: Digital products via Gumroad/Payhip (placeholder exists)
-- **Newsletter**: Email signup (UI exists, needs backend integration)
-- **Comments**: Not implemented
-- **Search**: Not implemented
 
 ## Workflow Orchestration
 
