@@ -9,6 +9,19 @@ const sizeStyles: Record<string, string> = {
   large: "max-w-[600px] w-full",
 };
 
+function getYouTubeId(url: string): string | null {
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=)([^&\s]+)/,
+    /(?:youtu\.be\/)([^?\s]+)/,
+    /(?:youtube\.com\/embed\/)([^?\s]+)/,
+  ];
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
+  }
+  return null;
+}
+
 const components: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
@@ -126,6 +139,51 @@ const components: PortableTextComponents = {
         return <figure className={`float-left mr-6 mb-4 mt-2 ${imgSize}`}>{imgEl}</figure>;
       }
       return <figure className="my-6 flex justify-center">{imgEl}</figure>;
+    },
+    imageGrid: ({ value }) => {
+      if (!value?.images?.length) return null;
+      const cols = value.columns === "3" ? "md:grid-cols-3" : "md:grid-cols-2";
+      return (
+        <div className={`my-6 grid grid-cols-1 ${cols} gap-4`}>
+          {value.images.map((img: { asset?: { _ref?: string }; alt?: string; _key?: string }, i: number) => {
+            if (!img?.asset) return null;
+            return (
+              <Image
+                key={img._key || i}
+                src={urlFor(img).url()}
+                alt={img.alt || ""}
+                width={600}
+                height={400}
+                className="rounded-lg shadow-sm object-cover w-full"
+                unoptimized
+              />
+            );
+          })}
+        </div>
+      );
+    },
+    youtube: ({ value }) => {
+      if (!value?.url) return null;
+      const videoId = getYouTubeId(value.url);
+      if (!videoId) return null;
+      return (
+        <figure className="my-6">
+          <div className="aspect-video rounded-lg overflow-hidden shadow-sm">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title={value.caption || "YouTube video"}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="text-center text-sm text-charcoal/60 mt-2">
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      );
     },
   },
 };

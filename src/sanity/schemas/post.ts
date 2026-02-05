@@ -313,6 +313,82 @@ export const post = defineType({
             },
           },
         },
+        {
+          name: "imageGrid",
+          title: "Image Grid",
+          type: "object",
+          fields: [
+            defineField({
+              name: "images",
+              title: "Images",
+              type: "array",
+              of: [
+                {
+                  type: "image",
+                  options: { hotspot: true },
+                  fields: [
+                    defineField({
+                      name: "alt",
+                      title: "Alt Text",
+                      type: "string",
+                    }),
+                  ],
+                },
+              ],
+              validation: (rule) => rule.min(2).max(3).required(),
+            }),
+            defineField({
+              name: "columns",
+              title: "Columns",
+              type: "string",
+              options: {
+                list: [
+                  { title: "2 Columns", value: "2" },
+                  { title: "3 Columns", value: "3" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "2",
+            }),
+          ],
+          preview: {
+            select: { images: "images", columns: "columns" },
+            prepare({ images, columns }: { images?: unknown[]; columns?: string }) {
+              const count = images?.length || 0;
+              return {
+                title: `Image Grid (${count} images)`,
+                subtitle: `${columns || 2} columns`,
+              };
+            },
+          },
+        },
+        {
+          name: "youtube",
+          title: "YouTube",
+          type: "object",
+          fields: [
+            defineField({
+              name: "url",
+              title: "YouTube URL",
+              type: "url",
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: "caption",
+              title: "Caption",
+              type: "string",
+            }),
+          ],
+          preview: {
+            select: { url: "url", caption: "caption" },
+            prepare({ url, caption }: { url?: string; caption?: string }) {
+              return {
+                title: caption || "YouTube Video",
+                subtitle: url,
+              };
+            },
+          },
+        },
       ],
     }),
   ],
