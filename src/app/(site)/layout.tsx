@@ -1,20 +1,24 @@
 import "../globals.css";
+import dynamic from "next/dynamic";
 import { Crimson_Text, Quicksand } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { EmailPopup } from "@/components/EmailPopup";
 import { Analytics } from "@vercel/analytics/next";
+
+const EmailPopup = dynamic(() => import("@/components/EmailPopup").then((m) => m.EmailPopup));
 
 const crimsonText = Crimson_Text({
   variable: "--font-crimson",
   subsets: ["latin"],
   weight: ["400", "600", "700"],
+  display: "swap",
 });
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export default function SiteLayout({

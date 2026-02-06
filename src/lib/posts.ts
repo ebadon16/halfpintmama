@@ -276,41 +276,39 @@ export async function getPaginatedPostsBySubcategory(
   };
 }
 
-// Related posts by tag similarity
+// Related posts by tag similarity — uses targeted GROQ query instead of fetching all posts
 export async function getRelatedPostsByTags(
   currentSlug: string,
   currentTags: string[],
   currentCategory: string,
   limit: number = 3
 ): Promise<PostMeta[]> {
-  const allPosts = await getAllPosts();
-  const otherPosts = allPosts.filter((p) => p.slug !== currentSlug);
-
   if (currentTags.length === 0) {
-    // No tags — fall back to category
-    return otherPosts.filter((p) => p.category === currentCategory).slice(0, limit);
+    // No tags — fall back to same-category posts
+    return client.fetch<PostMeta[]>(
+      `*[_type == "post" && slug.current != $slug && category == $category] | order(date desc) [0...$limit] ${postMetaProjection}`,
+      { slug: currentSlug, category: currentCategory, limit }
+    );
   }
 
-  const normalizedCurrentTags = currentTags.map((t) => t.toLowerCase());
+  const normalizedTags = currentTags.map((t) => t.toLowerCase());
 
-  // Score posts by tag similarity
-  const scored = otherPosts.map((post) => {
+  // Fetch candidate posts that share a tag OR category with the current post
+  const candidates = await client.fetch<PostMeta[]>(
+    `*[_type == "post" && slug.current != $slug && (category == $category || count((tags[])[lower(@) in $tags]) > 0)] | order(date desc) [0...20] ${postMetaProjection}`,
+    { slug: currentSlug, category: currentCategory, tags: normalizedTags }
+  );
+
+  // Score by tag similarity (JS-side on small set)
+  const scored = candidates.map((post) => {
     const postTags = post.tags.map((t) => t.toLowerCase());
-    const matchingTags = normalizedCurrentTags.filter((t) => postTags.includes(t));
+    const matchingTags = normalizedTags.filter((t) => postTags.includes(t));
     const sameCategory = post.category === currentCategory ? 0.5 : 0;
     return { post, score: matchingTags.length + sameCategory };
   });
 
-  // Sort by score (highest first)
   scored.sort((a, b) => b.score - a.score);
-
-  // If no tag matches, fall back to category
-  const topResults = scored.slice(0, limit);
-  if (topResults.every((r) => r.score < 1)) {
-    return otherPosts.filter((p) => p.category === currentCategory).slice(0, limit);
-  }
-
-  return topResults.map((r) => r.post);
+  return scored.slice(0, limit).map((r) => r.post);
 }
 
 // Popular posts (highest rated)
@@ -321,7 +319,9 @@ export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
 
   // Fall back to latest posts if no ratings exist
   if (posts.length === 0) {
-    return (await getAllPosts()).slice(0, limit);
+    return client.fetch<PostMeta[]>(
+      `*[_type == "post"] | order(date desc) [0...${limit}] ${postMetaProjection}`
+    );
   }
 
   return posts;
