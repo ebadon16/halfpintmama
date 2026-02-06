@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllPosts, formatDate } from "@/lib/posts";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

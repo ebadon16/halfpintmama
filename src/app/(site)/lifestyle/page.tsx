@@ -2,7 +2,7 @@ import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Travel & DIY | Half Pint Mama",

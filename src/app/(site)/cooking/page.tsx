@@ -34,6 +34,17 @@ export default async function CookingPage({ searchParams }: PageProps) {
 
   return (
     <div className="bg-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://halfpintmama.com" },
+            { "@type": "ListItem", position: 2, name: "Cooking & Baking", item: "https://halfpintmama.com/cooking" },
+          ],
+        }) }}
+      />
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* My Saved Recipes Button */}
         <div className="flex justify-center mb-6">

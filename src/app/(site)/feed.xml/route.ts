@@ -1,6 +1,6 @@
 import { getAllPosts } from "@/lib/posts";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export async function GET() {
   const posts = await getAllPosts();

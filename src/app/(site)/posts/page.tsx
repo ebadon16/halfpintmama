@@ -3,7 +3,7 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata = {
   title: "All Posts | Half Pint Mama",

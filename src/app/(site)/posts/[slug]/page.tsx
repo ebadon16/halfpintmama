@@ -4,16 +4,19 @@ import Image from "next/image";
 import { getAllPosts, getPostBySlug, getRelatedPostsByTags, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
-import { Comments, CommentsPreview } from "@/components/Comments";
+import dynamic from "next/dynamic";
 import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema, HowToSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
-import { RecipeCard } from "@/components/RecipeCard";
+
+const Comments = dynamic(() => import("@/components/Comments").then(m => m.Comments));
+const CommentsPreview = dynamic(() => import("@/components/Comments").then(m => m.CommentsPreview));
+const RecipeCard = dynamic(() => import("@/components/RecipeCard").then(m => m.RecipeCard));
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 import type { PortableTextBlock } from "@portabletext/react";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 interface PageProps {
   params: Promise<{ slug: string }>;

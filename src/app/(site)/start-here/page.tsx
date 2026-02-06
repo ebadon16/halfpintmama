@@ -3,7 +3,7 @@ import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { EmailSignup } from "@/components/EmailSignup";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Start Here | Half Pint Mama",

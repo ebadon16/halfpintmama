@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { getAllTags } from "@/lib/posts";
 import { SearchContent } from "./SearchContent";
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Search | Half Pint Mama",

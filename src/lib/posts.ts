@@ -122,11 +122,18 @@ export async function getPostsBySubcategory(
   keywords: string[],
   excludeKeywords: string[] = []
 ): Promise<PostMeta[]> {
-  const posts = await getPostsByCategory(category);
-  return posts.filter(
-    (post) =>
-      keywords.some((kw) => post.title.toLowerCase().includes(kw.toLowerCase())) &&
-      !excludeKeywords.some((kw) => post.title.toLowerCase().includes(kw.toLowerCase()))
+  const includeConditions = keywords.map((_, i) => `title match $kw${i}`).join(" || ");
+  const excludeConditions = excludeKeywords.length > 0
+    ? ` && !(${excludeKeywords.map((_, i) => `title match $ex${i}`).join(" || ")})`
+    : "";
+
+  const params: Record<string, string> = { category };
+  keywords.forEach((kw, i) => { params[`kw${i}`] = `*${kw}*`; });
+  excludeKeywords.forEach((kw, i) => { params[`ex${i}`] = `*${kw}*`; });
+
+  return client.fetch(
+    `*[_type == "post" && category == $category && (${includeConditions})${excludeConditions}] | order(date desc) ${postMetaProjection}`,
+    params
   );
 }
 
@@ -260,14 +267,32 @@ export async function getPaginatedPostsBySubcategory(
   page: number,
   perPage: number = POSTS_PER_PAGE
 ): Promise<PaginatedResult<PostMeta>> {
-  const allPosts = await getPostsBySubcategory(category, keywords, excludeKeywords);
   const validPage = Math.max(1, page);
   const start = (validPage - 1) * perPage;
-  const totalCount = allPosts.length;
+
+  const includeConditions = keywords.map((_, i) => `title match $kw${i}`).join(" || ");
+  const excludeConditions = excludeKeywords.length > 0
+    ? ` && !(${excludeKeywords.map((_, i) => `title match $ex${i}`).join(" || ")})`
+    : "";
+
+  const params: Record<string, string | number> = { category, start, end: start + perPage };
+  keywords.forEach((kw, i) => { params[`kw${i}`] = `*${kw}*`; });
+  excludeKeywords.forEach((kw, i) => { params[`ex${i}`] = `*${kw}*`; });
+
+  const filter = `_type == "post" && category == $category && (${includeConditions})${excludeConditions}`;
+
+  const [items, totalCount] = await Promise.all([
+    client.fetch(
+      `*[${filter}] | order(date desc) ${postMetaProjection}[$start...$end]`,
+      params
+    ),
+    client.fetch(`count(*[${filter}])`, params),
+  ]);
+
   const totalPages = Math.ceil(totalCount / perPage);
 
   return {
-    items: allPosts.slice(start, start + perPage),
+    items,
     totalCount,
     currentPage: validPage,
     totalPages,

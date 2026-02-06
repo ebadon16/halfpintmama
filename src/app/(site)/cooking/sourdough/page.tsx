@@ -39,6 +39,18 @@ export default async function SourdoughPage({ searchParams }: PageProps) {
 
   return (
     <div className="bg-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://halfpintmama.com" },
+            { "@type": "ListItem", position: 2, name: "Cooking & Baking", item: "https://halfpintmama.com/cooking" },
+            { "@type": "ListItem", position: 3, name: "Sourdough & Bread", item: "https://halfpintmama.com/cooking/sourdough" },
+          ],
+        }) }}
+      />
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Subcategory Navigation */}
         <div className="flex flex-wrap gap-3 mb-8 justify-center">
