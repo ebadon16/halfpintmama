@@ -13,7 +13,7 @@ export async function GET() {
 ${postsWithImages
   .map(
     (post) => `  <url>
-    <loc>${baseUrl}/posts/${post.slug}</loc>
+    <loc>${baseUrl}/posts/${escapeXml(post.slug)}</loc>
     <image:image>
       <image:loc>${escapeXml(post.image!)}</image:loc>
       <image:title>${escapeXml(post.title)}</image:title>

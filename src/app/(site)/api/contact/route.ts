@@ -33,7 +33,8 @@ export async function POST(request: Request) {
 
     // Trim and length-limit fields
     const safeName = escapeHtml((typeof name === "string" ? name : "").trim().slice(0, 100));
-    const safeEmail = escapeHtml(email.trim().slice(0, 254));
+    const rawEmail = email.trim().slice(0, 254);
+    const safeEmail = escapeHtml(rawEmail);
     const safeSubject = escapeHtml((typeof subject === "string" ? subject : "").trim().slice(0, 200));
     const safeMessage = escapeHtml(message.trim().slice(0, 5000));
 
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: "Half Pint Mama <noreply@halfpintmama.com>",
         to: CONTACT_EMAIL,
-        reply_to: safeEmail,
+        reply_to: rawEmail,
         subject: `Contact Form: ${safeSubject || "New Message"}`,
         html: `
           <h2>New Contact Form Submission</h2>

@@ -12,8 +12,8 @@ export async function GET() {
       (post) => `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${baseUrl}/posts/${post.slug}</link>
-      <guid isPermaLink="true">${baseUrl}/posts/${post.slug}</guid>
+      <link>${baseUrl}/posts/${escapeXml(post.slug)}</link>
+      <guid isPermaLink="true">${baseUrl}/posts/${escapeXml(post.slug)}</guid>
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category>${escapeXml(post.category)}</category>

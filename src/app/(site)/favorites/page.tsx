@@ -23,7 +23,7 @@ export default function FavoritesPage() {
 
   const handleRemove = (slug: string) => {
     const newFavorites = favorites.filter((f) => f.slug !== slug);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    try { localStorage.setItem("favorites", JSON.stringify(newFavorites)); } catch { /* storage unavailable */ }
     setFavorites(newFavorites);
   };
 

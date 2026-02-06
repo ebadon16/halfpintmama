@@ -76,7 +76,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
   const handleSuggestionClick = (term: string) => {
     setQuery(term);
     performSearch(term);
-    window.history.pushState({}, "", `/search?q=${encodeURIComponent(term)}`);
+    router.replace(`/search?q=${encodeURIComponent(term)}`, { scroll: false });
   };
 
   const handleCategoryChange = (category: string) => {
