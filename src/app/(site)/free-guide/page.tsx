@@ -112,7 +112,7 @@ function SignupForm({ source }: { source: string }) {
         />
       </div>
       {status === "error" && (
-        <p className="text-red-500 text-sm">Something went wrong. Please try again.</p>
+        <p role="alert" className="text-red-500 text-sm">Something went wrong. Please try again.</p>
       )}
       <button
         type="submit"

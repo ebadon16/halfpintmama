@@ -107,7 +107,7 @@ export default function ContactPage() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors"
+                      className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
                       placeholder="Jane Smith"
                     />
                   </div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
                       required
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors"
+                      className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -138,7 +138,7 @@ export default function ContactPage() {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors"
+                    className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
                   >
                     <option value="">Select a topic...</option>
                     <option value="general">General Question</option>
@@ -161,13 +161,13 @@ export default function ContactPage() {
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors resize-none"
+                    className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors resize-none"
                     placeholder="What's on your mind?"
                   />
                 </div>
 
                 {error && (
-                  <p className="text-red-500 text-sm">{error}</p>
+                  <p role="alert" className="text-red-500 text-sm">{error}</p>
                 )}
 
                 <button

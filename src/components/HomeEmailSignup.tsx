@@ -44,7 +44,7 @@ export function HomeEmailSignup() {
   if (status === "success") {
     return (
       <section className="max-w-4xl mx-auto px-4 py-12">
-        <div className="gradient-cta rounded-2xl p-8 md:p-10 text-center text-white shadow-lg">
+        <div role="status" className="gradient-cta rounded-2xl p-8 md:p-10 text-center text-white shadow-lg">
           <div className="text-5xl mb-4">🎉</div>
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold mb-3">
             You&apos;re In!
@@ -86,9 +86,9 @@ export function HomeEmailSignup() {
           </button>
         </form>
         {status === "error" && (
-          <p className="text-red-200 text-sm mt-3">{message}</p>
+          <p role="alert" className="text-red-200 text-sm mt-3">{message}</p>
         )}
-        <p className="text-white/60 text-xs mt-4">
+        <p className="text-white/80 text-xs mt-4">
           No spam, unsubscribe anytime. I respect your inbox.
         </p>
       </div>

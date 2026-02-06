@@ -120,13 +120,13 @@ export function Footer() {
               href="https://linktr.ee/Halfpintmama"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 text-sm text-charcoal/60 hover:text-terracotta transition-colors"
+              className="inline-block mt-4 text-sm text-charcoal/80 hover:text-terracotta transition-colors"
             >
               All Links &rarr;
             </a>
             <a
               href="mailto:keegan@halfpintmama.com"
-              className="flex items-center gap-2 mt-3 text-sm text-charcoal/60 hover:text-terracotta transition-colors"
+              className="flex items-center gap-2 mt-3 text-sm text-charcoal/80 hover:text-terracotta transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -139,29 +139,29 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-charcoal/10">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-            <Link href="/contact" className="text-charcoal/60 text-sm hover:text-terracotta transition-colors">
+            <Link href="/contact" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors">
               Contact
             </Link>
             <span className="hidden sm:block text-charcoal/30">|</span>
-            <Link href="/privacy" className="text-charcoal/60 text-sm hover:text-terracotta transition-colors">
+            <Link href="/privacy" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors">
               Privacy Policy
             </Link>
             <span className="hidden sm:block text-charcoal/30">|</span>
-            <Link href="/terms" className="text-charcoal/60 text-sm hover:text-terracotta transition-colors">
+            <Link href="/terms" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors">
               Terms of Service
             </Link>
             <span className="hidden sm:block text-charcoal/30">|</span>
-            <a href="/feed.xml" className="text-charcoal/60 text-sm hover:text-terracotta transition-colors flex items-center gap-1">
+            <a href="/feed.xml" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors flex items-center gap-1">
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1Z"/>
               </svg>
               RSS Feed
             </a>
           </div>
-          <p className="font-[family-name:var(--font-crimson)] text-charcoal/60 italic text-center">
+          <p className="font-[family-name:var(--font-crimson)] text-charcoal/80 italic text-center">
             Made with coffee and lots of sourdough discard
           </p>
-          <p className="text-charcoal/50 text-sm mt-2 text-center">
+          <p className="text-charcoal/70 text-sm mt-2 text-center">
             © {new Date().getFullYear()} Half Pint Mama. All rights reserved.
           </p>
         </div>

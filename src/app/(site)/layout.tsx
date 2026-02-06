@@ -32,8 +32,11 @@ export default function SiteLayout({
         <link rel="alternate" type="application/rss+xml" title="Half Pint Mama" href="https://halfpintmama.com/feed.xml" />
       </head>
       <body className={`${crimsonText.variable} ${quicksand.variable} antialiased`}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-deep-sage focus:font-semibold">
+          Skip to content
+        </a>
         <Header />
-        <main className="min-h-screen">
+        <main id="main-content" className="min-h-screen">
           {children}
         </main>
         <Footer />

@@ -43,7 +43,7 @@ export function PostEmailSignup() {
 
   if (status === "success") {
     return (
-      <div className="my-10 p-6 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl">
+      <div role="status" className="my-10 p-6 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl">
         <div className="flex items-center gap-4">
           <span className="text-4xl">🎉</span>
           <p className="text-green-600 font-medium">{message}</p>
@@ -71,7 +71,7 @@ export function PostEmailSignup() {
               placeholder="Your email"
               aria-label="Email address"
               disabled={status === "loading"}
-              className="flex-1 px-4 py-2 rounded-full border-2 border-sage focus:outline-none focus:border-deep-sage text-sm disabled:opacity-50"
+              className="flex-1 px-4 py-2 rounded-full border-2 border-sage focus:outline-none focus:ring-2 focus:ring-sage focus:border-deep-sage text-sm disabled:opacity-50"
             />
             <button
               type="submit"
@@ -82,7 +82,7 @@ export function PostEmailSignup() {
             </button>
           </form>
           {status === "error" && (
-            <p className="text-red-500 text-sm mt-2">{message}</p>
+            <p role="alert" className="text-red-500 text-sm mt-2">{message}</p>
           )}
         </div>
       </div>
@@ -133,7 +133,7 @@ export function BottomEmailCTA() {
     return (
       <section className="py-12">
         <div className="max-w-2xl mx-auto px-4">
-          <div className="gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
+          <div role="status" className="gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
             <span className="text-5xl block mb-4">🎉</span>
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
               You&apos;re In!
@@ -166,7 +166,7 @@ export function BottomEmailCTA() {
               placeholder="Your email"
               aria-label="Email address"
               disabled={status === "loading"}
-              className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:border-white disabled:opacity-50"
+              className="flex-1 px-4 py-3 rounded-full text-charcoal border-2 border-white/80 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white disabled:opacity-50"
             />
             <button
               type="submit"
@@ -177,7 +177,7 @@ export function BottomEmailCTA() {
             </button>
           </form>
           {status === "error" && (
-            <p className="text-red-200 text-sm mt-3">{message}</p>
+            <p role="alert" className="text-red-200 text-sm mt-3">{message}</p>
           )}
         </div>
       </div>

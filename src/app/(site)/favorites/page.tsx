@@ -88,7 +88,7 @@ export default function FavoritesPage() {
                   <h3 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal hover:text-terracotta transition-colors truncate">
                     {favorite.title}
                   </h3>
-                  <p className="text-charcoal/50 text-sm">
+                  <p className="text-charcoal/70 text-sm">
                     Saved {new Date(favorite.savedAt).toLocaleDateString()}
                   </p>
                 </Link>

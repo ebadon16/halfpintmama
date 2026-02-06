@@ -203,7 +203,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               </div>
               <div>
                 <h4 className="font-semibold text-charcoal">{comment.author}</h4>
-                <p className="text-xs text-charcoal/50">{formatDate(comment.createdAt)}</p>
+                <p className="text-xs text-charcoal/70">{formatDate(comment.createdAt)}</p>
               </div>
             </div>
           </div>
@@ -262,14 +262,14 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
 
         {/* Success Message */}
         {submitSuccess && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center">
+          <div role="status" className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center">
             Thank you for your comment! It has been posted.
           </div>
         )}
 
         {/* Error Message */}
         {submitError && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-center">
+          <div role="alert" className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-center">
             {submitError}
           </div>
         )}
@@ -288,6 +288,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                   setReplyingToComment(null);
                   setSubmitError("");
                 }}
+                aria-label="Close comment form"
                 className="text-charcoal/50 hover:text-charcoal transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -376,9 +377,9 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
 
         {/* Loading State */}
         {isLoading && (
-          <div className="text-center py-8">
+          <div role="status" aria-live="polite" className="text-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage mx-auto"></div>
-            <p className="text-charcoal/60 mt-2">Loading comments...</p>
+            <p className="text-charcoal/70 mt-2">Loading comments...</p>
           </div>
         )}
 

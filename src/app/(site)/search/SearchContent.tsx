@@ -177,7 +177,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
 
       {/* Results */}
       {isSearching && (
-        <div className="text-center py-12">
+        <div role="status" aria-live="polite" className="text-center py-12">
           <div className="text-4xl animate-pulse">🔍</div>
           <p className="text-charcoal/70 mt-2">Searching...</p>
         </div>

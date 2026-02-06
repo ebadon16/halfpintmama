@@ -61,7 +61,7 @@ export function EmailSignup({
 
   if (status === "success") {
     return (
-      <div className={`text-center ${className}`}>
+      <div role="status" className={`text-center ${className}`}>
         <div className="text-2xl mb-2">🎉</div>
         <p className="text-green-600 font-medium">{message}</p>
       </div>
@@ -91,7 +91,7 @@ export function EmailSignup({
         </button>
       </div>
       {status === "error" && (
-        <p className="text-red-500 text-sm mt-2">{message}</p>
+        <p role="alert" className="text-red-500 text-sm mt-2">{message}</p>
       )}
     </form>
   );

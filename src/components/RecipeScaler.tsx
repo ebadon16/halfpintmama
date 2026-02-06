@@ -42,7 +42,8 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
             value={currentServings}
             onChange={handleCustomServings}
             min="1"
-            className="w-16 text-center px-2 py-1 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage text-lg font-semibold text-charcoal"
+            aria-label="Number of servings"
+            className="w-16 text-center px-2 py-1 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage text-lg font-semibold text-charcoal"
           />
           <span className="text-charcoal/70">servings</span>
         </div>
