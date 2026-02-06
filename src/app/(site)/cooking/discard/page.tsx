@@ -29,7 +29,7 @@ export default async function DiscardPage({ searchParams }: PageProps) {
 
   return (
     <div className="bg-cream">
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Subcategory Navigation */}
         <div className="flex flex-wrap gap-3 mb-8 justify-center">
           <Link href="/cooking" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
@@ -61,7 +61,7 @@ export default async function DiscardPage({ searchParams }: PageProps) {
           <SearchBar placeholder="Search discard recipes..." className="max-w-md" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {posts.map((post) => (
             <PostCard
               key={post.slug}
