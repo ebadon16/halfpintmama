@@ -16,9 +16,26 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Half Pint Mama",
-    description: "Where Mom Life Meets Real Life",
+    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood from a Pediatric ER RN turned mama.",
     type: "website",
     locale: "en_US",
+    siteName: "Half Pint Mama",
+    images: [
+      {
+        url: "/logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Half Pint Mama",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@halfpint.mama",
+    creator: "@halfpint.mama",
+    title: "Half Pint Mama",
+    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood.",
+    images: ["/logo.jpg"],
   },
 };
 

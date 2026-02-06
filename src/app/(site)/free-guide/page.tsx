@@ -2,6 +2,46 @@
 
 import { useState } from "react";
 
+// FAQ Schema for SEO - common sourdough starter questions
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How long does it take to make a sourdough starter?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "It typically takes 7-10 days to create an active sourdough starter from scratch. The guide provides day-by-day instructions to help you through the process.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why isn't my sourdough starter rising?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Common reasons include using water that's too hot or too cold, not feeding often enough, or environmental temperature issues. The troubleshooting section covers all common problems and solutions.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What flour should I use for sourdough starter?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "All-purpose flour or bread flour work well for beginners. Whole wheat or rye flour can help establish a starter faster due to higher wild yeast content.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How often do I need to feed my sourdough starter?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "During the initial creation phase, feed once or twice daily. Once established, a refrigerated starter only needs weekly feedings, or daily if kept at room temperature.",
+      },
+    },
+  ],
+};
+
 function SignupForm({ source }: { source: string }) {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -88,6 +128,11 @@ function SignupForm({ source }: { source: string }) {
 export default function FreeGuidePage() {
   return (
     <div className="bg-cream min-h-screen">
+      {/* FAQ Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-terracotta/10 to-cream py-16 md:py-20">
         <div className="max-w-5xl mx-auto px-4">

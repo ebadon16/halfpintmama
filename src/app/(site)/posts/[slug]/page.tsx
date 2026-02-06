@@ -46,6 +46,12 @@ export async function generateMetadata({ params }: PageProps) {
       url: `https://halfpintmama.com/posts/${slug}`,
       images: post.image ? [post.image] : ["/logo.jpg"],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: post.image ? [post.image] : ["/logo.jpg"],
+    },
   };
 }
 

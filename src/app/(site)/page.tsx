@@ -14,6 +14,12 @@ export const metadata: Metadata = {
     images: ["/logo.jpg"],
     url: "https://halfpintmama.com",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Half Pint Mama | Real Food. From Scratch.",
+    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood.",
+    images: ["/logo.jpg"],
+  },
   alternates: { canonical: "https://halfpintmama.com" },
 };
 
@@ -25,8 +31,52 @@ export default async function Home() {
     getPopularPosts(4),
   ]);
 
+  // Structured data for SEO
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Half Pint Mama",
+    url: "https://halfpintmama.com",
+    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood from a Pediatric ER RN turned mama in Central Texas.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: "https://halfpintmama.com/search?q={search_term_string}",
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Half Pint Mama",
+    url: "https://halfpintmama.com",
+    logo: "https://halfpintmama.com/logo.jpg",
+    description: "A lifestyle blog about sourdough baking, family travel, DIY projects, and real talk about motherhood.",
+    founder: {
+      "@type": "Person",
+      name: "Keegan",
+      jobTitle: "Pediatric ER RN & Blogger",
+    },
+    sameAs: [
+      "https://www.instagram.com/halfpint.mama",
+      "https://www.amazon.com/shop/influencer-f4dc3b3f",
+    ],
+  };
+
   return (
     <div className="bg-cream">
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       {/* Hero Section - Clear Value Proposition */}
       <section className="bg-gradient-to-b from-light-sage/30 to-cream py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 text-center">
