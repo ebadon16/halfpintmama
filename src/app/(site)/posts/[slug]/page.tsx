@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: PageProps) {
       title: post.title,
       description: post.excerpt,
       url: `https://halfpintmama.com/posts/${slug}`,
+      type: "article",
       images: post.image ? [post.image] : ["/logo.jpg"],
     },
     twitter: {
@@ -116,7 +117,7 @@ export default async function PostPage({ params }: PageProps) {
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: "https://halfpintmama.com" },
               { "@type": "ListItem", position: 2, name: categoryLabel, item: `https://halfpintmama.com/${post.category}` },
-              { "@type": "ListItem", position: 3, name: post.title },
+              { "@type": "ListItem", position: 3, name: post.title, item: `https://halfpintmama.com/posts/${slug}` },
             ],
           }),
         }}

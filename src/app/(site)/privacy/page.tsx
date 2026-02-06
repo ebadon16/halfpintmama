@@ -2,7 +2,17 @@ export const metadata = {
   title: "Privacy Policy | Half Pint Mama",
   description: "Learn how Half Pint Mama collects, uses, and protects your personal information. Read our full privacy policy including cookies, analytics, and your rights.",
   alternates: { canonical: "https://halfpintmama.com/privacy" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Privacy Policy | Half Pint Mama",
+    description: "Learn how Half Pint Mama collects, uses, and protects your personal information.",
+    url: "https://halfpintmama.com/privacy",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Privacy Policy | Half Pint Mama",
+    description: "Learn how Half Pint Mama collects, uses, and protects your personal information.",
+  },
 };
 
 export default function PrivacyPolicyPage() {

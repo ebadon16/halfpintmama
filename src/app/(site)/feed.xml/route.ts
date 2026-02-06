@@ -17,7 +17,7 @@ export async function GET() {
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category>${escapeXml(post.category)}</category>
-      ${post.image ? `<enclosure url="${escapeXml(post.image)}" type="image/jpeg"/>` : ""}
+      ${post.image ? `<enclosure url="${escapeXml(post.image)}" type="image/jpeg" length="0"/>` : ""}
     </item>`
     )
     .join("");

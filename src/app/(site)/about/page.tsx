@@ -73,9 +73,9 @@ export default function AboutPage() {
 
           {/* Highlight Box */}
           <div className="bg-light-sage rounded-xl p-6 border-l-4 border-sage mb-6">
-            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-deep-sage mb-4">
+            <h2 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-deep-sage mb-4">
               A Few Things About Me:
-            </h3>
+            </h2>
             <ul className="space-y-3 text-charcoal">
               <li className="flex items-start gap-3">
                 <span>☕</span>

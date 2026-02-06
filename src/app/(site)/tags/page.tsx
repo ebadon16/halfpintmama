@@ -7,7 +7,17 @@ export const metadata = {
   title: "Tags | Half Pint Mama",
   description: "Browse all blog posts by topic tags on Half Pint Mama. Find sourdough recipes, family travel tips, DIY crafts, and parenting content organized by keyword.",
   alternates: { canonical: "https://halfpintmama.com/tags" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Tags | Half Pint Mama",
+    description: "Browse all blog posts by topic tags on Half Pint Mama.",
+    url: "https://halfpintmama.com/tags",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Tags | Half Pint Mama",
+    description: "Browse all blog posts by topic tags on Half Pint Mama.",
+  },
 };
 
 export default async function TagsPage() {

@@ -2,7 +2,17 @@ export const metadata = {
   title: "Products We Love | Half Pint Mama",
   description: "Curated product recommendations for sourdough baking, baby gear, and family travel. Real reviews from real life with littles.",
   alternates: { canonical: "https://halfpintmama.com/products" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Products We Love | Half Pint Mama",
+    description: "Curated product recommendations for sourdough baking, baby gear, and family travel.",
+    url: "https://halfpintmama.com/products",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Products We Love | Half Pint Mama",
+    description: "Curated product recommendations for sourdough baking, baby gear, and family travel.",
+  },
 };
 
 const affiliateCategories = [

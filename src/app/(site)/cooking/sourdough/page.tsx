@@ -10,7 +10,17 @@ export const metadata = {
   title: "Sourdough & Bread | Half Pint Mama",
   description: "Master sourdough bread baking with tested recipes from a bread-obsessed mama. Beginner-friendly guides and techniques for crusty, beautiful homemade loaves.",
   alternates: { canonical: "https://halfpintmama.com/cooking/sourdough" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Sourdough & Bread | Half Pint Mama",
+    description: "Master sourdough bread baking with tested recipes from a bread-obsessed mama.",
+    url: "https://halfpintmama.com/cooking/sourdough",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Sourdough & Bread | Half Pint Mama",
+    description: "Master sourdough bread baking with tested recipes from a bread-obsessed mama.",
+  },
 };
 
 interface PageProps {

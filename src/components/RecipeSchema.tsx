@@ -24,6 +24,21 @@ export function RecipeSchema({ title, description, image, datePublished, slug, r
         s.steps.map((step) => ({ "@type": "HowToStep" as const, text: step }))
       ) ?? [];
 
+  // Don't render Recipe schema without required fields (ingredients or instructions)
+  if (ingredients.length === 0 && instructions.length === 0) {
+    return null;
+  }
+
+  // Determine recipeCategory from title keywords
+  const titleLower = title.toLowerCase();
+  const recipeCategory = titleLower.includes("sourdough") || titleLower.includes("bread") || titleLower.includes("loaf")
+    ? "Bread"
+    : titleLower.includes("cookie") || titleLower.includes("cake") || titleLower.includes("brownie") || titleLower.includes("dessert")
+    ? "Dessert"
+    : titleLower.includes("snack") || titleLower.includes("cracker")
+    ? "Snack"
+    : "Recipe";
+
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Recipe",
@@ -45,9 +60,9 @@ export function RecipeSchema({ title, description, image, datePublished, slug, r
       },
     },
     url: `${baseUrl}/posts/${slug}`,
-    recipeCategory: "Sourdough",
+    recipeCategory,
     recipeCuisine: "American",
-    keywords: `${title}, sourdough, recipe, homemade`,
+    keywords: `${title}, recipe, homemade`,
   };
 
   if (ingredients.length > 0) schema.recipeIngredient = ingredients;
@@ -136,6 +151,11 @@ interface HowToSchemaProps {
 }
 
 export function HowToSchema({ title, description, image, slug, estimatedTime, steps }: HowToSchemaProps) {
+  // Don't render HowTo schema without steps — Google requires at least one step
+  if (!steps || steps.length === 0) {
+    return null;
+  }
+
   const baseUrl = "https://halfpintmama.com";
 
   const schema: Record<string, unknown> = {

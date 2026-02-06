@@ -9,7 +9,17 @@ export const metadata = {
   title: "Family Travel | Half Pint Mama",
   description: "Family travel guides and tips for adventures with toddlers and babies. Destination reviews, packing lists, and advice to make traveling with kids easier.",
   alternates: { canonical: "https://halfpintmama.com/travel" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Family Travel | Half Pint Mama",
+    description: "Family travel guides and tips for adventures with toddlers and babies.",
+    url: "https://halfpintmama.com/travel",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Family Travel | Half Pint Mama",
+    description: "Family travel guides and tips for adventures with toddlers and babies.",
+  },
 };
 
 interface PageProps {

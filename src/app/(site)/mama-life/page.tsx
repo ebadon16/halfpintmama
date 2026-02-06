@@ -9,7 +9,17 @@ export const metadata = {
   title: "Mama Life | Half Pint Mama",
   description: "Honest parenting tips and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos of life with toddlers and babies.",
   alternates: { canonical: "https://halfpintmama.com/mama-life" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Mama Life | Half Pint Mama",
+    description: "Honest parenting tips and real talk about motherhood from a Pediatric ER RN and mama of two.",
+    url: "https://halfpintmama.com/mama-life",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Mama Life | Half Pint Mama",
+    description: "Honest parenting tips and real talk about motherhood from a Pediatric ER RN and mama of two.",
+  },
 };
 
 interface PageProps {

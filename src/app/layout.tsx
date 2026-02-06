@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@halfpint.mama",
-    creator: "@halfpint.mama",
+    site: "@halfpintmama",
+    creator: "@halfpintmama",
     title: "Half Pint Mama",
     description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood.",
     images: ["/logo.jpg"],

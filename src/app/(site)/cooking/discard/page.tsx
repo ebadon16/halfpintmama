@@ -10,7 +10,17 @@ export const metadata = {
   title: "Sourdough Discard Recipes | Half Pint Mama",
   description: "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more. Turn your excess starter into delicious family favorites.",
   alternates: { canonical: "https://halfpintmama.com/cooking/discard" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Sourdough Discard Recipes | Half Pint Mama",
+    description: "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more.",
+    url: "https://halfpintmama.com/cooking/discard",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Sourdough Discard Recipes | Half Pint Mama",
+    description: "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more.",
+  },
 };
 
 interface PageProps {

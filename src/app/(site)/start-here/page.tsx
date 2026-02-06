@@ -9,7 +9,17 @@ export const metadata = {
   title: "Start Here | Half Pint Mama",
   description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey, navigating new parenthood, or looking for family recipes.",
   alternates: { canonical: "https://halfpintmama.com/start-here" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Start Here | Half Pint Mama",
+    description: "New to Half Pint Mama? Start your sourdough journey, navigate parenthood, or find family recipes.",
+    url: "https://halfpintmama.com/start-here",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Start Here | Half Pint Mama",
+    description: "New to Half Pint Mama? Start your sourdough journey, navigate parenthood, or find family recipes.",
+  },
 };
 
 export default async function StartHerePage() {

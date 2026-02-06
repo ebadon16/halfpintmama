@@ -31,6 +31,11 @@ export async function generateMetadata({ params }: TagPageProps) {
       description,
       images: ["/logo.jpg"],
     },
+    twitter: {
+      card: "summary" as const,
+      title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
+      description,
+    },
   };
 }
 

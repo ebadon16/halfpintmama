@@ -9,7 +9,17 @@ export const metadata = {
   title: "All Posts | Half Pint Mama",
   description: "Browse all blog posts on Half Pint Mama. Find sourdough recipes, family travel guides, creative DIY projects, and honest parenting tips from a Pediatric RN mama.",
   alternates: { canonical: "https://halfpintmama.com/posts" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "All Posts | Half Pint Mama",
+    description: "Browse all blog posts on Half Pint Mama. Sourdough recipes, travel guides, DIY projects, and parenting tips.",
+    url: "https://halfpintmama.com/posts",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "All Posts | Half Pint Mama",
+    description: "Browse all blog posts on Half Pint Mama. Sourdough recipes, travel guides, DIY projects, and parenting tips.",
+  },
 };
 
 interface PageProps {

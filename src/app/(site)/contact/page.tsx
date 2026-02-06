@@ -185,9 +185,9 @@ export default function ContactPage() {
           <div className="space-y-6">
             {/* Quick Info */}
             <div className="bg-white rounded-2xl p-6 shadow-md">
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
+              <h2 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
                 Quick Info
-              </h3>
+              </h2>
               <div className="space-y-4 text-sm">
                 <div>
                   <p className="font-medium text-charcoal">Response Time</p>
@@ -202,9 +202,9 @@ export default function ContactPage() {
 
             {/* Social Links */}
             <div className="bg-white rounded-2xl p-6 shadow-md">
-              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
+              <h2 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
                 Connect on Social
-              </h3>
+              </h2>
               <div className="space-y-3">
                 <a
                   href="https://www.instagram.com/halfpint.mama/"
@@ -238,9 +238,9 @@ export default function ContactPage() {
 
             {/* FAQ Note */}
             <div className="bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl p-6">
-              <h3 className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-semibold mb-2">
+              <h2 className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-semibold mb-2">
                 Common Questions
-              </h3>
+              </h2>
               <p className="text-charcoal/70 text-sm mb-3">
                 Check out the Start Here page for answers to frequently asked questions about sourdough, recipes, and more!
               </p>

@@ -10,7 +10,17 @@ export const metadata = {
   title: "Desserts & Sweet Treats | Half Pint Mama",
   description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats. Family-tested sweet treats that are perfect for any occasion or holiday.",
   alternates: { canonical: "https://halfpintmama.com/cooking/desserts" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Desserts & Sweet Treats | Half Pint Mama",
+    description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats.",
+    url: "https://halfpintmama.com/cooking/desserts",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Desserts & Sweet Treats | Half Pint Mama",
+    description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats.",
+  },
 };
 
 interface PageProps {

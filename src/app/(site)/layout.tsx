@@ -24,6 +24,9 @@ export default function SiteLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="alternate" type="application/rss+xml" title="Half Pint Mama" href="https://halfpintmama.com/feed.xml" />
+      </head>
       <body className={`${crimsonText.variable} ${quicksand.variable} antialiased`}>
         <Header />
         <main className="min-h-screen">

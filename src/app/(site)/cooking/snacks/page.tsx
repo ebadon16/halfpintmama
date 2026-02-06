@@ -10,7 +10,17 @@ export const metadata = {
   title: "Snacks & Finger Foods | Half Pint Mama",
   description: "Healthy homemade snacks perfect for kids and the whole family. Easy recipes for crackers, granola, popsicles, and finger foods for lunchboxes and on-the-go.",
   alternates: { canonical: "https://halfpintmama.com/cooking/snacks" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Snacks & Finger Foods | Half Pint Mama",
+    description: "Healthy homemade snacks perfect for kids and the whole family.",
+    url: "https://halfpintmama.com/cooking/snacks",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Snacks & Finger Foods | Half Pint Mama",
+    description: "Healthy homemade snacks perfect for kids and the whole family.",
+  },
 };
 
 interface PageProps {

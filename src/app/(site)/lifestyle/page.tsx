@@ -8,7 +8,17 @@ export const metadata = {
   title: "Travel & DIY | Half Pint Mama",
   description: "Explore family travel guides and creative DIY projects on Half Pint Mama. Tips for adventures with toddlers plus homemade costumes, crafts, and more.",
   alternates: { canonical: "https://halfpintmama.com/lifestyle" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Travel & DIY | Half Pint Mama",
+    description: "Explore family travel guides and creative DIY projects on Half Pint Mama.",
+    url: "https://halfpintmama.com/lifestyle",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Travel & DIY | Half Pint Mama",
+    description: "Explore family travel guides and creative DIY projects on Half Pint Mama.",
+  },
 };
 
 export default async function LifestylePage() {

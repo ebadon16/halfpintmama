@@ -10,7 +10,17 @@ export const metadata = {
   title: "Cooking & Baking | Half Pint Mama",
   description: "Sourdough recipes, discard ideas, healthy snacks, and baking tutorials from a bread-obsessed mama. Easy homemade recipes your whole family will love.",
   alternates: { canonical: "https://halfpintmama.com/cooking" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "Cooking & Baking | Half Pint Mama",
+    description: "Sourdough recipes, discard ideas, healthy snacks, and baking tutorials from a bread-obsessed mama.",
+    url: "https://halfpintmama.com/cooking",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary" as const,
+    title: "Cooking & Baking | Half Pint Mama",
+    description: "Sourdough recipes, discard ideas, healthy snacks, and baking tutorials from a bread-obsessed mama.",
+  },
 };
 
 interface PageProps {
