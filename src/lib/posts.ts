@@ -151,14 +151,14 @@ export async function getPostsByTag(tag: string): Promise<PostMeta[]> {
 }
 
 export async function getAllTags(): Promise<{ tag: string; count: number }[]> {
-  const posts: PostMeta[] = await getAllPosts();
+  const allTags = await client.fetch<string[]>(
+    `*[_type == "post" && defined(tags)].tags[]`
+  );
   const tagCounts = new Map<string, number>();
 
-  posts.forEach((post) => {
-    post.tags.forEach((t) => {
-      const normalizedTag = t.toLowerCase();
-      tagCounts.set(normalizedTag, (tagCounts.get(normalizedTag) || 0) + 1);
-    });
+  allTags.forEach((t) => {
+    const normalizedTag = t.toLowerCase();
+    tagCounts.set(normalizedTag, (tagCounts.get(normalizedTag) || 0) + 1);
   });
 
   return Array.from(tagCounts.entries())

@@ -1,46 +1,73 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAllPosts, formatDate } from "@/lib/posts";
+import { client } from "@/sanity/client";
+import { formatDate } from "@/lib/posts";
 
 export const revalidate = 3600;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  const query = searchParams.get("q")?.toLowerCase() || "";
+  const query = searchParams.get("q")?.trim().toLowerCase() || "";
   const category = searchParams.get("category") || "";
   const startDate = searchParams.get("startDate") || "";
   const endDate = searchParams.get("endDate") || "";
 
-  const allPosts = await getAllPosts();
+  // Build dynamic GROQ filter
+  const conditions: string[] = ['_type == "post"'];
+  const params: Record<string, string> = {};
 
-  const results = allPosts
-    .filter((post) => {
-      // Text matching (includes tags)
-      const textMatch =
-        !query ||
-        post.title.toLowerCase().includes(query) ||
-        post.excerpt.toLowerCase().includes(query) ||
-        post.category.toLowerCase().includes(query) ||
-        post.tags.some((tag) => tag.toLowerCase().includes(query));
+  if (query) {
+    conditions.push(
+      "(title match $qp || excerpt match $qp || category match $qp || count((tags[])[lower(@) match $qp]) > 0)"
+    );
+    params.qp = `*${query}*`;
+  }
 
-      // Category filter
-      const categoryMatch = !category || post.category === category;
+  if (category) {
+    conditions.push("category == $category");
+    params.category = category;
+  }
 
-      // Date range filter
-      const dateMatch =
-        (!startDate || post.date >= startDate) &&
-        (!endDate || post.date <= endDate);
+  if (startDate) {
+    conditions.push("date >= $startDate");
+    params.startDate = startDate;
+  }
 
-      return textMatch && categoryMatch && dateMatch;
-    })
-    .map((post) => ({
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      category: post.category,
-      date: formatDate(post.date),
-      image: post.image,
-      tags: post.tags,
-    }));
+  if (endDate) {
+    conditions.push("date <= $endDate");
+    params.endDate = endDate;
+  }
 
-  return NextResponse.json({ results });
+  const filter = conditions.join(" && ");
+
+  const results = await client.fetch<
+    Array<{
+      slug: string;
+      title: string;
+      excerpt: string;
+      category: string;
+      date: string;
+      image: string;
+      ratingAverage: number;
+      ratingCount: number;
+    }>
+  >(
+    `*[${filter}] | order(date desc) {
+      "slug": slug.current,
+      title,
+      excerpt,
+      category,
+      date,
+      "image": coalesce(image.asset->url, ""),
+      "ratingAverage": coalesce(ratingAverage, 0),
+      "ratingCount": coalesce(ratingCount, 0)
+    }`,
+    params
+  );
+
+  return NextResponse.json({
+    results: results.map((r) => ({
+      ...r,
+      date: formatDate(r.date),
+    })),
+  });
 }
