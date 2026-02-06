@@ -1,6 +1,7 @@
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/react";
 import Image from "next/image";
+import Link from "next/link";
 import { urlFor } from "@/sanity/client";
 
 const sizeStyles: Record<string, string> = {
@@ -84,16 +85,31 @@ const components: PortableTextComponents = {
   marks: {
     strong: ({ children }) => <strong className="text-charcoal font-semibold">{children}</strong>,
     em: ({ children }) => <em>{children}</em>,
-    link: ({ children, value }) => (
-      <a
-        href={value?.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 text-terracotta font-medium hover:underline"
-      >
-        {children}
-      </a>
-    ),
+    link: ({ children, value }) => {
+      const href = value?.href || "";
+      const isInternal = href.startsWith("/") || href.startsWith("#") || href.startsWith("https://halfpintmama.com");
+      if (isInternal) {
+        const path = href.startsWith("https://halfpintmama.com") ? href.replace("https://halfpintmama.com", "") : href;
+        return (
+          <Link
+            href={path}
+            className="inline-flex items-center gap-1 text-terracotta font-medium hover:underline"
+          >
+            {children}
+          </Link>
+        );
+      }
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-terracotta font-medium hover:underline"
+        >
+          {children}
+        </a>
+      );
+    },
   },
   types: {
     image: ({ value }) => {

@@ -1,14 +1,20 @@
 const requests = new Map<string, { count: number; resetAt: number }>();
 
-// Clean up expired entries periodically
-setInterval(() => {
+let lastCleanup = Date.now();
+
+function cleanupIfNeeded() {
   const now = Date.now();
+  // Clean up at most once per minute
+  if (now - lastCleanup < 60_000) return;
+  lastCleanup = now;
   for (const [key, value] of requests) {
     if (now > value.resetAt) requests.delete(key);
   }
-}, 60_000);
+}
 
 export function rateLimit(ip: string, limit = 10, windowMs = 60_000): boolean {
+  cleanupIfNeeded();
+
   const now = Date.now();
   const entry = requests.get(ip);
 

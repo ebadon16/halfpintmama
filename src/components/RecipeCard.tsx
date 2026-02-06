@@ -137,7 +137,7 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
             {hasNutrition && (
               <NutritionFacts
                 nutrition={recipe.nutrition!}
-                scale={1}
+                scale={scale}
                 servings={servings}
               />
             )}

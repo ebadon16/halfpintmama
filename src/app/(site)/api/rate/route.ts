@@ -33,36 +33,52 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Rating must be an integer from 1 to 5" }, { status: 400 });
     }
 
-    // Get the post document ID and current rating data
-    const post = await client.fetch(
-      `*[_type == "post" && slug.current == $slug][0]{ _id, ratingAverage, ratingCount }`,
-      { slug: postSlug.trim() }
-    );
+    // Retry loop to handle concurrent rating updates
+    const MAX_RETRIES = 3;
+    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+      // Get the post document ID, revision, and current rating data
+      const post = await client.fetch(
+        `*[_type == "post" && slug.current == $slug][0]{ _id, _rev, ratingAverage, ratingCount }`,
+        { slug: postSlug.trim() }
+      );
 
-    if (!post) {
-      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+      if (!post) {
+        return NextResponse.json({ error: "Post not found" }, { status: 404 });
+      }
+
+      // Calculate new average
+      const currentCount = post.ratingCount || 0;
+      const currentAverage = post.ratingAverage || 0;
+      const newCount = currentCount + 1;
+      const newAverage = ((currentAverage * currentCount) + rating) / newCount;
+
+      try {
+        // Update with revision check to prevent race conditions
+        await client
+          .patch(post._id)
+          .ifRevisionId(post._rev)
+          .set({
+            ratingAverage: Math.round(newAverage * 100) / 100,
+            ratingCount: newCount,
+          })
+          .commit();
+
+        return NextResponse.json({
+          success: true,
+          ratingAverage: Math.round(newAverage * 100) / 100,
+          ratingCount: newCount,
+        });
+      } catch (err: unknown) {
+        // If revision mismatch, retry; otherwise rethrow
+        const message = err instanceof Error ? err.message : String(err);
+        if (attempt < MAX_RETRIES - 1 && message.includes("revision")) {
+          continue;
+        }
+        throw err;
+      }
     }
 
-    // Calculate new average
-    const currentCount = post.ratingCount || 0;
-    const currentAverage = post.ratingAverage || 0;
-    const newCount = currentCount + 1;
-    const newAverage = ((currentAverage * currentCount) + rating) / newCount;
-
-    // Update the post document
-    await client
-      .patch(post._id)
-      .set({
-        ratingAverage: Math.round(newAverage * 100) / 100,
-        ratingCount: newCount,
-      })
-      .commit();
-
-    return NextResponse.json({
-      success: true,
-      ratingAverage: Math.round(newAverage * 100) / 100,
-      ratingCount: newCount,
-    });
+    return NextResponse.json({ error: "Failed to submit rating after retries" }, { status: 500 });
   } catch (error) {
     console.error("Error submitting rating:", error);
     return NextResponse.json(

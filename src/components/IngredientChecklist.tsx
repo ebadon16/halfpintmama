@@ -11,12 +11,19 @@ interface IngredientChecklistProps {
 
 // Parse ingredient string to extract quantity for scaling
 function parseIngredient(ingredient: string): { quantity: number | null; unit: string; rest: string } {
-  // Match patterns like "2 cups", "1/2 tsp", "1.5 cups", etc.
-  const match = ingredient.match(/^([\d./]+)\s*([a-zA-Z]*)\s*(.*)/);
+  // Match mixed fractions like "1 1/2 cups flour"
+  const mixedMatch = ingredient.match(/^(\d+)\s+(\d+\/\d+)\s*([a-zA-Z]*)\s*(.*)/);
+  if (mixedMatch) {
+    const [, whole, frac, unit, rest] = mixedMatch;
+    const [num, denom] = frac.split('/');
+    const quantity = parseFloat(whole) + parseFloat(num) / parseFloat(denom);
+    return { quantity: isNaN(quantity) ? null : quantity, unit, rest };
+  }
 
+  // Match simple fractions "1/2 tsp" or decimals/whole numbers "2 cups", "1.5 cups"
+  const match = ingredient.match(/^([\d./]+)\s*([a-zA-Z]*)\s*(.*)/);
   if (match) {
     const [, numStr, unit, rest] = match;
-    // Handle fractions like "1/2"
     let quantity: number | null = null;
     if (numStr.includes('/')) {
       const [num, denom] = numStr.split('/');

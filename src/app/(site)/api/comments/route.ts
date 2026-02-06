@@ -127,8 +127,8 @@ export async function POST(request: NextRequest) {
     const postUrl = `https://halfpintmama.com/posts/${safePostSlug}#comments-section`;
     const ratingText = rating > 0 ? `${"⭐".repeat(rating)} (${rating}/5)` : "No rating";
 
-    // Send notification to site owner
-    await resend.emails.send({
+    // Send notification to site owner (non-blocking — comment is already saved)
+    try { await resend.emails.send({
       from: "Half Pint Mama <notifications@halfpintmama.com>",
       to: NOTIFICATION_EMAIL,
       subject: isReply
@@ -179,7 +179,7 @@ export async function POST(request: NextRequest) {
           </p>
         </div>
       `,
-    });
+    }); } catch (emailErr) { console.error("Failed to send owner notification:", emailErr); }
 
     // If this is a reply, look up parent comment email from Sanity and notify
     let resolvedReplyToEmail = replyToEmail;
@@ -195,7 +195,7 @@ export async function POST(request: NextRequest) {
       } catch { /* failed to fetch parent — skip notification */ }
     }
     if (isReply && resolvedReplyToEmail && typeof resolvedReplyToEmail === "string" && EMAIL_REGEX.test(resolvedReplyToEmail.trim()) && resolvedReplyToEmail !== email) {
-      await resend.emails.send({
+      try { await resend.emails.send({
         from: "Half Pint Mama <notifications@halfpintmama.com>",
         to: resolvedReplyToEmail,
         subject: `${escapedAuthor} replied to your comment on Half Pint Mama`,
@@ -228,7 +228,7 @@ export async function POST(request: NextRequest) {
             </p>
           </div>
         `,
-      });
+      }); } catch (emailErr) { console.error("Failed to send reply notification:", emailErr); }
     }
 
     return NextResponse.json({

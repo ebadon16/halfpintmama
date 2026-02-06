@@ -138,7 +138,7 @@ export async function getAllCategories(): Promise<string[]> {
 
 export async function getPostsByTag(tag: string): Promise<PostMeta[]> {
   return client.fetch<PostMeta[]>(
-    `*[_type == "post" && $tag in tags] | order(date desc) ${postMetaProjection}`,
+    `*[_type == "post" && $tag in tags[]{ "v": lower(@) }.v] | order(date desc) ${postMetaProjection}`,
     { tag: tag.toLowerCase() } as Record<string, string>
   );
 }
@@ -235,10 +235,10 @@ export async function getPaginatedPostsByTag(
 
   const [items, totalCount] = await Promise.all([
     client.fetch<PostMeta[]>(
-      `*[_type == "post" && $tag in tags] | order(date desc) ${postMetaProjection}[$start...$end]`,
+      `*[_type == "post" && $tag in tags[]{ "v": lower(@) }.v] | order(date desc) ${postMetaProjection}[$start...$end]`,
       { tag: normalizedTag, start, end: start + perPage } as Record<string, string | number>
     ),
-    client.fetch<number>(`count(*[_type == "post" && $tag in tags])`, { tag: normalizedTag } as Record<string, string>),
+    client.fetch<number>(`count(*[_type == "post" && $tag in tags[]{ "v": lower(@) }.v])`, { tag: normalizedTag } as Record<string, string>),
   ]);
 
   const totalPages = Math.ceil(totalCount / perPage);
@@ -330,7 +330,7 @@ export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
 // Single latest post
 export async function getLatestPost(): Promise<PostMeta | null> {
   const posts = await client.fetch<PostMeta[]>(
-    `*[_type == "post"] | order(date desc) ${postMetaProjection}[0...1]`
+    `*[_type == "post"] | order(date desc) [0...1] ${postMetaProjection}`
   );
   return posts[0] || null;
 }
