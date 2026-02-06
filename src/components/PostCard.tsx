@@ -12,6 +12,8 @@ interface PostCardProps {
   date: string;
   image?: string;
   tags?: string[];
+  ratingAverage?: number;
+  ratingCount?: number;
 }
 
 const categoryColors: Record<string, string> = {
@@ -22,7 +24,7 @@ const categoryColors: Record<string, string> = {
   default: "bg-sage",
 };
 
-export function PostCard({ slug, title, excerpt, category, date, image, tags }: PostCardProps) {
+export function PostCard({ slug, title, excerpt, category, date, image, tags, ratingAverage, ratingCount }: PostCardProps) {
   const badgeColor = categoryColors[category] || categoryColors.default;
 
   return (
@@ -74,9 +76,21 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags }: 
             {excerpt}
           </p>
 
-          <p className="text-sage text-sm font-medium">
-            {date}
-          </p>
+          <div className="flex items-center gap-3">
+            <p className="text-sage text-sm font-medium">
+              {date}
+            </p>
+            {ratingCount && ratingCount > 0 && (
+              <>
+                <span className="text-charcoal/30">|</span>
+                <div className="flex items-center gap-1 text-sm text-charcoal/70">
+                  <span className="text-yellow-500">★</span>
+                  <span>{ratingAverage?.toFixed(1)}</span>
+                  <span className="text-charcoal/50">({ratingCount})</span>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </Link>
     </article>

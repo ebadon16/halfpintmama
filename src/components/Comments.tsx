@@ -133,8 +133,8 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
     }
   }, [postSlug]);
 
-  // Save comments to localStorage
-  const saveComments = (newComments: Comment[]) => {
+  // Save comments to localStorage and sync rating to Sanity
+  const saveComments = async (newComments: Comment[], newRating?: number) => {
     localStorage.setItem(getStorageKey(postSlug), JSON.stringify(newComments));
     setComments(newComments);
 
@@ -149,6 +149,19 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
       localStorage.setItem(getRatingsKey(postSlug), JSON.stringify(ratingsData));
       setAverageRating(avg);
       setTotalRatings(allRatings.length);
+    }
+
+    // Sync rating to Sanity if a new rating was submitted
+    if (newRating && newRating > 0) {
+      try {
+        await fetch("/api/rate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ postSlug, rating: newRating }),
+        });
+      } catch {
+        // Rating sync failed silently — localStorage still has the data
+      }
     }
   };
 
@@ -197,10 +210,10 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
         }
         return comment;
       });
-      saveComments(updatedComments);
+      await saveComments(updatedComments);
     } else {
-      // Add as top-level comment
-      saveComments([newComment, ...comments]);
+      // Add as top-level comment (sync rating to Sanity)
+      await saveComments([newComment, ...comments], formData.rating);
     }
 
     // Reset form

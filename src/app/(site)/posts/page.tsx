@@ -1,5 +1,6 @@
-import { getAllPosts, formatDate } from "@/lib/posts";
+import { getPaginatedPosts, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 
 export const revalidate = 60;
@@ -11,8 +12,14 @@ export const metadata = {
   openGraph: { images: ["/logo.jpg"] },
 };
 
-export default async function PostsPage() {
-  const posts = await getAllPosts();
+interface PageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default async function PostsPage({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
+  const { items: posts, totalCount, totalPages } = await getPaginatedPosts(currentPage);
 
   return (
     <div className="bg-cream">
@@ -21,7 +28,7 @@ export default async function PostsPage() {
           All Posts
         </h1>
         <p className="text-charcoal/70 text-lg mb-6">
-          {posts.length} recipes, guides, and stories
+          {totalCount} recipes, guides, and stories
         </p>
         <SearchBar placeholder="Search all posts..." className="max-w-md mb-12" />
 
@@ -35,9 +42,17 @@ export default async function PostsPage() {
               category={post.category}
               date={formatDate(post.date)}
               image={post.image}
+              ratingAverage={post.ratingAverage}
+              ratingCount={post.ratingCount}
             />
           ))}
         </div>
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          basePath="/posts"
+        />
       </div>
     </div>
   );

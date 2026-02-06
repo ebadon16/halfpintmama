@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { getPostsByTag, getAllTags, formatDate } from "@/lib/posts";
+import { getPaginatedPostsByTag, getAllTags, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { Pagination } from "@/components/Pagination";
 import { notFound } from "next/navigation";
 
 export const revalidate = 60;
 
 interface TagPageProps {
   params: Promise<{ tag: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export async function generateStaticParams() {
@@ -31,12 +33,15 @@ export async function generateMetadata({ params }: TagPageProps) {
   };
 }
 
-export default async function TagPage({ params }: TagPageProps) {
+export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { tag } = await params;
+  const { page } = await searchParams;
   const decodedTag = decodeURIComponent(tag);
-  const posts = await getPostsByTag(decodedTag);
+  const currentPage = parseInt(page || "1", 10);
 
-  if (posts.length === 0) {
+  const { items: posts, totalCount, totalPages } = await getPaginatedPostsByTag(decodedTag, currentPage);
+
+  if (totalCount === 0) {
     notFound();
   }
 
@@ -56,7 +61,7 @@ export default async function TagPage({ params }: TagPageProps) {
             <span className="capitalize">{decodedTag}</span>
           </h1>
           <p className="text-charcoal/70">
-            {posts.length} post{posts.length !== 1 ? "s" : ""} tagged with &quot;{decodedTag}&quot;
+            {totalCount} post{totalCount !== 1 ? "s" : ""} tagged with &quot;{decodedTag}&quot;
           </p>
         </div>
 
@@ -72,9 +77,17 @@ export default async function TagPage({ params }: TagPageProps) {
               date={formatDate(post.date)}
               image={post.image}
               tags={post.tags}
+              ratingAverage={post.ratingAverage}
+              ratingCount={post.ratingCount}
             />
           ))}
         </div>
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          basePath={`/tags/${tag}`}
+        />
       </div>
     </div>
   );

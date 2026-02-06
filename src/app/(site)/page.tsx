@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { PostCard } from "@/components/PostCard";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
-import { getAllPosts, formatDate } from "@/lib/posts";
+import { getLatestPost, getPopularPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Real Food. From Scratch.",
@@ -19,8 +20,10 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function Home() {
-  const allPosts = await getAllPosts();
-  const featuredPosts = allPosts.slice(0, 4);
+  const [latestPost, popularPosts] = await Promise.all([
+    getLatestPost(),
+    getPopularPosts(4),
+  ]);
 
   return (
     <div className="bg-cream">
@@ -61,19 +64,74 @@ export default async function Home() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main Content */}
           <div className="flex-1">
-            {/* Latest Posts */}
+            {/* Latest Post - Featured Large Card */}
+            {latestPost && (
+              <section className="mb-12">
+                <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-terracotta inline-block mb-8">
+                  Latest Post
+                </h2>
+                <Link href={`/posts/${latestPost.slug}`} className="block group">
+                  <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div className="md:flex">
+                      {/* Image */}
+                      <div className="relative md:w-1/2 h-64 md:h-80 bg-gradient-to-br from-light-sage to-warm-beige">
+                        {latestPost.image && (
+                          <Image
+                            src={latestPost.image}
+                            alt={latestPost.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            priority
+                          />
+                        )}
+                      </div>
+                      {/* Content */}
+                      <div className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">
+                        <span className="inline-block px-3 py-1 bg-terracotta text-white text-xs font-semibold rounded-full uppercase tracking-wide mb-4 w-fit">
+                          {latestPost.category.replace("-", " ")}
+                        </span>
+                        <h3 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold text-charcoal mb-3 leading-tight group-hover:text-deep-sage transition-colors">
+                          {latestPost.title}
+                        </h3>
+                        <p className="text-charcoal/70 text-base leading-relaxed mb-4 line-clamp-3">
+                          {latestPost.excerpt}
+                        </p>
+                        <div className="flex items-center gap-4">
+                          <p className="text-sage font-medium">
+                            {formatDate(latestPost.date)}
+                          </p>
+                          {latestPost.ratingCount && latestPost.ratingCount > 0 && (
+                            <>
+                              <span className="text-charcoal/30">|</span>
+                              <div className="flex items-center gap-1 text-sm text-charcoal/70">
+                                <span className="text-yellow-500">★</span>
+                                <span>{latestPost.ratingAverage?.toFixed(1)}</span>
+                                <span className="text-charcoal/50">({latestPost.ratingCount})</span>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              </section>
+            )}
+
+            {/* Popular Posts */}
             <section>
               <div className="flex justify-between items-center mb-8">
                 <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-3 border-b-4 border-sage inline-block">
-                  Latest from the Blog
+                  Popular Posts
                 </h2>
                 <Link href="/posts" className="text-sage hover:text-deep-sage font-medium transition-colors">
-                  View All {allPosts.length} Posts &rarr;
+                  View All Posts &rarr;
                 </Link>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
-                {featuredPosts.map((post) => (
+                {popularPosts.map((post) => (
                   <PostCard
                     key={post.slug}
                     slug={post.slug}
@@ -82,6 +140,8 @@ export default async function Home() {
                     category={post.category}
                     date={formatDate(post.date)}
                     image={post.image}
+                    ratingAverage={post.ratingAverage}
+                    ratingCount={post.ratingCount}
                   />
                 ))}
               </div>

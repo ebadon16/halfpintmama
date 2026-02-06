@@ -1,5 +1,6 @@
-import { getPostsByCategory, formatDate } from "@/lib/posts";
+import { getPaginatedPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 
 export const revalidate = 60;
@@ -11,8 +12,14 @@ export const metadata = {
   openGraph: { images: ["/logo.jpg"] },
 };
 
-export default async function TravelPage() {
-  const posts = await getPostsByCategory("travel");
+interface PageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default async function TravelPage({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
+  const { items: posts, totalPages } = await getPaginatedPostsByCategory("travel", currentPage);
 
   return (
     <div className="bg-cream">
@@ -38,6 +45,8 @@ export default async function TravelPage() {
               category={post.category}
               date={formatDate(post.date)}
               image={post.image}
+              ratingAverage={post.ratingAverage}
+              ratingCount={post.ratingCount}
             />
           ))}
         </div>
@@ -47,6 +56,12 @@ export default async function TravelPage() {
             No posts yet. Check back soon!
           </p>
         )}
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          basePath="/travel"
+        />
       </div>
     </div>
   );

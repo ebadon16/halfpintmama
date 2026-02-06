@@ -65,6 +65,20 @@ export const post = defineType({
         layout: "tags",
       },
     }),
+    defineField({
+      name: "ratingAverage",
+      title: "Average Rating",
+      type: "number",
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
+      name: "ratingCount",
+      title: "Rating Count",
+      type: "number",
+      readOnly: true,
+      hidden: true,
+    }),
 
     // Recipe fields (optional)
     defineField({

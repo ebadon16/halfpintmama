@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPosts, getPostBySlug, getPostsByCategory, formatDate } from "@/lib/posts";
+import { getAllPosts, getPostBySlug, getRelatedPostsByTags, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import { Comments, CommentsPreview } from "@/components/Comments";
@@ -93,10 +93,8 @@ export default async function PostPage({ params }: PageProps) {
   const badgeColor = categoryColors[post.category] || "bg-sage";
   const categoryLabel = categoryLabels[post.category] || post.category;
 
-  // Get related posts from same category, excluding current post
-  const relatedPosts = (await getPostsByCategory(post.category))
-    .filter(p => p.slug !== slug)
-    .slice(0, 3);
+  // Get related posts by tag similarity, falling back to category
+  const relatedPosts = await getRelatedPostsByTags(slug, post.tags, post.category, 3);
 
   const readingTime = calculateReadingTime(post.content);
 

@@ -1,5 +1,6 @@
-import { getPostsBySubcategory, formatDate } from "@/lib/posts";
+import { getPaginatedPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
+import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 import Link from "next/link";
 
@@ -12,8 +13,19 @@ export const metadata = {
   openGraph: { images: ["/logo.jpg"] },
 };
 
-export default async function DessertsPage() {
-  const posts = await getPostsBySubcategory("cooking", ["cookie", "cake", "truffle", "chocolate", "cobbler", "macaroon", "dessert", "sweet", "twix", "cups", "egg"]);
+interface PageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default async function DessertsPage({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = parseInt(page || "1", 10);
+  const { items: posts, totalPages } = await getPaginatedPostsBySubcategory(
+    "cooking",
+    ["cookie", "cake", "truffle", "chocolate", "cobbler", "macaroon", "dessert", "sweet", "twix", "cups", "egg"],
+    [],
+    currentPage
+  );
 
   return (
     <div className="bg-cream">
@@ -59,6 +71,8 @@ export default async function DessertsPage() {
               category={post.category}
               date={formatDate(post.date)}
               image={post.image}
+              ratingAverage={post.ratingAverage}
+              ratingCount={post.ratingCount}
             />
           ))}
         </div>
@@ -68,6 +82,12 @@ export default async function DessertsPage() {
             No dessert recipes yet. Check back soon!
           </p>
         )}
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          basePath="/cooking/desserts"
+        />
       </div>
     </div>
   );
