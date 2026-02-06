@@ -316,7 +316,7 @@ export async function getRelatedPostsByTags(
 // Popular posts (highest rated)
 export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
   const posts = await client.fetch<PostMeta[]>(
-    `*[_type == "post" && ratingCount > 0] | order(ratingAverage desc, ratingCount desc) ${postMetaProjection}[0...${limit}]`
+    `*[_type == "post" && ratingCount > 0] | order(ratingAverage desc, ratingCount desc) [0...${limit}] ${postMetaProjection}`
   );
 
   // Fall back to latest posts if no ratings exist

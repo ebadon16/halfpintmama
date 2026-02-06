@@ -181,11 +181,23 @@ export async function POST(request: NextRequest) {
       `,
     });
 
-    // If this is a reply, notify the original commenter
-    if (isReply && replyToEmail && typeof replyToEmail === "string" && EMAIL_REGEX.test(replyToEmail.trim()) && replyToEmail !== email) {
+    // If this is a reply, look up parent comment email from Sanity and notify
+    let resolvedReplyToEmail = replyToEmail;
+    if (isReply && parentId) {
+      try {
+        const parentComment = await readClient.fetch<{ email?: string }>(
+          `*[_type == "comment" && _id == $parentId][0]{ email }`,
+          { parentId }
+        );
+        if (parentComment?.email) {
+          resolvedReplyToEmail = parentComment.email;
+        }
+      } catch { /* failed to fetch parent — skip notification */ }
+    }
+    if (isReply && resolvedReplyToEmail && typeof resolvedReplyToEmail === "string" && EMAIL_REGEX.test(resolvedReplyToEmail.trim()) && resolvedReplyToEmail !== email) {
       await resend.emails.send({
         from: "Half Pint Mama <notifications@halfpintmama.com>",
-        to: replyToEmail,
+        to: resolvedReplyToEmail,
         subject: `${escapedAuthor} replied to your comment on Half Pint Mama`,
         html: `
           <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">

@@ -14,16 +14,18 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
-    if (stored) {
-      try {
-        setRecentSearches(JSON.parse(stored));
-      } catch { /* corrupted data — ignore */ }
-    }
+    try {
+      const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
+      if (stored) {
+        try {
+          setRecentSearches(JSON.parse(stored));
+        } catch { /* corrupted data — ignore */ }
+      }
+    } catch { /* storage unavailable */ }
   }, []);
 
   const clearRecentSearches = () => {
-    localStorage.removeItem(RECENT_SEARCHES_KEY);
+    try { localStorage.removeItem(RECENT_SEARCHES_KEY); } catch { /* storage unavailable */ }
     setRecentSearches([]);
   };
 
@@ -99,19 +101,21 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
 
 // Utility function to save a recent search
 export function saveRecentSearch(term: string) {
-  const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
-  let searches: string[] = [];
+  try {
+    const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
+    let searches: string[] = [];
 
-  if (stored) {
-    try {
-      searches = JSON.parse(stored);
-    } catch { /* corrupted data — start fresh */ }
-  }
+    if (stored) {
+      try {
+        searches = JSON.parse(stored);
+      } catch { /* corrupted data — start fresh */ }
+    }
 
-  // Remove if already exists, add to front, limit to max
-  searches = searches.filter((s) => s.toLowerCase() !== term.toLowerCase());
-  searches.unshift(term);
-  searches = searches.slice(0, MAX_RECENT_SEARCHES);
+    // Remove if already exists, add to front, limit to max
+    searches = searches.filter((s) => s.toLowerCase() !== term.toLowerCase());
+    searches.unshift(term);
+    searches = searches.slice(0, MAX_RECENT_SEARCHES);
 
-  localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(searches));
+    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(searches));
+  } catch { /* storage unavailable */ }
 }

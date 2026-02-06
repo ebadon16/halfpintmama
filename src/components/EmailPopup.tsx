@@ -12,10 +12,12 @@ export function EmailPopup() {
 
   useEffect(() => {
     // Check if user has already dismissed or subscribed
-    const hasInteracted = localStorage.getItem("emailPopupDismissed");
-    if (hasInteracted) {
-      return;
-    }
+    try {
+      const hasInteracted = localStorage.getItem("emailPopupDismissed");
+      if (hasInteracted) {
+        return;
+      }
+    } catch { /* localStorage unavailable */ }
 
     // Show popup after 30 seconds
     const timer = setTimeout(() => {
@@ -28,7 +30,7 @@ export function EmailPopup() {
   const handleDismiss = useCallback(() => {
     setIsVisible(false);
     setIsDismissed(true);
-    localStorage.setItem("emailPopupDismissed", "true");
+    try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }
   }, []);
 
   // Focus trap + Escape key
@@ -90,7 +92,7 @@ export function EmailPopup() {
       if (response.ok) {
         setStatus("success");
         setMessage(data.message);
-        localStorage.setItem("emailPopupDismissed", "true");
+        try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }
         // Auto-close after 3 seconds
         setTimeout(() => {
           setIsVisible(false);

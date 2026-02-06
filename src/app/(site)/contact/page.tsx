@@ -36,7 +36,8 @@ export default function ContactPage() {
       if (response.ok) {
         setIsSubmitted(true);
       } else {
-        setError("Something went wrong. Please try again.");
+        const data = await response.json().catch(() => null);
+        setError(data?.error || "Something went wrong. Please try again.");
       }
     } catch {
       setError("Something went wrong. Please try again.");

@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }
 
-    const { email, source } = await request.json();
+    const { email, firstName, source } = await request.json();
 
     // Validate email
     if (!email || typeof email !== "string" || !EMAIL_REGEX.test(email.trim())) {
@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
         groups: [MAILERLITE_GROUP_ID],
         fields: {
           source: VALID_SOURCES.includes(source) ? source : "website",
+          ...(firstName && typeof firstName === "string" ? { name: firstName.trim().slice(0, 100) } : {}),
         },
       }),
     });

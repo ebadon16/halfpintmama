@@ -25,15 +25,17 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
     let favorites: { slug: string; title?: string; savedAt?: string }[] = [];
     try { favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
 
-    if (isFavorite) {
-      const newFavorites = favorites.filter((f: { slug: string }) => f.slug !== slug);
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-      setIsFavorite(false);
-    } else {
-      favorites.push({ slug, title, savedAt: new Date().toISOString() });
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsFavorite(true);
-    }
+    try {
+      if (isFavorite) {
+        const newFavorites = favorites.filter((f: { slug: string }) => f.slug !== slug);
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
+        setIsFavorite(false);
+      } else {
+        favorites.push({ slug, title, savedAt: new Date().toISOString() });
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        setIsFavorite(true);
+      }
+    } catch { /* storage unavailable or full */ }
   };
 
   return (

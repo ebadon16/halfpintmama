@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { PostCard } from "@/components/PostCard";
 import { SearchSuggestions, saveRecentSearch } from "@/components/SearchSuggestions";
@@ -23,6 +23,7 @@ interface SearchContentProps {
 
 export function SearchContent({ popularTags }: SearchContentProps) {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const initialQuery = searchParams.get("q") || "";
   const [query, setQuery] = useState(initialQuery);
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -69,7 +70,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
     e.preventDefault();
     performSearch(query);
     // Update URL without refresh
-    window.history.pushState({}, "", `/search?q=${encodeURIComponent(query)}`);
+    router.replace(`/search?q=${encodeURIComponent(query)}`, { scroll: false });
   };
 
   const handleSuggestionClick = (term: string) => {

@@ -15,7 +15,7 @@ ${postsWithImages
     (post) => `  <url>
     <loc>${baseUrl}/posts/${post.slug}</loc>
     <image:image>
-      <image:loc>${post.image}</image:loc>
+      <image:loc>${escapeXml(post.image!)}</image:loc>
       <image:title>${escapeXml(post.title)}</image:title>
       <image:caption>${escapeXml(post.excerpt || post.title)}</image:caption>
     </image:image>

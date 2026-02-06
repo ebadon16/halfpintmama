@@ -16,8 +16,8 @@ export async function GET() {
       <guid isPermaLink="true">${baseUrl}/posts/${post.slug}</guid>
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <category>${post.category}</category>
-      ${post.image ? `<enclosure url="${post.image.replace(/&/g, "&amp;")}" type="image/jpeg"/>` : ""}
+      <category>${escapeXml(post.category)}</category>
+      ${post.image ? `<enclosure url="${escapeXml(post.image)}" type="image/jpeg"/>` : ""}
     </item>`
     )
     .join("");
@@ -46,4 +46,13 @@ export async function GET() {
       "Cache-Control": "s-maxage=3600, stale-while-revalidate",
     },
   });
+}
+
+function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 }
