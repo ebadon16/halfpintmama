@@ -7,7 +7,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Mama Life | Half Pint Mama",
-  description: "Real talk about motherhood, parenting tips, and navigating life with little ones.",
+  description: "Honest parenting tips and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos of life with toddlers and babies.",
   alternates: { canonical: "https://halfpintmama.com/mama-life" },
   openGraph: { images: ["/logo.jpg"] },
 };

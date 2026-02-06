@@ -8,7 +8,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Snacks & Finger Foods | Half Pint Mama",
-  description: "Healthy homemade snacks for the whole family including crackers, granola, and more from a Pediatric ER RN.",
+  description: "Healthy homemade snacks perfect for kids and the whole family. Easy recipes for crackers, granola, popsicles, and finger foods for lunchboxes and on-the-go.",
   alternates: { canonical: "https://halfpintmama.com/cooking/snacks" },
   openGraph: { images: ["/logo.jpg"] },
 };

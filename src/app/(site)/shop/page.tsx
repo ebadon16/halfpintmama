@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
-  description: "Digital downloads, printables, and favorite products from Half Pint Mama.",
+  description: "Shop digital downloads, printables, and curated product recommendations from Half Pint Mama. Coming soon: The Postpartum Mama Book with recipes and tips.",
   alternates: { canonical: "https://halfpintmama.com/shop" },
   openGraph: { images: ["/logo.jpg"] },
 };

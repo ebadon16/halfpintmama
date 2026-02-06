@@ -125,3 +125,57 @@ export function BlogPostSchema({ title, description, image, datePublished, slug,
     />
   );
 }
+
+interface HowToSchemaProps {
+  title: string;
+  description: string;
+  image?: string;
+  slug: string;
+  estimatedTime?: string;
+  steps?: string[];
+}
+
+export function HowToSchema({ title, description, image, slug, estimatedTime, steps }: HowToSchemaProps) {
+  const baseUrl = "https://halfpintmama.com";
+
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: title,
+    description: description,
+    image: image ? { "@type": "ImageObject", url: image } : undefined,
+    url: `${baseUrl}/posts/${slug}`,
+    author: {
+      "@type": "Person",
+      name: "Keegan",
+      url: `${baseUrl}/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Half Pint Mama",
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/logo.jpg`,
+      },
+    },
+  };
+
+  if (estimatedTime) {
+    schema.totalTime = estimatedTime;
+  }
+
+  if (steps && steps.length > 0) {
+    schema.step = steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      text: step,
+    }));
+  }
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}

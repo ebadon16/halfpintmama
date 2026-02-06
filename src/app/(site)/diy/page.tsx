@@ -7,7 +7,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "DIY Projects | Half Pint Mama",
-  description: "Creative DIY projects, costumes, crafts, and hands-on fun for the whole family.",
+  description: "Step-by-step DIY tutorials for creative projects, Halloween costumes, party decorations, and family crafts. Budget-friendly ideas you can make at home.",
   alternates: { canonical: "https://halfpintmama.com/diy" },
   openGraph: { images: ["/logo.jpg"] },
 };

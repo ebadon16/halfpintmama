@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Privacy Policy | Half Pint Mama",
-  description: "Privacy policy for Half Pint Mama - how we collect, use, and protect your information.",
+  description: "Learn how Half Pint Mama collects, uses, and protects your personal information. Read our full privacy policy including cookies, analytics, and your rights.",
   alternates: { canonical: "https://halfpintmama.com/privacy" },
   openGraph: { images: ["/logo.jpg"] },
 };

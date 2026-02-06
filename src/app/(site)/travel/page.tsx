@@ -7,7 +7,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Family Travel | Half Pint Mama",
-  description: "Family travel guides, tips for traveling with toddlers and babies, and adventure stories.",
+  description: "Family travel guides and tips for adventures with toddlers and babies. Destination reviews, packing lists, and advice to make traveling with kids easier.",
   alternates: { canonical: "https://halfpintmama.com/travel" },
   openGraph: { images: ["/logo.jpg"] },
 };

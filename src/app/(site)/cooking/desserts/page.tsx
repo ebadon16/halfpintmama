@@ -8,7 +8,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Desserts & Sweet Treats | Half Pint Mama",
-  description: "Delicious dessert recipes including cookies, cakes, and chocolate treats from a Pediatric ER RN.",
+  description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats. Family-tested sweet treats that are perfect for any occasion or holiday.",
   alternates: { canonical: "https://halfpintmama.com/cooking/desserts" },
   openGraph: { images: ["/logo.jpg"] },
 };

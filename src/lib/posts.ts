@@ -42,6 +42,8 @@ export interface Post {
   content: PortableTextBlock[];
   tags: string[];
   recipe?: RecipeInfo;
+  ratingAverage?: number;
+  ratingCount?: number;
 }
 
 export interface PostMeta {
@@ -89,7 +91,9 @@ const postFullProjection = `{
   "image": coalesce(image.asset->url, ""),
   "tags": coalesce(tags, []),
   "content": coalesce(body, []),
-  recipe
+  recipe,
+  "ratingAverage": coalesce(ratingAverage, 0),
+  "ratingCount": coalesce(ratingCount, 0)
 }`;
 
 export async function getAllPosts(): Promise<PostMeta[]> {

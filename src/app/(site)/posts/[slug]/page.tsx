@@ -6,7 +6,7 @@ import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import { Comments, CommentsPreview } from "@/components/Comments";
 import { PrintButton } from "@/components/PrintButton";
-import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
+import { RecipeSchema, BlogPostSchema, HowToSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -133,14 +133,25 @@ export default async function PostPage({ params }: PageProps) {
           recipe={post.recipe}
         />
       ) : (
-        <BlogPostSchema
-          title={post.title}
-          description={post.excerpt}
-          image={post.image}
-          datePublished={post.date}
-          slug={slug}
-          category={categoryLabel}
-        />
+        <>
+          <BlogPostSchema
+            title={post.title}
+            description={post.excerpt}
+            image={post.image}
+            datePublished={post.date}
+            slug={slug}
+            category={categoryLabel}
+          />
+          {/* HowTo schema for DIY posts */}
+          {post.category === "diy" && (
+            <HowToSchema
+              title={post.title}
+              description={post.excerpt}
+              image={post.image}
+              slug={slug}
+            />
+          )}
+        </>
       )}
 
       <article className="max-w-2xl mx-auto px-4 py-8">
@@ -260,7 +271,12 @@ export default async function PostPage({ params }: PageProps) {
         )}
 
         {/* Rate & Review CTA - Prominent placement after content */}
-        <CommentsPreview postSlug={slug} category={post.category} />
+        <CommentsPreview
+          postSlug={slug}
+          category={post.category}
+          initialRatingAverage={post.ratingAverage}
+          initialRatingCount={post.ratingCount}
+        />
 
         {/* Mid-Post Email Signup CTA */}
         <PostEmailSignup />
@@ -309,7 +325,13 @@ export default async function PostPage({ params }: PageProps) {
       )}
 
       {/* Comments Section */}
-      <Comments postSlug={slug} postTitle={post.title} category={post.category} />
+      <Comments
+        postSlug={slug}
+        postTitle={post.title}
+        category={post.category}
+        initialRatingAverage={post.ratingAverage}
+        initialRatingCount={post.ratingCount}
+      />
 
       {/* Want More? Join My List - Bottom CTA */}
       <BottomEmailCTA />

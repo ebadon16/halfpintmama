@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { StarRating, RatingSummary } from "./StarRating";
 
 interface Comment {
-  id: string;
+  _id: string;
   author: string;
-  email: string;
   content: string;
   rating: number;
-  date: string;
+  parentId: string | null;
+  createdAt: string;
   replies?: Comment[];
 }
 
@@ -17,21 +17,19 @@ interface CommentsProps {
   postSlug: string;
   postTitle: string;
   category?: string;
+  initialRatingAverage?: number;
+  initialRatingCount?: number;
 }
 
 interface CommentsPreviewProps {
   postSlug: string;
   category?: string;
+  initialRatingAverage?: number;
+  initialRatingCount?: number;
 }
 
-// Storage key for comments
-const getStorageKey = (slug: string) => `hpm_comments_${slug}`;
-const getRatingsKey = (slug: string) => `hpm_ratings_${slug}`;
-
 // Preview component to show at top of post
-export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
-  const [averageRating, setAverageRating] = useState(0);
-  const [totalRatings, setTotalRatings] = useState(0);
+export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, initialRatingCount = 0 }: CommentsPreviewProps) {
   const [commentCount, setCommentCount] = useState(0);
 
   const isRecipe = category === "cooking";
@@ -39,23 +37,21 @@ export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
   const emptyText = isRecipe ? "Be the first to rate this recipe!" : "Be the first to leave a review!";
 
   useEffect(() => {
-    const storedComments = localStorage.getItem(getStorageKey(postSlug));
-    const storedRatings = localStorage.getItem(getRatingsKey(postSlug));
-
-    if (storedComments) {
+    // Fetch comment count from API
+    async function fetchCommentCount() {
       try {
-        const comments = JSON.parse(storedComments);
-        setCommentCount(comments.length);
-      } catch { /* corrupted data — ignore */ }
+        const res = await fetch(`/api/comments?postSlug=${encodeURIComponent(postSlug)}`);
+        if (res.ok) {
+          const data = await res.json();
+          // Count only top-level comments
+          const topLevel = data.comments?.filter((c: Comment) => !c.parentId) || [];
+          setCommentCount(topLevel.length);
+        }
+      } catch {
+        // Silently fail
+      }
     }
-
-    if (storedRatings) {
-      try {
-        const ratings = JSON.parse(storedRatings);
-        setAverageRating(ratings.average);
-        setTotalRatings(ratings.total);
-      } catch { /* corrupted data — ignore */ }
-    }
+    fetchCommentCount();
   }, [postSlug]);
 
   const scrollToComments = () => {
@@ -72,9 +68,9 @@ export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
           <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
             {title}
           </h3>
-          {totalRatings > 0 ? (
+          {initialRatingCount > 0 ? (
             <div className="flex items-center gap-2 justify-center sm:justify-start">
-              <RatingSummary averageRating={averageRating} totalRatings={totalRatings} />
+              <RatingSummary averageRating={initialRatingAverage} totalRatings={initialRatingCount} />
               <span className="text-charcoal/50">|</span>
               <span className="text-sm text-charcoal/70">{commentCount} comment{commentCount !== 1 ? "s" : ""}</span>
             </div>
@@ -96,11 +92,10 @@ export function CommentsPreview({ postSlug, category }: CommentsPreviewProps) {
   );
 }
 
-export function Comments({ postSlug, postTitle, category }: CommentsProps) {
+export function Comments({ postSlug, postTitle, category, initialRatingAverage = 0, initialRatingCount = 0 }: CommentsProps) {
   const isRecipe = category === "cooking";
   const [comments, setComments] = useState<Comment[]>([]);
-  const [averageRating, setAverageRating] = useState(0);
-  const [totalRatings, setTotalRatings] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyingToComment, setReplyingToComment] = useState<Comment | null>(null);
@@ -112,75 +107,45 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  // Load comments from localStorage on mount
-  useEffect(() => {
-    const storedComments = localStorage.getItem(getStorageKey(postSlug));
-    const storedRatings = localStorage.getItem(getRatingsKey(postSlug));
+  // Fetch comments from Sanity on mount
+  const fetchComments = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/comments?postSlug=${encodeURIComponent(postSlug)}`);
+      if (res.ok) {
+        const data = await res.json();
+        // Organize comments into threads (top-level + replies)
+        const allComments: Comment[] = data.comments || [];
+        const topLevel = allComments.filter((c) => !c.parentId);
+        const replies = allComments.filter((c) => c.parentId);
 
-    if (storedComments) {
-      try {
-        setComments(JSON.parse(storedComments));
-      } catch { /* corrupted data — ignore */ }
-    }
+        // Attach replies to their parent comments
+        const threaded = topLevel.map((comment) => ({
+          ...comment,
+          replies: replies.filter((r) => r.parentId === comment._id),
+        }));
 
-    if (storedRatings) {
-      try {
-        const ratings = JSON.parse(storedRatings);
-        setAverageRating(ratings.average);
-        setTotalRatings(ratings.total);
-      } catch { /* corrupted data — ignore */ }
+        setComments(threaded);
+      }
+    } catch {
+      // Silently fail
+    } finally {
+      setIsLoading(false);
     }
   }, [postSlug]);
 
-  // Save comments to localStorage and sync rating to Sanity
-  const saveComments = async (newComments: Comment[], newRating?: number) => {
-    localStorage.setItem(getStorageKey(postSlug), JSON.stringify(newComments));
-    setComments(newComments);
-
-    // Update ratings
-    const allRatings = newComments
-      .filter((c) => c.rating > 0)
-      .map((c) => c.rating);
-
-    if (allRatings.length > 0) {
-      const avg = allRatings.reduce((a, b) => a + b, 0) / allRatings.length;
-      const ratingsData = { average: avg, total: allRatings.length };
-      localStorage.setItem(getRatingsKey(postSlug), JSON.stringify(ratingsData));
-      setAverageRating(avg);
-      setTotalRatings(allRatings.length);
-    }
-
-    // Sync rating to Sanity if a new rating was submitted
-    if (newRating && newRating > 0) {
-      try {
-        await fetch("/api/rate", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ postSlug, rating: newRating }),
-        });
-      } catch {
-        // Rating sync failed silently — localStorage still has the data
-      }
-    }
-  };
+  useEffect(() => {
+    fetchComments();
+  }, [fetchComments]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError("");
 
-    const newComment: Comment = {
-      id: Date.now().toString(),
-      author: formData.author,
-      email: formData.email,
-      content: formData.content,
-      rating: replyingTo ? 0 : formData.rating,
-      date: new Date().toISOString(),
-    };
-
-    // Send email notification
     try {
-      await fetch("/api/comments", {
+      const res = await fetch("/api/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -191,39 +156,32 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
           postSlug,
           postTitle,
           isReply: !!replyingTo,
+          parentId: replyingTo,
           replyToAuthor: replyingToComment?.author,
-          replyToEmail: replyingToComment?.email,
+          replyToEmail: "", // We don't expose emails in the frontend
         }),
       });
-    } catch {
-      // Notification failed silently — comment still saved locally
-    }
 
-    if (replyingTo) {
-      // Add as reply
-      const updatedComments = comments.map((comment) => {
-        if (comment.id === replyingTo) {
-          return {
-            ...comment,
-            replies: [...(comment.replies || []), newComment],
-          };
-        }
-        return comment;
-      });
-      await saveComments(updatedComments);
-    } else {
-      // Add as top-level comment (sync rating to Sanity)
-      await saveComments([newComment, ...comments], formData.rating);
-    }
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to submit comment");
+      }
 
-    // Reset form
-    setFormData({ author: "", email: "", content: "", rating: 0 });
-    setShowForm(false);
-    setReplyingTo(null);
-    setReplyingToComment(null);
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    setTimeout(() => setSubmitSuccess(false), 3000);
+      // Success - refresh comments
+      await fetchComments();
+
+      // Reset form
+      setFormData({ author: "", email: "", content: "", rating: 0 });
+      setShowForm(false);
+      setReplyingTo(null);
+      setReplyingToComment(null);
+      setSubmitSuccess(true);
+      setTimeout(() => setSubmitSuccess(false), 3000);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Failed to submit comment");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const formatDate = (dateString: string) => {
@@ -245,7 +203,7 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
               </div>
               <div>
                 <h4 className="font-semibold text-charcoal">{comment.author}</h4>
-                <p className="text-xs text-charcoal/50">{formatDate(comment.date)}</p>
+                <p className="text-xs text-charcoal/50">{formatDate(comment.createdAt)}</p>
               </div>
             </div>
           </div>
@@ -257,7 +215,7 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
         {!isReply && (
           <button
             onClick={() => {
-              setReplyingTo(comment.id);
+              setReplyingTo(comment._id);
               setReplyingToComment(comment);
               setShowForm(true);
             }}
@@ -268,7 +226,7 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
         )}
       </div>
       {comment.replies?.map((reply) => (
-        <CommentCard key={reply.id} comment={reply} isReply />
+        <CommentCard key={reply._id} comment={reply} isReply />
       ))}
     </div>
   );
@@ -282,9 +240,9 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold">
               Comments & Ratings
             </h2>
-            {totalRatings > 0 && (
+            {initialRatingCount > 0 && (
               <div className="mt-2">
-                <RatingSummary averageRating={averageRating} totalRatings={totalRatings} />
+                <RatingSummary averageRating={initialRatingAverage} totalRatings={initialRatingCount} />
               </div>
             )}
           </div>
@@ -309,6 +267,13 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
           </div>
         )}
 
+        {/* Error Message */}
+        {submitError && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-center">
+            {submitError}
+          </div>
+        )}
+
         {/* Comment Form */}
         {showForm && (
           <div className="bg-white rounded-2xl p-6 shadow-md mb-8">
@@ -321,6 +286,7 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
                   setShowForm(false);
                   setReplyingTo(null);
                   setReplyingToComment(null);
+                  setSubmitError("");
                 }}
                 className="text-charcoal/50 hover:text-charcoal transition-colors"
               >
@@ -368,6 +334,7 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
                     type="email"
                     id="email"
                     required
+                    aria-label="Email address"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors"
@@ -407,15 +374,23 @@ export function Comments({ postSlug, postTitle, category }: CommentsProps) {
           </div>
         )}
 
+        {/* Loading State */}
+        {isLoading && (
+          <div className="text-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage mx-auto"></div>
+            <p className="text-charcoal/60 mt-2">Loading comments...</p>
+          </div>
+        )}
+
         {/* Comments List */}
-        {comments.length > 0 ? (
+        {!isLoading && comments.length > 0 ? (
           <div className="space-y-4">
             {comments.map((comment) => (
-              <CommentCard key={comment.id} comment={comment} />
+              <CommentCard key={comment._id} comment={comment} />
             ))}
           </div>
         ) : (
-          !showForm && (
+          !isLoading && !showForm && (
             <div className="text-center py-12 bg-white rounded-2xl">
               <span className="text-5xl block mb-4">💬</span>
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-charcoal font-semibold mb-2">

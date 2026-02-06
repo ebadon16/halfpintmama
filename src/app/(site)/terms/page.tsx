@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Terms of Service | Half Pint Mama",
-  description: "Terms of service for Half Pint Mama website.",
+  description: "Read the terms of service for Half Pint Mama. Learn about content usage, recipe disclaimers, affiliate links, and comment policies for our food blog.",
   alternates: { canonical: "https://halfpintmama.com/terms" },
   openGraph: { images: ["/logo.jpg"] },
 };

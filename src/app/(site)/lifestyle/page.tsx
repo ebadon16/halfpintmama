@@ -6,7 +6,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Travel & DIY | Half Pint Mama",
-  description: "Family travel guides, DIY projects, crafts, and adventures with kids.",
+  description: "Explore family travel guides and creative DIY projects on Half Pint Mama. Tips for adventures with toddlers plus homemade costumes, crafts, and more.",
   alternates: { canonical: "https://halfpintmama.com/lifestyle" },
   openGraph: { images: ["/logo.jpg"] },
 };

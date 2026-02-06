@@ -1,15 +1,59 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "About | Half Pint Mama",
-  description: "Meet Keegan - a Pediatric ER RN and mama of two on a mission to get back to the basics with real food, simple recipes, and intentional living.",
+  title: "About Keegan | Half Pint Mama",
+  description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes, sourdough tips, and intentional living from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
-  openGraph: { images: ["/logo.jpg"] },
+  openGraph: {
+    title: "About Keegan | Half Pint Mama",
+    description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes and intentional living.",
+    url: "https://halfpintmama.com/about",
+    images: ["/logo.jpg"],
+  },
+  twitter: {
+    card: "summary",
+    title: "About Keegan | Half Pint Mama",
+    description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes and intentional living.",
+  },
+};
+
+// Person schema for author SEO
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Keegan",
+  jobTitle: "Pediatric ER RN & Blogger",
+  description: "A Pediatric ER RN and mama of two on a mission to get back to the basics with real food, simple recipes, and intentional living.",
+  url: "https://halfpintmama.com/about",
+  image: "https://halfpintmama.com/logo.jpg",
+  sameAs: [
+    "https://www.instagram.com/halfpint.mama",
+    "https://www.youtube.com/@HalfPintMama",
+    "https://www.tiktok.com/@halfpint.mama",
+    "https://linktr.ee/Halfpintmama",
+  ],
+  worksFor: {
+    "@type": "Organization",
+    name: "Half Pint Mama",
+    url: "https://halfpintmama.com",
+  },
+  knowsAbout: [
+    "Sourdough baking",
+    "Pediatric nursing",
+    "Family recipes",
+    "Intentional living",
+    "Motherhood",
+  ],
 };
 
 export default function AboutPage() {
   return (
     <div className="bg-cream">
+      {/* Person Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
         <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-2">

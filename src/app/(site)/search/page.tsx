@@ -6,7 +6,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Search | Half Pint Mama",
-  description: "Search for recipes, tips, and more across the blog.",
+  description: "Search Half Pint Mama for sourdough recipes, family travel guides, DIY projects, and parenting tips. Find the content you're looking for across all categories.",
   alternates: { canonical: "https://halfpintmama.com/search" },
   openGraph: { images: ["/logo.jpg"] },
 };

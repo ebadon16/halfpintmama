@@ -19,15 +19,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: TagPageProps) {
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
+  const description = `Explore all Half Pint Mama posts tagged with "${decodedTag}". Find recipes, parenting tips, DIY projects, and travel guides related to ${decodedTag}.`;
   return {
     title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
-    description: `Browse all posts tagged with "${decodedTag}"`,
+    description,
     alternates: {
       canonical: `/tags/${tag}`,
     },
     openGraph: {
       title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
-      description: `Browse all posts tagged with "${decodedTag}"`,
+      description,
       images: ["/logo.jpg"],
     },
   };

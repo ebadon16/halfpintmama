@@ -80,7 +80,7 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
             <p className="text-sage text-sm font-medium">
               {date}
             </p>
-            {ratingCount && ratingCount > 0 && (
+            {ratingCount != null && ratingCount > 0 && (
               <>
                 <span className="text-charcoal/30">|</span>
                 <div className="flex items-center gap-1 text-sm text-charcoal/70">
