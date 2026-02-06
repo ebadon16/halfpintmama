@@ -43,6 +43,7 @@ Static Generation (generateStaticParams)
 | `src/lib/rate-limit.ts` | In-memory rate limiter for API routes |
 | `src/sanity/client.ts` | Sanity client + image URL builder |
 | `src/sanity/schemas/post.ts` | Post document schema for Sanity Studio |
+| `src/sanity/schemas/comment.ts` | Comment document schema (stored in Sanity) |
 | `sanity.config.ts` | Sanity Studio configuration |
 | `src/app/studio/[[...tool]]/page.tsx` | Embedded Sanity Studio at /studio |
 | `src/app/(site)/posts/[slug]/page.tsx` | Dynamic post page with Portable Text rendering |
@@ -61,7 +62,8 @@ Static Generation (generateStaticParams)
 | Route | Purpose | Rate Limit |
 |-------|---------|------------|
 | `api/contact` | Contact form → Resend email | 5/min |
-| `api/comments` | Comment notifications → Resend email | 10/min |
+| `api/comments` | GET: fetch comments, POST: create + notify | 10/min |
+| `api/rate` | Submit rating → updates Sanity post document | 10/min |
 | `api/subscribe` | Newsletter signup → MailerLite | 5/min |
 | `api/search` | Server-side post search | — |
 
@@ -131,7 +133,15 @@ Push to `master` branch triggers automatic deployment.
 - **Contact Form**: Email via Resend with rate limiting + validation
 - **Favorites**: Client-side localStorage with FavoriteButton component
 - **RSS Feed**: Auto-generated at `/feed.xml`
-- **SEO**: Canonical URLs, OG tags, JSON-LD (Recipe, BlogPost, BreadcrumbList) on all pages
+- **SEO**: Canonical URLs, OG tags, Twitter cards, JSON-LD schemas:
+  - Homepage: WebSite, Organization
+  - Posts: Recipe (cooking) or BlogPosting + BreadcrumbList
+  - DIY posts: HowTo schema
+  - /about: Person schema
+  - /free-guide: FAQPage schema
+  - Image sitemap at `/image-sitemap.xml`
+- **Ratings**: Stored on post documents in Sanity (ratingAverage, ratingCount)
+- **Comments**: Stored in Sanity as separate documents, threaded replies supported
 
 ## Future Features (Not Yet Implemented)
 
