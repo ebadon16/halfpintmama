@@ -30,63 +30,62 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
   return (
     <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group relative">
       {/* Favorite Button */}
-      <div className="absolute top-3 right-3 z-10">
+      <div className="absolute top-2 right-2 z-10">
         <FavoriteButton
           slug={slug}
           title={title}
-          className="p-2 bg-white/90 rounded-full shadow-md hover:bg-white"
+          className="p-1.5 bg-white/90 rounded-full shadow-md hover:bg-white"
         />
       </div>
 
       <Link href={`/posts/${slug}`}>
         {/* Image */}
-        <div className="relative h-52 bg-gradient-to-br from-light-sage to-warm-beige">
+        <div className="relative h-36 sm:h-40 bg-gradient-to-br from-light-sage to-warm-beige">
           {image && (
             <Image
               src={image}
               alt={title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw"
             />
           )}
         </div>
 
         {/* Content */}
-        <div className="p-5">
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className={`inline-block px-3 py-1 ${badgeColor} text-white text-xs font-semibold rounded-full uppercase tracking-wide`}>
+        <div className="p-3">
+          <div className="flex flex-wrap items-center gap-1.5 mb-2">
+            <span className={`inline-block px-2 py-0.5 ${badgeColor} text-white text-[10px] font-semibold rounded-full uppercase tracking-wide`}>
               {category.replace("-", " ")}
             </span>
-            {tags && tags.length > 0 && tags.slice(0, 2).map((tag) => (
+            {tags && tags.length > 0 && tags.slice(0, 1).map((tag) => (
               <span
                 key={tag}
-                className="inline-block px-2 py-0.5 bg-warm-beige text-charcoal/70 text-xs rounded-full"
+                className="inline-block px-1.5 py-0.5 bg-warm-beige text-charcoal/70 text-[10px] rounded-full"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2 leading-tight group-hover:text-deep-sage transition-colors">
+          <h3 className="font-[family-name:var(--font-crimson)] text-base font-semibold text-charcoal mb-1 leading-tight group-hover:text-deep-sage transition-colors line-clamp-2">
             {title}
           </h3>
 
-          <p className="text-charcoal/70 text-sm leading-relaxed mb-4 line-clamp-2">
+          <p className="text-charcoal/70 text-xs leading-relaxed mb-2 line-clamp-2">
             {excerpt}
           </p>
 
-          <div className="flex items-center gap-3">
-            <p className="text-sage text-sm font-medium">
+          <div className="flex items-center gap-2">
+            <p className="text-sage text-xs font-medium">
               {date}
             </p>
             {ratingCount != null && ratingCount > 0 && (
               <>
                 <span className="text-charcoal/30">|</span>
-                <div className="flex items-center gap-1 text-sm text-charcoal/70">
+                <div className="flex items-center gap-1 text-xs text-charcoal/70">
                   <span className="text-yellow-500">★</span>
                   <span>{ratingAverage?.toFixed(1)}</span>
-                  <span className="text-charcoal/50">({ratingCount})</span>
                 </div>
               </>
             )}

@@ -23,7 +23,7 @@ export default async function PostsPage({ searchParams }: PageProps) {
 
   return (
     <div className="bg-cream">
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
           All Posts
         </h1>
@@ -32,7 +32,7 @@ export default async function PostsPage({ searchParams }: PageProps) {
         </p>
         <SearchBar placeholder="Search all posts..." className="max-w-md mb-12" />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {posts.map((post) => (
             <PostCard
               key={post.slug}

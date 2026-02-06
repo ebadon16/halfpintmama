@@ -220,7 +220,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
             {query && <> for &quot;{query}&quot;</>}
             {selectedCategory && <> in {selectedCategory.replace("-", " ")}</>}
           </p>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             {results.map((result) => (
               <PostCard
                 key={result.slug}

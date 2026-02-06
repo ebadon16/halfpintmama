@@ -180,7 +180,7 @@ export default async function Home() {
                 </Link>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {popularPosts.map((post) => (
                   <PostCard
                     key={post.slug}

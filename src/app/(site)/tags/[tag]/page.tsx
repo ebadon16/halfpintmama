@@ -48,7 +48,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
 
   return (
     <div className="bg-cream min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
           <Link
@@ -67,7 +67,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
         </div>
 
         {/* Posts Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {posts.map((post) => (
             <PostCard
               key={post.slug}
