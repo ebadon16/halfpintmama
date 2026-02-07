@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Wheat, PartyPopper } from "lucide-react";
 
 export function EmailPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -130,7 +132,7 @@ export function EmailPopup() {
 
         {/* Header gradient */}
         <div className="gradient-cta p-8 text-center text-white">
-          <span className="text-5xl block mb-3" aria-hidden="true">🍞</span>
+          <div className="flex justify-center mb-3" aria-hidden="true"><Wheat className="w-10 h-10 text-white" /></div>
           <h2 id="email-popup-heading" className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
             Want My Free Sourdough Starter Guide?
           </h2>
@@ -142,7 +144,7 @@ export function EmailPopup() {
         {/* Form */}
         {status === "success" ? (
           <div className="p-8 text-center">
-            <div className="text-4xl mb-3" aria-hidden="true">🎉</div>
+            <div className="flex justify-center mb-3" aria-hidden="true"><ThemedIcon icon={PartyPopper} size="md" color="sage" /></div>
             <p className="text-green-600 font-medium">{message}</p>
           </div>
         ) : (

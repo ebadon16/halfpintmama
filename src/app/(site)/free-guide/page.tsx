@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { PartyPopper, Wheat, Check, Calendar, Wrench, BookOpen } from "lucide-react";
 
 // FAQ Schema for SEO - common sourdough starter questions
 const faqSchema = {
@@ -73,7 +75,7 @@ function SignupForm({ source }: { source: string }) {
   if (status === "success") {
     return (
       <div className="bg-light-sage/30 rounded-lg p-6 text-center">
-        <span className="text-3xl block mb-2">🎉</span>
+        <div className="flex justify-center mb-2"><ThemedIcon icon={PartyPopper} size="md" color="sage" /></div>
         <p className="text-deep-sage font-semibold">Check your inbox!</p>
         <p className="text-charcoal/70 text-sm">Your free guide is on its way.</p>
       </div>
@@ -144,7 +146,7 @@ export default function FreeGuidePage() {
                   FREE!
                 </div>
                 <div className="text-center">
-                  <span className="text-8xl block mb-4">🍞</span>
+                  <div className="flex justify-center mb-4"><ThemedIcon icon={Wheat} size="xl" color="terracotta" /></div>
                   <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-bold mb-2">
                     Sourdough Starter Guide
                   </h2>
@@ -155,23 +157,23 @@ export default function FreeGuidePage() {
 
                 <div className="mt-6 space-y-3">
                   <div className="flex items-center gap-3 text-sm text-charcoal/70">
-                    <span className="text-sage text-lg">✓</span>
+                    <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Day-by-day starter creation guide
                   </div>
                   <div className="flex items-center gap-3 text-sm text-charcoal/70">
-                    <span className="text-sage text-lg">✓</span>
+                    <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Printable feeding schedule
                   </div>
                   <div className="flex items-center gap-3 text-sm text-charcoal/70">
-                    <span className="text-sage text-lg">✓</span>
+                    <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Troubleshooting FAQ
                   </div>
                   <div className="flex items-center gap-3 text-sm text-charcoal/70">
-                    <span className="text-sage text-lg">✓</span>
+                    <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     4 beginner-friendly recipes
                   </div>
                   <div className="flex items-center gap-3 text-sm text-charcoal/70">
-                    <span className="text-sage text-lg">✓</span>
+                    <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Video tutorial links
                   </div>
                 </div>
@@ -209,7 +211,7 @@ export default function FreeGuidePage() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-terracotta/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">📅</span>
+                <Calendar className="w-7 h-7 text-terracotta" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Day-by-Day Guide</h3>
               <p className="text-charcoal/70 text-sm">
@@ -219,7 +221,7 @@ export default function FreeGuidePage() {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-sage/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">🔧</span>
+                <Wrench className="w-7 h-7 text-sage" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Troubleshooting Tips</h3>
               <p className="text-charcoal/70 text-sm">
@@ -229,7 +231,7 @@ export default function FreeGuidePage() {
 
             <div className="text-center">
               <div className="w-16 h-16 bg-soft-pink/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">🥖</span>
+                <Wheat className="w-7 h-7 text-soft-pink" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Beginner Recipes</h3>
               <p className="text-charcoal/70 text-sm">
@@ -247,7 +249,7 @@ export default function FreeGuidePage() {
             Coming Soon
           </h3>
           <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-md">
-            <span className="text-5xl block mb-3">📖</span>
+            <div className="flex justify-center mb-3"><ThemedIcon icon={BookOpen} size="lg" color="deep-sage" /></div>
             <h4 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal mb-2">
               The Postpartum Mama Book
             </h4>

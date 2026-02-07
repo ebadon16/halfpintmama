@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Heart } from "lucide-react";
 
 interface FavoriteItem {
   slug: string;
@@ -32,7 +34,7 @@ export default function FavoritesPage() {
       <div className="bg-cream min-h-screen">
         <div className="max-w-4xl mx-auto px-4 py-12">
           <div className="text-center py-12">
-            <div className="text-4xl animate-pulse">💚</div>
+            <ThemedIcon icon={Heart} size="md" color="deep-sage" animate="animate-pulse" />
           </div>
         </div>
       </div>
@@ -57,7 +59,7 @@ export default function FavoritesPage() {
         {/* Empty State */}
         {favorites.length === 0 && (
           <div className="bg-white rounded-2xl p-8 text-center shadow-md">
-            <div className="text-6xl mb-4">💚</div>
+            <div className="flex justify-center mb-4"><ThemedIcon icon={Heart} size="xl" color="deep-sage" /></div>
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
               No saved recipes yet
             </h2>

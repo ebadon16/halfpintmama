@@ -4,6 +4,7 @@ import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { getLatestPost, getPopularPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
+import { ShoppingCart, Heart } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Real Food. From Scratch.",
@@ -212,7 +213,7 @@ export default async function Home() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-[#FF9900]/10 rounded-xl hover:bg-[#FF9900]/20 transition-all group"
                 >
-                  <span className="text-2xl">🛒</span>
+                  <ShoppingCart className="w-6 h-6 text-[#FF9900]" />
                   <div>
                     <p className="font-semibold text-charcoal group-hover:text-[#FF9900] transition-colors text-sm">Amazon Storefront</p>
                     <p className="text-charcoal/60 text-xs">Shop all my favorites</p>
@@ -224,7 +225,7 @@ export default async function Home() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-all group"
                 >
-                  <span className="text-2xl">💗</span>
+                  <Heart className="w-6 h-6 text-pink-500" />
                   <div>
                     <p className="font-semibold text-charcoal group-hover:text-pink-600 transition-colors text-sm">LTK Shop</p>
                     <p className="text-charcoal/60 text-xs">Outfit & home picks</p>

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Hand, Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, Music } from "lucide-react";
 
 export const metadata = {
   title: "About Keegan | Half Pint Mama",
@@ -59,7 +61,9 @@ export default function AboutPage() {
         <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-2">
           Hey, I&apos;m Keegan
         </h1>
-        <p className="text-4xl mb-8">👋</p>
+        <div className="mb-8">
+          <ThemedIcon icon={Hand} size="lg" color="sage" />
+        </div>
 
         {/* Main Content */}
         <div className="bg-white rounded-2xl p-8 shadow-md mb-8">
@@ -78,31 +82,31 @@ export default function AboutPage() {
             </h2>
             <ul className="space-y-3 text-charcoal">
               <li className="flex items-start gap-3">
-                <span>☕</span>
+                <ThemedIcon icon={Coffee} size="sm" color="terracotta" bare />
                 <span>I can&apos;t function without my morning black coffee</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🌿</span>
+                <ThemedIcon icon={Leaf} size="sm" color="sage" bare />
                 <span>I&apos;ll always choose outside over inside</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🏡</span>
+                <ThemedIcon icon={Home} size="sm" color="deep-sage" bare />
                 <span>Currently homesteading… in the suburbs</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🍞</span>
+                <ThemedIcon icon={Wheat} size="sm" color="terracotta" bare />
                 <span>My sourdough starter has a permanent place on the counter</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>📚</span>
+                <ThemedIcon icon={BookOpen} size="sm" color="sage" bare />
                 <span>You probably don&apos;t want to know what I&apos;m reading on my Kindle</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>🍺</span>
+                <ThemedIcon icon={Beer} size="sm" color="terracotta" bare />
                 <span>That first sip of a cold beer? Absolute perfection</span>
               </li>
               <li className="flex items-start gap-3">
-                <span>💚</span>
+                <ThemedIcon icon={Heart} size="sm" color="deep-sage" bare />
                 <span>Mostly a pretty chill mama, navigating life with a preschooler and a toddler</span>
               </li>
             </ul>
@@ -113,14 +117,14 @@ export default function AboutPage() {
           </p>
 
           <p className="text-sage italic text-lg">
-            Thanks so much for being here—I&apos;m really glad you found your way to my kitchen 🤍
+            Thanks so much for being here—I&apos;m really glad you found your way to my kitchen <Heart className="inline-block w-4 h-4 text-soft-pink align-middle" />
           </p>
         </div>
 
         {/* Free Sourdough Guide Section */}
         <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/10 rounded-2xl p-8 shadow-md mb-8 border-2 border-terracotta/20">
           <div className="text-center">
-            <span className="text-5xl mb-4 block">🍞</span>
+            <div className="mb-4"><ThemedIcon icon={Wheat} size="lg" color="terracotta" /></div>
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
               Get My Free Sourdough Starter Guide
             </h2>
@@ -149,7 +153,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="gradient-cta text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
             >
-              <div className="text-3xl mb-2">📸</div>
+              <div className="mb-2"><Camera className="w-7 h-7 mx-auto" /></div>
               <div className="font-semibold">Instagram</div>
               <div className="text-sm text-white/80">@halfpint.mama</div>
             </a>
@@ -160,7 +164,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="bg-sage text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
             >
-              <div className="text-3xl mb-2">🎬</div>
+              <div className="mb-2"><Video className="w-7 h-7 mx-auto" /></div>
               <div className="font-semibold">YouTube</div>
               <div className="text-sm text-white/80">Half Pint Mama</div>
             </a>
@@ -171,7 +175,7 @@ export default function AboutPage() {
               rel="noopener noreferrer"
               className="bg-deep-sage text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
             >
-              <div className="text-3xl mb-2">🎵</div>
+              <div className="mb-2"><Music className="w-7 h-7 mx-auto" /></div>
               <div className="font-semibold">TikTok</div>
               <div className="text-sm text-white/80">@halfpint.mama</div>
             </a>

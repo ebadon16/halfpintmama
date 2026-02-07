@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { MailCheck, Camera, Hand, Music } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -58,7 +60,7 @@ export default function ContactPage() {
       <div className="bg-cream min-h-screen">
         <div className="max-w-2xl mx-auto px-4 py-16 text-center">
           <div className="bg-white rounded-2xl p-8 shadow-lg">
-            <span className="text-6xl block mb-4">💌</span>
+            <div className="flex justify-center mb-4"><ThemedIcon icon={MailCheck} size="xl" color="terracotta" /></div>
             <h1 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-bold mb-4">
               Message Sent!
             </h1>
@@ -212,7 +214,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-charcoal hover:text-terracotta transition-colors"
                 >
-                  <span className="text-xl">📸</span>
+                  <Camera className="w-5 h-5 text-terracotta" />
                   <span>@halfpint.mama</span>
                 </a>
                 <a
@@ -221,7 +223,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-charcoal hover:text-terracotta transition-colors"
                 >
-                  <span className="text-xl">👋</span>
+                  <Hand className="w-5 h-5 text-terracotta" />
                   <span>Half Pint Mama</span>
                 </a>
                 <a
@@ -230,7 +232,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-charcoal hover:text-terracotta transition-colors"
                 >
-                  <span className="text-xl">🎵</span>
+                  <Music className="w-5 h-5 text-terracotta" />
                   <span>@halfpint.mama</span>
                 </a>
               </div>

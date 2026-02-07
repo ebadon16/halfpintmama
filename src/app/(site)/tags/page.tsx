@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getAllTags } from "@/lib/posts";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Tag } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -54,7 +56,7 @@ export default async function TagsPage() {
           </div>
         ) : (
           <div className="text-center py-12 bg-white rounded-2xl shadow-md">
-            <div className="text-6xl mb-4">🏷️</div>
+            <div className="flex justify-center mb-4"><ThemedIcon icon={Tag} size="xl" color="sage" /></div>
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
               No tags yet
             </h2>

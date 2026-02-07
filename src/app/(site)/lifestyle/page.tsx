@@ -1,6 +1,8 @@
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { SearchBar } from "@/components/SearchBar";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Globe, Plane, Palette } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -27,9 +29,9 @@ export default async function LifestylePage() {
 
   return (
     <div className="bg-cream">
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="mb-12">
-          <span className="text-5xl mb-4 block">🌎</span>
+          <ThemedIcon icon={Globe} size="lg" color="sage" />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Travel & DIY
           </h1>
@@ -43,7 +45,7 @@ export default async function LifestylePage() {
         {/* Travel Section */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-3xl">✈️</span>
+            <ThemedIcon icon={Plane} size="md" color="sage" bare />
             <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-2 border-b-4 border-sage">
               Family Travel
             </h2>
@@ -53,7 +55,7 @@ export default async function LifestylePage() {
           </p>
 
           {travelPosts.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               {travelPosts.map((post) => (
                 <PostCard
                   key={post.slug}
@@ -76,7 +78,7 @@ export default async function LifestylePage() {
         {/* DIY Section */}
         <section>
           <div className="flex items-center gap-3 mb-8">
-            <span className="text-3xl">🎨</span>
+            <ThemedIcon icon={Palette} size="md" color="pink" bare />
             <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold pb-2 border-b-4 border-terracotta">
               DIY Projects
             </h2>
@@ -86,7 +88,7 @@ export default async function LifestylePage() {
           </p>
 
           {diyPosts.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               {diyPosts.map((post) => (
                 <PostCard
                   key={post.slug}

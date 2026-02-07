@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { PartyPopper, MailOpen, Mail } from "lucide-react";
 
 export function PostEmailSignup() {
   const [email, setEmail] = useState("");
@@ -45,7 +47,7 @@ export function PostEmailSignup() {
     return (
       <div role="status" className="my-10 p-6 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl">
         <div className="flex items-center gap-4">
-          <span className="text-4xl">🎉</span>
+          <ThemedIcon icon={PartyPopper} size="md" color="sage" />
           <p className="text-green-600 font-medium">{message}</p>
         </div>
       </div>
@@ -55,7 +57,7 @@ export function PostEmailSignup() {
   return (
     <div className="my-10 p-6 bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl">
       <div className="flex items-start gap-4">
-        <span className="text-4xl">📬</span>
+        <ThemedIcon icon={MailOpen} size="md" color="terracotta" />
         <div className="flex-1">
           <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
             Enjoying this post?
@@ -134,7 +136,7 @@ export function BottomEmailCTA() {
       <section className="py-12">
         <div className="max-w-2xl mx-auto px-4">
           <div role="status" className="gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
-            <span className="text-5xl block mb-4">🎉</span>
+            <div className="flex justify-center mb-4"><PartyPopper className="w-10 h-10 text-white" /></div>
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
               You&apos;re In!
             </h2>
@@ -151,7 +153,7 @@ export function BottomEmailCTA() {
     <section className="py-12">
       <div className="max-w-2xl mx-auto px-4">
         <div className="gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
-          <span className="text-5xl block mb-4">💌</span>
+          <div className="flex justify-center mb-4"><Mail className="w-10 h-10 text-white" /></div>
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
             Want More? Join My List!
           </h2>

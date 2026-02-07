@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Wheat, Search } from "lucide-react";
 
 export default function NotFound() {
   return (
     <div className="bg-cream min-h-screen flex items-center justify-center px-4">
       <div className="text-center max-w-lg">
-        <div className="text-8xl mb-6">🍞</div>
+        <div className="flex justify-center mb-6"><ThemedIcon icon={Wheat} size="xl" color="terracotta" /></div>
         <h1 className="font-[family-name:var(--font-crimson)] text-6xl text-deep-sage font-bold mb-4">
           404
         </h1>
@@ -37,7 +39,7 @@ export default function NotFound() {
             href="/search"
             className="inline-flex items-center gap-2 text-terracotta font-medium hover:text-deep-sage transition-colors"
           >
-            <span>🔍</span> Try searching
+            <Search className="inline-block w-4 h-4" /> Try searching
           </Link>
         </div>
       </div>

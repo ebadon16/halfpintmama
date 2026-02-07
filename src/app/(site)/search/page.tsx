@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import { getAllTags } from "@/lib/posts";
 import { SearchContent } from "./SearchContent";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Search } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -24,7 +26,7 @@ export const metadata = {
 function SearchLoading() {
   return (
     <div className="text-center py-12">
-      <div className="text-4xl animate-pulse">🔍</div>
+      <ThemedIcon icon={Search} size="md" color="charcoal" animate="animate-pulse" />
       <p className="text-charcoal/70 mt-2">Loading...</p>
     </div>
   );

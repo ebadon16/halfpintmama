@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PartyPopper, MailOpen } from "lucide-react";
 
 export function HomeEmailSignup() {
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ export function HomeEmailSignup() {
     return (
       <section className="max-w-4xl mx-auto px-4 py-12">
         <div role="status" className="gradient-cta rounded-2xl p-8 md:p-10 text-center text-white shadow-lg">
-          <div className="text-5xl mb-4">🎉</div>
+          <div className="flex justify-center mb-4"><PartyPopper className="w-10 h-10 text-white" /></div>
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold mb-3">
             You&apos;re In!
           </h2>
@@ -60,7 +61,7 @@ export function HomeEmailSignup() {
   return (
     <section className="max-w-4xl mx-auto px-4 py-12">
       <div className="gradient-cta rounded-2xl p-8 md:p-10 text-center text-white shadow-lg">
-        <div className="text-5xl mb-4">📬</div>
+        <div className="flex justify-center mb-4"><MailOpen className="w-10 h-10 text-white" /></div>
         <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold mb-3">
           Get My Free Sourdough Starter Guide
         </h2>

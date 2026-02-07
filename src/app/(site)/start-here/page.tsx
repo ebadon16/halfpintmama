@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { EmailSignup } from "@/components/EmailSignup";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Users, Wheat, Baby, Salad } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -40,7 +42,7 @@ export default async function StartHerePage() {
       {/* About Me - Moved to Top */}
       <section className="max-w-4xl mx-auto px-4 py-12">
         <div className="bg-gradient-to-br from-light-sage/30 to-warm-beige/30 rounded-2xl p-8 md:flex items-center gap-8">
-          <div className="text-8xl mb-6 md:mb-0">👩‍👧‍👦</div>
+          <div className="mb-6 md:mb-0"><ThemedIcon icon={Users} size="xl" color="deep-sage" /></div>
           <div>
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-3">
               A Little About Me
@@ -69,7 +71,7 @@ export default async function StartHerePage() {
           <div id="sourdough" className="scroll-mt-24">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-terracotta">
               <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/10 p-8 text-center">
-                <span className="text-6xl">🍞</span>
+                <ThemedIcon icon={Wheat} size="xl" color="terracotta" />
               </div>
               <div className="p-6">
                 <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">
@@ -114,7 +116,7 @@ export default async function StartHerePage() {
           <div id="parenting" className="scroll-mt-24">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-sage">
               <div className="bg-gradient-to-br from-sage/10 to-light-sage/20 p-8 text-center">
-                <span className="text-6xl">👶</span>
+                <ThemedIcon icon={Baby} size="xl" color="sage" />
               </div>
               <div className="p-6">
                 <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">
@@ -159,7 +161,7 @@ export default async function StartHerePage() {
           <div id="recipes" className="scroll-mt-24">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-deep-sage">
               <div className="bg-gradient-to-br from-deep-sage/10 to-sage/10 p-8 text-center">
-                <span className="text-6xl">🥗</span>
+                <ThemedIcon icon={Salad} size="xl" color="sage" />
               </div>
               <div className="p-6">
                 <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">

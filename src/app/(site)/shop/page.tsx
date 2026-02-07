@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { BookOpen } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
@@ -18,12 +21,12 @@ export const metadata = {
 };
 
 // Coming soon products
-const comingSoonProducts = [
+const comingSoonProducts: { id: number; title: string; description: string; icon: LucideIcon }[] = [
   {
     id: 1,
     title: "The Postpartum Mama Book",
     description: "Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days—plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.",
-    icon: "📖",
+    icon: BookOpen,
   },
 ];
 
@@ -56,7 +59,7 @@ export default function ShopPage() {
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all border-2 border-terracotta/20"
               >
                 <div className="h-32 bg-gradient-to-br from-terracotta/20 to-soft-pink/20 flex items-center justify-center">
-                  <span className="text-7xl">{product.icon}</span>
+                  <ThemedIcon icon={product.icon} size="xl" color="terracotta" />
                 </div>
 
                 <div className="p-6">

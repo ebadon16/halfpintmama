@@ -5,6 +5,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { PostCard } from "@/components/PostCard";
 import { SearchSuggestions, saveRecentSearch } from "@/components/SearchSuggestions";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Search, SearchX } from "lucide-react";
 
 interface SearchResult {
   slug: string;
@@ -178,14 +180,14 @@ export function SearchContent({ popularTags }: SearchContentProps) {
       {/* Results */}
       {isSearching && (
         <div role="status" aria-live="polite" className="text-center py-12">
-          <div className="text-4xl animate-pulse">🔍</div>
+          <ThemedIcon icon={Search} size="md" color="charcoal" animate="animate-pulse" />
           <p className="text-charcoal/70 mt-2">Searching...</p>
         </div>
       )}
 
       {!isSearching && hasSearched && results.length === 0 && (
         <div className="text-center py-12 bg-white rounded-2xl shadow-md">
-          <div className="text-6xl mb-4">🤔</div>
+          <div className="flex justify-center mb-4"><ThemedIcon icon={SearchX} size="xl" color="charcoal" /></div>
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
             No results found
           </h2>

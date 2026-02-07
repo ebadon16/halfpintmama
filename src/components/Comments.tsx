@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { StarRating, RatingSummary } from "./StarRating";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { MessageCircle } from "lucide-react";
 
 interface Comment {
   _id: string;
@@ -393,7 +395,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
         ) : (
           !isLoading && !showForm && (
             <div className="text-center py-12 bg-white rounded-2xl">
-              <span className="text-5xl block mb-4">💬</span>
+              <div className="flex justify-center mb-4"><ThemedIcon icon={MessageCircle} size="lg" color="sage" /></div>
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-charcoal font-semibold mb-2">
                 No comments yet
               </h3>

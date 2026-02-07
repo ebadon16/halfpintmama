@@ -2,6 +2,8 @@ import { getPaginatedPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Plane } from "lucide-react";
 
 export const revalidate = 3600;
 
@@ -46,7 +48,7 @@ export default async function TravelPage({ searchParams }: PageProps) {
       />
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="mb-12">
-          <span className="text-5xl mb-4 block">✈️</span>
+          <ThemedIcon icon={Plane} size="lg" color="sage" />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Family Travel
           </h1>

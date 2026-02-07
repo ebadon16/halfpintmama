@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { PartyPopper } from "lucide-react";
 
 interface EmailSignupProps {
   source?: string;
@@ -62,7 +64,7 @@ export function EmailSignup({
   if (status === "success") {
     return (
       <div role="status" className={`text-center ${className}`}>
-        <div className="text-2xl mb-2">🎉</div>
+        <div className="flex justify-center mb-2"><ThemedIcon icon={PartyPopper} size="sm" color="sage" /></div>
         <p className="text-green-600 font-medium">{message}</p>
       </div>
     );

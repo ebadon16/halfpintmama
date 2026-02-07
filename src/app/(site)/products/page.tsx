@@ -1,3 +1,7 @@
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Wheat, Baby, Luggage, BookOpen, ShoppingCart, Heart } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
 export const metadata = {
   title: "Products We Love | Half Pint Mama",
   description: "Curated product recommendations for sourdough baking, baby gear, and family travel. Real reviews from real life with littles.",
@@ -15,29 +19,29 @@ export const metadata = {
   },
 };
 
-const affiliateCategories = [
+const affiliateCategories: { title: string; description: string; icon: LucideIcon; link: string }[] = [
   {
     title: "Sourdough Essentials",
     description: "Everything you need to start and maintain your sourdough journey. These are the exact tools in my kitchen.",
-    icon: "🥖",
+    icon: Wheat,
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/34LAO012O5RIR?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
     title: "Baby-Led Weaning",
     description: "Everything you need to start your baby on solids the BLW way. Safe, practical, and parent-tested.",
-    icon: "👶",
+    icon: Baby,
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/3K7AEMTLYQWAA?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
     title: "Travel Gear",
     description: "What we pack for every adventure. Road trips, flights, and everything in between with two littles.",
-    icon: "🧳",
+    icon: Luggage,
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/2SYTGUP5EUSC?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
     title: "Preschool at Home",
     description: "Our favorite learning tools, books, and activities for teaching littles at home.",
-    icon: "📚",
+    icon: BookOpen,
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/3C6A7CTB9S2CX?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
 ];
@@ -66,7 +70,7 @@ export default function ProductsPage() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 px-6 py-4 bg-[#FF9900]/10 rounded-2xl hover:bg-[#FF9900]/20 transition-all group border-2 border-[#FF9900]/20"
           >
-            <span className="text-3xl">🛒</span>
+            <ShoppingCart className="w-7 h-7 text-[#FF9900]" />
             <div className="text-left">
               <p className="font-semibold text-charcoal group-hover:text-[#FF9900] transition-colors">Amazon Storefront</p>
               <p className="text-charcoal/60 text-sm">Shop all my favorites</p>
@@ -78,7 +82,7 @@ export default function ProductsPage() {
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-3 px-6 py-4 bg-pink-50 rounded-2xl hover:bg-pink-100 transition-all group border-2 border-pink-200"
           >
-            <span className="text-3xl">💗</span>
+            <Heart className="w-7 h-7 text-pink-500" />
             <div className="text-left">
               <p className="font-semibold text-charcoal group-hover:text-pink-600 transition-colors">LTK Shop</p>
               <p className="text-charcoal/60 text-sm">Outfit & home picks</p>
@@ -98,7 +102,7 @@ export default function ProductsPage() {
               rel="noopener noreferrer"
               className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all group"
             >
-              <div className="text-4xl mb-3">{category.icon}</div>
+              <div className="mb-3"><ThemedIcon icon={category.icon} size="md" color="terracotta" /></div>
               <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal group-hover:text-terracotta transition-colors mb-2">
                 {category.title}
               </h3>

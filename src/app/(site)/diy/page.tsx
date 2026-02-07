@@ -2,6 +2,8 @@ import { getPaginatedPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Palette } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -46,7 +48,7 @@ export default async function DIYPage({ searchParams }: PageProps) {
       />
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="mb-12">
-          <span className="text-5xl mb-4 block">🎨</span>
+          <ThemedIcon icon={Palette} size="lg" color="pink" />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             DIY Projects
           </h1>
