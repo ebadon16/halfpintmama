@@ -40,7 +40,7 @@ export default function ShopPage() {
             Shop Half Pint Mama
           </h1>
           <p className="text-charcoal/70 text-lg max-w-2xl mx-auto">
-            Digital downloads to simplify your life, plus my honest favorite products that we actually use daily.
+            Something exciting is in the works! Sign up below to be the first to know when it drops.
           </p>
         </div>
 
