@@ -2,6 +2,8 @@ import { getPaginatedPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
+import { ThemedIcon } from "@/components/ThemedIcon";
+import { Sandwich } from "lucide-react";
 import Link from "next/link";
 
 export const revalidate = 60;
@@ -72,7 +74,7 @@ export default async function SnacksPage({ searchParams }: PageProps) {
         </div>
 
         <div className="mb-12">
-          <span className="text-5xl mb-4 block">🥨</span>
+          <ThemedIcon icon={Sandwich} size="lg" color="terracotta" className="mb-4" />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Snacks & Finger Foods
           </h1>
