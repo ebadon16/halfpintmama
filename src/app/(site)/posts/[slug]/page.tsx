@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: PageProps) {
     title: `${post.title} | Half Pint Mama`,
     description: post.excerpt,
     alternates: {
-      canonical: `/posts/${slug}`,
+      canonical: `https://halfpintmama.com/posts/${slug}`,
     },
     openGraph: {
       title: post.title,
