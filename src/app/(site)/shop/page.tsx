@@ -86,14 +86,6 @@ export default function ShopPage() {
             </Link>
           </div>
         </section>
-
-        {/* Disclaimer */}
-        <div className="p-6 bg-warm-beige/50 rounded-xl text-center">
-          <p className="text-charcoal/60 text-sm">
-            <strong>Affiliate Disclosure:</strong> Some links on this page are affiliate links. This means I may earn a small commission if you make a purchase,
-            at no extra cost to you. I only recommend products I genuinely use and love. Thank you for supporting Half Pint Mama!
-          </p>
-        </div>
       </div>
     </div>
   );
