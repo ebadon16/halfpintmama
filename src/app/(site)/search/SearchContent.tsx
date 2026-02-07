@@ -179,7 +179,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
 
       {/* Results */}
       {isSearching && (
-        <div role="status" aria-live="polite" className="text-center py-12">
+        <div role="status" aria-live="polite" className="flex flex-col items-center py-12">
           <ThemedIcon icon={Search} size="md" color="charcoal" animate="animate-pulse" />
           <p className="text-charcoal/70 mt-2">Searching...</p>
         </div>

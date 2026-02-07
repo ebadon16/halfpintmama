@@ -48,7 +48,7 @@ export default async function TravelPage({ searchParams }: PageProps) {
       />
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="mb-12">
-          <ThemedIcon icon={Plane} size="lg" color="sage" />
+          <ThemedIcon icon={Plane} size="lg" color="sage" className="mb-4" />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Family Travel
           </h1>

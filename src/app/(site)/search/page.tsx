@@ -25,7 +25,7 @@ export const metadata = {
 
 function SearchLoading() {
   return (
-    <div className="text-center py-12">
+    <div className="flex flex-col items-center py-12">
       <ThemedIcon icon={Search} size="md" color="charcoal" animate="animate-pulse" />
       <p className="text-charcoal/70 mt-2">Loading...</p>
     </div>

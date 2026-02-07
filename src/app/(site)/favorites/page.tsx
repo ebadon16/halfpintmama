@@ -33,7 +33,7 @@ export default function FavoritesPage() {
     return (
       <div className="bg-cream min-h-screen">
         <div className="max-w-4xl mx-auto px-4 py-12">
-          <div className="text-center py-12">
+          <div className="flex justify-center py-12">
             <ThemedIcon icon={Heart} size="md" color="deep-sage" animate="animate-pulse" />
           </div>
         </div>
