@@ -5,18 +5,18 @@ import type { LucideIcon } from "lucide-react";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
-  description: "Shop digital downloads, printables, and curated product recommendations from Half Pint Mama. Coming soon: The Postpartum Mama Book with recipes and tips.",
+  description: "Coming soon from Half Pint Mama: The Postpartum Mama Book with evidence-based recovery tips, freezer meals, and sourdough recipes for new mamas.",
   alternates: { canonical: "https://halfpintmama.com/shop" },
   openGraph: {
     title: "Shop | Half Pint Mama",
-    description: "Digital downloads, printables, and curated product recommendations from Half Pint Mama.",
+    description: "Coming soon from Half Pint Mama: The Postpartum Mama Book with recovery tips, freezer meals, and sourdough recipes.",
     url: "https://halfpintmama.com/shop",
     images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,
     title: "Shop | Half Pint Mama",
-    description: "Digital downloads, printables, and curated product recommendations from Half Pint Mama.",
+    description: "Coming soon from Half Pint Mama: The Postpartum Mama Book with recovery tips, freezer meals, and sourdough recipes.",
   },
 };
 
