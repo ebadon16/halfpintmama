@@ -17,7 +17,7 @@ function SignupForm({ source }: { source: string }) {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName, source, segment: "mama" }),
+        body: JSON.stringify({ email, firstName, source, segment: "kitchen" }),
       });
 
       if (response.ok) {

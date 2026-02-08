@@ -23,7 +23,7 @@ export function HomeEmailSignup() {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "homepage", segment: "both" }),
+        body: JSON.stringify({ email, source: "homepage", segment: "kitchen" }),
       });
 
       const data = await response.json();

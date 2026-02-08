@@ -1,38 +1,16 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { usePathname } from "next/navigation";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { Wheat, Heart, PartyPopper } from "lucide-react";
+import { Wheat, PartyPopper } from "lucide-react";
 
 function usePopupContext() {
-  const pathname = usePathname();
-  if (pathname.startsWith("/cooking")) {
-    return {
-      segment: "kitchen" as const,
-      icon: Wheat,
-      heading: "Want My Free Sourdough Starter Guide?",
-      subtitle: "Plus weekly from-scratch recipes and kitchen tips!",
-      body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes.",
-      cta: "Send My Free Guide",
-    };
-  }
-  if (pathname.startsWith("/mama-life")) {
-    return {
-      segment: "mama" as const,
-      icon: Heart,
-      heading: "Join the Mama Life Community",
-      subtitle: "Real talk, honest tips, and mama encouragement weekly!",
-      body: "Get weekly parenting tips, honest motherhood moments, and encouragement delivered to your inbox.",
-      cta: "Join the Community",
-    };
-  }
   return {
-    segment: "both" as const,
+    segment: "kitchen" as const,
     icon: Wheat,
     heading: "Want My Free Sourdough Starter Guide?",
-    subtitle: "Plus weekly recipes, mama tips, and exclusive content!",
-    body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes and mom tips.",
+    subtitle: "Plus weekly from-scratch recipes and kitchen tips!",
+    body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes.",
     cta: "Send My Free Guide",
   };
 }

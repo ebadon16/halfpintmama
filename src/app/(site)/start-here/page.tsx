@@ -48,7 +48,7 @@ export default async function StartHerePage() {
               A Little About Me
             </h2>
             <p className="text-charcoal/70 mb-4">
-              I&apos;m a former Pediatric ER nurse who traded scrubs for sweatpants when I became a mama to Porter (toddler) and Reese (baby). Our chocolate lab Stout completes our crew. I started this blog to share what I&apos;ve learned about sourdough, family life, and finding joy in the chaos.
+              I&apos;m a Pediatric ER RN and mama of two, sharing life&apos;s beautiful chaos with my kids and our chocolate lab Stout. I started this blog to get back to the basics — real food, simple recipes, and intentional living. Whether it&apos;s sourdough, family adventures, or honest motherhood — you&apos;ll find it all here.
             </p>
             <Link
               href="/about"
@@ -123,25 +123,25 @@ export default async function StartHerePage() {
                   Mama Life
                 </h3>
                 <p className="text-charcoal/70 mb-6">
-                  Navigating life with littles? As a Pediatric ER RN turned mama, I share real talk about motherhood, family adventures, and the beautiful chaos of raising kids.
+                  Real talk about motherhood — the beautiful chaos, family adventures, the hard days, and everything in between. Parenting tips, honest reflections, DIY projects, and the stories that connect us.
                 </p>
 
                 <div className="space-y-3 mb-6">
                   <h4 className="font-semibold text-charcoal text-sm uppercase tracking-wide">Start With:</h4>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/mama-life" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
-                        <span>→</span> Surviving the Newborn Stage
+                      <Link href="/posts/transitioning-from-one-to-two-kids-what-to-expect-and-how-to-prepare" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
+                        <span>→</span> Transitioning from One to Two Kids
                       </Link>
                     </li>
                     <li>
-                      <Link href="/products" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
-                        <span>→</span> Products That Actually Help
+                      <Link href="/posts/a-winter-guide-to-banff-with-kids" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
+                        <span>→</span> A Winter Guide to Banff with Kids
                       </Link>
                     </li>
                     <li>
-                      <Link href="/mama-life" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
-                        <span>→</span> Honest Motherhood Moments
+                      <Link href="/posts/homesteading-in-the-suburbs" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
+                        <span>→</span> Homesteading in the Suburbs
                       </Link>
                     </li>
                   </ul>
