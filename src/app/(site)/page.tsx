@@ -7,18 +7,18 @@ import Image from "next/image";
 import { ShoppingCart, Heart } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Half Pint Mama | Real Food. From Scratch.",
-  description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood from a Pediatric ER RN turned mama in Central Texas.",
+  title: "Half Pint Mama | Nourishing Motherhood From Scratch",
+  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas. Real food, real life.",
   openGraph: {
-    title: "Half Pint Mama | Real Food. From Scratch.",
-    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood.",
+    title: "Half Pint Mama | Nourishing Motherhood From Scratch",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
     images: ["/logo.jpg"],
     url: "https://halfpintmama.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Half Pint Mama | Real Food. From Scratch.",
-    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood.",
+    title: "Half Pint Mama | Nourishing Motherhood From Scratch",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
     images: ["/logo.jpg"],
   },
   alternates: { canonical: "https://halfpintmama.com" },
@@ -38,7 +38,7 @@ export default async function Home() {
     "@type": "WebSite",
     name: "Half Pint Mama",
     url: "https://halfpintmama.com",
-    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood from a Pediatric ER RN turned mama in Central Texas.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -55,7 +55,7 @@ export default async function Home() {
     name: "Half Pint Mama",
     url: "https://halfpintmama.com",
     logo: "https://halfpintmama.com/logo.jpg",
-    description: "A lifestyle blog about sourdough baking, family travel, DIY projects, and real talk about motherhood.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
     founder: {
       "@type": "Person",
       name: "Keegan",
@@ -85,13 +85,13 @@ export default async function Home() {
             From the ER to the Kitchen
           </span>
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl lg:text-6xl text-deep-sage font-bold mb-4">
-            Real Food. From Scratch.
+            Nourishing Motherhood From Scratch
           </h1>
           <h2 className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
-            From a Pediatric ER RN & Sourdough-Obsessed Mama
+            From a Pediatric ER RN & Mama of Two
           </h2>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-            Bringing an intentional, practical approach to nourishing a home. Here you&apos;ll find tried and true from scratch recipes, tested in real life between shifts, changing seasons, and motherhood.
+            Real food and real motherhood — from sourdough on the counter to babies on the hip. Here you&apos;ll find from-scratch recipes, honest parenting, and the everyday rhythms of building a nourished home.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
@@ -101,10 +101,10 @@ export default async function Home() {
               Get My Free Sourdough Starter Guide
             </Link>
             <Link
-              href="/shop"
+              href="/start-here"
               className="px-8 py-4 bg-terracotta/10 text-terracotta font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-terracotta hover:bg-terracotta hover:text-white transition-all text-lg"
             >
-              Shop My Favorites
+              Start Here
             </Link>
           </div>
         </div>

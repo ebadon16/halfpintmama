@@ -23,7 +23,7 @@ export function HomeEmailSignup() {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "homepage" }),
+        body: JSON.stringify({ email, source: "homepage", segment: "both" }),
       });
 
       const data = await response.json();
@@ -63,10 +63,10 @@ export function HomeEmailSignup() {
       <div className="gradient-cta rounded-2xl p-8 md:p-10 text-center text-white shadow-lg">
         <div className="flex justify-center mb-4"><MailOpen className="w-10 h-10 text-white" /></div>
         <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold mb-3">
-          Get My Free Sourdough Starter Guide
+          Join the Half Pint Mama Community
         </h2>
         <p className="text-white/90 mb-6 max-w-xl mx-auto">
-          Plus weekly recipes, mom tips, and exclusive content delivered straight to your inbox.
+          From-scratch recipes, honest mama moments, and a free sourdough starter guide — delivered straight to your inbox weekly.
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
           <input
@@ -83,7 +83,7 @@ export function HomeEmailSignup() {
             disabled={status === "loading"}
             className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-colors whitespace-nowrap disabled:opacity-50"
           >
-            {status === "loading" ? "Sending..." : "Send My Guide"}
+            {status === "loading" ? "Sending..." : "Join Free"}
           </button>
         </form>
         {status === "error" && (

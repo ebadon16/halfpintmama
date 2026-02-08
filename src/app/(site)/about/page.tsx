@@ -113,7 +113,7 @@ export default function AboutPage() {
           </div>
 
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            Half Pint Mama started as a place to share what&apos;s working in our home—real food, simple routines, and from-scratch recipes tested in the margins of real life. Whether you&apos;re just beginning your sourdough journey or looking for tried and true recipes you can trust, you&apos;ll find food here made with care, real ingredients, and a practical approach rooted in experience—both in nursing and motherhood.
+            Half Pint Mama started as a place to share what&apos;s working in our home—real food, honest motherhood, and from-scratch recipes tested in the margins of real life. Whether you&apos;re just beginning your sourdough journey, looking for tried and true recipes, or navigating the beautiful chaos of raising littles — you&apos;ll find it all here, rooted in experience from both nursing and motherhood.
           </p>
 
           <p className="text-sage italic text-lg">

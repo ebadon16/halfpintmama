@@ -1,8 +1,41 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { Wheat, PartyPopper } from "lucide-react";
+import { Wheat, Heart, PartyPopper } from "lucide-react";
+
+function usePopupContext() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/cooking")) {
+    return {
+      segment: "kitchen" as const,
+      icon: Wheat,
+      heading: "Want My Free Sourdough Starter Guide?",
+      subtitle: "Plus weekly from-scratch recipes and kitchen tips!",
+      body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes.",
+      cta: "Send My Free Guide",
+    };
+  }
+  if (pathname.startsWith("/mama-life")) {
+    return {
+      segment: "mama" as const,
+      icon: Heart,
+      heading: "Join the Mama Life Community",
+      subtitle: "Real talk, honest tips, and mama encouragement weekly!",
+      body: "Get weekly parenting tips, honest motherhood moments, and encouragement delivered to your inbox.",
+      cta: "Join the Community",
+    };
+  }
+  return {
+    segment: "both" as const,
+    icon: Wheat,
+    heading: "Want My Free Sourdough Starter Guide?",
+    subtitle: "Plus weekly recipes, mama tips, and exclusive content!",
+    body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes and mom tips.",
+    cta: "Send My Free Guide",
+  };
+}
 
 export function EmailPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,6 +44,7 @@ export function EmailPopup() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
+  const ctx = usePopupContext();
 
   useEffect(() => {
     // Check if user has already dismissed or subscribed
@@ -86,7 +120,7 @@ export function EmailPopup() {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "popup" }),
+        body: JSON.stringify({ email, source: "popup", segment: ctx.segment }),
       });
 
       const data = await response.json();
@@ -132,12 +166,12 @@ export function EmailPopup() {
 
         {/* Header gradient */}
         <div className="gradient-cta p-8 text-center text-white">
-          <div className="flex justify-center mb-3" aria-hidden="true"><Wheat className="w-10 h-10 text-white" /></div>
+          <div className="flex justify-center mb-3" aria-hidden="true"><ctx.icon className="w-10 h-10 text-white" /></div>
           <h2 id="email-popup-heading" className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
-            Want My Free Sourdough Starter Guide?
+            {ctx.heading}
           </h2>
           <p className="text-white/90 text-sm">
-            Plus weekly recipes, mama tips, and exclusive content!
+            {ctx.subtitle}
           </p>
         </div>
 
@@ -150,7 +184,7 @@ export function EmailPopup() {
         ) : (
           <form onSubmit={handleSubmit} className="p-6">
             <p className="text-charcoal/70 text-center mb-4 text-sm">
-              Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes and mom tips.
+              {ctx.body}
             </p>
 
             <input
@@ -172,7 +206,7 @@ export function EmailPopup() {
               disabled={status === "loading"}
               className="w-full px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all disabled:opacity-50"
             >
-              {status === "loading" ? "Sending..." : "Send My Free Guide"}
+              {status === "loading" ? "Sending..." : ctx.cta}
             </button>
 
             <p className="text-charcoal/50 text-xs text-center mt-3">

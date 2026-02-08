@@ -6,7 +6,7 @@ import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import dynamic from "next/dynamic";
 import { PrintButton } from "@/components/PrintButton";
-import { RecipeSchema, BlogPostSchema, HowToSchema } from "@/components/RecipeSchema";
+import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
 
@@ -60,16 +60,12 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const categoryLabels: Record<string, string> = {
-  cooking: "Cooking & Baking",
-  travel: "Travel",
-  diy: "DIY",
+  cooking: "From Scratch Kitchen",
   "mama-life": "Mama Life",
 };
 
 const categoryColors: Record<string, string> = {
   cooking: "bg-terracotta",
-  travel: "bg-sage",
-  diy: "bg-soft-pink",
   "mama-life": "bg-deep-sage",
 };
 
@@ -137,25 +133,14 @@ export default async function PostPage({ params }: PageProps) {
           recipe={post.recipe}
         />
       ) : (
-        <>
-          <BlogPostSchema
-            title={post.title}
-            description={post.excerpt}
-            image={post.image}
-            datePublished={post.date}
-            slug={slug}
-            category={categoryLabel}
-          />
-          {/* HowTo schema for DIY posts */}
-          {post.category === "diy" && (
-            <HowToSchema
-              title={post.title}
-              description={post.excerpt}
-              image={post.image}
-              slug={slug}
-            />
-          )}
-        </>
+        <BlogPostSchema
+          title={post.title}
+          description={post.excerpt}
+          image={post.image}
+          datePublished={post.date}
+          slug={slug}
+          category={categoryLabel}
+        />
       )}
 
       <article className="max-w-2xl mx-auto px-4 py-8">
@@ -283,7 +268,7 @@ export default async function PostPage({ params }: PageProps) {
         />
 
         {/* Mid-Post Email Signup CTA */}
-        <PostEmailSignup />
+        <PostEmailSignup category={post.category} />
 
         {/* Footer - Navigation */}
         <footer className="mt-8 pt-6 border-t border-light-sage">
@@ -338,7 +323,7 @@ export default async function PostPage({ params }: PageProps) {
       />
 
       {/* Want More? Join My List - Bottom CTA */}
-      <BottomEmailCTA />
+      <BottomEmailCTA category={post.category} />
     </div>
   );
 }

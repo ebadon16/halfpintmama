@@ -7,9 +7,8 @@ import { SearchButton } from "./SearchBar";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/cooking", label: "Recipes" },
-  { href: "/mama-life", label: "Mama Life Blog" },
-  { href: "/lifestyle", label: "Travel & DIY" },
+  { href: "/cooking", label: "From Scratch Kitchen" },
+  { href: "/mama-life", label: "Mama Life" },
   { href: "/products", label: "Favorite Products" },
   { href: "/about", label: "About" },
 ];

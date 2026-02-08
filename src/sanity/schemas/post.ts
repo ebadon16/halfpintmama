@@ -33,9 +33,7 @@ export const post = defineType({
       type: "string",
       options: {
         list: [
-          { title: "Cooking", value: "cooking" },
-          { title: "Travel", value: "travel" },
-          { title: "DIY", value: "diy" },
+          { title: "From Scratch Kitchen", value: "cooking" },
           { title: "Mama Life", value: "mama-life" },
         ],
         layout: "dropdown",

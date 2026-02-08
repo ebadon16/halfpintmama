@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://halfpintmama.com"),
-  title: "Half Pint Mama | Where Mom Life Meets Real Life",
-  description: "A lifestyle blog about sourdough baking, family travel, DIY projects, and real talk about motherhood. By Keegan, a mama in Central Texas.",
-  keywords: ["sourdough", "parenting", "family travel", "recipes", "DIY", "motherhood", "Texas mom"],
+  title: "Half Pint Mama | Nourishing Motherhood From Scratch",
+  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas.",
+  keywords: ["sourdough", "from scratch recipes", "parenting", "motherhood", "real food", "sourdough recipes", "mama blog", "Texas mom"],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "48x48" },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Half Pint Mama",
-    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood from a Pediatric ER RN turned mama.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
     type: "website",
     locale: "en_US",
     siteName: "Half Pint Mama",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     site: "@halfpintmama",
     creator: "@halfpintmama",
     title: "Half Pint Mama",
-    description: "Sourdough recipes, family travel, DIY projects, and real talk about motherhood.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
     images: ["/logo.jpg"],
   },
 };

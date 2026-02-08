@@ -16,8 +16,6 @@ interface PostCardProps {
 
 const categoryColors: Record<string, string> = {
   cooking: "bg-terracotta",
-  travel: "bg-sage",
-  diy: "bg-soft-pink",
   "mama-life": "bg-deep-sage",
   default: "bg-sage",
 };

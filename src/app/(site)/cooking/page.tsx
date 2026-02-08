@@ -9,19 +9,19 @@ import Link from "next/link";
 export const revalidate = 60;
 
 export const metadata = {
-  title: "Cooking & Baking | Half Pint Mama",
-  description: "Sourdough recipes, discard ideas, healthy snacks, and baking tutorials from a bread-obsessed mama. Easy homemade recipes your whole family will love.",
+  title: "From Scratch Kitchen | Half Pint Mama",
+  description: "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama. Easy homemade recipes your whole family will love.",
   alternates: { canonical: "https://halfpintmama.com/cooking" },
   openGraph: {
-    title: "Cooking & Baking | Half Pint Mama",
-    description: "Sourdough recipes, discard ideas, healthy snacks, and baking tutorials from a bread-obsessed mama.",
+    title: "From Scratch Kitchen | Half Pint Mama",
+    description: "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama.",
     url: "https://halfpintmama.com/cooking",
     images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,
-    title: "Cooking & Baking | Half Pint Mama",
-    description: "Sourdough recipes, discard ideas, healthy snacks, and baking tutorials from a bread-obsessed mama.",
+    title: "From Scratch Kitchen | Half Pint Mama",
+    description: "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama.",
   },
 };
 
@@ -43,7 +43,7 @@ export default async function CookingPage({ searchParams }: PageProps) {
           "@type": "BreadcrumbList",
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://halfpintmama.com" },
-            { "@type": "ListItem", position: 2, name: "Cooking & Baking", item: "https://halfpintmama.com/cooking" },
+            { "@type": "ListItem", position: 2, name: "From Scratch Kitchen", item: "https://halfpintmama.com/cooking" },
           ],
         }) }}
       />
@@ -83,10 +83,10 @@ export default async function CookingPage({ searchParams }: PageProps) {
         <div className="mb-12">
           <ThemedIcon icon={Wheat} size="lg" color="terracotta" className="mb-4" />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
-            Cooking & Baking
+            From Scratch Kitchen
           </h1>
           <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
-            Sourdough obsessed? Me too! From starter to finished loaf, plus healthy snacks and treats the whole family will love.
+            Sourdough obsessed? Me too! From starter to finished loaf, plus healthy snacks, family meals, and creative projects — all made from scratch with real ingredients.
           </p>
           <SearchBar placeholder="Search recipes..." className="max-w-md" />
         </div>

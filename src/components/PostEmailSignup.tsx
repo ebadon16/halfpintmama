@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { PartyPopper, MailOpen, Mail } from "lucide-react";
 
-export function PostEmailSignup() {
+export function PostEmailSignup({ category }: { category?: string } = {}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -24,7 +24,7 @@ export function PostEmailSignup() {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "post-mid" }),
+        body: JSON.stringify({ email, source: "post-mid", segment: category === "cooking" ? "kitchen" : category === "mama-life" ? "mama" : "both" }),
       });
 
       const data = await response.json();
@@ -60,10 +60,14 @@ export function PostEmailSignup() {
         <ThemedIcon icon={MailOpen} size="md" color="terracotta" />
         <div className="flex-1">
           <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
-            Enjoying this post?
+            {category === "mama-life" ? "Want more mama moments like this?" : "Enjoying this post?"}
           </h3>
           <p className="text-charcoal/70 text-sm mb-4">
-            Get more recipes, tips, and real mom moments delivered to your inbox weekly. Plus a free sourdough starter guide!
+            {category === "cooking"
+              ? "Get more from-scratch recipes and kitchen tips delivered to your inbox weekly. Plus a free sourdough starter guide!"
+              : category === "mama-life"
+              ? "Get weekly parenting tips, honest motherhood moments, and encouragement straight to your inbox."
+              : "Get more recipes, tips, and real mom moments delivered to your inbox weekly. Plus a free sourdough starter guide!"}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
             <input
@@ -92,7 +96,7 @@ export function PostEmailSignup() {
   );
 }
 
-export function BottomEmailCTA() {
+export function BottomEmailCTA({ category }: { category?: string } = {}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -112,7 +116,7 @@ export function BottomEmailCTA() {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "post-bottom" }),
+        body: JSON.stringify({ email, source: "post-bottom", segment: category === "cooking" ? "kitchen" : category === "mama-life" ? "mama" : "both" }),
       });
 
       const data = await response.json();
@@ -155,10 +159,14 @@ export function BottomEmailCTA() {
         <div className="gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
           <div className="flex justify-center mb-4"><Mail className="w-10 h-10 text-white" /></div>
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
-            Want More? Join My List!
+            {category === "mama-life" ? "Join the Mama Community" : "Want More? Join My List!"}
           </h2>
           <p className="text-white/90 mb-6 max-w-md mx-auto">
-            Weekly recipes, honest mom moments, and exclusive content. Plus get my free sourdough starter guide when you subscribe!
+            {category === "cooking"
+              ? "Weekly from-scratch recipes and kitchen tips. Plus get my free sourdough starter guide when you subscribe!"
+              : category === "mama-life"
+              ? "Weekly parenting tips, honest motherhood moments, and mama encouragement straight to your inbox."
+              : "Weekly recipes, honest mom moments, and exclusive content. Plus get my free sourdough starter guide when you subscribe!"}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
             <input

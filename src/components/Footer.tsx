@@ -11,7 +11,7 @@ export function Footer() {
               Half Pint Mama
             </h3>
             <p className="text-charcoal/80 text-sm leading-relaxed">
-              Just a mama with sourdough on the counter, babies on my hip, and trying to make a good home.
+              Nourishing motherhood from scratch — real food, real recipes, and real talk about raising littles.
             </p>
           </div>
 
@@ -23,17 +23,12 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/cooking" className="text-charcoal/80 hover:text-terracotta transition-colors">
-                  Cooking & Baking
-                </Link>
-              </li>
-              <li>
-                <Link href="/lifestyle" className="text-charcoal/80 hover:text-terracotta transition-colors">
-                  Travel & DIY
+                  From Scratch Kitchen
                 </Link>
               </li>
               <li>
                 <Link href="/mama-life" className="text-charcoal/80 hover:text-terracotta transition-colors">
-                  Mama Life Blog
+                  Mama Life
                 </Link>
               </li>
               <li>
@@ -149,6 +144,10 @@ export function Footer() {
             <span className="hidden sm:block text-charcoal/30">|</span>
             <Link href="/terms" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors">
               Terms of Service
+            </Link>
+            <span className="hidden sm:block text-charcoal/30">|</span>
+            <Link href="/disclaimer" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors">
+              Health Disclaimer
             </Link>
             <span className="hidden sm:block text-charcoal/30">|</span>
             <a href="/feed.xml" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors flex items-center gap-1">

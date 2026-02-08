@@ -3,24 +3,24 @@ import { getPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { EmailSignup } from "@/components/EmailSignup";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { Users, Wheat, Baby, Salad } from "lucide-react";
+import { Users, Wheat, Heart } from "lucide-react";
 
 export const revalidate = 3600;
 
 export const metadata = {
   title: "Start Here | Half Pint Mama",
-  description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey, navigating new parenthood, or looking for family recipes.",
+  description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey or navigating motherhood with real food and real talk.",
   alternates: { canonical: "https://halfpintmama.com/start-here" },
   openGraph: {
     title: "Start Here | Half Pint Mama",
-    description: "New to Half Pint Mama? Start your sourdough journey, navigate parenthood, or find family recipes.",
+    description: "New to Half Pint Mama? Start your sourdough journey or navigate motherhood with real food and real talk.",
     url: "https://halfpintmama.com/start-here",
     images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,
     title: "Start Here | Half Pint Mama",
-    description: "New to Half Pint Mama? Start your sourdough journey, navigate parenthood, or find family recipes.",
+    description: "New to Half Pint Mama? Start your sourdough journey or navigate motherhood with real food and real talk.",
   },
 };
 
@@ -66,19 +66,19 @@ export default async function StartHerePage() {
           What Brings You Here Today?
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Sourdough Path */}
-          <div id="sourdough" className="scroll-mt-24">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* From Scratch Kitchen Path */}
+          <div id="kitchen" className="scroll-mt-24">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-terracotta">
               <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/10 p-8 text-center">
                 <ThemedIcon icon={Wheat} size="xl" color="terracotta" />
               </div>
               <div className="p-6">
                 <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">
-                  New to Sourdough
+                  From Scratch Kitchen
                 </h3>
                 <p className="text-charcoal/70 mb-6">
-                  Ready to start your sourdough journey? I&apos;ll walk you through everything from creating your first starter to baking beautiful loaves.
+                  Ready to start your sourdough journey or looking for family-tested recipes? From creating your first starter to weeknight meals — all made from scratch.
                 </p>
 
                 <div className="space-y-3 mb-6">
@@ -90,13 +90,13 @@ export default async function StartHerePage() {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/posts" className="flex items-center gap-2 text-terracotta hover:text-deep-sage transition-colors">
-                        <span>→</span> Your First Sourdough Loaf
+                      <Link href="/cooking/sourdough" className="flex items-center gap-2 text-terracotta hover:text-deep-sage transition-colors">
+                        <span>→</span> All Sourdough Recipes
                       </Link>
                     </li>
                     <li>
-                      <Link href="/posts" className="flex items-center gap-2 text-terracotta hover:text-deep-sage transition-colors">
-                        <span>→</span> Sourdough Troubleshooting Guide
+                      <Link href="/cooking" className="flex items-center gap-2 text-terracotta hover:text-deep-sage transition-colors">
+                        <span>→</span> Browse All Recipes
                       </Link>
                     </li>
                   </ul>
@@ -112,18 +112,18 @@ export default async function StartHerePage() {
             </div>
           </div>
 
-          {/* New Parent Path */}
-          <div id="parenting" className="scroll-mt-24">
+          {/* Mama Life Path */}
+          <div id="mama-life" className="scroll-mt-24">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-sage">
               <div className="bg-gradient-to-br from-sage/10 to-light-sage/20 p-8 text-center">
-                <ThemedIcon icon={Baby} size="xl" color="sage" />
+                <ThemedIcon icon={Heart} size="xl" color="sage" />
               </div>
               <div className="p-6">
                 <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">
-                  New Parent
+                  Mama Life
                 </h3>
                 <p className="text-charcoal/70 mb-6">
-                  Navigating life with a new baby? As an ER nurse turned mama, I share real talk about the beautiful chaos of parenthood.
+                  Navigating life with littles? As a Pediatric ER RN turned mama, I share real talk about motherhood, family adventures, and the beautiful chaos of raising kids.
                 </p>
 
                 <div className="space-y-3 mb-6">
@@ -135,7 +135,7 @@ export default async function StartHerePage() {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/mama-life" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
+                      <Link href="/products" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
                         <span>→</span> Products That Actually Help
                       </Link>
                     </li>
@@ -152,51 +152,6 @@ export default async function StartHerePage() {
                   className="block w-full text-center px-6 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
                 >
                   Browse Mama Life Posts
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Recipes Path */}
-          <div id="recipes" className="scroll-mt-24">
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-deep-sage">
-              <div className="bg-gradient-to-br from-deep-sage/10 to-sage/10 p-8 text-center">
-                <ThemedIcon icon={Salad} size="xl" color="sage" />
-              </div>
-              <div className="p-6">
-                <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">
-                  Looking for Recipes
-                </h3>
-                <p className="text-charcoal/70 mb-6">
-                  Need dinner ideas? From quick weeknight meals to weekend baking projects, all recipes are family-tested and toddler-approved.
-                </p>
-
-                <div className="space-y-3 mb-6">
-                  <h4 className="font-semibold text-charcoal text-sm uppercase tracking-wide">Popular Recipes:</h4>
-                  <ul className="space-y-2">
-                    <li>
-                      <Link href="/cooking" className="flex items-center gap-2 text-deep-sage hover:text-charcoal transition-colors">
-                        <span>→</span> Easy Sourdough Discard Recipes
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/cooking" className="flex items-center gap-2 text-deep-sage hover:text-charcoal transition-colors">
-                        <span>→</span> 15-Minute Family Dinners
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/cooking" className="flex items-center gap-2 text-deep-sage hover:text-charcoal transition-colors">
-                        <span>→</span> Healthy Toddler Snacks
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                <Link
-                  href="/cooking"
-                  className="block w-full text-center px-6 py-3 border-2 border-deep-sage text-deep-sage font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all"
-                >
-                  Browse All Recipes
                 </Link>
               </div>
             </div>
@@ -241,7 +196,7 @@ export default async function StartHerePage() {
             Join the Half Pint Community
           </h2>
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Get weekly recipes, parenting tips, and exclusive content delivered to your inbox. Plus a free sourdough starter guide when you subscribe!
+            Get weekly recipes, mama tips, and exclusive content delivered to your inbox. Plus a free sourdough starter guide when you subscribe!
           </p>
           <EmailSignup
             source="website"

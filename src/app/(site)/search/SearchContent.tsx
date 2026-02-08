@@ -129,7 +129,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
       <div className="mb-8 p-4 bg-white rounded-xl shadow-sm">
         {/* Category Filter */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {["", "cooking", "travel", "diy", "mama-life"].map((cat) => (
+          {["", "cooking", "mama-life"].map((cat) => (
             <button
               key={cat || "all"}
               onClick={() => handleCategoryChange(cat)}

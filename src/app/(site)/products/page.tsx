@@ -4,18 +4,18 @@ import type { LucideIcon } from "lucide-react";
 
 export const metadata = {
   title: "Products We Love | Half Pint Mama",
-  description: "Curated product recommendations for sourdough baking, baby gear, and family travel. Real reviews from real life with littles.",
+  description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials. Real reviews from real life with littles.",
   alternates: { canonical: "https://halfpintmama.com/products" },
   openGraph: {
     title: "Products We Love | Half Pint Mama",
-    description: "Curated product recommendations for sourdough baking, baby gear, and family travel.",
+    description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials.",
     url: "https://halfpintmama.com/products",
     images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,
     title: "Products We Love | Half Pint Mama",
-    description: "Curated product recommendations for sourdough baking, baby gear, and family travel.",
+    description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials.",
   },
 };
 
@@ -33,7 +33,7 @@ const affiliateCategories: { title: string; description: string; icon: LucideIco
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/3K7AEMTLYQWAA?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
   {
-    title: "Travel Gear",
+    title: "On-the-Go Essentials",
     description: "What we pack for every adventure. Road trips, flights, and everything in between with two littles.",
     icon: Luggage,
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/2SYTGUP5EUSC?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",

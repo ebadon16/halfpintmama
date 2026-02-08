@@ -27,7 +27,7 @@ export async function GET() {
   <channel>
     <title>Half Pint Mama</title>
     <link>${baseUrl}</link>
-    <description>Real Food. Simple Recipes. From a Sourdough-Obsessed Mama &amp; Pediatric ER RN.</description>
+    <description>Nourishing Motherhood From Scratch — from-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN &amp; mama of two.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml"/>

@@ -9,18 +9,18 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Mama Life | Half Pint Mama",
-  description: "Honest parenting tips and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos of life with toddlers and babies.",
+  description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos with toddlers and babies.",
   alternates: { canonical: "https://halfpintmama.com/mama-life" },
   openGraph: {
     title: "Mama Life | Half Pint Mama",
-    description: "Honest parenting tips and real talk about motherhood from a Pediatric ER RN and mama of two.",
+    description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two.",
     url: "https://halfpintmama.com/mama-life",
     images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,
     title: "Mama Life | Half Pint Mama",
-    description: "Honest parenting tips and real talk about motherhood from a Pediatric ER RN and mama of two.",
+    description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two.",
   },
 };
 
@@ -53,7 +53,7 @@ export default async function MamaLifePage({ searchParams }: PageProps) {
             Mama Life
           </h1>
           <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
-            Real talk about motherhood - the beautiful chaos, the hard days, and everything in between. Tips, thoughts, and honest reflections.
+            Real talk about motherhood — the beautiful chaos, family adventures, the hard days, and everything in between. Parenting tips, honest reflections, and the stories that connect us.
           </p>
           <SearchBar placeholder="Search mama life posts..." className="max-w-md" />
         </div>
