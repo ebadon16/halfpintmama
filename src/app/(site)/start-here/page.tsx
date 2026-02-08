@@ -85,7 +85,7 @@ export default async function StartHerePage() {
                   <h4 className="font-semibold text-charcoal text-sm uppercase tracking-wide">Start With:</h4>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/posts" className="flex items-center gap-2 text-terracotta hover:text-deep-sage transition-colors">
+                      <Link href="/posts/how-to-make-a-sourdough-starter-simple-no-scale" className="flex items-center gap-2 text-terracotta hover:text-deep-sage transition-colors">
                         <span>→</span> How to Create a Sourdough Starter
                       </Link>
                     </li>

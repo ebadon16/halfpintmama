@@ -5,18 +5,18 @@ import type { LucideIcon } from "lucide-react";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
-  description: "Coming soon from Half Pint Mama: The Postpartum Mama Book with evidence-based recovery tips, freezer meals, and sourdough recipes for new mamas.",
+  description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with evidence-based recovery tips, freezer meals, and sourdough recipes for new mamas.",
   alternates: { canonical: "https://halfpintmama.com/shop" },
   openGraph: {
     title: "Shop | Half Pint Mama",
-    description: "Coming soon from Half Pint Mama: The Postpartum Mama Book with recovery tips, freezer meals, and sourdough recipes.",
+    description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",
     url: "https://halfpintmama.com/shop",
     images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,
     title: "Shop | Half Pint Mama",
-    description: "Coming soon from Half Pint Mama: The Postpartum Mama Book with recovery tips, freezer meals, and sourdough recipes.",
+    description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",
   },
 };
 
@@ -24,7 +24,7 @@ export const metadata = {
 const comingSoonProducts: { id: number; title: string; description: string; icon: LucideIcon }[] = [
   {
     id: 1,
-    title: "The Postpartum Mama Book",
+    title: "The Post-Partum Cook Book",
     description: "Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days—plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.",
     icon: BookOpen,
   },
