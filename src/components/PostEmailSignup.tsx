@@ -64,7 +64,7 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
           </h3>
           <p className="text-charcoal/70 text-sm mb-4">
             {category === "mama-life"
-              ? "Get more honest parenting tips and mama life content delivered to your inbox weekly. Plus a free mama life guide!"
+              ? "Get more honest parenting tips and mama life content delivered to your inbox weekly."
               : "Get more from-scratch recipes and kitchen tips delivered to your inbox weekly. Plus a free sourdough starter guide!"}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
@@ -161,7 +161,7 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
           </h2>
           <p className="text-white/90 mb-6 max-w-md mx-auto">
             {category === "mama-life"
-              ? "Weekly parenting tips, honest mama moments, and real talk. Plus get my free mama life guide when you subscribe!"
+              ? "Weekly parenting tips, honest mama moments, and real talk — from a Pediatric ER RN and mama of two."
               : "Weekly from-scratch recipes and kitchen tips. Plus get my free sourdough starter guide when you subscribe!"}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">

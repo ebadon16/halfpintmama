@@ -141,25 +141,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Free Mama Life Guide Section */}
-        <div className="bg-gradient-to-br from-sage/10 to-light-sage/20 rounded-2xl p-8 shadow-md mb-8 border-2 border-sage/20">
-          <div className="text-center">
-            <div className="mb-4"><ThemedIcon icon={Heart} size="lg" color="sage" /></div>
-            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
-              Get My Free Mama Life Guide
-            </h2>
-            <p className="text-charcoal/70 mb-6 max-w-lg mx-auto">
-              Real tips for navigating motherhood from a Pediatric ER RN and mama of two — newborn essentials, postpartum recovery, and everything in between.
-            </p>
-            <Link
-              href="/mama-guide"
-              className="inline-block px-8 py-3 bg-sage text-white font-semibold rounded-full hover:bg-deep-sage hover:shadow-lg transition-all"
-            >
-              Get the Free Guide
-            </Link>
-          </div>
-        </div>
-
         {/* Connect Section */}
         <div className="bg-white rounded-2xl p-8 shadow-md">
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-6">

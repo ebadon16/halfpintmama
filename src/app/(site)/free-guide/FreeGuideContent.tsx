@@ -48,15 +48,6 @@ function SignupForm({ source }: { source: string }) {
             &rarr; All From Scratch Recipes
           </Link>
         </div>
-        <div className="mt-4 pt-4 border-t border-sage/20">
-          <p className="text-charcoal/60 text-xs mb-2">Want parenting tips too?</p>
-          <Link
-            href="/mama-guide"
-            className="inline-block px-4 py-2 bg-sage text-white text-sm font-semibold rounded-full hover:bg-deep-sage transition-colors"
-          >
-            Get the Free Mama Life Guide
-          </Link>
-        </div>
       </div>
     );
   }
@@ -242,18 +233,6 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
         </div>
       </section>
 
-      {/* Cross-promo: Mama Guide */}
-      <section className="py-12 bg-deep-sage/5">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <p className="text-charcoal/70 mb-3">Looking for parenting tips instead?</p>
-          <a
-            href="/mama-guide"
-            className="inline-block px-6 py-3 bg-sage text-white font-semibold rounded-full hover:bg-deep-sage transition-colors"
-          >
-            Get the Free Mama Life Guide
-          </a>
-        </div>
-      </section>
     </>
   );
 }

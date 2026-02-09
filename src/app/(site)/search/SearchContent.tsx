@@ -221,12 +221,6 @@ export function SearchContent({ popularTags }: SearchContentProps) {
               >
                 Sourdough Starter Guide
               </Link>
-              <Link
-                href="/mama-guide"
-                className="px-5 py-2 bg-sage text-white text-sm font-semibold rounded-full hover:bg-deep-sage transition-colors"
-              >
-                Mama Life Guide
-              </Link>
             </div>
           </div>
         </div>

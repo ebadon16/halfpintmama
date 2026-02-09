@@ -103,12 +103,6 @@ export default async function Home() {
               Get My Free Sourdough Guide
             </Link>
             <Link
-              href="/mama-guide"
-              className="px-8 py-4 bg-sage text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:bg-deep-sage transition-all text-lg"
-            >
-              Get My Free Mama Life Guide
-            </Link>
-            <Link
               href="/start-here"
               className="px-8 py-4 bg-terracotta/10 text-terracotta font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-terracotta hover:bg-terracotta hover:text-white transition-all text-lg"
             >

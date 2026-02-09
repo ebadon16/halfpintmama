@@ -6,15 +6,15 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { Wheat, Heart, PartyPopper } from "lucide-react";
 
 function usePopupContext(pathname: string) {
-  const isMamaLife = pathname.startsWith("/mama-life") || pathname === "/mama-guide";
+  const isMamaLife = pathname.startsWith("/mama-life");
   if (isMamaLife) {
     return {
       segment: "mama-life" as const,
       icon: Heart,
-      heading: "Want My Free Mama Life Guide?",
-      subtitle: "Plus weekly parenting tips and honest mama moments!",
-      body: "Get my free mama life guide delivered straight to your inbox, plus weekly tips from a Pediatric ER RN and mama of two.",
-      cta: "Send My Free Guide",
+      heading: "Join the Mama Life Community!",
+      subtitle: "Weekly parenting tips and honest mama moments!",
+      body: "Get weekly parenting tips, honest motherhood stories, and exclusive content from a Pediatric ER RN and mama of two.",
+      cta: "Join Free",
     };
   }
   return {

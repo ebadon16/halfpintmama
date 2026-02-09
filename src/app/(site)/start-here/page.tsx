@@ -171,12 +171,6 @@ export default async function StartHerePage() {
                 </div>
 
                 <Link
-                  href="/mama-guide"
-                  className="block w-full text-center px-6 py-3 bg-sage text-white font-semibold rounded-full hover:bg-deep-sage hover:shadow-lg transition-all"
-                >
-                  Get the Free Mama Life Guide
-                </Link>
-                <Link
                   href="/mama-life"
                   className="block w-full text-center px-6 py-2 text-sage hover:text-deep-sage font-medium transition-colors mt-3 text-sm"
                 >

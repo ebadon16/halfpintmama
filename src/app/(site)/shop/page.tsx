@@ -103,19 +103,12 @@ export default function ShopPage() {
               >
                 Explore mama life posts &rarr;
               </Link>
-              <div className="pt-2 border-t border-warm-beige/50 flex flex-col sm:flex-row gap-2 justify-center">
+              <div className="pt-2 border-t border-warm-beige/50">
                 <Link
                   href="/free-guide"
                   className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
                 >
                   Get the free sourdough guide
-                </Link>
-                <span className="hidden sm:inline text-charcoal/30">|</span>
-                <Link
-                  href="/mama-guide"
-                  className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
-                >
-                  Get the free mama guide
                 </Link>
               </div>
             </div>

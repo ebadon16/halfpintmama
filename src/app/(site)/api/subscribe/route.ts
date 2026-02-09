@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
     if (response.ok || response.status === 200 || response.status === 201) {
       const successMessage = validSegment === "mama-life"
-        ? "Welcome! Check your inbox for your free mama life guide."
+        ? "Welcome to the community! You'll get weekly mama tips and exclusive content."
         : "Welcome! Check your inbox for your free sourdough starter guide.";
       return NextResponse.json(
         { message: successMessage },
