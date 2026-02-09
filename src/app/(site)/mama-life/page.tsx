@@ -3,7 +3,9 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Heart } from "lucide-react";
+import Link from "next/link";
 
 export const revalidate = 60;
 
@@ -47,14 +49,43 @@ export default async function MamaLifePage({ searchParams }: PageProps) {
         }) }}
       />
       <div className="max-w-7xl mx-auto px-4 py-12">
+        {/* Subcategory Navigation */}
+        <div className="flex flex-wrap gap-3 mb-8 justify-center">
+          <Link href="/mama-life" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">
+            All Posts
+          </Link>
+          <Link href="/mama-life/parenting" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
+            Parenting
+          </Link>
+          <Link href="/mama-life/travel" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
+            Travel
+          </Link>
+          <Link href="/mama-life/diy" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
+            DIY
+          </Link>
+          <Link href="/mama-life/homesteading" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
+            Homesteading
+          </Link>
+        </div>
+
         <div className="mb-12">
           <ThemedIcon icon={Heart} size="lg" color="deep-sage" className="mb-4" />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Mama Life
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-4">
             Real talk about motherhood — the beautiful chaos, family adventures, the hard days, and everything in between. Parenting tips, honest reflections, and the stories that connect us.
           </p>
+          {(() => {
+            const rated = posts.filter((p) => p.ratingCount && p.ratingCount > 0);
+            if (rated.length === 0) return null;
+            const avg = rated.reduce((sum, p) => sum + (p.ratingAverage || 0), 0) / rated.length;
+            return (
+              <p className="text-charcoal/60 text-sm mb-6">
+                <span className="text-yellow-500">★</span> {rated.length} post{rated.length !== 1 ? "s" : ""} rated {avg.toFixed(1)} average
+              </p>
+            );
+          })()}
           <SearchBar placeholder="Search mama life posts..." className="max-w-md" />
         </div>
 
@@ -85,6 +116,8 @@ export default async function MamaLifePage({ searchParams }: PageProps) {
           totalPages={totalPages}
           basePath="/mama-life"
         />
+
+        <HomeEmailSignup segment="mama-life" />
       </div>
     </div>
   );

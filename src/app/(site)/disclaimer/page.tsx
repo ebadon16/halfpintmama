@@ -80,6 +80,12 @@ export default function DisclaimerPage() {
             </p>
           </div>
         </div>
+
+        <div className="mt-8 text-center">
+          <Link href="/" className="text-sage hover:text-deep-sage font-medium transition-colors">
+            &larr; Back to Half Pint Mama
+          </Link>
+        </div>
       </div>
     </div>
   );

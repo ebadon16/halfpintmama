@@ -301,6 +301,29 @@ export async function getPaginatedPostsBySubcategory(
   };
 }
 
+// Adjacent posts for prev/next navigation within the same category
+export async function getAdjacentPosts(
+  slug: string,
+  category: string
+): Promise<{ prev: PostMeta | null; next: PostMeta | null }> {
+  const posts = await client.fetch<PostMeta[]>(
+    `*[_type == "post" && category == $category] | order(date desc) ${postMetaProjection}`,
+    { category }
+  );
+
+  const currentIndex = posts.findIndex((p) => p.slug === slug);
+
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+
+  // date desc: index 0 = newest. "Next" = newer (index - 1), "Previous" = older (index + 1)
+  const next = currentIndex > 0 ? posts[currentIndex - 1] : null;
+  const prev = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+
+  return { prev, next };
+}
+
 // Related posts by tag similarity — uses targeted GROQ query instead of fetching all posts
 export async function getRelatedPostsByTags(
   currentSlug: string,
@@ -350,6 +373,34 @@ export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
   }
 
   return posts;
+}
+
+// Aggregate site stats for social proof
+export async function getSiteStats(): Promise<{
+  totalPosts: number;
+  cookingPosts: number;
+  averageRating: number;
+}> {
+  const [totalPosts, cookingPosts, ratedPosts] = await Promise.all([
+    client.fetch<number>(`count(*[_type == "post"])`),
+    client.fetch<number>(`count(*[_type == "post" && category == "cooking"])`),
+    client.fetch<{ avg: number; cnt: number }[]>(
+      `*[_type == "post" && ratingCount > 0]{
+        "avg": ratingAverage,
+        "cnt": ratingCount
+      }`
+    ),
+  ]);
+
+  // Weighted average across all rated posts
+  let averageRating = 0;
+  if (ratedPosts.length > 0) {
+    const totalWeighted = ratedPosts.reduce((sum, p) => sum + p.avg * p.cnt, 0);
+    const totalCount = ratedPosts.reduce((sum, p) => sum + p.cnt, 0);
+    averageRating = totalCount > 0 ? totalWeighted / totalCount : 0;
+  }
+
+  return { totalPosts, cookingPosts, averageRating };
 }
 
 // Single latest post

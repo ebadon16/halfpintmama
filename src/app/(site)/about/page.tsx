@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Hand, Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, Music } from "lucide-react";
 
 export const metadata = {
   title: "About Keegan | Half Pint Mama",
-  description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes, sourdough tips, and intentional living from Central Texas.",
+  description: "Meet Keegan — a Pediatric ER RN and mama of two sharing real food recipes, sourdough baking tips, and intentional living from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
   openGraph: {
     title: "About Keegan | Half Pint Mama",
@@ -140,6 +141,25 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* Free Mama Life Guide Section */}
+        <div className="bg-gradient-to-br from-sage/10 to-light-sage/20 rounded-2xl p-8 shadow-md mb-8 border-2 border-sage/20">
+          <div className="text-center">
+            <div className="mb-4"><ThemedIcon icon={Heart} size="lg" color="sage" /></div>
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
+              Get My Free Mama Life Guide
+            </h2>
+            <p className="text-charcoal/70 mb-6 max-w-lg mx-auto">
+              Real tips for navigating motherhood from a Pediatric ER RN and mama of two — newborn essentials, postpartum recovery, and everything in between.
+            </p>
+            <Link
+              href="/mama-guide"
+              className="inline-block px-8 py-3 bg-sage text-white font-semibold rounded-full hover:bg-deep-sage hover:shadow-lg transition-all"
+            >
+              Get the Free Guide
+            </Link>
+          </div>
+        </div>
+
         {/* Connect Section */}
         <div className="bg-white rounded-2xl p-8 shadow-md">
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-6">
@@ -191,6 +211,32 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
+
+        {/* Start Exploring */}
+        <div className="bg-white rounded-2xl p-8 shadow-md mt-8 text-center">
+          <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
+            Start Exploring
+          </h2>
+          <p className="text-charcoal/70 mb-6">
+            Dive into what Half Pint Mama is all about.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/cooking"
+              className="px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
+            >
+              From Scratch Kitchen
+            </Link>
+            <Link
+              href="/mama-life"
+              className="px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-charcoal transition-all"
+            >
+              Mama Life
+            </Link>
+          </div>
+        </div>
+
+        <HomeEmailSignup />
       </div>
     </div>
   );

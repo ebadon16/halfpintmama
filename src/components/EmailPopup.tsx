@@ -1,10 +1,22 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { Wheat, PartyPopper } from "lucide-react";
+import { Wheat, Heart, PartyPopper } from "lucide-react";
 
-function usePopupContext() {
+function usePopupContext(pathname: string) {
+  const isMamaLife = pathname.startsWith("/mama-life") || pathname === "/mama-guide";
+  if (isMamaLife) {
+    return {
+      segment: "mama-life" as const,
+      icon: Heart,
+      heading: "Want My Free Mama Life Guide?",
+      subtitle: "Plus weekly parenting tips and honest mama moments!",
+      body: "Get my free mama life guide delivered straight to your inbox, plus weekly tips from a Pediatric ER RN and mama of two.",
+      cta: "Send My Free Guide",
+    };
+  }
   return {
     segment: "kitchen" as const,
     icon: Wheat,
@@ -22,7 +34,8 @@ export function EmailPopup() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
-  const ctx = usePopupContext();
+  const pathname = usePathname();
+  const ctx = usePopupContext(pathname);
 
   useEffect(() => {
     // Check if user has already dismissed or subscribed
@@ -33,12 +46,26 @@ export function EmailPopup() {
       }
     } catch { /* localStorage unavailable */ }
 
-    // Show popup after 30 seconds
-    const timer = setTimeout(() => {
+    let triggered = false;
+    const show = () => {
+      if (triggered) return;
+      triggered = true;
       setIsVisible(true);
-    }, 30000);
+    };
 
-    return () => clearTimeout(timer);
+    // Show popup after 30 seconds
+    const timer = setTimeout(show, 30000);
+
+    // Exit-intent: mouse leaves viewport (desktop only)
+    const handleMouseLeave = (e: MouseEvent) => {
+      if (e.clientY <= 0) show();
+    };
+    document.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+    };
   }, []);
 
   const handleDismiss = useCallback(() => {

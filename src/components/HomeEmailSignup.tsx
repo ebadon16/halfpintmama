@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { PartyPopper, MailOpen } from "lucide-react";
 
-export function HomeEmailSignup() {
+export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" | "mama-life" } = {}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -23,7 +23,7 @@ export function HomeEmailSignup() {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "homepage", segment: "kitchen" }),
+        body: JSON.stringify({ email, source: "homepage", segment }),
       });
 
       const data = await response.json();
@@ -66,7 +66,9 @@ export function HomeEmailSignup() {
           Join the Half Pint Mama Community
         </h2>
         <p className="text-white/90 mb-6 max-w-xl mx-auto">
-          From-scratch recipes, honest mama moments, and a free sourdough starter guide — delivered straight to your inbox weekly.
+          {segment === "mama-life"
+            ? "Honest parenting tips, real mama moments, and a free mama life guide — delivered straight to your inbox weekly."
+            : "From-scratch recipes, honest mama moments, and a free sourdough starter guide — delivered straight to your inbox weekly."}
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
           <input

@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { rateLimit } from "@/lib/rate-limit";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const VALID_SOURCES = ["website", "popup", "homepage", "post-mid", "post-bottom", "free-guide-hero", "mama-guide-hero"];
-const VALID_SEGMENTS = ["kitchen"];
+const VALID_SOURCES = ["website", "popup", "homepage", "post-mid", "post-bottom", "free-guide-hero", "mama-guide-hero", "shop-waitlist", "search-results", "footer"];
+const VALID_SEGMENTS = ["kitchen", "mama-life"];
 
 export async function POST(request: NextRequest) {
   try {
@@ -35,11 +35,16 @@ export async function POST(request: NextRequest) {
     // Add subscriber to MailerLite with group assignment
     const MAILERLITE_GROUP_ID = "177682078317413870"; // New Subscribers group
     const KITCHEN_GROUP_ID = process.env.MAILERLITE_KITCHEN_GROUP_ID || MAILERLITE_GROUP_ID;
+    const MAMA_GROUP_ID = process.env.MAILERLITE_MAMA_GROUP_ID;
 
-    // All signups go to kitchen/sourdough group
-    const validSegment = "kitchen";
+    // Route to correct group based on segment
+    const validSegment = VALID_SEGMENTS.includes(segment) ? segment : "kitchen";
     const groups: string[] = [MAILERLITE_GROUP_ID]; // Always add to main group
-    if (KITCHEN_GROUP_ID !== MAILERLITE_GROUP_ID) groups.push(KITCHEN_GROUP_ID);
+    if (validSegment === "mama-life" && MAMA_GROUP_ID) {
+      groups.push(MAMA_GROUP_ID);
+    } else if (KITCHEN_GROUP_ID !== MAILERLITE_GROUP_ID) {
+      groups.push(KITCHEN_GROUP_ID);
+    }
 
     const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
       method: "POST",
@@ -62,8 +67,11 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
 
     if (response.ok || response.status === 200 || response.status === 201) {
+      const successMessage = validSegment === "mama-life"
+        ? "Welcome! Check your inbox for your free mama life guide."
+        : "Welcome! Check your inbox for your free sourdough starter guide.";
       return NextResponse.json(
-        { message: "Welcome! Check your inbox for your free sourdough starter guide." },
+        { message: successMessage },
         { status: 201 }
       );
     }

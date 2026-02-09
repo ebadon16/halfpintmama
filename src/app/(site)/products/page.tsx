@@ -1,10 +1,12 @@
+import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Wheat, Baby, Luggage, BookOpen, ShoppingCart, Heart } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export const metadata = {
   title: "Products We Love | Half Pint Mama",
-  description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials. Real reviews from real life with littles.",
+  description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials. Honest reviews from a Pediatric ER RN raising two littles.",
   alternates: { canonical: "https://halfpintmama.com/products" },
   openGraph: {
     title: "Products We Love | Half Pint Mama",
@@ -116,6 +118,25 @@ export default function ProductsPage() {
           ))}
         </div>
       </section>
+
+      {/* Explore More */}
+      <div className="text-center py-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <Link
+          href="/cooking"
+          className="text-terracotta hover:text-deep-sage font-medium transition-colors text-lg"
+        >
+          Looking for recipes? Visit the Kitchen &rarr;
+        </Link>
+        <span className="hidden sm:inline text-charcoal/30">|</span>
+        <Link
+          href="/mama-life"
+          className="text-sage hover:text-deep-sage font-medium transition-colors text-lg"
+        >
+          Looking for parenting content? Explore Mama Life &rarr;
+        </Link>
+      </div>
+
+      <HomeEmailSignup />
 
       {/* Disclaimer */}
       <section className="max-w-4xl mx-auto px-4 pb-12">

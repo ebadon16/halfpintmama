@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllTags } from "@/lib/posts";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Tag } from "lucide-react";
 
 export const revalidate = 3600;
@@ -71,6 +72,8 @@ export default async function TagsPage() {
             </Link>
           </div>
         )}
+
+        <HomeEmailSignup />
       </div>
     </div>
   );

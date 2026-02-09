@@ -24,7 +24,7 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "post-mid", segment: "kitchen" }),
+        body: JSON.stringify({ email, source: "post-mid", segment: category === "mama-life" ? "mama-life" : "kitchen" }),
       });
 
       const data = await response.json();
@@ -63,7 +63,9 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
             Enjoying this post?
           </h3>
           <p className="text-charcoal/70 text-sm mb-4">
-            Get more from-scratch recipes and kitchen tips delivered to your inbox weekly. Plus a free sourdough starter guide!
+            {category === "mama-life"
+              ? "Get more honest parenting tips and mama life content delivered to your inbox weekly. Plus a free mama life guide!"
+              : "Get more from-scratch recipes and kitchen tips delivered to your inbox weekly. Plus a free sourdough starter guide!"}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
             <input
@@ -112,7 +114,7 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "post-bottom", segment: "kitchen" }),
+        body: JSON.stringify({ email, source: "post-bottom", segment: category === "mama-life" ? "mama-life" : "kitchen" }),
       });
 
       const data = await response.json();
@@ -158,7 +160,9 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
             Want More? Join My List!
           </h2>
           <p className="text-white/90 mb-6 max-w-md mx-auto">
-            Weekly from-scratch recipes and kitchen tips. Plus get my free sourdough starter guide when you subscribe!
+            {category === "mama-life"
+              ? "Weekly parenting tips, honest mama moments, and real talk. Plus get my free mama life guide when you subscribe!"
+              : "Weekly from-scratch recipes and kitchen tips. Plus get my free sourdough starter guide when you subscribe!"}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
             <input

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getPaginatedPostsByTag, getAllTags, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { notFound } from "next/navigation";
 
 export const revalidate = 3600;
@@ -53,6 +54,18 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
 
   return (
     <div className="bg-cream min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://halfpintmama.com" },
+            { "@type": "ListItem", position: 2, name: "Tags", item: "https://halfpintmama.com/tags" },
+            { "@type": "ListItem", position: 3, name: decodedTag, item: `https://halfpintmama.com/tags/${tag}` },
+          ],
+        }) }}
+      />
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
@@ -94,6 +107,8 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
           totalPages={totalPages}
           basePath={`/tags/${tag}`}
         />
+
+        <HomeEmailSignup />
       </div>
     </div>
   );

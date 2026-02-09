@@ -6,6 +6,7 @@ import Link from "next/link";
 import { PostCard } from "@/components/PostCard";
 import { SearchSuggestions, saveRecentSearch } from "@/components/SearchSuggestions";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { EmailSignup } from "@/components/EmailSignup";
 import { Search, SearchX } from "lucide-react";
 
 interface SearchResult {
@@ -205,13 +206,28 @@ export function SearchContent({ popularTags }: SearchContentProps) {
               <li>Using more general terms</li>
             </ul>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 space-y-3">
             <Link
               href="/cooking"
               className="text-terracotta font-medium hover:text-deep-sage transition-colors"
             >
               Browse all recipes &rarr;
             </Link>
+            <p className="text-charcoal/60 text-sm pt-2">While you&apos;re here, grab a free guide:</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/free-guide"
+                className="px-5 py-2 gradient-cta text-white text-sm font-semibold rounded-full hover:shadow-lg transition-all"
+              >
+                Sourdough Starter Guide
+              </Link>
+              <Link
+                href="/mama-guide"
+                className="px-5 py-2 bg-sage text-white text-sm font-semibold rounded-full hover:bg-deep-sage transition-colors"
+              >
+                Mama Life Guide
+              </Link>
+            </div>
           </div>
         </div>
       )}
@@ -238,6 +254,25 @@ export function SearchContent({ popularTags }: SearchContentProps) {
               />
             ))}
           </div>
+        </div>
+      )}
+
+      {/* Email Signup - shown after search results */}
+      {!isSearching && hasSearched && results.length > 0 && (
+        <div className="mt-12 gradient-cta rounded-2xl p-8 text-center text-white shadow-lg">
+          <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
+            Love What You See?
+          </h3>
+          <p className="text-white/90 mb-4 text-sm">
+            Get new recipes and mama tips delivered to your inbox.
+          </p>
+          <EmailSignup
+            source="search-results"
+            buttonText="Subscribe"
+            placeholder="Your email"
+            className="max-w-md mx-auto"
+            buttonClassName="bg-deep-sage text-white hover:bg-charcoal"
+          />
         </div>
       )}
 

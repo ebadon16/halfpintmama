@@ -3,6 +3,7 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Wheat } from "lucide-react";
 import Link from "next/link";
 
@@ -85,9 +86,19 @@ export default async function CookingPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             From Scratch Kitchen
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
-            Sourdough obsessed? Me too! From starter to finished loaf, plus healthy snacks, family meals, and creative projects — all made from scratch with real ingredients.
+          <p className="text-charcoal/70 text-lg max-w-2xl mb-4">
+            Every recipe here is nurse-tested and family-approved — made from real ingredients with the same thoughtfulness I bring to patient care. From sourdough starters to healthy snacks, these are the meals I actually feed my family.
           </p>
+          {(() => {
+            const rated = posts.filter((p) => p.ratingCount && p.ratingCount > 0);
+            if (rated.length === 0) return null;
+            const avg = rated.reduce((sum, p) => sum + (p.ratingAverage || 0), 0) / rated.length;
+            return (
+              <p className="text-charcoal/60 text-sm mb-6">
+                <span className="text-yellow-500">★</span> {rated.length} recipe{rated.length !== 1 ? "s" : ""} rated {avg.toFixed(1)} average
+              </p>
+            );
+          })()}
           <SearchBar placeholder="Search recipes..." className="max-w-md" />
         </div>
 
@@ -118,6 +129,8 @@ export default async function CookingPage({ searchParams }: PageProps) {
           totalPages={totalPages}
           basePath="/cooking"
         />
+
+        <HomeEmailSignup />
       </div>
     </div>
   );

@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { EmailSignup } from "@/components/EmailSignup";
 import { BookOpen } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
-  description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with evidence-based recovery tips, freezer meals, and sourdough recipes for new mamas.",
+  description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with evidence-based recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   alternates: { canonical: "https://halfpintmama.com/shop" },
   openGraph: {
     title: "Shop | Half Pint Mama",
@@ -77,13 +78,47 @@ export default function ShopPage() {
             ))}
           </div>
 
-          <div className="text-center mt-8">
-            <Link
-              href="/free-guide"
-              className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
-            >
-              Join Waitlist for Updates
-            </Link>
+          <div className="max-w-md mx-auto mt-8 text-center">
+            <p className="text-charcoal/70 mb-4 font-medium">
+              Be the first to know when it drops:
+            </p>
+            <EmailSignup
+              source="shop-waitlist"
+              buttonText="Join Waitlist"
+              placeholder="Your email"
+              className="mb-4"
+              buttonClassName="bg-terracotta text-white hover:bg-terracotta/90"
+              inputClassName="border-terracotta/30"
+            />
+            <div className="space-y-3">
+              <Link
+                href="/cooking"
+                className="block text-sage hover:text-deep-sage font-medium transition-colors"
+              >
+                Browse recipes while you wait &rarr;
+              </Link>
+              <Link
+                href="/mama-life"
+                className="block text-sage hover:text-deep-sage font-medium transition-colors"
+              >
+                Explore mama life posts &rarr;
+              </Link>
+              <div className="pt-2 border-t border-warm-beige/50 flex flex-col sm:flex-row gap-2 justify-center">
+                <Link
+                  href="/free-guide"
+                  className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
+                >
+                  Get the free sourdough guide
+                </Link>
+                <span className="hidden sm:inline text-charcoal/30">|</span>
+                <Link
+                  href="/mama-guide"
+                  className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
+                >
+                  Get the free mama guide
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
       </div>

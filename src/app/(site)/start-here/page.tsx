@@ -28,8 +28,31 @@ export default async function StartHerePage() {
   const cookingPosts = (await getPostsByCategory("cooking")).slice(0, 3);
   const mamaLifePosts = (await getPostsByCategory("mama-life")).slice(0, 3);
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://halfpintmama.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Start Here",
+        item: "https://halfpintmama.com/start-here",
+      },
+    ],
+  };
+
   return (
     <div className="bg-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero */}
       <section className="bg-gradient-to-b from-light-sage/30 to-cream py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
@@ -148,10 +171,16 @@ export default async function StartHerePage() {
                 </div>
 
                 <Link
-                  href="/mama-life"
-                  className="block w-full text-center px-6 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
+                  href="/mama-guide"
+                  className="block w-full text-center px-6 py-3 bg-sage text-white font-semibold rounded-full hover:bg-deep-sage hover:shadow-lg transition-all"
                 >
-                  Browse Mama Life Posts
+                  Get the Free Mama Life Guide
+                </Link>
+                <Link
+                  href="/mama-life"
+                  className="block w-full text-center px-6 py-2 text-sage hover:text-deep-sage font-medium transition-colors mt-3 text-sm"
+                >
+                  Browse Mama Life Posts &rarr;
                 </Link>
               </div>
             </div>
@@ -182,6 +211,8 @@ export default async function StartHerePage() {
                   category={post.category}
                   date={formatDate(post.date)}
                   image={post.image}
+                  ratingAverage={post.ratingAverage}
+                  ratingCount={post.ratingCount}
                 />
               ))}
             </div>

@@ -3,6 +3,7 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Cookie } from "lucide-react";
 import Link from "next/link";
 
@@ -112,6 +113,8 @@ export default async function DessertsPage({ searchParams }: PageProps) {
           totalPages={totalPages}
           basePath="/cooking/desserts"
         />
+
+        <HomeEmailSignup />
       </div>
     </div>
   );

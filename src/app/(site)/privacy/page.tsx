@@ -15,6 +15,8 @@ export const metadata = {
   },
 };
 
+import Link from "next/link";
+
 export default function PrivacyPolicyPage() {
   return (
     <div className="bg-cream">
@@ -125,6 +127,12 @@ export default function PrivacyPolicyPage() {
               contact page
             </a>.
           </p>
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link href="/" className="text-sage hover:text-deep-sage font-medium transition-colors">
+            &larr; Back to Half Pint Mama
+          </Link>
         </div>
       </div>
     </div>

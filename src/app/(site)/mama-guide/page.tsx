@@ -1,4 +1,7 @@
+import { getSiteStats } from "@/lib/posts";
 import { MamaGuideContent } from "./MamaGuideContent";
+
+export const revalidate = 3600;
 
 export const metadata = {
   title: "Free Mama Life Guide | Half Pint Mama",
@@ -49,14 +52,16 @@ const faqSchema = {
   ],
 };
 
-export default function MamaGuidePage() {
+export default async function MamaGuidePage() {
+  const stats = await getSiteStats();
+
   return (
     <div className="bg-cream min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <MamaGuideContent />
+      <MamaGuideContent totalPosts={stats.totalPosts} />
     </div>
   );
 }

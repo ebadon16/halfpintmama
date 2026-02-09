@@ -1,10 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Heart } from "lucide-react";
+
+const HomeEmailSignup = dynamic(
+  () => import("@/components/HomeEmailSignup").then((mod) => mod.HomeEmailSignup),
+  { ssr: false }
+);
 
 interface FavoriteItem {
   slug: string;
@@ -58,21 +64,33 @@ export default function FavoritesPage() {
 
         {/* Empty State */}
         {favorites.length === 0 && (
-          <div className="bg-white rounded-2xl p-8 text-center shadow-md">
-            <div className="flex justify-center mb-4"><ThemedIcon icon={Heart} size="xl" color="deep-sage" /></div>
-            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
-              No saved recipes yet
-            </h2>
-            <p className="text-charcoal/70 mb-6">
-              Click the heart icon on any recipe to save it here for easy access later.
-            </p>
-            <Link
-              href="/cooking"
-              className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
-            >
-              Browse Recipes
-            </Link>
-          </div>
+          <>
+            <div className="bg-white rounded-2xl p-8 text-center shadow-md">
+              <div className="flex justify-center mb-4"><ThemedIcon icon={Heart} size="xl" color="deep-sage" /></div>
+              <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
+                No saved recipes yet
+              </h2>
+              <p className="text-charcoal/70 mb-6">
+                Click the heart icon on any recipe to save it here for easy access later.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  href="/cooking"
+                  className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
+                >
+                  Browse Recipes
+                </Link>
+                <Link
+                  href="/mama-life"
+                  className="inline-block px-6 py-3 bg-sage text-white font-semibold rounded-full hover:bg-deep-sage transition-colors"
+                >
+                  Browse Mama Life
+                </Link>
+              </div>
+            </div>
+
+            <HomeEmailSignup />
+          </>
         )}
 
         {/* Favorites List */}

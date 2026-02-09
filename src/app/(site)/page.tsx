@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { PostCard } from "@/components/PostCard";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
-import { getLatestPost, getPopularPosts, formatDate } from "@/lib/posts";
+import { getLatestPost, getPopularPosts, getSiteStats, formatDate } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart, Heart } from "lucide-react";
+import { ShoppingCart, Heart, Users } from "lucide-react";
+import { ThemedIcon } from "@/components/ThemedIcon";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
@@ -27,9 +28,10 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function Home() {
-  const [latestPost, popularPosts] = await Promise.all([
+  const [latestPost, popularPosts, siteStats] = await Promise.all([
     getLatestPost(),
     getPopularPosts(4),
+    getSiteStats(),
   ]);
 
   // Structured data for SEO
@@ -91,14 +93,20 @@ export default async function Home() {
             From a Pediatric ER RN & Mama of Two
           </h2>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-            Real food and real motherhood — from sourdough on the counter to babies on the hip. Here you&apos;ll find from-scratch recipes, honest parenting, and the everyday rhythms of building a nourished home.
+            I bring the same precision I use in the ER to my kitchen — nurse-tested recipes, real ingredients, and nothing I wouldn&apos;t feed my own kids. From sourdough on the counter to babies on the hip.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
               href="/free-guide"
               className="px-8 py-4 gradient-cta text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg"
             >
-              Get My Free Sourdough Starter Guide
+              Get My Free Sourdough Guide
+            </Link>
+            <Link
+              href="/mama-guide"
+              className="px-8 py-4 bg-sage text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:bg-deep-sage transition-all text-lg"
+            >
+              Get My Free Mama Life Guide
             </Link>
             <Link
               href="/start-here"
@@ -109,6 +117,24 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Social Proof Bar */}
+      <div className="bg-white/60 border-y border-warm-beige/50">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-charcoal/60">
+          {siteStats.averageRating > 0 && (
+            <>
+              <span className="flex items-center gap-1">
+                <span className="text-yellow-500">&#9733;</span>
+                {siteStats.averageRating.toFixed(1)} average rating
+              </span>
+              <span className="hidden sm:inline text-charcoal/30">|</span>
+            </>
+          )}
+          <span>{siteStats.cookingPosts}+ from-scratch recipes</span>
+          <span className="hidden sm:inline text-charcoal/30">|</span>
+          <span>Pediatric ER RN approved</span>
+        </div>
+      </div>
 
       {/* Main Content with Sidebar */}
       <div className="max-w-7xl mx-auto px-4 py-12">
@@ -201,6 +227,23 @@ export default async function Home() {
 
           {/* Sidebar */}
           <aside className="lg:w-80 flex-shrink-0">
+            {/* About the Author */}
+            <div className="bg-white p-6 rounded-2xl shadow-md mb-6 text-center">
+              <ThemedIcon icon={Users} size="lg" color="sage" className="mx-auto mb-3" />
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
+                Hey, I&apos;m Keegan
+              </h3>
+              <p className="text-charcoal/70 text-sm mb-4">
+                Pediatric ER RN and mama of two. I apply the same care to feeding my family as I do to my patients — real ingredients, tested recipes, no shortcuts.
+              </p>
+              <Link
+                href="/about"
+                className="inline-block px-4 py-2 border-2 border-sage text-deep-sage text-sm font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
+              >
+                More About Me
+              </Link>
+            </div>
+
             {/* Shop My Favorites Links */}
             <div className="bg-white p-6 rounded-2xl shadow-md mb-6">
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
@@ -234,21 +277,85 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Popular Tags */}
+            {/* Reader Favorites */}
+            {popularPosts.filter(p => p.ratingCount && p.ratingCount > 0).length > 0 && (
+              <div className="bg-white p-6 rounded-2xl shadow-md mb-6">
+                <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
+                  Reader Favorites
+                </h3>
+                <div className="space-y-3">
+                  {popularPosts.filter(p => p.ratingCount && p.ratingCount > 0).slice(0, 3).map((post) => (
+                    <Link key={post.slug} href={`/posts/${post.slug}`} className="block group">
+                      <p className="text-charcoal group-hover:text-terracotta transition-colors text-sm font-medium line-clamp-2">
+                        {post.title}
+                      </p>
+                      <div className="flex items-center gap-1 mt-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <svg
+                            key={star}
+                            className={`w-3.5 h-3.5 ${star <= Math.round(post.ratingAverage || 0) ? "text-yellow-500" : "text-charcoal/20"}`}
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                          </svg>
+                        ))}
+                        <span className="text-charcoal/50 text-xs ml-1">({post.ratingCount})</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Explore */}
             <div className="bg-white p-6 rounded-2xl shadow-md mb-6">
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
-                Browse by Topic
+                Explore
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {["sourdough", "kid-friendly", "snacks", "cookies", "healthy", "no-bake", "dessert", "crackers"].map((tag) => (
-                  <Link
-                    key={tag}
-                    href={`/tags/${tag}`}
-                    className="px-3 py-1.5 bg-light-sage/30 text-deep-sage text-sm rounded-full hover:bg-sage hover:text-white transition-all"
-                  >
-                    {tag}
+              <div className="space-y-4">
+                <div>
+                  <Link href="/cooking" className="font-semibold text-charcoal hover:text-terracotta transition-colors">
+                    From Scratch Kitchen
                   </Link>
-                ))}
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {[
+                      { label: "Sourdough", href: "/cooking/sourdough" },
+                      { label: "Discard", href: "/cooking/discard" },
+                      { label: "Desserts", href: "/cooking/desserts" },
+                      { label: "Snacks", href: "/cooking/snacks" },
+                    ].map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className="px-3 py-1 bg-light-sage/30 text-deep-sage text-xs rounded-full hover:bg-sage hover:text-white transition-all"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <Link href="/mama-life" className="font-semibold text-charcoal hover:text-terracotta transition-colors">
+                    Mama Life
+                  </Link>
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {[
+                      { label: "Parenting", href: "/mama-life/parenting" },
+                      { label: "Travel", href: "/mama-life/travel" },
+                      { label: "DIY", href: "/mama-life/diy" },
+                      { label: "Homesteading", href: "/mama-life/homesteading" },
+                    ].map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className="px-3 py-1 bg-light-sage/30 text-deep-sage text-xs rounded-full hover:bg-sage hover:text-white transition-all"
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 

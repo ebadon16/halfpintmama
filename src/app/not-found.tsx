@@ -18,7 +18,7 @@ export default function NotFound() {
           But don&apos;t worry - there&apos;s plenty more to explore!
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
           <Link
             href="/"
             className="px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
@@ -33,7 +33,26 @@ export default function NotFound() {
           </Link>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-light-sage">
+        {/* Quick paths */}
+        <div className="bg-white rounded-2xl p-6 shadow-md text-left mb-8">
+          <p className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-semibold mb-4 text-center">Popular Starting Points</p>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <Link href="/cooking/sourdough" className="text-terracotta hover:text-deep-sage transition-colors font-medium">
+              Sourdough Recipes &rarr;
+            </Link>
+            <Link href="/cooking/discard" className="text-terracotta hover:text-deep-sage transition-colors font-medium">
+              Discard Recipes &rarr;
+            </Link>
+            <Link href="/mama-life" className="text-sage hover:text-deep-sage transition-colors font-medium">
+              Mama Life &rarr;
+            </Link>
+            <Link href="/free-guide" className="text-sage hover:text-deep-sage transition-colors font-medium">
+              Free Starter Guide &rarr;
+            </Link>
+          </div>
+        </div>
+
+        <div className="pt-6 border-t border-light-sage">
           <p className="text-charcoal/60 text-sm mb-4">Looking for something specific?</p>
           <Link
             href="/search"

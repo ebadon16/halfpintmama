@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPosts, getPostBySlug, getRelatedPostsByTags, formatDate } from "@/lib/posts";
+import { getAllPosts, getPostBySlug, getRelatedPostsByTags, getAdjacentPosts, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import dynamic from "next/dynamic";
@@ -37,6 +37,8 @@ export async function generateMetadata({ params }: PageProps) {
     return { title: "Post Not Found" };
   }
 
+  const categoryLabel = post.category === "cooking" ? "From Scratch Kitchen" : post.category === "mama-life" ? "Mama Life" : post.category;
+
   return {
     title: `${post.title} | Half Pint Mama`,
     description: post.excerpt,
@@ -49,12 +51,19 @@ export async function generateMetadata({ params }: PageProps) {
       url: `https://halfpintmama.com/posts/${slug}`,
       type: "article",
       images: post.image ? [post.image] : ["/logo.jpg"],
+      siteName: "Half Pint Mama",
+      authors: ["Keegan"],
+      section: categoryLabel,
+      publishedTime: post.date,
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
       images: post.image ? [post.image] : ["/logo.jpg"],
+    },
+    other: {
+      "pinterest-rich-pin": "true",
     },
   };
 }
@@ -99,8 +108,11 @@ export default async function PostPage({ params }: PageProps) {
   const badgeColor = categoryColors[post.category] || "bg-sage";
   const categoryLabel = categoryLabels[post.category] || post.category;
 
-  // Get related posts by tag similarity, falling back to category
-  const relatedPosts = await getRelatedPostsByTags(slug, post.tags, post.category, 3);
+  // Get related posts and adjacent posts in parallel
+  const [relatedPosts, { prev: prevPost, next: nextPost }] = await Promise.all([
+    getRelatedPostsByTags(slug, post.tags, post.category, 3),
+    getAdjacentPosts(slug, post.category),
+  ]);
 
   const readingTime = calculateReadingTime(post.content);
 
@@ -163,28 +175,49 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Header */}
         <header className="mb-6">
-          <Link
-            href={`/${post.category}`}
-            className={`inline-block px-3 py-1 ${badgeColor} text-white text-xs font-semibold rounded-full uppercase tracking-wide mb-3`}
-          >
-            {categoryLabel}
-          </Link>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <Link
+              href={`/${post.category}`}
+              className={`inline-block px-3 py-1 ${badgeColor} text-white text-xs font-semibold rounded-full uppercase tracking-wide`}
+            >
+              {categoryLabel}
+            </Link>
+            {post.category === "cooking" && (
+              <span className="inline-flex items-center gap-1 px-3 py-1 bg-light-sage/50 text-deep-sage text-xs font-semibold rounded-full">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Nurse-Tested, Family-Approved
+              </span>
+            )}
+          </div>
 
           <h1 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl text-charcoal font-semibold leading-tight mb-3">
             {post.title}
           </h1>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
             <p className="text-sage font-medium">
               {formatDate(post.date)}
             </p>
-            <span className="hidden sm:block text-charcoal/30">|</span>
-            <p className="text-charcoal/60 text-sm flex items-center gap-1">
+            <span className="text-charcoal/30">|</span>
+            <p className="text-charcoal/60 flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               {readingTime} min read
             </p>
+            {post.recipe?.totalTime && (
+              <>
+                <span className="text-charcoal/30">|</span>
+                <p className="text-charcoal/60 flex items-center gap-1">
+                  <svg className="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                  </svg>
+                  {post.recipe.totalTime}
+                </p>
+              </>
+            )}
           </div>
 
           {/* Share, Save & Recipe Action Buttons */}
@@ -256,7 +289,28 @@ export default async function PostPage({ params }: PageProps) {
 
         {/* Recipe Card - for cooking posts with recipe data (at end of content) */}
         {post.category === "cooking" && post.recipe && (
-          <RecipeCard recipe={post.recipe} title={post.title} image={post.image} />
+          <>
+            <RecipeCard recipe={post.recipe} title={post.title} image={post.image} />
+
+            {/* "Made This?" CTA */}
+            <div className="bg-gradient-to-r from-light-sage/30 to-warm-beige/30 rounded-xl p-5 mb-8 text-center border border-light-sage/50">
+              <p className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-semibold mb-1">
+                Made this recipe?
+              </p>
+              <p className="text-charcoal/60 text-sm mb-3">
+                I&apos;d love to know how it turned out! Your rating helps other mamas find the best recipes.
+              </p>
+              <a
+                href="#comments-section"
+                className="inline-flex items-center gap-2 px-5 py-2.5 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                </svg>
+                Rate & Review
+              </a>
+            </div>
+          </>
         )}
 
         {/* Rate & Review CTA - Prominent placement after content */}
@@ -270,8 +324,42 @@ export default async function PostPage({ params }: PageProps) {
         {/* Mid-Post Email Signup CTA */}
         <PostEmailSignup category={post.category} />
 
+        {/* Post Navigation - Previous/Next */}
+        {(prevPost || nextPost) && (
+          <nav aria-label="Post navigation" className="mt-8 pt-6 border-t border-light-sage">
+            <div className="grid grid-cols-2 gap-4">
+              {prevPost ? (
+                <Link
+                  href={`/posts/${prevPost.slug}`}
+                  className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-light-sage/50"
+                >
+                  <span className="text-xs text-charcoal/50 uppercase tracking-wide">&larr; Previous</span>
+                  <p className="font-[family-name:var(--font-crimson)] text-charcoal group-hover:text-terracotta transition-colors font-medium mt-1 line-clamp-2">
+                    {prevPost.title}
+                  </p>
+                </Link>
+              ) : (
+                <div />
+              )}
+              {nextPost ? (
+                <Link
+                  href={`/posts/${nextPost.slug}`}
+                  className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-light-sage/50 text-right"
+                >
+                  <span className="text-xs text-charcoal/50 uppercase tracking-wide">Next &rarr;</span>
+                  <p className="font-[family-name:var(--font-crimson)] text-charcoal group-hover:text-terracotta transition-colors font-medium mt-1 line-clamp-2">
+                    {nextPost.title}
+                  </p>
+                </Link>
+              ) : (
+                <div />
+              )}
+            </div>
+          </nav>
+        )}
+
         {/* Footer - Navigation */}
-        <footer className="mt-8 pt-6 border-t border-light-sage">
+        <footer className="mt-6 pt-6 border-t border-light-sage">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <Link
               href="/posts"
@@ -306,6 +394,8 @@ export default async function PostPage({ params }: PageProps) {
                   category={relatedPost.category}
                   date={formatDate(relatedPost.date)}
                   image={relatedPost.image}
+                  ratingAverage={relatedPost.ratingAverage}
+                  ratingCount={relatedPost.ratingCount}
                 />
               ))}
             </div>
