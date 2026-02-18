@@ -7,6 +7,7 @@ export const metadata = {
   openGraph: {
     title: "Contact | Half Pint Mama",
     description: "Get in touch with Keegan at Half Pint Mama. Questions about recipes, sourdough, or collaborations.",
+    type: "website",
     url: "https://halfpintmama.com/contact",
     images: ["/logo.jpg"],
   },

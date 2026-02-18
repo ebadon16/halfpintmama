@@ -6,7 +6,7 @@ import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import dynamic from "next/dynamic";
 import { PrintButton } from "@/components/PrintButton";
-import { RecipeSchema, BlogPostSchema } from "@/components/RecipeSchema";
+import { RecipeSchema, BlogPostSchema, HowToSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
 
@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: PageProps) {
       authors: ["Keegan"],
       section: categoryLabel,
       publishedTime: post.date,
+      modifiedTime: post.updatedAt || post.date,
     },
     twitter: {
       card: "summary_large_image",
@@ -143,22 +144,36 @@ export default async function PostPage({ params }: PageProps) {
           description={post.excerpt}
           image={post.image}
           datePublished={post.date}
+          dateModified={post.updatedAt}
           slug={slug}
           recipe={post.recipe}
           ratingAverage={post.ratingAverage}
           ratingCount={post.ratingCount}
         />
       ) : (
-        <BlogPostSchema
-          title={post.title}
-          description={post.excerpt}
-          image={post.image}
-          datePublished={post.date}
-          slug={slug}
-          category={categoryLabel}
-          ratingAverage={post.ratingAverage}
-          ratingCount={post.ratingCount}
-        />
+        <>
+          <BlogPostSchema
+            title={post.title}
+            description={post.excerpt}
+            image={post.image}
+            datePublished={post.date}
+            dateModified={post.updatedAt}
+            slug={slug}
+            category={categoryLabel}
+            ratingAverage={post.ratingAverage}
+            ratingCount={post.ratingCount}
+          />
+          {post.category === "mama-life" && post.recipe && (
+            <HowToSchema
+              title={post.title}
+              description={post.excerpt}
+              image={post.image}
+              slug={slug}
+              estimatedTime={post.recipe.totalTime}
+              steps={post.recipe.instructions || post.recipe.instructionSections?.flatMap(s => s.steps)}
+            />
+          )}
+        </>
       )}
 
       <article className="max-w-2xl mx-auto px-4 py-8">

@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Sourdough Discard Recipes | Half Pint Mama",
     description: "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more.",
+    type: "website",
     url: "https://halfpintmama.com/cooking/discard",
     images: ["/logo.jpg"],
   },

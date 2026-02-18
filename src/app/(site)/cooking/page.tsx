@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "From Scratch Kitchen | Half Pint Mama",
     description: "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama.",
+    type: "website",
     url: "https://halfpintmama.com/cooking",
     images: ["/logo.jpg"],
   },

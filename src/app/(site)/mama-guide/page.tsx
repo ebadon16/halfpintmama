@@ -6,10 +6,12 @@ export const revalidate = 3600;
 export const metadata = {
   title: "Free Mama Life Guide | Half Pint Mama",
   description: "Get the free Mama Life Guide from a Pediatric ER RN and mama of two. Honest tips for navigating motherhood, from the newborn stage through toddlerhood.",
+  alternates: { canonical: "https://halfpintmama.com/mama-guide" },
   robots: { index: false, follow: false },
   openGraph: {
     title: "Free Mama Life Guide | Half Pint Mama",
     description: "Get the free Mama Life Guide — honest tips for navigating motherhood from a Pediatric ER RN.",
+    type: "website",
     url: "https://halfpintmama.com/mama-guide",
     images: ["/logo.jpg"],
   },

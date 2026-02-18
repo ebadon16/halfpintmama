@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Desserts & Sweet Treats | Half Pint Mama",
     description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats.",
+    type: "website",
     url: "https://halfpintmama.com/cooking/desserts",
     images: ["/logo.jpg"],
   },

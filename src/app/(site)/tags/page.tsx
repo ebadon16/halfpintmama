@@ -13,6 +13,7 @@ export const metadata = {
   openGraph: {
     title: "Tags | Half Pint Mama",
     description: "Browse all blog posts by topic tags on Half Pint Mama.",
+    type: "website",
     url: "https://halfpintmama.com/tags",
     images: ["/logo.jpg"],
   },

@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "DIY & Crafts | Half Pint Mama",
     description: "Fun DIY projects, kid costumes, and creative crafts for families.",
+    type: "website",
     url: "https://halfpintmama.com/mama-life/diy",
     images: ["/logo.jpg"],
   },

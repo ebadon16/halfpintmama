@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Homesteading | Half Pint Mama",
     description: "Suburban homesteading tips, low-tox living, and intentional home life.",
+    type: "website",
     url: "https://halfpintmama.com/mama-life/homesteading",
     images: ["/logo.jpg"],
   },

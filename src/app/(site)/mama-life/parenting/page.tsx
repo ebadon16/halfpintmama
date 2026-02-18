@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Parenting | Half Pint Mama",
     description: "Honest parenting tips from a Pediatric ER RN and mama of two.",
+    type: "website",
     url: "https://halfpintmama.com/mama-life/parenting",
     images: ["/logo.jpg"],
   },

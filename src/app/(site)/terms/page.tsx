@@ -5,6 +5,7 @@ export const metadata = {
   openGraph: {
     title: "Terms of Service | Half Pint Mama",
     description: "Read the terms of service for Half Pint Mama.",
+    type: "website",
     url: "https://halfpintmama.com/terms",
     images: ["/logo.jpg"],
   },

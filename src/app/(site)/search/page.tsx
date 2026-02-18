@@ -13,6 +13,7 @@ export const metadata = {
   openGraph: {
     title: "Search | Half Pint Mama",
     description: "Search Half Pint Mama for sourdough recipes, family travel guides, DIY projects, and parenting tips.",
+    type: "website",
     url: "https://halfpintmama.com/search",
     images: ["/logo.jpg"],
   },

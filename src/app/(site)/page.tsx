@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
     description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
+    type: "website",
     images: ["/logo.jpg"],
     url: "https://halfpintmama.com",
   },

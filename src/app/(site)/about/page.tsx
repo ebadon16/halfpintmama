@@ -10,6 +10,7 @@ export const metadata = {
   openGraph: {
     title: "About Keegan | Half Pint Mama",
     description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes and intentional living.",
+    type: "website",
     url: "https://halfpintmama.com/about",
     images: ["/logo.jpg"],
   },

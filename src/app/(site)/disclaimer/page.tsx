@@ -7,6 +7,7 @@ export const metadata = {
   openGraph: {
     title: "Health Disclaimer | Half Pint Mama",
     description: "Health and wellness disclaimer for Half Pint Mama.",
+    type: "website",
     url: "https://halfpintmama.com/disclaimer",
     images: ["/logo.jpg"],
   },

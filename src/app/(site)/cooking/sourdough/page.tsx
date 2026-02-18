@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Sourdough & Bread | Half Pint Mama",
     description: "Master sourdough bread baking with tested recipes from a bread-obsessed mama.",
+    type: "website",
     url: "https://halfpintmama.com/cooking/sourdough",
     images: ["/logo.jpg"],
   },

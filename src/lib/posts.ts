@@ -36,6 +36,7 @@ export interface Post {
   slug: string;
   title: string;
   date: string;
+  updatedAt?: string;
   category: string;
   excerpt: string;
   image: string;
@@ -92,6 +93,7 @@ const postFullProjection = `{
   "slug": slug.current,
   title,
   date,
+  "updatedAt": _updatedAt,
   category,
   "excerpt": coalesce(excerpt, ""),
   "image": coalesce(image.asset->url, ""),

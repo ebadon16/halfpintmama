@@ -14,6 +14,7 @@ export const metadata = {
   openGraph: {
     title: "Start Here | Half Pint Mama",
     description: "New to Half Pint Mama? Start your sourdough journey or navigate motherhood with real food and real talk.",
+    type: "website",
     url: "https://halfpintmama.com/start-here",
     images: ["/logo.jpg"],
   },

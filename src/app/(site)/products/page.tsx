@@ -11,6 +11,7 @@ export const metadata = {
   openGraph: {
     title: "Products We Love | Half Pint Mama",
     description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials.",
+    type: "website",
     url: "https://halfpintmama.com/products",
     images: ["/logo.jpg"],
   },

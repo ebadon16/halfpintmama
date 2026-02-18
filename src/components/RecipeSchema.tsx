@@ -5,13 +5,14 @@ interface RecipeSchemaProps {
   description: string;
   image?: string;
   datePublished: string;
+  dateModified?: string;
   slug: string;
   recipe?: RecipeInfo;
   ratingAverage?: number;
   ratingCount?: number;
 }
 
-export function RecipeSchema({ title, description, image, datePublished, slug, recipe, ratingAverage, ratingCount }: RecipeSchemaProps) {
+export function RecipeSchema({ title, description, image, datePublished, dateModified, slug, recipe, ratingAverage, ratingCount }: RecipeSchemaProps) {
   const baseUrl = "https://halfpintmama.com";
 
   // Flatten ingredient sections into a single array if needed
@@ -53,6 +54,7 @@ export function RecipeSchema({ title, description, image, datePublished, slug, r
       url: `${baseUrl}/about`,
     },
     datePublished: datePublished,
+    dateModified: dateModified || datePublished,
     publisher: {
       "@type": "Organization",
       name: "Half Pint Mama",
@@ -107,13 +109,14 @@ interface BlogPostSchemaProps {
   description: string;
   image?: string;
   datePublished: string;
+  dateModified?: string;
   slug: string;
   category: string;
   ratingAverage?: number;
   ratingCount?: number;
 }
 
-export function BlogPostSchema({ title, description, image, datePublished, slug, category, ratingAverage, ratingCount }: BlogPostSchemaProps) {
+export function BlogPostSchema({ title, description, image, datePublished, dateModified, slug, category, ratingAverage, ratingCount }: BlogPostSchemaProps) {
   const baseUrl = "https://halfpintmama.com";
 
   const schema: Record<string, unknown> = {
@@ -128,7 +131,7 @@ export function BlogPostSchema({ title, description, image, datePublished, slug,
       url: `${baseUrl}/about`,
     },
     datePublished: datePublished,
-    dateModified: datePublished, // TODO: Use Sanity _updatedAt when available
+    dateModified: dateModified || datePublished,
     publisher: {
       "@type": "Organization",
       name: "Half Pint Mama",

@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Snacks & Finger Foods | Half Pint Mama",
     description: "Healthy homemade snacks perfect for kids and the whole family.",
+    type: "website",
     url: "https://halfpintmama.com/cooking/snacks",
     images: ["/logo.jpg"],
   },

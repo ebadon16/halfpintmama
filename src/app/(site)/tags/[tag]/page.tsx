@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: TagPageProps) {
     openGraph: {
       title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
       description,
+      type: "website",
       images: ["/logo.jpg"],
     },
     twitter: {

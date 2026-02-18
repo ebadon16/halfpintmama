@@ -5,6 +5,7 @@ export const metadata = {
   openGraph: {
     title: "Privacy Policy | Half Pint Mama",
     description: "Learn how Half Pint Mama collects, uses, and protects your personal information.",
+    type: "website",
     url: "https://halfpintmama.com/privacy",
     images: ["/logo.jpg"],
   },

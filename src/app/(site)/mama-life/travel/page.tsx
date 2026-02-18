@@ -16,6 +16,7 @@ export const metadata = {
   openGraph: {
     title: "Family Travel | Half Pint Mama",
     description: "Family travel tips, road trip ideas, and adventure guides from a mama of two.",
+    type: "website",
     url: "https://halfpintmama.com/mama-life/travel",
     images: ["/logo.jpg"],
   },
