@@ -73,7 +73,7 @@ export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, 
           {initialRatingCount > 0 ? (
             <div className="flex items-center gap-2 justify-center sm:justify-start">
               <RatingSummary averageRating={initialRatingAverage} totalRatings={initialRatingCount} />
-              <span className="text-charcoal/50">|</span>
+              <span className="text-charcoal/70">|</span>
               <span className="text-sm text-charcoal/70">{commentCount} comment{commentCount !== 1 ? "s" : ""}</span>
             </div>
           ) : (
@@ -291,7 +291,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                   setSubmitError("");
                 }}
                 aria-label="Close comment form"
-                className="text-charcoal/50 hover:text-charcoal transition-colors"
+                className="text-charcoal/70 hover:text-charcoal transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -331,7 +331,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-1">
-                    Email * <span className="text-xs text-charcoal/50">(not published)</span>
+                    Email * <span className="text-xs text-charcoal/70">(not published)</span>
                   </label>
                   <input
                     type="email"
@@ -362,7 +362,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               </div>
 
               <div className="flex items-center justify-between">
-                <p className="text-xs text-charcoal/50">
+                <p className="text-xs text-charcoal/70">
                   Your email address will not be published.
                 </p>
                 <button
@@ -399,7 +399,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-charcoal font-semibold mb-2">
                 No comments yet
               </h3>
-              <p className="text-charcoal/60 mb-4">
+              <p className="text-charcoal/70 mb-4">
                 {isRecipe ? "Be the first to share your thoughts on this recipe!" : "Be the first to share your thoughts!"}
               </p>
               <button

@@ -38,16 +38,17 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const categoryLabel = post.category === "cooking" ? "From Scratch Kitchen" : post.category === "mama-life" ? "Mama Life" : post.category;
+  const description = post.excerpt || `${post.title} — a ${categoryLabel.toLowerCase()} post from Half Pint Mama.`;
 
   return {
     title: `${post.title} | Half Pint Mama`,
-    description: post.excerpt,
+    description,
     alternates: {
       canonical: `https://halfpintmama.com/posts/${slug}`,
     },
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description,
       url: `https://halfpintmama.com/posts/${slug}`,
       type: "article",
       images: post.image ? [post.image] : ["/logo.jpg"],
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: PageProps) {
     twitter: {
       card: "summary_large_image",
       title: post.title,
-      description: post.excerpt,
+      description,
       images: post.image ? [post.image] : ["/logo.jpg"],
     },
     other: {
@@ -162,7 +163,7 @@ export default async function PostPage({ params }: PageProps) {
       <article className="max-w-2xl mx-auto px-4 py-8">
         {/* Breadcrumbs */}
         <nav className="mb-6 text-sm" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2 text-charcoal/60">
+          <ol className="flex items-center gap-2 text-charcoal/70">
             <li>
               <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>
             </li>
@@ -205,7 +206,7 @@ export default async function PostPage({ params }: PageProps) {
               {formatDate(post.date)}
             </p>
             <span className="text-charcoal/30">|</span>
-            <p className="text-charcoal/60 flex items-center gap-1">
+            <p className="text-charcoal/70 flex items-center gap-1">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
@@ -214,7 +215,7 @@ export default async function PostPage({ params }: PageProps) {
             {post.recipe?.totalTime && (
               <>
                 <span className="text-charcoal/30">|</span>
-                <p className="text-charcoal/60 flex items-center gap-1">
+                <p className="text-charcoal/70 flex items-center gap-1">
                   <svg className="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
                   </svg>
@@ -227,7 +228,7 @@ export default async function PostPage({ params }: PageProps) {
           {/* Share, Save & Recipe Action Buttons */}
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <ShareButtons title={post.title} slug={slug} />
-            <FavoriteButton slug={slug} title={post.title} showText={true} className="text-charcoal/60 hover:text-terracotta" />
+            <FavoriteButton slug={slug} title={post.title} showText={true} className="text-charcoal/70 hover:text-terracotta" />
 
             {/* Recipe Action Buttons - Pill style, aligned left */}
             {post.category === "cooking" && (
@@ -301,7 +302,7 @@ export default async function PostPage({ params }: PageProps) {
               <p className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-semibold mb-1">
                 Made this recipe?
               </p>
-              <p className="text-charcoal/60 text-sm mb-3">
+              <p className="text-charcoal/70 text-sm mb-3">
                 I&apos;d love to know how it turned out! Your rating helps other mamas find the best recipes.
               </p>
               <a
@@ -337,7 +338,7 @@ export default async function PostPage({ params }: PageProps) {
                   href={`/posts/${prevPost.slug}`}
                   className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-light-sage/50"
                 >
-                  <span className="text-xs text-charcoal/50 uppercase tracking-wide">&larr; Previous</span>
+                  <span className="text-xs text-charcoal/70 uppercase tracking-wide">&larr; Previous</span>
                   <p className="font-[family-name:var(--font-crimson)] text-charcoal group-hover:text-terracotta transition-colors font-medium mt-1 line-clamp-2">
                     {prevPost.title}
                   </p>
@@ -350,7 +351,7 @@ export default async function PostPage({ params }: PageProps) {
                   href={`/posts/${nextPost.slug}`}
                   className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-light-sage/50 text-right"
                 >
-                  <span className="text-xs text-charcoal/50 uppercase tracking-wide">Next &rarr;</span>
+                  <span className="text-xs text-charcoal/70 uppercase tracking-wide">Next &rarr;</span>
                   <p className="font-[family-name:var(--font-crimson)] text-charcoal group-hover:text-terracotta transition-colors font-medium mt-1 line-clamp-2">
                     {nextPost.title}
                   </p>
@@ -367,7 +368,7 @@ export default async function PostPage({ params }: PageProps) {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <Link
               href="/posts"
-              className="text-sage hover:text-deep-sage font-medium transition-colors"
+              className="text-deep-sage hover:text-charcoal font-medium transition-colors"
             >
               &larr; All Posts
             </Link>

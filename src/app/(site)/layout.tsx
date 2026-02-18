@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 
 const EmailPopup = dynamic(() => import("@/components/EmailPopup").then((m) => m.EmailPopup));
+const BackToTop = dynamic(() => import("@/components/BackToTop").then((m) => m.BackToTop));
 
 const crimsonText = Crimson_Text({
   variable: "--font-crimson",
@@ -41,6 +42,7 @@ export default function SiteLayout({
         </main>
         <Footer />
         <EmailPopup />
+        <BackToTop />
         <Analytics />
       </body>
     </html>

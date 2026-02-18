@@ -143,14 +143,14 @@ export function IngredientChecklist({ ingredients, ingredientSections, scale = 1
         <div className="flex gap-2 text-sm">
           <button
             onClick={clearAll}
-            className="text-charcoal/60 hover:text-terracotta transition-colors"
+            className="text-charcoal/70 hover:text-terracotta transition-colors"
           >
             Clear
           </button>
           <span className="text-charcoal/30">|</span>
           <button
             onClick={checkAll}
-            className="text-charcoal/60 hover:text-terracotta transition-colors"
+            className="text-charcoal/70 hover:text-terracotta transition-colors"
           >
             Check all
           </button>
@@ -180,7 +180,7 @@ export function IngredientChecklist({ ingredients, ingredientSections, scale = 1
         </ul>
       ) : null}
 
-      <p className="mt-3 text-sm text-charcoal/50">
+      <p className="mt-3 text-sm text-charcoal/70">
         {checked.size} of {allIngredients.length} ingredients checked
       </p>
     </div>
