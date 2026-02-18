@@ -15,7 +15,7 @@ interface PostCardProps {
 }
 
 const categoryColors: Record<string, string> = {
-  cooking: "bg-terracotta",
+  cooking: "bg-[#A56350]",
   "mama-life": "bg-deep-sage",
   default: "bg-sage",
 };
@@ -73,7 +73,7 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
           </p>
 
           <div className="flex items-center gap-2">
-            <p className="text-sage text-xs font-medium">
+            <p className="text-deep-sage text-xs font-medium">
               {date}
             </p>
             {ratingCount != null && ratingCount > 0 && (

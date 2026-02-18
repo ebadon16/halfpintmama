@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8">
           {/* About */}
           <div>
-            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-deep-sage mb-4">
+            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-bold text-deep-sage mb-4">
               Half Pint Mama
             </h3>
             <p className="text-charcoal/80 text-sm leading-relaxed">
@@ -18,7 +18,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-deep-sage mb-4">
+            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-bold text-deep-sage mb-4">
               Explore
             </h3>
             <ul className="space-y-2 text-sm">
@@ -52,7 +52,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-deep-sage mb-4">
+            <h3 className="font-[family-name:var(--font-crimson)] text-xl font-bold text-deep-sage mb-4">
               Connect
             </h3>
             <div className="flex gap-4">
@@ -134,10 +134,10 @@ export function Footer() {
 
         {/* Newsletter Signup */}
         <div className="mt-12 pt-8 border-t border-charcoal/10 text-center">
-          <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-deep-sage mb-2">
+          <h3 className="font-[family-name:var(--font-crimson)] text-xl font-bold text-deep-sage mb-2">
             Join the Half Pint Community
           </h3>
-          <p className="text-charcoal/70 text-sm mb-4">
+          <p className="text-charcoal/80 text-sm mb-4">
             Weekly recipes, mama tips, and a free sourdough starter guide.
           </p>
           <EmailSignup
@@ -148,7 +148,7 @@ export function Footer() {
             buttonClassName="gradient-cta text-white hover:shadow-lg"
             inputClassName="border-charcoal/20"
           />
-          <p className="text-charcoal/50 text-xs mt-3">
+          <p className="text-charcoal/80 text-xs mt-3">
             No spam, unsubscribe anytime.
           </p>
         </div>
@@ -182,7 +182,7 @@ export function Footer() {
           <p className="font-[family-name:var(--font-crimson)] text-charcoal/80 italic text-center">
             Made with coffee and lots of sourdough discard
           </p>
-          <p className="text-charcoal/70 text-sm mt-2 text-center">
+          <p className="text-charcoal/80 text-sm mt-2 text-center">
             © {new Date().getFullYear()} Half Pint Mama. All rights reserved.
           </p>
         </div>

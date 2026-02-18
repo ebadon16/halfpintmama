@@ -74,7 +74,7 @@ const categoryLabels: Record<string, string> = {
 };
 
 const categoryColors: Record<string, string> = {
-  cooking: "bg-terracotta",
+  cooking: "bg-[#A56350]",
   "mama-life": "bg-deep-sage",
 };
 
@@ -201,7 +201,7 @@ export default async function PostPage({ params }: PageProps) {
           </h1>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
-            <p className="text-sage font-medium">
+            <p className="text-deep-sage font-medium">
               {formatDate(post.date)}
             </p>
             <span className="text-charcoal/30">|</span>
