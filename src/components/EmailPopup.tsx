@@ -191,6 +191,9 @@ export function EmailPopup() {
             <p className="text-charcoal/70 text-center mb-4 text-sm">
               {ctx.body}
             </p>
+            <p className="text-charcoal/50 text-center mb-4 text-xs">
+              Join 35,000+ families already following along.
+            </p>
 
             <input
               type="email"
