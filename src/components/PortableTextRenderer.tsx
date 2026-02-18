@@ -120,7 +120,7 @@ const components: PortableTextComponents = {
 
       const imgEl = (
         <Image
-          src={urlFor(value).url()}
+          src={urlFor(value).width(600).auto("format").url()}
           alt={value.alt || "Image from post"}
           width={600}
           height={400}
@@ -177,7 +177,7 @@ const components: PortableTextComponents = {
             return (
               <Image
                 key={img._key || i}
-                src={urlFor(img).url()}
+                src={urlFor(img).width(600).auto("format").url()}
                 alt={img.alt || "Image from post"}
                 width={600}
                 height={400}

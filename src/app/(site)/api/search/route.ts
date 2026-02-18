@@ -1,15 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { client } from "@/sanity/client";
 import { formatDate } from "@/lib/posts";
+import { rateLimit } from "@/lib/rate-limit";
 
 export const revalidate = 3600;
 
 export async function GET(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (!rateLimit(ip, 20, 60_000)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   const searchParams = request.nextUrl.searchParams;
-  const query = searchParams.get("q")?.trim().toLowerCase() || "";
-  const category = searchParams.get("category") || "";
-  const startDate = searchParams.get("startDate") || "";
-  const endDate = searchParams.get("endDate") || "";
+  const query = (searchParams.get("q")?.trim().toLowerCase() || "").slice(0, 200);
+  const category = (searchParams.get("category") || "").slice(0, 50);
+  const startDate = (searchParams.get("startDate") || "").slice(0, 10);
+  const endDate = (searchParams.get("endDate") || "").slice(0, 10);
 
   // Build dynamic GROQ filter
   const conditions: string[] = ['_type == "post"'];

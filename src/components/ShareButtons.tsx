@@ -45,7 +45,7 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
           href={shareLinks.pinterest}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 flex items-center justify-center bg-[#E60023] text-white rounded-full hover:opacity-80 transition-opacity"
+          className="w-10 h-10 flex items-center justify-center bg-[#E60023] text-white rounded-full hover:opacity-80 transition-opacity"
           aria-label="Share on Pinterest"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
           href={shareLinks.facebook}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 flex items-center justify-center bg-[#1877F2] text-white rounded-full hover:opacity-80 transition-opacity"
+          className="w-10 h-10 flex items-center justify-center bg-[#1877F2] text-white rounded-full hover:opacity-80 transition-opacity"
           aria-label="Share on Facebook"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
           href={shareLinks.twitter}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 flex items-center justify-center bg-black text-white rounded-full hover:opacity-80 transition-opacity"
+          className="w-10 h-10 flex items-center justify-center bg-black text-white rounded-full hover:opacity-80 transition-opacity"
           aria-label="Share on X (Twitter)"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
         </a>
         <a
           href={shareLinks.email}
-          className="w-9 h-9 flex items-center justify-center bg-sage text-white rounded-full hover:opacity-80 transition-opacity"
+          className="w-10 h-10 flex items-center justify-center bg-sage text-white rounded-full hover:opacity-80 transition-opacity"
           aria-label="Share via Email"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -85,7 +85,7 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
         </a>
         <button
           onClick={copyToClipboard}
-          className="w-9 h-9 flex items-center justify-center bg-charcoal/10 text-charcoal rounded-full hover:bg-charcoal/20 transition-colors relative"
+          className="w-10 h-10 flex items-center justify-center bg-charcoal/10 text-charcoal rounded-full hover:bg-charcoal/20 transition-colors relative"
           aria-label="Copy link"
         >
           {copied ? (

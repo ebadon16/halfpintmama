@@ -75,6 +75,14 @@ export function EmailPopup() {
     try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }
   }, []);
 
+  // Prevent body scroll when popup is visible
+  useEffect(() => {
+    if (isVisible && !isDismissed) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [isVisible, isDismissed]);
+
   // Focus trap + Escape key
   useEffect(() => {
     if (!isVisible) return;
@@ -171,7 +179,7 @@ export function EmailPopup() {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-4 right-4 text-charcoal/50 hover:text-charcoal text-2xl leading-none z-10"
+          className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center text-charcoal/50 hover:text-charcoal text-2xl leading-none z-10"
           aria-label="Close popup"
         >
           &times;

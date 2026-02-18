@@ -11,7 +11,7 @@ const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "keegan@halfpintmam
 const readClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2024-01-01",
+  apiVersion: "2025-12-01",
   useCdn: true,
 });
 
@@ -24,7 +24,7 @@ function getWriteClient() {
   return createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-    apiVersion: "2024-01-01",
+    apiVersion: "2025-12-01",
     token,
     useCdn: false,
   });
@@ -82,6 +82,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }
 
+    const contentType = request.headers.get("content-type");
+    if (!contentType?.includes("application/json")) {
+      return NextResponse.json({ error: "Content-Type must be application/json" }, { status: 400 });
+    }
+
     const data: CommentData = await request.json();
     const { author, email, content, rating, postSlug, postTitle, isReply, parentId, replyToAuthor, replyToEmail } = data;
 
@@ -101,8 +106,22 @@ export async function POST(request: NextRequest) {
     if (!postTitle || typeof postTitle !== "string" || !postTitle.trim()) {
       return NextResponse.json({ error: "Post title is required" }, { status: 400 });
     }
-    if (typeof rating !== "number" || !Number.isInteger(rating) || rating < 0 || rating > 5) {
-      return NextResponse.json({ error: "Rating must be an integer from 0 to 5" }, { status: 400 });
+    // Replies store 0 for rating; reviews require 1-5
+    if (isReply) {
+      if (rating !== undefined && rating !== 0) {
+        return NextResponse.json({ error: "Replies should not include a rating" }, { status: 400 });
+      }
+    } else {
+      if (typeof rating !== "number" || !Number.isInteger(rating) || rating < 1 || rating > 5) {
+        return NextResponse.json({ error: "Rating must be an integer from 1 to 5" }, { status: 400 });
+      }
+    }
+
+    // Validate parentId for replies
+    if (isReply && parentId) {
+      if (typeof parentId !== "string" || !parentId.trim()) {
+        return NextResponse.json({ error: "Invalid parent comment ID" }, { status: 400 });
+      }
     }
 
     // Trim and length-limit values
@@ -110,6 +129,15 @@ export async function POST(request: NextRequest) {
     const safeEmail = email.trim().slice(0, 254);
     const safeContent = content.trim().slice(0, 2000);
     const safePostSlug = postSlug.trim().slice(0, 200);
+
+    // Verify the post exists before creating a comment
+    const postExists = await readClient.fetch<number>(
+      `count(*[_type == "post" && slug.current == $slug])`,
+      { slug: safePostSlug }
+    );
+    if (postExists === 0) {
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
+    }
 
     // Create comment in Sanity
     const newComment = await getWriteClient().create({

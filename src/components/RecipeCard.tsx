@@ -43,6 +43,7 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
           alt="Half Pint Mama"
           width={112}
           height={112}
+          sizes="112px"
           className="rounded-full flex-shrink-0 self-center"
         />
       </div>

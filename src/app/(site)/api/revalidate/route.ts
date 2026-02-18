@@ -8,13 +8,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
-  const secret = request.nextUrl.searchParams.get("secret");
+  // Accept secret from Authorization header (preferred) or query param (Sanity webhook default)
+  const secret =
+    request.headers.get("authorization")?.replace("Bearer ", "") ||
+    request.nextUrl.searchParams.get("secret");
 
   if (!process.env.SANITY_REVALIDATE_SECRET) {
     return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
   }
 
-  if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
+  if (!secret || secret !== process.env.SANITY_REVALIDATE_SECRET) {
     return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
   }
 
@@ -22,9 +25,13 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const slug = body?.slug?.current;
     const type = body?._type;
+    const tags: string[] = Array.isArray(body?.tags) ? body.tags : [];
 
     // Revalidate specific post page if slug provided
     if (type === "post" && slug) {
+      if (typeof slug !== "string" || !/^[a-z0-9][-a-z0-9]*$/.test(slug)) {
+        return NextResponse.json({ error: "Invalid slug format" }, { status: 400 });
+      }
       revalidatePath(`/posts/${slug}`);
     }
 
@@ -44,6 +51,13 @@ export async function POST(request: NextRequest) {
     revalidatePath("/tags");
     revalidatePath("/start-here");
     revalidatePath("/feed.xml");
+
+    // Revalidate tag pages for this post's tags
+    for (const tag of tags) {
+      if (typeof tag === "string" && tag.trim()) {
+        revalidatePath(`/tags/${encodeURIComponent(tag.toLowerCase().trim())}`);
+      }
+    }
 
     return NextResponse.json({ revalidated: true });
   } catch {

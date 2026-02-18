@@ -49,7 +49,7 @@ export function SearchBar({
       />
       <button
         type="submit"
-        className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-sage hover:text-deep-sage transition-colors"
+        className="absolute right-1 top-1/2 -translate-y-1/2 p-2.5 text-sage hover:text-deep-sage transition-colors"
         aria-label="Search"
       >
         <svg className={iconSizes[size]} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ export function SearchButton({ className = "" }: { className?: string }) {
   return (
     <button
       onClick={() => router.push("/search")}
-      className={`p-2 text-deep-sage hover:text-terracotta transition-colors ${className}`}
+      className={`p-2.5 text-deep-sage hover:text-terracotta transition-colors ${className}`}
       aria-label="Search"
     >
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

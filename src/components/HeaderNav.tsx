@@ -22,6 +22,14 @@ export function HeaderNav() {
     setIsMenuOpen(false);
   }, [pathname]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [isMenuOpen]);
+
   const isActive = (href: string) => {
     if (href === "/") {
       return pathname === "/";

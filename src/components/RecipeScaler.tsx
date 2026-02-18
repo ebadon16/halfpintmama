@@ -30,7 +30,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
       <div className="flex items-center gap-2">
         <button
           onClick={() => onServingsChange(Math.max(1, currentServings - 1))}
-          className="w-8 h-8 rounded-full border-2 border-sage text-sage hover:bg-sage hover:text-white transition-all flex items-center justify-center font-bold"
+          className="w-10 h-10 rounded-full border-2 border-sage text-sage hover:bg-sage hover:text-white transition-all flex items-center justify-center font-bold"
           aria-label="Decrease servings"
         >
           -
@@ -50,7 +50,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
 
         <button
           onClick={() => onServingsChange(currentServings + 1)}
-          className="w-8 h-8 rounded-full border-2 border-sage text-sage hover:bg-sage hover:text-white transition-all flex items-center justify-center font-bold"
+          className="w-10 h-10 rounded-full border-2 border-sage text-sage hover:bg-sage hover:text-white transition-all flex items-center justify-center font-bold"
           aria-label="Increase servings"
         >
           +
