@@ -64,9 +64,9 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
           &larr; Prev
         </Link>
       ) : (
-        <span className="px-4 py-2 rounded-full border-2 border-light-sage text-charcoal/40 cursor-not-allowed">
+        <button disabled className="px-4 py-2 rounded-full border-2 border-light-sage text-charcoal/40 cursor-not-allowed" aria-disabled="true">
           &larr; Prev
-        </span>
+        </button>
       )}
 
       {/* Page Numbers */}
@@ -110,9 +110,9 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
           Next &rarr;
         </Link>
       ) : (
-        <span className="px-4 py-2 rounded-full border-2 border-light-sage text-charcoal/40 cursor-not-allowed">
+        <button disabled className="px-4 py-2 rounded-full border-2 border-light-sage text-charcoal/40 cursor-not-allowed" aria-disabled="true">
           Next &rarr;
-        </span>
+        </button>
       )}
     </nav>
   );

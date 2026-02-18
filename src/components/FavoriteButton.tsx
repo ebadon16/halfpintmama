@@ -15,7 +15,10 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
 
   useEffect(() => {
     let favorites: { slug: string }[] = [];
-    try { favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
+    try {
+      const parsed = JSON.parse(localStorage.getItem("favorites") || "[]");
+      if (Array.isArray(parsed)) favorites = parsed;
+    } catch { /* corrupted data */ }
     setIsFavorite(favorites.some((f) => f.slug === slug));
     setMounted(true);
   }, [slug]);
@@ -25,7 +28,10 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
     e.stopPropagation();
 
     let favorites: { slug: string; title?: string; savedAt?: string }[] = [];
-    try { favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
+    try {
+      const parsed = JSON.parse(localStorage.getItem("favorites") || "[]");
+      if (Array.isArray(parsed)) favorites = parsed;
+    } catch { /* corrupted data */ }
 
     try {
       if (isFavorite) {
@@ -33,11 +39,11 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
         localStorage.setItem("favorites", JSON.stringify(newFavorites));
         setIsFavorite(false);
       } else {
-        favorites.push({ slug, title, savedAt: new Date().toISOString() });
-        localStorage.setItem("favorites", JSON.stringify(favorites));
+        const newFavorites = [...favorites, { slug, title, savedAt: new Date().toISOString() }];
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
         setIsFavorite(true);
       }
-    } catch { /* storage unavailable or full */ }
+    } catch { /* storage unavailable or full — state not updated */ }
   };
 
   return (

@@ -63,7 +63,7 @@ export function EmailSignup({
 
   if (status === "success") {
     return (
-      <div role="status" className={`text-center ${className}`}>
+      <div role="status" aria-live="polite" className={`text-center ${className}`}>
         <div className="flex justify-center mb-2"><ThemedIcon icon={PartyPopper} size="sm" color="sage" /></div>
         <p className="text-green-600 font-medium">{message}</p>
       </div>

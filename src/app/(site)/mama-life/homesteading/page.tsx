@@ -98,6 +98,7 @@ export default async function HomesteadingPage({ searchParams }: PageProps) {
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
               readingTime={post.readingTime}
+              headingLevel="h2"
             />
           ))}
         </div>

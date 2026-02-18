@@ -125,6 +125,7 @@ const components: PortableTextComponents = {
           width={600}
           height={400}
           sizes={sizesAttr[size] || sizesAttr.medium}
+          loading="lazy"
           className={`rounded-lg shadow-sm object-cover ${imgSize}`}
         />
       );
@@ -150,6 +151,7 @@ const components: PortableTextComponents = {
           width={600}
           height={400}
           sizes={sizesAttr[size] || sizesAttr.medium}
+          loading="lazy"
           className={`rounded-lg shadow-sm object-cover ${imgSize}`}
         />
       );
@@ -180,6 +182,7 @@ const components: PortableTextComponents = {
                 width={600}
                 height={400}
                 sizes={gridSizes}
+                loading="lazy"
                 className="rounded-lg shadow-sm object-cover w-full"
               />
             );

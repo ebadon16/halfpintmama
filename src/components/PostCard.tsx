@@ -13,6 +13,7 @@ interface PostCardProps {
   ratingAverage?: number;
   ratingCount?: number;
   readingTime?: number;
+  headingLevel?: "h2" | "h3";
 }
 
 const categoryColors: Record<string, string> = {
@@ -21,8 +22,9 @@ const categoryColors: Record<string, string> = {
   default: "bg-sage",
 };
 
-export function PostCard({ slug, title, excerpt, category, date, image, tags, ratingAverage, ratingCount, readingTime }: PostCardProps) {
+export function PostCard({ slug, title, excerpt, category, date, image, tags, ratingAverage, ratingCount, readingTime, headingLevel = "h3" }: PostCardProps) {
   const badgeColor = categoryColors[category] || categoryColors.default;
+  const Heading = headingLevel;
 
   return (
     <article className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group relative">
@@ -65,9 +67,9 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
             ))}
           </div>
 
-          <h3 className="font-[family-name:var(--font-crimson)] text-base font-semibold text-charcoal mb-1 leading-tight group-hover:text-deep-sage transition-colors line-clamp-2">
+          <Heading className="font-[family-name:var(--font-crimson)] text-base font-semibold text-charcoal mb-1 leading-tight group-hover:text-deep-sage transition-colors line-clamp-2">
             {title}
-          </h3>
+          </Heading>
 
           <p className="text-charcoal/70 text-xs leading-relaxed mb-2 line-clamp-2">
             {excerpt}

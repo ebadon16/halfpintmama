@@ -50,7 +50,7 @@ export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" |
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold mb-3">
             You&apos;re In!
           </h2>
-          <p className="text-white/90 max-w-xl mx-auto">
+          <p className="text-white max-w-xl mx-auto">
             {message}
           </p>
         </div>
@@ -65,7 +65,7 @@ export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" |
         <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold mb-3">
           Join the Half Pint Mama Community
         </h2>
-        <p className="text-white/90 mb-6 max-w-xl mx-auto">
+        <p className="text-white mb-6 max-w-xl mx-auto">
           {segment === "mama-life"
             ? "Honest parenting tips, real mama moments, and exclusive content — delivered straight to your inbox weekly. Join 35,000+ families already following along."
             : "From-scratch recipes, honest mama moments, and a free sourdough starter guide — delivered straight to your inbox weekly. Join 35,000+ families already in the community."}

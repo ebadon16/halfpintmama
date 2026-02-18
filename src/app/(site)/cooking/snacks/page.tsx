@@ -99,6 +99,7 @@ export default async function SnacksPage({ searchParams }: PageProps) {
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
               readingTime={post.readingTime}
+              headingLevel="h2"
             />
           ))}
         </div>

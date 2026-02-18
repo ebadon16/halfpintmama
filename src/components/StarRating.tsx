@@ -54,6 +54,10 @@ export function StarRating({ rating, onRate, readonly = false, size = "md" }: St
             onClick={() => onRate?.(index)}
             onMouseEnter={() => setHoverRating(index)}
             onMouseLeave={() => setHoverRating(0)}
+            onKeyDown={(e) => {
+              if (e.key === "ArrowRight" && index < 5) onRate?.(index + 1);
+              if (e.key === "ArrowLeft" && index > 1) onRate?.(index - 1);
+            }}
             className="cursor-pointer transition-transform hover:scale-110"
             aria-label={`Rate ${index} star${index !== 1 ? "s" : ""}`}
           >
@@ -71,11 +75,13 @@ interface RatingSummaryProps {
 }
 
 export function RatingSummary({ averageRating, totalRatings }: RatingSummaryProps) {
+  const safeAvg = Number.isFinite(averageRating) ? Math.max(0, Math.min(5, averageRating)) : 0;
+  const safeCount = Number.isFinite(totalRatings) ? Math.max(0, totalRatings) : 0;
   return (
     <div className="flex items-center gap-2">
-      <StarRating rating={Math.round(averageRating)} readonly size="sm" />
+      <StarRating rating={Math.round(safeAvg)} readonly size="sm" />
       <span className="text-sm text-charcoal/70">
-        {averageRating.toFixed(1)} ({totalRatings} {totalRatings === 1 ? "rating" : "ratings"})
+        {safeAvg.toFixed(1)} ({safeCount} {safeCount === 1 ? "rating" : "ratings"})
       </span>
     </div>
   );

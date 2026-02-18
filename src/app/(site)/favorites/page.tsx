@@ -24,7 +24,10 @@ export default function FavoritesPage() {
 
   useEffect(() => {
     let stored: FavoriteItem[] = [];
-    try { stored = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
+    try {
+      const parsed = JSON.parse(localStorage.getItem("favorites") || "[]");
+      if (Array.isArray(parsed)) stored = parsed;
+    } catch { /* corrupted data */ }
     setFavorites(stored);
     setIsLoaded(true);
   }, []);

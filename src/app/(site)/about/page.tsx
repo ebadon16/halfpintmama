@@ -5,7 +5,7 @@ import { Hand, Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, 
 
 export const metadata = {
   title: "About Keegan | Half Pint Mama",
-  description: "Meet Keegan — a Pediatric ER RN and mama of two sharing real food recipes, sourdough baking tips, and intentional living from Central Texas.",
+  description: "Meet Keegan — a Pediatric ER RN and mama of two sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
   openGraph: {
     title: "About Keegan | Half Pint Mama",

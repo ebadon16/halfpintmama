@@ -2,7 +2,7 @@ import { ContactForm } from "./ContactForm";
 
 export const metadata = {
   title: "Contact | Half Pint Mama",
-  description: "Get in touch with Keegan at Half Pint Mama. Questions about recipes, sourdough, collaborations, or just want to say hi — I'd love to hear from you!",
+  description: "Get in touch with Keegan at Half Pint Mama. Questions about recipes, sourdough baking, collaborations, or just want to say hi? We'd love to hear from you.",
   alternates: { canonical: "https://halfpintmama.com/contact" },
   openGraph: {
     title: "Contact | Half Pint Mama",

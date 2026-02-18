@@ -128,7 +128,7 @@ export function BlogPostSchema({ title, description, image, datePublished, slug,
       url: `${baseUrl}/about`,
     },
     datePublished: datePublished,
-    dateModified: datePublished,
+    dateModified: datePublished, // TODO: Use Sanity _updatedAt when available
     publisher: {
       "@type": "Organization",
       name: "Half Pint Mama",

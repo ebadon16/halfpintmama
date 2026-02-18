@@ -11,7 +11,7 @@ export const revalidate = 60;
 
 export const metadata = {
   title: "Mama Life | Half Pint Mama",
-  description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos with toddlers and babies.",
+  description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos together.",
   alternates: { canonical: "https://halfpintmama.com/mama-life" },
   openGraph: {
     title: "Mama Life | Half Pint Mama",
@@ -102,6 +102,7 @@ export default async function MamaLifePage({ searchParams }: PageProps) {
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
               readingTime={post.readingTime}
+              headingLevel="h2"
             />
           ))}
         </div>

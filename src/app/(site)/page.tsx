@@ -9,7 +9,7 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas. Real food, real life.",
+  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas. Real food, real life, real mama.",
   openGraph: {
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
     description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",

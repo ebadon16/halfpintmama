@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Terms of Service | Half Pint Mama",
-  description: "Read the terms of service for Half Pint Mama. Learn about content usage, recipe disclaimers, affiliate links, and comment policies for our food blog.",
+  description: "Read the terms of service for Half Pint Mama. Learn about content usage, recipe disclaimers, affiliate links, and our comment policies on this food blog.",
   alternates: { canonical: "https://halfpintmama.com/terms" },
   openGraph: {
     title: "Terms of Service | Half Pint Mama",

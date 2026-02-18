@@ -122,12 +122,20 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
         // Organize comments into threads (top-level + replies)
         const allComments: Comment[] = data.comments || [];
         const topLevel = allComments.filter((c) => !c.parentId);
-        const replies = allComments.filter((c) => c.parentId);
 
-        // Attach replies to their parent comments
+        // Build reply map for O(n) threading instead of O(n²)
+        const replyMap = new Map<string, Comment[]>();
+        for (const c of allComments) {
+          if (c.parentId) {
+            const arr = replyMap.get(c.parentId);
+            if (arr) arr.push(c);
+            else replyMap.set(c.parentId, [c]);
+          }
+        }
+
         const threaded = topLevel.map((comment) => ({
           ...comment,
-          replies: replies.filter((r) => r.parentId === comment._id),
+          replies: replyMap.get(comment._id) || [],
         }));
 
         setComments(threaded);
@@ -266,14 +274,14 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
 
         {/* Success Message */}
         {submitSuccess && (
-          <div role="status" className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center">
+          <div role="status" aria-live="polite" className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center">
             Thank you for your comment! It has been posted.
           </div>
         )}
 
         {/* Error Message */}
         {submitError && (
-          <div role="alert" className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-center">
+          <div role="alert" aria-live="assertive" className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-center">
             {submitError}
           </div>
         )}

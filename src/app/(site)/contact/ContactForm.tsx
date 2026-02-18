@@ -142,6 +142,7 @@ export function ContactForm() {
                     id="email"
                     name="email"
                     required
+                    aria-label="Email address"
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"

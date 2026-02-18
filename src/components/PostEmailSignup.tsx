@@ -142,7 +142,7 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
               You&apos;re In!
             </h2>
-            <p className="text-white/90 max-w-md mx-auto">
+            <p className="text-white max-w-md mx-auto">
               {message}
             </p>
           </div>
@@ -159,7 +159,7 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
             Want More? Join My List!
           </h2>
-          <p className="text-white/90 mb-6 max-w-md mx-auto">
+          <p className="text-white mb-6 max-w-md mx-auto">
             {category === "mama-life"
               ? "Weekly parenting tips, honest mama moments, and real talk — from a Pediatric ER RN and mama of two. Join 35,000+ families already following along."
               : "Weekly from-scratch recipes and kitchen tips. Plus get my free sourdough starter guide when you subscribe! Join 35,000+ families already in the community."}

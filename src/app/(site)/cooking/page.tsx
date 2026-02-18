@@ -115,6 +115,7 @@ export default async function CookingPage({ searchParams }: PageProps) {
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
               readingTime={post.readingTime}
+              headingLevel="h2"
             />
           ))}
         </div>

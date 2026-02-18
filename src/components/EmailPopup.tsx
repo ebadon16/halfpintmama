@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, type MutableRefObject } from "react";
 import { usePathname } from "next/navigation";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Wheat, Heart, PartyPopper } from "lucide-react";
@@ -34,6 +34,7 @@ export function EmailPopup() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
+  const successTimerRef: MutableRefObject<ReturnType<typeof setTimeout> | null> = useRef(null);
   const pathname = usePathname();
   const ctx = usePopupContext(pathname);
 
@@ -135,7 +136,7 @@ export function EmailPopup() {
         setMessage(data.message);
         try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }
         // Auto-close after 3 seconds
-        setTimeout(() => {
+        successTimerRef.current = setTimeout(() => {
           setIsVisible(false);
         }, 3000);
       } else {
@@ -147,6 +148,13 @@ export function EmailPopup() {
       setMessage("Something went wrong. Please try again.");
     }
   };
+
+  // Clean up success timer on unmount
+  useEffect(() => {
+    return () => {
+      if (successTimerRef.current) clearTimeout(successTimerRef.current);
+    };
+  }, []);
 
   if (!isVisible || isDismissed) {
     return null;
@@ -175,7 +183,7 @@ export function EmailPopup() {
           <h2 id="email-popup-heading" className="font-[family-name:var(--font-crimson)] text-2xl font-semibold mb-2">
             {ctx.heading}
           </h2>
-          <p className="text-white/90 text-sm">
+          <p className="text-white text-sm">
             {ctx.subtitle}
           </p>
         </div>
