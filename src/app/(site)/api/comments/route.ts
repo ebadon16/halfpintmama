@@ -4,7 +4,15 @@ import { createClient } from "@sanity/client";
 import { escapeHtml } from "@/lib/sanitize";
 import { rateLimit } from "@/lib/rate-limit";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let _resend: Resend | null = null;
+function getResend() {
+  if (!_resend) {
+    const key = process.env.RESEND_API_KEY;
+    if (!key) throw new Error("RESEND_API_KEY is not configured");
+    _resend = new Resend(key);
+  }
+  return _resend;
+}
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "keegan@halfpintmama.com";
 
 // Read client for fetching comments
@@ -162,7 +170,7 @@ export async function POST(request: NextRequest) {
     const ratingText = rating > 0 ? `${"⭐".repeat(rating)} (${rating}/5)` : "No rating";
 
     // Send notification to site owner (non-blocking — comment is already saved)
-    try { await resend.emails.send({
+    try { await getResend().emails.send({
       from: "Half Pint Mama <notifications@halfpintmama.com>",
       to: NOTIFICATION_EMAIL,
       subject: isReply
@@ -229,7 +237,7 @@ export async function POST(request: NextRequest) {
       } catch { /* failed to fetch parent — skip notification */ }
     }
     if (isReply && resolvedReplyToEmail && typeof resolvedReplyToEmail === "string" && EMAIL_REGEX.test(resolvedReplyToEmail.trim()) && resolvedReplyToEmail !== email) {
-      try { await resend.emails.send({
+      try { await getResend().emails.send({
         from: "Half Pint Mama <notifications@halfpintmama.com>",
         to: resolvedReplyToEmail,
         subject: `${escapedAuthor} replied to your comment on Half Pint Mama`,

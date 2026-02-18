@@ -32,31 +32,22 @@ function getYouTubeId(url: string): string | null {
 const components: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <h2
-        className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-12 mb-4"
-        style={{ fontSize: "28px" }}
-      >
+      <h2 className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-12 mb-4 text-[28px]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3
-        className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-8 mb-3"
-        style={{ fontSize: "22px" }}
-      >
+      <h3 className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-8 mb-3 text-[22px]">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4
-        className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-6 mb-2"
-        style={{ fontSize: "18px" }}
-      >
+      <h4 className="font-[family-name:var(--font-crimson)] font-bold text-charcoal mt-6 mb-2 text-[18px]">
         {children}
       </h4>
     ),
     normal: ({ children }) => (
-      <p className="text-charcoal/80 leading-relaxed mb-4" style={{ fontSize: "16px" }}>
+      <p className="text-charcoal/80 leading-relaxed mb-4 text-[16px]">
         {children}
       </p>
     ),
@@ -72,12 +63,12 @@ const components: PortableTextComponents = {
   },
   listItem: {
     bullet: ({ children }) => (
-      <li className="text-charcoal/80 leading-relaxed" style={{ fontSize: "16px" }}>
+      <li className="text-charcoal/80 leading-relaxed text-[16px]">
         {children}
       </li>
     ),
     number: ({ children }) => (
-      <li className="text-charcoal/80 leading-relaxed" style={{ fontSize: "16px" }}>
+      <li className="text-charcoal/80 leading-relaxed text-[16px]">
         {children}
       </li>
     ),

@@ -12,9 +12,9 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email.trim()) {
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setStatus("error");
-      setMessage("Please enter your email");
+      setMessage("Please enter a valid email address");
       return;
     }
 
@@ -102,9 +102,9 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email.trim()) {
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setStatus("error");
-      setMessage("Please enter your email");
+      setMessage("Please enter a valid email address");
       return;
     }
 

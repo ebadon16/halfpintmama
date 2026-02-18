@@ -12,6 +12,12 @@ function SignupForm({ source }: { source: string }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("loading");
 
     try {

@@ -112,9 +112,9 @@ export default function TermsOfServicePage() {
           </h2>
           <p className="text-charcoal/80">
             If you have any questions about these Terms of Service, please contact us through our{" "}
-            <a href="/contact" className="text-terracotta hover:text-deep-sage transition-colors">
+            <Link href="/contact" className="text-terracotta hover:text-deep-sage transition-colors">
               contact page
-            </a>.
+            </Link>.
           </p>
         </div>
 

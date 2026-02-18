@@ -14,7 +14,7 @@ export async function GET() {
       <title><![CDATA[${post.title}]]></title>
       <link>${baseUrl}/posts/${escapeXml(post.slug)}</link>
       <guid isPermaLink="true">${baseUrl}/posts/${escapeXml(post.slug)}</guid>
-      <description><![CDATA[${post.excerpt}]]></description>
+      <description><![CDATA[${post.excerpt.replace(/\]\]>/g, "]]]]><![CDATA[>")}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category>${escapeXml(post.category)}</category>
       ${post.image ? `<enclosure url="${escapeXml(post.image)}" type="image/jpeg" length="0"/>` : ""}

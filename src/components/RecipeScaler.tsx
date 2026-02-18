@@ -13,7 +13,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
 
   const handleCustomServings = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value, 10);
-    if (!isNaN(value) && value > 0) {
+    if (!isNaN(value) && value > 0 && value <= 100) {
       onServingsChange(value);
     }
   };

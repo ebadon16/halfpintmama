@@ -112,6 +112,17 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [hasRated, setHasRated] = useState(false);
+
+  // Check if user already rated this post
+  useEffect(() => {
+    try {
+      const rated = JSON.parse(localStorage.getItem("ratedPosts") || "[]");
+      if (Array.isArray(rated) && rated.includes(postSlug)) {
+        setHasRated(true);
+      }
+    } catch { /* storage unavailable */ }
+  }, [postSlug]);
 
   // Fetch comments from Sanity on mount
   const fetchComments = useCallback(async () => {
@@ -153,6 +164,13 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Client-side validation: require 1-5 star rating for reviews
+    if (!replyingTo && formData.rating === 0) {
+      setSubmitError("Please select a star rating");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitError("");
 
@@ -179,8 +197,19 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
         throw new Error(errorData.error || "Failed to submit comment");
       }
 
-      // Success - refresh comments
+      // Success - refresh comments and track rating
       await fetchComments();
+
+      // Track that user rated this post (prevent re-rating)
+      if (!replyingTo) {
+        try {
+          const rated = JSON.parse(localStorage.getItem("ratedPosts") || "[]");
+          if (Array.isArray(rated) && !rated.includes(postSlug)) {
+            rated.push(postSlug);
+            localStorage.setItem("ratedPosts", JSON.stringify(rated));
+          }
+        } catch { /* storage unavailable */ }
+      }
 
       // Reset form
       setFormData({ author: "", email: "", content: "", rating: 0 });
@@ -314,11 +343,12 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               {!replyingTo && (
                 <div>
                   <label className="block text-sm font-medium text-charcoal mb-2">
-                    Your Rating
+                    Your Rating {hasRated && <span className="text-xs text-charcoal/50">(you&apos;ve already rated this post)</span>}
                   </label>
                   <StarRating
                     rating={formData.rating}
-                    onRate={(rating) => setFormData({ ...formData, rating })}
+                    onRate={hasRated ? undefined : (rating) => setFormData({ ...formData, rating })}
+                    readonly={hasRated}
                     size="lg"
                   />
                 </div>

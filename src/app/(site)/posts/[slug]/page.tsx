@@ -294,7 +294,7 @@ export default async function PostPage({ params }: PageProps) {
           className="prose max-w-none
             prose-headings:font-[family-name:var(--font-crimson)]
             prose-headings:font-bold
-            prose-h1:text-[36px] prose-h1:text-[#4A3728] prose-h1:mb-[40px] prose-h1:mt-0
+            prose-h1:text-[36px] prose-h1:text-charcoal prose-h1:mb-[40px] prose-h1:mt-0
             prose-h2:text-[28px] prose-h2:text-charcoal prose-h2:mt-[48px] prose-h2:mb-[16px]
             prose-h3:text-[22px] prose-h3:text-charcoal prose-h3:mt-[32px] prose-h3:mb-[12px]
             prose-h4:text-[18px] prose-h4:text-charcoal prose-h4:mt-[24px] prose-h4:mb-[8px]
