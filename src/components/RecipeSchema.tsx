@@ -7,9 +7,11 @@ interface RecipeSchemaProps {
   datePublished: string;
   slug: string;
   recipe?: RecipeInfo;
+  ratingAverage?: number;
+  ratingCount?: number;
 }
 
-export function RecipeSchema({ title, description, image, datePublished, slug, recipe }: RecipeSchemaProps) {
+export function RecipeSchema({ title, description, image, datePublished, slug, recipe, ratingAverage, ratingCount }: RecipeSchemaProps) {
   const baseUrl = "https://halfpintmama.com";
 
   // Flatten ingredient sections into a single array if needed
@@ -72,6 +74,14 @@ export function RecipeSchema({ title, description, image, datePublished, slug, r
   if (recipe?.totalTime) schema.totalTime = recipe.totalTime;
   if (recipe?.servings) schema.recipeYield = `${recipe.servings} servings`;
 
+  if (ratingCount && ratingCount > 0 && ratingAverage) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: ratingAverage,
+      reviewCount: ratingCount,
+    };
+  }
+
   if (recipe?.nutrition) {
     const n = recipe.nutrition;
     const nutrition: Record<string, string> = { "@type": "NutritionInformation" };
@@ -99,12 +109,14 @@ interface BlogPostSchemaProps {
   datePublished: string;
   slug: string;
   category: string;
+  ratingAverage?: number;
+  ratingCount?: number;
 }
 
-export function BlogPostSchema({ title, description, image, datePublished, slug, category }: BlogPostSchemaProps) {
+export function BlogPostSchema({ title, description, image, datePublished, slug, category, ratingAverage, ratingCount }: BlogPostSchemaProps) {
   const baseUrl = "https://halfpintmama.com";
 
-  const schema = {
+  const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: title,
@@ -132,6 +144,14 @@ export function BlogPostSchema({ title, description, image, datePublished, slug,
     articleSection: category,
     keywords: `${title}, ${category}, half pint mama`,
   };
+
+  if (ratingCount && ratingCount > 0 && ratingAverage) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: ratingAverage,
+      reviewCount: ratingCount,
+    };
+  }
 
   return (
     <script

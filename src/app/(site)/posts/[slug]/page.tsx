@@ -143,6 +143,8 @@ export default async function PostPage({ params }: PageProps) {
           datePublished={post.date}
           slug={slug}
           recipe={post.recipe}
+          ratingAverage={post.ratingAverage}
+          ratingCount={post.ratingCount}
         />
       ) : (
         <BlogPostSchema
@@ -152,6 +154,8 @@ export default async function PostPage({ params }: PageProps) {
           datePublished={post.date}
           slug={slug}
           category={categoryLabel}
+          ratingAverage={post.ratingAverage}
+          ratingCount={post.ratingCount}
         />
       )}
 
