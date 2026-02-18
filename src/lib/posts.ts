@@ -411,6 +411,14 @@ export async function getSiteStats(): Promise<{
   return { totalPosts: result.totalPosts, cookingPosts: result.cookingPosts, averageRating };
 }
 
+// Comment count for a post (top-level only)
+export async function getCommentCount(postSlug: string): Promise<number> {
+  return client.fetch<number>(
+    `count(*[_type == "comment" && postSlug == $postSlug && !defined(parentId)])`,
+    { postSlug }
+  );
+}
+
 // Single latest post
 export async function getLatestPost(): Promise<PostMeta | null> {
   const posts = await client.fetch<PostMeta[]>(

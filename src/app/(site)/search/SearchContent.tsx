@@ -61,6 +61,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
       if (end) params.set("endDate", end);
 
       const response = await fetch(`/api/search?${params.toString()}`);
+      if (!response.ok) throw new Error("Search failed");
       const data = await response.json();
       setResults(data.results || []);
     } catch {

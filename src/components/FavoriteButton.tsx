@@ -10,12 +10,14 @@ interface FavoriteButtonProps {
 }
 
 export function FavoriteButton({ slug, title, className = "", showText = false }: FavoriteButtonProps) {
+  const [mounted, setMounted] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     let favorites: { slug: string }[] = [];
     try { favorites = JSON.parse(localStorage.getItem("favorites") || "[]"); } catch { /* corrupted data */ }
     setIsFavorite(favorites.some((f) => f.slug === slug));
+    setMounted(true);
   }, [slug]);
 
   const toggleFavorite = (e: React.MouseEvent) => {
@@ -46,8 +48,8 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
       title={isFavorite ? "Remove from favorites" : "Save recipe"}
     >
       <svg
-        className={`w-5 h-5 transition-colors ${isFavorite ? "text-terracotta fill-terracotta" : "text-charcoal/40 hover:text-terracotta"}`}
-        fill={isFavorite ? "currentColor" : "none"}
+        className={`w-5 h-5 transition-colors ${mounted && isFavorite ? "text-terracotta fill-terracotta" : "text-charcoal/40 hover:text-terracotta"}`}
+        fill={mounted && isFavorite ? "currentColor" : "none"}
         stroke="currentColor"
         viewBox="0 0 24 24"
       >
@@ -59,8 +61,8 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
         />
       </svg>
       {showText && (
-        <span className={`text-sm ${isFavorite ? "text-terracotta" : "text-charcoal/60"}`}>
-          {isFavorite ? "Saved" : "Save"}
+        <span className={`text-sm ${mounted && isFavorite ? "text-terracotta" : "text-charcoal/60"}`}>
+          {mounted && isFavorite ? "Saved" : "Save"}
         </span>
       )}
     </button>

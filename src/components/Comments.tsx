@@ -28,24 +28,26 @@ interface CommentsPreviewProps {
   category?: string;
   initialRatingAverage?: number;
   initialRatingCount?: number;
+  initialCommentCount?: number;
 }
 
 // Preview component to show at top of post
-export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, initialRatingCount = 0 }: CommentsPreviewProps) {
-  const [commentCount, setCommentCount] = useState(0);
+export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, initialRatingCount = 0, initialCommentCount }: CommentsPreviewProps) {
+  const [commentCount, setCommentCount] = useState(initialCommentCount ?? 0);
 
   const isRecipe = category === "cooking";
   const title = isRecipe ? "Rate & Review This Recipe" : "Rate & Review";
   const emptyText = isRecipe ? "Be the first to rate this recipe!" : "Be the first to leave a review!";
 
   useEffect(() => {
-    // Fetch comment count from API
+    // Skip fetch if server provided the count
+    if (initialCommentCount != null) return;
+
     async function fetchCommentCount() {
       try {
         const res = await fetch(`/api/comments?postSlug=${encodeURIComponent(postSlug)}`);
         if (res.ok) {
           const data = await res.json();
-          // Count only top-level comments
           const topLevel = data.comments?.filter((c: Comment) => !c.parentId) || [];
           setCommentCount(topLevel.length);
         }
@@ -54,7 +56,7 @@ export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, 
       }
     }
     fetchCommentCount();
-  }, [postSlug]);
+  }, [postSlug, initialCommentCount]);
 
   const scrollToComments = () => {
     const commentsSection = document.getElementById("comments-section");

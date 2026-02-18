@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getAllPosts, getPostBySlug, getRelatedPostsByTags, getAdjacentPosts, formatDate } from "@/lib/posts";
+import { getAllPosts, getPostBySlug, getRelatedPostsByTags, getAdjacentPosts, getCommentCount, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import dynamic from "next/dynamic";
@@ -109,10 +109,11 @@ export default async function PostPage({ params }: PageProps) {
   const badgeColor = categoryColors[post.category] || "bg-sage";
   const categoryLabel = categoryLabels[post.category] || post.category;
 
-  // Get related posts and adjacent posts in parallel
-  const [relatedPosts, { prev: prevPost, next: nextPost }] = await Promise.all([
+  // Get related posts, adjacent posts, and comment count in parallel
+  const [relatedPosts, { prev: prevPost, next: nextPost }, commentCount] = await Promise.all([
     getRelatedPostsByTags(slug, post.tags, post.category, 3),
     getAdjacentPosts(slug, post.category),
+    getCommentCount(slug),
   ]);
 
   const readingTime = calculateReadingTime(post.content);
@@ -339,6 +340,7 @@ export default async function PostPage({ params }: PageProps) {
           category={post.category}
           initialRatingAverage={post.ratingAverage}
           initialRatingCount={post.ratingCount}
+          initialCommentCount={commentCount}
         />
 
         {/* Mid-Post Email Signup CTA */}

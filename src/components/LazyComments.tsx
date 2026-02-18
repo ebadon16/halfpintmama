@@ -16,6 +16,7 @@ interface LazyCommentsProps {
 export function LazyComments(props: LazyCommentsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -42,8 +43,20 @@ export function LazyComments(props: LazyCommentsProps) {
     }
   }, []);
 
+  // Trigger fade-in after Comments mounts
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => setLoaded(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
   if (isVisible) {
-    return <Comments {...props} />;
+    return (
+      <div className={`transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}>
+        <Comments {...props} />
+      </div>
+    );
   }
 
   return (

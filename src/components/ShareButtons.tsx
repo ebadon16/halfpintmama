@@ -9,8 +9,7 @@ interface ShareButtonsProps {
 
 export function ShareButtons({ title, slug }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
-  const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://halfpintmama.com";
-  const url = `${baseUrl}/posts/${slug}`;
+  const url = `https://halfpintmama.com/posts/${slug}`;
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 
