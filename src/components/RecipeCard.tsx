@@ -18,7 +18,7 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
   const [servings, setServings] = useState(baseServings);
   const scale = servings / baseServings;
 
-  const hasTimeInfo = recipe.prepTime || recipe.cookTime || recipe.totalTime;
+  const hasTimeInfo = recipe.prepTime || recipe.cookTime;
   const hasIngredients = (recipe.ingredients && recipe.ingredients.length > 0) ||
                          (recipe.ingredientSections && recipe.ingredientSections.length > 0);
   const hasInstructions = (recipe.instructions && recipe.instructions.length > 0) ||
@@ -71,18 +71,6 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
               <div>
                 <p className="text-xs text-charcoal/70 uppercase tracking-wide">Cook</p>
                 <p className="font-semibold text-charcoal">{recipe.cookTime}</p>
-              </div>
-            </div>
-          )}
-
-          {recipe.totalTime && (
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-deep-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-xs text-charcoal/70 uppercase tracking-wide">Total</p>
-                <p className="font-semibold text-charcoal">{recipe.totalTime}</p>
               </div>
             </div>
           )}

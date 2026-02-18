@@ -173,7 +173,7 @@ export default async function Home() {
                           <p className="text-deep-sage font-medium">
                             {formatDate(latestPost.date)}
                           </p>
-                          {latestPost.ratingCount && latestPost.ratingCount > 0 && (
+                          {latestPost.ratingCount != null && latestPost.ratingCount > 0 && (
                             <>
                               <span className="text-charcoal/30">|</span>
                               <div className="flex items-center gap-1 text-sm text-charcoal/70">
@@ -214,7 +214,6 @@ export default async function Home() {
                     image={post.image}
                     ratingAverage={post.ratingAverage}
                     ratingCount={post.ratingCount}
-                    readingTime={post.readingTime}
                   />
                 ))}
               </div>

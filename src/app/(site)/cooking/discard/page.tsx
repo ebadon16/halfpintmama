@@ -99,7 +99,6 @@ export default async function DiscardPage({ searchParams }: PageProps) {
               image={post.image}
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
-              readingTime={post.readingTime}
               headingLevel="h2"
             />
           ))}

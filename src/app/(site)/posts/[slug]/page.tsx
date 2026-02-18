@@ -80,24 +80,6 @@ const categoryColors: Record<string, string> = {
   "mama-life": "bg-deep-sage",
 };
 
-// Calculate reading time from Portable Text blocks
-function calculateReadingTime(content: PortableTextBlock[]): number {
-  const wordsPerMinute = 200;
-  let wordCount = 0;
-
-  for (const block of content) {
-    if (block._type === "block" && Array.isArray(block.children)) {
-      for (const child of block.children as { text?: string }[]) {
-        if (child.text) {
-          wordCount += child.text.trim().split(/\s+/).length;
-        }
-      }
-    }
-  }
-
-  return Math.ceil(wordCount / wordsPerMinute);
-}
-
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
@@ -117,7 +99,6 @@ export default async function PostPage({ params }: PageProps) {
     getCommentCount(slug),
   ]);
 
-  const readingTime = calculateReadingTime(post.content);
 
   return (
     <div className="bg-cream">
@@ -217,29 +198,9 @@ export default async function PostPage({ params }: PageProps) {
             {post.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-sm">
-            <p className="text-deep-sage font-medium">
-              {formatDate(post.date)}
-            </p>
-            <span className="text-charcoal/30">|</span>
-            <p className="text-charcoal/70 flex items-center gap-1">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              {readingTime} min read
-            </p>
-            {post.recipe?.totalTime && (
-              <>
-                <span className="text-charcoal/30">|</span>
-                <p className="text-charcoal/70 flex items-center gap-1">
-                  <svg className="w-4 h-4 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
-                  </svg>
-                  {post.recipe.totalTime}
-                </p>
-              </>
-            )}
-          </div>
+          <p className="text-deep-sage font-medium text-sm">
+            {formatDate(post.date)}
+          </p>
 
           {/* Share, Save & Recipe Action Buttons */}
           <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -433,7 +394,6 @@ export default async function PostPage({ params }: PageProps) {
                   image={relatedPost.image}
                   ratingAverage={relatedPost.ratingAverage}
                   ratingCount={relatedPost.ratingCount}
-                  readingTime={relatedPost.readingTime}
                 />
               ))}
             </div>

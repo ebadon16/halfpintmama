@@ -32,7 +32,7 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
         Nutrition Facts
       </h4>
 
-      {servings && (
+      {servings != null && servings > 0 && (
         <p className="text-xs text-charcoal/60 mb-3">
           Per serving ({scale !== 1 ? "adjusted" : "original"} recipe)
         </p>
