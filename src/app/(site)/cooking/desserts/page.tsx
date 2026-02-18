@@ -98,6 +98,7 @@ export default async function DessertsPage({ searchParams }: PageProps) {
               image={post.image}
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
+              readingTime={post.readingTime}
             />
           ))}
         </div>

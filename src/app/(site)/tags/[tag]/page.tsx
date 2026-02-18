@@ -98,6 +98,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
               tags={post.tags}
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
+              readingTime={post.readingTime}
             />
           ))}
         </div>

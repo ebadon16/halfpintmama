@@ -56,6 +56,7 @@ export interface PostMeta {
   tags: string[];
   ratingAverage?: number;
   ratingCount?: number;
+  readingTime?: number;
 }
 
 export const POSTS_PER_PAGE = 12;
@@ -79,7 +80,12 @@ const postMetaProjection = `{
   "image": coalesce(image.asset->url, ""),
   "tags": coalesce(tags, []),
   "ratingAverage": coalesce(ratingAverage, 0),
-  "ratingCount": coalesce(ratingCount, 0)
+  "ratingCount": coalesce(ratingCount, 0),
+  "readingTime": select(
+    count(string::split(pt::text(body), " ")) >= 200 =>
+      round(count(string::split(pt::text(body), " ")) / 200),
+    1
+  )
 }`;
 
 const postFullProjection = `{
@@ -378,32 +384,31 @@ export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
   return posts;
 }
 
-// Aggregate site stats for social proof
+// Aggregate site stats for social proof — single GROQ query for performance
 export async function getSiteStats(): Promise<{
   totalPosts: number;
   cookingPosts: number;
   averageRating: number;
 }> {
-  const [totalPosts, cookingPosts, ratedPosts] = await Promise.all([
-    client.fetch<number>(`count(*[_type == "post"])`),
-    client.fetch<number>(`count(*[_type == "post" && category == "cooking"])`),
-    client.fetch<{ avg: number; cnt: number }[]>(
-      `*[_type == "post" && ratingCount > 0]{
-        "avg": ratingAverage,
-        "cnt": ratingCount
-      }`
-    ),
-  ]);
+  const result = await client.fetch<{
+    totalPosts: number;
+    cookingPosts: number;
+    ratedPosts: { avg: number; cnt: number }[];
+  }>(`{
+    "totalPosts": count(*[_type == "post"]),
+    "cookingPosts": count(*[_type == "post" && category == "cooking"]),
+    "ratedPosts": *[_type == "post" && ratingCount > 0]{ "avg": ratingAverage, "cnt": ratingCount }
+  }`);
 
   // Weighted average across all rated posts
   let averageRating = 0;
-  if (ratedPosts.length > 0) {
-    const totalWeighted = ratedPosts.reduce((sum, p) => sum + p.avg * p.cnt, 0);
-    const totalCount = ratedPosts.reduce((sum, p) => sum + p.cnt, 0);
+  if (result.ratedPosts.length > 0) {
+    const totalWeighted = result.ratedPosts.reduce((sum, p) => sum + p.avg * p.cnt, 0);
+    const totalCount = result.ratedPosts.reduce((sum, p) => sum + p.cnt, 0);
     averageRating = totalCount > 0 ? totalWeighted / totalCount : 0;
   }
 
-  return { totalPosts, cookingPosts, averageRating };
+  return { totalPosts: result.totalPosts, cookingPosts: result.cookingPosts, averageRating };
 }
 
 // Single latest post

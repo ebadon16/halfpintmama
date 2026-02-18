@@ -78,6 +78,7 @@ export default async function PostsPage({ searchParams }: PageProps) {
               image={post.image}
               ratingAverage={post.ratingAverage}
               ratingCount={post.ratingCount}
+              readingTime={post.readingTime}
             />
           ))}
         </div>

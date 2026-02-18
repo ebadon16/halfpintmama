@@ -213,6 +213,7 @@ export default async function Home() {
                     image={post.image}
                     ratingAverage={post.ratingAverage}
                     ratingCount={post.ratingCount}
+                    readingTime={post.readingTime}
                   />
                 ))}
               </div>

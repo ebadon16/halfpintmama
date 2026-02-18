@@ -49,6 +49,7 @@ export async function GET(request: NextRequest) {
       image: string;
       ratingAverage: number;
       ratingCount: number;
+      readingTime: number;
     }>
   >(
     `*[${filter}] | order(date desc) {
@@ -59,7 +60,12 @@ export async function GET(request: NextRequest) {
       date,
       "image": coalesce(image.asset->url, ""),
       "ratingAverage": coalesce(ratingAverage, 0),
-      "ratingCount": coalesce(ratingCount, 0)
+      "ratingCount": coalesce(ratingCount, 0),
+      "readingTime": select(
+        count(string::split(pt::text(body), " ")) >= 200 =>
+          round(count(string::split(pt::text(body), " ")) / 200),
+        1
+      )
     }`,
     params
   );

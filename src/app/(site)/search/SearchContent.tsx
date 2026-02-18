@@ -18,6 +18,7 @@ interface SearchResult {
   image?: string;
   ratingAverage?: number;
   ratingCount?: number;
+  readingTime?: number;
 }
 
 interface SearchContentProps {
@@ -245,6 +246,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
                 image={result.image}
                 ratingAverage={result.ratingAverage}
                 ratingCount={result.ratingCount}
+                readingTime={result.readingTime}
               />
             ))}
           </div>
