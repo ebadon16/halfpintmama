@@ -8,6 +8,7 @@ export const metadata = {
   title: "Shop | Half Pint Mama",
   description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with evidence-based recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   alternates: { canonical: "https://halfpintmama.com/shop" },
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Shop | Half Pint Mama",
     description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",
