@@ -361,14 +361,17 @@ export async function getRelatedPostsByTags(
 
 // Popular posts (highest rated)
 export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
+  const safeLimit = Math.min(Math.max(Math.floor(limit), 1), 100);
   const posts = await client.fetch<PostMeta[]>(
-    `*[_type == "post" && ratingCount > 0] | order(ratingAverage desc, ratingCount desc) [0...${limit}] ${postMetaProjection}`
+    `*[_type == "post" && ratingCount > 0] | order(ratingAverage desc, ratingCount desc) [0...$limit] ${postMetaProjection}`,
+    { limit: safeLimit }
   );
 
   // Fall back to latest posts if no ratings exist
   if (posts.length === 0) {
     return client.fetch<PostMeta[]>(
-      `*[_type == "post"] | order(date desc) [0...${limit}] ${postMetaProjection}`
+      `*[_type == "post"] | order(date desc) [0...$limit] ${postMetaProjection}`,
+      { limit: safeLimit }
     );
   }
 

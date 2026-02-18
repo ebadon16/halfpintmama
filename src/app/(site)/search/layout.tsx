@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   description: "Search recipes, travel guides, DIY projects, and more on Half Pint Mama.",
   alternates: { canonical: "https://halfpintmama.com/search" },
   openGraph: { images: ["/logo.jpg"] },
+  twitter: {
+    card: "summary",
+    title: "Search | Half Pint Mama",
+    description: "Search recipes, travel guides, DIY projects, and more on Half Pint Mama.",
+  },
 };
 
 export default function SearchLayout({ children }: { children: React.ReactNode }) {

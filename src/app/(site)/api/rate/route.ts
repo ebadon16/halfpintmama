@@ -2,13 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@sanity/client";
 import { rateLimit } from "@/lib/rate-limit";
 
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2024-01-01",
-  token: process.env.SANITY_API_TOKEN,
-  useCdn: false,
-});
+function getWriteClient() {
+  const token = process.env.SANITY_API_TOKEN;
+  if (!token) {
+    throw new Error("SANITY_API_TOKEN is not configured");
+  }
+  return createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    apiVersion: "2024-01-01",
+    token,
+    useCdn: false,
+  });
+}
 
 interface RatingData {
   postSlug: string;
@@ -34,6 +40,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Retry loop to handle concurrent rating updates
+    const client = getWriteClient();
     const MAX_RETRIES = 3;
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
       // Get the post document ID, revision, and current rating data

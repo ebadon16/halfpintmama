@@ -1,13 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  if (!rateLimit(ip, 5, 60_000)) {
+    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   const secret = request.nextUrl.searchParams.get("secret");
 
-  if (
-    process.env.SANITY_REVALIDATE_SECRET &&
-    secret !== process.env.SANITY_REVALIDATE_SECRET
-  ) {
+  if (!process.env.SANITY_REVALIDATE_SECRET) {
+    return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
+  }
+
+  if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
     return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
   }
 
@@ -29,12 +36,13 @@ export async function POST(request: NextRequest) {
     revalidatePath("/cooking/discard");
     revalidatePath("/cooking/desserts");
     revalidatePath("/cooking/snacks");
-    revalidatePath("/travel");
-    revalidatePath("/diy");
     revalidatePath("/mama-life");
+    revalidatePath("/mama-life/parenting");
+    revalidatePath("/mama-life/travel");
+    revalidatePath("/mama-life/diy");
+    revalidatePath("/mama-life/homesteading");
     revalidatePath("/tags");
     revalidatePath("/start-here");
-    revalidatePath("/lifestyle");
     revalidatePath("/feed.xml");
 
     return NextResponse.json({ revalidated: true });

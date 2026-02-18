@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: TagPageProps) {
     title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
     description,
     alternates: {
-      canonical: `/tags/${tag}`,
+      canonical: `https://halfpintmama.com/tags/${tag}`,
     },
     openGraph: {
       title: `Posts tagged "${decodedTag}" | Half Pint Mama`,

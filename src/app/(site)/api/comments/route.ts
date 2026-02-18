@@ -16,13 +16,19 @@ const readClient = createClient({
 });
 
 // Write client for creating comments
-const writeClient = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
-  apiVersion: "2024-01-01",
-  token: process.env.SANITY_API_TOKEN,
-  useCdn: false,
-});
+function getWriteClient() {
+  const token = process.env.SANITY_API_TOKEN;
+  if (!token) {
+    throw new Error("SANITY_API_TOKEN is not configured");
+  }
+  return createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    apiVersion: "2024-01-01",
+    token,
+    useCdn: false,
+  });
+}
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -106,7 +112,7 @@ export async function POST(request: NextRequest) {
     const safePostSlug = postSlug.trim().slice(0, 200);
 
     // Create comment in Sanity
-    const newComment = await writeClient.create({
+    const newComment = await getWriteClient().create({
       _type: "comment",
       postSlug: safePostSlug,
       author: safeAuthor,
