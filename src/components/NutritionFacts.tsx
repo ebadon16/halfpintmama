@@ -38,17 +38,28 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
         </p>
       )}
 
-      <div className="grid grid-cols-3 gap-3">
-        {items.map(({ label, value, unit }) => (
-          <div key={label} className="text-center">
-            <p className="text-lg font-bold text-deep-sage">
-              {value}
-              <span className="text-sm font-normal">{unit}</span>
-            </p>
-            <p className="text-xs text-charcoal/60">{label}</p>
-          </div>
-        ))}
-      </div>
+      <table className="w-full">
+        <caption className="sr-only">Nutrition facts per serving</caption>
+        <thead>
+          <tr>
+            {items.map(({ label }) => (
+              <th key={label} scope="col" className="text-xs text-charcoal/60 font-normal pb-1">
+                {label}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {items.map(({ label, value, unit }) => (
+              <td key={label} className="text-center text-lg font-bold text-deep-sage py-1">
+                {value}
+                <span className="text-sm font-normal">{unit}</span>
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
 
       <p className="text-xs text-charcoal/50 mt-3 italic">
         * Nutritional values are estimates and may vary.

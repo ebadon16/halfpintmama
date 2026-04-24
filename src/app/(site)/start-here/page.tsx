@@ -27,7 +27,6 @@ export const metadata = {
 
 export default async function StartHerePage() {
   const cookingPosts = (await getPostsByCategory("cooking")).slice(0, 3);
-  const mamaLifePosts = (await getPostsByCategory("mama-life")).slice(0, 3);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",

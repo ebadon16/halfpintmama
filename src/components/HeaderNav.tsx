@@ -14,15 +14,16 @@ const navLinks = [
 ];
 
 export function HeaderNav() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [lastPathname, setLastPathname] = useState(pathname);
 
-  // Close mobile menu on route change
-  useEffect(() => {
+  // Close mobile menu on route change — derived from pathname, no effect needed.
+  if (lastPathname !== pathname) {
+    setLastPathname(pathname);
     setIsMenuOpen(false);
-  }, [pathname]);
+  }
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";

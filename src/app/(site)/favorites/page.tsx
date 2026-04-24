@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { FavoriteButton } from "@/components/FavoriteButton";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Heart } from "lucide-react";
 
@@ -28,6 +27,7 @@ export default function FavoritesPage() {
       const parsed = JSON.parse(localStorage.getItem("favorites") || "[]");
       if (Array.isArray(parsed)) stored = parsed;
     } catch { /* corrupted data */ }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Browser-only storage read; no SSR-safe alternative.
     setFavorites(stored);
     setIsLoaded(true);
   }, []);

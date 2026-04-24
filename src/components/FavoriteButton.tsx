@@ -19,6 +19,7 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
       const parsed = JSON.parse(localStorage.getItem("favorites") || "[]");
       if (Array.isArray(parsed)) favorites = parsed;
     } catch { /* corrupted data */ }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Browser-only storage read; no SSR-safe alternative.
     setIsFavorite(favorites.some((f) => f.slug === slug));
     setMounted(true);
   }, [slug]);

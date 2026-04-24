@@ -3,7 +3,9 @@
 import { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
-const Comments = dynamic(() => import("@/components/Comments").then((m) => m.Comments));
+const Comments = dynamic(() => import("@/components/Comments").then((m) => m.Comments), {
+  ssr: false,
+});
 
 interface LazyCommentsProps {
   postSlug: string;
@@ -34,13 +36,6 @@ export function LazyComments(props: LazyCommentsProps) {
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
-
-  // Check if user navigated to #comments-section directly
-  useEffect(() => {
-    if (window.location.hash === "#comments-section") {
-      setIsVisible(true);
-    }
   }, []);
 
   // Trigger fade-in after Comments mounts

@@ -19,23 +19,24 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: TagPageProps) {
   const { tag } = await params;
-  const decodedTag = decodeURIComponent(tag);
-  const description = `Explore all Half Pint Mama posts tagged with "${decodedTag}". Find recipes, parenting tips, DIY projects, and travel guides related to ${decodedTag}.`;
+  const normalizedTag = decodeURIComponent(tag).toLowerCase();
+  const canonicalPath = `tags/${encodeURIComponent(normalizedTag)}`;
+  const description = `Explore all Half Pint Mama posts tagged with "${normalizedTag}". Find recipes, parenting tips, DIY projects, and travel guides related to ${normalizedTag}.`;
   return {
-    title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
+    title: `Posts tagged "${normalizedTag}" | Half Pint Mama`,
     description,
     alternates: {
-      canonical: `https://halfpintmama.com/tags/${tag}`,
+      canonical: `https://halfpintmama.com/${canonicalPath}`,
     },
     openGraph: {
-      title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
+      title: `Posts tagged "${normalizedTag}" | Half Pint Mama`,
       description,
       type: "website",
       images: ["/logo.jpg"],
     },
     twitter: {
       card: "summary" as const,
-      title: `Posts tagged "${decodedTag}" | Half Pint Mama`,
+      title: `Posts tagged "${normalizedTag}" | Half Pint Mama`,
       description,
     },
   };
@@ -44,10 +45,11 @@ export async function generateMetadata({ params }: TagPageProps) {
 export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { tag } = await params;
   const { page } = await searchParams;
-  const decodedTag = decodeURIComponent(tag);
+  const normalizedTag = decodeURIComponent(tag).toLowerCase();
+  const encodedTag = encodeURIComponent(normalizedTag);
   const currentPage = parseInt(page || "1", 10);
 
-  const { items: posts, totalCount, totalPages } = await getPaginatedPostsByTag(decodedTag, currentPage);
+  const { items: posts, totalCount, totalPages } = await getPaginatedPostsByTag(normalizedTag, currentPage);
 
   if (totalCount === 0) {
     notFound();
@@ -63,7 +65,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
           itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://halfpintmama.com" },
             { "@type": "ListItem", position: 2, name: "Tags", item: "https://halfpintmama.com/tags" },
-            { "@type": "ListItem", position: 3, name: decodedTag, item: `https://halfpintmama.com/tags/${tag}` },
+            { "@type": "ListItem", position: 3, name: normalizedTag, item: `https://halfpintmama.com/tags/${encodedTag}` },
           ],
         }) }}
       />
@@ -78,10 +80,10 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
           </Link>
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
             <span className="text-charcoal/50">#</span>
-            <span className="capitalize">{decodedTag}</span>
+            <span className="capitalize">{normalizedTag}</span>
           </h1>
           <p className="text-charcoal/70">
-            {totalCount} post{totalCount !== 1 ? "s" : ""} tagged with &quot;{decodedTag}&quot;
+            {totalCount} post{totalCount !== 1 ? "s" : ""} tagged with &quot;{normalizedTag}&quot;
           </p>
         </div>
 
@@ -107,7 +109,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
-          basePath={`/tags/${tag}`}
+          basePath={`/tags/${encodedTag}`}
         />
 
         <HomeEmailSignup />

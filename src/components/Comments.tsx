@@ -357,30 +357,33 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="author" className="block text-sm font-medium text-charcoal mb-1">
-                    Name *
+                    Name <span aria-hidden="true">*</span>
                   </label>
                   <input
                     type="text"
                     id="author"
                     required
+                    aria-required="true"
                     value={formData.author}
                     onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                    className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors"
+                    className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 transition-colors"
                     placeholder="Your name"
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-1">
-                    Email * <span className="text-xs text-charcoal/70">(not published)</span>
+                    Email <span aria-hidden="true">*</span> <span id="email-hint" className="text-xs text-charcoal/70">(not published)</span>
                   </label>
                   <input
                     type="email"
                     id="email"
                     required
+                    aria-required="true"
+                    aria-describedby="email-hint"
                     aria-label="Email address"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors"
+                    className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 transition-colors"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -388,15 +391,16 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
 
               <div>
                 <label htmlFor="content" className="block text-sm font-medium text-charcoal mb-1">
-                  Comment *
+                  Comment <span aria-hidden="true">*</span>
                 </label>
                 <textarea
                   id="content"
                   required
+                  aria-required="true"
                   rows={4}
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage transition-colors resize-none"
+                  className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 transition-colors resize-none"
                   placeholder={replyingTo ? "Write your reply..." : isRecipe ? "Share your experience with this recipe..." : "Share your thoughts..."}
                 />
               </div>

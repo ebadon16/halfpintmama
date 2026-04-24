@@ -16,6 +16,8 @@ const sizesAttr: Record<string, string> = {
   large: "(max-width: 600px) 100vw, 600px",
 };
 
+const YOUTUBE_ID_RE = /^[a-zA-Z0-9_-]{11}$/;
+
 function getYouTubeId(url: string): string | null {
   const patterns = [
     /(?:youtube\.com\/watch\?v=)([^&\s]+)/,
@@ -24,7 +26,7 @@ function getYouTubeId(url: string): string | null {
   ];
   for (const pattern of patterns) {
     const match = url.match(pattern);
-    if (match) return match[1];
+    if (match && YOUTUBE_ID_RE.test(match[1])) return match[1];
   }
   return null;
 }

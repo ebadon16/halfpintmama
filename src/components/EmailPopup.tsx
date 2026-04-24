@@ -34,6 +34,7 @@ export function EmailPopup() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const successTimerRef: MutableRefObject<ReturnType<typeof setTimeout> | null> = useRef(null);
   const pathname = usePathname();
   const ctx = usePopupContext(pathname);
@@ -73,6 +74,8 @@ export function EmailPopup() {
     setIsVisible(false);
     setIsDismissed(true);
     try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }
+    // Restore focus to whatever was focused before the popup opened.
+    previouslyFocusedRef.current?.focus?.();
   }, []);
 
   // Prevent body scroll when popup is visible
@@ -112,7 +115,8 @@ export function EmailPopup() {
 
     document.addEventListener("keydown", handleKeyDown);
 
-    // Focus first interactive element on open
+    // Remember who had focus before opening, then move focus into the dialog.
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
     const firstInput = dialogRef.current?.querySelector<HTMLElement>("input, button");
     firstInput?.focus();
 
@@ -218,7 +222,7 @@ export function EmailPopup() {
               placeholder="Enter your email"
               aria-label="Email address"
               disabled={status === "loading"}
-              className="w-full px-4 py-3 rounded-full text-charcoal border-2 border-sage/50 focus:outline-none focus:border-sage mb-3 disabled:opacity-50"
+              className="w-full px-4 py-3 rounded-full text-charcoal border-2 border-sage/50 focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 mb-3 disabled:opacity-50"
             />
 
             {status === "error" && (

@@ -14,7 +14,6 @@ import { LazyComments } from "@/components/LazyComments";
 const CommentsPreview = dynamic(() => import("@/components/Comments").then(m => m.CommentsPreview));
 const RecipeCard = dynamic(() => import("@/components/RecipeCard").then(m => m.RecipeCard));
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
-import type { PortableTextBlock } from "@portabletext/react";
 
 export const revalidate = 3600;
 

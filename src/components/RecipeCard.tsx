@@ -44,6 +44,7 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
           width={112}
           height={112}
           sizes="112px"
+          priority
           className="rounded-full flex-shrink-0 self-center"
         />
       </div>

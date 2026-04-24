@@ -18,7 +18,11 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
       const stored = localStorage.getItem(RECENT_SEARCHES_KEY);
       if (stored) {
         try {
-          setRecentSearches(JSON.parse(stored));
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- Reading browser-only storage on mount; no SSR-safe alternative.
+            setRecentSearches(parsed);
+          }
         } catch { /* corrupted data — ignore */ }
       }
     } catch { /* storage unavailable */ }

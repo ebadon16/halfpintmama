@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { rateLimit } from "@/lib/rate-limit";
+import { getClientIp, safeEquals } from "@/lib/http";
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+  const ip = getClientIp(request);
   if (!rateLimit(ip, 5, 60_000)) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
@@ -13,11 +14,12 @@ export async function POST(request: NextRequest) {
     request.headers.get("authorization")?.replace("Bearer ", "") ||
     request.nextUrl.searchParams.get("secret");
 
-  if (!process.env.SANITY_REVALIDATE_SECRET) {
+  const expected = process.env.SANITY_REVALIDATE_SECRET;
+  if (!expected) {
     return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
   }
 
-  if (!secret || secret !== process.env.SANITY_REVALIDATE_SECRET) {
+  if (!safeEquals(secret, expected)) {
     return NextResponse.json({ error: "Invalid secret" }, { status: 401 });
   }
 

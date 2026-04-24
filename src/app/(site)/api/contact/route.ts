@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { escapeHtml } from "@/lib/sanitize";
 import { rateLimit } from "@/lib/rate-limit";
+import { getClientIp, isSameOrigin } from "@/lib/http";
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const CONTACT_EMAIL = "keegan@halfpintmama.com";
@@ -9,7 +10,11 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
   try {
-    const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    if (!isSameOrigin(request)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    const ip = getClientIp(request);
     if (!rateLimit(ip, 5, 60_000)) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }

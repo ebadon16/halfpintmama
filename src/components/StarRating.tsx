@@ -44,7 +44,7 @@ export function StarRating({ rating, onRate, readonly = false, size = "md" }: St
   }
 
   return (
-    <div className="flex items-center gap-1">
+    <div role="group" aria-label="Rate this post from 1 to 5 stars" className="flex items-center gap-1">
       {[1, 2, 3, 4, 5].map((index) => {
         const isFilled = index <= (hoverRating || rating);
         return (

@@ -7,7 +7,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://halfpintmama.com";
   const [posts, tags] = await Promise.all([getAllPosts(), getAllTags()]);
 
-  // Static pages (excludes /favorites which is noindexed client-only)
+  // Static pages (excludes noindexed pages: /favorites, /shop, /mama-guide)
+  const buildDate = new Date();
   const staticPages: MetadataRoute.Sitemap = [
     "",
     "/posts",
@@ -24,7 +25,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/start-here",
     "/about",
     "/contact",
-    "/shop",
     "/products",
     "/search",
     "/free-guide",
@@ -34,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/terms",
   ].map((route) => ({
     url: `${baseUrl}${route}`,
-    lastModified: new Date("2026-02-06"),
+    lastModified: buildDate,
     changeFrequency: (route === "" ? "daily" : "weekly") as ChangeFrequency,
     priority: route === "" ? 1 : route === "/posts" ? 0.9 : route.includes("/cooking") ? 0.9 : 0.8,
   }));

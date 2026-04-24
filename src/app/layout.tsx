@@ -1,4 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#5C6B52",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://halfpintmama.com"),

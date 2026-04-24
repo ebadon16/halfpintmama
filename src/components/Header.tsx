@@ -13,7 +13,7 @@ export function Header() {
       >
         <Image
           src="/hpm-banner-v2.png"
-          alt="Half Pint Mama"
+          alt=""
           width={1920}
           height={280}
           className="w-full h-auto block"
