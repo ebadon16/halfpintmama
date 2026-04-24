@@ -2,12 +2,15 @@ import { getAllPosts } from "@/lib/posts";
 
 export const revalidate = 3600;
 
+// Latest 50 posts; older content still discoverable via sitemap.
+const RSS_POST_LIMIT = 50;
+
 export async function GET() {
   const posts = await getAllPosts();
   const baseUrl = "https://halfpintmama.com";
 
   const rssItems = posts
-    .slice(0, 20) // Latest 20 posts
+    .slice(0, RSS_POST_LIMIT)
     .map(
       (post) => `
     <item>
@@ -17,13 +20,13 @@ export async function GET() {
       <description><![CDATA[${post.excerpt.replace(/\]\]>/g, "]]]]><![CDATA[>")}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <category>${escapeXml(post.category)}</category>
-      ${post.image ? `<enclosure url="${escapeXml(post.image)}" type="image/jpeg" length="0"/>` : ""}
+      ${post.image ? `<media:content url="${escapeXml(post.image)}" medium="image"/>` : ""}
     </item>`
     )
     .join("");
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Half Pint Mama</title>
     <link>${baseUrl}</link>

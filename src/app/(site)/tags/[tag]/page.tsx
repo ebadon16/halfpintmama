@@ -4,6 +4,7 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { notFound } from "next/navigation";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -17,9 +18,11 @@ export async function generateStaticParams() {
   return tags.map(({ tag }) => ({ tag: encodeURIComponent(tag) }));
 }
 
-export async function generateMetadata({ params }: TagPageProps) {
+export async function generateMetadata({ params, searchParams }: TagPageProps) {
   const { tag } = await params;
+  const { page } = await searchParams;
   const normalizedTag = decodeURIComponent(tag).toLowerCase();
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
 
   // If no posts match this tag, tell crawlers to skip (can't set 404 from page).
   const tagHasPosts = await getPaginatedPostsByTag(normalizedTag, 1).then(r => r.totalCount > 0);
@@ -30,25 +33,22 @@ export async function generateMetadata({ params }: TagPageProps) {
     };
   }
 
-  const canonicalPath = `tags/${encodeURIComponent(normalizedTag)}`;
+  const baseTitle = `Posts tagged "${normalizedTag}" | Half Pint Mama`;
+  const title = paginatedTitle(baseTitle, currentPage);
+  const canonical = paginatedCanonical(`/tags/${encodeURIComponent(normalizedTag)}`, currentPage);
   const description = `Explore all Half Pint Mama posts tagged with "${normalizedTag}". Find recipes, parenting tips, DIY projects, and travel guides related to ${normalizedTag}.`;
   return {
-    title: `Posts tagged "${normalizedTag}" | Half Pint Mama`,
+    title,
     description,
-    alternates: {
-      canonical: `https://halfpintmama.com/${canonicalPath}`,
-    },
+    alternates: { canonical },
     openGraph: {
-      title: `Posts tagged "${normalizedTag}" | Half Pint Mama`,
+      title,
       description,
-      type: "website",
+      type: "website" as const,
+      url: canonical,
       images: ["/logo.jpg"],
     },
-    twitter: {
-      card: "summary" as const,
-      title: `Posts tagged "${normalizedTag}" | Half Pint Mama`,
-      description,
-    },
+    twitter: { card: "summary" as const, title, description },
   };
 }
 

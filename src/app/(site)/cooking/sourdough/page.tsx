@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Wheat } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Sourdough & Bread | Half Pint Mama",
-  description: "Master sourdough bread baking with tested recipes from a bread-obsessed mama. Beginner-friendly guides and techniques for crusty, beautiful homemade loaves.",
-  alternates: { canonical: "https://halfpintmama.com/cooking/sourdough" },
-  openGraph: {
-    title: "Sourdough & Bread | Half Pint Mama",
-    description: "Master sourdough bread baking with tested recipes from a bread-obsessed mama.",
-    type: "website",
-    url: "https://halfpintmama.com/cooking/sourdough",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Sourdough & Bread | Half Pint Mama",
-    description: "Master sourdough bread baking with tested recipes from a bread-obsessed mama.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Sourdough & Bread | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/cooking/sourdough", currentPage);
+  const description = "Master sourdough bread baking with tested recipes from a bread-obsessed mama. Beginner-friendly guides and techniques for crusty, beautiful homemade loaves.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function SourdoughPage({ searchParams }: PageProps) {

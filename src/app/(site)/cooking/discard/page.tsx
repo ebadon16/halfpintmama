@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { FlaskConical } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Sourdough Discard Recipes | Half Pint Mama",
-  description: "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more. Turn your excess starter into delicious family favorites.",
-  alternates: { canonical: "https://halfpintmama.com/cooking/discard" },
-  openGraph: {
-    title: "Sourdough Discard Recipes | Half Pint Mama",
-    description: "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more.",
-    type: "website",
-    url: "https://halfpintmama.com/cooking/discard",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Sourdough Discard Recipes | Half Pint Mama",
-    description: "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Sourdough Discard Recipes | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/cooking/discard", currentPage);
+  const description = "Never waste sourdough discard again! Easy recipes for crackers, pancakes, pizza dough, and more. Turn your excess starter into delicious family favorites.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function DiscardPage({ searchParams }: PageProps) {

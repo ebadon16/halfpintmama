@@ -6,29 +6,33 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Heart } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Mama Life | Half Pint Mama",
-  description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos together.",
-  alternates: { canonical: "https://halfpintmama.com/mama-life" },
-  openGraph: {
-    title: "Mama Life | Half Pint Mama",
-    description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two.",
-    type: "website",
-    url: "https://halfpintmama.com/mama-life",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Mama Life | Half Pint Mama",
-    description: "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Mama Life | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/mama-life", currentPage);
+  const description = "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos together.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      type: "website" as const,
+      url: canonical,
+      images: ["/logo.jpg"],
+    },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function MamaLifePage({ searchParams }: PageProps) {

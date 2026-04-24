@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Baby } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Parenting | Half Pint Mama",
-  description: "Honest parenting tips from a Pediatric ER RN and mama of two. Real talk about toddlers, babies, breastfeeding, and navigating the beautiful chaos of motherhood.",
-  alternates: { canonical: "https://halfpintmama.com/mama-life/parenting" },
-  openGraph: {
-    title: "Parenting | Half Pint Mama",
-    description: "Honest parenting tips from a Pediatric ER RN and mama of two.",
-    type: "website",
-    url: "https://halfpintmama.com/mama-life/parenting",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Parenting | Half Pint Mama",
-    description: "Honest parenting tips from a Pediatric ER RN and mama of two.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Parenting | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/mama-life/parenting", currentPage);
+  const description = "Honest parenting tips from a Pediatric ER RN and mama of two. Real talk about toddlers, babies, breastfeeding, and navigating the beautiful chaos of motherhood.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function ParentingPage({ searchParams }: PageProps) {

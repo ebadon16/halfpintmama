@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Cookie } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Desserts & Sweet Treats | Half Pint Mama",
-  description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats. Family-tested sweet treats that are perfect for any occasion or holiday.",
-  alternates: { canonical: "https://halfpintmama.com/cooking/desserts" },
-  openGraph: {
-    title: "Desserts & Sweet Treats | Half Pint Mama",
-    description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats.",
-    type: "website",
-    url: "https://halfpintmama.com/cooking/desserts",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Desserts & Sweet Treats | Half Pint Mama",
-    description: "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Desserts & Sweet Treats | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/cooking/desserts", currentPage);
+  const description = "Homemade dessert recipes including cookies, brownies, cakes, and chocolate treats. Family-tested sweet treats that are perfect for any occasion or holiday.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function DessertsPage({ searchParams }: PageProps) {

@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Sandwich } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Snacks & Finger Foods | Half Pint Mama",
-  description: "Healthy homemade snacks perfect for kids and the whole family. Easy recipes for crackers, granola, popsicles, and finger foods for lunchboxes and on-the-go.",
-  alternates: { canonical: "https://halfpintmama.com/cooking/snacks" },
-  openGraph: {
-    title: "Snacks & Finger Foods | Half Pint Mama",
-    description: "Healthy homemade snacks perfect for kids and the whole family.",
-    type: "website",
-    url: "https://halfpintmama.com/cooking/snacks",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Snacks & Finger Foods | Half Pint Mama",
-    description: "Healthy homemade snacks perfect for kids and the whole family.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Snacks & Finger Foods | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/cooking/snacks", currentPage);
+  const description = "Healthy homemade snacks perfect for kids and the whole family. Easy recipes for crackers, granola, popsicles, and finger foods for lunchboxes and on-the-go.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function SnacksPage({ searchParams }: PageProps) {

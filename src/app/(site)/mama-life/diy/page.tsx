@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Scissors } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "DIY & Crafts | Half Pint Mama",
-  description: "Fun DIY projects, kid costumes, seasonal garlands, and creative crafts for families. Simple ideas that make your home feel special.",
-  alternates: { canonical: "https://halfpintmama.com/mama-life/diy" },
-  openGraph: {
-    title: "DIY & Crafts | Half Pint Mama",
-    description: "Fun DIY projects, kid costumes, and creative crafts for families.",
-    type: "website",
-    url: "https://halfpintmama.com/mama-life/diy",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "DIY & Crafts | Half Pint Mama",
-    description: "Fun DIY projects, kid costumes, and creative crafts for families.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("DIY & Crafts | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/mama-life/diy", currentPage);
+  const description = "Fun DIY projects, kid costumes, seasonal garlands, and creative crafts for families. Simple ideas that make your home feel special.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function DiyPage({ searchParams }: PageProps) {

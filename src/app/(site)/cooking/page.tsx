@@ -6,29 +6,33 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Wheat } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "From Scratch Kitchen | Half Pint Mama",
-  description: "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama. Easy homemade recipes your whole family will love.",
-  alternates: { canonical: "https://halfpintmama.com/cooking" },
-  openGraph: {
-    title: "From Scratch Kitchen | Half Pint Mama",
-    description: "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama.",
-    type: "website",
-    url: "https://halfpintmama.com/cooking",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "From Scratch Kitchen | Half Pint Mama",
-    description: "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("From Scratch Kitchen | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/cooking", currentPage);
+  const description = "Sourdough recipes, discard ideas, healthy snacks, and from-scratch baking from a bread-obsessed mama. Easy homemade recipes your whole family will love.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      type: "website" as const,
+      url: canonical,
+      images: ["/logo.jpg"],
+    },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function CookingPage({ searchParams }: PageProps) {

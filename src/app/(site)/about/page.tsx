@@ -21,10 +21,11 @@ export const metadata = {
   },
 };
 
-// Person schema for author SEO
+// Person schema for author SEO; @id lets post schemas reference this canonical Person entity.
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://halfpintmama.com/about#person",
   name: "Keegan",
   jobTitle: "Pediatric ER RN & Blogger",
   description: "A Pediatric ER RN and mama of two on a mission to get back to the basics with real food, simple recipes, and intentional living.",

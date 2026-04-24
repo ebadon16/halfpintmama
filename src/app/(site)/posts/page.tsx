@@ -3,29 +3,38 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 3600;
 
-export const metadata = {
-  title: "All Posts | Half Pint Mama",
-  description: "Browse all blog posts on Half Pint Mama. Find from-scratch recipes, sourdough baking guides, and honest parenting tips from a Pediatric ER RN and mama of two.",
-  alternates: { canonical: "https://halfpintmama.com/posts" },
-  openGraph: {
-    title: "All Posts | Half Pint Mama",
-    description: "Browse all blog posts on Half Pint Mama. From-scratch recipes, sourdough baking, and honest parenting tips.",
-    type: "website",
-    url: "https://halfpintmama.com/posts",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "All Posts | Half Pint Mama",
-    description: "Browse all blog posts on Half Pint Mama. From-scratch recipes, sourdough baking, and honest parenting tips.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const baseTitle = "All Posts | Half Pint Mama";
+  const title = paginatedTitle(baseTitle, currentPage);
+  const canonical = paginatedCanonical("/posts", currentPage);
+  const description = "Browse all blog posts on Half Pint Mama. Find from-scratch recipes, sourdough baking guides, and honest parenting tips from a Pediatric ER RN and mama of two.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      type: "website" as const,
+      url: canonical,
+      images: ["/logo.jpg"],
+    },
+    twitter: {
+      card: "summary" as const,
+      title,
+      description,
+    },
+  };
 }
 
 export default async function PostsPage({ searchParams }: PageProps) {

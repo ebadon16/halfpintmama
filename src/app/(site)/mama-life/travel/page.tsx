@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Plane } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Family Travel | Half Pint Mama",
-  description: "Family travel tips, road trip ideas, and adventure guides from a mama of two. Honest reviews of destinations like Banff and Montana with littles in tow.",
-  alternates: { canonical: "https://halfpintmama.com/mama-life/travel" },
-  openGraph: {
-    title: "Family Travel | Half Pint Mama",
-    description: "Family travel tips, road trip ideas, and adventure guides from a mama of two.",
-    type: "website",
-    url: "https://halfpintmama.com/mama-life/travel",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Family Travel | Half Pint Mama",
-    description: "Family travel tips, road trip ideas, and adventure guides from a mama of two.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Family Travel | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/mama-life/travel", currentPage);
+  const description = "Family travel tips, road trip ideas, and adventure guides from a mama of two. Honest reviews of destinations like Banff and Montana with littles in tow.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function TravelPage({ searchParams }: PageProps) {

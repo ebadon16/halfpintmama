@@ -1,0 +1,29 @@
+export const SITE_URL = "https://halfpintmama.com";
+
+// Append "?page=N" to a canonical URL when past page 1. Keeps pagination pages
+// from competing with each other via duplicate canonicals pointing to page 1.
+export function paginatedCanonical(basePath: string, currentPage: number): string {
+  const base = `${SITE_URL}${basePath}`;
+  return currentPage > 1 ? `${base}?page=${currentPage}` : base;
+}
+
+// "All Posts | Half Pint Mama" → "All Posts — Page 2 | Half Pint Mama"
+export function paginatedTitle(baseTitle: string, currentPage: number): string {
+  if (currentPage <= 1) return baseTitle;
+  const parts = baseTitle.split(" | ");
+  if (parts.length === 2) {
+    return `${parts[0]} — Page ${currentPage} | ${parts[1]}`;
+  }
+  return `${baseTitle} — Page ${currentPage}`;
+}
+
+// Shared author reference so post schemas link to the Person entity on /about.
+export const AUTHOR_REF = { "@id": `${SITE_URL}/about#person` } as const;
+
+// Full Person node; emit once on /about so other pages can @id-reference it.
+export const AUTHOR_PERSON = {
+  "@type": "Person",
+  "@id": `${SITE_URL}/about#person`,
+  name: "Keegan",
+  url: `${SITE_URL}/about`,
+} as const;

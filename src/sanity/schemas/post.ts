@@ -43,8 +43,11 @@ export const post = defineType({
     defineField({
       name: "excerpt",
       title: "Excerpt",
+      description: "Used as the meta description for SEO. Aim for 120-160 characters.",
       type: "text",
       rows: 3,
+      validation: (rule) =>
+        rule.max(160).warning("Over 160 chars will be truncated by search engines."),
     }),
     defineField({
       name: "image",
@@ -53,6 +56,15 @@ export const post = defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Alt Text",
+          description: "Describe the image for screen readers and SEO. Required for accessibility.",
+          type: "string",
+          validation: (rule) => rule.required().warning("Alt text is required for accessibility."),
+        }),
+      ],
     }),
     defineField({
       name: "tags",
@@ -232,7 +244,9 @@ export const post = defineType({
             defineField({
               name: "alt",
               title: "Alt Text",
+              description: "Describe the image for screen readers and SEO.",
               type: "string",
+              validation: (rule) => rule.required().warning("Alt text is required for accessibility."),
             }),
             defineField({
               name: "layout",

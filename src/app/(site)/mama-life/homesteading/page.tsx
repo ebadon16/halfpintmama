@@ -6,29 +6,27 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Sprout } from "lucide-react";
 import Link from "next/link";
+import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: "Homesteading | Half Pint Mama",
-  description: "Suburban homesteading tips, low-tox living, and intentional home life. Practical ideas for getting back to basics without leaving the suburbs.",
-  alternates: { canonical: "https://halfpintmama.com/mama-life/homesteading" },
-  openGraph: {
-    title: "Homesteading | Half Pint Mama",
-    description: "Suburban homesteading tips, low-tox living, and intentional home life.",
-    type: "website",
-    url: "https://halfpintmama.com/mama-life/homesteading",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Homesteading | Half Pint Mama",
-    description: "Suburban homesteading tips, low-tox living, and intentional home life.",
-  },
-};
-
 interface PageProps {
   searchParams: Promise<{ page?: string }>;
+}
+
+export async function generateMetadata({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Math.max(1, parseInt(page || "1", 10));
+  const title = paginatedTitle("Homesteading | Half Pint Mama", currentPage);
+  const canonical = paginatedCanonical("/mama-life/homesteading", currentPage);
+  const description = "Suburban homesteading tips, low-tox living, and intentional home life. Practical ideas for getting back to basics without leaving the suburbs.";
+  return {
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    twitter: { card: "summary" as const, title, description },
+  };
 }
 
 export default async function HomesteadingPage({ searchParams }: PageProps) {

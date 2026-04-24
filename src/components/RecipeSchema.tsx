@@ -50,6 +50,7 @@ export function RecipeSchema({ title, description, image, datePublished, dateMod
     image: image ? [image] : [],
     author: {
       "@type": "Person",
+      "@id": `${baseUrl}/about#person`,
       name: "Keegan",
       url: `${baseUrl}/about`,
     },
@@ -127,6 +128,7 @@ export function BlogPostSchema({ title, description, image, datePublished, dateM
     image: image ? [image] : [],
     author: {
       "@type": "Person",
+      "@id": `${baseUrl}/about#person`,
       name: "Keegan",
       url: `${baseUrl}/about`,
     },
@@ -190,6 +192,7 @@ export function HowToSchema({ title, description, image, slug, estimatedTime, st
     url: `${baseUrl}/posts/${slug}`,
     author: {
       "@type": "Person",
+      "@id": `${baseUrl}/about#person`,
       name: "Keegan",
       url: `${baseUrl}/about`,
     },
