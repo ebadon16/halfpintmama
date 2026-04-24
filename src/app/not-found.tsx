@@ -2,6 +2,11 @@ import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Wheat, Search } from "lucide-react";
 
+export const metadata = {
+  title: "Page Not Found | Half Pint Mama",
+  robots: { index: false, follow: false },
+};
+
 export default function NotFound() {
   return (
     <div className="bg-cream min-h-screen flex items-center justify-center px-4">

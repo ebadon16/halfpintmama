@@ -16,6 +16,7 @@ const RecipeCard = dynamic(() => import("@/components/RecipeCard").then(m => m.R
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 
 export const revalidate = 3600;
+export const dynamicParams = true;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -33,7 +34,13 @@ export async function generateMetadata({ params }: PageProps) {
   const post = await getPostBySlug(slug);
 
   if (!post) {
-    return { title: "Post Not Found" };
+    // Next 16 serves missing SSG slugs with HTTP 200 + cached not-found body
+    // (x-nextjs-cache: HIT + s-maxage=31536000), which reads as a soft-404.
+    // Status can't be overridden from a page, so tell crawlers to skip it.
+    return {
+      title: "Post Not Found",
+      robots: { index: false, follow: false },
+    };
   }
 
   const categoryLabel = post.category === "cooking" ? "From Scratch Kitchen" : post.category === "mama-life" ? "Mama Life" : post.category;

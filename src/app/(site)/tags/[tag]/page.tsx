@@ -20,6 +20,16 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: TagPageProps) {
   const { tag } = await params;
   const normalizedTag = decodeURIComponent(tag).toLowerCase();
+
+  // If no posts match this tag, tell crawlers to skip (can't set 404 from page).
+  const tagHasPosts = await getPaginatedPostsByTag(normalizedTag, 1).then(r => r.totalCount > 0);
+  if (!tagHasPosts) {
+    return {
+      title: `Tag Not Found | Half Pint Mama`,
+      robots: { index: false, follow: false },
+    };
+  }
+
   const canonicalPath = `tags/${encodeURIComponent(normalizedTag)}`;
   const description = `Explore all Half Pint Mama posts tagged with "${normalizedTag}". Find recipes, parenting tips, DIY projects, and travel guides related to ${normalizedTag}.`;
   return {
