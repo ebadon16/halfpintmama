@@ -6,17 +6,20 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart, Heart, Users } from "lucide-react";
 import { ThemedIcon } from "@/components/ThemedIcon";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
   description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas. Real food, real life, real mama.",
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
     description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
     type: "website",
     url: "https://halfpintmama.com",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary_large_image",
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
     description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",

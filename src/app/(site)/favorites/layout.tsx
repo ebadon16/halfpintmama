@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "My Saved Recipes | Half Pint Mama",
   description: "Access your saved recipes from Half Pint Mama. Bookmark sourdough recipes, family meals, and healthy snacks to easily find them whenever you need them.",
   alternates: { canonical: "https://halfpintmama.com/favorites" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "My Saved Recipes | Half Pint Mama",
     description: "Access your saved recipes from Half Pint Mama. Bookmark sourdough recipes, family meals, and healthy snacks to easily find them whenever you need them.",
     type: "website",
     url: "https://halfpintmama.com/favorites",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary",
     title: "My Saved Recipes | Half Pint Mama",
     description: "Access your saved recipes from Half Pint Mama. Bookmark favorites to find them easily.",

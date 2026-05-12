@@ -4,6 +4,7 @@ import { PostCard } from "@/components/PostCard";
 import { EmailSignup } from "@/components/EmailSignup";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Users, Wheat, Heart } from "lucide-react";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -12,12 +13,14 @@ export const metadata = {
   description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey or navigating motherhood with real food and real talk.",
   alternates: { canonical: "https://halfpintmama.com/start-here" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Start Here | Half Pint Mama",
     description: "New to Half Pint Mama? Start your sourdough journey or navigate motherhood with real food and real talk.",
     type: "website",
     url: "https://halfpintmama.com/start-here",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Start Here | Half Pint Mama",
     description: "New to Half Pint Mama? Start your sourdough journey or navigate motherhood with real food and real talk.",

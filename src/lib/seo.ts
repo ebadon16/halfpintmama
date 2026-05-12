@@ -1,5 +1,17 @@
 export const SITE_URL = "https://halfpintmama.com";
 
+// Default OG image served from /app/opengraph-image.tsx — 1200x630 branded card.
+// Reference this in every page's openGraph.images so Next emits og:image meta.
+// (Next 16 only auto-injects the file-convention image when openGraph is unset.)
+export const DEFAULT_OG_IMAGE = {
+  url: `${SITE_URL}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: "Half Pint Mama — Nourishing Motherhood From Scratch",
+} as const;
+
+export const DEFAULT_OG_IMAGE_ARRAY = [DEFAULT_OG_IMAGE];
+
 // Append "?page=N" to a canonical URL when past page 1. Keeps pagination pages
 // from competing with each other via duplicate canonicals pointing to page 1.
 export function paginatedCanonical(basePath: string, currentPage: number): string {

@@ -2,18 +2,21 @@ import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Hand, Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, Music } from "lucide-react";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "About Keegan | Half Pint Mama",
   description: "Meet Keegan — a Pediatric ER RN and mama of two sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "About Keegan | Half Pint Mama",
     description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes and intentional living.",
     type: "website",
     url: "https://halfpintmama.com/about",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary",
     title: "About Keegan | Half Pint Mama",
     description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes and intentional living.",

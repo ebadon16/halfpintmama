@@ -3,6 +3,7 @@ import { getAllTags } from "@/lib/posts";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Tag } from "lucide-react";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -11,12 +12,14 @@ export const metadata = {
   description: "Browse all blog posts by topic tags on Half Pint Mama. Find sourdough recipes, family travel tips, DIY crafts, and parenting content organized by keyword.",
   alternates: { canonical: "https://halfpintmama.com/tags" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Tags | Half Pint Mama",
     description: "Browse all blog posts by topic tags on Half Pint Mama.",
     type: "website",
     url: "https://halfpintmama.com/tags",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Tags | Half Pint Mama",
     description: "Browse all blog posts by topic tags on Half Pint Mama.",

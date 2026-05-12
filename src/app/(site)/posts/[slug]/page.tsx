@@ -9,6 +9,7 @@ import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema, HowToSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 import { LazyComments } from "@/components/LazyComments";
 const CommentsPreview = dynamic(() => import("@/components/Comments").then(m => m.CommentsPreview));
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps) {
       description,
       url: `https://halfpintmama.com/posts/${slug}`,
       type: "article",
-      ...(post.image ? { images: [post.image] } : {}),
+      images: post.image ? [post.image] : DEFAULT_OG_IMAGE_ARRAY,
       siteName: "Half Pint Mama",
       authors: ["Keegan"],
       section: categoryLabel,
@@ -68,7 +69,7 @@ export async function generateMetadata({ params }: PageProps) {
       card: "summary_large_image",
       title: post.title,
       description,
-      ...(post.image ? { images: [post.image] } : {}),
+      images: post.image ? [post.image] : [DEFAULT_OG_IMAGE.url],
     },
     other: {
       "pinterest-rich-pin": "true",

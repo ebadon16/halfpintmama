@@ -3,6 +3,7 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { EmailSignup } from "@/components/EmailSignup";
 import { BookOpen } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
@@ -10,12 +11,14 @@ export const metadata = {
   alternates: { canonical: "https://halfpintmama.com/shop" },
   robots: { index: false, follow: true },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Shop | Half Pint Mama",
     description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",
     type: "website",
     url: "https://halfpintmama.com/shop",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Shop | Half Pint Mama",
     description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",

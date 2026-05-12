@@ -3,12 +3,14 @@ export const metadata = {
   description: "Learn how Half Pint Mama collects, uses, and protects your personal information. Read our full privacy policy including cookies, analytics, and your rights.",
   alternates: { canonical: "https://halfpintmama.com/privacy" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Privacy Policy | Half Pint Mama",
     description: "Learn how Half Pint Mama collects, uses, and protects your personal information.",
     type: "website",
     url: "https://halfpintmama.com/privacy",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Privacy Policy | Half Pint Mama",
     description: "Learn how Half Pint Mama collects, uses, and protects your personal information.",
@@ -16,6 +18,7 @@ export const metadata = {
 };
 
 import Link from "next/link";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export default function PrivacyPolicyPage() {
   return (

@@ -3,12 +3,14 @@ export const metadata = {
   description: "Read the terms of service for Half Pint Mama. Learn about content usage, recipe disclaimers, affiliate links, and our comment policies on this food blog.",
   alternates: { canonical: "https://halfpintmama.com/terms" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Terms of Service | Half Pint Mama",
     description: "Read the terms of service for Half Pint Mama.",
     type: "website",
     url: "https://halfpintmama.com/terms",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Terms of Service | Half Pint Mama",
     description: "Read the terms of service for Half Pint Mama.",
@@ -16,6 +18,7 @@ export const metadata = {
 };
 
 import Link from "next/link";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export default function TermsOfServicePage() {
   return (

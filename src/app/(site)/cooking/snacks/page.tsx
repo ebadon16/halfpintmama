@@ -6,7 +6,7 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Sandwich } from "lucide-react";
 import Link from "next/link";
-import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
+import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 60;
 
@@ -24,8 +24,8 @@ export async function generateMetadata({ searchParams }: PageProps) {
     title,
     description,
     alternates: { canonical },
-    openGraph: { title, description, type: "website" as const, url: canonical },
-    twitter: { card: "summary" as const, title, description },
+    openGraph: { images: DEFAULT_OG_IMAGE_ARRAY, title, description, type: "website" as const, url: canonical },
+    twitter: { images: [DEFAULT_OG_IMAGE.url], card: "summary" as const, title, description },
   };
 }
 

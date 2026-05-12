@@ -4,7 +4,7 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { notFound } from "next/navigation";
-import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
+import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -42,12 +42,13 @@ export async function generateMetadata({ params, searchParams }: TagPageProps) {
     description,
     alternates: { canonical },
     openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
       title,
       description,
       type: "website" as const,
       url: canonical,
     },
-    twitter: { card: "summary" as const, title, description },
+    twitter: { images: [DEFAULT_OG_IMAGE.url], card: "summary" as const, title, description },
   };
 }
 

@@ -3,18 +3,21 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Wheat, Baby, Luggage, BookOpen, ShoppingCart, Heart } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Products We Love | Half Pint Mama",
   description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials. Honest reviews from a Pediatric ER RN raising two littles.",
   alternates: { canonical: "https://halfpintmama.com/products" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Products We Love | Half Pint Mama",
     description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials.",
     type: "website",
     url: "https://halfpintmama.com/products",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Products We Love | Half Pint Mama",
     description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials.",

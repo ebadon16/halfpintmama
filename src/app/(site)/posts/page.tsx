@@ -3,7 +3,7 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { SearchBar } from "@/components/SearchBar";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
-import { paginatedCanonical, paginatedTitle } from "@/lib/seo";
+import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -23,12 +23,14 @@ export async function generateMetadata({ searchParams }: PageProps) {
     description,
     alternates: { canonical },
     openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
       title,
       description,
       type: "website" as const,
       url: canonical,
     },
     twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
       card: "summary" as const,
       title,
       description,

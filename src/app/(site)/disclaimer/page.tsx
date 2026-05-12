@@ -1,16 +1,19 @@
 import Link from "next/link";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Health Disclaimer | Half Pint Mama",
   description: "Health and wellness disclaimer for Half Pint Mama. Content is for informational and educational purposes only. Always consult your healthcare provider.",
   alternates: { canonical: "https://halfpintmama.com/disclaimer" },
   openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Health Disclaimer | Half Pint Mama",
     description: "Health and wellness disclaimer for Half Pint Mama.",
     type: "website",
     url: "https://halfpintmama.com/disclaimer",
   },
   twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Health Disclaimer | Half Pint Mama",
     description: "Health and wellness disclaimer for Half Pint Mama.",
