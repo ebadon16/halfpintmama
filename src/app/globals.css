@@ -75,6 +75,27 @@ html {
   color: var(--charcoal);
 }
 
+/* Prevent iOS Safari from auto-zooming when focusing a small-text input.
+   iOS triggers zoom whenever the active input's font-size is below 16px. */
+@media (max-width: 767px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* Float images in Portable Text become full-width on narrow phones to avoid overflow. */
+@media (max-width: 480px) {
+  .prose figure.float-right,
+  .prose figure.float-left {
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
 /* Clearfix for floated images in prose */
 .prose::after {
   content: "";

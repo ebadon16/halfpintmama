@@ -78,7 +78,7 @@ export default async function SourdoughPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Sourdough & Bread
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
             From your first starter to picture-perfect loaves. These recipes are tested with nurse-level precision
             to help you bake bread your family will love.
           </p>

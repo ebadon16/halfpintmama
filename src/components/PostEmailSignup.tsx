@@ -62,7 +62,7 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
           <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal mb-2">
             Enjoying this post?
           </h3>
-          <p className="text-charcoal/70 text-sm mb-4">
+          <p className="text-charcoal/80 text-sm mb-4">
             {category === "mama-life"
               ? "Get more honest parenting tips and mama life content delivered to your inbox weekly. Join 35,000+ families already following along."
               : "Get more from-scratch recipes and kitchen tips delivered to your inbox weekly. Join 35,000+ families already following along!"}
@@ -70,6 +70,7 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
             <input
               type="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"
@@ -167,6 +168,7 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
             <input
               type="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email"

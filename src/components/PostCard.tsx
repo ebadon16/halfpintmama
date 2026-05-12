@@ -32,7 +32,7 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
         <FavoriteButton
           slug={slug}
           title={title}
-          className="p-1.5 bg-white/90 rounded-full shadow-md hover:bg-white"
+          className="p-2.5 md:p-1.5 bg-white/90 rounded-full shadow-md hover:bg-white"
         />
       </div>
 
@@ -59,7 +59,7 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
             {tags && tags.length > 0 && tags.slice(0, 1).map((tag) => (
               <span
                 key={tag}
-                className="inline-block px-1.5 py-0.5 bg-warm-beige text-charcoal/70 text-[10px] rounded-full"
+                className="inline-block px-1.5 py-0.5 bg-warm-beige text-charcoal/80 text-[10px] rounded-full"
               >
                 {tag}
               </span>
@@ -70,7 +70,7 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
             {title}
           </Heading>
 
-          <p className="text-charcoal/70 text-xs leading-relaxed mb-2 line-clamp-2">
+          <p className="text-charcoal/80 text-xs leading-relaxed mb-2 line-clamp-2">
             {excerpt}
           </p>
 
@@ -81,7 +81,7 @@ export function PostCard({ slug, title, excerpt, category, date, image, tags, ra
             {ratingCount != null && ratingCount > 0 && (
               <>
                 <span className="text-charcoal/30">|</span>
-                <div className="flex items-center gap-1 text-xs text-charcoal/70">
+                <div className="flex items-center gap-1 text-xs text-charcoal/80">
                   <span className="text-yellow-500">★</span>
                   <span>{ratingAverage?.toFixed(1)}</span>
                 </div>

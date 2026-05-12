@@ -78,7 +78,7 @@ export default async function MamaLifePage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Mama Life
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-4">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-4">
             Real talk about motherhood — the beautiful chaos, family adventures, the hard days, and everything in between. Parenting tips, honest reflections, and the stories that connect us.
           </p>
           {(() => {

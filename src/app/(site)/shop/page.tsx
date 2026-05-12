@@ -44,7 +44,7 @@ export default function ShopPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Shop Half Pint Mama
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mx-auto">
+          <p className="text-charcoal/80 text-lg max-w-2xl mx-auto">
             Something exciting is in the works! Sign up below to be the first to know when it drops.
           </p>
         </div>
@@ -71,7 +71,7 @@ export default function ShopPage() {
                   <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-2">
                     {product.title}
                   </h3>
-                  <p className="text-charcoal/70 mb-6">
+                  <p className="text-charcoal/80 mb-6">
                     {product.description}
                   </p>
                   <div className="text-center p-3 bg-light-sage/30 rounded-full">
@@ -83,7 +83,7 @@ export default function ShopPage() {
           </div>
 
           <div className="max-w-md mx-auto mt-8 text-center">
-            <p className="text-charcoal/70 mb-4 font-medium">
+            <p className="text-charcoal/80 mb-4 font-medium">
               Be the first to know when it drops:
             </p>
             <EmailSignup

@@ -37,7 +37,7 @@ export default async function TagsPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
             Browse by Tag
           </h1>
-          <p className="text-charcoal/70">
+          <p className="text-charcoal/80">
             Find posts by topic across all categories
           </p>
         </div>
@@ -64,7 +64,7 @@ export default async function TagsPage() {
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
               No tags yet
             </h2>
-            <p className="text-charcoal/70 mb-6">
+            <p className="text-charcoal/80 mb-6">
               Tags will appear here as posts are tagged.
             </p>
             <Link

@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         </h1>
 
         <div className="bg-white rounded-2xl p-8 shadow-md prose prose-sage max-w-none">
-          <p className="text-charcoal/70 mb-6">
+          <p className="text-charcoal/80 mb-6">
             <strong>Last updated:</strong> February 4, 2026
           </p>
 

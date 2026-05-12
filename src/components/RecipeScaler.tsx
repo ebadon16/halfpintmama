@@ -45,7 +45,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
             aria-label="Number of servings"
             className="w-16 text-center px-2 py-1 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage text-lg font-semibold text-charcoal"
           />
-          <span className="text-charcoal/70">servings</span>
+          <span className="text-charcoal/80">servings</span>
         </div>
 
         <button
@@ -69,7 +69,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
               className={`px-3 py-1 text-xs rounded-full transition-all ${
                 isActive
                   ? "bg-sage text-white"
-                  : "bg-light-sage/50 text-charcoal/70 hover:bg-light-sage"
+                  : "bg-light-sage/50 text-charcoal/80 hover:bg-light-sage"
               }`}
             >
               {option === 1 ? "Original" : `${option}x`}

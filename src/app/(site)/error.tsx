@@ -12,7 +12,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
         <h1 className="font-[family-name:var(--font-crimson)] text-4xl text-deep-sage font-bold mb-4">
           Something went wrong
         </h1>
-        <p className="text-charcoal/70 mb-8">
+        <p className="text-charcoal/80 mb-8">
           We hit an unexpected bump in the road. Try again &mdash; it might just be a hiccup!
         </p>
 

@@ -78,7 +78,7 @@ export default async function SnacksPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Snacks & Finger Foods
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
             Healthy, homemade snacks that even the pickiest eaters will love. Perfect for lunchboxes, road trips,
             or afternoon munchies.
           </p>

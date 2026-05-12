@@ -149,7 +149,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
         {/* Date Range */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div>
-            <label htmlFor="search-start-date" className="block text-sm text-charcoal/70 mb-1">From:</label>
+            <label htmlFor="search-start-date" className="block text-sm text-charcoal/80 mb-1">From:</label>
             <input
               id="search-start-date"
               type="date"
@@ -159,7 +159,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
             />
           </div>
           <div>
-            <label htmlFor="search-end-date" className="block text-sm text-charcoal/70 mb-1">To:</label>
+            <label htmlFor="search-end-date" className="block text-sm text-charcoal/80 mb-1">To:</label>
             <input
               id="search-end-date"
               type="date"
@@ -183,7 +183,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
       {isSearching && (
         <div role="status" aria-live="polite" className="flex flex-col items-center py-12">
           <ThemedIcon icon={Search} size="md" color="charcoal" animate="animate-pulse" />
-          <p className="text-charcoal/70 mt-2">Searching...</p>
+          <p className="text-charcoal/80 mt-2">Searching...</p>
         </div>
       )}
 
@@ -193,7 +193,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
             No results found
           </h2>
-          <p className="text-charcoal/70 mb-6">
+          <p className="text-charcoal/80 mb-6">
             {query
               ? <>We couldn&apos;t find anything matching &quot;{query}&quot;</>
               : <>No posts match your selected filters</>
@@ -229,7 +229,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
 
       {!isSearching && results.length > 0 && (
         <div>
-          <p className="text-charcoal/70 mb-6">
+          <p className="text-charcoal/80 mb-6">
             Found {results.length} result{results.length !== 1 ? "s" : ""}
             {query && <> for &quot;{query}&quot;</>}
             {selectedCategory && <> in {selectedCategory.replace("-", " ")}</>}

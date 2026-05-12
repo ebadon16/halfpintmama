@@ -92,7 +92,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
             <span className="text-charcoal/50">#</span>
             <span className="capitalize">{normalizedTag}</span>
           </h1>
-          <p className="text-charcoal/70">
+          <p className="text-charcoal/80">
             {totalCount} post{totalCount !== 1 ? "s" : ""} tagged with &quot;{normalizedTag}&quot;
           </p>
         </div>

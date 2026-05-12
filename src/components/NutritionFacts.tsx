@@ -38,6 +38,7 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
         </p>
       )}
 
+      <div className="overflow-x-auto -mx-1 px-1">
       <table className="w-full">
         <caption className="sr-only">Nutrition facts per serving</caption>
         <thead>
@@ -60,6 +61,7 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
           </tr>
         </tbody>
       </table>
+      </div>
 
       <p className="text-xs text-charcoal/50 mt-3 italic">
         * Nutritional values are estimates and may vary.

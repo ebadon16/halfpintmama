@@ -78,7 +78,7 @@ export default async function DiscardPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Sourdough Discard Recipes
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
             Don&apos;t throw away that discard! It&apos;s full of flavor and can be transformed into crackers, pancakes,
             pizza dough, and so much more. Here are my family&apos;s favorites.
           </p>

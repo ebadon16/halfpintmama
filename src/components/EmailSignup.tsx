@@ -77,6 +77,7 @@ export function EmailSignup({
       <div className={`flex ${isInline ? "flex-col sm:flex-row" : "flex-col"} gap-3`}>
         <input
           type="email"
+              autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={placeholder}

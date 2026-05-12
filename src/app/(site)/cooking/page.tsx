@@ -91,7 +91,7 @@ export default async function CookingPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             From Scratch Kitchen
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-4">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-4">
             Every recipe here is nurse-tested and family-approved — made from real ingredients with the same thoughtfulness I bring to patient care. From sourdough starters to healthy snacks, these are the meals I actually feed my family.
           </p>
           {(() => {

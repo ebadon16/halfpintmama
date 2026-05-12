@@ -44,9 +44,9 @@ function SignupForm({ source }: { source: string }) {
       <div className="bg-light-sage/30 rounded-lg p-6 text-center">
         <div className="flex justify-center mb-2"><ThemedIcon icon={PartyPopper} size="md" color="sage" /></div>
         <p className="text-deep-sage font-semibold">Check your inbox!</p>
-        <p className="text-charcoal/70 text-sm mb-4">Your free guide is on its way.</p>
+        <p className="text-charcoal/80 text-sm mb-4">Your free guide is on its way.</p>
         <div className="text-left space-y-2 text-sm">
-          <p className="text-charcoal/70 font-medium">While you wait, explore:</p>
+          <p className="text-charcoal/80 font-medium">While you wait, explore:</p>
           <Link href="/mama-life/parenting" className="block text-sage hover:text-deep-sage transition-colors">
             &rarr; Parenting Posts
           </Link>
@@ -138,23 +138,23 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
                 </div>
 
                 <div className="mt-6 space-y-3">
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Newborn survival tips from a PEDS ER RN
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Honest postpartum recovery guide
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Baby gear that actually matters
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Toddler stage survival strategies
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Encouragement from a mama who gets it
                   </div>
@@ -199,7 +199,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
                 <Baby className="w-7 h-7 text-sage" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Newborn Essentials</h3>
-              <p className="text-charcoal/70 text-sm">
+              <p className="text-charcoal/80 text-sm">
                 What you actually need (and don&apos;t) for those first weeks. From a nurse who&apos;s seen it all.
               </p>
             </div>
@@ -209,7 +209,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
                 <Shield className="w-7 h-7 text-deep-sage" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Recovery & Wellness</h3>
-              <p className="text-charcoal/70 text-sm">
+              <p className="text-charcoal/80 text-sm">
                 Honest postpartum tips that no one tells you. Practical recovery advice from experience.
               </p>
             </div>
@@ -219,7 +219,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
                 <BookOpen className="w-7 h-7 text-soft-pink" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Beyond Survival Mode</h3>
-              <p className="text-charcoal/70 text-sm">
+              <p className="text-charcoal/80 text-sm">
                 How to find your rhythm as a mama — from surviving to thriving, one season at a time.
               </p>
             </div>
@@ -233,7 +233,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
           <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
             Why Trust This Guide?
           </h3>
-          <p className="text-charcoal/70 mb-4">
+          <p className="text-charcoal/80 mb-4">
             I spent years as a Pediatric ER nurse before becoming a mama myself. The Mama Life Guide combines clinical knowledge with real-world motherhood experience — no textbook fluff, just what actually helps.
           </p>
           <p className="text-charcoal/50 text-sm italic">
@@ -245,7 +245,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
       {/* Cross-promo: Sourdough Guide */}
       <section className="py-12 bg-deep-sage/5">
         <div className="max-w-2xl mx-auto px-4 text-center">
-          <p className="text-charcoal/70 mb-3">Love sourdough too?</p>
+          <p className="text-charcoal/80 mb-3">Love sourdough too?</p>
           <a
             href="/free-guide"
             className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"

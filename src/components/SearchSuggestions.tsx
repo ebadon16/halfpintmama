@@ -42,7 +42,7 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
       {recentSearches.length > 0 && (
         <div>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-charcoal/70 font-medium">Recent searches</p>
+            <p className="text-charcoal/80 font-medium">Recent searches</p>
             <button
               onClick={clearRecentSearches}
               className="text-sm text-terracotta hover:text-deep-sage transition-colors"
@@ -69,7 +69,7 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
 
       {/* Popular Topics (from tags) */}
       <div>
-        <p className="text-charcoal/70 font-medium mb-4">Popular topics</p>
+        <p className="text-charcoal/80 font-medium mb-4">Popular topics</p>
         <div className="flex flex-wrap gap-2">
           {topTags.map(({ tag, count }) => (
             <button
@@ -86,7 +86,7 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
 
       {/* Quick Suggestions */}
       <div>
-        <p className="text-charcoal/70 font-medium mb-4">Try searching for</p>
+        <p className="text-charcoal/80 font-medium mb-4">Try searching for</p>
         <div className="flex flex-wrap gap-2">
           {["sourdough starter", "discard recipes", "toddler snacks", "bread", "cookies"].map((term) => (
             <button

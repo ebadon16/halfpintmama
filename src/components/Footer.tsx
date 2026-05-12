@@ -60,7 +60,7 @@ export function Footer() {
                 href="https://www.instagram.com/Halfpint.mama"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/70 transition-all"
+                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/80 transition-all"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -71,7 +71,7 @@ export function Footer() {
                 href="https://www.facebook.com/HalfPintMama"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/70 transition-all"
+                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/80 transition-all"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -82,7 +82,7 @@ export function Footer() {
                 href="https://www.tiktok.com/@halfpint.mama"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/70 transition-all"
+                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/80 transition-all"
                 aria-label="TikTok"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ export function Footer() {
                 href="https://www.youtube.com/@HalfPintMama"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/70 transition-all"
+                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/80 transition-all"
                 aria-label="YouTube"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -104,7 +104,7 @@ export function Footer() {
                 href="https://www.pinterest.com/halfpintmamakeegan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/70 transition-all"
+                className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/80 transition-all"
                 aria-label="Pinterest"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

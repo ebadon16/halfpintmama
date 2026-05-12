@@ -58,7 +58,7 @@ export default function FavoritesPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             My Saved Recipes
           </h1>
-          <p className="text-charcoal/70">
+          <p className="text-charcoal/80">
             {favorites.length === 0
               ? "You haven't saved any recipes yet."
               : `${favorites.length} saved recipe${favorites.length !== 1 ? "s" : ""}`}
@@ -73,7 +73,7 @@ export default function FavoritesPage() {
               <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
                 No saved recipes yet
               </h2>
-              <p className="text-charcoal/70 mb-6">
+              <p className="text-charcoal/80 mb-6">
                 Click the heart icon on any recipe to save it here for easy access later.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
@@ -111,7 +111,7 @@ export default function FavoritesPage() {
                   <h3 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal hover:text-terracotta transition-colors truncate">
                     {favorite.title}
                   </h3>
-                  <p className="text-charcoal/70 text-sm">
+                  <p className="text-charcoal/80 text-sm">
                     Saved {new Date(favorite.savedAt).toLocaleDateString()}
                   </p>
                 </Link>

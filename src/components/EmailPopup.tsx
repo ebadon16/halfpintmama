@@ -178,6 +178,9 @@ export function EmailPopup() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="email-popup-heading"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) handleDismiss();
+      }}
     >
       <div ref={dialogRef} className="relative bg-cream rounded-2xl shadow-2xl max-w-md w-full overflow-hidden">
         {/* Close button */}
@@ -208,7 +211,7 @@ export function EmailPopup() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6">
-            <p className="text-charcoal/70 text-center mb-4 text-sm">
+            <p className="text-charcoal/80 text-center mb-4 text-sm">
               {ctx.body}
             </p>
             <p className="text-charcoal/50 text-center mb-4 text-xs">
@@ -217,6 +220,7 @@ export function EmailPopup() {
 
             <input
               type="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"

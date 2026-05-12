@@ -111,7 +111,7 @@ export default function ProductsPage() {
               <h3 className="font-[family-name:var(--font-crimson)] text-xl font-semibold text-charcoal group-hover:text-terracotta transition-colors mb-2">
                 {category.title}
               </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
+              <p className="text-charcoal/80 text-sm mb-4">
                 {category.description}
               </p>
               <span className="inline-block w-full text-center px-4 py-2 border-2 border-terracotta text-terracotta text-sm font-semibold rounded-full group-hover:bg-terracotta group-hover:text-white transition-all">

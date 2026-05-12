@@ -18,7 +18,7 @@ export default function NotFound() {
         <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-charcoal mb-4">
           Oops! This page got lost in the oven
         </h2>
-        <p className="text-charcoal/70 mb-8">
+        <p className="text-charcoal/80 mb-8">
           The page you&apos;re looking for doesn&apos;t exist or may have been moved.
           But don&apos;t worry - there&apos;s plenty more to explore!
         </p>

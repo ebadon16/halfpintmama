@@ -72,7 +72,7 @@ export default async function StartHerePage() {
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-3">
               A Little About Me
             </h2>
-            <p className="text-charcoal/70 mb-4">
+            <p className="text-charcoal/80 mb-4">
               I&apos;m a Pediatric ER RN and mama of two, sharing life&apos;s beautiful chaos with my kids and our chocolate lab Stout. I started this blog to get back to the basics — real food, simple recipes, and intentional living. Whether it&apos;s sourdough, family adventures, or honest motherhood — you&apos;ll find it all here.
             </p>
             <Link
@@ -102,7 +102,7 @@ export default async function StartHerePage() {
                 <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">
                   From Scratch Kitchen
                 </h3>
-                <p className="text-charcoal/70 mb-6">
+                <p className="text-charcoal/80 mb-6">
                   Ready to start your sourdough journey or looking for family-tested recipes? From creating your first starter to weeknight meals — all made from scratch.
                 </p>
 
@@ -147,7 +147,7 @@ export default async function StartHerePage() {
                 <h3 className="font-[family-name:var(--font-crimson)] text-2xl font-semibold text-charcoal mb-3">
                   Mama Life
                 </h3>
-                <p className="text-charcoal/70 mb-6">
+                <p className="text-charcoal/80 mb-6">
                   Real talk about motherhood — the beautiful chaos, family adventures, the hard days, and everything in between. Parenting tips, honest reflections, DIY projects, and the stories that connect us.
                 </p>
 

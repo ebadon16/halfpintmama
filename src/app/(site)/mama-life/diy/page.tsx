@@ -78,7 +78,7 @@ export default async function DiyPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             DIY & Crafts
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
             Creative projects that make your home feel special. Kid costumes, seasonal decorations, and simple crafts you can actually pull off with littles underfoot.
           </p>
           <SearchBar placeholder="Search DIY posts..." className="max-w-md" />

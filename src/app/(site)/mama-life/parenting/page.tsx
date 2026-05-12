@@ -78,7 +78,7 @@ export default async function ParentingPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Parenting
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
             Real talk about raising littles — from a Pediatric ER RN who gets it. Toddler tips, baby milestones, breastfeeding, and the honest moments that connect us.
           </p>
           <SearchBar placeholder="Search parenting posts..." className="max-w-md" />

@@ -10,7 +10,7 @@ function SearchLoading() {
   return (
     <div className="flex flex-col items-center py-12">
       <ThemedIcon icon={Search} size="md" color="charcoal" animate="animate-pulse" />
-      <p className="text-charcoal/70 mt-2">Loading...</p>
+      <p className="text-charcoal/80 mt-2">Loading...</p>
     </div>
   );
 }
@@ -26,7 +26,7 @@ export default async function SearchPage() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
             Search
           </h1>
-          <p className="text-charcoal/70">
+          <p className="text-charcoal/80">
             Find recipes, tips, and more across the blog
           </p>
         </div>

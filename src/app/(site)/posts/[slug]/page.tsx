@@ -167,7 +167,7 @@ export default async function PostPage({ params }: PageProps) {
       <article className="max-w-2xl mx-auto px-4 py-8">
         {/* Breadcrumbs */}
         <nav className="mb-6 text-sm" aria-label="Breadcrumb">
-          <ol className="flex items-center gap-2 text-charcoal/70">
+          <ol className="flex items-center gap-2 text-charcoal/80">
             <li>
               <Link href="/" className="hover:text-terracotta transition-colors">Home</Link>
             </li>
@@ -212,7 +212,7 @@ export default async function PostPage({ params }: PageProps) {
           {/* Share, Save & Recipe Action Buttons */}
           <div className="mt-4 flex flex-wrap items-center gap-2">
             <ShareButtons title={post.title} slug={slug} />
-            <FavoriteButton slug={slug} title={post.title} showText={true} className="text-charcoal/70 hover:text-terracotta" />
+            <FavoriteButton slug={slug} title={post.title} showText={true} className="text-charcoal/80 hover:text-terracotta" />
 
             {/* Recipe Action Buttons - Pill style, aligned left */}
             {post.category === "cooking" && (
@@ -301,7 +301,7 @@ export default async function PostPage({ params }: PageProps) {
               <p className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-semibold mb-1">
                 Made this recipe?
               </p>
-              <p className="text-charcoal/70 text-sm mb-3">
+              <p className="text-charcoal/80 text-sm mb-3">
                 I&apos;d love to know how it turned out! Your rating helps other mamas find the best recipes.
               </p>
               <a
@@ -338,7 +338,7 @@ export default async function PostPage({ params }: PageProps) {
                   href={`/posts/${prevPost.slug}`}
                   className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-light-sage/50"
                 >
-                  <span className="text-xs text-charcoal/70 uppercase tracking-wide">&larr; Previous</span>
+                  <span className="text-xs text-charcoal/80 uppercase tracking-wide">&larr; Previous</span>
                   <p className="font-[family-name:var(--font-crimson)] text-charcoal group-hover:text-terracotta transition-colors font-medium mt-1 line-clamp-2">
                     {prevPost.title}
                   </p>
@@ -351,7 +351,7 @@ export default async function PostPage({ params }: PageProps) {
                   href={`/posts/${nextPost.slug}`}
                   className="group p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-light-sage/50 text-right"
                 >
-                  <span className="text-xs text-charcoal/70 uppercase tracking-wide">Next &rarr;</span>
+                  <span className="text-xs text-charcoal/80 uppercase tracking-wide">Next &rarr;</span>
                   <p className="font-[family-name:var(--font-crimson)] text-charcoal group-hover:text-terracotta transition-colors font-medium mt-1 line-clamp-2">
                     {nextPost.title}
                   </p>

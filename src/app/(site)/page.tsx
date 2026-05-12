@@ -116,7 +116,7 @@ export default async function Home() {
 
       {/* Social Proof Bar */}
       <div className="bg-white/60 border-y border-warm-beige/50">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-charcoal/70">
+        <div className="max-w-4xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-charcoal/80">
           {siteStats.averageRating > 0 && (
             <>
               <span className="flex items-center gap-1">
@@ -167,7 +167,7 @@ export default async function Home() {
                         <h3 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl font-semibold text-charcoal mb-3 leading-tight group-hover:text-deep-sage transition-colors">
                           {latestPost.title}
                         </h3>
-                        <p className="text-charcoal/70 text-base leading-relaxed mb-4 line-clamp-3">
+                        <p className="text-charcoal/80 text-base leading-relaxed mb-4 line-clamp-3">
                           {latestPost.excerpt}
                         </p>
                         <div className="flex items-center gap-4">
@@ -177,7 +177,7 @@ export default async function Home() {
                           {latestPost.ratingCount != null && latestPost.ratingCount > 0 && (
                             <>
                               <span className="text-charcoal/30">|</span>
-                              <div className="flex items-center gap-1 text-sm text-charcoal/70">
+                              <div className="flex items-center gap-1 text-sm text-charcoal/80">
                                 <span className="text-yellow-500">★</span>
                                 <span>{latestPost.ratingAverage?.toFixed(1)}</span>
                                 <span className="text-charcoal/50">({latestPost.ratingCount})</span>
@@ -229,7 +229,7 @@ export default async function Home() {
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
                 Hey, I&apos;m Keegan
               </h3>
-              <p className="text-charcoal/70 text-sm mb-4">
+              <p className="text-charcoal/80 text-sm mb-4">
                 Pediatric ER RN and mama of two. I apply the same care to feeding my family as I do to my patients — real ingredients, tested recipes, no shortcuts.
               </p>
               <Link
@@ -255,7 +255,7 @@ export default async function Home() {
                   <ShoppingCart className="w-6 h-6 text-[#FF9900]" />
                   <div>
                     <p className="font-semibold text-charcoal group-hover:text-[#FF9900] transition-colors text-sm">Amazon Storefront</p>
-                    <p className="text-charcoal/70 text-xs">Shop all my favorites</p>
+                    <p className="text-charcoal/80 text-xs">Shop all my favorites</p>
                   </div>
                 </a>
                 <a
@@ -267,7 +267,7 @@ export default async function Home() {
                   <Heart className="w-6 h-6 text-pink-500" />
                   <div>
                     <p className="font-semibold text-charcoal group-hover:text-pink-600 transition-colors text-sm">LTK Shop</p>
-                    <p className="text-charcoal/70 text-xs">Outfit & home picks</p>
+                    <p className="text-charcoal/80 text-xs">Outfit & home picks</p>
                   </div>
                 </a>
               </div>

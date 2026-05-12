@@ -78,7 +78,7 @@ export default async function DessertsPage({ searchParams }: PageProps) {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
             Desserts & Sweet Treats
           </h1>
-          <p className="text-charcoal/70 text-lg max-w-2xl mb-6">
+          <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
             Life is sweeter with homemade treats! Cookies, cakes, truffles, and more - all tested and approved
             by my little taste testers at home.
           </p>

@@ -75,11 +75,11 @@ export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, 
           {initialRatingCount > 0 ? (
             <div className="flex items-center gap-2 justify-center sm:justify-start">
               <RatingSummary averageRating={initialRatingAverage} totalRatings={initialRatingCount} />
-              <span className="text-charcoal/70">|</span>
-              <span className="text-sm text-charcoal/70">{commentCount} comment{commentCount !== 1 ? "s" : ""}</span>
+              <span className="text-charcoal/80">|</span>
+              <span className="text-sm text-charcoal/80">{commentCount} comment{commentCount !== 1 ? "s" : ""}</span>
             </div>
           ) : (
-            <p className="text-charcoal/70 text-sm">{emptyText}</p>
+            <p className="text-charcoal/80 text-sm">{emptyText}</p>
           )}
         </div>
         <button
@@ -244,7 +244,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               </div>
               <div>
                 <h4 className="font-semibold text-charcoal">{comment.author}</h4>
-                <p className="text-xs text-charcoal/70">{formatDate(comment.createdAt)}</p>
+                <p className="text-xs text-charcoal/80">{formatDate(comment.createdAt)}</p>
               </div>
             </div>
           </div>
@@ -330,7 +330,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                   setSubmitError("");
                 }}
                 aria-label="Close comment form"
-                className="text-charcoal/70 hover:text-charcoal transition-colors"
+                className="text-charcoal/80 hover:text-charcoal transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -364,6 +364,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                     id="author"
                     required
                     aria-required="true"
+                    autoComplete="name"
                     value={formData.author}
                     onChange={(e) => setFormData({ ...formData, author: e.target.value })}
                     className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 transition-colors"
@@ -372,7 +373,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-charcoal mb-1">
-                    Email <span aria-hidden="true">*</span> <span id="email-hint" className="text-xs text-charcoal/70">(not published)</span>
+                    Email <span aria-hidden="true">*</span> <span id="email-hint" className="text-xs text-charcoal/80">(not published)</span>
                   </label>
                   <input
                     type="email"
@@ -381,6 +382,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                     aria-required="true"
                     aria-describedby="email-hint"
                     aria-label="Email address"
+                    autoComplete="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 transition-colors"
@@ -406,7 +408,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               </div>
 
               <div className="flex items-center justify-between">
-                <p className="text-xs text-charcoal/70">
+                <p className="text-xs text-charcoal/80">
                   Your email address will not be published.
                 </p>
                 <button
@@ -425,7 +427,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
         {isLoading && (
           <div role="status" aria-live="polite" className="text-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage mx-auto"></div>
-            <p className="text-charcoal/70 mt-2">Loading comments...</p>
+            <p className="text-charcoal/80 mt-2">Loading comments...</p>
           </div>
         )}
 
@@ -443,7 +445,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-charcoal font-semibold mb-2">
                 No comments yet
               </h3>
-              <p className="text-charcoal/70 mb-4">
+              <p className="text-charcoal/80 mb-4">
                 {isRecipe ? "Be the first to share your thoughts on this recipe!" : "Be the first to share your thoughts!"}
               </p>
               <button

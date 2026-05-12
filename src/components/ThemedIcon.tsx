@@ -13,7 +13,7 @@ const colorMap = {
   terracotta: { bg: "bg-terracotta/15", text: "text-terracotta" },
   pink: { bg: "bg-soft-pink/20", text: "text-soft-pink" },
   "deep-sage": { bg: "bg-deep-sage/15", text: "text-deep-sage" },
-  charcoal: { bg: "bg-charcoal/10", text: "text-charcoal/70" },
+  charcoal: { bg: "bg-charcoal/10", text: "text-charcoal/80" },
   white: { bg: "", text: "text-white" },
 } as const;
 

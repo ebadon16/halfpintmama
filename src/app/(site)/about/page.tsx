@@ -133,7 +133,7 @@ export default function AboutPage() {
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
               Get My Free Sourdough Starter Guide
             </h2>
-            <p className="text-charcoal/70 mb-6 max-w-lg mx-auto">
+            <p className="text-charcoal/80 mb-6 max-w-lg mx-auto">
               Ready to start your sourdough journey? Sign up for my free guide with everything you need to create and maintain a healthy starter.
             </p>
             <Link
@@ -202,7 +202,7 @@ export default function AboutPage() {
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
             Start Exploring
           </h2>
-          <p className="text-charcoal/70 mb-6">
+          <p className="text-charcoal/80 mb-6">
             Dive into what Half Pint Mama is all about.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

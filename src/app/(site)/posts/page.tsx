@@ -72,7 +72,7 @@ export default async function PostsPage({ searchParams }: PageProps) {
         <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-4">
           All Posts
         </h1>
-        <p className="text-charcoal/70 text-lg mb-6">
+        <p className="text-charcoal/80 text-lg mb-6">
           {totalCount} recipes, guides, and stories
         </p>
         <SearchBar placeholder="Search all posts..." className="max-w-md mb-12" />

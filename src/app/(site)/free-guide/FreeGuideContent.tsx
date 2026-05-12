@@ -44,9 +44,9 @@ function SignupForm({ source }: { source: string }) {
       <div className="bg-light-sage/30 rounded-lg p-6 text-center">
         <div className="flex justify-center mb-2"><ThemedIcon icon={PartyPopper} size="md" color="sage" /></div>
         <p className="text-deep-sage font-semibold">Check your inbox!</p>
-        <p className="text-charcoal/70 text-sm mb-4">Your free guide is on its way.</p>
+        <p className="text-charcoal/80 text-sm mb-4">Your free guide is on its way.</p>
         <div className="text-left space-y-2 text-sm">
-          <p className="text-charcoal/70 font-medium">While you wait, check out:</p>
+          <p className="text-charcoal/80 font-medium">While you wait, check out:</p>
           <Link href="/cooking/sourdough" className="block text-terracotta hover:text-deep-sage transition-colors">
             &rarr; Sourdough Recipes
           </Link>
@@ -131,23 +131,23 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                 </div>
 
                 <div className="mt-6 space-y-3">
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Day-by-day starter creation guide
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Printable feeding schedule
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Troubleshooting FAQ
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     4 beginner-friendly recipes
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-charcoal/70">
+                  <div className="flex items-center gap-3 text-sm text-charcoal/80">
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Video tutorial links
                   </div>
@@ -193,7 +193,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                 <Calendar className="w-7 h-7 text-terracotta" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Day-by-Day Guide</h3>
-              <p className="text-charcoal/70 text-sm">
+              <p className="text-charcoal/80 text-sm">
                 Exactly what to do each day for 9 days. No guessing, just follow along.
               </p>
             </div>
@@ -203,7 +203,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                 <Wrench className="w-7 h-7 text-sage" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Troubleshooting Tips</h3>
-              <p className="text-charcoal/70 text-sm">
+              <p className="text-charcoal/80 text-sm">
                 Starter not rising? Smells weird? I cover all the common problems and fixes.
               </p>
             </div>
@@ -213,7 +213,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                 <Wheat className="w-7 h-7 text-soft-pink" />
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Beginner Recipes</h3>
-              <p className="text-charcoal/70 text-sm">
+              <p className="text-charcoal/80 text-sm">
                 4 recipes to try with your new starter, from simple loaves to sourdough pancakes.
               </p>
             </div>
@@ -232,7 +232,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
             <h4 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal mb-2">
               The Post-Partum Cook Book
             </h4>
-            <p className="text-charcoal/70 text-sm">
+            <p className="text-charcoal/80 text-sm">
               Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days—plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
             </p>
           </div>

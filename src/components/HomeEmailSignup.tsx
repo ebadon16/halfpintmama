@@ -73,6 +73,7 @@ export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" |
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
           <input
             type="email"
+              autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email"

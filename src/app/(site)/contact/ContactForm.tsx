@@ -63,7 +63,7 @@ export function ContactForm() {
           <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-bold mb-4">
             Message Sent!
           </h2>
-          <p className="text-charcoal/70 mb-6">
+          <p className="text-charcoal/80 mb-6">
             Thank you for reaching out! I&apos;ll get back to you as soon as I can - usually within 48 hours.
           </p>
           <Link
@@ -107,7 +107,7 @@ export function ContactForm() {
         <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
           Get in Touch
         </h1>
-        <p className="text-charcoal/70 text-lg max-w-2xl mx-auto">
+        <p className="text-charcoal/80 text-lg max-w-2xl mx-auto">
           Have a question, collaboration idea, or just want to say hi? I&apos;d love to hear from you!
         </p>
       </div>
@@ -127,6 +127,7 @@ export function ContactForm() {
                     id="name"
                     name="name"
                     required
+                    autoComplete="name"
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
@@ -143,6 +144,7 @@ export function ContactForm() {
                     name="email"
                     required
                     aria-label="Email address"
+                    autoComplete="email"
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border-2 border-light-sage rounded-lg focus:outline-none focus:ring-2 focus:ring-sage focus:border-sage transition-colors"
@@ -214,11 +216,11 @@ export function ContactForm() {
             <div className="space-y-4 text-sm">
               <div>
                 <p className="font-medium text-charcoal">Response Time</p>
-                <p className="text-charcoal/70">Usually within 24-48 hours</p>
+                <p className="text-charcoal/80">Usually within 24-48 hours</p>
               </div>
               <div>
                 <p className="font-medium text-charcoal">Location</p>
-                <p className="text-charcoal/70">Central Texas</p>
+                <p className="text-charcoal/80">Central Texas</p>
               </div>
             </div>
           </div>
@@ -264,7 +266,7 @@ export function ContactForm() {
             <h2 className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-semibold mb-2">
               Common Questions
             </h2>
-            <p className="text-charcoal/70 text-sm mb-3">
+            <p className="text-charcoal/80 text-sm mb-3">
               Check out the Start Here page for answers to frequently asked questions about sourdough, recipes, and more!
             </p>
             <Link

@@ -97,7 +97,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
       </div>
 
       {/* Mobile: Current / Total */}
-      <span className="sm:hidden text-charcoal/70">
+      <span className="sm:hidden text-charcoal/80">
         Page {currentPage} of {totalPages}
       </span>
 

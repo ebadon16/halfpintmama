@@ -54,11 +54,12 @@ export function StarRating({ rating, onRate, readonly = false, size = "md" }: St
             onClick={() => onRate?.(index)}
             onMouseEnter={() => setHoverRating(index)}
             onMouseLeave={() => setHoverRating(0)}
+            onTouchStart={() => setHoverRating(index)}
             onKeyDown={(e) => {
               if (e.key === "ArrowRight" && index < 5) onRate?.(index + 1);
               if (e.key === "ArrowLeft" && index > 1) onRate?.(index - 1);
             }}
-            className="cursor-pointer transition-transform hover:scale-110"
+            className="p-2 -m-1 cursor-pointer transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage rounded"
             aria-label={`Rate ${index} star${index !== 1 ? "s" : ""}`}
           >
             {starSvg(isFilled)}
@@ -80,7 +81,7 @@ export function RatingSummary({ averageRating, totalRatings }: RatingSummaryProp
   return (
     <div className="flex items-center gap-2">
       <StarRating rating={Math.round(safeAvg)} readonly size="sm" />
-      <span className="text-sm text-charcoal/70">
+      <span className="text-sm text-charcoal/80">
         {safeAvg.toFixed(1)} ({safeCount} {safeCount === 1 ? "rating" : "ratings"})
       </span>
     </div>
