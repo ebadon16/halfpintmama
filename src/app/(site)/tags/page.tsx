@@ -15,7 +15,6 @@ export const metadata = {
     description: "Browse all blog posts by topic tags on Half Pint Mama.",
     type: "website",
     url: "https://halfpintmama.com/tags",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

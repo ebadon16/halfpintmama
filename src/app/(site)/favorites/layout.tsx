@@ -9,7 +9,6 @@ export const metadata: Metadata = {
     description: "Access your saved recipes from Half Pint Mama. Bookmark sourdough recipes, family meals, and healthy snacks to easily find them whenever you need them.",
     type: "website",
     url: "https://halfpintmama.com/favorites",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary",

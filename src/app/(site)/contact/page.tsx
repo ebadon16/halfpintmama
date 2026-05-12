@@ -9,7 +9,6 @@ export const metadata = {
     description: "Get in touch with Keegan at Half Pint Mama. Questions about recipes, sourdough, or collaborations.",
     type: "website",
     url: "https://halfpintmama.com/contact",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

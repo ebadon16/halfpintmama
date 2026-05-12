@@ -7,7 +7,6 @@ export const metadata = {
     description: "Learn how Half Pint Mama collects, uses, and protects your personal information.",
     type: "website",
     url: "https://halfpintmama.com/privacy",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

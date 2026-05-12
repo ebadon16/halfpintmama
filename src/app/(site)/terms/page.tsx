@@ -7,7 +7,6 @@ export const metadata = {
     description: "Read the terms of service for Half Pint Mama.",
     type: "website",
     url: "https://halfpintmama.com/terms",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

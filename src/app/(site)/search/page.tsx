@@ -6,24 +6,6 @@ import { Search } from "lucide-react";
 
 export const revalidate = 3600;
 
-export const metadata = {
-  title: "Search | Half Pint Mama",
-  description: "Search Half Pint Mama for sourdough recipes, family travel guides, DIY projects, and parenting tips. Find the content you're looking for across all categories.",
-  alternates: { canonical: "https://halfpintmama.com/search" },
-  openGraph: {
-    title: "Search | Half Pint Mama",
-    description: "Search Half Pint Mama for sourdough recipes, family travel guides, DIY projects, and parenting tips.",
-    type: "website",
-    url: "https://halfpintmama.com/search",
-    images: ["/logo.jpg"],
-  },
-  twitter: {
-    card: "summary" as const,
-    title: "Search | Half Pint Mama",
-    description: "Search Half Pint Mama for sourdough recipes, family travel guides, DIY projects, and parenting tips.",
-  },
-};
-
 function SearchLoading() {
   return (
     <div className="flex flex-col items-center py-12">

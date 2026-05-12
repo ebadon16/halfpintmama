@@ -46,7 +46,6 @@ export async function generateMetadata({ params, searchParams }: TagPageProps) {
       description,
       type: "website" as const,
       url: canonical,
-      images: ["/logo.jpg"],
     },
     twitter: { card: "summary" as const, title, description },
   };

@@ -13,7 +13,6 @@ export const metadata = {
     description: "Get the free Mama Life Guide — honest tips for navigating motherhood from a Pediatric ER RN.",
     type: "website",
     url: "https://halfpintmama.com/mama-guide",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

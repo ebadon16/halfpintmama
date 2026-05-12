@@ -14,7 +14,6 @@ export const metadata = {
     description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",
     type: "website",
     url: "https://halfpintmama.com/shop",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

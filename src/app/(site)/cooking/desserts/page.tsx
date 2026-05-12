@@ -24,7 +24,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
     title,
     description,
     alternates: { canonical },
-    openGraph: { title, description, type: "website" as const, url: canonical, images: ["/logo.jpg"] },
+    openGraph: { title, description, type: "website" as const, url: canonical },
     twitter: { card: "summary" as const, title, description },
   };
 }

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "node:path";
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -16,6 +17,9 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.join(__dirname),
+  },
   async headers() {
     return [
       {

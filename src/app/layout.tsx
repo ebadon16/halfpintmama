@@ -26,14 +26,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Half Pint Mama",
-    images: [
-      {
-        url: "/logo.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Half Pint Mama",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -41,7 +33,6 @@ export const metadata: Metadata = {
     creator: "@halfpintmama",
     title: "Half Pint Mama",
     description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
-    images: ["/logo.jpg"],
   },
 };
 

@@ -14,14 +14,12 @@ export const metadata: Metadata = {
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
     description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
     type: "website",
-    images: ["/logo.jpg"],
     url: "https://halfpintmama.com",
   },
   twitter: {
     card: "summary_large_image",
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
     description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
-    images: ["/logo.jpg"],
   },
   alternates: { canonical: "https://halfpintmama.com" },
 };
@@ -90,9 +88,9 @@ export default async function Home() {
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl lg:text-6xl text-deep-sage font-bold mb-4">
             Nourishing Motherhood From Scratch
           </h1>
-          <h2 className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
+          <p className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
             From a Pediatric ER RN & Mama of Two
-          </h2>
+          </p>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
             I bring the same precision I use in the ER to my kitchen — nurse-tested recipes, real ingredients, and nothing I wouldn&apos;t feed my own kids. From sourdough on the counter to babies on the hip.
           </p>

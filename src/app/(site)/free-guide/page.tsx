@@ -10,7 +10,6 @@ export const metadata = {
     description: "Get your free sourdough starter guide — day-by-day instructions from a Pediatric ER RN.",
     type: "website",
     url: "https://halfpintmama.com/free-guide",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

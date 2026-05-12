@@ -13,7 +13,6 @@ export const metadata = {
     description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials.",
     type: "website",
     url: "https://halfpintmama.com/products",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

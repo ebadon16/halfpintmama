@@ -9,7 +9,6 @@ export const metadata = {
     description: "Health and wellness disclaimer for Half Pint Mama.",
     type: "website",
     url: "https://halfpintmama.com/disclaimer",
-    images: ["/logo.jpg"],
   },
   twitter: {
     card: "summary" as const,

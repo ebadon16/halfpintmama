@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps) {
       description,
       url: `https://halfpintmama.com/posts/${slug}`,
       type: "article",
-      images: post.image ? [post.image] : ["/logo.jpg"],
+      ...(post.image ? { images: [post.image] } : {}),
       siteName: "Half Pint Mama",
       authors: ["Keegan"],
       section: categoryLabel,
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: PageProps) {
       card: "summary_large_image",
       title: post.title,
       description,
-      images: post.image ? [post.image] : ["/logo.jpg"],
+      ...(post.image ? { images: [post.image] } : {}),
     },
     other: {
       "pinterest-rich-pin": "true",
