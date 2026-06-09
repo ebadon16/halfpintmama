@@ -34,7 +34,7 @@ export default async function TravelPage({ searchParams }: PageProps) {
   const currentPage = parseInt(page || "1", 10);
   const { items: posts, totalPages } = await getPaginatedPostsBySubcategory(
     "mama-life",
-    ["banff", "montana", "road trip", "travel", "vacation"],
+    ["banff", "montana", "road trip", "roadtrip", "travel", "vacation"],
     [],
     currentPage
   );

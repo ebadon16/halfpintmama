@@ -27,7 +27,12 @@ export function HeaderNav() {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = ""; };
+      const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setIsMenuOpen(false); };
+      document.addEventListener("keydown", onKey);
+      return () => {
+        document.body.style.overflow = "";
+        document.removeEventListener("keydown", onKey);
+      };
     }
   }, [isMenuOpen]);
 
@@ -94,7 +99,14 @@ export function HeaderNav() {
 
       {/* Mobile nav */}
       {isMenuOpen && (
-        <div id="mobile-menu" className="md:hidden flex flex-col items-center gap-2 py-4 px-4 bg-cream border-t border-light-sage">
+        <div
+          className="md:hidden fixed inset-0 z-40 bg-black/20"
+          aria-hidden="true"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+      {isMenuOpen && (
+        <div id="mobile-menu" className="md:hidden relative z-50 flex flex-col items-center gap-2 py-4 px-4 bg-cream border-t border-light-sage">
           {navLinks.map((link) => (
             <Link
               key={link.href}

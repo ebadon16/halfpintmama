@@ -4,7 +4,7 @@
   /* Half Pint Mama Brand Colors - Matched to Logo */
   --cream: #F5F1E8;
   --warm-beige: #E6DFD3;
-  --sage: #7B8F6E;
+  --sage: #647859;       /* Darkened from #7B8F6E to meet WCAG AA 4.5:1 with white text on active/selected states */
   --deep-sage: #4A5845;   /* Darkened from #5C6B52 to meet WCAG AA 4.5:1 on cream */
   --terracotta: #A65C39;  /* Darkened from #C4835F to meet WCAG AA 4.5:1 on cream */
   --soft-pink: #D4A894;
@@ -51,7 +51,9 @@ h1, h2, h3, h4 {
 }
 
 .gradient-cta {
-  background: linear-gradient(135deg, var(--terracotta), var(--soft-pink));
+  /* Both stops kept dark enough for white text to pass WCAG AA (the old
+     --soft-pink end was only 2.1:1 with white). */
+  background: linear-gradient(135deg, var(--terracotta), #8A4A2E);
 }
 
 /* Smooth scrolling */

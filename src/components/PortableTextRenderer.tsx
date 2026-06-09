@@ -137,13 +137,16 @@ const components: PortableTextComponents = {
       const layout = value.layout || "center";
       const imgSize = sizeStyles[size] || sizeStyles.medium;
 
+      // Editor-supplied URL can point at any host, which next/image rejects
+      // unless allowlisted in remotePatterns (crashes the whole post). Use a
+      // plain img so an arbitrary external URL can never 500 the page.
       const imgEl = (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
           src={value.url}
           alt={value.alt || "Image from post"}
           width={600}
           height={400}
-          sizes={sizesAttr[size] || sizesAttr.medium}
           loading="lazy"
           className={`rounded-lg shadow-sm object-cover ${imgSize}`}
         />

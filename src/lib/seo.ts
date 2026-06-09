@@ -21,7 +21,7 @@ export function paginatedCanonical(basePath: string, currentPage: number): strin
 
 // "All Posts | Half Pint Mama" → "All Posts (Page 2) | Half Pint Mama"
 export function paginatedTitle(baseTitle: string, currentPage: number): string {
-  if (currentPage <= 1) return baseTitle;
+  if (!(currentPage > 1)) return baseTitle;
   const parts = baseTitle.split(" | ");
   if (parts.length === 2) {
     return `${parts[0]} (Page ${currentPage}) | ${parts[1]}`;

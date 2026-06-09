@@ -121,7 +121,7 @@ export default function AboutPage() {
             Half Pint Mama started as a place to share what&apos;s working in our home: real food, honest motherhood, and from-scratch recipes tested in the margins of real life. What began as sharing sourdough wins and mama moments has grown into a community of 35,000+ families. Just beginning your sourdough journey, looking for tried and true recipes, or navigating the beautiful chaos of raising littles? You&apos;ll find it all here, rooted in experience from both nursing and motherhood.
           </p>
 
-          <p className="text-sage italic text-lg">
+          <p className="text-deep-sage italic text-lg">
             Thanks so much for being here. I&apos;m really glad you found your way to my kitchen <Heart className="inline-block w-4 h-4 text-soft-pink align-middle" />
           </p>
         </div>

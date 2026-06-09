@@ -189,7 +189,7 @@ export async function getPaginatedPosts(
   page: number,
   perPage: number = POSTS_PER_PAGE
 ): Promise<PaginatedResult<PostMeta>> {
-  const validPage = Math.max(1, page);
+  const validPage = Number.isFinite(page) && page >= 1 ? Math.floor(page) : 1;
   const start = (validPage - 1) * perPage;
 
   const [items, totalCount] = await Promise.all([
@@ -217,7 +217,7 @@ export async function getPaginatedPostsByCategory(
   page: number,
   perPage: number = POSTS_PER_PAGE
 ): Promise<PaginatedResult<PostMeta>> {
-  const validPage = Math.max(1, page);
+  const validPage = Number.isFinite(page) && page >= 1 ? Math.floor(page) : 1;
   const start = (validPage - 1) * perPage;
 
   const [items, totalCount] = await Promise.all([
@@ -245,7 +245,7 @@ export async function getPaginatedPostsByTag(
   page: number,
   perPage: number = POSTS_PER_PAGE
 ): Promise<PaginatedResult<PostMeta>> {
-  const validPage = Math.max(1, page);
+  const validPage = Number.isFinite(page) && page >= 1 ? Math.floor(page) : 1;
   const start = (validPage - 1) * perPage;
   const normalizedTag = tag.toLowerCase();
 
@@ -276,7 +276,7 @@ export async function getPaginatedPostsBySubcategory(
   page: number,
   perPage: number = POSTS_PER_PAGE
 ): Promise<PaginatedResult<PostMeta>> {
-  const validPage = Math.max(1, page);
+  const validPage = Number.isFinite(page) && page >= 1 ? Math.floor(page) : 1;
   const start = (validPage - 1) * perPage;
 
   const includeConditions = keywords.map((_, i) => `title match $kw${i}`).join(" || ");

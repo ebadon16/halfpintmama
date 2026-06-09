@@ -47,7 +47,7 @@ export function RecipeSchema({ title, description, image, datePublished, dateMod
     "@type": "Recipe",
     name: title,
     description: description,
-    image: image ? [image] : [],
+    ...(image ? { image: [image] } : {}),
     author: {
       "@type": "Person",
       "@id": `${baseUrl}/about#person`,
@@ -125,7 +125,7 @@ export function BlogPostSchema({ title, description, image, datePublished, dateM
     "@type": "BlogPosting",
     headline: title,
     description: description,
-    image: image ? [image] : [],
+    ...(image ? { image: [image] } : {}),
     author: {
       "@type": "Person",
       "@id": `${baseUrl}/about#person`,

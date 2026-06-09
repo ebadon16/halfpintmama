@@ -165,6 +165,35 @@ export async function POST(request: NextRequest) {
       createdAt: new Date().toISOString(),
     });
 
+    // Keep the post's aggregate rating in sync with its approved reviews.
+    // Recompute from source (race-safe) rather than incrementing, then patch the
+    // post document — otherwise ratingAverage/ratingCount never reflect reviews.
+    if (!isReply) {
+      try {
+        const wc = getWriteClient();
+        const post = await wc.fetch<{ _id: string } | null>(
+          `*[_type == "post" && slug.current == $slug][0]{ _id }`,
+          { slug: safePostSlug }
+        );
+        if (post?._id) {
+          const stats = await wc.fetch<{ avg: number | null; count: number }>(
+            `{ "avg": math::avg(*[_type == "comment" && postSlug == $s && approved == true && rating > 0].rating),
+               "count": count(*[_type == "comment" && postSlug == $s && approved == true && rating > 0]) }`,
+            { s: safePostSlug }
+          );
+          await wc
+            .patch(post._id)
+            .set({
+              ratingAverage: stats.avg ? Math.round(stats.avg * 10) / 10 : 0,
+              ratingCount: stats.count,
+            })
+            .commit();
+        }
+      } catch (err) {
+        console.error("Failed to update post rating aggregate:", err);
+      }
+    }
+
     // Escape HTML for email
     const escapedAuthor = escapeHtml(safeAuthor);
     const escapedContent = escapeHtml(safeContent);
