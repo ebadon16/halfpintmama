@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { getPaginatedPosts, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
@@ -61,6 +62,9 @@ export default async function PostsPage({ searchParams }: PageProps) {
       },
     ],
   };
+
+  // Out-of-range pages render empty; 404 them so they aren't indexed as thin content.
+  if (currentPage > 1 && posts.length === 0) notFound();
 
   return (
     <div className="bg-cream">

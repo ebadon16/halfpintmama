@@ -199,7 +199,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
               : <>No posts match your selected filters</>
             }
           </p>
-          <div className="space-y-2 text-sm text-charcoal/60">
+          <div className="space-y-2 text-sm text-charcoal/80">
             <p>Try:</p>
             <ul className="list-disc list-inside">
               <li>Using different keywords</li>
@@ -214,7 +214,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
             >
               Browse all recipes &rarr;
             </Link>
-            <p className="text-charcoal/60 text-sm pt-2">While you&apos;re here, grab a free guide:</p>
+            <p className="text-charcoal/80 text-sm pt-2">While you&apos;re here, grab a free guide:</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/free-guide"

@@ -75,7 +75,7 @@ export default function DisclaimerPage() {
           </section>
 
           <div className="pt-4 border-t border-light-sage">
-            <p className="text-charcoal/60 text-sm">
+            <p className="text-charcoal/80 text-sm">
               If you have questions about this disclaimer, please{" "}
               <Link href="/contact" className="text-terracotta hover:text-deep-sage transition-colors">
                 contact us

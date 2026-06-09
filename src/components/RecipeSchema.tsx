@@ -66,7 +66,6 @@ export function RecipeSchema({ title, description, image, datePublished, dateMod
     },
     url: `${baseUrl}/posts/${slug}`,
     recipeCategory,
-    recipeCuisine: "American",
     keywords: `${title}, recipe, homemade`,
   };
 

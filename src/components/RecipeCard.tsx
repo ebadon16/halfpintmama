@@ -189,7 +189,7 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
       )}
 
       {/* Print note */}
-      <p className="text-xs text-charcoal/50 text-center mt-4 hidden" data-print-show>
+      <p className="text-xs text-charcoal/80 text-center mt-4 hidden" data-print-show>
         Recipe from halfpintmama.com
       </p>
     </div>

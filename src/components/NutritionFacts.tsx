@@ -33,7 +33,7 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
       </h4>
 
       {servings != null && servings > 0 && (
-        <p className="text-xs text-charcoal/60 mb-3">
+        <p className="text-xs text-charcoal/80 mb-3">
           Per serving ({scale !== 1 ? "adjusted" : "original"} recipe)
         </p>
       )}
@@ -44,7 +44,7 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
         <thead>
           <tr>
             {items.map(({ label }) => (
-              <th key={label} scope="col" className="text-xs text-charcoal/60 font-normal pb-1">
+              <th key={label} scope="col" className="text-xs text-charcoal/80 font-normal pb-1">
                 {label}
               </th>
             ))}
@@ -63,7 +63,7 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
       </table>
       </div>
 
-      <p className="text-xs text-charcoal/50 mt-3 italic">
+      <p className="text-xs text-charcoal/80 mt-3 italic">
         * Nutritional values are estimates and may vary.
       </p>
     </div>

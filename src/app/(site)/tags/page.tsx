@@ -52,7 +52,7 @@ export default async function TagsPage() {
                 className="px-4 py-2 bg-white rounded-full shadow-sm hover:shadow-md transition-all text-charcoal hover:text-terracotta group"
               >
                 <span className="capitalize">{tag}</span>
-                <span className="ml-2 text-sm text-charcoal/50 group-hover:text-terracotta/70">
+                <span className="ml-2 text-sm text-charcoal/80 group-hover:text-terracotta/70">
                   ({count})
                 </span>
               </Link>

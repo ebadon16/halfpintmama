@@ -65,6 +65,9 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     notFound();
   }
 
+  // Out-of-range pages render empty; 404 them so they aren't indexed as thin content.
+  if (currentPage > 1 && posts.length === 0) notFound();
+
   return (
     <div className="bg-cream min-h-screen">
       <script
@@ -89,7 +92,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
             &larr; All Tags
           </Link>
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
-            <span className="text-charcoal/50">#</span>
+            <span className="text-charcoal/80">#</span>
             <span className="capitalize">{normalizedTag}</span>
           </h1>
           <p className="text-charcoal/80">

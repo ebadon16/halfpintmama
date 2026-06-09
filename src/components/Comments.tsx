@@ -343,7 +343,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
               {!replyingTo && (
                 <div>
                   <label className="block text-sm font-medium text-charcoal mb-2">
-                    Your Rating {hasRated && <span className="text-xs text-charcoal/50">(you&apos;ve already rated this post)</span>}
+                    Your Rating {hasRated && <span className="text-xs text-charcoal/80">(you&apos;ve already rated this post)</span>}
                   </label>
                   <StarRating
                     rating={formData.rating}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 interface StarRatingProps {
   rating: number;
@@ -11,6 +11,7 @@ interface StarRatingProps {
 
 export function StarRating({ rating, onRate, readonly = false, size = "md" }: StarRatingProps) {
   const [hoverRating, setHoverRating] = useState(0);
+  const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const sizeClasses = {
     sm: "w-4 h-4",
@@ -51,13 +52,14 @@ export function StarRating({ rating, onRate, readonly = false, size = "md" }: St
           <button
             key={index}
             type="button"
+            ref={(el) => { btnRefs.current[index - 1] = el; }}
             onClick={() => onRate?.(index)}
             onMouseEnter={() => setHoverRating(index)}
             onMouseLeave={() => setHoverRating(0)}
             onTouchStart={() => setHoverRating(index)}
             onKeyDown={(e) => {
-              if (e.key === "ArrowRight" && index < 5) onRate?.(index + 1);
-              if (e.key === "ArrowLeft" && index > 1) onRate?.(index - 1);
+              if (e.key === "ArrowRight" && index < 5) { onRate?.(index + 1); btnRefs.current[index]?.focus(); }
+              if (e.key === "ArrowLeft" && index > 1) { onRate?.(index - 1); btnRefs.current[index - 2]?.focus(); }
             }}
             className="p-2 -m-1 cursor-pointer transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage rounded"
             aria-label={`Rate ${index} star${index !== 1 ? "s" : ""}`}

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { getPaginatedPostsByCategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
@@ -39,6 +40,9 @@ export default async function CookingPage({ searchParams }: PageProps) {
   const { page } = await searchParams;
   const currentPage = parseInt(page || "1", 10);
   const { items: posts, totalPages } = await getPaginatedPostsByCategory("cooking", currentPage);
+
+  // Out-of-range pages render empty; 404 them so they aren't indexed as thin content.
+  if (currentPage > 1 && posts.length === 0) notFound();
 
   return (
     <div className="bg-cream">
@@ -99,7 +103,7 @@ export default async function CookingPage({ searchParams }: PageProps) {
             if (rated.length === 0) return null;
             const avg = rated.reduce((sum, p) => sum + (p.ratingAverage || 0), 0) / rated.length;
             return (
-              <p className="text-charcoal/60 text-sm mb-6">
+              <p className="text-charcoal/80 text-sm mb-6">
                 <span className="text-yellow-500">★</span> {rated.length} recipe{rated.length !== 1 ? "s" : ""} rated {avg.toFixed(1)} average
               </p>
             );
@@ -125,7 +129,7 @@ export default async function CookingPage({ searchParams }: PageProps) {
         </div>
 
         {posts.length === 0 && (
-          <p className="text-center text-charcoal/60 py-12">
+          <p className="text-center text-charcoal/80 py-12">
             No posts yet. Check back soon!
           </p>
         )}

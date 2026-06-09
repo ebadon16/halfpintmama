@@ -78,7 +78,7 @@ export default function ProductsPage() {
             <ShoppingCart className="w-7 h-7 text-[#FF9900]" />
             <div className="text-left">
               <p className="font-semibold text-charcoal group-hover:text-[#FF9900] transition-colors">Amazon Storefront</p>
-              <p className="text-charcoal/60 text-sm">Shop all my favorites</p>
+              <p className="text-charcoal/80 text-sm">Shop all my favorites</p>
             </div>
           </a>
           <a
@@ -90,7 +90,7 @@ export default function ProductsPage() {
             <Heart className="w-7 h-7 text-pink-500" />
             <div className="text-left">
               <p className="font-semibold text-charcoal group-hover:text-pink-600 transition-colors">LTK Shop</p>
-              <p className="text-charcoal/60 text-sm">Outfit & home picks</p>
+              <p className="text-charcoal/80 text-sm">Outfit & home picks</p>
             </div>
           </a>
         </div>
@@ -144,7 +144,7 @@ export default function ProductsPage() {
       {/* Disclaimer */}
       <section className="max-w-4xl mx-auto px-4 pb-12">
         <div className="p-6 bg-warm-beige/50 rounded-xl text-center">
-          <p className="text-charcoal/60 text-sm">
+          <p className="text-charcoal/80 text-sm">
             <strong>Affiliate Disclosure:</strong> Links on this page are Amazon affiliate links. This means I earn a small commission if you purchase through them, at no extra cost to you. I only recommend products I personally use and love. Your support helps keep this blog running - thank you!
           </p>
         </div>

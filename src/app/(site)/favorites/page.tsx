@@ -139,7 +139,7 @@ export default function FavoritesPage() {
 
         {/* Info Note */}
         {favorites.length > 0 && (
-          <p className="text-charcoal/50 text-sm text-center mt-8">
+          <p className="text-charcoal/80 text-sm text-center mt-8">
             Favorites are saved in your browser. They won&apos;t sync across devices.
           </p>
         )}

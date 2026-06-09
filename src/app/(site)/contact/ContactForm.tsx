@@ -73,7 +73,7 @@ export function ContactForm() {
             Back to Home
           </Link>
           <div className="mt-6 pt-6 border-t border-warm-beige/50">
-            <p className="text-charcoal/60 text-sm mb-3">While you wait for a reply:</p>
+            <p className="text-charcoal/80 text-sm mb-3">While you wait for a reply:</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/cooking"

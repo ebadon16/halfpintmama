@@ -58,7 +58,7 @@ export default function NotFound() {
         </div>
 
         <div className="pt-6 border-t border-light-sage">
-          <p className="text-charcoal/60 text-sm mb-4">Looking for something specific?</p>
+          <p className="text-charcoal/80 text-sm mb-4">Looking for something specific?</p>
           <Link
             href="/search"
             className="inline-flex items-center gap-2 text-terracotta font-medium hover:text-deep-sage transition-colors"

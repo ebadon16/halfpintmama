@@ -186,7 +186,7 @@ export function EmailPopup() {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center text-charcoal/50 hover:text-charcoal text-2xl leading-none z-10"
+          className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center text-charcoal/80 hover:text-charcoal text-2xl leading-none z-10"
           aria-label="Close popup"
         >
           &times;
@@ -214,7 +214,7 @@ export function EmailPopup() {
             <p className="text-charcoal/80 text-center mb-4 text-sm">
               {ctx.body}
             </p>
-            <p className="text-charcoal/50 text-center mb-4 text-xs">
+            <p className="text-charcoal/80 text-center mb-4 text-xs">
               Join 35,000+ families already following along.
             </p>
 
@@ -241,7 +241,7 @@ export function EmailPopup() {
               {status === "loading" ? "Sending..." : ctx.cta}
             </button>
 
-            <p className="text-charcoal/50 text-xs text-center mt-3">
+            <p className="text-charcoal/80 text-xs text-center mt-3">
               No spam, ever. Unsubscribe anytime.
             </p>
           </form>
@@ -252,7 +252,7 @@ export function EmailPopup() {
           <div className="pb-4 text-center">
             <button
               onClick={handleDismiss}
-              className="text-charcoal/50 text-sm hover:text-charcoal transition-colors"
+              className="text-charcoal/80 text-sm hover:text-charcoal transition-colors"
             >
               Maybe later
             </button>

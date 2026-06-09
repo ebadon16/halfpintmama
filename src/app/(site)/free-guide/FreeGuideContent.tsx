@@ -122,10 +122,10 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                 </div>
                 <div className="text-center">
                   <div className="flex justify-center mb-4"><ThemedIcon icon={Wheat} size="xl" color="terracotta" /></div>
-                  <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-bold mb-2">
+                  <p className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-bold mb-2">
                     Sourdough Starter Guide
-                  </h2>
-                  <p className="text-charcoal/60 text-sm">
+                  </p>
+                  <p className="text-charcoal/80 text-sm">
                     Your Complete Beginner&apos;s Guide
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
               <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
                 Get Your Free Sourdough Starter Guide
               </h1>
-              <p className="text-charcoal/60 text-sm mb-4 flex items-center justify-start gap-2">
+              <p className="text-charcoal/80 text-sm mb-4 flex items-center justify-start gap-2">
                 <span className="text-yellow-500">&#9733;</span>
                 {cookingPosts}+ tested recipes on the blog &middot; Written by a Pediatric ER RN
               </p>
@@ -171,7 +171,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
               {/* Signup Form */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <SignupForm source="free-guide-hero" />
-                <p className="text-charcoal/50 text-xs text-center mt-4">
+                <p className="text-charcoal/80 text-xs text-center mt-4">
                   No spam, ever. Unsubscribe anytime.
                 </p>
               </div>

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { getPaginatedPostsBySubcategory, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
@@ -38,6 +39,9 @@ export default async function TravelPage({ searchParams }: PageProps) {
     [],
     currentPage
   );
+
+  // Out-of-range pages render empty; 404 them so they aren't indexed as thin content.
+  if (currentPage > 1 && posts.length === 0) notFound();
 
   return (
     <div className="bg-cream">
@@ -102,7 +106,7 @@ export default async function TravelPage({ searchParams }: PageProps) {
         </div>
 
         {posts.length === 0 && (
-          <p className="text-center text-charcoal/60 py-12">
+          <p className="text-center text-charcoal/80 py-12">
             No travel posts yet. Check back soon!
           </p>
         )}

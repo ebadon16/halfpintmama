@@ -55,7 +55,7 @@ function SignupForm({ source }: { source: string }) {
           </Link>
         </div>
         <div className="mt-4 pt-4 border-t border-sage/20">
-          <p className="text-charcoal/60 text-xs mb-2">Love sourdough too?</p>
+          <p className="text-charcoal/80 text-xs mb-2">Love sourdough too?</p>
           <Link
             href="/free-guide"
             className="inline-block px-4 py-2 gradient-cta text-white text-sm font-semibold rounded-full hover:shadow-lg transition-all"
@@ -129,10 +129,10 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
                 </div>
                 <div className="text-center">
                   <div className="flex justify-center mb-4"><ThemedIcon icon={Heart} size="xl" color="deep-sage" /></div>
-                  <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-bold mb-2">
+                  <p className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-bold mb-2">
                     The Mama Life Guide
-                  </h2>
-                  <p className="text-charcoal/60 text-sm">
+                  </p>
+                  <p className="text-charcoal/80 text-sm">
                     Real Tips for Real Motherhood
                   </p>
                 </div>
@@ -167,7 +167,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
               <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
                 Get Your Free Mama Life Guide
               </h1>
-              <p className="text-charcoal/60 text-sm mb-4 flex items-center justify-start gap-2">
+              <p className="text-charcoal/80 text-sm mb-4 flex items-center justify-start gap-2">
                 <span className="text-yellow-500">&#9733;</span>
                 From a Pediatric ER RN &amp; mama of two &middot; {totalPosts}+ posts on the blog
               </p>
@@ -177,7 +177,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
 
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <SignupForm source="mama-guide-hero" />
-                <p className="text-charcoal/50 text-xs text-center mt-4">
+                <p className="text-charcoal/80 text-xs text-center mt-4">
                   No spam, ever. Unsubscribe anytime.
                 </p>
               </div>
@@ -236,7 +236,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
           <p className="text-charcoal/80 mb-4">
             I spent years as a Pediatric ER nurse before becoming a mama myself. The Mama Life Guide combines clinical knowledge with real-world motherhood experience. No textbook fluff, just what actually helps.
           </p>
-          <p className="text-charcoal/50 text-sm italic">
+          <p className="text-charcoal/80 text-sm italic">
             This guide is for informational purposes only and is not a substitute for professional medical advice.
           </p>
         </div>

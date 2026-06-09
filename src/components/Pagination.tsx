@@ -73,7 +73,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
       <div className="hidden sm:flex items-center gap-1">
         {pageNumbers.map((page, index) =>
           page === "ellipsis" ? (
-            <span key={`ellipsis-${index}`} className="px-2 text-charcoal/50" aria-label="More pages">
+            <span key={`ellipsis-${index}`} className="px-2 text-charcoal/80" aria-label="More pages">
               ...
             </span>
           ) : page === currentPage ? (

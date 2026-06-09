@@ -68,7 +68,7 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
         />
       </svg>
       {showText && (
-        <span className={`text-sm ${mounted && isFavorite ? "text-terracotta" : "text-charcoal/60"}`}>
+        <span className={`text-sm ${mounted && isFavorite ? "text-terracotta" : "text-charcoal/80"}`}>
           {mounted && isFavorite ? "Saved" : "Save"}
         </span>
       )}
