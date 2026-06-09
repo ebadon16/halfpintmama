@@ -111,8 +111,9 @@ export function saveRecentSearch(term: string) {
 
     if (stored) {
       try {
-        searches = JSON.parse(stored);
-      } catch { /* corrupted data — start fresh */ }
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) searches = parsed;
+      } catch { /* corrupted data, start fresh */ }
     }
 
     // Remove if already exists, add to front, limit to max

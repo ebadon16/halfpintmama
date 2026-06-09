@@ -233,7 +233,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
               The Post-Partum Cook Book
             </h4>
             <p className="text-charcoal/80 text-sm">
-              Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Evidence-based tips for recovery, feeding, and surviving those early days—plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
+              Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
             </p>
           </div>
         </div>

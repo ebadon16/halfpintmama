@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { createClient } from "@sanity/client";
 import { escapeHtml } from "@/lib/sanitize";
 import { rateLimit } from "@/lib/rate-limit";
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data: CommentData = await request.json();
-    const { author, email, content, rating, postSlug, postTitle, isReply, parentId, replyToAuthor, replyToEmail } = data;
+    const { author, email, content, rating, postSlug, postTitle, isReply, parentId, replyToAuthor } = data;
 
     // Validate required fields
     if (!author || typeof author !== "string" || !author.trim()) {
@@ -174,7 +174,10 @@ export async function POST(request: NextRequest) {
     const postUrl = `https://halfpintmama.com/posts/${safePostSlug}#comments-section`;
     const ratingText = rating > 0 ? `${"⭐".repeat(rating)} (${rating}/5)` : "No rating";
 
-    // Send notification to site owner (non-blocking — comment is already saved)
+    // Notifications are best-effort and must not delay the response. The comment
+    // is already saved, so run all email sends after the response is flushed.
+    after(async () => {
+    // Send notification to site owner
     try { await getResend().emails.send({
       from: "Half Pint Mama <notifications@halfpintmama.com>",
       to: NOTIFICATION_EMAIL,
@@ -228,23 +231,24 @@ export async function POST(request: NextRequest) {
       `,
     }); } catch (emailErr) { console.error("Failed to send owner notification:", emailErr); }
 
-    // If this is a reply, look up parent comment email from Sanity and notify
-    let resolvedReplyToEmail = replyToEmail;
+    // If this is a reply, notify the parent commenter — but ONLY at an address
+    // resolved server-side from the stored parent comment. Never trust a
+    // client-supplied reply-to email (would let anyone send mail to arbitrary
+    // recipients through our domain).
     if (isReply && parentId) {
+      let parentEmail: string | undefined;
       try {
         const parentComment = await readClient.fetch<{ email?: string }>(
           `*[_type == "comment" && _id == $parentId][0]{ email }`,
           { parentId }
         );
-        if (parentComment?.email) {
-          resolvedReplyToEmail = parentComment.email;
-        }
-      } catch { /* failed to fetch parent — skip notification */ }
-    }
-    if (isReply && resolvedReplyToEmail && typeof resolvedReplyToEmail === "string" && EMAIL_REGEX.test(resolvedReplyToEmail.trim()) && resolvedReplyToEmail !== email) {
+        parentEmail = parentComment?.email;
+      } catch { /* failed to fetch parent, skip notification */ }
+
+      if (parentEmail && EMAIL_REGEX.test(parentEmail.trim()) && parentEmail !== safeEmail) {
       try { await getResend().emails.send({
         from: "Half Pint Mama <notifications@halfpintmama.com>",
-        to: resolvedReplyToEmail,
+        to: parentEmail,
         subject: `${escapedAuthor} replied to your comment on Half Pint Mama`,
         html: `
           <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -276,7 +280,9 @@ export async function POST(request: NextRequest) {
           </div>
         `,
       }); } catch (emailErr) { console.error("Failed to send reply notification:", emailErr); }
+      }
     }
+    });
 
     return NextResponse.json({
       success: true,

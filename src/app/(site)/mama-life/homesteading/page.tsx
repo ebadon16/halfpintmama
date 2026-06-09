@@ -79,7 +79,7 @@ export default async function HomesteadingPage({ searchParams }: PageProps) {
             Homesteading
           </h1>
           <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
-            Getting back to basics — in the suburbs. Low-tox living, intentional home life, and practical tips for building a nourished home without the acreage.
+            Getting back to basics, in the suburbs. Low-tox living, intentional home life, and practical tips for building a nourished home without the acreage.
           </p>
           <SearchBar placeholder="Search homesteading posts..." className="max-w-md" />
         </div>

@@ -6,7 +6,7 @@ import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "About Keegan | Half Pint Mama",
-  description: "Meet Keegan — a Pediatric ER RN and mama of two sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
+  description: "Meet Keegan, a Pediatric ER RN and mama of two sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
@@ -73,11 +73,11 @@ export default function AboutPage() {
         {/* Main Content */}
         <div className="bg-white rounded-2xl p-8 shadow-md mb-8">
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            I&apos;m a mama on a mission to get back to the basics—real food, simple recipes, and intentional living.
+            I&apos;m a mama on a mission to get back to the basics: real food, simple recipes, and intentional living.
           </p>
 
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            I&apos;m a Pediatric ER RN and a mama of two, sharing life&apos;s beautiful chaos with my kids and our chocolate lab. My nursing background shapes the way I approach the kitchen and home—thoughtful, practical, and rooted in what truly nourishes a family. Around here, you&apos;ll find honest conversations about motherhood, my deep love for sourdough, and the small, everyday rhythms that make a home feel steady and good.
+            I&apos;m a Pediatric ER RN and a mama of two, sharing life&apos;s beautiful chaos with my kids and our chocolate lab. My nursing background shapes the way I approach the kitchen and home: thoughtful, practical, and rooted in what truly nourishes a family. Around here, you&apos;ll find honest conversations about motherhood, my deep love for sourdough, and the small, everyday rhythms that make a home feel steady and good.
           </p>
 
           {/* Highlight Box */}
@@ -118,11 +118,11 @@ export default function AboutPage() {
           </div>
 
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            Half Pint Mama started as a place to share what&apos;s working in our home—real food, honest motherhood, and from-scratch recipes tested in the margins of real life. What began as sharing sourdough wins and mama moments has grown into a community of 35,000+ families. Whether you&apos;re just beginning your sourdough journey, looking for tried and true recipes, or navigating the beautiful chaos of raising littles — you&apos;ll find it all here, rooted in experience from both nursing and motherhood.
+            Half Pint Mama started as a place to share what&apos;s working in our home: real food, honest motherhood, and from-scratch recipes tested in the margins of real life. What began as sharing sourdough wins and mama moments has grown into a community of 35,000+ families. Just beginning your sourdough journey, looking for tried and true recipes, or navigating the beautiful chaos of raising littles? You&apos;ll find it all here, rooted in experience from both nursing and motherhood.
           </p>
 
           <p className="text-sage italic text-lg">
-            Thanks so much for being here—I&apos;m really glad you found your way to my kitchen <Heart className="inline-block w-4 h-4 text-soft-pink align-middle" />
+            Thanks so much for being here. I&apos;m really glad you found your way to my kitchen <Heart className="inline-block w-4 h-4 text-soft-pink align-middle" />
           </p>
         </div>
 

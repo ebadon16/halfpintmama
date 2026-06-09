@@ -12,7 +12,7 @@ export function Footer() {
               Half Pint Mama
             </h3>
             <p className="text-charcoal/80 text-sm leading-relaxed">
-              Nourishing motherhood from scratch — real food, real recipes, and real talk about raising littles.
+              Nourishing motherhood from scratch: real food, real recipes, and real talk about raising littles.
             </p>
           </div>
 
@@ -40,6 +40,11 @@ export function Footer() {
               <li>
                 <Link href="/search" className="text-charcoal/80 hover:text-terracotta transition-colors">
                   Search
+                </Link>
+              </li>
+              <li>
+                <Link href="/tags" className="text-charcoal/80 hover:text-terracotta transition-colors">
+                  Browse by Topic
                 </Link>
               </li>
               <li>

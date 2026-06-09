@@ -43,7 +43,7 @@ export default function DisclaimerPage() {
               About the Author
             </h2>
             <p>
-              Keegan is a Registered Nurse (RN) with experience in pediatric emergency medicine. While her nursing background informs the perspectives shared on this site, the content here reflects her personal experience as a mother and is not professional medical advice. She is sharing her journey — not prescribing or diagnosing.
+              Keegan is a Registered Nurse (RN) with experience in pediatric emergency medicine. While her nursing background informs the perspectives shared on this site, the content here reflects her personal experience as a mother and is not professional medical advice. She is sharing her journey, not prescribing or diagnosing.
             </p>
           </section>
 

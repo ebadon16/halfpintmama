@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const categoryLabel = post.category === "cooking" ? "From Scratch Kitchen" : post.category === "mama-life" ? "Mama Life" : post.category;
-  const description = post.excerpt || `${post.title} — a ${categoryLabel.toLowerCase()} post from Half Pint Mama.`;
+  const description = post.excerpt || `${post.title}: a ${categoryLabel.toLowerCase()} post from Half Pint Mama.`;
 
   return {
     title: `${post.title} | Half Pint Mama`,

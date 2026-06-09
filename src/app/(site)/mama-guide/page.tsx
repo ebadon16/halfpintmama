@@ -12,7 +12,7 @@ export const metadata = {
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Free Mama Life Guide | Half Pint Mama",
-    description: "Get the free Mama Life Guide — honest tips for navigating motherhood from a Pediatric ER RN.",
+    description: "Get the free Mama Life Guide: honest tips for navigating motherhood from a Pediatric ER RN.",
     type: "website",
     url: "https://halfpintmama.com/mama-guide",
   },
@@ -20,7 +20,7 @@ export const metadata = {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Free Mama Life Guide | Half Pint Mama",
-    description: "Get the free Mama Life Guide — honest tips for navigating motherhood from a Pediatric ER RN.",
+    description: "Get the free Mama Life Guide: honest tips for navigating motherhood from a Pediatric ER RN.",
   },
 };
 

@@ -7,7 +7,7 @@ export const DEFAULT_OG_IMAGE = {
   url: `${SITE_URL}/opengraph-image`,
   width: 1200,
   height: 630,
-  alt: "Half Pint Mama — Nourishing Motherhood From Scratch",
+  alt: "Half Pint Mama: Nourishing Motherhood From Scratch",
 } as const;
 
 export const DEFAULT_OG_IMAGE_ARRAY = [DEFAULT_OG_IMAGE];
@@ -19,14 +19,14 @@ export function paginatedCanonical(basePath: string, currentPage: number): strin
   return currentPage > 1 ? `${base}?page=${currentPage}` : base;
 }
 
-// "All Posts | Half Pint Mama" → "All Posts — Page 2 | Half Pint Mama"
+// "All Posts | Half Pint Mama" → "All Posts (Page 2) | Half Pint Mama"
 export function paginatedTitle(baseTitle: string, currentPage: number): string {
   if (currentPage <= 1) return baseTitle;
   const parts = baseTitle.split(" | ");
   if (parts.length === 2) {
-    return `${parts[0]} — Page ${currentPage} | ${parts[1]}`;
+    return `${parts[0]} (Page ${currentPage}) | ${parts[1]}`;
   }
-  return `${baseTitle} — Page ${currentPage}`;
+  return `${baseTitle} (Page ${currentPage})`;
 }
 
 // Shared author reference so post schemas link to the Person entity on /about.

@@ -79,7 +79,7 @@ export default async function MamaLifePage({ searchParams }: PageProps) {
             Mama Life
           </h1>
           <p className="text-charcoal/80 text-lg max-w-2xl mb-4">
-            Real talk about motherhood — the beautiful chaos, family adventures, the hard days, and everything in between. Parenting tips, honest reflections, and the stories that connect us.
+            Real talk about motherhood: the beautiful chaos, family adventures, the hard days, and everything in between. Parenting tips, honest reflections, and the stories that connect us.
           </p>
           {(() => {
             const rated = posts.filter((p) => p.ratingCount && p.ratingCount > 0);

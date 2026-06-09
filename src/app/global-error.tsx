@@ -10,7 +10,7 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
               Something went wrong
             </h1>
             <p style={{ color: "#3A3A38", opacity: 0.7, marginBottom: "2rem" }}>
-              We hit an unexpected bump. Try again — it might just be a hiccup!
+              We hit an unexpected bump. Try again. It might just be a hiccup!
             </p>
             <button
               onClick={reset}

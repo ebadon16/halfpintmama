@@ -172,7 +172,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
                 From a Pediatric ER RN &amp; mama of two &middot; {totalPosts}+ posts on the blog
               </p>
               <p className="text-charcoal/80 text-lg mb-6">
-                Honest, practical tips for navigating motherhood — from a Pediatric ER RN and mama of two who&apos;s been in the trenches.
+                Honest, practical tips for navigating motherhood, from a Pediatric ER RN and mama of two who&apos;s been in the trenches.
               </p>
 
               <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -220,7 +220,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Beyond Survival Mode</h3>
               <p className="text-charcoal/80 text-sm">
-                How to find your rhythm as a mama — from surviving to thriving, one season at a time.
+                How to find your rhythm as a mama, from surviving to thriving, one season at a time.
               </p>
             </div>
           </div>
@@ -234,7 +234,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
             Why Trust This Guide?
           </h3>
           <p className="text-charcoal/80 mb-4">
-            I spent years as a Pediatric ER nurse before becoming a mama myself. The Mama Life Guide combines clinical knowledge with real-world motherhood experience — no textbook fluff, just what actually helps.
+            I spent years as a Pediatric ER nurse before becoming a mama myself. The Mama Life Guide combines clinical knowledge with real-world motherhood experience. No textbook fluff, just what actually helps.
           </p>
           <p className="text-charcoal/50 text-sm italic">
             This guide is for informational purposes only and is not a substitute for professional medical advice.

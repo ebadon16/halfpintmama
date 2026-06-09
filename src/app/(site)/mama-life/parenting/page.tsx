@@ -79,7 +79,7 @@ export default async function ParentingPage({ searchParams }: PageProps) {
             Parenting
           </h1>
           <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
-            Real talk about raising littles — from a Pediatric ER RN who gets it. Toddler tips, baby milestones, breastfeeding, and the honest moments that connect us.
+            Real talk about raising littles, from a Pediatric ER RN who gets it. Toddler tips, baby milestones, breastfeeding, and the honest moments that connect us.
           </p>
           <SearchBar placeholder="Search parenting posts..." className="max-w-md" />
         </div>
