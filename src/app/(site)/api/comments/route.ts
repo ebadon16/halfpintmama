@@ -52,6 +52,7 @@ interface CommentData {
   parentId?: string;
   replyToAuthor?: string;
   replyToEmail?: string;
+  website?: string; // honeypot
 }
 
 // GET: Fetch comments for a post
@@ -102,6 +103,12 @@ export async function POST(request: NextRequest) {
 
     const data: CommentData = await request.json();
     const { author, email, content, rating, postSlug, postTitle, isReply, parentId, replyToAuthor } = data;
+
+    // Honeypot: the hidden "website" field is never filled by humans.
+    // Pretend success so bots don't learn they were filtered.
+    if (typeof data.website === "string" && data.website.trim() !== "") {
+      return NextResponse.json({ success: true });
+    }
 
     // Validate required fields
     if (!author || typeof author !== "string" || !author.trim()) {

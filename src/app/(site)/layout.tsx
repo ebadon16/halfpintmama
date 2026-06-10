@@ -4,6 +4,7 @@ import { Crimson_Text, Quicksand } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const EmailPopup = dynamic(() => import("@/components/EmailPopup").then((m) => m.EmailPopup));
 const BackToTop = dynamic(() => import("@/components/BackToTop").then((m) => m.BackToTop));
@@ -44,6 +45,7 @@ export default function SiteLayout({
         <EmailPopup />
         <BackToTop />
         <Analytics />
+        <GoogleAnalytics />
       </body>
     </html>
   );

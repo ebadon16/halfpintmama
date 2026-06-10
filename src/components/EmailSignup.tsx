@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { PartyPopper } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface EmailSignupProps {
   source?: string;
@@ -49,6 +50,7 @@ export function EmailSignup({
 
       if (response.ok) {
         setStatus("success");
+        trackEvent("email_signup", { source });
         setMessage(data.message);
         setEmail("");
       } else {

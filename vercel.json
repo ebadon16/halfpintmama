@@ -1,1 +1,10 @@
-{}
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.halfpintmama.com" }],
+      "destination": "https://halfpintmama.com/:path*",
+      "permanent": true
+    }
+  ]
+}

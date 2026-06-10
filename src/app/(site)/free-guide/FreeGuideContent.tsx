@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { PartyPopper, Wheat, Check, Calendar, Wrench, BookOpen } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 function SignupForm({ source }: { source: string }) {
   const [email, setEmail] = useState("");
@@ -29,6 +30,7 @@ function SignupForm({ source }: { source: string }) {
 
       if (response.ok) {
         setStatus("success");
+        trackEvent("email_signup", { source });
         setEmail("");
         setFirstName("");
       } else {
@@ -85,6 +87,7 @@ function SignupForm({ source }: { source: string }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
+          aria-label="Email address"
           required
           className="w-full px-4 py-3 border-2 border-warm-beige rounded-lg focus:outline-none focus:border-sage transition-colors"
         />

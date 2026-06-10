@@ -99,6 +99,12 @@ export default async function PostPage({ params }: PageProps) {
   const badgeColor = categoryColors[post.category] || "bg-sage";
   const categoryLabel = categoryLabels[post.category] || post.category;
 
+  // Pinterest favors tall 2:3 pins; Sanity's CDN can crop on the fly.
+  const pinImage = post.image?.includes("cdn.sanity.io")
+    ? `${post.image}?w=1000&h=1500&fit=crop&auto=format`
+    : post.image;
+  const pinDescription = [post.title, post.excerpt].filter(Boolean).join(" - ").slice(0, 500);
+
   // Get related posts, adjacent posts, and comment count in parallel
   const [relatedPosts, { prev: prevPost, next: nextPost }, commentCount] = await Promise.all([
     getRelatedPostsByTags(slug, post.tags, post.category, 3),
@@ -256,7 +262,7 @@ export default async function PostPage({ params }: PageProps) {
             />
             {/* Pinterest Pin It hover overlay */}
             <a
-              href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(`https://halfpintmama.com/posts/${slug}`)}&media=${encodeURIComponent(post.image)}&description=${encodeURIComponent(post.title)}`}
+              href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(`https://halfpintmama.com/posts/${slug}`)}&media=${encodeURIComponent(pinImage)}&description=${encodeURIComponent(pinDescription)}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Pin this image on Pinterest"

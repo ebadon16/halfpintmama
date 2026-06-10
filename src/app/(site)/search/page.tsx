@@ -3,8 +3,28 @@ import { getAllTags } from "@/lib/posts";
 import { SearchContent } from "./SearchContent";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Search } from "lucide-react";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 3600;
+
+export const metadata = {
+  title: "Search | Half Pint Mama",
+  description: "Search Half Pint Mama for sourdough recipes, from-scratch cooking, family travel tips, DIY projects, and honest parenting content.",
+  alternates: { canonical: "https://halfpintmama.com/search" },
+  openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
+    title: "Search | Half Pint Mama",
+    description: "Search Half Pint Mama for recipes, tips, and more.",
+    type: "website",
+    url: "https://halfpintmama.com/search",
+  },
+  twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
+    card: "summary" as const,
+    title: "Search | Half Pint Mama",
+    description: "Search Half Pint Mama for recipes, tips, and more.",
+  },
+};
 
 function SearchLoading() {
   return (

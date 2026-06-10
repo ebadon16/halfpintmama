@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PartyPopper, MailOpen } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" | "mama-life" } = {}) {
   const [email, setEmail] = useState("");
@@ -30,6 +31,7 @@ export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" |
 
       if (response.ok) {
         setStatus("success");
+        trackEvent("email_signup", { source: "homepage" });
         setMessage(data.message);
         setEmail("");
       } else {

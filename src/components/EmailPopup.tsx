@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, type MutableRefObject } from "react";
 import { usePathname } from "next/navigation";
+import { trackEvent } from "@/lib/analytics";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Wheat, Heart, PartyPopper } from "lucide-react";
 
@@ -145,6 +146,7 @@ export function EmailPopup() {
 
       if (response.ok) {
         setStatus("success");
+        trackEvent("email_signup", { source: "popup" });
         setMessage(data.message);
         try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }
         // Auto-close after 3 seconds

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { PartyPopper, MailOpen, Mail } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export function PostEmailSignup({ category }: { category?: string } = {}) {
   const [email, setEmail] = useState("");
@@ -31,6 +32,7 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
 
       if (response.ok) {
         setStatus("success");
+        trackEvent("email_signup", { source: "post-mid" });
         setMessage(data.message);
         setEmail("");
       } else {
@@ -122,6 +124,7 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
 
       if (response.ok) {
         setStatus("success");
+        trackEvent("email_signup", { source: "post-bottom" });
         setMessage(data.message);
         setEmail("");
       } else {

@@ -108,6 +108,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
     email: "",
     content: "",
     rating: 0,
+    website: "", // honeypot; humans never see or fill this
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -189,6 +190,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
           parentId: replyingTo,
           replyToAuthor: replyingToComment?.author,
           replyToEmail: "", // We don't expose emails in the frontend
+          website: formData.website,
         }),
       });
 
@@ -212,7 +214,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
       }
 
       // Reset form
-      setFormData({ author: "", email: "", content: "", rating: 0 });
+      setFormData({ author: "", email: "", content: "", rating: 0, website: "" });
       setShowForm(false);
       setReplyingTo(null);
       setReplyingToComment(null);
@@ -339,6 +341,19 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot: hidden from humans, bots auto-fill it */}
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                />
+              </div>
               {/* Rating - only for top-level comments */}
               {!replyingTo && (
                 <div>
