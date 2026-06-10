@@ -7,7 +7,7 @@ import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
-  description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with evidence-based recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
+  description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   alternates: { canonical: "https://halfpintmama.com/shop" },
   robots: { index: false, follow: true },
   openGraph: {

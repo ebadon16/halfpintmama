@@ -1,6 +1,6 @@
 import { getSiteStats } from "@/lib/posts";
 import { MamaGuideContent } from "./MamaGuideContent";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -63,7 +63,7 @@ export default async function MamaGuidePage() {
     <div className="bg-cream min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(faqSchema) }}
       />
       <MamaGuideContent totalPosts={stats.totalPosts} />
     </div>

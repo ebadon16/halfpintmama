@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Hand, Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, Music } from "lucide-react";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "About Keegan | Half Pint Mama",
@@ -59,7 +59,7 @@ export default function AboutPage() {
       {/* Person Schema for SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(personSchema) }}
       />
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
@@ -118,7 +118,7 @@ export default function AboutPage() {
           </div>
 
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            Half Pint Mama started as a place to share what&apos;s working in our home: real food, honest motherhood, and from-scratch recipes tested in the margins of real life. What began as sharing sourdough wins and mama moments has grown into a community of 35,000+ families. Just beginning your sourdough journey, looking for tried and true recipes, or navigating the beautiful chaos of raising littles? You&apos;ll find it all here, rooted in experience from both nursing and motherhood.
+            Half Pint Mama started as a place to share what&apos;s working in our home: real food, honest motherhood, and from-scratch recipes tested in the margins of real life. What began as sharing sourdough wins and mama moments has grown into a community of 35,000+ families. New to sourdough or knee-deep in raising littles, there&apos;s something here for you, rooted in experience from both nursing and motherhood.
           </p>
 
           <p className="text-deep-sage italic text-lg">
@@ -203,7 +203,7 @@ export default function AboutPage() {
             Start Exploring
           </h2>
           <p className="text-charcoal/80 mb-6">
-            Dive into what Half Pint Mama is all about.
+            Explore what Half Pint Mama is all about.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

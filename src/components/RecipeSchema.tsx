@@ -1,4 +1,5 @@
 import type { RecipeInfo } from "@/lib/posts";
+import { jsonLdHtml } from "@/lib/seo";
 
 interface RecipeSchemaProps {
   title: string;
@@ -99,7 +100,7 @@ export function RecipeSchema({ title, description, image, datePublished, dateMod
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   );
 }
@@ -160,7 +161,7 @@ export function BlogPostSchema({ title, description, image, datePublished, dateM
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   );
 }
@@ -220,7 +221,7 @@ export function HowToSchema({ title, description, image, slug, estimatedTime, st
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdHtml(schema) }}
     />
   );
 }

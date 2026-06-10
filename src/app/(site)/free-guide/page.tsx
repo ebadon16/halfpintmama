@@ -1,6 +1,6 @@
 import { getSiteStats } from "@/lib/posts";
 import { FreeGuideContent } from "./FreeGuideContent";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Free Sourdough Starter Guide | Half Pint Mama",
@@ -71,7 +71,7 @@ export default async function FreeGuidePage() {
       {/* FAQ Schema for SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(faqSchema) }}
       />
       <FreeGuideContent cookingPosts={stats.cookingPosts} />
     </div>

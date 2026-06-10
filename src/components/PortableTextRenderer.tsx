@@ -92,6 +92,11 @@ const components: PortableTextComponents = {
           </Link>
         );
       }
+      // Only allow safe external schemes — block javascript:/data: etc. (React
+      // doesn't), even though links come from the trusted CMS.
+      if (!/^(https?:|mailto:)/i.test(href)) {
+        return <>{children}</>;
+      }
       return (
         <a
           href={href}

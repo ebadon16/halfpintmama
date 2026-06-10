@@ -7,7 +7,7 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { Wheat } from "lucide-react";
 import Link from "next/link";
-import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { jsonLdHtml, paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 60;
 
@@ -48,7 +48,7 @@ export default async function CookingPage({ searchParams }: PageProps) {
     <div className="bg-cream">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [

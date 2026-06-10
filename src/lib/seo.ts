@@ -39,3 +39,15 @@ export const AUTHOR_PERSON = {
   name: "Keegan",
   url: `${SITE_URL}/about`,
 } as const;
+
+// Serialize an object for injection into a <script type="application/ld+json">
+// tag. Plain JSON.stringify does NOT escape "<", so a CMS/URL-derived string
+// containing "</script>" would break out of the tag and execute arbitrary JS.
+// Escape the characters that can terminate the script context or be reparsed
+// as HTML, plus U+2028/U+2029 which are invalid in raw <script> JSON.
+export function jsonLdHtml(data: unknown): string {
+  return JSON.stringify(data).replace(
+    /[<>&\u2028\u2029]/g,
+    (c) => "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0")
+  );
+}

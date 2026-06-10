@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { client } from "@/sanity/client";
 import type { PortableTextBlock } from "@portabletext/react";
 
@@ -110,13 +111,15 @@ export async function getAllPosts(): Promise<PostMeta[]> {
   );
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+// Wrapped in React cache() so generateMetadata + the page component share one
+// fetch per request (the raw Sanity client doesn't dedupe like native fetch).
+export const getPostBySlug = cache(async (slug: string): Promise<Post | null> => {
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0] ${postFullProjection}`,
     { slug }
   );
   return post || null;
-}
+});
 
 export async function getPostsByCategory(category: string): Promise<PostMeta[]> {
   return client.fetch(
@@ -154,6 +157,15 @@ export async function getAllCategories(): Promise<string[]> {
 export async function getPostsByTag(tag: string): Promise<PostMeta[]> {
   return client.fetch<PostMeta[]>(
     `*[_type == "post" && count((tags[])[lower(@) == $tag]) > 0] | order(date desc) ${postMetaProjection}`,
+    { tag: tag.toLowerCase() } as Record<string, string>
+  );
+}
+
+// Lightweight existence/count check for a tag — avoids fetching a full page of
+// post metadata just to test totalCount in generateMetadata.
+export async function getTagPostCount(tag: string): Promise<number> {
+  return client.fetch<number>(
+    `count(*[_type == "post" && count((tags[])[lower(@) == $tag]) > 0])`,
     { tag: tag.toLowerCase() } as Record<string, string>
   );
 }

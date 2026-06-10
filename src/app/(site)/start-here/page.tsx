@@ -4,13 +4,13 @@ import { PostCard } from "@/components/PostCard";
 import { EmailSignup } from "@/components/EmailSignup";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Users, Wheat, Heart } from "lucide-react";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const revalidate = 3600;
 
 export const metadata = {
   title: "Start Here | Half Pint Mama",
-  description: "New to Half Pint Mama? Find your path - whether you're starting your sourdough journey or navigating motherhood with real food and real talk.",
+  description: "New to Half Pint Mama? Find your path, from your first sourdough starter to navigating motherhood with real food and real talk.",
   alternates: { canonical: "https://halfpintmama.com/start-here" },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
@@ -53,7 +53,7 @@ export default async function StartHerePage() {
     <div className="bg-cream">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(breadcrumbSchema) }}
       />
       {/* Hero */}
       <section className="bg-gradient-to-b from-light-sage/30 to-cream py-16">

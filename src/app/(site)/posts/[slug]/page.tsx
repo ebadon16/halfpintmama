@@ -9,7 +9,7 @@ import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema, HowToSchema } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml } from "@/lib/seo";
 
 import { LazyComments } from "@/components/LazyComments";
 const CommentsPreview = dynamic(() => import("@/components/Comments").then(m => m.CommentsPreview));
@@ -113,7 +113,7 @@ export default async function PostPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLdHtml({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [

@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart, Heart, Users } from "lucide-react";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
@@ -76,11 +76,11 @@ export default async function Home() {
       {/* Structured Data */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(websiteSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(organizationSchema) }}
       />
       {/* Hero Section - Clear Value Proposition */}
       <section className="bg-gradient-to-b from-light-sage/30 to-cream py-16 md:py-20">

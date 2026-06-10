@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { getPaginatedPostsByTag, getAllTags, formatDate } from "@/lib/posts";
+import { getPaginatedPostsByTag, getTagPostCount, getAllTags, formatDate } from "@/lib/posts";
 import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { notFound } from "next/navigation";
-import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params, searchParams }: TagPageProps) {
   const currentPage = Math.max(1, parseInt(page || "1", 10));
 
   // If no posts match this tag, tell crawlers to skip (can't set 404 from page).
-  const tagHasPosts = await getPaginatedPostsByTag(normalizedTag, 1).then(r => r.totalCount > 0);
+  const tagHasPosts = (await getTagPostCount(normalizedTag)) > 0;
   if (!tagHasPosts) {
     return {
       title: `Tag Not Found | Half Pint Mama`,
@@ -72,7 +72,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     <div className="bg-cream min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
