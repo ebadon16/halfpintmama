@@ -32,6 +32,25 @@ interface CommentsPreviewProps {
 }
 
 // Preview component to show at top of post
+// Light formatting for comment text: **bold**, *italic*, preserved line breaks.
+// Output is React nodes only — user input can never become raw HTML.
+function FormattedContent({ text }: { text: string }) {
+  const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g);
+  return (
+    <p className="text-charcoal/80 mb-3 whitespace-pre-line">
+      {parts.map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+          return <strong key={i}>{part.slice(2, -2)}</strong>;
+        }
+        if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
+          return <em key={i}>{part.slice(1, -1)}</em>;
+        }
+        return part;
+      })}
+    </p>
+  );
+}
+
 export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, initialRatingCount = 0, initialCommentCount }: CommentsPreviewProps) {
   const [commentCount, setCommentCount] = useState(initialCommentCount ?? 0);
 
@@ -254,7 +273,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
             <StarRating rating={comment.rating} readonly size="sm" />
           )}
         </div>
-        <p className="text-charcoal/80 mb-3">{comment.content}</p>
+        <FormattedContent text={comment.content} />
         {!isReply && (
           <button
             onClick={() => {
@@ -420,6 +439,9 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                   className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 transition-colors resize-none"
                   placeholder={replyingTo ? "Write your reply..." : isRecipe ? "Share your experience with this recipe..." : "Share your thoughts..."}
                 />
+                <p className="mt-1 text-xs text-charcoal/60">
+                  Formatting: **bold** and *italic*
+                </p>
               </div>
 
               <div className="flex items-center justify-between">

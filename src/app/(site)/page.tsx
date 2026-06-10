@@ -30,11 +30,16 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function Home() {
-  const [latestPost, popularPosts, siteStats] = await Promise.all([
+  const [latestPost, popularPostsRaw, siteStats] = await Promise.all([
     getLatestPost(),
-    getPopularPosts(4),
+    getPopularPosts(5),
     getSiteStats(),
   ]);
+  // The latest post already has the hero slot; showing it again in the Popular
+  // grid double-downloads its image at a second size.
+  const popularPosts = popularPostsRaw
+    .filter((p) => p.slug !== latestPost?.slug)
+    .slice(0, 4);
 
   // Structured data for SEO
   const websiteSchema = {

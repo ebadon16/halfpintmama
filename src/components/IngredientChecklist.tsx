@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IngredientSection } from "@/lib/posts";
 
 interface IngredientChecklistProps {
@@ -90,6 +90,20 @@ export function IngredientChecklist({ ingredients, ingredientSections, scale = 1
 
   const [checked, setChecked] = useState<Set<string>>(new Set());
 
+  // Restore checked items for this recipe so a mid-bake refresh doesn't lose progress
+  useEffect(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem(`checklist:${window.location.pathname}`) || "[]");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- Browser-only storage read; no SSR-safe alternative.
+      if (Array.isArray(stored) && stored.length) setChecked(new Set(stored.map(String)));
+    } catch { /* corrupted data */ }
+  }, []);
+
+  const persist = (next: Set<string>) => {
+    setChecked(next);
+    try { localStorage.setItem(`checklist:${window.location.pathname}`, JSON.stringify([...next])); } catch { /* storage unavailable */ }
+  };
+
   const getKey = (sectionIndex: number, itemIndex: number) => `${sectionIndex}-${itemIndex}`;
 
   const toggleIngredient = (sectionIndex: number, itemIndex: number) => {
@@ -100,13 +114,13 @@ export function IngredientChecklist({ ingredients, ingredientSections, scale = 1
     } else {
       newChecked.add(key);
     }
-    setChecked(newChecked);
+    persist(newChecked);
   };
 
-  const clearAll = () => setChecked(new Set());
+  const clearAll = () => persist(new Set());
   const checkAll = () => {
     const allKeys = allIngredients.map(({ sectionIndex, itemIndex }) => getKey(sectionIndex, itemIndex));
-    setChecked(new Set(allKeys));
+    persist(new Set(allKeys));
   };
 
   const renderIngredientItem = (ingredient: string, sectionIndex: number, itemIndex: number) => {
