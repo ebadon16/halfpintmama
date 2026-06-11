@@ -1,7 +1,24 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { revalidatePath } from "next/cache";
 import { rateLimit } from "@/lib/rate-limit";
 import { getClientIp, safeEquals } from "@/lib/http";
+
+// IndexNow key is public by design — engines verify it by fetching
+// https://halfpintmama.com/<key>.txt (lives in /public).
+const INDEXNOW_KEY = "8ccf223b112147fbc477181f2a358e29";
+
+function pingIndexNow(urls: string[]) {
+  return fetch("https://api.indexnow.org/indexnow", {
+    method: "POST",
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+    body: JSON.stringify({
+      host: "halfpintmama.com",
+      key: INDEXNOW_KEY,
+      keyLocation: `https://halfpintmama.com/${INDEXNOW_KEY}.txt`,
+      urlList: urls,
+    }),
+  }).catch((err) => console.error("IndexNow ping failed:", err));
+}
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
@@ -60,6 +77,14 @@ export async function POST(request: NextRequest) {
         revalidatePath(`/tags/${encodeURIComponent(tag.toLowerCase().trim())}`);
       }
     }
+
+    // Tell Bing/Yandex/etc. about the change immediately; best-effort,
+    // never delays the webhook response.
+    const changedUrls = ["https://halfpintmama.com/"];
+    if (type === "post" && slug) {
+      changedUrls.unshift(`https://halfpintmama.com/posts/${slug}`);
+    }
+    after(() => pingIndexNow(changedUrls));
 
     return NextResponse.json({ revalidated: true });
   } catch {
