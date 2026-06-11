@@ -33,6 +33,21 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/about" className="text-charcoal/80 hover:text-terracotta transition-colors">
+                  About Keegan
+                </Link>
+              </li>
+              <li>
+                <Link href="/start-here" className="text-charcoal/80 hover:text-terracotta transition-colors">
+                  Start Here
+                </Link>
+              </li>
+              <li>
+                <Link href="/free-guide" className="text-charcoal/80 hover:text-terracotta transition-colors">
+                  Free Sourdough Guide
+                </Link>
+              </li>
+              <li>
                 <Link href="/products" className="text-charcoal/80 hover:text-terracotta transition-colors">
                   Favorite Products
                 </Link>
@@ -186,6 +201,9 @@ export function Footer() {
           </div>
           <p className="font-[family-name:var(--font-crimson)] text-charcoal/80 italic text-center">
             Made with coffee and lots of sourdough discard
+          </p>
+          <p className="text-charcoal/60 text-xs mt-3 text-center">
+            As an Amazon Associate, I earn from qualifying purchases. Some links on this site are affiliate links.
           </p>
           <p className="text-charcoal/80 text-sm mt-2 text-center">
             © {new Date().getFullYear()} Half Pint Mama. All rights reserved.

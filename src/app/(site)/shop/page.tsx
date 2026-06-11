@@ -7,13 +7,13 @@ import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Shop | Half Pint Mama",
-  description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
+  description: "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   alternates: { canonical: "https://halfpintmama.com/shop" },
   robots: { index: false, follow: true },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Shop | Half Pint Mama",
-    description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",
+    description: "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with recovery tips, freezer meals, and sourdough recipes.",
     type: "website",
     url: "https://halfpintmama.com/shop",
   },
@@ -21,7 +21,7 @@ export const metadata = {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary" as const,
     title: "Shop | Half Pint Mama",
-    description: "Coming soon from Half Pint Mama: The Post-Partum Cook Book with recovery tips, freezer meals, and sourdough recipes.",
+    description: "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with recovery tips, freezer meals, and sourdough recipes.",
   },
 };
 
@@ -29,8 +29,8 @@ export const metadata = {
 const comingSoonProducts: { id: number; title: string; description: string; icon: LucideIcon }[] = [
   {
     id: 1,
-    title: "The Post-Partum Cook Book",
-    description: "Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.",
+    title: "Rest and Rise",
+    description: "The post-partum cookbook. Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.",
     icon: BookOpen,
   },
 ];

@@ -233,10 +233,10 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
           <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-md">
             <div className="flex justify-center mb-3"><ThemedIcon icon={BookOpen} size="lg" color="deep-sage" /></div>
             <h4 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal mb-2">
-              The Post-Partum Cook Book
+              Rest and Rise
             </h4>
             <p className="text-charcoal/80 text-sm">
-              Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
+              The post-partum cookbook. Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
             </p>
           </div>
         </div>
