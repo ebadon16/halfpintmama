@@ -83,8 +83,8 @@ export default async function SourdoughPage({ searchParams }: PageProps) {
             Sourdough & Bread
           </h1>
           <p className="text-charcoal/80 text-lg max-w-2xl mb-6">
-            From your first starter to picture-perfect loaves. These recipes are tested with nurse-level precision
-            to help you bake bread your family will love.
+            From your first starter to picture-perfect loaves. Every recipe here is tested in my own kitchen
+            until it works every time, so you can bake bread your family will love.
           </p>
           <SearchBar placeholder="Search sourdough recipes..." className="max-w-md" />
         </div>

@@ -99,7 +99,7 @@ export default async function Home() {
             From a Pediatric ER RN & Mama of Two
           </p>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
-            I bring the same precision I use in the ER to my kitchen: nurse-tested recipes, real ingredients, and nothing I wouldn&apos;t feed my own kids. From sourdough on the counter to babies on the hip.
+            The same care I give my patients goes into my kitchen: nurse-tested recipes, real ingredients, and nothing I wouldn&apos;t feed my own kids. From sourdough on the counter to babies on the hip.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
