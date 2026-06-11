@@ -9,11 +9,11 @@ import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo"
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas. Real food, real life, real mama.",
+  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three in Central Texas. Real food, real life, real mama.",
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
     type: "website",
     url: "https://halfpintmama.com",
   },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary_large_image",
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
   },
   alternates: { canonical: "https://halfpintmama.com" },
 };
@@ -46,7 +46,7 @@ export default async function Home() {
     "@type": "WebSite",
     name: "Half Pint Mama",
     url: "https://halfpintmama.com",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three in Central Texas.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -63,7 +63,7 @@ export default async function Home() {
     name: "Half Pint Mama",
     url: "https://halfpintmama.com",
     logo: "https://halfpintmama.com/logo.jpg",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
     founder: {
       "@type": "Person",
       name: "Keegan",
@@ -241,7 +241,7 @@ export default async function Home() {
                 Hey, I&apos;m Keegan
               </h3>
               <p className="text-charcoal/80 text-sm mb-4">
-                Pediatric ER RN and mama of two. I apply the same care to feeding my family as I do to my patients: real ingredients, tested recipes, no shortcuts.
+                Pediatric ER RN and mama of three. I apply the same care to feeding my family as I do to my patients: real ingredients, tested recipes, no shortcuts.
               </p>
               <Link
                 href="/about"

@@ -18,7 +18,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
   const baseTitle = "All Posts | Half Pint Mama";
   const title = paginatedTitle(baseTitle, currentPage);
   const canonical = paginatedCanonical("/posts", currentPage);
-  const description = "Browse all blog posts on Half Pint Mama. Find from-scratch recipes, sourdough baking guides, and honest parenting tips from a Pediatric ER RN and mama of two.";
+  const description = "Browse all blog posts on Half Pint Mama. Find from-scratch recipes, sourdough baking guides, and honest parenting tips from a Pediatric ER RN and mama of three.";
   return {
     title,
     description,

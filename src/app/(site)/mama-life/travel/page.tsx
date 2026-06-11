@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
   const currentPage = Math.max(1, parseInt(page || "1", 10));
   const title = paginatedTitle("Family Travel | Half Pint Mama", currentPage);
   const canonical = paginatedCanonical("/mama-life/travel", currentPage);
-  const description = "Family travel tips, road trip ideas, and adventure guides from a mama of two. Honest reviews of destinations like Banff and Montana with littles in tow.";
+  const description = "Family travel tips, road trip ideas, and adventure guides from a mama of three. Honest reviews of destinations like Banff and Montana with littles in tow.";
   return {
     title,
     description,

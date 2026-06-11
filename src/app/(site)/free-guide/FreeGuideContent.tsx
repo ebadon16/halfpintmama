@@ -236,7 +236,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
               Rest and Rise
             </h4>
             <p className="text-charcoal/80 text-sm">
-              The post-partum cookbook. Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
+              The post-partum cookbook. Real talk about the fourth trimester from a Pediatric ER RN and mama of three. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
             </p>
           </div>
         </div>

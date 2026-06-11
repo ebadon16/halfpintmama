@@ -14,7 +14,7 @@ function usePopupContext(pathname: string) {
       icon: Heart,
       heading: "Join the Mama Life Community!",
       subtitle: "Weekly parenting tips and honest mama moments!",
-      body: "Get weekly parenting tips, honest motherhood stories, and exclusive content from a Pediatric ER RN and mama of two.",
+      body: "Get weekly parenting tips, honest motherhood stories, and exclusive content from a Pediatric ER RN and mama of three.",
       cta: "Join Free",
     };
   }

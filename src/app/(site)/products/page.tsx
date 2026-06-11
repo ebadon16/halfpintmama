@@ -7,7 +7,7 @@ import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Products We Love | Half Pint Mama",
-  description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials. Honest reviews from a Pediatric ER RN raising two littles.",
+  description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials. Honest reviews from a Pediatric ER RN raising three littles.",
   alternates: { canonical: "https://halfpintmama.com/products" },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
@@ -39,7 +39,7 @@ const affiliateCategories: { title: string; description: string; icon: LucideIco
   },
   {
     title: "On-the-Go Essentials",
-    description: "What we pack for every adventure. Road trips, flights, and everything in between with two littles.",
+    description: "What we pack for every adventure. Road trips, flights, and everything in between with three littles.",
     icon: Luggage,
     link: "https://www.amazon.com/shop/influencer-f4dc3b3f/list/2SYTGUP5EUSC?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB",
   },
@@ -61,7 +61,7 @@ export default function ProductsPage() {
             Products We Actually Use & Love
           </h1>
           <p className="text-charcoal/80 text-lg max-w-2xl mx-auto">
-            Real recommendations from real life with two littles. I only share products we genuinely use in our home - no sponsored posts, just honest favorites.
+            Real recommendations from real life with three littles. I only share products we genuinely use in our home - no sponsored posts, just honest favorites.
           </p>
         </div>
       </section>

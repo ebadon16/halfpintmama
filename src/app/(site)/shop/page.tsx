@@ -30,7 +30,7 @@ const comingSoonProducts: { id: number; title: string; description: string; icon
   {
     id: 1,
     title: "Rest and Rise",
-    description: "The post-partum cookbook. Real talk about the fourth trimester from a Pediatric ER RN and mama of two. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.",
+    description: "The post-partum cookbook. Real talk about the fourth trimester from a Pediatric ER RN and mama of three. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.",
     icon: BookOpen,
   },
 ];

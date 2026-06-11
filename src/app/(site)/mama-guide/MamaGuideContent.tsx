@@ -172,10 +172,10 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
               </h1>
               <p className="text-charcoal/80 text-sm mb-4 flex items-center justify-start gap-2">
                 <span className="text-yellow-500">&#9733;</span>
-                From a Pediatric ER RN &amp; mama of two &middot; {totalPosts}+ posts on the blog
+                From a Pediatric ER RN &amp; mama of three &middot; {totalPosts}+ posts on the blog
               </p>
               <p className="text-charcoal/80 text-lg mb-6">
-                Honest, practical tips for navigating motherhood, from a Pediatric ER RN and mama of two who&apos;s been in the trenches.
+                Honest, practical tips for navigating motherhood, from a Pediatric ER RN and mama of three who&apos;s been in the trenches.
               </p>
 
               <div className="bg-white rounded-2xl shadow-lg p-6">

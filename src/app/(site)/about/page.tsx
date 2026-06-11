@@ -7,12 +7,12 @@ import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo"
 
 export const metadata = {
   title: "About Keegan | Half Pint Mama",
-  description: "Meet Keegan, a Pediatric ER RN and mama of two sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
+  description: "Meet Keegan, a Pediatric ER RN and mama of three sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "About Keegan | Half Pint Mama",
-    description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes and intentional living.",
+    description: "Meet Keegan - a Pediatric ER RN and mama of three sharing real food recipes and intentional living.",
     type: "website",
     url: "https://halfpintmama.com/about",
   },
@@ -20,7 +20,7 @@ export const metadata = {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary",
     title: "About Keegan | Half Pint Mama",
-    description: "Meet Keegan - a Pediatric ER RN and mama of two sharing real food recipes and intentional living.",
+    description: "Meet Keegan - a Pediatric ER RN and mama of three sharing real food recipes and intentional living.",
   },
 };
 
@@ -31,7 +31,7 @@ const personSchema = {
   "@id": "https://halfpintmama.com/about#person",
   name: "Keegan",
   jobTitle: "Pediatric ER RN & Blogger",
-  description: "A Pediatric ER RN and mama of two on a mission to get back to the basics with real food, simple recipes, and intentional living.",
+  description: "A Pediatric ER RN and mama of three on a mission to get back to the basics with real food, simple recipes, and intentional living.",
   url: "https://halfpintmama.com/about",
   image: "https://halfpintmama.com/keegan.jpg",
   sameAs: [
@@ -85,7 +85,7 @@ export default function AboutPage() {
           </p>
 
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            I&apos;m a Pediatric ER RN and a mama of two, sharing life&apos;s beautiful chaos with my kids and our chocolate lab. My nursing background shapes the way I approach the kitchen and home: thoughtful, practical, and rooted in what truly nourishes a family. Around here, you&apos;ll find honest conversations about motherhood, my deep love for sourdough, and the small, everyday rhythms that make a home feel steady and good.
+            I&apos;m a Pediatric ER RN and a mama of three, sharing life&apos;s beautiful chaos with my kids and our chocolate lab. My nursing background shapes the way I approach the kitchen and home: thoughtful, practical, and rooted in what truly nourishes a family. Around here, you&apos;ll find honest conversations about motherhood, my deep love for sourdough, and the small, everyday rhythms that make a home feel steady and good.
           </p>
 
           {/* Highlight Box */}
@@ -120,7 +120,7 @@ export default function AboutPage() {
               </li>
               <li className="flex items-start gap-3">
                 <ThemedIcon icon={Heart} size="sm" color="deep-sage" bare />
-                <span>Mostly a pretty chill mama, navigating life with a preschooler and a toddler</span>
+                <span>Mostly a pretty chill mama, navigating life with three littles</span>
               </li>
             </ul>
           </div>

@@ -6,7 +6,7 @@ export const revalidate = 3600;
 
 export const metadata = {
   title: "Free Mama Life Guide | Half Pint Mama",
-  description: "Get the free Mama Life Guide from a Pediatric ER RN and mama of two. Honest tips for navigating motherhood, from the newborn stage through toddlerhood.",
+  description: "Get the free Mama Life Guide from a Pediatric ER RN and mama of three. Honest tips for navigating motherhood, from the newborn stage through toddlerhood.",
   alternates: { canonical: "https://halfpintmama.com/mama-guide" },
   robots: { index: false, follow: false },
   openGraph: {
@@ -34,7 +34,7 @@ const faqSchema = {
       name: "What is the Mama Life Guide about?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The Mama Life Guide covers real-world tips for navigating motherhood, from the newborn stage through toddlerhood. It includes practical advice from a Pediatric ER RN and mama of two.",
+        text: "The Mama Life Guide covers real-world tips for navigating motherhood, from the newborn stage through toddlerhood. It includes practical advice from a Pediatric ER RN and mama of three.",
       },
     },
     {

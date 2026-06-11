@@ -10,7 +10,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://halfpintmama.com"),
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two in Central Texas.",
+  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three in Central Texas.",
   keywords: ["sourdough", "from scratch recipes", "parenting", "motherhood", "real food", "sourdough recipes", "mama blog", "Texas mom"],
   icons: {
     icon: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Half Pint Mama",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
     type: "website",
     locale: "en_US",
     siteName: "Half Pint Mama",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     site: "@halfpintmama",
     creator: "@halfpintmama",
     title: "Half Pint Mama",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of two.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
     images: [`${DEFAULT_OG_IMAGE_ARRAY[0].url}`],
   },
 };

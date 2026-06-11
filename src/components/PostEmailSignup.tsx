@@ -165,7 +165,7 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
           </h2>
           <p className="text-white mb-6 max-w-md mx-auto">
             {category === "mama-life"
-              ? "Weekly parenting tips, honest mama moments, and real talk from a Pediatric ER RN and mama of two. Join 35,000+ families already following along."
+              ? "Weekly parenting tips, honest mama moments, and real talk from a Pediatric ER RN and mama of three. Join 35,000+ families already following along."
               : "Weekly from-scratch recipes and kitchen tips. Plus get my free sourdough starter guide when you subscribe! Join 35,000+ families already in the community."}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">

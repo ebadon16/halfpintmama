@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
   const currentPage = Math.max(1, parseInt(page || "1", 10));
   const title = paginatedTitle("Mama Life | Half Pint Mama", currentPage);
   const canonical = paginatedCanonical("/mama-life", currentPage);
-  const description = "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of two. Navigate the beautiful chaos together.";
+  const description = "Honest parenting tips, family adventures, and real talk about motherhood from a Pediatric ER RN and mama of three. Navigate the beautiful chaos together.";
   return {
     title,
     description,

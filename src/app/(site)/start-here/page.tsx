@@ -73,7 +73,7 @@ export default async function StartHerePage() {
               A Little About Me
             </h2>
             <p className="text-charcoal/80 mb-4">
-              I&apos;m a Pediatric ER RN and mama of two, sharing life&apos;s beautiful chaos with my kids and our chocolate lab Stout. I started this blog to get back to the basics: real food, simple recipes, and intentional living. Sourdough, family adventures, or honest motherhood, you&apos;ll find it all here.
+              I&apos;m a Pediatric ER RN and mama of three, sharing life&apos;s beautiful chaos with my kids and our chocolate lab Stout. I started this blog to get back to the basics: real food, simple recipes, and intentional living. Sourdough, family adventures, or honest motherhood, you&apos;ll find it all here.
             </p>
             <Link
               href="/about"
