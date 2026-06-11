@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
-import { Hand, Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, Music } from "lucide-react";
+import { Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, Music } from "lucide-react";
 import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
@@ -32,7 +33,7 @@ const personSchema = {
   jobTitle: "Pediatric ER RN & Blogger",
   description: "A Pediatric ER RN and mama of two on a mission to get back to the basics with real food, simple recipes, and intentional living.",
   url: "https://halfpintmama.com/about",
-  image: "https://halfpintmama.com/logo.jpg",
+  image: "https://halfpintmama.com/keegan.jpg",
   sameAs: [
     "https://www.instagram.com/halfpint.mama",
     "https://www.youtube.com/@HalfPintMama",
@@ -63,11 +64,18 @@ export default function AboutPage() {
       />
       <div className="max-w-4xl mx-auto px-4 py-12">
         {/* Header */}
-        <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold mb-2">
-          Hey, I&apos;m Keegan
-        </h1>
-        <div className="mb-8">
-          <ThemedIcon icon={Hand} size="lg" color="sage" />
+        <div className="flex items-center gap-5 mb-8">
+          <Image
+            src="/keegan.jpg"
+            alt="Keegan, the Pediatric ER RN and mama behind Half Pint Mama"
+            width={112}
+            height={112}
+            sizes="112px"
+            className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-4 border-sage shadow-md flex-shrink-0"
+          />
+          <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold">
+            Hey, I&apos;m Keegan
+          </h1>
         </div>
 
         {/* Main Content */}

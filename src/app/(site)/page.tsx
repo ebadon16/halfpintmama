@@ -4,8 +4,7 @@ import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { getLatestPost, getPopularPosts, getSiteStats, formatDate } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart, Heart, Users } from "lucide-react";
-import { ThemedIcon } from "@/components/ThemedIcon";
+import { ShoppingCart, Heart } from "lucide-react";
 import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -230,7 +229,14 @@ export default async function Home() {
           <aside className="lg:w-80 flex-shrink-0">
             {/* About the Author */}
             <div className="bg-white p-6 rounded-2xl shadow-md mb-6 text-center">
-              <ThemedIcon icon={Users} size="lg" color="sage" className="mx-auto mb-3" />
+              <Image
+                src="/keegan.jpg"
+                alt="Keegan, the Pediatric ER RN and mama behind Half Pint Mama"
+                width={96}
+                height={96}
+                sizes="96px"
+                className="w-24 h-24 rounded-full object-cover border-4 border-sage shadow-md mx-auto mb-3"
+              />
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
                 Hey, I&apos;m Keegan
               </h3>
