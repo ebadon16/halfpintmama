@@ -96,7 +96,7 @@ export default async function Home() {
             Nourishing Motherhood From Scratch
           </h1>
           <p className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
-            From a Pediatric ER RN & Mama of Two
+            From a Pediatric ER RN & Mama of Three
           </p>
           <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
             The same care I give my patients goes into my kitchen: nurse-tested recipes, real ingredients, and nothing I wouldn&apos;t feed my own kids. From sourdough on the counter to babies on the hip.
