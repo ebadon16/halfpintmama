@@ -129,6 +129,19 @@ export default function AboutPage() {
             Half Pint Mama started as a place to share what&apos;s working in our home: real food, honest motherhood, and from-scratch recipes tested in the margins of real life. What began as sharing sourdough wins and mama moments has grown into a community of 35,000+ families. New to sourdough or knee-deep in raising littles, there&apos;s something here for you, rooted in experience from both nursing and motherhood.
           </p>
 
+          <p className="text-charcoal/60 text-sm leading-relaxed mb-6">
+            P.S. I also run{" "}
+            <a
+              href="https://renewrn.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-terracotta hover:text-deep-sage underline underline-offset-2 transition-colors"
+            >
+              RenewRN
+            </a>
+            , a free resource that helps nurses keep their license renewals and CE hours from slipping through the cracks.
+          </p>
+
           <p className="text-deep-sage italic text-lg">
             Thanks so much for being here. I&apos;m really glad you found your way to my kitchen <Heart className="inline-block w-4 h-4 text-soft-pink align-middle" />
           </p>
@@ -228,20 +241,6 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-
-        {/* Nursing side project — kept low-key at the end */}
-        <p className="text-center text-sm text-charcoal/60 mt-8">
-          P.S. I also run{" "}
-          <a
-            href="https://renewrn.net"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-terracotta hover:text-deep-sage underline underline-offset-2 transition-colors"
-          >
-            RenewRN
-          </a>
-          , a free resource that helps nurses keep their license renewals and CE hours from slipping through the cracks.
-        </p>
 
         <HomeEmailSignup />
       </div>
