@@ -134,12 +134,21 @@ export default function AboutPage() {
             <a
               href="https://renewrn.net"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="text-terracotta hover:text-deep-sage underline underline-offset-2 transition-colors"
             >
               RenewRN
             </a>
-            , a free resource that helps nurses keep their license renewals and CE hours from slipping through the cracks.
+            , a free resource that helps nurses stay on top of their license renewals, continuing education, and career growth.{" "}
+            <a
+              href="https://renewrn.net"
+              target="_blank"
+              rel="noopener"
+              className="text-terracotta hover:text-deep-sage underline underline-offset-2 transition-colors"
+            >
+              Check it out
+            </a>
+            .
           </p>
 
           <p className="text-deep-sage italic text-lg">
