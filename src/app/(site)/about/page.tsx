@@ -85,7 +85,16 @@ export default function AboutPage() {
           </p>
 
           <p className="text-charcoal/80 text-lg leading-relaxed mb-6">
-            I&apos;m a Pediatric ER RN and a mama of three, sharing life&apos;s beautiful chaos with my kids and our chocolate lab. My nursing background shapes the way I approach the kitchen and home: thoughtful, practical, and rooted in what truly nourishes a family. Around here, you&apos;ll find honest conversations about motherhood, my deep love for sourdough, and the small, everyday rhythms that make a home feel steady and good.
+            I&apos;m a Pediatric ER RN and a mama of three, sharing life&apos;s beautiful chaos with my kids and our chocolate lab. My nursing background shapes the way I approach the kitchen and home: thoughtful, practical, and rooted in what truly nourishes a family. It&apos;s also why I built{" "}
+            <a
+              href="https://renewrn.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-terracotta hover:text-deep-sage underline underline-offset-2 transition-colors"
+            >
+              RenewRN
+            </a>
+            , a free resource that helps nurses keep their license renewals and CE hours from slipping through the cracks. Around here, you&apos;ll find honest conversations about motherhood, my deep love for sourdough, and the small, everyday rhythms that make a home feel steady and good.
           </p>
 
           {/* Highlight Box */}

@@ -34,7 +34,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/about" className="text-charcoal/80 hover:text-terracotta transition-colors">
-                  About Keegan
+                  About
                 </Link>
               </li>
               <li>
