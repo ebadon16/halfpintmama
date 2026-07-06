@@ -6,12 +6,12 @@ import { Coffee, Leaf, Home, Wheat, BookOpen, Beer, Heart, Camera, Video, Music 
 import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
-  title: "About Keegan | Half Pint Mama",
+  title: "About | Half Pint Mama",
   description: "Meet Keegan, a Pediatric ER RN and mama of three sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
-    title: "About Keegan | Half Pint Mama",
+    title: "About | Half Pint Mama",
     description: "Meet Keegan - a Pediatric ER RN and mama of three sharing real food recipes and intentional living.",
     type: "website",
     url: "https://halfpintmama.com/about",
@@ -19,7 +19,7 @@ export const metadata = {
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary",
-    title: "About Keegan | Half Pint Mama",
+    title: "About | Half Pint Mama",
     description: "Meet Keegan - a Pediatric ER RN and mama of three sharing real food recipes and intentional living.",
   },
 };
