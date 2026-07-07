@@ -439,7 +439,7 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
                   className="w-full px-4 py-2.5 border-2 border-light-sage rounded-lg focus:outline-none focus:border-sage focus:ring-2 focus:ring-sage/40 transition-colors resize-none"
                   placeholder={replyingTo ? "Write your reply..." : isRecipe ? "Share your experience with this recipe..." : "Share your thoughts..."}
                 />
-                <p className="mt-1 text-xs text-charcoal/60">
+                <p className="mt-1 text-xs text-charcoal/80">
                   Formatting: **bold** and *italic*
                 </p>
               </div>

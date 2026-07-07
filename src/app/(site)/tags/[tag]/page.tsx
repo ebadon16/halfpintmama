@@ -57,7 +57,7 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
   const { page } = await searchParams;
   const normalizedTag = decodeURIComponent(tag).toLowerCase();
   const encodedTag = encodeURIComponent(normalizedTag);
-  const currentPage = parseInt(page || "1", 10);
+  const currentPage = Math.max(1, parseInt(page || "1", 10) || 1);
 
   const { items: posts, totalCount, totalPages } = await getPaginatedPostsByTag(normalizedTag, currentPage);
 

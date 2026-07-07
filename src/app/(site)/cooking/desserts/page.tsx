@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
 
 export default async function DessertsPage({ searchParams }: PageProps) {
   const { page } = await searchParams;
-  const currentPage = parseInt(page || "1", 10);
+  const currentPage = Math.max(1, parseInt(page || "1", 10) || 1);
   const { items: posts, totalPages } = await getPaginatedPostsBySubcategory(
     "cooking",
     ["cookie", "cake", "truffle", "chocolate", "cobbler", "macaroon", "dessert", "sweet", "twix", "cups", "egg"],

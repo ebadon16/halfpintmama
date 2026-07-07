@@ -14,7 +14,7 @@ export async function GET() {
     .map(
       (post) => `
     <item>
-      <title><![CDATA[${post.title}]]></title>
+      <title><![CDATA[${post.title.replace(/\]\]>/g, "]]]]><![CDATA[>")}]]></title>
       <link>${baseUrl}/posts/${escapeXml(post.slug)}</link>
       <guid isPermaLink="true">${baseUrl}/posts/${escapeXml(post.slug)}</guid>
       <description><![CDATA[${post.excerpt.replace(/\]\]>/g, "]]]]><![CDATA[>")}]]></description>

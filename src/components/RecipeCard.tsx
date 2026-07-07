@@ -127,7 +127,6 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
             {hasNutrition && (
               <NutritionFacts
                 nutrition={recipe.nutrition!}
-                scale={scale}
                 servings={servings}
               />
             )}
@@ -139,7 +138,6 @@ export function RecipeCard({ recipe, title, image }: RecipeCardProps) {
       {!hasIngredients && hasNutrition && (
         <NutritionFacts
           nutrition={recipe.nutrition!}
-          scale={1}
           servings={servings}
         />
       )}

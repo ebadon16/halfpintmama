@@ -129,7 +129,7 @@ export default function AboutPage() {
             Half Pint Mama started as a place to share what&apos;s working in our home: real food, honest motherhood, and from-scratch recipes tested in the margins of real life. What began as sharing sourdough wins and mama moments has grown into a community of 35,000+ families. New to sourdough or knee-deep in raising littles, there&apos;s something here for you, rooted in experience from both nursing and motherhood.
           </p>
 
-          <p className="text-charcoal/60 text-sm leading-relaxed mb-6">
+          <p className="text-charcoal/80 text-sm leading-relaxed mb-6">
             P.S. I also run{" "}
             <a
               href="https://renewrn.net"
@@ -183,7 +183,7 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-3 gap-4">
             <a
-              href="https://www.instagram.com/Halfpint.mama"
+              href="https://www.instagram.com/halfpint.mama"
               target="_blank"
               rel="noopener noreferrer"
               className="gradient-cta text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
@@ -217,13 +217,14 @@ export default function AboutPage() {
           </div>
 
           <div className="text-center mt-8">
-            <Link
+            <a
               href="https://linktr.ee/Halfpintmama"
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-6 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
             >
               All My Links
-            </Link>
+            </a>
           </div>
         </div>
 

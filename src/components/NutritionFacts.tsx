@@ -2,23 +2,24 @@ import { NutritionInfo } from "@/lib/posts";
 
 interface NutritionFactsProps {
   nutrition: NutritionInfo;
-  scale?: number;
   servings?: number;
 }
 
-export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFactsProps) {
-  const scaleValue = (value: number | undefined) => {
+// Per-serving nutrition is invariant to how many servings you make, so these
+// values are NOT scaled with the serving adjuster — scaling would misreport them.
+export function NutritionFacts({ nutrition, servings }: NutritionFactsProps) {
+  const roundValue = (value: number | undefined) => {
     if (value === undefined) return null;
-    return Math.round(value * scale);
+    return Math.round(value);
   };
 
   const items = [
-    { label: "Calories", value: scaleValue(nutrition.calories), unit: "" },
-    { label: "Protein", value: scaleValue(nutrition.protein), unit: "g" },
-    { label: "Carbs", value: scaleValue(nutrition.carbs), unit: "g" },
-    { label: "Fat", value: scaleValue(nutrition.fat), unit: "g" },
-    { label: "Fiber", value: scaleValue(nutrition.fiber), unit: "g" },
-    { label: "Sugar", value: scaleValue(nutrition.sugar), unit: "g" },
+    { label: "Calories", value: roundValue(nutrition.calories), unit: "" },
+    { label: "Protein", value: roundValue(nutrition.protein), unit: "g" },
+    { label: "Carbs", value: roundValue(nutrition.carbs), unit: "g" },
+    { label: "Fat", value: roundValue(nutrition.fat), unit: "g" },
+    { label: "Fiber", value: roundValue(nutrition.fiber), unit: "g" },
+    { label: "Sugar", value: roundValue(nutrition.sugar), unit: "g" },
   ].filter((item) => item.value !== null);
 
   if (items.length === 0) return null;
@@ -34,7 +35,7 @@ export function NutritionFacts({ nutrition, scale = 1, servings }: NutritionFact
 
       {servings != null && servings > 0 && (
         <p className="text-xs text-charcoal/80 mb-3">
-          Per serving ({scale !== 1 ? "adjusted" : "original"} recipe)
+          Per serving
         </p>
       )}
 

@@ -41,7 +41,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
 
 export default async function PostsPage({ searchParams }: PageProps) {
   const { page } = await searchParams;
-  const currentPage = parseInt(page || "1", 10);
+  const currentPage = Math.max(1, parseInt(page || "1", 10) || 1);
   const { items: posts, totalCount, totalPages } = await getPaginatedPosts(currentPage);
 
   const breadcrumbSchema = {

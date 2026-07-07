@@ -22,7 +22,7 @@ function pingIndexNow(urls: string[]) {
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
-  if (!rateLimit(ip, 5, 60_000)) {
+  if (!rateLimit(`revalidate:${ip}`, 5, 60_000)) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 

@@ -39,12 +39,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/travel",
-        destination: "/mama-life",
+        destination: "/mama-life/travel",
         permanent: true,
       },
       {
         source: "/diy",
-        destination: "/cooking",
+        destination: "/mama-life/diy",
         permanent: true,
       },
       {

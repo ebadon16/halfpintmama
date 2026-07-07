@@ -77,7 +77,7 @@ export function Footer() {
             </h3>
             <div className="flex gap-4">
               <a
-                href="https://www.instagram.com/Halfpint.mama"
+                href="https://www.instagram.com/halfpint.mama"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/80 transition-all"
@@ -202,7 +202,7 @@ export function Footer() {
           <p className="font-[family-name:var(--font-crimson)] text-charcoal/80 italic text-center">
             Made with coffee and lots of sourdough discard
           </p>
-          <p className="text-charcoal/60 text-xs mt-3 text-center">
+          <p className="text-charcoal/80 text-xs mt-3 text-center">
             As an Amazon Associate, I earn from qualifying purchases. Some links on this site are affiliate links.
           </p>
           <p className="text-charcoal/80 text-sm mt-2 text-center">

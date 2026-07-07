@@ -38,7 +38,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
 
 export default async function MamaLifePage({ searchParams }: PageProps) {
   const { page } = await searchParams;
-  const currentPage = parseInt(page || "1", 10);
+  const currentPage = Math.max(1, parseInt(page || "1", 10) || 1);
   const { items: posts, totalPages } = await getPaginatedPostsByCategory("mama-life", currentPage);
 
   // Out-of-range pages render empty; 404 them so they aren't indexed as thin content.

@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     }
 
     const ip = getClientIp(request);
-    if (!rateLimit(ip, 5, 60_000)) {
+    if (!rateLimit(`subscribe:${ip}`, 5, 60_000)) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }
 
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
     const groups: string[] = [MAILERLITE_GROUP_ID]; // Always add to main group
     if (validSegment === "mama-life" && MAMA_GROUP_ID) {
       groups.push(MAMA_GROUP_ID);
-    } else if (KITCHEN_GROUP_ID !== MAILERLITE_GROUP_ID) {
+    } else if (validSegment === "kitchen" && KITCHEN_GROUP_ID !== MAILERLITE_GROUP_ID) {
       groups.push(KITCHEN_GROUP_ID);
     }
 

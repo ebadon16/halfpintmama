@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
     }
 
     const ip = getClientIp(request);
-    if (!rateLimit(ip, 10, 60_000)) {
+    if (!rateLimit(`comments:${ip}`, 10, 60_000)) {
       return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
     }
 

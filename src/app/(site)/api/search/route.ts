@@ -10,7 +10,7 @@ const SEARCH_RESULT_LIMIT = 50;
 
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request);
-  if (!rateLimit(ip, 20, 60_000)) {
+  if (!rateLimit(`search:${ip}`, 20, 60_000)) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429 });
   }
 
