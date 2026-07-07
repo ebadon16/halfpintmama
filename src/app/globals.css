@@ -60,6 +60,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Tailwind v4's reset drops the old button pointer-cursor default; restore it
+   so all enabled buttons show a pointer on hover (scroll-to-top, toggles, etc.). */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
