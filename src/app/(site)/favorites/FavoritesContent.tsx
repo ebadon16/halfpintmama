@@ -85,7 +85,7 @@ export function FavoritesContent() {
                 </Link>
                 <Link
                   href="/mama-life"
-                  className="inline-block px-6 py-3 bg-sage text-white font-semibold rounded-full hover:bg-deep-sage transition-colors"
+                  className="inline-block px-6 py-3 bg-deep-sage text-white font-semibold rounded-full hover:bg-deep-sage transition-colors"
                 >
                   Browse Mama Life
                 </Link>
@@ -118,13 +118,13 @@ export function FavoritesContent() {
                 <div className="flex items-center gap-3">
                   <Link
                     href={`/posts/${favorite.slug}`}
-                    className="px-4 py-2 text-sm font-medium text-sage hover:text-deep-sage transition-colors"
+                    className="px-4 py-2 text-sm font-medium text-deep-sage hover:text-charcoal transition-colors"
                   >
                     View
                   </Link>
                   <button
                     onClick={() => handleRemove(favorite.slug)}
-                    className="p-2 text-charcoal/40 hover:text-red-500 transition-colors"
+                    className="p-2 text-charcoal/60 hover:text-red-500 transition-colors"
                     aria-label="Remove from favorites"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

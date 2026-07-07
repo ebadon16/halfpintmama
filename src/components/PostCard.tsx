@@ -18,7 +18,7 @@ interface PostCardProps {
 const categoryColors: Record<string, string> = {
   cooking: "bg-[#A56350]",
   "mama-life": "bg-deep-sage",
-  default: "bg-sage",
+  default: "bg-deep-sage",
 };
 
 export function PostCard({ slug, title, excerpt, category, date, image, tags, ratingAverage, ratingCount, headingLevel = "h3" }: PostCardProps) {

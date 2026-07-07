@@ -19,7 +19,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "Shop | Half Pint Mama",
     description: "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with recovery tips, freezer meals, and sourdough recipes.",
   },
@@ -97,13 +97,13 @@ export default function ShopPage() {
             <div className="space-y-3">
               <Link
                 href="/cooking"
-                className="block text-sage hover:text-deep-sage font-medium transition-colors"
+                className="block text-deep-sage hover:text-charcoal font-medium transition-colors"
               >
                 Browse recipes while you wait &rarr;
               </Link>
               <Link
                 href="/mama-life"
-                className="block text-sage hover:text-deep-sage font-medium transition-colors"
+                className="block text-deep-sage hover:text-charcoal font-medium transition-colors"
               >
                 Explore mama life posts &rarr;
               </Link>

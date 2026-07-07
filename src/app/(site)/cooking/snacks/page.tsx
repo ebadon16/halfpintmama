@@ -26,7 +26,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
     description,
     alternates: { canonical },
     openGraph: { images: DEFAULT_OG_IMAGE_ARRAY, title, description, type: "website" as const, url: canonical },
-    twitter: { images: [DEFAULT_OG_IMAGE.url], card: "summary" as const, title, description },
+    twitter: { images: [DEFAULT_OG_IMAGE.url], card: "summary_large_image" as const, title, description },
   };
 }
 
@@ -72,7 +72,7 @@ export default async function SnacksPage({ searchParams }: PageProps) {
           <Link href="/cooking/desserts" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">
             Desserts
           </Link>
-          <Link href="/cooking/snacks" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">
+          <Link href="/cooking/snacks" className="px-4 py-2 rounded-full bg-deep-sage text-white font-semibold text-sm">
             Snacks
           </Link>
         </div>

@@ -11,7 +11,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "Privacy Policy | Half Pint Mama",
     description: "Learn how Half Pint Mama collects, uses, and protects your personal information.",
   },
@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
         </div>
 
         <div className="mt-8 text-center">
-          <Link href="/" className="text-sage hover:text-deep-sage font-medium transition-colors">
+          <Link href="/" className="text-deep-sage hover:text-charcoal font-medium transition-colors">
             &larr; Back to Half Pint Mama
           </Link>
         </div>

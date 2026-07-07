@@ -55,7 +55,7 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
       title={isFavorite ? "Remove from favorites" : "Save recipe"}
     >
       <svg
-        className={`w-5 h-5 transition-colors ${mounted && isFavorite ? "text-terracotta fill-terracotta" : "text-charcoal/40 hover:text-terracotta"}`}
+        className={`w-5 h-5 transition-colors ${mounted && isFavorite ? "text-terracotta fill-terracotta" : "text-charcoal/60 hover:text-terracotta"}`}
         fill={mounted && isFavorite ? "currentColor" : "none"}
         stroke="currentColor"
         viewBox="0 0 24 24"

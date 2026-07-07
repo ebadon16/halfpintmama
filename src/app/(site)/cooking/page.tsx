@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
       type: "website" as const,
       url: canonical,
     },
-    twitter: { images: [DEFAULT_OG_IMAGE.url], card: "summary" as const, title, description },
+    twitter: { images: [DEFAULT_OG_IMAGE.url], card: "summary_large_image" as const, title, description },
   };
 }
 
@@ -73,7 +73,7 @@ export default async function CookingPage({ searchParams }: PageProps) {
 
         {/* Subcategory Navigation */}
         <div className="flex flex-wrap gap-3 mb-8 justify-center">
-          <Link href="/cooking" className="px-4 py-2 rounded-full bg-sage text-white font-semibold text-sm">
+          <Link href="/cooking" className="px-4 py-2 rounded-full bg-deep-sage text-white font-semibold text-sm">
             All Recipes
           </Link>
           <Link href="/cooking/sourdough" className="px-4 py-2 rounded-full border-2 border-light-sage text-deep-sage font-semibold text-sm hover:bg-light-sage transition-all">

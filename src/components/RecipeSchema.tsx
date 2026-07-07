@@ -1,5 +1,5 @@
 import type { RecipeInfo } from "@/lib/posts";
-import { jsonLdHtml } from "@/lib/seo";
+import { jsonLdHtml, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 interface RecipeSchemaProps {
   title: string;
@@ -48,7 +48,7 @@ export function RecipeSchema({ title, description, image, datePublished, dateMod
     "@type": "Recipe",
     name: title,
     description: description,
-    ...(image ? { image: [image] } : {}),
+    image: [image || DEFAULT_OG_IMAGE.url],
     author: {
       "@type": "Person",
       "@id": `${baseUrl}/about#person`,

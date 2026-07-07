@@ -14,7 +14,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "Contact | Half Pint Mama",
     description: "Get in touch with Keegan at Half Pint Mama. Questions about recipes, sourdough, or collaborations.",
   },

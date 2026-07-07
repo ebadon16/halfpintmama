@@ -18,7 +18,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary",
+    card: "summary_large_image",
     title: "About | Half Pint Mama",
     description: "Meet Keegan - a Pediatric ER RN and mama of three sharing real food recipes and intentional living.",
   },
@@ -197,7 +197,7 @@ export default function AboutPage() {
               href="https://www.youtube.com/@HalfPintMama"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-sage text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
+              className="bg-deep-sage text-white text-center p-6 rounded-xl hover:shadow-lg transition-all"
             >
               <div className="mb-2"><Video className="w-7 h-7 mx-auto" /></div>
               <div className="font-semibold">YouTube</div>
@@ -221,7 +221,7 @@ export default function AboutPage() {
               href="https://linktr.ee/Halfpintmama"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-6 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
+              className="inline-block px-6 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all"
             >
               All My Links
             </a>

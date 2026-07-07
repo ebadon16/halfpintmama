@@ -75,7 +75,7 @@ export function HeaderNav() {
             href={link.href}
             className={`px-4 py-2 rounded-full border-2 font-semibold text-sm transition-all whitespace-nowrap ${
               isActive(link.href)
-                ? "bg-sage border-sage text-white"
+                ? "bg-deep-sage border-deep-sage text-white"
                 : "border-light-sage text-deep-sage hover:bg-light-sage hover:border-sage"
             }`}
           >
@@ -114,7 +114,7 @@ export function HeaderNav() {
               onClick={() => setIsMenuOpen(false)}
               className={`px-6 py-2 rounded-full border-2 font-semibold text-sm transition-all ${
                 isActive(link.href)
-                  ? "bg-sage border-sage text-white"
+                  ? "bg-deep-sage border-deep-sage text-white"
                   : "border-light-sage text-deep-sage hover:bg-light-sage"
               }`}
             >

@@ -207,9 +207,9 @@ export function EmailPopup() {
 
         {/* Form */}
         {status === "success" ? (
-          <div className="p-8 text-center">
+          <div className="p-8 text-center" role="status" aria-live="polite">
             <div className="flex justify-center mb-3" aria-hidden="true"><ThemedIcon icon={PartyPopper} size="md" color="sage" /></div>
-            <p className="text-green-600 font-medium">{message}</p>
+            <p className="text-green-700 font-medium">{message}</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6">

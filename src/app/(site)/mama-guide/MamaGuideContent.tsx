@@ -49,10 +49,10 @@ function SignupForm({ source }: { source: string }) {
         <p className="text-charcoal/80 text-sm mb-4">Your free guide is on its way.</p>
         <div className="text-left space-y-2 text-sm">
           <p className="text-charcoal/80 font-medium">While you wait, explore:</p>
-          <Link href="/mama-life/parenting" className="block text-sage hover:text-deep-sage transition-colors">
+          <Link href="/mama-life/parenting" className="block text-deep-sage hover:text-charcoal transition-colors">
             &rarr; Parenting Posts
           </Link>
-          <Link href="/mama-life" className="block text-sage hover:text-deep-sage transition-colors">
+          <Link href="/mama-life" className="block text-deep-sage hover:text-charcoal transition-colors">
             &rarr; All Mama Life Posts
           </Link>
         </div>
@@ -105,7 +105,7 @@ function SignupForm({ source }: { source: string }) {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-full py-4 bg-sage text-white font-semibold rounded-lg hover:bg-deep-sage hover:shadow-lg transition-all text-lg disabled:opacity-50"
+        className="w-full py-4 bg-deep-sage text-white font-semibold rounded-lg hover:bg-deep-sage hover:shadow-lg transition-all text-lg disabled:opacity-50"
       >
         {status === "loading" ? "Sending..." : "Send Me the Free Guide!"}
       </button>
@@ -127,7 +127,7 @@ export function MamaGuideContent({ totalPosts }: MamaGuideContentProps) {
             {/* Left: Guide Preview */}
             <div className="md:w-1/2 mb-8 md:mb-0">
               <div className="bg-white rounded-2xl shadow-xl p-8 border-4 border-sage/20 relative">
-                <div className="absolute -top-4 -right-4 bg-sage text-white px-4 py-2 rounded-full font-semibold text-sm">
+                <div className="absolute -top-4 -right-4 bg-deep-sage text-white px-4 py-2 rounded-full font-semibold text-sm">
                   FREE!
                 </div>
                 <div className="text-center">

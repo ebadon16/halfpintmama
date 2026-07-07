@@ -21,7 +21,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "Start Here | Half Pint Mama",
     description: "New to Half Pint Mama? Start your sourdough journey or navigate motherhood with real food and real talk.",
   },
@@ -155,17 +155,17 @@ export default async function StartHerePage() {
                   <h4 className="font-semibold text-charcoal text-sm uppercase tracking-wide">Start With:</h4>
                   <ul className="space-y-2">
                     <li>
-                      <Link href="/posts/transitioning-from-one-to-two-kids-what-to-expect-and-how-to-prepare" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
+                      <Link href="/posts/transitioning-from-one-to-two-kids-what-to-expect-and-how-to-prepare" className="flex items-center gap-2 text-deep-sage hover:text-charcoal transition-colors">
                         <span>→</span> Transitioning from One to Two Kids
                       </Link>
                     </li>
                     <li>
-                      <Link href="/posts/a-winter-guide-to-banff-with-kids" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
+                      <Link href="/posts/a-winter-guide-to-banff-with-kids" className="flex items-center gap-2 text-deep-sage hover:text-charcoal transition-colors">
                         <span>→</span> A Winter Guide to Banff with Kids
                       </Link>
                     </li>
                     <li>
-                      <Link href="/posts/homesteading-in-the-suburbs" className="flex items-center gap-2 text-sage hover:text-deep-sage transition-colors">
+                      <Link href="/posts/homesteading-in-the-suburbs" className="flex items-center gap-2 text-deep-sage hover:text-charcoal transition-colors">
                         <span>→</span> Homesteading in the Suburbs
                       </Link>
                     </li>
@@ -174,7 +174,7 @@ export default async function StartHerePage() {
 
                 <Link
                   href="/mama-life"
-                  className="block w-full text-center px-6 py-2 text-sage hover:text-deep-sage font-medium transition-colors mt-3 text-sm"
+                  className="block w-full text-center px-6 py-2 text-deep-sage hover:text-charcoal font-medium transition-colors mt-3 text-sm"
                 >
                   Browse Mama Life Posts &rarr;
                 </Link>

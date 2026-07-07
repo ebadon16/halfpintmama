@@ -80,7 +80,9 @@ export function CommentsPreview({ postSlug, category, initialRatingAverage = 0, 
   const scrollToComments = () => {
     const commentsSection = document.getElementById("comments-section");
     if (commentsSection) {
-      commentsSection.scrollIntoView({ behavior: "smooth" });
+      commentsSection.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      });
     }
   };
 

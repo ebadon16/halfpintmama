@@ -76,7 +76,7 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
         </a>
         <a
           href={shareLinks.email}
-          className="w-10 h-10 flex items-center justify-center bg-sage text-white rounded-full hover:opacity-80 transition-opacity"
+          className="w-10 h-10 flex items-center justify-center bg-deep-sage text-white rounded-full hover:opacity-80 transition-opacity"
           aria-label="Share via Email"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -86,7 +86,7 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
         <button
           onClick={copyToClipboard}
           className="w-10 h-10 flex items-center justify-center bg-charcoal/10 text-charcoal rounded-full hover:bg-charcoal/20 transition-colors relative"
-          aria-label="Copy link"
+          aria-label={copied ? "Link copied" : "Copy link"}
         >
           {copied ? (
             <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -98,6 +98,9 @@ export function ShareButtons({ title, slug }: ShareButtonsProps) {
             </svg>
           )}
         </button>
+        <span className="sr-only" role="status" aria-live="polite">
+          {copied ? "Link copied to clipboard" : ""}
+        </span>
       </div>
     </div>
   );

@@ -59,7 +59,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
       {currentPage > 1 ? (
         <Link
           href={getPageUrl(currentPage - 1)}
-          className="px-4 py-2 rounded-full border-2 border-sage text-deep-sage font-semibold hover:bg-sage hover:text-white transition-all"
+          className="px-4 py-2 rounded-full border-2 border-sage text-deep-sage font-semibold hover:bg-deep-sage hover:text-white transition-all"
         >
           &larr; Prev
         </Link>
@@ -79,7 +79,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
           ) : page === currentPage ? (
             <span
               key={page}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-sage text-white font-semibold"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-deep-sage text-white font-semibold"
               aria-current="page"
             >
               {page}
@@ -105,7 +105,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
       {currentPage < totalPages ? (
         <Link
           href={getPageUrl(currentPage + 1)}
-          className="px-4 py-2 rounded-full border-2 border-sage text-deep-sage font-semibold hover:bg-sage hover:text-white transition-all"
+          className="px-4 py-2 rounded-full border-2 border-sage text-deep-sage font-semibold hover:bg-deep-sage hover:text-white transition-all"
         >
           Next &rarr;
         </Link>

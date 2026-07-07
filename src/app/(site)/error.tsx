@@ -25,7 +25,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
           </button>
           <Link
             href="/"
-            className="px-6 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
+            className="px-6 py-3 border-2 border-sage text-deep-sage font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all"
           >
             Go Home
           </Link>
@@ -41,10 +41,10 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
             <Link href="/cooking/discard" className="text-terracotta hover:text-deep-sage transition-colors font-medium">
               Discard Recipes &rarr;
             </Link>
-            <Link href="/mama-life" className="text-sage hover:text-deep-sage transition-colors font-medium">
+            <Link href="/mama-life" className="text-deep-sage hover:text-charcoal transition-colors font-medium">
               Mama Life &rarr;
             </Link>
-            <Link href="/free-guide" className="text-sage hover:text-deep-sage transition-colors font-medium">
+            <Link href="/free-guide" className="text-deep-sage hover:text-charcoal transition-colors font-medium">
               Free Starter Guide &rarr;
             </Link>
           </div>

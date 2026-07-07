@@ -33,6 +33,15 @@ const nextConfig: NextConfig = {
           { key: "Content-Security-Policy", value: contentSecurityPolicy },
         ],
       },
+      {
+        // Studio is excluded from the relaxed CSP above, but must still not be
+        // framable by third-party origins (clickjacking on the login).
+        source: "/studio/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+        ],
+      },
     ];
   },
   async redirects() {

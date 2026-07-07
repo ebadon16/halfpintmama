@@ -75,7 +75,7 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
             <button
               key={tag}
               onClick={() => onSuggestionClick(tag)}
-              className="px-4 py-2 bg-light-sage/30 rounded-full hover:bg-sage hover:text-white transition-all text-deep-sage flex items-center gap-2"
+              className="px-4 py-2 bg-light-sage/30 rounded-full hover:bg-deep-sage hover:text-white transition-all text-deep-sage flex items-center gap-2"
             >
               <span className="capitalize">{tag}</span>
               <span className="text-xs opacity-70">({count})</span>

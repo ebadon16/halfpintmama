@@ -49,7 +49,7 @@ export function SearchBar({
       />
       <button
         type="submit"
-        className="absolute right-1 top-1/2 -translate-y-1/2 p-2.5 text-sage hover:text-deep-sage transition-colors"
+        className="absolute right-1 top-1/2 -translate-y-1/2 p-2.5 text-deep-sage hover:text-charcoal transition-colors"
         aria-label="Search"
       >
         <svg className={iconSizes[size]} fill="none" stroke="currentColor" viewBox="0 0 24 24">

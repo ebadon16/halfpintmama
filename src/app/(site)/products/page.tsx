@@ -18,7 +18,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "Products We Love | Half Pint Mama",
     description: "Curated product recommendations for sourdough baking, baby gear, and mama life essentials.",
   },
@@ -72,7 +72,7 @@ export default function ProductsPage() {
           <a
             href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="sponsored nofollow noopener noreferrer"
             className="flex items-center justify-center gap-3 px-6 py-4 bg-[#FF9900]/10 rounded-2xl hover:bg-[#FF9900]/20 transition-all group border-2 border-[#FF9900]/20"
           >
             <ShoppingCart className="w-7 h-7 text-[#FF9900]" />
@@ -84,7 +84,7 @@ export default function ProductsPage() {
           <a
             href="https://tr.ee/-4hpXd9Zfr"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="sponsored nofollow noopener noreferrer"
             className="flex items-center justify-center gap-3 px-6 py-4 bg-pink-50 rounded-2xl hover:bg-pink-100 transition-all group border-2 border-pink-200"
           >
             <Heart className="w-7 h-7 text-pink-500" />
@@ -98,13 +98,16 @@ export default function ProductsPage() {
 
       {/* Products I Actually Use */}
       <section className="max-w-6xl mx-auto px-4 py-12">
+        <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl text-deep-sage font-bold text-center mb-8">
+          Shop by Category
+        </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {affiliateCategories.map((category) => (
             <a
               key={category.title}
               href={category.link}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="sponsored nofollow noopener noreferrer"
               className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-all group"
             >
               <div className="mb-3"><ThemedIcon icon={category.icon} size="md" color="terracotta" /></div>
@@ -133,7 +136,7 @@ export default function ProductsPage() {
         <span className="hidden sm:inline text-charcoal/30">|</span>
         <Link
           href="/mama-life"
-          className="text-sage hover:text-deep-sage font-medium transition-colors text-lg"
+          className="text-deep-sage hover:text-charcoal font-medium transition-colors text-lg"
         >
           Looking for parenting content? Explore Mama Life &rarr;
         </Link>

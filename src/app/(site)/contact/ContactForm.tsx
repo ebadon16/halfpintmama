@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { MailCheck, Camera, Hand, Music } from "lucide-react";
@@ -15,6 +15,13 @@ export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  // Move focus to the confirmation heading so screen-reader users are told the
+  // message sent, instead of being stranded on the now-removed submit button.
+  useEffect(() => {
+    if (isSubmitted) successHeadingRef.current?.focus();
+  }, [isSubmitted]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,11 +65,15 @@ export function ContactForm() {
   if (isSubmitted) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-        <div className="bg-white rounded-2xl p-8 shadow-lg">
+        <div className="bg-white rounded-2xl p-8 shadow-lg" role="status" aria-live="polite">
           <div className="flex justify-center mb-4"><ThemedIcon icon={MailCheck} size="xl" color="terracotta" /></div>
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-bold mb-4">
+          <h1
+            ref={successHeadingRef}
+            tabIndex={-1}
+            className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-bold mb-4 focus:outline-none"
+          >
             Message Sent!
-          </h2>
+          </h1>
           <p className="text-charcoal/80 mb-6">
             Thank you for reaching out! I&apos;ll get back to you as soon as I can - usually within 48 hours.
           </p>
@@ -83,7 +94,7 @@ export function ContactForm() {
               </Link>
               <Link
                 href="/mama-life"
-                className="text-sage hover:text-deep-sage font-medium text-sm transition-colors"
+                className="text-deep-sage hover:text-charcoal font-medium text-sm transition-colors"
               >
                 Explore mama life &rarr;
               </Link>

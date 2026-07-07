@@ -30,7 +30,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
       <div className="flex items-center gap-2">
         <button
           onClick={() => onServingsChange(Math.max(1, currentServings - 1))}
-          className="w-10 h-10 rounded-full border-2 border-sage text-sage hover:bg-sage hover:text-white transition-all flex items-center justify-center font-bold"
+          className="w-10 h-10 rounded-full border-2 border-sage text-sage hover:bg-deep-sage hover:text-white transition-all flex items-center justify-center font-bold"
           aria-label="Decrease servings"
         >
           -
@@ -50,7 +50,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
 
         <button
           onClick={() => onServingsChange(currentServings + 1)}
-          className="w-10 h-10 rounded-full border-2 border-sage text-sage hover:bg-sage hover:text-white transition-all flex items-center justify-center font-bold"
+          className="w-10 h-10 rounded-full border-2 border-sage text-sage hover:bg-deep-sage hover:text-white transition-all flex items-center justify-center font-bold"
           aria-label="Increase servings"
         >
           +
@@ -66,9 +66,10 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
             <button
               key={option}
               onClick={() => onServingsChange(targetServings)}
+              aria-pressed={isActive}
               className={`px-3 py-1 text-xs rounded-full transition-all ${
                 isActive
-                  ? "bg-sage text-white"
+                  ? "bg-deep-sage text-white"
                   : "bg-light-sage/50 text-charcoal/80 hover:bg-light-sage"
               }`}
             >

@@ -15,7 +15,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "My Saved Recipes | Half Pint Mama",
     description: "Your saved recipes from Half Pint Mama, all in one place.",
   },

@@ -33,7 +33,7 @@ export function PrintButton({ title }: PrintButtonProps) {
   return (
     <button
       onClick={handlePrint}
-      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-charcoal bg-cream border-2 border-sage rounded-full hover:bg-sage hover:text-white transition-all"
+      className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-charcoal bg-cream border-2 border-sage rounded-full hover:bg-deep-sage hover:text-white transition-all"
       aria-label="Print recipe"
       data-print-hide
     >

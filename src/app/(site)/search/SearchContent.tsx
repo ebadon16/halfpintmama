@@ -135,9 +135,10 @@ export function SearchContent({ popularTags }: SearchContentProps) {
             <button
               key={cat || "all"}
               onClick={() => handleCategoryChange(cat)}
+              aria-pressed={selectedCategory === cat}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-all capitalize ${
                 selectedCategory === cat
-                  ? "bg-sage text-white"
+                  ? "bg-deep-sage text-white"
                   : "border-2 border-light-sage text-deep-sage hover:bg-light-sage"
               }`}
             >
@@ -188,7 +189,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
       )}
 
       {!isSearching && hasSearched && results.length === 0 && (
-        <div className="text-center py-12 bg-white rounded-2xl shadow-md">
+        <div role="status" aria-live="polite" className="text-center py-12 bg-white rounded-2xl shadow-md">
           <div className="flex justify-center mb-4"><ThemedIcon icon={SearchX} size="xl" color="charcoal" /></div>
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
             No results found
@@ -229,7 +230,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
 
       {!isSearching && results.length > 0 && (
         <div>
-          <p className="text-charcoal/80 mb-6">
+          <p role="status" aria-live="polite" className="text-charcoal/80 mb-6">
             Found {results.length} result{results.length !== 1 ? "s" : ""}
             {query && <> for &quot;{query}&quot;</>}
             {selectedCategory && <> in {selectedCategory.replace("-", " ")}</>}

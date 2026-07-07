@@ -15,7 +15,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "Free Sourdough Starter Guide | Half Pint Mama",
     description: "Get your free sourdough starter guide: day-by-day instructions from a Pediatric ER RN.",
   },

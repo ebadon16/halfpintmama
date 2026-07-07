@@ -32,7 +32,7 @@ export async function generateMetadata({ searchParams }: PageProps) {
     },
     twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-      card: "summary" as const,
+      card: "summary_large_image" as const,
       title,
       description,
     },

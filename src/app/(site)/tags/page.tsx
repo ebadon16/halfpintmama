@@ -20,7 +20,7 @@ export const metadata = {
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
-    card: "summary" as const,
+    card: "summary_large_image" as const,
     title: "Tags | Half Pint Mama",
     description: "Browse all blog posts by topic tags on Half Pint Mama.",
   },

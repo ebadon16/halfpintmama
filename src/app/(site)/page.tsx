@@ -245,7 +245,7 @@ export default async function Home() {
               </p>
               <Link
                 href="/about"
-                className="inline-block px-4 py-2 border-2 border-sage text-deep-sage text-sm font-semibold rounded-full hover:bg-sage hover:text-white transition-all"
+                className="inline-block px-4 py-2 border-2 border-sage text-deep-sage text-sm font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all"
               >
                 More About Me
               </Link>
@@ -260,7 +260,7 @@ export default async function Home() {
                 <a
                   href="https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="sponsored nofollow noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-[#FF9900]/10 rounded-xl hover:bg-[#FF9900]/20 transition-all group"
                 >
                   <ShoppingCart className="w-6 h-6 text-[#FF9900]" />
@@ -272,7 +272,7 @@ export default async function Home() {
                 <a
                   href="https://tr.ee/-4hpXd9Zfr"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="sponsored nofollow noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-pink-50 rounded-xl hover:bg-pink-100 transition-all group"
                 >
                   <Heart className="w-6 h-6 text-pink-500" />
@@ -282,6 +282,9 @@ export default async function Home() {
                   </div>
                 </a>
               </div>
+              <p className="text-charcoal/80 text-xs mt-3">
+                As an Amazon Associate I earn from qualifying purchases.
+              </p>
             </div>
 
             {/* Reader Favorites */}
@@ -335,7 +338,7 @@ export default async function Home() {
                       <Link
                         key={sub.href}
                         href={sub.href}
-                        className="px-3 py-1 bg-light-sage/30 text-deep-sage text-xs rounded-full hover:bg-sage hover:text-white transition-all"
+                        className="px-3 py-1 bg-light-sage/30 text-deep-sage text-xs rounded-full hover:bg-deep-sage hover:text-white transition-all"
                       >
                         {sub.label}
                       </Link>
@@ -356,7 +359,7 @@ export default async function Home() {
                       <Link
                         key={sub.href}
                         href={sub.href}
-                        className="px-3 py-1 bg-light-sage/30 text-deep-sage text-xs rounded-full hover:bg-sage hover:text-white transition-all"
+                        className="px-3 py-1 bg-light-sage/30 text-deep-sage text-xs rounded-full hover:bg-deep-sage hover:text-white transition-all"
                       >
                         {sub.label}
                       </Link>
