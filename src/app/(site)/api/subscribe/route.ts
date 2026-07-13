@@ -73,7 +73,8 @@ export async function POST(request: NextRequest) {
         email: email.toLowerCase().trim(),
         groups,
         fields: {
-          source: VALID_SOURCES.includes(source) ? source : "website",
+          // "source" is a reserved MailerLite field name and gets silently dropped
+          signup_source: VALID_SOURCES.includes(source) ? source : "website",
           segment: validSegment,
           ...(firstName && typeof firstName === "string" ? { name: firstName.trim().slice(0, 100) } : {}),
         },
