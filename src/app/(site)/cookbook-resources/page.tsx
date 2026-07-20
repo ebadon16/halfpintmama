@@ -1,19 +1,19 @@
 import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { Tag, ClipboardCheck, BookOpen } from "lucide-react";
+import { Tag, BookOpen } from "lucide-react";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Cookbook Resources | Half Pint Mama",
   description:
-    "Printable freezer labels and the freezer prep checklist that go with Rest and Rise, the postpartum sourdough cookbook from Half Pint Mama.",
+    "Printable freezer labels that go with Rest and Rise, the postpartum sourdough cookbook from Half Pint Mama.",
   alternates: { canonical: "https://halfpintmama.com/cookbook-resources" },
   robots: { index: false, follow: true },
   openGraph: {
     images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Cookbook Resources | Half Pint Mama",
     description:
-      "Printable freezer labels and the prep checklist that go with Rest and Rise.",
+      "Printable freezer labels that go with Rest and Rise.",
     type: "website",
     url: "https://halfpintmama.com/cookbook-resources",
   },
@@ -22,7 +22,7 @@ export const metadata = {
     card: "summary_large_image" as const,
     title: "Cookbook Resources | Half Pint Mama",
     description:
-      "Printable freezer labels and the prep checklist that go with Rest and Rise.",
+      "Printable freezer labels that go with Rest and Rise.",
   },
 };
 
@@ -62,32 +62,6 @@ export default function CookbookResourcesPage() {
             >
               Go to the Shop
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Checklist cross-promo */}
-      <section className="py-12 bg-deep-sage/5">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="md:flex items-center gap-8 bg-white rounded-2xl p-8 shadow-md">
-            <div className="flex justify-center md:block mb-4 md:mb-0">
-              <ThemedIcon icon={ClipboardCheck} size="xl" color="sage" />
-            </div>
-            <div className="flex-1 text-center md:text-left">
-              <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
-                The Freezer Prep Checklist
-              </h2>
-              <p className="text-charcoal/80 text-sm mb-4">
-                All 13 prep sessions plus a fill-in freezer inventory for every recipe in the book,
-                free in your inbox. The simplest way to turn the book into a plan.
-              </p>
-              <Link
-                href="/checklist"
-                className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
-              >
-                Get the Free Checklist
-              </Link>
-            </div>
           </div>
         </div>
       </section>
