@@ -66,8 +66,8 @@ export function PostEmailSignup({ category }: { category?: string } = {}) {
           </h3>
           <p className="text-charcoal/80 text-sm mb-4">
             {category === "mama-life"
-              ? "Get more honest mama moments and from-scratch recipes delivered to your inbox. Join 35,000+ families already following along."
-              : "Get more from-scratch recipes and kitchen tips delivered to your inbox weekly. Join 35,000+ families already following along!"}
+              ? "Get my free sourdough starter guide, plus first word on new recipes and honest mama moments. Join 35,000+ families already following along."
+              : "Get my free sourdough starter guide, plus first word on new from-scratch recipes. Join 35,000+ families already following along!"}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
             <input
@@ -165,8 +165,8 @@ export function BottomEmailCTA({ category }: { category?: string } = {}) {
           </h2>
           <p className="text-white mb-6 max-w-md mx-auto">
             {category === "mama-life"
-              ? "Honest mama moments and real talk from a Pediatric ER RN and mama of three. Plus get my free sourdough starter guide when you subscribe! Join 35,000+ families already following along."
-              : "Weekly from-scratch recipes and kitchen tips. Plus get my free sourdough starter guide when you subscribe! Join 35,000+ families already in the community."}
+              ? "Real talk from a Pediatric ER RN and mama of three. Get my free sourdough starter guide when you subscribe, plus first word on new recipes! Join 35,000+ families already following along."
+              : "Get my free sourdough starter guide when you subscribe, plus first word on new recipes and the upcoming cookbook! Join 35,000+ families already in the community."}
           </p>
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm mx-auto">
             <input

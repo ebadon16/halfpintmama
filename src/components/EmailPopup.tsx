@@ -14,7 +14,7 @@ function usePopupContext(pathname: string) {
       icon: Heart,
       heading: "Join the Half Pint Mama Community!",
       subtitle: "Honest mama moments and from-scratch recipes!",
-      body: "Get honest motherhood stories and from-scratch recipes from a Pediatric ER RN and mama of three, plus my free sourdough starter guide.",
+      body: "Get my free sourdough starter guide from a Pediatric ER RN and mama of three, plus first word on new recipes and honest mama moments.",
       cta: "Join Free",
     };
   }
@@ -22,8 +22,8 @@ function usePopupContext(pathname: string) {
     segment: "kitchen" as const,
     icon: Wheat,
     heading: "Want My Free Sourdough Starter Guide?",
-    subtitle: "Plus weekly from-scratch recipes and kitchen tips!",
-    body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus weekly recipes.",
+    subtitle: "Free for subscribers, straight to your inbox!",
+    body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus first word on new recipes.",
     cta: "Send My Free Guide",
   };
 }

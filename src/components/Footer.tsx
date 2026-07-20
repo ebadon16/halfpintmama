@@ -158,7 +158,7 @@ export function Footer() {
             Join the Half Pint Community
           </h3>
           <p className="text-charcoal/80 text-sm mb-4">
-            Weekly recipes, honest mama moments, and a free sourdough starter guide.
+            Get my free sourdough starter guide, plus first word on new recipes and the cookbook.
           </p>
           <EmailSignup
             source="footer"
