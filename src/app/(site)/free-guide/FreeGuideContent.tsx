@@ -46,7 +46,7 @@ function SignupForm({ source }: { source: string }) {
       <div className="bg-light-sage/30 rounded-lg p-6 text-center">
         <div className="flex justify-center mb-2"><ThemedIcon icon={PartyPopper} size="md" color="sage" /></div>
         <p className="text-deep-sage font-semibold">Check your inbox!</p>
-        <p className="text-charcoal/80 text-sm mb-4">Your free guide is on its way.</p>
+        <p className="text-charcoal/80 text-sm mb-4">Your free guide is on its way. If you don&apos;t see it, check your spam or promotions folder.</p>
         <div className="text-left space-y-2 text-sm">
           <p className="text-charcoal/80 font-medium">While you wait, check out:</p>
           <Link href="/cooking/sourdough" className="block text-terracotta hover:text-deep-sage transition-colors">

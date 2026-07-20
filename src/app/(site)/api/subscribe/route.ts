@@ -125,8 +125,8 @@ export async function POST(request: NextRequest) {
 
       if (response.ok || response.status === 200 || response.status === 201) {
         const successMessage = validSegment === "mama-life"
-          ? "Welcome to the community! You'll get weekly mama tips and exclusive content."
-          : "Welcome! Check your inbox for your free sourdough starter guide.";
+          ? "Welcome to the community! You'll get weekly mama tips and exclusive content. If the welcome email is not in your inbox, check your spam or promotions folder."
+          : "Welcome! Check your inbox for your free sourdough starter guide. If you don't see it, check your spam or promotions folder.";
         return NextResponse.json(
           { message: successMessage },
           { status: 201 }
