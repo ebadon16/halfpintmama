@@ -65,7 +65,7 @@ Static Generation (generateStaticParams)
 | `api/comments` | GET: fetch comments, POST: create + notify (ratings are submitted here too — there is no separate rating route) | 10/min |
 | `api/subscribe` | Newsletter signup → MailerLite | 5/min |
 | `api/search` | Server-side post search | — |
-| `api/revalidate` | On-demand ISR revalidation | — |
+| `api/revalidate` | Secret-protected ISR revalidation + IndexNow ping (Sanity webhook) | 5/min |
 
 ### Category Pages
 

@@ -146,8 +146,11 @@ export async function POST(request: NextRequest) {
 
       // MailerLite rejected the address itself (passes our regex but is
       // undeliverable, e.g. a malformed domain). Tell the visitor instead of
-      // capture-alerting the owner about a junk address.
-      if (response.status === 422) {
+      // capture-alerting the owner about a junk address. Only when the email
+      // field specifically is at fault: a 422 can also mean config problems
+      // (e.g. a deleted group ID), which must fall through to the capture
+      // alert, not masquerade as a typo.
+      if (response.status === 422 && data?.errors?.email) {
         return NextResponse.json(
           { error: "That email address doesn't look right. Please double-check it and try again." },
           { status: 400 }
