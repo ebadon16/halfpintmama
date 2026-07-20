@@ -132,7 +132,9 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: "Replies should not include a rating" }, { status: 400 });
       }
     } else {
-      if (typeof rating !== "number" || !Number.isInteger(rating) || rating < 1 || rating > 5) {
+      // 1-5 for reviews; 0 allowed so returning readers who already rated can
+      // leave follow-up comments (aggregates filter rating > 0, so 0 is inert).
+      if (typeof rating !== "number" || !Number.isInteger(rating) || rating < 0 || rating > 5) {
         return NextResponse.json({ error: "Rating must be an integer from 1 to 5" }, { status: 400 });
       }
     }
@@ -284,7 +286,10 @@ export async function POST(request: NextRequest) {
         parentEmail = parentComment?.email;
       } catch { /* failed to fetch parent, skip notification */ }
 
-      if (parentEmail && EMAIL_REGEX.test(parentEmail.trim()) && parentEmail !== safeEmail) {
+      // Cooldown: comment IDs are public, so without a cap an attacker could
+      // use replies to spam any past commenter from our domain. Max 3
+      // notifications per parent comment per day.
+      if (parentEmail && EMAIL_REGEX.test(parentEmail.trim()) && parentEmail !== safeEmail && rateLimit(`reply-notify:${parentId}`, 3, 24 * 60 * 60 * 1000)) {
       try { await getResend().emails.send({
         from: "Half Pint Mama <notifications@halfpintmama.com>",
         to: parentEmail,

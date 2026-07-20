@@ -98,7 +98,7 @@ export default function ShopPage() {
                   buttonText="Join Waitlist"
                   placeholder="Your email"
                   buttonClassName="bg-terracotta text-white hover:bg-terracotta/90"
-                  inputClassName="border-terracotta/30"
+                  inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
                 />
                 <p className="text-charcoal/80 text-xs mt-3">
                   Printable freezer labels for every recipe in the book are coming too.

@@ -23,6 +23,8 @@ function getYouTubeId(url: string): string | null {
     /(?:youtube\.com\/watch\?v=)([^&\s]+)/,
     /(?:youtu\.be\/)([^?\s]+)/,
     /(?:youtube\.com\/embed\/)([^?\s]+)/,
+    /(?:youtube\.com\/shorts\/)([^?\s]+)/,
+    /(?:youtube\.com\/live\/)([^?\s]+)/,
   ];
   for (const pattern of patterns) {
     const match = url.match(pattern);
@@ -80,9 +82,12 @@ const components: PortableTextComponents = {
     em: ({ children }) => <em>{children}</em>,
     link: ({ children, value }) => {
       const href = value?.href || "";
-      const isInternal = href.startsWith("/") || href.startsWith("#") || href.startsWith("https://halfpintmama.com");
+      // Domain check needs the boundary: bare "https://halfpintmama.com" must
+      // become "/", and "halfpintmama.com.evil.com" must NOT count as internal.
+      const isOwnDomain = href === "https://halfpintmama.com" || href.startsWith("https://halfpintmama.com/");
+      const isInternal = href.startsWith("/") || href.startsWith("#") || isOwnDomain;
       if (isInternal) {
-        const path = href.startsWith("https://halfpintmama.com") ? href.replace("https://halfpintmama.com", "") : href;
+        const path = isOwnDomain ? href.replace("https://halfpintmama.com", "") || "/" : href;
         return (
           <Link
             href={path}

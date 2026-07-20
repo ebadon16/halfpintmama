@@ -187,8 +187,9 @@ export function Comments({ postSlug, postTitle, category, initialRatingAverage =
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Client-side validation: require 1-5 star rating for reviews
-    if (!replyingTo && formData.rating === 0) {
+    // Client-side validation: require 1-5 star rating for reviews. A returning
+    // reader who already rated submits rating 0 (a comment without a rating).
+    if (!replyingTo && formData.rating === 0 && !hasRated) {
       setSubmitError("Please select a star rating");
       return;
     }

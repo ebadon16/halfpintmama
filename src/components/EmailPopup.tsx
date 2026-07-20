@@ -149,9 +149,10 @@ export function EmailPopup() {
         trackEvent("email_signup", { source: "popup" });
         setMessage(data.message);
         try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }
-        // Auto-close after 3 seconds
+        // Auto-close after 3 seconds. handleDismiss (not bare setIsVisible)
+        // so keyboard/screen-reader focus returns to where it was.
         successTimerRef.current = setTimeout(() => {
-          setIsVisible(false);
+          handleDismiss();
         }, 3000);
       } else {
         setStatus("error");

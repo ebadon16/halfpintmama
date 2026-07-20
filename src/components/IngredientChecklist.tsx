@@ -9,6 +9,34 @@ interface IngredientChecklistProps {
   scale?: number;
 }
 
+// Vulgar fractions pasted from other sites ("½ cup") must scale like ASCII ones
+const UNICODE_FRACTIONS: Record<string, string> = {
+  "¼": "1/4", "½": "1/2", "¾": "3/4", "⅓": "1/3", "⅔": "2/3",
+  "⅕": "1/5", "⅛": "1/8", "⅜": "3/8", "⅝": "5/8", "⅞": "7/8",
+};
+
+function normalizeFractions(s: string): string {
+  return s.replace(/(\d)?\s?([¼½¾⅓⅔⅕⅛⅜⅝⅞])/g, (_, whole, frac) =>
+    whole ? `${whole} ${UNICODE_FRACTIONS[frac]}` : UNICODE_FRACTIONS[frac]
+  );
+}
+
+// Parse "2", "1.5", "1/2", or "1 1/2" to a number
+function parseNumber(str: string): number | null {
+  const mixed = str.match(/^(\d+)\s+(\d+)\/(\d+)$/);
+  if (mixed) {
+    const v = parseInt(mixed[1], 10) + parseInt(mixed[2], 10) / parseInt(mixed[3], 10);
+    return isNaN(v) ? null : v;
+  }
+  if (str.includes("/")) {
+    const [num, denom] = str.split("/");
+    const v = parseFloat(num) / parseFloat(denom);
+    return isNaN(v) ? null : v;
+  }
+  const v = parseFloat(str);
+  return isNaN(v) ? null : v;
+}
+
 // Parse ingredient string to extract quantity for scaling
 function parseIngredient(ingredient: string): { quantity: number | null; unit: string; rest: string } {
   // Match mixed fractions like "1 1/2 cups flour"
@@ -62,11 +90,27 @@ function formatQuantity(num: number): string {
 }
 
 function scaleIngredient(ingredient: string, scale: number): string {
-  const { quantity, unit, rest } = parseIngredient(ingredient);
+  if (scale === 1) return ingredient;
 
-  if (quantity !== null && scale !== 1) {
-    const scaled = quantity * scale;
-    return `${formatQuantity(scaled)} ${unit} ${rest}`.trim();
+  const normalized = normalizeFractions(ingredient);
+
+  // Ranges ("2-3 tbsp water"): scale both ends. The single-number parser would
+  // otherwise match only the "2" and garble the rest into "-3 tbsp water".
+  const range = normalized.match(
+    /^(\d+(?:[.]\d+)?(?:\s+\d+\/\d+)?|\d+\/\d+)\s*[-–]\s*(\d+(?:[.]\d+)?(?:\s+\d+\/\d+)?|\d+\/\d+)\s*(.*)$/
+  );
+  if (range) {
+    const lo = parseNumber(range[1]);
+    const hi = parseNumber(range[2]);
+    if (lo !== null && hi !== null) {
+      return `${formatQuantity(lo * scale)}-${formatQuantity(hi * scale)} ${range[3]}`.trim();
+    }
+    return ingredient; // unparseable range: leave the whole line untouched
+  }
+
+  const { quantity, unit, rest } = parseIngredient(normalized);
+  if (quantity !== null) {
+    return `${formatQuantity(quantity * scale)} ${unit} ${rest}`.trim();
   }
 
   return ingredient;

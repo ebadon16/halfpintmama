@@ -20,6 +20,10 @@ async function captureFailedSignup(details: {
   reason: string;
 }): Promise<boolean> {
   if (!RESEND_API_KEY) return false;
+  // During a MailerLite outage every signup fails; without a cap this fallback
+  // becomes an email bomb to the owner. Beyond the cap, visitors get the
+  // honest error (and can retry) instead of a false "you're on the list".
+  if (!rateLimit("subscribe-capture-alert", 3, 10 * 60_000)) return false;
   try {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",

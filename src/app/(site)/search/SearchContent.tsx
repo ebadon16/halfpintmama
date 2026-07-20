@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { PostCard } from "@/components/PostCard";
@@ -43,7 +43,11 @@ export function SearchContent({ popularTags }: SearchContentProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialQuery]);
 
+  // Monotonic id so a slow earlier response can't overwrite a newer one
+  const searchSeqRef = useRef(0);
+
   const performSearch = async (searchQuery: string, category = selectedCategory, start = startDate, end = endDate) => {
+    const seq = ++searchSeqRef.current;
     setIsSearching(true);
     setHasSearched(true);
 
@@ -62,11 +66,12 @@ export function SearchContent({ popularTags }: SearchContentProps) {
       const response = await fetch(`/api/search?${params.toString()}`);
       if (!response.ok) throw new Error("Search failed");
       const data = await response.json();
+      if (seq !== searchSeqRef.current) return; // stale response
       setResults(data.results || []);
     } catch {
-      setResults([]);
+      if (seq === searchSeqRef.current) setResults([]);
     } finally {
-      setIsSearching(false);
+      if (seq === searchSeqRef.current) setIsSearching(false);
     }
   };
 

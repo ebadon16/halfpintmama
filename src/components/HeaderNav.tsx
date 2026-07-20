@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { SearchButton } from "./SearchBar";
 
@@ -17,6 +17,7 @@ export function HeaderNav() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
 
   // Close mobile menu on route change — derived from pathname, no effect needed.
   if (lastPathname !== pathname) {
@@ -27,7 +28,14 @@ export function HeaderNav() {
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
-      const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setIsMenuOpen(false); };
+      // Return focus to the toggle on Escape: the focused menu link unmounts,
+      // and without this a keyboard user's focus falls to <body>.
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setIsMenuOpen(false);
+          menuButtonRef.current?.focus();
+        }
+      };
       document.addEventListener("keydown", onKey);
       return () => {
         document.body.style.overflow = "";
@@ -53,6 +61,7 @@ export function HeaderNav() {
           aria-label="Toggle menu"
           aria-expanded={isMenuOpen}
           aria-controls="mobile-menu"
+          ref={menuButtonRef}
         >
           {isMenuOpen ? "Close" : "Menu"}
         </button>

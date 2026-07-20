@@ -57,6 +57,8 @@ export function StarRating({ rating, onRate, readonly = false, size = "md" }: St
             onMouseEnter={() => setHoverRating(index)}
             onMouseLeave={() => setHoverRating(0)}
             onTouchStart={() => setHoverRating(index)}
+            onTouchEnd={() => setHoverRating(0)}
+            aria-pressed={index <= rating}
             onKeyDown={(e) => {
               if (e.key === "ArrowRight" && index < 5) { onRate?.(index + 1); btnRefs.current[index]?.focus(); }
               if (e.key === "ArrowLeft" && index > 1) { onRate?.(index - 1); btnRefs.current[index - 2]?.focus(); }

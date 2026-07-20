@@ -111,9 +111,11 @@ export function FavoritesContent() {
                   <h3 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal hover:text-terracotta transition-colors truncate">
                     {favorite.title}
                   </h3>
-                  <p className="text-charcoal/80 text-sm">
-                    Saved {new Date(favorite.savedAt).toLocaleDateString()}
-                  </p>
+                  {favorite.savedAt && !isNaN(new Date(favorite.savedAt).getTime()) && (
+                    <p className="text-charcoal/80 text-sm">
+                      Saved {new Date(favorite.savedAt).toLocaleDateString()}
+                    </p>
+                  )}
                 </Link>
                 <div className="flex items-center gap-3">
                   <Link
