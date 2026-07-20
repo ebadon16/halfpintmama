@@ -82,6 +82,10 @@ export default function ShopPage() {
             ))}
           </div>
 
+          <p className="max-w-lg mx-auto text-center text-charcoal/70 text-sm mt-4">
+            Printable freezer labels for every recipe in the book are coming too.
+          </p>
+
           <div className="max-w-md mx-auto mt-8 text-center">
             <p className="text-charcoal/80 mb-4 font-medium">
               Be the first to know when it drops:
