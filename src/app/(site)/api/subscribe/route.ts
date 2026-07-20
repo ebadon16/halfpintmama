@@ -91,17 +91,11 @@ export async function POST(request: NextRequest) {
 
     // Route to correct group based on segment
     const validSegment = VALID_SEGMENTS.includes(segment) ? segment : "kitchen";
-    const isCookbook = typeof source === "string" && source.startsWith("cookbook-");
-    const COOKBOOK_GROUP_ID = process.env.MAILERLITE_COOKBOOK_GROUP_ID;
     const groups: string[] = [MAILERLITE_GROUP_ID]; // Always add to main group
     if (validSegment === "mama-life" && MAMA_GROUP_ID) {
       groups.push(MAMA_GROUP_ID);
     } else if (validSegment === "kitchen" && KITCHEN_GROUP_ID !== MAILERLITE_GROUP_ID) {
       groups.push(KITCHEN_GROUP_ID);
-    }
-    // Cookbook signups also join the cookbook group (triggers the checklist delivery automation)
-    if (isCookbook && COOKBOOK_GROUP_ID) {
-      groups.push(COOKBOOK_GROUP_ID);
     }
 
     const normalizedSource = VALID_SOURCES.includes(source) ? source : "website";
@@ -130,9 +124,7 @@ export async function POST(request: NextRequest) {
       const data = await response.json();
 
       if (response.ok || response.status === 200 || response.status === 201) {
-        const successMessage = isCookbook
-          ? "Check your inbox! Your freezer prep checklist is on its way."
-          : validSegment === "mama-life"
+        const successMessage = validSegment === "mama-life"
           ? "Welcome to the community! You'll get weekly mama tips and exclusive content."
           : "Welcome! Check your inbox for your free sourdough starter guide.";
         return NextResponse.json(
