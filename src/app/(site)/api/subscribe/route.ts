@@ -6,6 +6,48 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const VALID_SOURCES = ["website", "popup", "homepage", "post-mid", "post-bottom", "free-guide-hero", "mama-guide-hero", "shop-waitlist", "search-results", "footer", "cookbook-checklist", "cookbook-resources"];
 const VALID_SEGMENTS = ["kitchen", "mama-life"];
 
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "keegan@halfpintmama.com";
+
+// When MailerLite rejects a signup (subscriber cap reached, outage, etc.), email
+// the address to the site owner so no lead is silently lost. Returns true only if
+// the alert was actually delivered — the caller shows the visitor a friendly
+// "you're on the list" message ONLY when we've captured them somewhere.
+async function captureFailedSignup(details: {
+  email: string;
+  source: string;
+  segment: string;
+  reason: string;
+}): Promise<boolean> {
+  if (!RESEND_API_KEY) return false;
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "Half Pint Mama <noreply@halfpintmama.com>",
+        to: NOTIFICATION_EMAIL,
+        subject: `⚠️ Signup could not be added to MailerLite — ${details.email}`,
+        text:
+          "A newsletter/waitlist signup failed to reach MailerLite and needs to be added manually.\n\n" +
+          `Email:   ${details.email}\n` +
+          `Source:  ${details.source}\n` +
+          `Segment: ${details.segment}\n` +
+          `Reason:  ${details.reason}\n\n` +
+          "This usually means the MailerLite subscriber limit has been reached. " +
+          "Upgrade the plan (or free up space), then add this person manually.",
+      }),
+    });
+    return res.ok;
+  } catch (err) {
+    console.error("Failed-signup capture email failed:", err);
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     if (!isSameOrigin(request)) {
@@ -62,48 +104,72 @@ export async function POST(request: NextRequest) {
       groups.push(COOKBOOK_GROUP_ID);
     }
 
-    const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify({
-        email: email.toLowerCase().trim(),
-        groups,
-        fields: {
-          // "source" is a reserved MailerLite field name and gets silently dropped
-          signup_source: VALID_SOURCES.includes(source) ? source : "website",
-          segment: validSegment,
-          ...(firstName && typeof firstName === "string" ? { name: firstName.trim().slice(0, 100) } : {}),
+    const normalizedSource = VALID_SOURCES.includes(source) ? source : "website";
+
+    let failureReason = "";
+    try {
+      const response = await fetch("https://connect.mailerlite.com/api/subscribers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${API_KEY}`,
         },
-      }),
-    });
+        body: JSON.stringify({
+          email: email.toLowerCase().trim(),
+          groups,
+          fields: {
+            // "source" is a reserved MailerLite field name and gets silently dropped
+            signup_source: normalizedSource,
+            segment: validSegment,
+            ...(firstName && typeof firstName === "string" ? { name: firstName.trim().slice(0, 100) } : {}),
+          },
+        }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok || response.status === 200 || response.status === 201) {
-      const successMessage = isCookbook
-        ? "Check your inbox! Your freezer prep checklist is on its way."
-        : validSegment === "mama-life"
-        ? "Welcome to the community! You'll get weekly mama tips and exclusive content."
-        : "Welcome! Check your inbox for your free sourdough starter guide.";
-      return NextResponse.json(
-        { message: successMessage },
-        { status: 201 }
-      );
+      if (response.ok || response.status === 200 || response.status === 201) {
+        const successMessage = isCookbook
+          ? "Check your inbox! Your freezer prep checklist is on its way."
+          : validSegment === "mama-life"
+          ? "Welcome to the community! You'll get weekly mama tips and exclusive content."
+          : "Welcome! Check your inbox for your free sourdough starter guide.";
+        return NextResponse.json(
+          { message: successMessage },
+          { status: 201 }
+        );
+      }
+
+      // Handle already subscribed
+      if (response.status === 409 || data.message?.includes("already")) {
+        return NextResponse.json(
+          { message: "You're already subscribed! Check your inbox for the latest updates." },
+          { status: 200 }
+        );
+      }
+
+      console.error("MailerLite error:", data);
+      failureReason = `HTTP ${response.status}: ${data?.message || "unknown error"}`;
+    } catch (mlError) {
+      console.error("MailerLite request failed:", mlError);
+      failureReason = `Request failed: ${mlError instanceof Error ? mlError.message : "network error"}`;
     }
 
-    // Handle already subscribed
-    if (response.status === 409 || data.message?.includes("already")) {
+    // MailerLite couldn't take the subscriber. Capture the lead so it isn't lost,
+    // and only tell the visitor they're in if we actually saved them somewhere.
+    const captured = await captureFailedSignup({
+      email: email.toLowerCase().trim(),
+      source: normalizedSource,
+      segment: validSegment,
+      reason: failureReason,
+    });
+    if (captured) {
       return NextResponse.json(
-        { message: "You're already subscribed! Check your inbox for the latest updates." },
+        { message: "You're on the list! We'll be in touch soon." },
         { status: 200 }
       );
     }
-
-    console.error("MailerLite error:", data);
     return NextResponse.json(
       { error: "Something went wrong. Please try again." },
       { status: 500 }
