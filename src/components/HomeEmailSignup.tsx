@@ -69,7 +69,7 @@ export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" |
         </h2>
         <p className="text-white mb-6 max-w-xl mx-auto">
           {segment === "mama-life"
-            ? "Honest parenting tips, real mama moments, and exclusive content, delivered straight to your inbox weekly. Join 35,000+ families already following along."
+            ? "Honest mama moments and from-scratch recipes delivered to your inbox, plus a free sourdough starter guide when you sign up. Join 35,000+ families already following along."
             : "From-scratch recipes, honest mama moments, and a free sourdough starter guide, delivered straight to your inbox weekly. Join 35,000+ families already in the community."}
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">

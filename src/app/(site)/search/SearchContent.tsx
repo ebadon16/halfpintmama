@@ -260,7 +260,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
             Love What You See?
           </h3>
           <p className="text-white/90 mb-4 text-sm">
-            Get new recipes and mama tips delivered to your inbox.
+            Get new recipes and honest mama moments delivered to your inbox.
           </p>
           <EmailSignup
             source="search-results"

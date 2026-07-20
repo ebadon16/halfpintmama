@@ -12,9 +12,9 @@ function usePopupContext(pathname: string) {
     return {
       segment: "mama-life" as const,
       icon: Heart,
-      heading: "Join the Mama Life Community!",
-      subtitle: "Weekly parenting tips and honest mama moments!",
-      body: "Get weekly parenting tips, honest motherhood stories, and exclusive content from a Pediatric ER RN and mama of three.",
+      heading: "Join the Half Pint Mama Community!",
+      subtitle: "Honest mama moments and from-scratch recipes!",
+      body: "Get honest motherhood stories and from-scratch recipes from a Pediatric ER RN and mama of three, plus my free sourdough starter guide.",
       cta: "Join Free",
     };
   }

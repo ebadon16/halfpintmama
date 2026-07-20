@@ -223,7 +223,7 @@ export default async function StartHerePage() {
             Join the Half Pint Community
           </h2>
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Get weekly recipes, mama tips, and exclusive content delivered to your inbox. Plus a free sourdough starter guide when you subscribe!
+            Get weekly recipes and honest mama moments delivered to your inbox. Plus a free sourdough starter guide when you subscribe!
           </p>
           <EmailSignup
             source="website"

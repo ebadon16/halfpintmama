@@ -127,11 +127,10 @@ export async function POST(request: NextRequest) {
       // the welcome automation), 200 = the address was already subscribed (no
       // automation re-fires). Only a 201 may promise the guide email.
       if (response.status === 201) {
-        const successMessage = validSegment === "mama-life"
-          ? "Welcome to the community! You'll get weekly mama tips and exclusive content. If the welcome email is not in your inbox, check your spam or promotions folder."
-          : "Welcome! Check your inbox for your free sourdough starter guide. If you don't see it, check your spam or promotions folder.";
+        // One list, one welcome email: everyone gets the sourdough starter
+        // guide. There is no separate mama-life stream, so don't promise one.
         return NextResponse.json(
-          { message: successMessage },
+          { message: "Welcome! Check your inbox for your free sourdough starter guide. If you don't see it, check your spam or promotions folder." },
           { status: 201 }
         );
       }
