@@ -79,7 +79,7 @@ const postMetaProjection = `{
   date,
   category,
   "excerpt": coalesce(excerpt, ""),
-  "image": coalesce(image.asset->url, ""),
+  "image": coalesce(image.asset->url + "?w=1200&auto=format", ""),
   "tags": coalesce(tags, []),
   "ratingAverage": coalesce(ratingAverage, 0),
   "ratingCount": coalesce(ratingCount, 0),
@@ -97,7 +97,7 @@ const postFullProjection = `{
   "updatedAt": _updatedAt,
   category,
   "excerpt": coalesce(excerpt, ""),
-  "image": coalesce(image.asset->url, ""),
+  "image": coalesce(image.asset->url + "?w=1200&auto=format", ""),
   "tags": coalesce(tags, []),
   "content": coalesce(body, []),
   recipe,
@@ -322,27 +322,35 @@ export async function getPaginatedPostsBySubcategory(
   };
 }
 
-// Adjacent posts for prev/next navigation within the same category
+// Adjacent posts for prev/next navigation within the same category.
+// Two targeted single-row queries: the old fetch pulled EVERY post in the
+// category through postMetaProjection, whose readingTime serializes each full
+// body — N body serializations per post-page render just for two titles.
 export async function getAdjacentPosts(
   slug: string,
   category: string
 ): Promise<{ prev: PostMeta | null; next: PostMeta | null }> {
-  const posts = await client.fetch<PostMeta[]>(
-    `*[_type == "post" && category == $category] | order(date desc) ${postMetaProjection}`,
-    { category }
+  const current = await client.fetch<{ date: string } | null>(
+    `*[_type == "post" && slug.current == $slug][0]{ date }`,
+    { slug }
   );
-
-  const currentIndex = posts.findIndex((p) => p.slug === slug);
-
-  if (currentIndex === -1) {
+  if (!current?.date) {
     return { prev: null, next: null };
   }
 
-  // date desc: index 0 = newest. "Next" = newer (index - 1), "Previous" = older (index + 1)
-  const next = currentIndex > 0 ? posts[currentIndex - 1] : null;
-  const prev = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+  // Tie-break on slug so posts sharing a date still order deterministically.
+  const [next, prev] = await Promise.all([
+    client.fetch<PostMeta | null>(
+      `*[_type == "post" && category == $category && slug.current != $slug && (date > $date || (date == $date && slug.current > $slug))] | order(date asc, slug.current asc) [0] ${postMetaProjection}`,
+      { category, slug, date: current.date }
+    ),
+    client.fetch<PostMeta | null>(
+      `*[_type == "post" && category == $category && slug.current != $slug && (date < $date || (date == $date && slug.current < $slug))] | order(date desc, slug.current desc) [0] ${postMetaProjection}`,
+      { category, slug, date: current.date }
+    ),
+  ]);
 
-  return { prev, next };
+  return { prev: prev ?? null, next: next ?? null };
 }
 
 // Related posts by tag similarity — uses targeted GROQ query instead of fetching all posts
@@ -380,11 +388,12 @@ export async function getRelatedPostsByTags(
   return scored.slice(0, limit).map((r) => r.post);
 }
 
-// Popular posts (highest rated)
+// Popular posts (most rated, then highest rated). Count first: averaging-first
+// let a single 5.0 rating permanently outrank forty 4.9s.
 export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
   const safeLimit = Math.min(Math.max(Math.floor(limit), 1), 100);
   const posts = await client.fetch<PostMeta[]>(
-    `*[_type == "post" && ratingCount > 0] | order(ratingAverage desc, ratingCount desc) [0...$limit] ${postMetaProjection}`,
+    `*[_type == "post" && ratingCount > 0] | order(ratingCount desc, ratingAverage desc) [0...$limit] ${postMetaProjection}`,
     { limit: safeLimit }
   );
 

@@ -6,7 +6,18 @@ export const revalidate = 3600;
 const RSS_POST_LIMIT = 50;
 
 export async function GET() {
-  const posts = await getAllPosts();
+  // If Sanity is down, tell feed readers to retry instead of serving a 500
+  // (which some readers treat as a dead feed).
+  let posts;
+  try {
+    posts = await getAllPosts();
+  } catch (err) {
+    console.error("feed.xml: failed to fetch posts:", err);
+    return new Response("Feed temporarily unavailable", {
+      status: 503,
+      headers: { "Retry-After": "300" },
+    });
+  }
   const baseUrl = "https://halfpintmama.com";
 
   const rssItems = posts

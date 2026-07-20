@@ -6,7 +6,7 @@ import { PostCard } from "@/components/PostCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import dynamic from "next/dynamic";
 import { PrintButton } from "@/components/PrintButton";
-import { RecipeSchema, BlogPostSchema, HowToSchema } from "@/components/RecipeSchema";
+import { RecipeSchema, BlogPostSchema, HowToSchema, hasRecipeSchemaData } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml } from "@/lib/seo";
@@ -131,8 +131,9 @@ export default async function PostPage({ params }: PageProps) {
         }}
       />
 
-      {/* Structured Data for SEO */}
-      {post.category === "cooking" ? (
+      {/* Structured Data for SEO. A cooking post without recipe data falls
+          back to BlogPosting so it still emits article schema. */}
+      {post.category === "cooking" && hasRecipeSchemaData(post.recipe) ? (
         <RecipeSchema
           title={post.title}
           description={post.excerpt}

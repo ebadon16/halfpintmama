@@ -3,6 +3,10 @@ import { getAllPosts, getAllTags, POSTS_PER_PAGE } from "@/lib/posts";
 
 type ChangeFrequency = "daily" | "weekly" | "monthly" | "always" | "hourly" | "yearly" | "never";
 
+// Backstop: metadata routes are static by default; without this a Studio
+// publish (no deploy) relies solely on the webhook's revalidatePath.
+export const revalidate = 3600;
+
 // Emit /path, /path?page=2, ... up to totalPages. Pairs with self-canonicals
 // on each paginated page so Google can crawl deeper archives.
 function paginatedUrls(

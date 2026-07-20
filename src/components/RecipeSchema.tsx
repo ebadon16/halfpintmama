@@ -1,6 +1,45 @@
 import type { RecipeInfo } from "@/lib/posts";
 import { jsonLdHtml, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
+// Schema.org requires ISO 8601 durations (PT5M), but Sanity stores free-text
+// display strings ("5 min", "1 hour 30 min"). Convert at emit time; return
+// null for unparseable values so they are omitted rather than emitted invalid.
+export function toIsoDuration(text: string): string | null {
+  const t = text.toLowerCase();
+  const days = t.match(/(\d+(?:\.\d+)?)\s*(?:days?|d\b)/);
+  const hours = t.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?|h\b)/);
+  const mins = t.match(/(\d+)\s*(?:minutes?|mins?|m\b)/);
+  let h = (days ? parseFloat(days[1]) * 24 : 0) + (hours ? parseFloat(hours[1]) : 0);
+  let m = mins ? parseInt(mins[1], 10) : 0;
+  if (!days && !hours && !mins) {
+    const bare = t.match(/^\s*(\d+)\s*$/); // bare number = minutes
+    if (!bare) return null;
+    m = parseInt(bare[1], 10);
+  }
+  if (h % 1) {
+    m += Math.round((h % 1) * 60);
+    h = Math.floor(h);
+  }
+  if (m >= 60) {
+    h += Math.floor(m / 60);
+    m = m % 60;
+  }
+  if (h === 0 && m === 0) return null;
+  return `PT${h ? `${h}H` : ""}${m ? `${m}M` : ""}`;
+}
+
+// Whether a post's recipe data is enough to emit Recipe schema; posts without
+// it should fall back to BlogPosting instead of emitting no article schema.
+export function hasRecipeSchemaData(recipe: RecipeInfo | undefined): boolean {
+  return !!(
+    recipe &&
+    ((recipe.ingredients?.length ?? 0) > 0 ||
+      (recipe.instructions?.length ?? 0) > 0 ||
+      (recipe.ingredientSections?.length ?? 0) > 0 ||
+      (recipe.instructionSections?.length ?? 0) > 0)
+  );
+}
+
 interface RecipeSchemaProps {
   title: string;
   description: string;
@@ -72,9 +111,12 @@ export function RecipeSchema({ title, description, image, datePublished, dateMod
 
   if (ingredients.length > 0) schema.recipeIngredient = ingredients;
   if (instructions.length > 0) schema.recipeInstructions = instructions;
-  if (recipe?.prepTime) schema.prepTime = recipe.prepTime;
-  if (recipe?.cookTime) schema.cookTime = recipe.cookTime;
-  if (recipe?.totalTime) schema.totalTime = recipe.totalTime;
+  const prepIso = recipe?.prepTime ? toIsoDuration(recipe.prepTime) : null;
+  const cookIso = recipe?.cookTime ? toIsoDuration(recipe.cookTime) : null;
+  const totalIso = recipe?.totalTime ? toIsoDuration(recipe.totalTime) : null;
+  if (prepIso) schema.prepTime = prepIso;
+  if (cookIso) schema.cookTime = cookIso;
+  if (totalIso) schema.totalTime = totalIso;
   if (recipe?.servings) schema.recipeYield = `${recipe.servings} servings`;
 
   if (ratingCount && ratingCount > 0 && ratingAverage) {
@@ -206,8 +248,9 @@ export function HowToSchema({ title, description, image, slug, estimatedTime, st
     },
   };
 
-  if (estimatedTime) {
-    schema.totalTime = estimatedTime;
+  const estimatedIso = estimatedTime ? toIsoDuration(estimatedTime) : null;
+  if (estimatedIso) {
+    schema.totalTime = estimatedIso;
   }
 
   if (steps && steps.length > 0) {

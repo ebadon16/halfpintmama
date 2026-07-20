@@ -70,6 +70,9 @@ export async function POST(request: NextRequest) {
     revalidatePath("/tags");
     revalidatePath("/start-here");
     revalidatePath("/feed.xml");
+    // Without this, a post published via Studio (no deploy) never reaches the
+    // sitemap until the next git push — invisible to Google discovery.
+    revalidatePath("/sitemap.xml");
 
     // Revalidate tag pages for this post's tags
     for (const tag of tags) {
