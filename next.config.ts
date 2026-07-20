@@ -55,6 +55,15 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        // The "Mama Life Guide" lead magnet was never produced (no asset, no
+        // delivery automation), so the page promised a guide it couldn't send.
+        // Point mama-life visitors at the real mama-life content instead.
+        // Temporary (307) in case the guide ships later.
+        source: "/mama-guide",
+        destination: "/mama-life",
+        permanent: false,
+      },
+      {
         source: "/travel",
         destination: "/mama-life/travel",
         permanent: true,

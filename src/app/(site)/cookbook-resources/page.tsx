@@ -78,7 +78,7 @@ export default function CookbookResourcesPage() {
             </h3>
             <p className="text-charcoal/80 text-sm mb-4">
               These resources go with <em>Rest and Rise</em>: make-ahead, freezer-friendly
-              sourdough meals for postpartum recovery, from an ER nurse and mom of three.
+              sourdough meals for postpartum recovery, from a Pediatric ER RN and mama of three.
             </p>
             <Link
               href="/shop"

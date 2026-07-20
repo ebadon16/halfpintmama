@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const mamaLifePosts = posts.filter((p) => p.category === "mama-life");
   const buildDate = new Date();
 
-  // Static pages that don't paginate (excludes noindexed /favorites, /shop, /mama-guide, /search)
+  // Static pages that don't paginate (excludes noindexed /favorites, /shop, /search)
   const staticPages: MetadataRoute.Sitemap = [
     "",
     "/start-here",
