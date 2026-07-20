@@ -4,7 +4,7 @@ import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { getLatestPost, getPopularPosts, getSiteStats, formatDate } from "@/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart, Heart } from "lucide-react";
+import { ShoppingCart, Heart, BookOpen } from "lucide-react";
 import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -133,6 +133,8 @@ export default async function Home() {
           <span>{siteStats.cookingPosts}+ from-scratch recipes</span>
           <span className="hidden sm:inline text-charcoal/30">|</span>
           <span>Pediatric ER RN approved</span>
+          <span className="hidden sm:inline text-charcoal/30">|</span>
+          <span>35,000+ families follow along</span>
         </div>
       </div>
 
@@ -248,6 +250,26 @@ export default async function Home() {
                 className="inline-block px-4 py-2 border-2 border-sage text-deep-sage text-sm font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all"
               >
                 More About Me
+              </Link>
+            </div>
+
+            {/* Cookbook Coming Soon */}
+            <div className="bg-white p-6 rounded-2xl shadow-md mb-6 border-2 border-terracotta/20">
+              <div className="flex items-center gap-2 mb-2">
+                <BookOpen className="w-5 h-5 text-terracotta" />
+                <p className="text-terracotta text-xs font-semibold uppercase tracking-wide">Coming Soon</p>
+              </div>
+              <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
+                Rest and Rise
+              </h3>
+              <p className="text-charcoal/80 text-sm mb-4">
+                My postpartum cookbook: make-ahead, freezer-friendly sourdough meals for the fourth trimester.
+              </p>
+              <Link
+                href="/shop"
+                className="inline-block px-4 py-2 gradient-cta text-white text-sm font-semibold rounded-full hover:shadow-md transition-all"
+              >
+                Join the Waitlist
               </Link>
             </div>
 
