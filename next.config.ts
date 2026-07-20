@@ -40,6 +40,9 @@ const nextConfig: NextConfig = {
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          // robots.txt only blocks crawling; without noindex the studio URL can
+          // still be indexed by reference.
+          { key: "X-Robots-Tag", value: "noindex" },
         ],
       },
     ];

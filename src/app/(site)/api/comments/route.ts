@@ -201,10 +201,13 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Escape HTML for email
+    // Escape HTML for email bodies. Subject headers are plain text, so they
+    // use the raw (newline-stripped) values instead of HTML entities.
+    const rawPostTitle = postTitle.trim().slice(0, 200).replace(/[\r\n]+/g, " ");
+    const rawAuthorSubject = safeAuthor.replace(/[\r\n]+/g, " ");
     const escapedAuthor = escapeHtml(safeAuthor);
     const escapedContent = escapeHtml(safeContent);
-    const escapedPostTitle = escapeHtml(postTitle.trim().slice(0, 200));
+    const escapedPostTitle = escapeHtml(rawPostTitle);
     const escapedReplyToAuthor = replyToAuthor ? escapeHtml(String(replyToAuthor).trim().slice(0, 100)) : "";
 
     const postUrl = `https://halfpintmama.com/posts/${safePostSlug}#comments-section`;
@@ -218,8 +221,8 @@ export async function POST(request: NextRequest) {
       from: "Half Pint Mama <notifications@halfpintmama.com>",
       to: NOTIFICATION_EMAIL,
       subject: isReply
-        ? `💬 New Reply on "${escapedPostTitle}"`
-        : `⭐ New Review on "${escapedPostTitle}"`,
+        ? `💬 New Reply on "${rawPostTitle}"`
+        : `⭐ New Review on "${rawPostTitle}"`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
           <div style="background: linear-gradient(135deg, #C4835F, #D4A894); padding: 20px; border-radius: 12px 12px 0 0;">
@@ -285,7 +288,7 @@ export async function POST(request: NextRequest) {
       try { await getResend().emails.send({
         from: "Half Pint Mama <notifications@halfpintmama.com>",
         to: parentEmail,
-        subject: `${escapedAuthor} replied to your comment on Half Pint Mama`,
+        subject: `${rawAuthorSubject} replied to your comment on Half Pint Mama`,
         html: `
           <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <div style="background: linear-gradient(135deg, #9CAF88, #6B7F5F); padding: 20px; border-radius: 12px 12px 0 0;">

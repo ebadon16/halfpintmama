@@ -123,7 +123,10 @@ export async function POST(request: NextRequest) {
 
       const data = await response.json();
 
-      if (response.ok || response.status === 200 || response.status === 201) {
+      // MailerLite's POST /subscribers is an upsert: 201 = newly created (fires
+      // the welcome automation), 200 = the address was already subscribed (no
+      // automation re-fires). Only a 201 may promise the guide email.
+      if (response.status === 201) {
         const successMessage = validSegment === "mama-life"
           ? "Welcome to the community! You'll get weekly mama tips and exclusive content. If the welcome email is not in your inbox, check your spam or promotions folder."
           : "Welcome! Check your inbox for your free sourdough starter guide. If you don't see it, check your spam or promotions folder.";
@@ -133,11 +136,21 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      // Handle already subscribed
-      if (response.status === 409 || data.message?.includes("already")) {
+      // Already subscribed (upsert returned the existing record)
+      if (response.ok || response.status === 409 || data.message?.includes("already")) {
         return NextResponse.json(
           { message: "You're already subscribed! Check your inbox for the latest updates." },
           { status: 200 }
+        );
+      }
+
+      // MailerLite rejected the address itself (passes our regex but is
+      // undeliverable, e.g. a malformed domain). Tell the visitor instead of
+      // capture-alerting the owner about a junk address.
+      if (response.status === 422) {
+        return NextResponse.json(
+          { error: "That email address doesn't look right. Please double-check it and try again." },
+          { status: 400 }
         );
       }
 

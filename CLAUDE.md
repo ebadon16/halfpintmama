@@ -62,19 +62,21 @@ Static Generation (generateStaticParams)
 | Route | Purpose | Rate Limit |
 |-------|---------|------------|
 | `api/contact` | Contact form → Resend email | 5/min |
-| `api/comments` | GET: fetch comments, POST: create + notify | 10/min |
-| `api/rate` | Submit rating → updates Sanity post document | 10/min |
+| `api/comments` | GET: fetch comments, POST: create + notify (ratings are submitted here too — there is no separate rating route) | 10/min |
 | `api/subscribe` | Newsletter signup → MailerLite | 5/min |
 | `api/search` | Server-side post search | — |
+| `api/revalidate` | On-demand ISR revalidation | — |
 
 ### Category Pages
+
+Only two post categories exist (enforced by the Sanity schema): `cooking` and `mama-life`.
 
 | Route | Category | Description |
 |-------|----------|-------------|
 | `/cooking` | cooking | Sourdough, recipes, kitchen adventures |
-| `/travel` | travel | Family travel guides and tips |
-| `/diy` | diy | Crafts, costumes, creative projects |
-| `/mama-life` | mama-life | Parenting and motherhood |
+| `/mama-life` | mama-life | Parenting and motherhood (subpages: travel, diy, parenting, homesteading) |
+
+`/travel`, `/diy`, and `/lifestyle` are permanent redirects into `/mama-life` — do not link to them or re-create them as categories.
 
 ### Adding a New Blog Post
 
@@ -82,7 +84,7 @@ Create a new Post document in Sanity Studio at `/studio`:
 - **Title** (required)
 - **Slug** (auto-generated from title)
 - **Date** (required)
-- **Category**: `cooking`, `travel`, `diy`, `mama-life`
+- **Category**: `cooking` or `mama-life` (the only two in the schema)
 - **Excerpt**: Short description for cards
 - **Image**: Upload or use External Image URL
 - **Tags**: Array of strings
@@ -138,7 +140,6 @@ Push to `master` branch triggers automatic deployment.
   - Posts: Recipe (cooking) or BlogPosting + BreadcrumbList
   - DIY posts: HowTo schema
   - /about: Person schema
-  - /free-guide: FAQPage schema
   - Image sitemap at `/image-sitemap.xml`
 - **Ratings**: Stored on post documents in Sanity (ratingAverage, ratingCount)
 - **Comments**: Stored in Sanity as separate documents, threaded replies supported

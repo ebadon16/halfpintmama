@@ -10,12 +10,14 @@ function SignupForm({ source }: { source: string }) {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setStatus("error");
+      setMessage("Please enter a valid email address");
       return;
     }
 
@@ -28,16 +30,23 @@ function SignupForm({ source }: { source: string }) {
         body: JSON.stringify({ email, firstName, source }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         setStatus("success");
         trackEvent("email_signup", { source });
+        // Show the API's message: it distinguishes new signup, already
+        // subscribed, and the captured-but-not-yet-delivered fallback.
+        setMessage(data.message || "You're in! Watch your inbox for the guide.");
         setEmail("");
         setFirstName("");
       } else {
         setStatus("error");
+        setMessage(data.error || "Something went wrong. Please try again.");
       }
     } catch {
       setStatus("error");
+      setMessage("Something went wrong. Please try again.");
     }
   };
 
@@ -45,8 +54,8 @@ function SignupForm({ source }: { source: string }) {
     return (
       <div className="bg-light-sage/30 rounded-lg p-6 text-center">
         <div className="flex justify-center mb-2"><ThemedIcon icon={PartyPopper} size="md" color="sage" /></div>
-        <p className="text-deep-sage font-semibold">Check your inbox!</p>
-        <p className="text-charcoal/80 text-sm mb-4">Your free guide is on its way. If you don&apos;t see it, check your spam or promotions folder.</p>
+        <p className="text-deep-sage font-semibold">You&apos;re in!</p>
+        <p className="text-charcoal/80 text-sm mb-4">{message}</p>
         <div className="text-left space-y-2 text-sm">
           <p className="text-charcoal/80 font-medium">While you wait, check out:</p>
           <Link href="/cooking/sourdough" className="block text-terracotta hover:text-deep-sage transition-colors">
@@ -93,7 +102,7 @@ function SignupForm({ source }: { source: string }) {
         />
       </div>
       {status === "error" && (
-        <p role="alert" className="text-red-500 text-sm">Something went wrong. Please try again.</p>
+        <p role="alert" className="text-red-500 text-sm">{message || "Something went wrong. Please try again."}</p>
       )}
       <button
         type="submit"

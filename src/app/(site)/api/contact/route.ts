@@ -45,7 +45,10 @@ export async function POST(request: Request) {
     const safeName = escapeHtml((typeof name === "string" ? name : "").trim().slice(0, 100));
     const rawEmail = email.trim().slice(0, 254);
     const safeEmail = escapeHtml(rawEmail);
-    const safeSubject = escapeHtml((typeof subject === "string" ? subject : "").trim().slice(0, 200));
+    // Subject headers are plain text: HTML-escaping there renders literal
+    // &#39; entities in the inbox. Strip newlines instead; escape only for HTML.
+    const rawSubject = (typeof subject === "string" ? subject : "").trim().slice(0, 200).replace(/[\r\n]+/g, " ");
+    const safeSubject = escapeHtml(rawSubject);
     const safeMessage = escapeHtml(message.trim().slice(0, 5000));
 
     if (!RESEND_API_KEY) {
@@ -67,7 +70,7 @@ export async function POST(request: Request) {
         from: "Half Pint Mama <noreply@halfpintmama.com>",
         to: CONTACT_EMAIL,
         reply_to: rawEmail,
-        subject: `Contact Form: ${safeSubject || "New Message"}`,
+        subject: `Contact Form: ${rawSubject || "New Message"}`,
         html: `
           <h2>New Contact Form Submission</h2>
           <p><strong>Name:</strong> ${safeName || "Not provided"}</p>
