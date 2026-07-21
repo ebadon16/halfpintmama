@@ -8,6 +8,52 @@ import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo"
 
 export const revalidate = 3600;
 
+// Answers restate Keegan's published post content; don't add claims her
+// posts don't make. Schema below must mirror this visible text.
+const FAQ_ITEMS: { q: string; a: string; link?: { href: string; label: string }; external?: boolean }[] = [
+  {
+    q: "Do I need a kitchen scale to start sourdough?",
+    a: "No. My starter method uses regular measuring cups, so you can begin with what is already in your kitchen.",
+    link: { href: "/posts/how-to-make-a-sourdough-starter-simple-no-scale", label: "The no-scale starter guide" },
+  },
+  {
+    q: "How do I know when my starter is ready to bake with?",
+    a: "Toward the end of the first week it should look bubbly and airy, smell pleasantly tangy, and pass the float test: drop a little in water and see if it floats. If it checks those boxes, it is time to bake.",
+    link: { href: "/posts/how-to-make-a-sourdough-starter-simple-no-scale", label: "Full day-by-day walkthrough" },
+  },
+  {
+    q: "What is sourdough discard, and do I have to throw it away?",
+    a: "Discard is the portion you remove when you feed your starter. You do not have to toss it: there is a whole recipe section for it, from crackers to banana bread.",
+    link: { href: "/cooking/discard", label: "Browse discard recipes" },
+  },
+  {
+    q: "What tools do I actually need?",
+    a: "For the starter: a jar or two, a small spatula, measuring cups, and something to loosely cover the jar. For your first artisan loaf you will also want a Dutch oven. My favorite kitchen tools are in my Amazon storefront (affiliate link).",
+    link: { href: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB", label: "Shop my favorites" },
+    external: true,
+  },
+  {
+    q: "My starter looks quiet or has liquid on top. Is it ruined?",
+    a: "Usually no. Starters often look quiet the first couple of days, and liquid on top is just your starter saying it is hungry. Feed it and keep going. The free starter guide covers the common problems and fixes.",
+    link: { href: "/free-guide", label: "Get the free guide" },
+  },
+  {
+    q: "What should I bake first?",
+    a: "The no-stress artisan loaf. It is written for first-time bakers and pairs with the starter you just made.",
+    link: { href: "/posts/the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf", label: "The first-loaf guide" },
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_ITEMS.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export const metadata = {
   title: "Start Here | Half Pint Mama",
   description: "New to Half Pint Mama? Find your path, from your first sourdough starter to navigating motherhood with real food and real talk.",
@@ -54,6 +100,10 @@ export default async function StartHerePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: jsonLdHtml(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdHtml(faqSchema) }}
       />
       {/* Hero */}
       <section className="bg-gradient-to-b from-light-sage/30 to-cream py-16">
@@ -215,6 +265,39 @@ export default async function StartHerePage() {
           </div>
         </section>
       )}
+
+      {/* FAQ: every answer restates Keegan's published post content (the
+          contact page points here for FAQs; FAQPage schema below matches this
+          visible text, per Google's requirement). */}
+      <section id="faq" className="max-w-4xl mx-auto px-4 py-12">
+        <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 text-center">
+          Sourdough Questions, Answered
+        </h2>
+        <div className="space-y-4">
+          {FAQ_ITEMS.map((item) => (
+            <details key={item.q} className="group bg-white rounded-xl shadow-sm border border-warm-beige/60 overflow-hidden">
+              <summary className="cursor-pointer list-none flex items-center justify-between gap-4 p-5 font-semibold text-charcoal hover:text-terracotta transition-colors">
+                {item.q}
+                <span className="text-terracotta transition-transform group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
+              </summary>
+              <div className="px-5 pb-5 text-charcoal/80 text-sm leading-relaxed">
+                {item.a}{" "}
+                {item.link && (
+                  item.external ? (
+                    <a href={item.link.href} target="_blank" rel="sponsored nofollow noopener noreferrer" className="text-terracotta font-medium hover:underline">
+                      {item.link.label} &rarr;
+                    </a>
+                  ) : (
+                    <Link href={item.link.href} className="text-terracotta font-medium hover:underline">
+                      {item.link.label} &rarr;
+                    </Link>
+                  )
+                )}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
 
       {/* Newsletter */}
       <section className="max-w-4xl mx-auto px-4 py-12">

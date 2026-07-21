@@ -281,7 +281,7 @@ export function ContactForm() {
               Check out the Start Here page for answers to frequently asked questions about sourdough, recipes, and more!
             </p>
             <Link
-              href="/start-here"
+              href="/start-here#faq"
               className="text-terracotta font-medium text-sm hover:text-deep-sage transition-colors"
             >
               Visit Start Here &rarr;
