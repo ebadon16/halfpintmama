@@ -144,6 +144,12 @@ export default async function SourdoughPage({ searchParams }: PageProps) {
                 </span>
               </Link>
             </div>
+            <p className="text-center text-sm text-charcoal/80 mt-5">
+              Stuck on something?{" "}
+              <Link href="/start-here#faq" className="text-terracotta font-medium hover:underline">
+                The sourdough FAQ has you covered &rarr;
+              </Link>
+            </p>
           </div>
         )}
 
