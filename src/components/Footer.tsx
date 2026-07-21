@@ -47,6 +47,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/shop" className="text-charcoal/80 hover:text-terracotta transition-colors">
+                  Shop
+                </Link>
+              </li>
+              <li>
                 <Link href="/products" className="text-charcoal/80 hover:text-terracotta transition-colors">
                   Favorite Products
                 </Link>
