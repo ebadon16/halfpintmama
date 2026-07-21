@@ -13,33 +13,33 @@ export const revalidate = 3600;
 const FAQ_ITEMS: { q: string; a: string; link?: { href: string; label: string }; external?: boolean }[] = [
   {
     q: "Do I need a kitchen scale to start sourdough?",
-    a: "No. My starter method uses regular measuring cups, so you can begin with what is already in your kitchen.",
+    a: "Nope! My starter method uses regular measuring cups, so you can start with what's already in your kitchen.",
     link: { href: "/posts/how-to-make-a-sourdough-starter-simple-no-scale", label: "The no-scale starter guide" },
   },
   {
     q: "How do I know when my starter is ready to bake with?",
-    a: "Toward the end of the first week it should look bubbly and airy, smell pleasantly tangy, and pass the float test: drop a little in water and see if it floats. If it checks those boxes, it is time to bake.",
+    a: "Towards the end of the first week it should look bubbly and airy, smell pleasantly tangy, and pass the float test: drop a little in some water and see if it floats. If it checks those boxes, it's time to bake!",
     link: { href: "/posts/how-to-make-a-sourdough-starter-simple-no-scale", label: "Full day-by-day walkthrough" },
   },
   {
     q: "What is sourdough discard, and do I have to throw it away?",
-    a: "Discard is the portion you remove when you feed your starter. You do not have to toss it: there is a whole recipe section for it, from crackers to banana bread.",
+    a: "Discard is the part you remove when you feed your starter, and you don't have to toss it! There's a whole recipe section for it, from crackers to banana bread.",
     link: { href: "/cooking/discard", label: "Browse discard recipes" },
   },
   {
     q: "What tools do I actually need?",
-    a: "For the starter: a jar or two, a small spatula, measuring cups, and something to loosely cover the jar. For your first artisan loaf you will also want a Dutch oven. My favorite kitchen tools are in my Amazon storefront (affiliate link).",
+    a: "For the starter: a jar or two, a small spatula, measuring cups, and something to loosely cover the jar. For your first artisan loaf you'll also want a Dutch oven. My favorite kitchen tools are in my Amazon storefront (affiliate link).",
     link: { href: "https://www.amazon.com/shop/influencer-f4dc3b3f?ref_=cm_sw_r_cp_ud_aipsfshop_0CZRPB69SH4835DATPEB", label: "Shop my favorites" },
     external: true,
   },
   {
     q: "My starter looks quiet or has liquid on top. Is it ruined?",
-    a: "Usually no. Starters often look quiet the first couple of days, and liquid on top is just your starter saying it is hungry. Feed it and keep going. The free starter guide covers the common problems and fixes.",
+    a: "Usually no! Starters often look quiet the first couple of days, that's normal. And liquid on top is just your starter's way of saying it's hungry: feed it and keep going. The free starter guide covers all the common problems and fixes.",
     link: { href: "/free-guide", label: "Get the free guide" },
   },
   {
     q: "What should I bake first?",
-    a: "The no-stress artisan loaf. It is written for first-time bakers and pairs with the starter you just made.",
+    a: "The no-stress artisan loaf. It's written for first-time bakers and pairs perfectly with the starter you just made.",
     link: { href: "/posts/the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf", label: "The first-loaf guide" },
   },
 ];
