@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { EmailSignup } from "@/components/EmailSignup";
 
 export function Footer() {
   return (
@@ -152,26 +151,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Newsletter Signup */}
-        <div className="mt-12 pt-8 border-t border-charcoal/10 text-center">
-          <h3 className="font-[family-name:var(--font-crimson)] text-xl font-bold text-deep-sage mb-2">
-            Join the Half Pint Community
-          </h3>
-          <p className="text-charcoal/80 text-sm mb-4">
-            Get my free sourdough starter guide, plus first word on new recipes and the cookbook.
-          </p>
-          <EmailSignup
-            source="footer"
-            buttonText="Subscribe"
-            placeholder="Your email"
-            className="max-w-md mx-auto"
-            buttonClassName="gradient-cta text-white hover:shadow-lg"
-            inputClassName="border-charcoal/20"
-          />
-          <p className="text-charcoal/80 text-xs mt-3">
-            No spam, unsubscribe anytime.
-          </p>
-        </div>
+        {/* No newsletter form here: every content page already carries its own
+            designed signup (post banners, HomeEmailSignup, free-guide/shop
+            forms), and a footer form directly below them duplicated the same
+            ask back-to-back on every page. "Free Sourdough Guide" in Explore
+            covers the footer path to signup. */}
 
         {/* Bottom bar */}
         <div className="mt-8 pt-6 border-t border-charcoal/10">
