@@ -234,6 +234,31 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
       </section>
 
       {/* Coming Soon */}
+      {/* Journey next step: visible without submitting the form, so already-
+          subscribed visitors aren't dead-ended here. Framed as read-ahead
+          while the starter grows, not a skip past signing up. */}
+      <section className="py-12 bg-cream">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-6 border-2 border-terracotta/40 text-center">
+            <p className="text-terracotta text-xs font-semibold uppercase tracking-wide mb-1">
+              Next step
+            </p>
+            <h3 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
+              Bake Your First Loaf
+            </h3>
+            <p className="text-charcoal/80 text-sm mb-4">
+              While your starter grows, read ahead so baking day is easy.
+            </p>
+            <Link
+              href="/posts/the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf"
+              className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
+            >
+              The No-Stress Artisan Loaf Guide
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="py-12 bg-deep-sage/5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
@@ -244,9 +269,15 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
             <h4 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal mb-2">
               Rest and Rise
             </h4>
-            <p className="text-charcoal/80 text-sm">
+            <p className="text-charcoal/80 text-sm mb-4">
               The post-partum cookbook. Real talk about the fourth trimester from a Pediatric ER RN and mama of three. Nurse-informed tips for recovery, feeding, and surviving those early days, plus easy freezer meals, sourdough recipes perfect for one-handed eating, and nourishing postpartum nutrition.
             </p>
+            <Link
+              href="/shop"
+              className="inline-block px-5 py-2.5 border-2 border-deep-sage text-deep-sage text-sm font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all"
+            >
+              Join the Waitlist
+            </Link>
           </div>
         </div>
       </section>
