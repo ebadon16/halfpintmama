@@ -165,6 +165,9 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 pt-6 border-t border-charcoal/10">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+            <Link href="/start-here#faq" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors">
+              FAQ
+            </Link>
             <Link href="/contact" className="text-charcoal/80 text-sm hover:text-terracotta transition-colors">
               Contact
             </Link>
