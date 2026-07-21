@@ -29,7 +29,7 @@ const whatsInside = [
     icon: BookOpen,
     color: "terracotta" as const,
     title: "35 Make-Ahead Recipes",
-    description: "Freezer-friendly meals designed to be cooked before baby arrives and enjoyed one-handed after.",
+    description: "Crockpot, Instant Pot, and sourdough meals designed to be cooked before baby arrives and pulled from the freezer after.",
   },
   {
     icon: CalendarCheck,
@@ -86,8 +86,8 @@ export default function ShopPage() {
               </h1>
               <p className="text-charcoal/80 text-lg mb-6">
                 Stock your freezer before baby arrives, then rest while dinner takes care of
-                itself. <em>Rest and Rise</em> pairs 35 make-ahead sourdough meals with honest,
-                nurse-informed guidance for the fourth trimester.
+                itself. <em>Rest and Rise</em> pairs 35 make-ahead, freezer-friendly recipes with
+                honest, nurse-informed guidance for the fourth trimester.
               </p>
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <p className="text-charcoal font-medium mb-3">
