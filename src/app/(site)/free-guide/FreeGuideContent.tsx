@@ -58,11 +58,11 @@ function SignupForm({ source }: { source: string }) {
         <p className="text-charcoal/80 text-sm mb-4">{message}</p>
         <div className="text-left space-y-2 text-sm">
           <p className="text-charcoal/80 font-medium">While you wait, check out:</p>
-          <Link href="/cooking/sourdough" className="block text-terracotta hover:text-deep-sage transition-colors">
-            &rarr; Sourdough Recipes
+          <Link href="/posts/the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf" className="block text-terracotta hover:text-deep-sage transition-colors">
+            &rarr; Next up: bake your first artisan loaf
           </Link>
-          <Link href="/cooking" className="block text-terracotta hover:text-deep-sage transition-colors">
-            &rarr; All From Scratch Recipes
+          <Link href="/cooking/sourdough" className="block text-terracotta hover:text-deep-sage transition-colors">
+            &rarr; All Sourdough Recipes
           </Link>
         </div>
       </div>

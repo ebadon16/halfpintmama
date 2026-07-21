@@ -16,6 +16,26 @@ const CommentsPreview = dynamic(() => import("@/components/Comments").then(m => 
 const RecipeCard = dynamic(() => import("@/components/RecipeCard").then(m => m.RecipeCard));
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 
+// Sourdough journey: the hub's "Start Here" path continues on the posts
+// themselves. Without this, a beginner who finishes the starter post gets
+// steered to date-adjacent recipes instead of the next step.
+const JOURNEY_NEXT: Record<string, { eyebrow: string; title: string; description: string; href: string; cta: string }> = {
+  "how-to-make-a-sourdough-starter-simple-no-scale": {
+    eyebrow: "Next step",
+    title: "Get the Free Starter Guide",
+    description: "Day-by-day instructions and troubleshooting in your inbox while your starter grows.",
+    href: "/free-guide",
+    cta: "Send Me the Guide",
+  },
+  "the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf": {
+    eyebrow: "Now that you're baking",
+    title: "Put Your Discard to Work",
+    description: "Feeding a starter means discard. These recipes put it to use instead of tossing it.",
+    href: "/cooking/discard",
+    cta: "Browse Discard Recipes",
+  },
+};
+
 export const revalidate = 3600;
 export const dynamicParams = true;
 
@@ -322,6 +342,27 @@ export default async function PostPage({ params }: PageProps) {
               </a>
             </div>
           </>
+        )}
+
+        {/* Sourdough-journey next step (only on the two journey posts) */}
+        {JOURNEY_NEXT[slug] && (
+          <div className="bg-white rounded-2xl shadow-md p-6 mb-8 border-2 border-light-sage text-center">
+            <p className="text-terracotta text-xs font-semibold uppercase tracking-wide mb-1">
+              {JOURNEY_NEXT[slug].eyebrow}
+            </p>
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
+              {JOURNEY_NEXT[slug].title}
+            </h2>
+            <p className="text-charcoal/80 text-sm mb-4 max-w-md mx-auto">
+              {JOURNEY_NEXT[slug].description}
+            </p>
+            <Link
+              href={JOURNEY_NEXT[slug].href}
+              className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
+            >
+              {JOURNEY_NEXT[slug].cta}
+            </Link>
+          </div>
         )}
 
         {/* Rate & Review CTA - Prominent placement after content */}
