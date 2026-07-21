@@ -72,6 +72,13 @@ export function EmailPopup() {
   }, []);
 
   const handleDismiss = useCallback(() => {
+    // Cancel a pending success auto-close: if the user dismisses manually
+    // within the 3s window, a second fire would steal focus back to the
+    // pre-popup element after they have moved on.
+    if (successTimerRef.current) {
+      clearTimeout(successTimerRef.current);
+      successTimerRef.current = null;
+    }
     setIsVisible(false);
     setIsDismissed(true);
     try { localStorage.setItem("emailPopupDismissed", "true"); } catch { /* storage unavailable */ }

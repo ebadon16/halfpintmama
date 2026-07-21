@@ -43,6 +43,7 @@ function parseIngredient(ingredient: string): { quantity: number | null; unit: s
   const mixedMatch = ingredient.match(/^(\d+)\s+(\d+\/\d+)\s*([a-zA-Z]*)\s*(.*)/);
   if (mixedMatch) {
     const [, whole, frac, unit, rest] = mixedMatch;
+    if (rest.startsWith("%")) return { quantity: null, unit: "", rest: ingredient };
     const [num, denom] = frac.split('/');
     const quantity = parseFloat(whole) + parseFloat(num) / parseFloat(denom);
     return { quantity: isNaN(quantity) ? null : quantity, unit, rest };
@@ -52,6 +53,8 @@ function parseIngredient(ingredient: string): { quantity: number | null; unit: s
   const match = ingredient.match(/^([\d./]+)\s*([a-zA-Z]*)\s*(.*)/);
   if (match) {
     const [, numStr, unit, rest] = match;
+    // "2% milk": the leading number is part of the name, not a quantity
+    if (rest.startsWith("%")) return { quantity: null, unit: "", rest: ingredient };
     let quantity: number | null = null;
     if (numStr.includes('/')) {
       const [num, denom] = numStr.split('/');
@@ -96,13 +99,19 @@ function scaleIngredient(ingredient: string, scale: number): string {
 
   // Ranges ("2-3 tbsp water"): scale both ends. The single-number parser would
   // otherwise match only the "2" and garble the rest into "-3 tbsp water".
+  // Fraction/mixed alternatives come FIRST so "1/2" isn't split at the slash;
+  // hi < lo means US hyphenated mixed-number notation ("1-1/2 cups" = 1 1/2),
+  // which scales as a single quantity.
   const range = normalized.match(
-    /^(\d+(?:[.]\d+)?(?:\s+\d+\/\d+)?|\d+\/\d+)\s*[-–]\s*(\d+(?:[.]\d+)?(?:\s+\d+\/\d+)?|\d+\/\d+)\s*(.*)$/
+    /^(\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:[.]\d+)?)\s*[-–]\s*(\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:[.]\d+)?)\s*(.*)$/
   );
-  if (range) {
+  if (range && !range[3].startsWith("%")) {
     const lo = parseNumber(range[1]);
     const hi = parseNumber(range[2]);
     if (lo !== null && hi !== null) {
+      if (hi < lo) {
+        return `${formatQuantity((lo + hi) * scale)} ${range[3]}`.trim();
+      }
       return `${formatQuantity(lo * scale)}-${formatQuantity(hi * scale)} ${range[3]}`.trim();
     }
     return ingredient; // unparseable range: leave the whole line untouched

@@ -5,10 +5,20 @@ import { jsonLdHtml, DEFAULT_OG_IMAGE } from "@/lib/seo";
 // display strings ("5 min", "1 hour 30 min"). Convert at emit time; return
 // null for unparseable values so they are omitted rather than emitted invalid.
 export function toIsoDuration(text: string): string | null {
-  const t = text.toLowerCase();
-  const days = t.match(/(\d+(?:\.\d+)?)\s*(?:days?|d\b)/);
-  const hours = t.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?|h\b)/);
-  const mins = t.match(/(\d+)\s*(?:minutes?|mins?|m\b)/);
+  const trimmed = text.trim();
+  // Already ISO 8601: pass through untouched (re-parsing "PT1H30M" with the
+  // word-boundary regexes below would silently drop the hours).
+  if (/^pt(?=\d)(\d+(?:\.\d+)?h)?(\d+m)?(\d+s)?$/i.test(trimmed)) {
+    return trimmed.toUpperCase();
+  }
+  // Ranges ("30-40 min"): deliberately take the UPPER bound, the worst-case
+  // time a cook should plan for.
+  const t = trimmed.toLowerCase().replace(/(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)/g, "$2");
+  // (?![a-z]) instead of \b: "1h30m" has no word boundary between "h" and "3",
+  // so \b silently dropped the hours from compact durations.
+  const days = t.match(/(\d+(?:\.\d+)?)\s*(?:days?|d)(?![a-z])/);
+  const hours = t.match(/(\d+(?:\.\d+)?)\s*(?:hours?|hrs?|h)(?![a-z])/);
+  const mins = t.match(/(\d+)\s*(?:minutes?|mins?|m)(?![a-z])/);
   let h = (days ? parseFloat(days[1]) * 24 : 0) + (hours ? parseFloat(hours[1]) : 0);
   let m = mins ? parseInt(mins[1], 10) : 0;
   if (!days && !hours && !mins) {

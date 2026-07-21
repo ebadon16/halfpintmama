@@ -70,11 +70,21 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
       </div>
 
       {/* Quick scale buttons. Dedupe by target: for small baseServings two
-          options can round to the same count (e.g. 0.5x and 1x of 1 serving). */}
+          options can round to the same count (e.g. 0.5x and 1x of 1 serving).
+          Among duplicates keep the option whose label is truthful (smallest
+          rounding error; ties go to the one closest to 1x, so "Original"
+          always survives). */}
       <div className="flex justify-center gap-2 mt-3">
-        {SCALE_OPTIONS.filter((option, i) => {
+        {SCALE_OPTIONS.filter((option) => {
           const target = Math.max(1, Math.round(baseServings * option));
-          return SCALE_OPTIONS.findIndex((o) => Math.max(1, Math.round(baseServings * o)) === target) === i;
+          const err = (o: number) => Math.abs(baseServings * o - target);
+          const dupes = SCALE_OPTIONS.filter(
+            (o) => Math.max(1, Math.round(baseServings * o)) === target
+          );
+          const keep = dupes.reduce((a, b) =>
+            err(b) < err(a) || (err(b) === err(a) && Math.abs(b - 1) < Math.abs(a - 1)) ? b : a
+          );
+          return option === keep;
         }).map((option) => {
           const targetServings = Math.max(1, Math.round(baseServings * option));
           const isActive = currentServings === targetServings;
