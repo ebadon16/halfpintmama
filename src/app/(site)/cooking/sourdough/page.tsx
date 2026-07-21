@@ -89,6 +89,64 @@ export default async function SourdoughPage({ searchParams }: PageProps) {
           <SearchBar placeholder="Search sourdough recipes..." className="max-w-md" />
         </div>
 
+        {/* Beginner path: sourdough has a mandatory order (starter first), and
+            this page is where beginner traffic lands. Page 1 only. */}
+        {currentPage === 1 && (
+          <div className="bg-white rounded-2xl shadow-md p-6 md:p-8 mb-12">
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl md:text-3xl text-deep-sage font-semibold mb-2 text-center">
+              New to Sourdough? Start Here
+            </h2>
+            <p className="text-charcoal/80 text-sm text-center mb-6 max-w-xl mx-auto">
+              Every loaf starts with a starter. Three steps, in order, and you could be pulling
+              your first bread out of the oven in a week or so.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <Link
+                href="/posts/how-to-make-a-sourdough-starter-simple-no-scale"
+                className="group flex flex-col items-center text-center p-5 rounded-xl bg-cream hover:bg-light-sage/40 transition-all"
+              >
+                <span className="w-10 h-10 rounded-full bg-terracotta text-white font-bold flex items-center justify-center mb-3">
+                  1
+                </span>
+                <span className="font-semibold text-charcoal group-hover:text-terracotta transition-colors mb-1">
+                  Make Your Starter
+                </span>
+                <span className="text-charcoal/80 text-sm">
+                  Simple, no scale needed &rarr;
+                </span>
+              </Link>
+              <Link
+                href="/free-guide"
+                className="group flex flex-col items-center text-center p-5 rounded-xl bg-cream hover:bg-light-sage/40 transition-all"
+              >
+                <span className="w-10 h-10 rounded-full bg-deep-sage text-white font-bold flex items-center justify-center mb-3">
+                  2
+                </span>
+                <span className="font-semibold text-charcoal group-hover:text-terracotta transition-colors mb-1">
+                  Get the Free Starter Guide
+                </span>
+                <span className="text-charcoal/80 text-sm">
+                  Day-by-day instructions in your inbox &rarr;
+                </span>
+              </Link>
+              <Link
+                href="/posts/the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf"
+                className="group flex flex-col items-center text-center p-5 rounded-xl bg-cream hover:bg-light-sage/40 transition-all"
+              >
+                <span className="w-10 h-10 rounded-full bg-charcoal text-white font-bold flex items-center justify-center mb-3">
+                  3
+                </span>
+                <span className="font-semibold text-charcoal group-hover:text-terracotta transition-colors mb-1">
+                  Bake Your First Loaf
+                </span>
+                <span className="text-charcoal/80 text-sm">
+                  The no-stress artisan guide &rarr;
+                </span>
+              </Link>
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {posts.map((post) => (
             <PostCard
