@@ -16,6 +16,31 @@ const sizesAttr: Record<string, string> = {
   large: "(max-width: 600px) 100vw, 600px",
 };
 
+// Affiliate networks Keegan links to from post bodies. Matched on the parsed
+// hostname (exact or subdomain) so "amazon.com.evil.com" can't qualify.
+const AFFILIATE_HOSTS = [
+  "amzn.to",
+  "amzn.com",
+  "shareasale.com",
+  "rstyle.me",
+  "shopstyle.it",
+  "liketk.it",
+  "ltk.app.link",
+  "awin1.com",
+];
+
+function isAffiliateLink(href: string): boolean {
+  let host: string;
+  try {
+    host = new URL(href).hostname.toLowerCase().replace(/^www\./, "");
+  } catch {
+    return false;
+  }
+  if (AFFILIATE_HOSTS.some((h) => host === h || host.endsWith(`.${h}`))) return true;
+  // Amazon storefronts across regions: amazon.com, amazon.co.uk, amazon.ca...
+  return /(^|\.)amazon\.[a-z]{2,3}(\.[a-z]{2})?$/.test(host);
+}
+
 const YOUTUBE_ID_RE = /^[a-zA-Z0-9_-]{11}$/;
 
 function getYouTubeId(url: string): string | null {
@@ -102,11 +127,18 @@ const components: PortableTextComponents = {
       if (!/^(https?:|mailto:)/i.test(href)) {
         return <>{children}</>;
       }
+      // Affiliate links in post bodies must be qualified per Google's link
+      // spam policy. The hardcoded affiliate links elsewhere already carry
+      // this; CMS-authored ones come through here, which is where most of
+      // them actually live.
+      const rel = isAffiliateLink(href)
+        ? "sponsored nofollow noopener noreferrer"
+        : "noopener noreferrer";
       return (
         <a
           href={href}
           target="_blank"
-          rel="noopener noreferrer"
+          rel={rel}
           className="inline-flex items-center gap-1 text-terracotta font-medium hover:underline"
         >
           {children}
