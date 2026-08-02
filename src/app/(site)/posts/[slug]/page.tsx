@@ -22,8 +22,8 @@ import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 const JOURNEY_NEXT: Record<string, { eyebrow: string; title: string; description: string; href: string; cta: string }> = {
   "how-to-make-a-sourdough-starter-simple-no-scale": {
     eyebrow: "Next step",
-    title: "Get the Free Starter Guide",
-    description: "Day-by-day instructions and troubleshooting in your inbox while your starter grows, plus my Postpartum Freezer Prep Guide.",
+    title: "Get the Free Guides",
+    description: "Day-by-day starter instructions and troubleshooting in your inbox while your starter grows, plus my Postpartum Freezer Prep Guide.",
     href: "/free-guide",
     cta: "Send Me the Guides",
   },

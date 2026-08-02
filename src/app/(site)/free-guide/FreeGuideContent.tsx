@@ -185,7 +185,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
             {/* Right: Signup Form */}
             <div className="md:w-1/2">
               <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
-                Get Your Free Sourdough Starter Guide
+                Get Your Two Free Guides
               </h1>
               <p className="text-charcoal/80 text-sm mb-4 flex items-center justify-start gap-2">
                 <span className="text-yellow-500">&#9733;</span>

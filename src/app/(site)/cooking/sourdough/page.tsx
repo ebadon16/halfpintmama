@@ -127,10 +127,10 @@ export default async function SourdoughPage({ searchParams }: PageProps) {
                 </span>
                 <span className="flex flex-col">
                   <span className="font-semibold text-charcoal group-hover:text-terracotta transition-colors text-sm md:text-base">
-                    Get the Free Starter Guide
+                    Get the Free Guides
                   </span>
                   <span className="text-charcoal/80 text-xs md:text-sm">
-                    Day-by-day instructions, plus my freezer prep guide &rarr;
+                    Day-by-day starter instructions, plus freezer prep &rarr;
                   </span>
                 </span>
               </Link>
