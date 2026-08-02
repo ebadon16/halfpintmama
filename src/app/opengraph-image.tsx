@@ -17,7 +17,9 @@ export default async function OgImage() {
           alignItems: "center",
           justifyContent: "center",
           background:
-            "linear-gradient(180deg, #FAF7F2 0%, #F4EDE2 60%, #E8DDD0 100%)",
+            // Current tokens from globals.css (cream -> warm-beige). Kept in
+            // sync by hand: satori has no CSS variables.
+            "linear-gradient(180deg, #F5F1E8 0%, #EEE8DE 60%, #E6DFD3 100%)",
           fontFamily: "Georgia, 'Times New Roman', serif",
           padding: "80px",
           position: "relative",
@@ -34,7 +36,7 @@ export default async function OgImage() {
             justifyContent: "space-between",
             fontSize: 22,
             letterSpacing: 6,
-            color: "#6B7F5F",
+            color: "#4A5845",
             textTransform: "uppercase",
             fontWeight: 600,
           }}
@@ -56,7 +58,7 @@ export default async function OgImage() {
             style={{
               fontSize: 96,
               fontWeight: 700,
-              color: "#6B7F5F",
+              color: "#4A5845",
               lineHeight: 1,
               letterSpacing: -2,
             }}
@@ -68,7 +70,7 @@ export default async function OgImage() {
             style={{
               width: 240,
               height: 4,
-              background: "#C17B68",
+              background: "#A0562F",
               borderRadius: 2,
             }}
           />
@@ -76,7 +78,7 @@ export default async function OgImage() {
           <div
             style={{
               fontSize: 44,
-              color: "#3D3D3D",
+              color: "#3A3A38",
               fontStyle: "italic",
               maxWidth: 900,
               lineHeight: 1.25,
@@ -96,7 +98,7 @@ export default async function OgImage() {
             alignItems: "center",
             justifyContent: "center",
             fontSize: 24,
-            color: "#3D3D3D",
+            color: "#3A3A38",
             opacity: 0.7,
           }}
         >
