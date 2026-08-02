@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Free Sourdough Starter Guide + Freezer Prep Guide | Half Pint Mama",
-    description: "Get your free sourdough starter guide: day-by-day instructions from a Pediatric ER RN.",
+    description: "Two free guides from a Pediatric ER RN: the sourdough starter guide, day-by-day, plus the Postpartum Freezer Prep Guide.",
     type: "website",
     url: "https://halfpintmama.com/free-guide",
   },
@@ -17,7 +17,7 @@ export const metadata = {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary_large_image" as const,
     title: "Free Sourdough Starter Guide + Freezer Prep Guide | Half Pint Mama",
-    description: "Get your free sourdough starter guide: day-by-day instructions from a Pediatric ER RN.",
+    description: "Two free guides from a Pediatric ER RN: the sourdough starter guide, day-by-day, plus the Postpartum Freezer Prep Guide.",
   },
 };
 

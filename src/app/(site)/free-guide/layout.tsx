@@ -8,14 +8,14 @@ export const metadata: Metadata = {
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Free Sourdough Starter Guide + Freezer Prep Guide | Half Pint Mama",
-    description: "Get your free sourdough starter guide with day-by-day instructions, troubleshooting tips, and 4 beginner recipes.",
+    description: "Two free guides: the sourdough starter guide with day-by-day instructions and 4 beginner recipes, plus the Postpartum Freezer Prep Guide.",
     url: "https://halfpintmama.com/free-guide",
   },
   twitter: {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary_large_image",
     title: "Free Sourdough Starter Guide + Freezer Prep Guide | Half Pint Mama",
-    description: "Get your free sourdough starter guide with day-by-day instructions, troubleshooting tips, and 4 beginner recipes.",
+    description: "Two free guides: the sourdough starter guide with day-by-day instructions and 4 beginner recipes, plus the Postpartum Freezer Prep Guide.",
   },
 };
 

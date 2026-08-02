@@ -69,7 +69,7 @@ export default function ShopPage() {
                   width={1303}
                   height={1931}
                   priority
-                  sizes="(max-width: 768px) 80vw, 320px"
+                  sizes="320px"
                   className="w-full h-auto rounded-2xl shadow-xl border-4 border-terracotta/20"
                 />
                 <div className="absolute -top-4 -right-4 bg-terracotta text-white px-4 py-2 rounded-full font-semibold text-sm shadow-md">

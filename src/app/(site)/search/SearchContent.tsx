@@ -226,7 +226,7 @@ export function SearchContent({ popularTags }: SearchContentProps) {
                 href="/free-guide"
                 className="px-5 py-2 gradient-cta text-white text-sm font-semibold rounded-full hover:shadow-lg transition-all"
               >
-                Get My Free Guides
+                Sourdough Starter + Freezer Prep
               </Link>
             </div>
           </div>
