@@ -102,7 +102,7 @@ export default function ShopPage() {
                 <p className="text-charcoal/80 text-xs mt-3">
                   My free Postpartum Freezer Prep Guide arrives in your inbox as soon as you
                   join, so you can start filling the freezer now. Printable freezer labels for
-                  every recipe are a preorder-only bonus with the book.
+                  every recipe will be a preorder-only bonus. Preorders coming soon.
                 </p>
               </div>
             </div>
