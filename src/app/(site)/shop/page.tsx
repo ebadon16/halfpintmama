@@ -100,9 +100,10 @@ export default function ShopPage() {
                   inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
                 />
                 <p className="text-charcoal/80 text-xs mt-3">
-                  My free Postpartum Freezer Prep Guide arrives in your inbox as soon as you
-                  join, so you can start filling the freezer now. Printable freezer labels for
-                  every recipe will be a preorder-only bonus. Preorders coming soon.
+                  Join and both my free guides arrive right away: the Postpartum Freezer Prep
+                  Guide, so you can start filling the freezer now, and my sourdough starter
+                  guide, so your starter is ready before the book is. Printable freezer labels
+                  for every recipe will be a preorder-only bonus. Preorders coming soon.
                 </p>
               </div>
             </div>
