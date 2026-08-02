@@ -14,7 +14,7 @@ function usePopupContext(pathname: string) {
       icon: Heart,
       heading: "Join the Half Pint Mama Community!",
       subtitle: "Honest mama moments and from-scratch recipes!",
-      body: "Get my free sourdough starter guide and my Postpartum Freezer Prep Guide from a Pediatric ER RN and mama of three, plus first word on new recipes and honest mama moments.",
+      body: "Get my free Sourdough Starter Guide and my Postpartum Freezer Prep Guide from a Pediatric ER RN and mama of three, plus first word on new recipes and honest mama moments.",
       cta: "Join Free",
     };
   }
@@ -23,7 +23,7 @@ function usePopupContext(pathname: string) {
     icon: Wheat,
     heading: "Want My Two Free Guides?",
     subtitle: "Free for subscribers, straight to your inbox!",
-    body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus my Postpartum Freezer Prep Guide and first word on new recipes.",
+    body: "Get my free step-by-step Sourdough Starter Guide delivered straight to your inbox, plus my Postpartum Freezer Prep Guide and first word on new recipes.",
     cta: "Send My Free Guides",
   };
 }

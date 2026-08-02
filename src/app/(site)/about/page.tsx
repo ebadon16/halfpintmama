@@ -164,7 +164,7 @@ export default function AboutPage() {
               Get My Free Guides
             </h2>
             <p className="text-charcoal/80 mb-6 max-w-lg mx-auto">
-              Subscribe and I&apos;ll send you both: my sourdough starter guide with everything you need to create and maintain a healthy starter, and my Postpartum Freezer Prep Guide.
+              Subscribe and I&apos;ll send you both: my Sourdough Starter Guide with everything you need to create and maintain a healthy starter, and my Postpartum Freezer Prep Guide.
             </p>
             <Link
               href="/free-guide"

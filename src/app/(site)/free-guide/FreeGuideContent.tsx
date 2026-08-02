@@ -211,7 +211,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 text-center">
-            What&apos;s Inside the Sourdough Guide
+            What&apos;s Inside the Sourdough Starter Guide
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">

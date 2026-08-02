@@ -34,7 +34,7 @@ const FAQ_ITEMS: { q: string; a: string; link?: { href: string; label: string };
   },
   {
     q: "My starter looks quiet or has liquid on top. Is it ruined?",
-    a: "Usually no! Starters often look quiet the first couple of days, that's normal. And liquid on top is just your starter's way of saying it's hungry: feed it and keep going. The free starter guide covers all the common problems and fixes.",
+    a: "Usually no! Starters often look quiet the first couple of days, that's normal. And liquid on top is just your starter's way of saying it's hungry: feed it and keep going. The Sourdough Starter Guide covers all the common problems and fixes.",
     link: { href: "/free-guide", label: "Get the free guides" },
   },
   {
@@ -306,7 +306,7 @@ export default async function StartHerePage() {
             Join the Half Pint Community
           </h2>
           <p className="text-white/90 mb-6 max-w-xl mx-auto">
-            Get my free sourdough starter guide and Postpartum Freezer Prep Guide when you subscribe, plus first word on new recipes and honest mama moments!
+            Get my free Sourdough Starter Guide and Postpartum Freezer Prep Guide when you subscribe, plus first word on new recipes and honest mama moments!
           </p>
           <EmailSignup
             source="website"

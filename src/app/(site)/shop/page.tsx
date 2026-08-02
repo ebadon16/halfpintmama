@@ -101,8 +101,8 @@ export default function ShopPage() {
                 />
                 <p className="text-charcoal/80 text-xs mt-3">
                   Join and both my free guides arrive right away: the Postpartum Freezer Prep
-                  Guide, so you can start filling the freezer now, and my sourdough starter
-                  guide, so your starter is ready before the book is. Printable freezer labels
+                  Guide, so you can start filling the freezer now, and my Sourdough Starter
+                  Guide, so your starter is ready before the book is. Printable freezer labels
                   for every recipe will be a preorder-only bonus. Preorders coming soon.
                 </p>
               </div>

@@ -132,10 +132,10 @@ export async function POST(request: NextRequest) {
       // automation re-fires). Only a 201 may promise the guides email.
       if (response.status === 201) {
         // One list, one welcome email, and it carries BOTH free guides: the
-        // sourdough starter guide and the Postpartum Freezer Prep Guide.
+        // Sourdough Starter Guide and the Postpartum Freezer Prep Guide.
         // There is no separate mama-life stream, so don't promise one.
         return NextResponse.json(
-          { message: "Welcome! Check your inbox for your two free guides: the sourdough starter guide and the Postpartum Freezer Prep Guide. If you don't see them, check your spam or promotions folder." },
+          { message: "Welcome! Check your inbox for your two free guides: the Sourdough Starter Guide and the Postpartum Freezer Prep Guide. If you don't see them, check your spam or promotions folder." },
           { status: 201 }
         );
       }
