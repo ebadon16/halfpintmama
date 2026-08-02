@@ -129,7 +129,7 @@ export async function POST(request: NextRequest) {
 
       // MailerLite's POST /subscribers is an upsert: 201 = newly created (fires
       // the welcome automation), 200 = the address was already subscribed (no
-      // automation re-fires). Only a 201 may promise the guide email.
+      // automation re-fires). Only a 201 may promise the guides email.
       if (response.status === 201) {
         // One list, one welcome email, and it carries BOTH free guides: the
         // sourdough starter guide and the Postpartum Freezer Prep Guide.

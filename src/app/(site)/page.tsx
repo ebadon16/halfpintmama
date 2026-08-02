@@ -106,7 +106,7 @@ export default async function Home() {
               href="/free-guide"
               className="px-8 py-4 gradient-cta text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg"
             >
-              Get My Free Sourdough Guide
+              Get My Free Guides
             </Link>
             <Link
               href="/start-here"

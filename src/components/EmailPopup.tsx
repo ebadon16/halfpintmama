@@ -21,10 +21,10 @@ function usePopupContext(pathname: string) {
   return {
     segment: "kitchen" as const,
     icon: Wheat,
-    heading: "Want My Free Sourdough Starter Guide?",
+    heading: "Want My Two Free Guides?",
     subtitle: "Free for subscribers, straight to your inbox!",
     body: "Get my free step-by-step sourdough starter guide delivered straight to your inbox, plus my Postpartum Freezer Prep Guide and first word on new recipes.",
-    cta: "Send My Free Guide",
+    cta: "Send My Free Guides",
   };
 }
 

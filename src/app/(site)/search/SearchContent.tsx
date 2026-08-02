@@ -220,13 +220,13 @@ export function SearchContent({ popularTags }: SearchContentProps) {
             >
               Browse all recipes &rarr;
             </Link>
-            <p className="text-charcoal/80 text-sm pt-2">While you&apos;re here, grab a free guide:</p>
+            <p className="text-charcoal/80 text-sm pt-2">While you&apos;re here, grab my free guides:</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/free-guide"
                 className="px-5 py-2 gradient-cta text-white text-sm font-semibold rounded-full hover:shadow-lg transition-all"
               >
-                Sourdough Starter Guide
+                Get My Free Guides
               </Link>
             </div>
           </div>

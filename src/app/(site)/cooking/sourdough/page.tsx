@@ -130,7 +130,7 @@ export default async function SourdoughPage({ searchParams }: PageProps) {
                     Get the Free Starter Guide
                   </span>
                   <span className="text-charcoal/80 text-xs md:text-sm">
-                    Day-by-day instructions in your inbox &rarr;
+                    Day-by-day instructions, plus my freezer prep guide &rarr;
                   </span>
                 </span>
               </Link>

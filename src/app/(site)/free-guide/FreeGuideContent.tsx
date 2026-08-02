@@ -109,7 +109,7 @@ function SignupForm({ source }: { source: string }) {
         disabled={status === "loading"}
         className="w-full py-4 gradient-cta text-white font-semibold rounded-lg hover:shadow-lg transition-all text-lg disabled:opacity-50"
       >
-        {status === "loading" ? "Sending..." : "Send Me the Free Guide!"}
+        {status === "loading" ? "Sending..." : "Send Me the Free Guides!"}
       </button>
     </form>
   );
@@ -165,17 +165,18 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                   </div>
                 </div>
 
-                {/* Second freebie in the same welcome email. Not the printable
-                    freezer labels, which are a preorder bonus with the book. */}
+                {/* The second guide is part of the deal, not a bonus: one
+                    welcome email carries both PDFs. Not the printable freezer
+                    labels, which are a preorder-only bonus with the book. */}
                 <div className="mt-6 pt-5 border-t border-warm-beige text-center">
                   <p className="text-terracotta text-xs font-semibold uppercase tracking-wide mb-1">
-                    Bonus for subscribers
+                    Also included
                   </p>
                   <p className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-bold mb-1">
                     Postpartum Freezer Prep Guide
                   </p>
                   <p className="text-charcoal/80 text-sm">
-                    How to fill your freezer with nourishing meals before baby arrives. It comes in the same welcome email, free.
+                    How to fill your freezer with nourishing meals before baby arrives. Both guides come in the same welcome email.
                   </p>
                 </div>
               </div>
@@ -191,7 +192,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                 {cookingPosts}+ tested recipes on the blog &middot; Written by a Pediatric ER RN
               </p>
               <p className="text-charcoal/80 text-lg mb-6">
-                Everything you need to create your first sourdough starter and bake your first loaf - even if you&apos;ve never baked bread before.
+                Everything you need to create your first sourdough starter and bake your first loaf - even if you&apos;ve never baked bread before. Subscribing gets you both this and my Postpartum Freezer Prep Guide, free.
               </p>
 
               {/* Signup Form */}
@@ -210,7 +211,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 text-center">
-            What&apos;s Inside the Guide
+            What&apos;s Inside the Sourdough Guide
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">

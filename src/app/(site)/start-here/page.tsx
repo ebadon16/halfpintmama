@@ -35,7 +35,7 @@ const FAQ_ITEMS: { q: string; a: string; link?: { href: string; label: string };
   {
     q: "My starter looks quiet or has liquid on top. Is it ruined?",
     a: "Usually no! Starters often look quiet the first couple of days, that's normal. And liquid on top is just your starter's way of saying it's hungry: feed it and keep going. The free starter guide covers all the common problems and fixes.",
-    link: { href: "/free-guide", label: "Get the free guide" },
+    link: { href: "/free-guide", label: "Get the free guides" },
   },
   {
     q: "What should I bake first?",
@@ -181,7 +181,7 @@ export default async function StartHerePage() {
                   href="/free-guide"
                   className="block w-full text-center px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
                 >
-                  Get My Free Starter Guide
+                  Get My Free Guides
                 </Link>
               </div>
             </div>

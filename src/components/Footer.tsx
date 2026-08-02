@@ -43,7 +43,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/free-guide" className="text-charcoal/80 hover:text-terracotta transition-colors">
-                  Free Sourdough Guide
+                  Free Guides
                 </Link>
               </li>
               <li>
@@ -159,8 +159,8 @@ export function Footer() {
         {/* No newsletter form here: every content page already carries its own
             designed signup (post banners, HomeEmailSignup, free-guide/shop
             forms), and a footer form directly below them duplicated the same
-            ask back-to-back on every page. "Free Sourdough Guide" in Explore
-            covers the footer path to signup. */}
+            ask back-to-back on every page. "Free Guides" in Explore covers
+            the footer path to signup. */}
 
         {/* Bottom bar */}
         <div className="mt-8 pt-6 border-t border-charcoal/10">

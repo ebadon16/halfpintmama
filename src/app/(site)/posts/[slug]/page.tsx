@@ -23,9 +23,9 @@ const JOURNEY_NEXT: Record<string, { eyebrow: string; title: string; description
   "how-to-make-a-sourdough-starter-simple-no-scale": {
     eyebrow: "Next step",
     title: "Get the Free Starter Guide",
-    description: "Day-by-day instructions and troubleshooting in your inbox while your starter grows.",
+    description: "Day-by-day instructions and troubleshooting in your inbox while your starter grows, plus my Postpartum Freezer Prep Guide.",
     href: "/free-guide",
-    cta: "Send Me the Guide",
+    cta: "Send Me the Guides",
   },
   "the-simple-no-stress-guide-to-your-first-artisan-sourdough-loaf": {
     eyebrow: "Now that you're baking",

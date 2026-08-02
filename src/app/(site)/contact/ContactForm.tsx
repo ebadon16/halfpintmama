@@ -102,7 +102,7 @@ export function ContactForm() {
                 href="/free-guide"
                 className="text-terracotta hover:text-deep-sage font-medium text-sm transition-colors"
               >
-                Get a free guide &rarr;
+                Get my free guides &rarr;
               </Link>
             </div>
           </div>

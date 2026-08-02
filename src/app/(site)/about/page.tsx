@@ -156,21 +156,21 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Free Sourdough Guide Section */}
+        {/* Free guides section */}
         <div className="bg-gradient-to-br from-terracotta/10 to-soft-pink/10 rounded-2xl p-8 shadow-md mb-8 border-2 border-terracotta/20">
           <div className="text-center">
             <div className="mb-4"><ThemedIcon icon={Wheat} size="lg" color="terracotta" /></div>
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-4">
-              Get My Free Sourdough Starter Guide
+              Get My Free Guides
             </h2>
             <p className="text-charcoal/80 mb-6 max-w-lg mx-auto">
-              Ready to start your sourdough journey? Sign up for my free guide with everything you need to create and maintain a healthy starter. Subscribers also get my free Postpartum Freezer Prep Guide.
+              Subscribe and I&apos;ll send you both: my sourdough starter guide with everything you need to create and maintain a healthy starter, and my Postpartum Freezer Prep Guide.
             </p>
             <Link
               href="/free-guide"
               className="inline-block px-8 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all"
             >
-              Get the Free Guide
+              Get the Free Guides
             </Link>
           </div>
         </div>

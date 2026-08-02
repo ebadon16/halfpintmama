@@ -45,7 +45,7 @@ export default function Error({ reset }: { error: Error; reset: () => void }) {
               Mama Life &rarr;
             </Link>
             <Link href="/free-guide" className="text-deep-sage hover:text-charcoal transition-colors font-medium">
-              Free Starter Guide &rarr;
+              Free Guides &rarr;
             </Link>
           </div>
         </div>

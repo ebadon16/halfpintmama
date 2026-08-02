@@ -53,8 +53,9 @@ export default function CookbookResourcesPage() {
           </div>
           <div className="bg-cream rounded-2xl p-8 shadow-md text-center">
             <p className="text-charcoal/80 mb-4">
-              The label sheets, designed for the exact recipes in the book, are coming soon to the
-              shop alongside <em>Rest and Rise</em>. Join the waitlist to hear when they drop.
+              The label sheets are designed for the exact recipes in the book. They come free as a
+              preorder-only bonus with <em>Rest and Rise</em>, then join the shop as their own item
+              after launch. Join the waitlist to hear when preorders open.
             </p>
             <Link
               href="/shop"
