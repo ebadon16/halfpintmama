@@ -37,7 +37,7 @@ function SignupForm({ source }: { source: string }) {
         trackEvent("email_signup", { source });
         // Show the API's message: it distinguishes new signup, already
         // subscribed, and the captured-but-not-yet-delivered fallback.
-        setMessage(data.message || "You're in! Watch your inbox for the guide.");
+        setMessage(data.message || "You're in! Watch your inbox for your guides.");
         setEmail("");
         setFirstName("");
       } else {
@@ -163,6 +163,20 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
                     <Check className="w-5 h-5 text-sage flex-shrink-0" />
                     Video tutorial links
                   </div>
+                </div>
+
+                {/* Second freebie in the same welcome email. Not the printable
+                    freezer labels, which are a preorder bonus with the book. */}
+                <div className="mt-6 pt-5 border-t border-warm-beige text-center">
+                  <p className="text-terracotta text-xs font-semibold uppercase tracking-wide mb-1">
+                    Bonus for subscribers
+                  </p>
+                  <p className="font-[family-name:var(--font-crimson)] text-lg text-deep-sage font-bold mb-1">
+                    Postpartum Freezer Prep Guide
+                  </p>
+                  <p className="text-charcoal/80 text-sm">
+                    How to fill your freezer with nourishing meals before baby arrives. It comes in the same welcome email, free.
+                  </p>
                 </div>
               </div>
             </div>

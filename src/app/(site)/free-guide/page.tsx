@@ -4,7 +4,7 @@ import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
   title: "Free Sourdough Starter Guide | Half Pint Mama",
-  description: "Get your free sourdough starter guide from a Pediatric ER RN. Day-by-day instructions, troubleshooting tips, and beginner recipes to bake your first loaf.",
+  description: "Get your free sourdough starter guide from a Pediatric ER RN. Day-by-day instructions, troubleshooting tips, and beginner recipes to bake your first loaf. Subscribers also get a free Postpartum Freezer Prep Guide.",
   alternates: { canonical: "https://halfpintmama.com/free-guide" },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,

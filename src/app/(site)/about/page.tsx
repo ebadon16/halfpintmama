@@ -164,7 +164,7 @@ export default function AboutPage() {
               Get My Free Sourdough Starter Guide
             </h2>
             <p className="text-charcoal/80 mb-6 max-w-lg mx-auto">
-              Ready to start your sourdough journey? Sign up for my free guide with everything you need to create and maintain a healthy starter.
+              Ready to start your sourdough journey? Sign up for my free guide with everything you need to create and maintain a healthy starter. Subscribers also get my free Postpartum Freezer Prep Guide.
             </p>
             <Link
               href="/free-guide"

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { EmailSignup } from "@/components/EmailSignup";
 import { BookOpen, CalendarCheck, HeartPulse, Croissant } from "lucide-react";
@@ -58,24 +59,22 @@ export default function ShopPage() {
         {/* Pre-launch hero */}
         <section className="mb-16">
           <div className="md:flex items-center gap-10 max-w-5xl mx-auto">
-            {/* Book mock */}
+            {/* Book cover. The cover art already carries the title, subtitle,
+                and byline, so no duplicate text block underneath. */}
             <div className="md:w-2/5 mb-8 md:mb-0">
-              <div className="bg-white rounded-2xl shadow-xl border-4 border-terracotta/20 p-8 text-center relative">
-                <div className="absolute -top-4 -right-4 bg-terracotta text-white px-4 py-2 rounded-full font-semibold text-sm">
+              <div className="relative max-w-xs mx-auto">
+                <Image
+                  src="/images/rest-and-rise-cover.jpg"
+                  alt="Rest and Rise cookbook cover: Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery, by ER nurse and mom of three Keegan Badon, RN"
+                  width={1303}
+                  height={1931}
+                  priority
+                  sizes="(max-width: 768px) 80vw, 320px"
+                  className="w-full h-auto rounded-2xl shadow-xl border-4 border-terracotta/20"
+                />
+                <div className="absolute -top-4 -right-4 bg-terracotta text-white px-4 py-2 rounded-full font-semibold text-sm shadow-md">
                   Coming Soon
                 </div>
-                <div className="flex justify-center mb-4">
-                  <ThemedIcon icon={BookOpen} size="xl" color="terracotta" />
-                </div>
-                <p className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-bold mb-2">
-                  Rest and Rise
-                </p>
-                <p className="text-charcoal/80 text-sm mb-3">
-                  Make-ahead, freezer-friendly sourdough meals for postpartum recovery
-                </p>
-                <p className="text-charcoal/80 text-xs">
-                  From a Pediatric ER RN and mama of three
-                </p>
               </div>
             </div>
 
@@ -101,7 +100,9 @@ export default function ShopPage() {
                   inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
                 />
                 <p className="text-charcoal/80 text-xs mt-3">
-                  Printable freezer labels for every recipe in the book are coming too.
+                  My free Postpartum Freezer Prep Guide arrives in your inbox as soon as you
+                  join, so you can start filling the freezer now. Printable freezer labels for
+                  every recipe come with the book itself.
                 </p>
               </div>
             </div>
