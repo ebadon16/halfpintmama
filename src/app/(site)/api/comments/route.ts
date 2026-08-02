@@ -16,6 +16,23 @@ function getResend() {
 }
 const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL || "keegan@halfpintmama.com";
 
+// Email palette. Kept in sync with the site tokens in globals.css by hand,
+// because email HTML cannot use CSS variables. These were left on the old
+// pre-accessibility palette until Aug 2026; every value below now clears
+// WCAG AA 4.5:1 for the text placed on it (ratio noted per entry).
+const EMAIL = {
+  terracottaFrom: "#A0562F", // white on it: 5.43
+  terracottaTo: "#8A4A2E",   // white on it: 6.78
+  sageFrom: "#5C6B52",       // white on it: 5.71
+  sageTo: "#4A5845",         // white on it: 7.57
+  cream: "#F5F1E8",
+  border: "#E6DFD3",
+  text: "#3A3A38",           // on cream: 10.11
+  muted: "#5F5F5B",          // on cream: 5.69
+  footer: "#6B6B66",         // on white: 5.36
+  accent: "#4A5845",         // decorative left border
+} as const;
+
 // Read client for fetching comments
 const readClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "",
@@ -227,45 +244,45 @@ export async function POST(request: NextRequest) {
         : `⭐ New Review on "${rawPostTitle}"`,
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, #C4835F, #D4A894); padding: 20px; border-radius: 12px 12px 0 0;">
+          <div style="background: linear-gradient(135deg, ${EMAIL.terracottaFrom}, ${EMAIL.terracottaTo}); padding: 20px; border-radius: 12px 12px 0 0;">
             <h1 style="color: white; margin: 0; font-size: 24px;">
               ${isReply ? "💬 New Reply" : "⭐ New Review"}
             </h1>
           </div>
 
-          <div style="background: #FAF7F2; padding: 24px; border: 1px solid #E8DDD0; border-top: none; border-radius: 0 0 12px 12px;">
-            <p style="color: #3D3D3D; margin: 0 0 16px;">
+          <div style="background: ${EMAIL.cream}; padding: 24px; border: 1px solid ${EMAIL.border}; border-top: none; border-radius: 0 0 12px 12px;">
+            <p style="color: ${EMAIL.text}; margin: 0 0 16px;">
               <strong>${escapedAuthor}</strong> left a ${isReply ? "reply" : "review"} on <strong>"${escapedPostTitle}"</strong>
             </p>
 
             ${!isReply ? `
-            <p style="color: #3D3D3D; margin: 0 0 16px;">
+            <p style="color: ${EMAIL.text}; margin: 0 0 16px;">
               <strong>Rating:</strong> ${ratingText}
             </p>
             ` : ""}
 
             ${isReply ? `
-            <p style="color: #6B7F5F; margin: 0 0 8px; font-size: 14px;">
+            <p style="color: ${EMAIL.muted}; margin: 0 0 8px; font-size: 14px;">
               In reply to ${escapedReplyToAuthor}:
             </p>
             ` : ""}
 
-            <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #9CAF88; margin: 16px 0;">
-              <p style="color: #3D3D3D; margin: 0; line-height: 1.6;">
+            <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid ${EMAIL.accent}; margin: 16px 0;">
+              <p style="color: ${EMAIL.text}; margin: 0; line-height: 1.6;">
                 "${escapedContent}"
               </p>
             </div>
 
-            <p style="color: #666; font-size: 14px; margin: 16px 0 0;">
+            <p style="color: ${EMAIL.muted}; font-size: 14px; margin: 16px 0 0;">
               <strong>From:</strong> ${escapedAuthor} (${escapeHtml(safeEmail)})
             </p>
 
-            <a href="${postUrl}" style="display: inline-block; background: linear-gradient(135deg, #C4835F, #D4A894); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; margin-top: 20px; font-weight: bold;">
+            <a href="${postUrl}" style="display: inline-block; background: linear-gradient(135deg, ${EMAIL.terracottaFrom}, ${EMAIL.terracottaTo}); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; margin-top: 20px; font-weight: bold;">
               View on Site →
             </a>
           </div>
 
-          <p style="color: #999; font-size: 12px; text-align: center; margin-top: 20px;">
+          <p style="color: ${EMAIL.footer}; font-size: 12px; text-align: center; margin-top: 20px;">
             Half Pint Mama | halfpintmama.com
           </p>
         </div>
@@ -296,29 +313,29 @@ export async function POST(request: NextRequest) {
         subject: `${rawAuthorSubject} replied to your comment on Half Pint Mama`,
         html: `
           <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: linear-gradient(135deg, #9CAF88, #6B7F5F); padding: 20px; border-radius: 12px 12px 0 0;">
+            <div style="background: linear-gradient(135deg, ${EMAIL.sageFrom}, ${EMAIL.sageTo}); padding: 20px; border-radius: 12px 12px 0 0;">
               <h1 style="color: white; margin: 0; font-size: 24px;">
                 💬 Someone Replied to Your Comment!
               </h1>
             </div>
 
-            <div style="background: #FAF7F2; padding: 24px; border: 1px solid #E8DDD0; border-top: none; border-radius: 0 0 12px 12px;">
-              <p style="color: #3D3D3D; margin: 0 0 16px;">
+            <div style="background: ${EMAIL.cream}; padding: 24px; border: 1px solid ${EMAIL.border}; border-top: none; border-radius: 0 0 12px 12px;">
+              <p style="color: ${EMAIL.text}; margin: 0 0 16px;">
                 Hi ${escapedReplyToAuthor}! <strong>${escapedAuthor}</strong> replied to your comment on <strong>"${escapedPostTitle}"</strong>
               </p>
 
-              <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid #9CAF88; margin: 16px 0;">
-                <p style="color: #3D3D3D; margin: 0; line-height: 1.6;">
+              <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid ${EMAIL.accent}; margin: 16px 0;">
+                <p style="color: ${EMAIL.text}; margin: 0; line-height: 1.6;">
                   "${escapedContent}"
                 </p>
               </div>
 
-              <a href="${postUrl}" style="display: inline-block; background: linear-gradient(135deg, #9CAF88, #6B7F5F); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; margin-top: 20px; font-weight: bold;">
+              <a href="${postUrl}" style="display: inline-block; background: linear-gradient(135deg, ${EMAIL.sageFrom}, ${EMAIL.sageTo}); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; margin-top: 20px; font-weight: bold;">
                 View the Conversation →
               </a>
             </div>
 
-            <p style="color: #999; font-size: 12px; text-align: center; margin-top: 20px;">
+            <p style="color: ${EMAIL.footer}; font-size: 12px; text-align: center; margin-top: 20px;">
               Half Pint Mama | halfpintmama.com
             </p>
           </div>
