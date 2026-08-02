@@ -78,7 +78,9 @@ export function SearchSuggestions({ popularTags, onSuggestionClick }: SearchSugg
               className="px-4 py-2 bg-light-sage/30 rounded-full hover:bg-deep-sage hover:text-white transition-all text-deep-sage flex items-center gap-2"
             >
               <span className="capitalize">{tag}</span>
-              <span className="text-xs opacity-70">({count})</span>
+              {/* No opacity: at 70% the count was 3.24:1 on the pill and 3.92:1
+                  against the deep-sage hover fill. text-xs carries the hierarchy. */}
+              <span className="text-xs">({count})</span>
             </button>
           ))}
         </div>

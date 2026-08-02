@@ -9,14 +9,20 @@ export default function GlobalError({ reset }: { error: Error; reset: () => void
             <h1 style={{ fontSize: "2rem", color: "#4A5845", marginBottom: "1rem" }}>
               Something went wrong
             </h1>
-            <p style={{ color: "#3A3A38", opacity: 0.7, marginBottom: "2rem" }}>
+            {/* 0.8 not 0.7: at 0.7 this blended to 4.33:1 on cream. Matches the
+                app's text-charcoal/80 convention (5.69:1). */}
+            <p style={{ color: "#3A3A38", opacity: 0.8, marginBottom: "2rem" }}>
               We hit an unexpected bump. Try again. It might just be a hiccup!
             </p>
             <button
               onClick={reset}
               style={{
                 padding: "0.75rem 1.5rem",
-                background: "linear-gradient(135deg, #A65C39, #C17B68)",
+                // Mirrors .gradient-cta. Colours are hardcoded because
+                // global-error replaces the root layout, so globals.css and its
+                // CSS vars are not guaranteed. The old #C17B68 end put white
+                // text at 3.33:1; this end is 6.78:1.
+                background: "linear-gradient(135deg, #A0562F, #8A4A2E)",
                 color: "white",
                 fontWeight: 600,
                 border: "none",
