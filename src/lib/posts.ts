@@ -397,15 +397,18 @@ export async function getPopularPosts(limit: number = 4): Promise<PostMeta[]> {
     { limit: safeLimit }
   );
 
-  // Fall back to latest posts if no ratings exist
-  if (posts.length === 0) {
-    return client.fetch<PostMeta[]>(
-      `*[_type == "post"] | order(date desc) [0...$limit] ${postMetaProjection}`,
-      { limit: safeLimit }
-    );
-  }
+  // Ratings are sparse (most posts have none), so a ratings-only query returns
+  // a near-empty grid. Top up with the most recent unrated posts so the section
+  // is always full, with genuinely popular posts still ranked first.
+  if (posts.length >= safeLimit) return posts;
 
-  return posts;
+  const seen = posts.map((p) => p.slug);
+  const filler = await client.fetch<PostMeta[]>(
+    `*[_type == "post" && !(slug.current in $seen)] | order(date desc) [0...$limit] ${postMetaProjection}`,
+    { limit: safeLimit - posts.length, seen }
+  );
+
+  return [...posts, ...filler].slice(0, safeLimit);
 }
 
 // Aggregate site stats for social proof — single GROQ query for performance
