@@ -1,29 +1,55 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { EmailSignup } from "@/components/EmailSignup";
-import { BookOpen, CalendarCheck, HeartPulse, Croissant } from "lucide-react";
+import { BuyButton } from "@/components/shop/BuyButton";
+import { BookOpen, CalendarCheck, HeartPulse, Croissant, Tag, Printer, Truck } from "lucide-react";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { PRODUCTS, shopCopy, type ShopStatus } from "@/lib/shop/catalog";
+import { LABEL_SHEET } from "@/lib/shop/labels-pdf";
+import { getDisplayPrice } from "@/lib/shop/prices";
+import { getShopStatus } from "@/lib/shop/status";
+import { getShipEstimate } from "@/lib/shop/stripe";
 
-export const metadata = {
-  title: "Shop | Half Pint Mama",
-  description: "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
-  alternates: { canonical: "https://halfpintmama.com/shop" },
-  robots: { index: false, follow: true },
-  openGraph: {
-      images: DEFAULT_OG_IMAGE_ARRAY,
-    title: "Shop | Half Pint Mama",
-    description: "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with recovery tips, freezer meals, and sourdough recipes.",
-    type: "website",
-    url: "https://halfpintmama.com/shop",
-  },
-  twitter: {
-      images: [DEFAULT_OG_IMAGE.url],
-    card: "summary_large_image" as const,
-    title: "Shop | Half Pint Mama",
-    description: "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with recovery tips, freezer meals, and sourdough recipes.",
-  },
+// Prices are read live from Stripe; re-render at most every five minutes so a
+// reprice shows up without a deploy but the page stays cached.
+export const revalidate = 300;
+
+const DESCRIPTION: Record<ShopStatus, string> = {
+  waitlist:
+    "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
+  preorder:
+    "Preorder Rest and Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Printable freezer labels free with every preorder.",
+  launched:
+    "Rest and Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Plus printable freezer labels for every recipe.",
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const status = getShopStatus();
+  const description = DESCRIPTION[status];
+  return {
+    title: "Shop | Half Pint Mama",
+    description,
+    alternates: { canonical: "https://halfpintmama.com/shop" },
+    // Stays out of the index until launch day, when the sitemap and Book
+    // schema ship with it.
+    robots: { index: status === "launched", follow: true },
+    openGraph: {
+      images: DEFAULT_OG_IMAGE_ARRAY,
+      title: "Shop | Half Pint Mama",
+      description,
+      type: "website",
+      url: "https://halfpintmama.com/shop",
+    },
+    twitter: {
+      images: [DEFAULT_OG_IMAGE.url],
+      card: "summary_large_image" as const,
+      title: "Shop | Half Pint Mama",
+      description,
+    },
+  };
+}
 
 const whatsInside = [
   {
@@ -52,11 +78,13 @@ const whatsInside = [
   },
 ];
 
-export default function ShopPage() {
+export default async function ShopPage() {
+  const status = getShopStatus();
+  const { badge } = shopCopy(status);
+
   return (
     <div className="bg-cream">
       <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Pre-launch hero */}
         <section className="mb-16">
           <div className="md:flex items-center gap-10 max-w-5xl mx-auto">
             {/* Book cover. The cover art already carries the title, subtitle,
@@ -73,12 +101,11 @@ export default function ShopPage() {
                   className="w-full h-auto rounded-2xl shadow-xl border-4 border-terracotta/20"
                 />
                 <div className="absolute -top-4 -right-4 bg-terracotta text-white px-4 py-2 rounded-full font-semibold text-sm shadow-md">
-                  Coming Soon
+                  {badge}
                 </div>
               </div>
             </div>
 
-            {/* Pitch + waitlist */}
             <div className="md:w-3/5">
               <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-4">
                 The Postpartum Cookbook
@@ -88,29 +115,13 @@ export default function ShopPage() {
                 itself. <em>Rest and Rise</em> pairs 35 make-ahead, freezer-friendly recipes with
                 honest, nurse-informed guidance for the fourth trimester.
               </p>
-              <div className="bg-white rounded-2xl shadow-lg p-6">
-                <p className="text-charcoal font-medium mb-3">
-                  Be the first to know when it launches:
-                </p>
-                <EmailSignup
-                  source="shop-waitlist"
-                  buttonText="Join Waitlist"
-                  placeholder="Your email"
-                  buttonClassName="bg-terracotta text-white hover:bg-terracotta/90"
-                  inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
-                />
-                <p className="text-charcoal/80 text-xs mt-3">
-                  Join and both my free guides arrive right away: the Postpartum Freezer Prep
-                  Guide, so you can start filling the freezer now, and my Sourdough Starter
-                  Guide, so your starter is ready before the book is. Printable freezer labels
-                  for every recipe will be a preorder-only bonus. Preorders coming soon.
-                </p>
-              </div>
+              {status === "waitlist" ? <Waitlist /> : <BookOffer status={status} />}
             </div>
           </div>
         </section>
 
-        {/* What's inside */}
+        {status === "launched" && <LabelsOffer />}
+
         <section className="mb-16">
           <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 text-center">
             What&apos;s Inside
@@ -128,14 +139,13 @@ export default function ShopPage() {
           </div>
         </section>
 
-        {/* Browse while you wait */}
         <section className="max-w-md mx-auto text-center">
           <div className="space-y-3">
             <Link
               href="/cooking"
               className="block text-deep-sage hover:text-charcoal font-medium transition-colors"
             >
-              Browse recipes while you wait &rarr;
+              Browse recipes {status === "waitlist" ? "while you wait" : "from the blog"} &rarr;
             </Link>
             <Link
               href="/mama-life"
@@ -155,5 +165,114 @@ export default function ShopPage() {
         </section>
       </div>
     </div>
+  );
+}
+
+// Today's page, kept verbatim: what renders whenever Stripe is not configured.
+function Waitlist() {
+  return (
+    <div className="bg-white rounded-2xl shadow-lg p-6">
+      <p className="text-charcoal font-medium mb-3">
+        Be the first to know when it launches:
+      </p>
+      <EmailSignup
+        source="shop-waitlist"
+        buttonText="Join Waitlist"
+        placeholder="Your email"
+        buttonClassName="bg-terracotta text-white hover:bg-terracotta/90"
+        inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
+      />
+      <p className="text-charcoal/80 text-xs mt-3">
+        Join and both my free guides arrive right away: the Postpartum Freezer Prep
+        Guide, so you can start filling the freezer now, and my Sourdough Starter
+        Guide, so your starter is ready before the book is. Printable freezer labels
+        for every recipe will be a preorder-only bonus. Preorders coming soon.
+      </p>
+    </div>
+  );
+}
+
+async function BookOffer({ status }: { status: "preorder" | "launched" }) {
+  const price = await getDisplayPrice("book");
+  const shipEstimate = getShipEstimate();
+  const preorder = status === "preorder";
+
+  return (
+    <div className="bg-white rounded-2xl shadow-lg p-6">
+      <div className="flex items-baseline justify-between gap-4 mb-1">
+        <p className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold">
+          {PRODUCTS.book.name}, hardcover
+        </p>
+        <p className="text-2xl font-bold text-charcoal">{price.formatted}</p>
+      </div>
+      <p className="text-charcoal/80 text-sm mb-4">
+        {preorder && shipEstimate
+          ? `Preorder now. Ships ${shipEstimate}, packed and mailed by Keegan.`
+          : "Packed and mailed by Keegan."}{" "}
+        Shipping is added at checkout.
+      </p>
+
+      {preorder && (
+        <div className="flex gap-3 items-start bg-cream rounded-xl p-4 mb-4">
+          <ThemedIcon icon={Tag} size="md" color="terracotta" />
+          <p className="text-charcoal/80 text-sm">
+            <strong className="text-charcoal">Preorder bonus:</strong> the printable freezer
+            labels for every recipe, free, delivered by email the moment you order. Only with a
+            preorder. After launch they become a separate item.
+          </p>
+        </div>
+      )}
+
+      <BuyButton product="book" label={preorder ? "Preorder the Book" : "Buy the Book"} />
+
+      <ul className="text-charcoal/80 text-xs mt-4 space-y-1.5">
+        <li className="flex gap-2 items-start">
+          <Truck className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
+          Ships to US addresses. Secure checkout by Stripe.
+        </li>
+        {preorder && (
+          <li className="flex gap-2 items-start">
+            <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
+            The labels are a fillable PDF you print at home or at a print shop onto Avery{" "}
+            {LABEL_SHEET.avery} (2&quot; &times; 4&quot;) label sheets. Fill them in on a computer.
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+}
+
+// After launch the labels sell on their own.
+async function LabelsOffer() {
+  const price = await getDisplayPrice("labels");
+  return (
+    <section className="mb-16 max-w-3xl mx-auto">
+      <div className="bg-white rounded-2xl shadow-lg p-6 md:flex gap-6 items-start">
+        <div className="flex-shrink-0 mb-4 md:mb-0">
+          <ThemedIcon icon={Tag} size="lg" color="terracotta" />
+        </div>
+        <div className="flex-1">
+          <div className="flex items-baseline justify-between gap-4 mb-1">
+            <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold">
+              {PRODUCTS.labels.name}
+            </h2>
+            <p className="text-2xl font-bold text-charcoal">{price.formatted}</p>
+          </div>
+          <p className="text-charcoal/80 text-sm mb-4">
+            A fillable PDF with a label for every recipe in the book: pick a recipe from the
+            list or type your own, add the date, print. Two sheets of fillable labels plus one
+            to hand-write, and unlimited reprints, forever.
+          </p>
+          <BuyButton product="labels" label="Buy the Labels" />
+          <ul className="text-charcoal/80 text-xs mt-4 space-y-1.5">
+            <li className="flex gap-2 items-start">
+              <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
+              You will need a printer (or a print shop) and Avery {LABEL_SHEET.avery} (2&quot;
+              &times; 4&quot;, 10 per sheet) label sheets. Fill them in on a computer.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }

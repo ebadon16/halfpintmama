@@ -72,3 +72,19 @@ export function entitlementsFor(
 export function requiresShipping(productIds: readonly ProductId[]): boolean {
   return productIds.some((id) => PRODUCTS[id]?.kind === "physical");
 }
+
+// The shop as pages see it: the two phases, plus "waitlist" when Stripe is not
+// configured and /shop is still the coming-soon page. Pure, so client
+// components can share the copy without pulling Stripe into the bundle.
+export type ShopStatus = "waitlist" | ShopPhase;
+
+export function shopCopy(status: ShopStatus): { badge: string; cta: string } {
+  switch (status) {
+    case "preorder":
+      return { badge: "Preorders Open", cta: "Preorder the Book" };
+    case "launched":
+      return { badge: "Now Available", cta: "Get the Book" };
+    default:
+      return { badge: "Coming Soon", cta: "Join the Waitlist" };
+  }
+}

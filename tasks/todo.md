@@ -51,28 +51,49 @@ At launch the book stops including them and they become a paid standalone item.
 
 ## Build
 
-- [x] `src/lib/shop/catalog.ts` — products, phase config, `SHOP_PHASE` reader
+- [x] `src/lib/shop/catalog.ts` — products, phase config, `SHOP_PHASE` reader, `shopCopy()`
 - [x] `src/lib/shop/entitlement.ts` — HMAC sign/verify for the delivery token
-- [x] `scripts/shop/selftest.mjs` — 27 assertions, `npm run test:shop`
-- [ ] `src/lib/shop/stripe.ts` — lazy Stripe client + `isShopEnabled()`
-- [ ] `src/lib/shop/prices.ts` — live prices from Stripe, cached
-- [ ] `src/lib/shop/labels-pdf.ts` — tile one label to the Avery grid, add the recipe
-      dropdown + date field per slot, stamp the buyer's email
-- [ ] `api/checkout` — same-origin, rate limited, stamps `shop_phase` into metadata
-- [ ] `api/stripe/webhook` — signature-verified, idempotent, grants labels + notifies Keegan
-- [ ] `api/labels/[token]` — serves the generated PDF against a valid token, rate limited
-- [ ] `api/labels/recover` — re-sends the link after a Stripe lookup by email
-- [ ] `/labels/[token]` — delivery page, stamped with the buyer's email, perpetual
-- [ ] `/shop` — phase-aware product cards; waitlist when Stripe is unconfigured
-- [ ] `/shop/success` — differs for digital-only vs physical
-- [ ] `next.config.ts` — bundle the private asset dir into the serverless output
-- [ ] Preorder-open assets: waitlist announcement email (213 shop-waitlist subs are the
-      point of the waitlist) + sitewide copy sweep — "preorders coming soon" lives on
-      /shop, /cookbook-resources, AND /free-guide
-- [ ] Launch-day deploy bundle: `SHOP_PHASE=launched` + un-noindex /shop, sitemap,
-      Book/Product schema, own OG image (the parked Jul SEO flip)
-- [ ] Verify: `npm run lint`, `npm run build`, then a test-mode purchase end to end
-      (incl. refund → labels access revoked, and recovery for both phases' orders)
+- [x] `src/lib/shop/stripe.ts` — lazy Stripe client, `shopConfigProblems()` / `isShopEnabled()`
+      (preorder phase REFUSES to open without `SHOP_SHIP_ESTIMATE`: FTC needs a stated date)
+- [x] `src/lib/shop/orders.ts` — `orderFromSession()` (pure), `getOrder`, `findLabelOrdersByEmail`,
+      `markFulfilled`; refund = full refund only, partial (shipping) does not revoke
+- [x] `src/lib/shop/prices.ts` — live prices from Stripe, 5-min cache
+- [x] `src/lib/shop/labels-pdf.ts` — Avery 5163 grid (⚠ assumed, confirm), editable recipe combo
+      + date + note per label, 2 fillable pages + 1 blank, Crimson Text embedded, buyer email
+      stamped in footer + metadata. Artwork: drop `private/shop/label.png`; placeholder until then
+- [x] `src/lib/shop/email.ts` — Resend: delivery / recovery / owner order notification
+- [x] `src/lib/shop/fulfil.ts` — grant + notify + `fulfilled_at` marker on the PaymentIntent
+- [x] `api/checkout` — same-origin, 10/min, stamps `shop_phase` + `product_ids` + `ship_estimate`
+- [x] `api/stripe/webhook` — signature-verified, re-reads the session, idempotent, 5xx = retry
+- [x] `api/labels/[token]` — PDF against a valid token + live Stripe check, 10/min, no-store
+- [x] `api/labels/recover` — identical reply for any email, lookup runs in `after()`
+- [x] `/labels/[token]` — delivery page; "open on a computer" ABOVE the button + sheet preview
+- [x] `/labels` — lost-your-link form
+- [x] `/shop` — waitlist (unchanged) / preorder / launched; noindex until launched
+- [x] `/shop/success` — verifies the session; links the labels page directly
+- [x] `next.config.ts` — `outputFileTracingIncludes` for `private/shop/**`
+- [x] Copy sweep is PHASE-AWARE, not a one-off: homepage card, /free-guide card,
+      /cookbook-resources labels block all read `getShopStatus()`. Nothing to sweep on flip day.
+- [x] Waitlist announcement email — MailerLite DRAFT `198049723307787316`
+      ("DRAFT: Preorders open"), audience New Subscribers (739), placeholders `[PRICE]` and
+      `[SHIP DATE]` in body AND subject. Source: `scripts/shop/emails/preorder-open.html`.
+- [ ] Launch-day deploy bundle: `SHOP_PHASE=launched` (+ `STRIPE_PRICE_LABELS`) — robots
+      un-noindex is automatic; still TODO: sitemap entry, Book/Product schema, own OG image
+- [x] Verify offline: `npm run lint`, `npm run build`, `npm run test:shop` = 61/61,
+      `next start` smoke (no key → waitlist; checkout 503; webhook 503; recover generic)
+- [ ] Verify with keys: test-mode purchase end to end (incl. refund → labels 410, recovery for
+      both phases' orders, webhook retry does not double-send)
+
+## Go-live runbook (once the Stripe test key lands)
+
+1. Vercel env: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_BOOK`, `SHOP_TOKEN_SECRET` (48 random chars),
+   `SHOP_PHASE=preorder`, `SHOP_SHIP_ESTIMATE="<month year>"`, optional `STRIPE_SHIPPING_RATE`.
+2. Stripe → Developers → Webhooks → add `https://halfpintmama.com/api/stripe/webhook` with
+   `checkout.session.completed` + `checkout.session.async_payment_succeeded`; copy the signing
+   secret into `STRIPE_WEBHOOK_SECRET`. Redeploy (env edits do not touch the live deploy).
+3. Test-mode purchase with card 4242…; confirm delivery email, `/shop/success` link, PDF download,
+   Keegan's order email, then refund in Stripe and confirm the labels page shows the refunded state.
+4. Fill `[PRICE]` + `[SHIP DATE]` in the MailerLite draft, fix the subject, send.
 
 ## Blocked on someone else
 
@@ -108,7 +129,7 @@ At launch the book stops including them and they become a paid standalone item.
 - **Sales tax** on physical goods is unhandled; Stripe Tax is available if wanted.
 - **Print alignment.** Artwork must be die-cut accurate or every label sits off-centre.
 
-## Where this stands (Aug 25 2026)
+## Where this stood (Aug 25 2026)
 
 **Built, tested, committed — but wired to nothing.** `catalog.ts` and
 `entitlement.ts` are pure logic with no Stripe dependency, so they were written
@@ -127,3 +148,11 @@ https://claude.ai/code/artifact/d6dfe849-c9a2-4d41-9be0-545c71a661de
 ## Review
 
 (filled in when the build lands)
+
+## Where this stands (Sep 8 2026)
+
+**Everything in the build list is written, typed, linted, built, and self-tested (61/61).**
+Stripe-facing code is exercised only up to the SDK boundary; a real test-mode purchase is the
+remaining verification and needs the key. With no `STRIPE_SECRET_KEY` the live site is
+unchanged except for two new noindex pages (`/labels`, `/labels/[token]`) and the API routes,
+which all refuse cleanly.

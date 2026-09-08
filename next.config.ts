@@ -20,6 +20,13 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.join(__dirname),
   },
+  // The freezer-labels PDF is built on demand from assets that live outside
+  // the bundle (brand fonts, Keegan's label artwork). Trace them into every
+  // serverless function: the directory is a few hundred KB and keying this on
+  // one route would silently break if the route ever moved.
+  outputFileTracingIncludes: {
+    "/**/*": ["./private/shop/**/*"],
+  },
   async headers() {
     return [
       {

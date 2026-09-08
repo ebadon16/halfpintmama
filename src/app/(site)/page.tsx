@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { ShoppingCart, Heart, BookOpen } from "lucide-react";
 import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { shopCopy } from "@/lib/shop/catalog";
+import { getShopStatus } from "@/lib/shop/status";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
@@ -29,6 +31,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function Home() {
+  const shop = shopCopy(getShopStatus());
   const [latestPost, popularPostsRaw, siteStats] = await Promise.all([
     getLatestPost(),
     getPopularPosts(5),
@@ -253,11 +256,11 @@ export default async function Home() {
               </Link>
             </div>
 
-            {/* Cookbook Coming Soon */}
+            {/* Cookbook card. Badge and button follow the shop's status. */}
             <div className="bg-white p-6 rounded-2xl shadow-md mb-6 border-2 border-terracotta/20">
               <div className="flex items-center gap-2 mb-2">
                 <BookOpen className="w-5 h-5 text-terracotta" />
-                <p className="text-terracotta text-xs font-semibold uppercase tracking-wide">Coming Soon</p>
+                <p className="text-terracotta text-xs font-semibold uppercase tracking-wide">{shop.badge}</p>
               </div>
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
                 Rest and Rise
@@ -269,7 +272,7 @@ export default async function Home() {
                 href="/shop"
                 className="inline-block px-4 py-2 gradient-cta text-white text-sm font-semibold rounded-full hover:shadow-md transition-all"
               >
-                Join the Waitlist
+                {shop.cta}
               </Link>
             </div>
 

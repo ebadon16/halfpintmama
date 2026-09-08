@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { PartyPopper, Wheat, Check, Calendar, Wrench, BookOpen } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { shopCopy, type ShopStatus } from "@/lib/shop/catalog";
 
 function SignupForm({ source }: { source: string }) {
   const [email, setEmail] = useState("");
@@ -117,9 +118,11 @@ function SignupForm({ source }: { source: string }) {
 
 interface FreeGuideContentProps {
   cookingPosts: number;
+  shopStatus: ShopStatus;
 }
 
-export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
+export function FreeGuideContent({ cookingPosts, shopStatus }: FreeGuideContentProps) {
+  const shop = shopCopy(shopStatus);
   return (
     <>
       {/* Hero Section */}
@@ -277,7 +280,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
       <section className="py-12 bg-deep-sage/5">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-4">
-            Coming Soon
+            {shop.badge}
           </h3>
           <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-md">
             <div className="flex justify-center mb-3"><ThemedIcon icon={BookOpen} size="lg" color="deep-sage" /></div>
@@ -291,7 +294,7 @@ export function FreeGuideContent({ cookingPosts }: FreeGuideContentProps) {
               href="/shop"
               className="inline-block px-5 py-2.5 border-2 border-deep-sage text-deep-sage text-sm font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all"
             >
-              Join the Waitlist
+              {shop.cta}
             </Link>
           </div>
         </div>

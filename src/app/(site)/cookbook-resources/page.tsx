@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Tag, BookOpen } from "lucide-react";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { getShopStatus } from "@/lib/shop/status";
 
 export const metadata = {
   title: "Cookbook Resources | Half Pint Mama",
@@ -26,7 +27,43 @@ export const metadata = {
   },
 };
 
+const LABELS_COPY = {
+  waitlist: {
+    text: (
+      <>
+        The label sheets are designed for the exact recipes in the book. Preorders are coming
+        soon: the labels come free as a preorder-only bonus with <em>Rest and Rise</em>, then
+        join the shop as their own item after launch. Join the waitlist to hear when
+        preorders open.
+      </>
+    ),
+    cta: "Go to the Shop",
+  },
+  preorder: {
+    text: (
+      <>
+        The label sheets are designed for the exact recipes in the book, and they are a
+        preorder-only bonus: preorder <em>Rest and Rise</em> and the printable labels are
+        yours free, delivered by email right after checkout. After launch they join the shop
+        as their own item.
+      </>
+    ),
+    cta: "Preorder the Book",
+  },
+  launched: {
+    text: (
+      <>
+        The label sheets are designed for the exact recipes in the book. They are a fillable
+        PDF you print yourself onto standard 2&quot; &times; 4&quot; label sheets, and they are
+        available in the shop as their own item.
+      </>
+    ),
+    cta: "Get the Labels",
+  },
+} as const;
+
 export default function CookbookResourcesPage() {
+  const labels = LABELS_COPY[getShopStatus()];
   return (
     <div className="bg-cream min-h-screen">
       {/* Hero */}
@@ -52,17 +89,12 @@ export default function CookbookResourcesPage() {
             </h2>
           </div>
           <div className="bg-cream rounded-2xl p-8 shadow-md text-center">
-            <p className="text-charcoal/80 mb-4">
-              The label sheets are designed for the exact recipes in the book. Preorders are coming
-              soon: the labels come free as a preorder-only bonus with <em>Rest and Rise</em>, then
-              join the shop as their own item after launch. Join the waitlist to hear when
-              preorders open.
-            </p>
+            <p className="text-charcoal/80 mb-4">{labels.text}</p>
             <Link
               href="/shop"
               className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
             >
-              Go to the Shop
+              {labels.cta}
             </Link>
           </div>
         </div>

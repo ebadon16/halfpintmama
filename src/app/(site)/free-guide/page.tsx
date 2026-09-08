@@ -1,5 +1,6 @@
 import { getSiteStats } from "@/lib/posts";
 import { FreeGuideContent } from "./FreeGuideContent";
+import { getShopStatus } from "@/lib/shop/status";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 
 export const metadata = {
@@ -28,7 +29,7 @@ export default async function FreeGuidePage() {
 
   return (
     <div className="bg-cream min-h-screen">
-      <FreeGuideContent cookingPosts={stats.cookingPosts} />
+      <FreeGuideContent cookingPosts={stats.cookingPosts} shopStatus={getShopStatus()} />
     </div>
   );
 }
