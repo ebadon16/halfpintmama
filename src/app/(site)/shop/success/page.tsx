@@ -53,7 +53,10 @@ export default async function ShopSuccessPage({
   }
 
   const hasBook = order.productIds.includes("book");
-  const labelsLink = orderEntitlements(order).includes("labels") ? deliveryLinkFor(order, "") : null;
+  // A refunded order (rare on the success page, but a bookmark can bring
+  // someone back) gets no labels link; the delivery page would refuse it anyway.
+  const labelsLink =
+    !order.refunded && orderEntitlements(order).includes("labels") ? deliveryLinkFor(order, "") : null;
   const ship = order.shipping;
   const shipTo = ship ? [ship.city, ship.state].filter(Boolean).join(", ") : null;
 

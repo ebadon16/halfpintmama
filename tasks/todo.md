@@ -81,10 +81,17 @@ At launch the book stops including them and they become a paid standalone item.
       un-noindex is automatic; still TODO: sitemap entry, Book/Product schema, own OG image
 - [x] Verify offline: `npm run lint`, `npm run build`, `npm run test:shop` = 61/61,
       `next start` smoke (no key → waitlist; checkout 503; webhook 503; recover generic)
-- [ ] Verify with keys: test-mode purchase end to end (incl. refund → labels 410, recovery for
-      both phases' orders, webhook retry does not double-send)
+- [x] Verify with keys (Sep 8 2026, HalfPintMama sandbox `acct_1UDXYVPX2TePaQIt`): real Checkout
+      purchase via Playwright → webhook 200 + `fulfilled_at` marker → delivery + owner emails
+      delivered via Resend → `/shop/success` links labels → `/labels/[token]` 200 → PDF 200
+      (182 KB) → tampered token 404 → event replay sends nothing → recovery sends for a known
+      email (mixed case), identical reply for unknown → refund → API 410, page "no longer
+      available", recovery silent. Launched-phase order path is covered by the self-test only.
 
-## Go-live runbook (once the Stripe test key lands)
+## Go-live runbook
+
+Stripe objects EXIST in the sandbox (`npm run shop:setup` created them; values are in
+`.env.local`). The same command with the LIVE key creates the live set and prints the env block.
 
 1. Vercel env: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_BOOK`, `SHOP_TOKEN_SECRET` (48 random chars),
    `SHOP_PHASE=preorder`, `SHOP_SHIP_ESTIMATE="<month year>"`, optional `STRIPE_SHIPPING_RATE`.
