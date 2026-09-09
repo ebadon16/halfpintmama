@@ -20,6 +20,8 @@ export const META_FULFILLED_AT = "fulfilled_at";
 // filters match the address exactly as typed, so "lost your link" searches
 // this normalised copy instead.
 export const META_BUYER_EMAIL = "buyer_email";
+// Set on the PaymentIntent when Keegan sends the "it's on its way" email.
+export const META_SHIPPED_AT = "shipped_at";
 
 export interface ShippingAddress {
   name: string | null;
@@ -37,6 +39,8 @@ export interface Order {
   // The phase the order was PLACED in, from metadata. Never the current phase.
   phase: ShopPhase;
   productIds: ProductId[];
+  // How many of the (single) line item; books can be bought up to 5 at a time.
+  quantity: number;
   shipEstimate: string | null;
   paid: boolean;
   // Stripe's session status: "complete", "open", or "expired".
@@ -47,6 +51,7 @@ export interface Order {
   shipping: ShippingAddress | null;
   paymentIntentId: string | null;
   fulfilledAt: string | null;
+  shippedAt: string | null;
 }
 
 export function orderEntitlements(order: Order): Entitlement[] {
@@ -92,11 +97,14 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
       }
     : null;
 
+  const quantity = session.line_items?.data?.[0]?.quantity ?? 1;
+
   return {
     sessionId: session.id,
     email: session.customer_details?.email?.trim().toLowerCase() ?? null,
     phase,
     productIds,
+    quantity: quantity > 0 ? quantity : 1,
     shipEstimate: meta[META_SHIP_ESTIMATE]?.trim() || null,
     // A 100%-off promotion code completes the session with no payment at all;
     // the buyer is still owed their goods.
@@ -108,10 +116,11 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
     shipping,
     paymentIntentId,
     fulfilledAt: pi?.metadata?.[META_FULFILLED_AT] ?? meta[META_FULFILLED_AT] ?? null,
+    shippedAt: pi?.metadata?.[META_SHIPPED_AT] ?? meta[META_SHIPPED_AT] ?? null,
   };
 }
 
-const EXPAND = ["payment_intent.latest_charge"];
+const EXPAND = ["payment_intent.latest_charge", "line_items"];
 
 export async function getOrder(sessionId: string): Promise<Order | null> {
   try {
@@ -123,6 +132,28 @@ export async function getOrder(sessionId: string): Promise<Order | null> {
     if ((err as { statusCode?: number })?.statusCode === 404) return null;
     throw err;
   }
+}
+
+// Every paid book order that has not been marked shipped. Drives the
+// "it's on its way" email Keegan sends once the print run lands. Found
+// through the product_ids stamped at checkout, so zero-total book orders
+// (no PaymentIntent) are the one case this misses; they are listed separately.
+export async function findUnshippedBookOrders(): Promise<Order[]> {
+  const stripe = getStripe();
+  const orders: Order[] = [];
+  for await (const pi of stripe.paymentIntents.search({
+    // In Stripe's search syntax `:null` means "not set".
+    query: `metadata["${META_PRODUCTS}"]:"book" AND metadata["${META_SHIPPED_AT}"]:null`,
+    limit: 100,
+  })) {
+    if (pi.metadata?.[META_SHIPPED_AT]) continue;
+    const sessions = await stripe.checkout.sessions.list({ payment_intent: pi.id, limit: 1, expand: EXPAND.map((e) => `data.${e}`) });
+    const session = sessions.data[0];
+    if (!session) continue;
+    const order = orderFromSession(session);
+    if (order.paid && !order.refunded && order.productIds.includes("book") && !order.shippedAt) orders.push(order);
+  }
+  return orders;
 }
 
 // Every paid, unrefunded order for this email that carries the labels
@@ -175,9 +206,17 @@ export async function findLabelOrdersByEmail(email: string): Promise<Order[]> {
   return orders;
 }
 
+export async function markShipped(order: Order, when = new Date()): Promise<void> {
+  await writeMarker(order, { [META_SHIPPED_AT]: when.toISOString() });
+}
+
 export async function markFulfilled(order: Order, when = new Date()): Promise<void> {
   const metadata: Record<string, string> = { [META_FULFILLED_AT]: when.toISOString() };
   if (order.email) metadata[META_BUYER_EMAIL] = order.email;
+  await writeMarker(order, metadata);
+}
+
+async function writeMarker(order: Order, metadata: Record<string, string>): Promise<void> {
   if (order.paymentIntentId) {
     await getStripe().paymentIntents.update(order.paymentIntentId, { metadata });
   } else {

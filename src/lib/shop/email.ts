@@ -123,7 +123,8 @@ function shell(heading: string, body: string): string {
 const SIGN_OFF_TEXT = "\nWith love,\nKeegan\nhalfpintmama.com | @halfpint.mama\n";
 
 function orderLines(order: Order): { items: string; total: string; shipTo: string[] } {
-  const items = order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "your order";
+  const qty = order.quantity > 1 ? ` \u00d7 ${order.quantity}` : "";
+  const items = (order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "your order") + qty;
   const total = order.amountTotal != null && order.currency ? formatMoney(order.amountTotal, order.currency) : "";
   const ship = order.shipping;
   const shipTo = ship
@@ -205,6 +206,30 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
   return { subject, html, text };
 }
 
+// "It's on its way": sent by Keegan (scripts/shop/notify-shipped.mjs) once a
+// book order is in the mail. Keeps the promise the confirmation makes.
+export function renderShippedNotice(order: Order): RenderedEmail {
+  const { items, shipTo } = orderLines(order);
+  const copies = order.quantity > 1 ? `your ${order.quantity} copies of <em>Rest and Rise</em> are` : `your copy of <em>Rest and Rise</em> is`;
+  const copiesText = order.quantity > 1 ? `your ${order.quantity} copies of Rest and Rise are` : `your copy of Rest and Rise is`;
+  const html = shell(
+    "It is on its way!",
+    p("Hi friend,") +
+      p(`Good news: ${copies} in the mail. I packed it myself this morning.`) +
+      (shipTo.length ? panel(`<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};"><strong>${escapeHtml(items)}</strong><br />Heading to ${shipTo.map(escapeHtml).join(", ")}</p>`) : "") +
+      p("While you wait, the freezer prep checklist is the best place to start: <a href=\"" + SITE_URL + "/checklist\" style=\"color: " + T.link + ";\">halfpintmama.com/checklist</a>. Week 30 is setup week, so there is no rush.") +
+      p("Thank you for being one of the first. I hope it earns a spot on your counter.") +
+      `<p style="${SMALL}">Questions about delivery? Just reply to this email.</p>`
+  );
+  const text =
+    `Hi friend,\n\nGood news: ${copiesText} in the mail. I packed it myself this morning.\n\n` +
+    `${items}\n` + (shipTo.length ? `Heading to ${shipTo.join(", ")}\n` : "") +
+    `\nWhile you wait, the freezer prep checklist is the best place to start: ${SITE_URL}/checklist\n\n` +
+    `Thank you for being one of the first. I hope it earns a spot on your counter.\n\nQuestions about delivery? Just reply to this email.\n` +
+    SIGN_OFF_TEXT;
+  return { subject: "Your Rest and Rise is on its way", html, text };
+}
+
 // "Lost your link": the same link again, nothing else.
 export function renderLabelsRecovery(deliveryUrl: string): RenderedEmail {
   const url = escapeHtml(deliveryUrl);
@@ -262,6 +287,10 @@ export async function sendOrderConfirmation(order: Order, to: string, labelsUrl:
 
 export async function sendLabelsDelivery({ to, deliveryUrl }: { to: string; deliveryUrl: string }): Promise<void> {
   await send(to, renderLabelsRecovery(deliveryUrl));
+}
+
+export async function sendShippedNotice(order: Order, to: string): Promise<void> {
+  await send(to, renderShippedNotice(order));
 }
 
 export async function sendOrderNotification(order: Order, labelsSentTo: string | null): Promise<void> {

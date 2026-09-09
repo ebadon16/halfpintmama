@@ -283,7 +283,17 @@ function shipsTo(): string {
   return countries.length <= 1 ? `${countries[0] ?? "US"} addresses` : `${countries.slice(0, -1).join(", ")} and ${countries.at(-1)} addresses`;
 }
 
-const SHIPPING_LINE = process.env.STRIPE_SHIPPING_RATE ? "Shipping is added at checkout." : "Free shipping.";
+function shippingLine(): string {
+  return process.env.STRIPE_SHIPPING_RATE ? "Shipping is added at checkout." : "Free shipping.";
+}
+
+// After launch the book is also on Amazon. Direct sales net several times
+// more per copy, so the shop's own button leads and Amazon is a quiet
+// alternative for people who only buy there. Unset = no link.
+function amazonUrl(status: "preorder" | "launched"): string | null {
+  const url = process.env.SHOP_AMAZON_URL?.trim();
+  return status === "launched" && url && /^https:\/\/(www\.)?amazon\./.test(url) ? url : null;
+}
 
 function BookOffer({ status, price }: { status: "preorder" | "launched"; price: DisplayPrice | null }) {
   const shipEstimate = getShipEstimate();
@@ -301,7 +311,7 @@ function BookOffer({ status, price }: { status: "preorder" | "launched"; price: 
         {preorder && shipEstimate
           ? `Preorder now. Ships ${shipEstimate}, packed and mailed by Keegan.`
           : "Packed and mailed by Keegan."}{" "}
-        {SHIPPING_LINE}
+        {shippingLine()}
       </p>
 
       {preorder && (
@@ -316,6 +326,20 @@ function BookOffer({ status, price }: { status: "preorder" | "launched"; price: 
       )}
 
       <BuyButton product="book" label={preorder ? "Preorder the Book" : "Buy the Book"} />
+      {amazonUrl(status) && (
+        <p className="text-center text-xs text-charcoal/80 mt-3">
+          Prefer Amazon?{" "}
+          <a
+            href={amazonUrl(status)!}
+            target="_blank"
+            rel="sponsored nofollow noopener noreferrer"
+            className="text-terracotta hover:text-deep-sage font-medium transition-colors"
+          >
+            Find it there
+          </a>
+          .
+        </p>
+      )}
 
       <ul className="text-charcoal/80 text-xs mt-4 space-y-1.5">
         <li className="flex gap-2 items-start">

@@ -19,6 +19,7 @@ const { orderFromSession, orderEntitlements } = await import(`${lib}/orders.ts`)
 const { shopConfigProblems } = await import(`${lib}/stripe.ts`);
 const { buildLabelsPdf, LABEL_SHEET, FILLABLE_PAGES, BLANK_PAGES } = await import(`${lib}/labels-pdf.ts`);
 const { BOOK_RECIPES } = await import(`${lib}/recipes.ts`);
+const { renderOrderConfirmation, renderShippedNotice, renderLabelsRecovery, renderOrderNotification } = await import(`${lib}/email.ts`);
 const { PDFDocument } = await import("pdf-lib");
 
 let pass = 0;
@@ -125,6 +126,25 @@ const freeMarked = orderFromSession(session({ payment_status: "no_payment_requir
 check("fulfilment marker read from the session when there is no PI", freeMarked.fulfilledAt === "2026-09-09T00:00:00Z");
 const expired = orderFromSession(session({ status: "expired", payment_status: "unpaid" }));
 check("session status surfaces", expired.status === "expired");
+check("quantity defaults to 1 without line items", o.quantity === 1);
+const two = orderFromSession(session({ line_items: { data: [{ quantity: 2 }] } }));
+check("quantity read from the line item", two.quantity === 2);
+check("shipped marker absent by default", o.shippedAt === null);
+
+console.log("\n-- emails (rendered, never sent) --");
+const hostile = orderFromSession(session({ collected_information: { shipping_details: { name: "<script>alert(1)</script>", address: { line1: "1 Main", city: "Austin", state: "TX", postal_code: "78701", country: "US" } } }, metadata: { shop_phase: "preorder", product_ids: "book", ship_estimate: "<b>Nov</b> 2026" } }));
+const conf = renderOrderConfirmation(hostile, "https://halfpintmama.com/shop/labels/abc.def");
+check("confirmation escapes the shipping name", !conf.html.includes("<script>") && conf.html.includes("&lt;script&gt;"));
+check("confirmation escapes the ship estimate", !conf.html.includes("<b>Nov</b>"));
+check("confirmation carries the labels link", conf.html.includes("/shop/labels/abc.def") && conf.text.includes("/shop/labels/abc.def"));
+check("preorder confirmation says preorder", /preorder/i.test(conf.subject));
+const launchedBookConf = renderOrderConfirmation(orderFromSession(session({ metadata: { shop_phase: "launched", product_ids: "book" } })), null);
+check("launched book confirmation has no labels section", !launchedBookConf.html.includes("Open my labels") && !/preorder/i.test(launchedBookConf.subject));
+check("quantity shows in the order line", renderOrderConfirmation(two, null).html.includes("Rest and Rise \u00d7 2"));
+check("shipped notice pluralises", /2 copies/.test(renderShippedNotice(two).html) && /your copy/.test(renderShippedNotice(o).html));
+check("recovery email is just the link", renderLabelsRecovery("https://halfpintmama.com/shop/labels/x.y").html.includes("/shop/labels/x.y"));
+check("owner notification carries the address", renderOrderNotification(o, "jane@example.com").html.includes("Austin"));
+check("every email carries the logo and sign-off", [conf, renderShippedNotice(o), renderLabelsRecovery("https://x/y"), renderOrderNotification(o, null)].every((m) => m.html.includes("email-logo.png") && m.html.includes("With love,")));
 
 console.log("\n-- shop config gate --");
 const env = { ...process.env };

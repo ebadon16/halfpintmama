@@ -62,7 +62,14 @@ export async function POST(request: Request) {
 
     const session = await getStripe().checkout.sessions.create({
       mode: "payment",
-      line_items: [{ price: getPriceId(product), quantity: 1 }],
+      line_items: [
+        {
+          price: getPriceId(product),
+          quantity: 1,
+          // A gift-giver often wants two. Digital labels stay at one.
+          ...(physical ? { adjustable_quantity: { enabled: true, minimum: 1, maximum: 5 } } : {}),
+        },
+      ],
       success_url: `${origin}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop`,
       metadata,
