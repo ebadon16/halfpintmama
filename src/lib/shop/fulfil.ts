@@ -7,7 +7,7 @@ import { sendLabelsDelivery, sendOrderNotification } from "./email";
 import { markFulfilled, orderEntitlements, type Order } from "./orders";
 
 export function deliveryPath(token: string): string {
-  return `/labels/${token}`;
+  return `/shop/labels/${token}`;
 }
 
 // The buyer's perpetual labels link, or null when the order carries none.

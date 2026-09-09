@@ -123,7 +123,7 @@ export default async function LabelsDeliveryPage({ params }: { params: Promise<{
 
             <p className="text-charcoal/80 text-xs mt-8">
               Your email is printed in the footer of every page. Lost this link?{" "}
-              <Link href="/labels" className="text-terracotta hover:text-deep-sage font-medium">
+              <Link href="/shop/labels" className="text-terracotta hover:text-deep-sage font-medium">
                 Get a fresh one
               </Link>
               .

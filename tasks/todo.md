@@ -67,8 +67,8 @@ At launch the book stops including them and they become a paid standalone item.
 - [x] `api/stripe/webhook` — signature-verified, re-reads the session, idempotent, 5xx = retry
 - [x] `api/labels/[token]` — PDF against a valid token + live Stripe check, 10/min, no-store
 - [x] `api/labels/recover` — identical reply for any email, lookup runs in `after()`
-- [x] `/labels/[token]` — delivery page; "open on a computer" ABOVE the button + sheet preview
-- [x] `/labels` — lost-your-link form
+- [x] `/shop/labels/[token]` — delivery page; "open on a computer" ABOVE the button + sheet preview
+- [x] `/shop/labels` — lost-your-link form
 - [x] `/shop` — waitlist (unchanged) / preorder / launched; noindex until launched
 - [x] `/shop/success` — verifies the session; links the labels page directly
 - [x] `next.config.ts` — `outputFileTracingIncludes` for `private/shop/**`
@@ -83,7 +83,7 @@ At launch the book stops including them and they become a paid standalone item.
       `next start` smoke (no key → waitlist; checkout 503; webhook 503; recover generic)
 - [x] Verify with keys (Sep 8 2026, HalfPintMama sandbox `acct_1UDXYVPX2TePaQIt`): real Checkout
       purchase via Playwright → webhook 200 + `fulfilled_at` marker → delivery + owner emails
-      delivered via Resend → `/shop/success` links labels → `/labels/[token]` 200 → PDF 200
+      delivered via Resend → `/shop/success` links labels → `/shop/labels/[token]` 200 → PDF 200
       (182 KB) → tampered token 404 → event replay sends nothing → recovery sends for a known
       email (mixed case), identical reply for unknown → refund → API 410, page "no longer
       available", recovery silent. Launched-phase order path is covered by the self-test only.
@@ -161,5 +161,5 @@ https://claude.ai/code/artifact/d6dfe849-c9a2-4d41-9be0-545c71a661de
 **Everything in the build list is written, typed, linted, built, and self-tested (61/61).**
 Stripe-facing code is exercised only up to the SDK boundary; a real test-mode purchase is the
 remaining verification and needs the key. With no `STRIPE_SECRET_KEY` the live site is
-unchanged except for two new noindex pages (`/labels`, `/labels/[token]`) and the API routes,
+unchanged except for two new noindex pages (`/shop/labels`, `/shop/labels/[token]`) and the API routes,
 which all refuse cleanly.

@@ -78,7 +78,7 @@ export async function sendLabelsDelivery({ to, deliveryUrl, reason, shipEstimate
      ${button(url, "Open my labels")}
      <p style="margin: 0 0 12px;"><strong>Open this on a computer to fill in the recipes and dates.</strong> Phones will show the sheet but cannot fill in the boxes.</p>
      <p style="margin: 0 0 12px;">This link is yours to keep. Print as many sheets as you like, whenever you like. The PDF is made for you and carries your email in the footer.</p>
-     <p style="margin: 0; color: ${EMAIL.muted}; font-size: 14px;">Lost this email later? Get a fresh link any time at <a href="${SITE_URL}/labels" style="color: ${EMAIL.link};">${SITE_URL.replace("https://", "")}/labels</a>. Questions? Just reply to this email.</p>`
+     <p style="margin: 0; color: ${EMAIL.muted}; font-size: 14px;">Lost this email later? Get a fresh link any time at <a href="${SITE_URL}/shop/labels" style="color: ${EMAIL.link};">${SITE_URL.replace("https://", "")}/shop/labels</a>. Questions? Just reply to this email.</p>`
   );
 
   const text =
@@ -86,7 +86,7 @@ export async function sendLabelsDelivery({ to, deliveryUrl, reason, shipEstimate
     `Open my labels: ${deliveryUrl}\n\n` +
     `Open this on a computer to fill in the recipes and dates. Phones will show the sheet but cannot fill in the boxes.\n\n` +
     `This link is yours to keep. Print as many sheets as you like. The PDF carries your email in the footer.\n\n` +
-    `Lost this email later? Get a fresh link at ${SITE_URL}/labels\n`;
+    `Lost this email later? Get a fresh link at ${SITE_URL}/shop/labels\n`;
 
   const { error } = await resend().emails.send({ from: FROM, to, replyTo: REPLY_TO, subject, html, text });
   if (error) throw new Error(`Resend: ${error.message}`);
