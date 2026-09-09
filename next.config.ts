@@ -1,9 +1,13 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
+// React and the dev bundler need eval() for source maps and error overlays in
+// development only. Production keeps the strict policy.
+const devEval = process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : "";
+
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com https://www.googletagmanager.com",
+  `script-src 'self' 'unsafe-inline'${devEval} https://va.vercel-scripts.com https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https://fonts.gstatic.com",

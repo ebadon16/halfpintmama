@@ -97,6 +97,9 @@ function shell(heading: string, body: string): string {
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
           <tr>
             <td style="padding: 0 8px;">
+              <p style="margin: 0 0 24px; text-align: center;">
+                <a href="${SITE_URL}" style="text-decoration: none;"><img src="${SITE_URL}/images/email-logo.png" width="96" height="96" alt="Half Pint Mama" style="display: inline-block; width: 96px; height: 96px; border: 0;" /></a>
+              </p>
               <h1 style="margin: 0 0 20px; font-family: ${T.font}; font-size: 30px; font-weight: 600; line-height: 130%; color: ${T.heading};">${heading}</h1>
               ${body}
               ${p("With love,")}
