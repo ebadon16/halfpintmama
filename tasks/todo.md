@@ -186,3 +186,13 @@ desktop + mobile.
 Dev-server gotchas: Turbopack dev panicked repeatedly here, use `next dev --webpack`; dev CSP now
 allows eval; a dev server started inside a tool call dies with it, launch detached
 (`scratchpad/launch_dev.mjs` pattern: child_process.spawn detached + unref).
+
+## Sep 9, later: quantity, shipped notice, Amazon
+- Book quantity 1-5 at checkout; emails show "Rest and Rise x N".
+- Shipped notice: `node --env-file=.env.local node_modules/.bin/tsx scripts/shop/notify-shipped.mjs`
+  (dry run) then `--send`. Marks `shipped_at` on the PaymentIntent. Verified once in the sandbox.
+- `SHOP_AMAZON_URL` (optional, launched phase only) adds "Prefer Amazon? Find it there." Direct
+  sales lead: they net several times what a KDP sale does, and KDP cannot preorder print books.
+- Decisions still open for Keegan/Erick: Stripe's own receipt emails (recommend OFF, ours covers
+  it); ship date must include KDP author-copy lead time; sales tax; book p.23/p.172 copy; terms
+  refund wording.
