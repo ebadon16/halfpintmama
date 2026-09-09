@@ -41,12 +41,30 @@ export default async function ShopSuccessPage({
   }
 
   if (!order.paid) {
+    const expired = order.status === "expired";
     return (
-      <Shell title="Your payment is processing">
+      <Shell title={expired ? "That checkout expired" : "Your payment is processing"}>
         <p className="text-charcoal/80 text-lg mb-6">
-          Some payment methods take a little while to clear. As soon as it does, your
-          confirmation (and your labels link, if your order includes them) will arrive by email
-          at <span className="font-medium text-charcoal">{order.email}</span>.
+          {expired ? (
+            <>
+              No payment was taken. Head back to the{" "}
+              <Link href="/shop" className="text-terracotta hover:text-deep-sage font-medium">
+                shop
+              </Link>{" "}
+              to try again.
+            </>
+          ) : (
+            <>
+              Some payment methods take a little while to clear. As soon as it does, your
+              confirmation (and your labels link, if your order includes them) will arrive by email
+              at <span className="font-medium text-charcoal">{order.email}</span>. If nothing arrives
+              within three days, the payment did not go through:{" "}
+              <Link href="/contact" className="text-terracotta hover:text-deep-sage font-medium">
+                contact Keegan
+              </Link>{" "}
+              and she will check.
+            </>
+          )}
         </p>
       </Shell>
     );
@@ -70,8 +88,8 @@ export default async function ShopSuccessPage({
             <p className="text-charcoal/80 text-sm">
               Keegan will pack your copy herself
               {shipTo ? ` and ship it to ${shipTo}` : ""}.
-              {order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""} A receipt is on its
-              way to {order.email}.
+              {order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""} A confirmation is on
+              its way to {order.email}.
             </p>
           </div>
         </div>

@@ -4,13 +4,14 @@ import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { EmailSignup } from "@/components/EmailSignup";
 import { BuyButton } from "@/components/shop/BuyButton";
-import { BookOpen, CalendarCheck, HeartPulse, Croissant, Tag, Printer, Truck } from "lucide-react";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { BookOpen, CalendarCheck, HeartPulse, Croissant, Tag, Printer, Truck, ClipboardCheck } from "lucide-react";
+import { AUTHOR_REF, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, SITE_URL, jsonLdHtml } from "@/lib/seo";
 import { PRODUCTS, shopCopy, type ShopStatus } from "@/lib/shop/catalog";
 import { LABEL_SHEET } from "@/lib/shop/labels-pdf";
-import { getDisplayPrice } from "@/lib/shop/prices";
+import { getDisplayPrice, type DisplayPrice } from "@/lib/shop/prices";
 import { getShopStatus } from "@/lib/shop/status";
-import { getShipEstimate } from "@/lib/shop/stripe";
+import { CHECKLIST_PDF } from "@/lib/shop/checklist";
+import { getShipCountries, getShipEstimate } from "@/lib/shop/stripe";
 
 // Prices are read live from Stripe; re-render at most every five minutes so a
 // reprice shows up without a deploy but the page stays cached.
@@ -32,9 +33,9 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Shop | Half Pint Mama",
     description,
     alternates: { canonical: "https://halfpintmama.com/shop" },
-    // Stays out of the index until launch day, when the sitemap and Book
-    // schema ship with it.
-    robots: { index: status === "launched", follow: true },
+    // Indexable the moment the shop can take an order; the sitemap and the
+    // Book schema below flip with the same status.
+    robots: { index: status !== "waitlist", follow: true },
     openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
       title: "Shop | Half Pint Mama",
@@ -78,12 +79,50 @@ const whatsInside = [
   },
 ];
 
+const BOOK_TITLE = "Rest and Rise: Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery";
+
+// Book + Offer structured data, only when there is a real offer to describe.
+function bookJsonLd(status: "preorder" | "launched", price: DisplayPrice) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "@id": `${SITE_URL}/shop#book`,
+    name: BOOK_TITLE,
+    author: AUTHOR_REF,
+    bookFormat: "https://schema.org/Hardcover",
+    image: `${SITE_URL}/images/rest-and-rise-cover.jpg`,
+    url: `${SITE_URL}/shop`,
+    description: DESCRIPTION[status],
+    offers: {
+      "@type": "Offer",
+      url: `${SITE_URL}/shop`,
+      price: (price.amount / 100).toFixed(2),
+      priceCurrency: price.currency.toUpperCase(),
+      availability: status === "preorder" ? "https://schema.org/PreOrder" : "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      seller: { "@type": "Organization", name: "Half Pint Mama", url: SITE_URL },
+    },
+  };
+}
+
 export default async function ShopPage() {
   const status = getShopStatus();
   const { badge } = shopCopy(status);
+  // A Stripe blip must not take the storefront down: the offer renders without
+  // a price line and Checkout still charges the real Price.
+  const bookPrice = status === "waitlist" ? null : await getDisplayPrice("book").catch((err) => {
+    console.error("Shop: could not read the book price", err);
+    return null;
+  });
 
   return (
     <div className="bg-cream">
+      {status !== "waitlist" && bookPrice && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLdHtml(bookJsonLd(status, bookPrice)) }}
+        />
+      )}
       <div className="max-w-6xl mx-auto px-4 py-12">
         <section className="mb-16">
           <div className="md:flex items-center gap-10 max-w-5xl mx-auto">
@@ -115,7 +154,7 @@ export default async function ShopPage() {
                 itself. <em>Rest and Rise</em> pairs 35 make-ahead, freezer-friendly recipes with
                 honest, nurse-informed guidance for the fourth trimester.
               </p>
-              {status === "waitlist" ? <Waitlist /> : <BookOffer status={status} />}
+              {status === "waitlist" ? <Waitlist /> : <BookOffer status={status} price={bookPrice} />}
             </div>
           </div>
         </section>
@@ -136,6 +175,52 @@ export default async function ShopPage() {
                 <p className="text-charcoal/80 text-sm">{item.description}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Everything that goes with the book. The checklist is free in every
+            phase; the labels card explains how to get them in this one. */}
+        <section className="mb-16 max-w-5xl mx-auto">
+          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 text-center">
+            Goes With the Book
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-white rounded-2xl p-6 shadow-md flex gap-4 items-start">
+              <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />
+              <div>
+                <h3 className="font-semibold text-charcoal mb-1">The Freezer Prep Checklist</h3>
+                <p className="text-charcoal/80 text-sm mb-3">
+                  The Chapter 11 plan on one page: thirteen sessions across weeks 30 to 36, plus a
+                  freezer inventory sheet. Free, no signup.
+                </p>
+                <a
+                  href={CHECKLIST_PDF}
+                  download="rest-and-rise-freezer-prep-checklist.pdf"
+                  className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
+                >
+                  Download the checklist (PDF) &rarr;
+                </a>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl p-6 shadow-md flex gap-4 items-start">
+              <ThemedIcon icon={Tag} size="lg" color="terracotta" />
+              <div>
+                <h3 className="font-semibold text-charcoal mb-1">Printable Freezer Labels</h3>
+                <p className="text-charcoal/80 text-sm mb-3">
+                  {status === "launched"
+                    ? "A fillable PDF with a label for every recipe, sold above as its own item."
+                    : status === "preorder"
+                      ? "A fillable PDF with a label for every recipe. Free with every preorder, delivered by email the moment you order."
+                      : "A fillable PDF with a label for every recipe. Coming as a preorder-only bonus with the book."}
+                </p>
+                <Link
+                  href="/cookbook-resources"
+                  className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
+                >
+                  About the labels &rarr;
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -192,8 +277,15 @@ function Waitlist() {
   );
 }
 
-async function BookOffer({ status }: { status: "preorder" | "launched" }) {
-  const price = await getDisplayPrice("book");
+function shipsTo(): string {
+  const names = new Intl.DisplayNames(["en"], { type: "region" });
+  const countries = getShipCountries().map((c) => (c === "US" ? "US" : names.of(c) ?? c));
+  return countries.length <= 1 ? `${countries[0] ?? "US"} addresses` : `${countries.slice(0, -1).join(", ")} and ${countries.at(-1)} addresses`;
+}
+
+const SHIPPING_LINE = process.env.STRIPE_SHIPPING_RATE ? "Shipping is added at checkout." : "Free shipping.";
+
+function BookOffer({ status, price }: { status: "preorder" | "launched"; price: DisplayPrice | null }) {
   const shipEstimate = getShipEstimate();
   const preorder = status === "preorder";
 
@@ -203,13 +295,13 @@ async function BookOffer({ status }: { status: "preorder" | "launched" }) {
         <p className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold">
           {PRODUCTS.book.name}, hardcover
         </p>
-        <p className="text-2xl font-bold text-charcoal">{price.formatted}</p>
+        <p className="text-2xl font-bold text-charcoal">{price ? price.formatted : <span className="text-base font-medium text-charcoal/80">Price at checkout</span>}</p>
       </div>
       <p className="text-charcoal/80 text-sm mb-4">
         {preorder && shipEstimate
           ? `Preorder now. Ships ${shipEstimate}, packed and mailed by Keegan.`
           : "Packed and mailed by Keegan."}{" "}
-        Shipping is added at checkout.
+        {SHIPPING_LINE}
       </p>
 
       {preorder && (
@@ -228,7 +320,7 @@ async function BookOffer({ status }: { status: "preorder" | "launched" }) {
       <ul className="text-charcoal/80 text-xs mt-4 space-y-1.5">
         <li className="flex gap-2 items-start">
           <Truck className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
-          Ships to US addresses. Secure checkout by Stripe.
+          Ships to {shipsTo()}. Secure checkout by Stripe.
         </li>
         {preorder && (
           <li className="flex gap-2 items-start">
@@ -244,7 +336,10 @@ async function BookOffer({ status }: { status: "preorder" | "launched" }) {
 
 // After launch the labels sell on their own.
 async function LabelsOffer() {
-  const price = await getDisplayPrice("labels");
+  const price = await getDisplayPrice("labels").catch((err) => {
+    console.error("Shop: could not read the labels price", err);
+    return null;
+  });
   return (
     <section className="mb-16 max-w-3xl mx-auto">
       <div className="bg-white rounded-2xl shadow-lg p-6 md:flex gap-6 items-start">
@@ -256,7 +351,7 @@ async function LabelsOffer() {
             <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold">
               {PRODUCTS.labels.name}
             </h2>
-            <p className="text-2xl font-bold text-charcoal">{price.formatted}</p>
+            <p className="text-2xl font-bold text-charcoal">{price ? price.formatted : <span className="text-base font-medium text-charcoal/80">Price at checkout</span>}</p>
           </div>
           <p className="text-charcoal/80 text-sm mb-4">
             A fillable PDF with a label for every recipe in the book: pick a recipe from the

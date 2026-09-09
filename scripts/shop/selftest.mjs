@@ -4,8 +4,8 @@
 //
 // Run: npm run test:shop
 //
-// No test framework in this project by design — this is plain node, and node
-// strips the TypeScript types natively.
+// No test framework in this project by design — plain node, run through tsx
+// so the extensionless relative imports resolve.
 
 process.env.SHOP_TOKEN_SECRET = "x".repeat(48);
 
@@ -45,11 +45,11 @@ check("labels alone require no shipping", !requiresShipping(["labels"]));
 check("phase defaults to preorder when unset", getShopPhase() === "preorder");
 
 console.log("\n-- token round trip --");
-const payload = { email: "jane@example.com", session: "cs_test_123", phase: "preorder", iat: 1755400000 };
+const payload = { session: "cs_test_123", phase: "preorder", iat: 1755400000 };
 const token = signDeliveryToken(payload);
 const back = verifyDeliveryToken(token);
 check("valid token verifies", back !== null);
-check("email survives", back?.email === "jane@example.com");
+check("token carries no email (PII stays out of URLs)", !token.includes(Buffer.from("@").toString("base64url")) && back?.email === undefined);
 check("session survives", back?.session === "cs_test_123");
 check("purchase-time phase survives", back?.phase === "preorder");
 
@@ -61,12 +61,15 @@ check("no-dot garbage rejected", verifyDeliveryToken("garbage") === null);
 check("empty string rejected", verifyDeliveryToken("") === null);
 check("payload-only rejected", verifyDeliveryToken(token.split(".")[0]) === null);
 
-// The forgeries that matter: claiming someone else's purchase, or upgrading your
-// own order to the phase that carries the free labels.
-const forgedEmail = Buffer.from(JSON.stringify({ ...payload, email: "attacker@evil.com" })).toString("base64url");
-check("email swap rejected", verifyDeliveryToken(forgedEmail + "." + token.split(".")[1]) === null);
-const forgedPhase = Buffer.from(JSON.stringify({ ...payload, phase: "preorder" })).toString("base64url");
-check("phase upgrade without valid signature rejected", verifyDeliveryToken(forgedPhase + ".AAAA") === null);
+// The forgeries that matter: pointing a real signature at someone else's
+// order, or upgrading a launched-phase order to the phase that carried the
+// free labels while keeping its genuine signature.
+const forgedSession = Buffer.from(JSON.stringify({ ...payload, session: "cs_test_victim" })).toString("base64url");
+check("session swap with a real signature rejected", verifyDeliveryToken(forgedSession + "." + token.split(".")[1]) === null);
+const launchedToken = signDeliveryToken({ ...payload, phase: "launched" });
+const upgraded = Buffer.from(JSON.stringify({ ...payload, phase: "preorder" })).toString("base64url");
+check("phase upgrade with the launched order's real signature rejected", verifyDeliveryToken(upgraded + "." + launchedToken.split(".")[1]) === null);
+check("(control) the launched token itself verifies", verifyDeliveryToken(launchedToken)?.phase === "launched");
 
 console.log("\n-- secret handling --");
 const saved = process.env.SHOP_TOKEN_SECRET;
@@ -114,6 +117,14 @@ const marked = orderFromSession(session({ payment_intent: { id: "pi_1", metadata
 check("fulfilment marker read from PaymentIntent", marked.fulfilledAt === "2026-09-08T00:00:00Z");
 const unpaid = orderFromSession(session({ payment_status: "unpaid", payment_intent: "pi_2" }));
 check("unpaid with unexpanded PI", unpaid.paid === false && unpaid.paymentIntentId === "pi_2");
+// A 100%-off promotion code: no payment, no PaymentIntent, still owed the goods.
+const free = orderFromSession(session({ payment_status: "no_payment_required", amount_total: 0, payment_intent: null }));
+check("zero-total order counts as paid", free.paid === true && free.paymentIntentId === null);
+check("zero-total order still grants labels", orderEntitlements(free).includes("labels"));
+const freeMarked = orderFromSession(session({ payment_status: "no_payment_required", payment_intent: null, metadata: { shop_phase: "preorder", product_ids: "book", fulfilled_at: "2026-09-09T00:00:00Z" } }));
+check("fulfilment marker read from the session when there is no PI", freeMarked.fulfilledAt === "2026-09-09T00:00:00Z");
+const expired = orderFromSession(session({ status: "expired", payment_status: "unpaid" }));
+check("session status surfaces", expired.status === "expired");
 
 console.log("\n-- shop config gate --");
 const env = { ...process.env };

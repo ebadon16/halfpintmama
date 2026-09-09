@@ -30,7 +30,7 @@ export default function TermsOfServicePage() {
 
         <div className="bg-white rounded-2xl p-8 shadow-md prose prose-sage max-w-none">
           <p className="text-charcoal/80 mb-6">
-            <strong>Last updated:</strong> February 4, 2026
+            <strong>Last updated:</strong> September 9, 2026
           </p>
 
           <p className="text-charcoal/80 mb-6">
@@ -88,6 +88,37 @@ export default function TermsOfServicePage() {
           <p className="text-charcoal/80 mb-6">
             We reserve the right to remove any comments or content at our discretion.
           </p>
+
+          <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mt-8 mb-4">
+            Orders, Shipping &amp; Refunds
+          </h2>
+          <p className="text-charcoal/80 mb-4">
+            Purchases from our shop are processed by Stripe. We never see or store your card details.
+          </p>
+          <ul className="list-disc pl-6 text-charcoal/80 mb-6 space-y-2">
+            <li>
+              <strong>Preorders.</strong> When you preorder a book you are charged at checkout, and the
+              book ships on or around the date shown at checkout and in your confirmation email. If
+              that date changes, we will email you, and you may cancel for a full refund at any time
+              before your order ships.
+            </li>
+            <li>
+              <strong>Shipping.</strong> Physical orders ship to United States addresses at the rate
+              shown at checkout. A book that arrives damaged, or does not arrive, will be replaced or
+              refunded: contact us within 30 days of the expected delivery.
+            </li>
+            <li>
+              <strong>Digital products.</strong> The printable freezer labels are delivered instantly
+              by email as a PDF made for you. Because they cannot be returned, they are not refundable
+              once delivered, except where the law requires it. When a book order that included the
+              labels as a bonus is refunded, the labels link is deactivated.
+            </li>
+            <li>
+              <strong>Everything else.</strong> Each book is packed by hand. If something is not right
+              with your order, reply to your confirmation email or use the contact page and we will
+              sort it out.
+            </li>
+          </ul>
 
           <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mt-8 mb-4">
             Limitation of Liability

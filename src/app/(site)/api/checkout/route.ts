@@ -28,7 +28,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "The shop is not open yet." }, { status: 503 });
     }
 
-    const body = (await request.json()) as { product?: unknown };
+    let body: { product?: unknown };
+    try {
+      body = (await request.json()) as { product?: unknown };
+    } catch {
+      return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    }
     const product = typeof body.product === "string" && body.product in PRODUCTS ? (body.product as ProductId) : null;
     if (!product) {
       return NextResponse.json({ error: "Unknown product" }, { status: 400 });

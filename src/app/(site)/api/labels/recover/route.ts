@@ -31,7 +31,8 @@ export async function POST(request: Request) {
     if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 });
     }
-    // Per-address cap too, so a known buyer cannot be flooded from many IPs.
+    // Per-address cap as well. Best-effort only: the limiter is in-process
+    // memory, so each serverless instance counts separately.
     if (!rateLimit(`labels-recover:${email}`, 3, 24 * 60 * 60_000)) {
       return NextResponse.json(REPLY);
     }
@@ -42,7 +43,7 @@ export async function POST(request: Request) {
         // One link is enough; they all open the same product. Prefer the most
         // recent order so the token points at a live one.
         const link = orders.map((o) => deliveryLinkFor(o)).find((l): l is string => !!l);
-        if (link) await sendLabelsDelivery({ to: email, deliveryUrl: link, reason: "recovery" });
+        if (link) await sendLabelsDelivery({ to: email, deliveryUrl: link });
       } catch (err) {
         console.error("Labels recovery failed:", err);
       }

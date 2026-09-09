@@ -1,15 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { Tag, BookOpen } from "lucide-react";
+import { Tag, BookOpen, ClipboardCheck } from "lucide-react";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
-import { getShopStatus } from "@/lib/shop/status";
+import { getShopStatus, isShopPublic } from "@/lib/shop/status";
+import { CHECKLIST_PDF } from "@/lib/shop/checklist";
 
-export const metadata = {
+export function generateMetadata(): Metadata {
+  return metadataFor(isShopPublic());
+}
+
+const metadataFor = (indexable: boolean): Metadata => ({
   title: "Cookbook Resources | Half Pint Mama",
   description:
-    "Printable freezer labels that go with Rest and Rise, the postpartum sourdough cookbook from Half Pint Mama.",
+    "The free freezer prep checklist and the printable freezer labels that go with Rest and Rise, the postpartum sourdough cookbook from Half Pint Mama.",
   alternates: { canonical: "https://halfpintmama.com/cookbook-resources" },
-  robots: { index: false, follow: true },
+  robots: { index: indexable, follow: true },
   openGraph: {
     images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Cookbook Resources | Half Pint Mama",
@@ -25,7 +31,7 @@ export const metadata = {
     description:
       "Printable freezer labels that go with Rest and Rise.",
   },
-};
+});
 
 const LABELS_COPY = {
   waitlist: {
@@ -73,14 +79,47 @@ export default function CookbookResourcesPage() {
             Cookbook Resources
           </h1>
           <p className="text-charcoal/80 text-lg max-w-2xl mx-auto">
-            Everything that goes with <em>Rest and Rise</em>, all in one place. Print a sheet,
-            fill in the date, and let future you find dinner without doing any mental math.
+            Everything that goes with <em>Rest and Rise</em>, all in one place. Print the plan,
+            print the labels, and let future you find dinner without doing any mental math.
           </p>
         </div>
       </section>
 
-      {/* Freezer labels */}
+      {/* Freezer prep checklist: free, no gate. The book prints /checklist. */}
       <section className="py-12 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="flex items-center gap-3 mb-6">
+            <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />
+            <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold">
+              The Freezer Prep Checklist
+            </h2>
+          </div>
+          <div className="bg-cream rounded-2xl p-8 shadow-md text-center">
+            <p className="text-charcoal/80 mb-4">
+              The whole Chapter 11 plan on one page: thirteen prep sessions across weeks 30 to 36,
+              with a freezer inventory sheet on the back. Free to download and print.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href={CHECKLIST_PDF}
+                download="rest-and-rise-freezer-prep-checklist.pdf"
+                className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
+              >
+                Download the Checklist (PDF)
+              </a>
+              <Link
+                href="/checklist"
+                className="inline-block px-6 py-3 border-2 border-deep-sage text-deep-sage font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all text-sm"
+              >
+                How to use it
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Freezer labels */}
+      <section className="py-12 bg-cream">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-6">
             <ThemedIcon icon={Tag} size="lg" color="terracotta" />
@@ -88,7 +127,7 @@ export default function CookbookResourcesPage() {
               Printable Freezer Labels
             </h2>
           </div>
-          <div className="bg-cream rounded-2xl p-8 shadow-md text-center">
+          <div className="bg-white rounded-2xl p-8 shadow-md text-center">
             <p className="text-charcoal/80 mb-4">{labels.text}</p>
             <Link
               href="/shop"

@@ -26,7 +26,12 @@ export function BuyButton({ product, label, className = "" }: BuyButtonProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ product }),
       });
-      const data = await res.json();
+      let data: { url?: string; error?: string } = {};
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error("Could not start checkout. Please try again.");
+      }
       if (!res.ok || !data.url) throw new Error(data.error || "Could not start checkout");
       window.location.assign(data.url);
     } catch (err) {

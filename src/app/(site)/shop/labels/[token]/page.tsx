@@ -23,8 +23,27 @@ export default async function LabelsDeliveryPage({ params }: { params: Promise<{
   const claim = verifyDeliveryToken(token);
   if (!claim) notFound();
 
-  const order = await getOrder(claim.session);
-  if (!order || !order.paid || order.email !== claim.email.toLowerCase()) notFound();
+  let order;
+  try {
+    order = await getOrder(claim.session);
+  } catch (err) {
+    // A Stripe outage must not turn a "yours forever" link into a 404.
+    console.error("Labels page: Stripe lookup failed", err);
+    return (
+      <div className="bg-cream min-h-screen">
+        <div className="max-w-2xl mx-auto px-4 py-16 text-center">
+          <h1 className="font-[family-name:var(--font-crimson)] text-3xl md:text-4xl text-deep-sage font-bold mb-4">
+            One moment
+          </h1>
+          <p className="text-charcoal/80 text-lg">
+            We could not check your order just now. Your link is still good. Please try again in a
+            minute.
+          </p>
+        </div>
+      </div>
+    );
+  }
+  if (!order || !order.paid || !order.email) notFound();
 
   if (order.refunded || !orderEntitlements(order).includes("labels")) {
     return (

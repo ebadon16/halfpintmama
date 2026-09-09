@@ -1,9 +1,11 @@
 // Signed delivery tokens.
 //
 // A buyer's delivery link IS their credential — there are no accounts. The
-// token carries who they are and what they bought, signed so it can't be forged
+// token names the order and what it was promised, signed so it can't be forged
 // or edited. Nothing is stored on our side: the token proves itself, and Stripe
-// is consulted separately at access time for whether the payment still stands.
+// is consulted at access time for the buyer's email and whether the payment
+// still stands. Deliberately NO email in the token: the link lands in URLs,
+// browser history, and analytics page views, none of which should carry PII.
 //
 // Deliberately no expiry. The product promises unlimited reprints forever, so
 // an expiring link would only generate support mail. Revocation comes from the
@@ -13,7 +15,6 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import type { ShopPhase } from "./catalog";
 
 export interface DeliveryToken {
-  email: string;
   // The Stripe Checkout Session, so access checks can re-read the real order.
   session: string;
   // What the buyer was promised at purchase time, not what the shop sells now.
@@ -82,7 +83,6 @@ export function verifyDeliveryToken(raw: string): DeliveryToken | null {
   try {
     const parsed = JSON.parse(unb64url(payload).toString("utf8"));
     if (
-      typeof parsed?.email !== "string" ||
       typeof parsed?.session !== "string" ||
       (parsed?.phase !== "preorder" && parsed?.phase !== "launched") ||
       typeof parsed?.iat !== "number"

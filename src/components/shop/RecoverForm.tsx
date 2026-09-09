@@ -21,10 +21,15 @@ export function RecoverForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email.trim() }),
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong");
+      let data: { message?: string; error?: string } = {};
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error("Something went wrong. Please try again.");
+      }
+      if (!res.ok || !data.message) throw new Error(data.error || "Something went wrong");
       setStatus("done");
-      setMessage(data.message);
+      setMessage(data.message ?? "");
     } catch (err) {
       setStatus("error");
       setMessage(err instanceof Error ? err.message : "Something went wrong. Please try again.");

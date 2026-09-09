@@ -57,14 +57,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // The freezer-prep checklist was never produced; the only cookbook
-        // resource that exists is the printable labels on /cookbook-resources.
-        // Temporary (307) since the checklist may ship as a real product later.
-        source: "/checklist",
-        destination: "/cookbook-resources",
-        permanent: false,
-      },
-      {
         // The "Mama Life Guide" lead magnet was never produced (no asset, no
         // delivery automation), so the page promised a guide it couldn't send.
         // Point mama-life visitors at the real mama-life content instead.

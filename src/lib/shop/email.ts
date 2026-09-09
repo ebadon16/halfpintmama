@@ -1,17 +1,34 @@
 // The shop's transactional email, sent through Resend and NEVER MailerLite.
 // A newsletter unsubscribe must never suppress a paid delivery, so the two
 // systems are kept apart on purpose.
+//
+// Design matches the Half Pint Mama newsletter: cream ground, Playfair Display
+// (serif fallback), deep green text and button, terracotta links, and Keegan
+// signing off in the first person. Every message is rendered by a pure
+// render*() so it can be previewed and tested without sending.
 
 import { Resend } from "resend";
 import { escapeHtml } from "@/lib/sanitize";
-import { EMAIL } from "@/lib/email-theme";
 import { SITE_URL } from "@/lib/seo";
 import { PRODUCTS } from "./catalog";
 import { formatMoney } from "./prices";
 import type { Order } from "./orders";
 
-const FROM = "Half Pint Mama <orders@halfpintmama.com>";
+const FROM = "Keegan at Half Pint Mama <orders@halfpintmama.com>";
 const REPLY_TO = "keegan@halfpintmama.com";
+
+// The newsletter palette, byte for byte (see the MailerLite campaign source).
+const T = {
+  bg: "#FEF4E8",
+  text: "#073704", // on cream: 12.9
+  heading: "#073704",
+  button: "#093E06", // cream text on it: 12.4
+  buttonText: "#FEF4E8",
+  link: "#A0562F", // on cream: 5.0
+  rule: "#CFBC9A",
+  panel: "#FFFFFF",
+  font: "'Playfair Display', Georgia, 'Times New Roman', serif",
+} as const;
 
 let client: Resend | null = null;
 function resend(): Resend {
@@ -27,97 +44,223 @@ function ownerAddress(): string {
   return process.env.SHOP_ORDER_NOTIFY || process.env.NOTIFICATION_EMAIL || "keegan@halfpintmama.com";
 }
 
-function shell(title: string, body: string): string {
-  return `
-    <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <div style="background: linear-gradient(135deg, ${EMAIL.terracottaFrom}, ${EMAIL.terracottaTo}); padding: 20px; border-radius: 12px 12px 0 0;">
-        <h1 style="color: #FFFFFF; margin: 0; font-size: 24px;">${title}</h1>
-      </div>
-      <div style="background: ${EMAIL.cream}; padding: 24px; border: 1px solid ${EMAIL.border}; border-top: none; border-radius: 0 0 12px 12px; color: ${EMAIL.text}; line-height: 1.6;">
-        ${body}
-      </div>
-      <p style="color: ${EMAIL.footer}; font-size: 12px; text-align: center; margin-top: 20px;">
-        Half Pint Mama | halfpintmama.com
-      </p>
-    </div>`;
+export interface RenderedEmail {
+  subject: string;
+  html: string;
+  text: string;
+}
+
+// ---- building blocks -------------------------------------------------------
+
+const P = `margin: 0 0 16px; font-family: ${T.font}; font-size: 16px; line-height: 150%; color: ${T.text};`;
+const SMALL = `margin: 0 0 12px; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};`;
+
+function p(inner: string): string {
+  return `<p style="${P}">${inner}</p>`;
 }
 
 function button(href: string, label: string): string {
-  return `<a href="${href}" style="display: inline-block; background: ${EMAIL.terracottaTo}; color: #FFFFFF; padding: 12px 24px; border-radius: 25px; text-decoration: none; margin: 8px 0 20px; font-weight: bold;">${label}</a>`;
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0 20px;">
+      <tr>
+        <td align="center" bgcolor="${T.button}" style="border-radius: 8px;">
+          <a href="${href}" style="display: inline-block; padding: 13px 24px; font-family: ${T.font}; font-size: 15px; font-weight: 500; color: ${T.buttonText}; text-decoration: none; border-radius: 8px;">${label}</a>
+        </td>
+      </tr>
+    </table>`;
 }
 
-export type DeliveryReason = "preorder-bonus" | "purchase" | "recovery";
-
-export interface DeliveryEmail {
-  to: string;
-  deliveryUrl: string;
-  reason: DeliveryReason;
-  shipEstimate?: string | null;
+function panel(inner: string): string {
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin: 0 0 20px;">
+      <tr>
+        <td bgcolor="${T.panel}" style="padding: 16px 20px; border-radius: 8px; border-left: 4px solid ${T.button};">${inner}</td>
+      </tr>
+    </table>`;
 }
 
-// The labels link. Also what "lost your link" re-sends.
-export async function sendLabelsDelivery({ to, deliveryUrl, reason, shipEstimate }: DeliveryEmail): Promise<void> {
-  const url = escapeHtml(deliveryUrl);
-  const intro =
-    reason === "preorder-bonus"
-      ? `<p style="margin: 0 0 16px;">Thank you for preordering <em>Rest and Rise</em>! Your book ships ${escapeHtml(shipEstimate || "as soon as it is printed")}. In the meantime, your preorder bonus is ready.</p>`
-      : reason === "recovery"
-        ? `<p style="margin: 0 0 16px;">Here is your labels link again. It is the same one as before and it does not expire.</p>`
-        : `<p style="margin: 0 0 16px;">Thank you! Your printable freezer labels are ready.</p>`;
+// One shell for every message: heading, body, Keegan's sign-off, site footer.
+function shell(heading: string, body: string): string {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+  <title>${escapeHtml(heading)}</title>
+</head>
+<body style="margin: 0; padding: 0; background: ${T.bg};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${T.bg}" style="background: ${T.bg};">
+    <tr>
+      <td align="center" style="padding: 32px 16px;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
+          <tr>
+            <td style="padding: 0 8px;">
+              <h1 style="margin: 0 0 20px; font-family: ${T.font}; font-size: 30px; font-weight: 600; line-height: 130%; color: ${T.heading};">${heading}</h1>
+              ${body}
+              ${p("With love,")}
+              ${p("Keegan")}
+              <p style="${SMALL}"><a href="${SITE_URL}" style="color: ${T.link};">halfpintmama.com</a> | <a href="https://www.instagram.com/halfpint.mama" style="color: ${T.link};">@halfpint.mama</a></p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 28px;">
+                <tr><td style="border-top: 1px solid ${T.rule}; padding-top: 16px;">
+                  <p style="margin: 0; font-family: ${T.font}; font-size: 12px; line-height: 150%; color: ${T.text};">Half Pint Mama &middot; Round Rock, Texas &middot; You are receiving this because you ordered from halfpintmama.com. Reply any time and it comes straight to me.</p>
+                </td></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
 
-  const subject =
-    reason === "preorder-bonus"
-      ? "Your Rest and Rise preorder (and your free freezer labels)"
-      : reason === "recovery"
-        ? "Your Rest and Rise freezer labels link"
-        : "Your Rest and Rise freezer labels";
+const SIGN_OFF_TEXT = "\nWith love,\nKeegan\nhalfpintmama.com | @halfpint.mama\n";
 
-  const html = shell(
-    "Your freezer labels",
-    `${intro}
-     ${button(url, "Open my labels")}
-     <p style="margin: 0 0 12px;"><strong>Open this on a computer to fill in the recipes and dates.</strong> Phones will show the sheet but cannot fill in the boxes.</p>
-     <p style="margin: 0 0 12px;">This link is yours to keep. Print as many sheets as you like, whenever you like. The PDF is made for you and carries your email in the footer.</p>
-     <p style="margin: 0; color: ${EMAIL.muted}; font-size: 14px;">Lost this email later? Get a fresh link any time at <a href="${SITE_URL}/shop/labels" style="color: ${EMAIL.link};">${SITE_URL.replace("https://", "")}/shop/labels</a>. Questions? Just reply to this email.</p>`
+function orderLines(order: Order): { items: string; total: string; shipTo: string[] } {
+  const items = order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "your order";
+  const total = order.amountTotal != null && order.currency ? formatMoney(order.amountTotal, order.currency) : "";
+  const ship = order.shipping;
+  const shipTo = ship
+    ? [ship.name, ship.line1, ship.line2, [ship.city, ship.state, ship.postalCode].filter(Boolean).join(", "), ship.country].filter(
+        (l): l is string => !!l
+      )
+    : [];
+  return { items, total, shipTo };
+}
+
+const LABELS_HOWTO_HTML =
+  p("<strong>One thing to know: open the labels on a computer to fill them in.</strong> A phone will show you the sheet, but the boxes only type on a computer.") +
+  p("The link is yours to keep. Print as many sheets as you like, whenever you like. The PDF is made just for you, with your email in the footer.");
+const LABELS_HOWTO_TEXT =
+  "One thing to know: open the labels on a computer to fill them in. A phone will show you the sheet, but the boxes only type on a computer.\n\n" +
+  "The link is yours to keep. Print as many sheets as you like, whenever you like. The PDF is made just for you, with your email in the footer.\n\n";
+const LOST_LINK_HTML = `<p style="${SMALL}">Lose this email one day? Get a fresh labels link any time at <a href="${SITE_URL}/shop/labels" style="color: ${T.link};">halfpintmama.com/shop/labels</a>.</p>`;
+const LOST_LINK_TEXT = `Lose this email one day? Get a fresh labels link any time at ${SITE_URL}/shop/labels\n`;
+
+// ---- the messages ------------------------------------------------------------
+
+// The buyer's confirmation, sent once for every paid order: what they bought,
+// what it cost, where it ships, when, and the labels link if the order carries
+// one. This is the email "reply to your confirmation" refers to.
+export function renderOrderConfirmation(order: Order, labelsUrl: string | null): RenderedEmail {
+  const { items, total, shipTo } = orderLines(order);
+  const hasBook = order.productIds.includes("book");
+  const preorder = hasBook && order.phase === "preorder";
+  const ships = order.shipEstimate ? ` It ships ${escapeHtml(order.shipEstimate)}, and I will email you the moment it is on its way.` : "";
+
+  const subject = preorder
+    ? `Your Rest and Rise preorder is in${labelsUrl ? " (and your labels are ready)" : ""}`
+    : hasBook
+      ? "Your Rest and Rise order is in"
+      : "Your Rest and Rise freezer labels are ready";
+
+  const opening = preorder
+    ? p("Hi friend,") +
+      p(`Thank you for preordering <em>Rest and Rise</em>. Your copy is spoken for, and I will pack it myself.${ships}`)
+    : hasBook
+      ? p("Hi friend,") + p(`Thank you for your order. Your copy of <em>Rest and Rise</em> is spoken for, and I will pack it myself.${ships}`)
+      : p("Hi friend,") + p("Thank you for your order. Your printable freezer labels are ready right now.");
+
+  const summary = panel(
+    `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 16px; color: ${T.text};"><strong>${escapeHtml(items)}</strong>${total ? ` &middot; ${escapeHtml(total)}` : ""}</p>` +
+      (shipTo.length ? `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};">Shipping to ${shipTo.map(escapeHtml).join(", ")}</p>` : "") +
+      `<p style="margin: 6px 0 0; font-family: ${T.font}; font-size: 12px; color: ${T.text};">Order reference ${escapeHtml(order.sessionId)}</p>`
   );
+
+  const labels = labelsUrl
+    ? p(preorder ? "<strong>Your preorder bonus is ready now.</strong> The printable freezer labels for every recipe in the book:" : "<strong>Here are your labels:</strong>") +
+      button(escapeHtml(labelsUrl), "Open my labels") +
+      LABELS_HOWTO_HTML
+    : "";
+
+  const closing = p(
+    hasBook
+      ? "In the meantime, the free freezer prep checklist is on the site if you want to start planning: <a href=\"" + SITE_URL + "/checklist\" style=\"color: " + T.link + ";\">halfpintmama.com/checklist</a>."
+      : "Label everything: what it is, the date, and how to reheat it. Future you will thank you."
+  ) + (labelsUrl ? LOST_LINK_HTML : `<p style="${SMALL}">Questions about your order? Just reply to this email.</p>`);
+
+  const html = shell(preorder ? "You are in!" : "Thank you!", opening + summary + labels + closing);
 
   const text =
-    `${reason === "preorder-bonus" ? `Thank you for preordering Rest and Rise! Your book ships ${shipEstimate || "as soon as it is printed"}. In the meantime, your preorder bonus is ready.` : reason === "recovery" ? "Here is your labels link again. It does not expire." : "Thank you! Your printable freezer labels are ready."}\n\n` +
-    `Open my labels: ${deliveryUrl}\n\n` +
-    `Open this on a computer to fill in the recipes and dates. Phones will show the sheet but cannot fill in the boxes.\n\n` +
-    `This link is yours to keep. Print as many sheets as you like. The PDF carries your email in the footer.\n\n` +
-    `Lost this email later? Get a fresh link at ${SITE_URL}/shop/labels\n`;
+    "Hi friend,\n\n" +
+    (preorder
+      ? `Thank you for preordering Rest and Rise. Your copy is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}, and I will email you the moment it is on its way.` : ""}`
+      : hasBook
+        ? `Thank you for your order. Your copy of Rest and Rise is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""}`
+        : "Thank you for your order. Your printable freezer labels are ready right now.") +
+    `\n\n${items}${total ? ` - ${total}` : ""}\n` +
+    (shipTo.length ? `Shipping to ${shipTo.join(", ")}\n` : "") +
+    `Order reference ${order.sessionId}\n\n` +
+    (labelsUrl ? `${preorder ? "Your preorder bonus is ready now. The printable freezer labels for every recipe in the book" : "Here are your labels"}: ${labelsUrl}\n\n${LABELS_HOWTO_TEXT}` : "") +
+    (hasBook ? `In the meantime, the free freezer prep checklist is on the site if you want to start planning: ${SITE_URL}/checklist\n\n` : "Label everything: what it is, the date, and how to reheat it. Future you will thank you.\n\n") +
+    (labelsUrl ? LOST_LINK_TEXT : "Questions about your order? Just reply to this email.\n") +
+    SIGN_OFF_TEXT;
 
-  const { error } = await resend().emails.send({ from: FROM, to, replyTo: REPLY_TO, subject, html, text });
+  return { subject, html, text };
+}
+
+// "Lost your link": the same link again, nothing else.
+export function renderLabelsRecovery(deliveryUrl: string): RenderedEmail {
+  const url = escapeHtml(deliveryUrl);
+  const html = shell(
+    "Here are your labels",
+    p("Hi friend,") +
+      p("Here is your labels link again. It is the same one as before, and it never expires.") +
+      button(url, "Open my labels") +
+      LABELS_HOWTO_HTML +
+      LOST_LINK_HTML
+  );
+  const text =
+    "Hi friend,\n\nHere is your labels link again. It is the same one as before, and it never expires.\n\n" +
+    `Open my labels: ${deliveryUrl}\n\n` +
+    LABELS_HOWTO_TEXT +
+    LOST_LINK_TEXT +
+    SIGN_OFF_TEXT;
+  return { subject: "Your Rest and Rise freezer labels link", html, text };
+}
+
+// Keegan's copy of every paid order. For a book this is the packing slip, so
+// it is plain and scannable rather than pretty.
+export function renderOrderNotification(order: Order, labelsSentTo: string | null): RenderedEmail {
+  const { items, total, shipTo } = orderLines(order);
+  const subject = `🛒 New order: ${items}${total ? ` (${total})` : ""}${order.phase === "preorder" && order.productIds.includes("book") ? " preorder" : ""}`;
+  const html = shell(
+    "New order",
+    panel(
+      `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 16px; color: ${T.text};"><strong>${escapeHtml(items)}</strong>${total ? ` &middot; ${escapeHtml(total)}` : ""} &middot; ${order.phase}</p>` +
+        `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 14px; color: ${T.text};">Buyer: ${escapeHtml(order.email ?? "unknown")}</p>` +
+        (shipTo.length
+          ? `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};"><strong>Ship to</strong><br />${shipTo.map(escapeHtml).join("<br />")}</p>`
+          : `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; color: ${T.text};">Digital only, nothing to ship.</p>`)
+    ) +
+      p(`Labels: ${labelsSentTo ? `sent to ${escapeHtml(labelsSentTo)}` : "not included in this order"}.`) +
+      `<p style="${SMALL}">Stripe session ${escapeHtml(order.sessionId)}</p>`
+  );
+  const text =
+    `${items}${total ? ` - ${total}` : ""} (${order.phase})\nBuyer: ${order.email ?? "unknown"}\n` +
+    (shipTo.length ? `Ship to: ${shipTo.join(", ")}\n` : "Digital only, nothing to ship.\n") +
+    `Labels: ${labelsSentTo ? `sent to ${labelsSentTo}` : "not included"}\nStripe session ${order.sessionId}\n`;
+  return { subject, html, text };
+}
+
+// ---- sending -----------------------------------------------------------------
+
+async function send(to: string, mail: RenderedEmail, replyTo = REPLY_TO): Promise<void> {
+  const { error } = await resend().emails.send({ from: FROM, to, replyTo, subject: mail.subject, html: mail.html, text: mail.text });
   if (error) throw new Error(`Resend: ${error.message}`);
 }
 
-// Keegan's copy of every paid order. For a book this is the packing slip.
+export async function sendOrderConfirmation(order: Order, to: string, labelsUrl: string | null): Promise<void> {
+  await send(to, renderOrderConfirmation(order, labelsUrl));
+}
+
+export async function sendLabelsDelivery({ to, deliveryUrl }: { to: string; deliveryUrl: string }): Promise<void> {
+  await send(to, renderLabelsRecovery(deliveryUrl));
+}
+
 export async function sendOrderNotification(order: Order, labelsSentTo: string | null): Promise<void> {
-  const items = order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "(no products in metadata)";
-  const total = order.amountTotal != null && order.currency ? formatMoney(order.amountTotal, order.currency) : "?";
-  const ship = order.shipping;
-  const address = ship
-    ? [ship.name, ship.line1, ship.line2, [ship.city, ship.state, ship.postalCode].filter(Boolean).join(", "), ship.country]
-        .filter(Boolean)
-        .map((l) => escapeHtml(String(l)))
-        .join("<br />")
-    : null;
-
-  const html = shell(
-    `New order: ${escapeHtml(items)}`,
-    `<p style="margin: 0 0 12px;"><strong>Total:</strong> ${escapeHtml(total)} (${order.phase})</p>
-     <p style="margin: 0 0 12px;"><strong>Buyer:</strong> ${escapeHtml(order.email ?? "unknown")}</p>
-     ${address ? `<div style="background: #FFFFFF; padding: 16px; border-radius: 8px; border-left: 4px solid ${EMAIL.accent}; margin: 16px 0;"><strong>Ship to</strong><br />${address}</div>` : `<p style="margin: 0 0 12px;">Digital only, nothing to ship.</p>`}
-     <p style="margin: 0 0 12px;"><strong>Labels:</strong> ${labelsSentTo ? `sent to ${escapeHtml(labelsSentTo)}` : "not included in this order"}</p>
-     <p style="margin: 0; color: ${EMAIL.muted}; font-size: 14px;">Stripe session ${escapeHtml(order.sessionId)}</p>`
-  );
-
-  const { error } = await resend().emails.send({
-    from: FROM,
-    to: ownerAddress(),
-    subject: `🛒 New order: ${items} (${total})`,
-    html,
-  });
-  if (error) throw new Error(`Resend: ${error.message}`);
+  await send(ownerAddress(), renderOrderNotification(order, labelsSentTo), order.email ?? REPLY_TO);
 }

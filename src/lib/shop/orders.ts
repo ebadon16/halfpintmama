@@ -12,9 +12,14 @@ export const META_PHASE = "shop_phase";
 export const META_PRODUCTS = "product_ids";
 // The ship date promised at purchase (preorders only), for the buyer's email.
 export const META_SHIP_ESTIMATE = "ship_estimate";
-// Set on the PaymentIntent once fulfilment has run. This is the idempotency
-// marker: a webhook retry sees it and does nothing.
+// Set on the PaymentIntent (or, for a zero-total order with no PaymentIntent,
+// on the session) once fulfilment has run. This is the idempotency marker: a
+// webhook retry sees it and does nothing.
 export const META_FULFILLED_AT = "fulfilled_at";
+// Stamped alongside it: the buyer's email, lowercased. Stripe's own email
+// filters match the address exactly as typed, so "lost your link" searches
+// this normalised copy instead.
+export const META_BUYER_EMAIL = "buyer_email";
 
 export interface ShippingAddress {
   name: string | null;
@@ -34,6 +39,8 @@ export interface Order {
   productIds: ProductId[];
   shipEstimate: string | null;
   paid: boolean;
+  // Stripe's session status: "complete", "open", or "expired".
+  status: string | null;
   refunded: boolean;
   amountTotal: number | null;
   currency: string | null;
@@ -91,13 +98,16 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
     phase,
     productIds,
     shipEstimate: meta[META_SHIP_ESTIMATE]?.trim() || null,
-    paid: session.payment_status === "paid",
+    // A 100%-off promotion code completes the session with no payment at all;
+    // the buyer is still owed their goods.
+    paid: session.payment_status === "paid" || session.payment_status === "no_payment_required",
+    status: session.status ?? null,
     refunded: isRefunded(charge),
     amountTotal: session.amount_total,
     currency: session.currency,
     shipping,
     paymentIntentId,
-    fulfilledAt: pi?.metadata?.[META_FULFILLED_AT] ?? null,
+    fulfilledAt: pi?.metadata?.[META_FULFILLED_AT] ?? meta[META_FULFILLED_AT] ?? null,
   };
 }
 
@@ -119,21 +129,60 @@ export async function getOrder(sessionId: string): Promise<Order | null> {
 // entitlement. Used by "lost your link": the entitlement comes from the
 // purchase-time metadata, not from "a book order exists" — after launch a book
 // order alone does not include labels.
+//
+// Two lookups, because Stripe matches emails exactly as the buyer typed them:
+//  1. PaymentIntent search on the lowercased copy fulfilment stamped (case-proof,
+//     covers every paid order; the search index can lag a minute behind).
+//  2. The session list filtered by the address as typed and lowercased, which
+//     also catches zero-total orders that have no PaymentIntent to search.
 export async function findLabelOrdersByEmail(email: string): Promise<Order[]> {
-  const sessions = await getStripe().checkout.sessions.list({
-    customer_details: { email: email.trim().toLowerCase() },
-    status: "complete",
+  const stripe = getStripe();
+  const typed = email.trim();
+  const lower = typed.toLowerCase();
+  const seen = new Set<string>();
+  const orders: Order[] = [];
+  const consider = (session: Stripe.Checkout.Session) => {
+    if (seen.has(session.id)) return;
+    seen.add(session.id);
+    const order = orderFromSession(session);
+    if (order.email !== lower) return;
+    if (order.paid && !order.refunded && orderEntitlements(order).includes("labels")) orders.push(order);
+  };
+
+  const escaped = lower.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+  const found = await stripe.paymentIntents.search({
+    query: `metadata["${META_BUYER_EMAIL}"]:"${escaped}"`,
     limit: 100,
-    expand: EXPAND.map((e) => `data.${e}`),
   });
-  return sessions.data
-    .map(orderFromSession)
-    .filter((o) => o.paid && !o.refunded && orderEntitlements(o).includes("labels"));
+  for (const pi of found.data) {
+    const sessions = await stripe.checkout.sessions.list({
+      payment_intent: pi.id,
+      limit: 1,
+      expand: EXPAND.map((e) => `data.${e}`),
+    });
+    sessions.data.forEach(consider);
+  }
+
+  for (const form of new Set([typed, lower])) {
+    const sessions = await stripe.checkout.sessions.list({
+      customer_details: { email: form },
+      status: "complete",
+      limit: 100,
+      expand: EXPAND.map((e) => `data.${e}`),
+    });
+    sessions.data.forEach(consider);
+  }
+  return orders;
 }
 
 export async function markFulfilled(order: Order, when = new Date()): Promise<void> {
-  if (!order.paymentIntentId) return;
-  await getStripe().paymentIntents.update(order.paymentIntentId, {
-    metadata: { [META_FULFILLED_AT]: when.toISOString() },
-  });
+  const metadata: Record<string, string> = { [META_FULFILLED_AT]: when.toISOString() };
+  if (order.email) metadata[META_BUYER_EMAIL] = order.email;
+  if (order.paymentIntentId) {
+    await getStripe().paymentIntents.update(order.paymentIntentId, { metadata });
+  } else {
+    // Zero-total order (promotion code): no PaymentIntent exists, so the
+    // marker lives on the session instead.
+    await getStripe().checkout.sessions.update(order.sessionId, { metadata });
+  }
 }

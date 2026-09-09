@@ -14,3 +14,10 @@ export function getShopStatus(): ShopStatus {
   const phase = getShopPhase();
   return isShopEnabled(phase) ? phase : "waitlist";
 }
+
+// The cookbook pages (/shop, /checklist, /cookbook-resources) stay out of the
+// index while the shop is still a waitlist, and open up the moment preorders
+// do. Flip happens with the same deploy that turns the shop on.
+export function isShopPublic(): boolean {
+  return getShopStatus() !== "waitlist";
+}

@@ -3,7 +3,7 @@
 
 import { SITE_URL } from "@/lib/seo";
 import { signDeliveryToken } from "./entitlement";
-import { sendLabelsDelivery, sendOrderNotification } from "./email";
+import { sendOrderConfirmation, sendOrderNotification } from "./email";
 import { markFulfilled, orderEntitlements, type Order } from "./orders";
 
 export function deliveryPath(token: string): string {
@@ -14,9 +14,8 @@ export function deliveryPath(token: string): string {
 // Signed from the order as Stripe recorded it, so the token can never claim
 // more than was bought.
 export function deliveryLinkFor(order: Order, origin = SITE_URL): string | null {
-  if (!order.email || !orderEntitlements(order).includes("labels")) return null;
+  if (!orderEntitlements(order).includes("labels")) return null;
   const token = signDeliveryToken({
-    email: order.email,
     session: order.sessionId,
     phase: order.phase,
     iat: Math.floor(Date.now() / 1000),
@@ -31,13 +30,13 @@ export async function fulfilOrder(order: Order): Promise<FulfilResult> {
   if (order.fulfilledAt) return "already-fulfilled";
 
   const link = deliveryLinkFor(order);
-  if (link && order.email) {
-    await sendLabelsDelivery({
-      to: order.email,
-      deliveryUrl: link,
-      reason: order.productIds.includes("book") ? "preorder-bonus" : "purchase",
-      shipEstimate: order.shipEstimate,
-    });
+  // Every paid order gets one confirmation; the labels link rides inside it.
+  if (order.email) {
+    await sendOrderConfirmation(order, order.email, link);
+  } else {
+    // Checkout always collects an email, so this is a Stripe anomaly worth a
+    // loud log rather than a silent skip; the owner copy below still goes out.
+    console.error("Shop: paid session has no customer email", order.sessionId);
   }
 
   // Best-effort: the buyer already has their goods, so Keegan's copy failing

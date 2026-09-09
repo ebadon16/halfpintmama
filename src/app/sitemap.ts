@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { getAllPosts, getAllTags, POSTS_PER_PAGE } from "@/lib/posts";
+import { isShopPublic } from "@/lib/shop/status";
 
 type ChangeFrequency = "daily" | "weekly" | "monthly" | "always" | "hourly" | "yearly" | "never";
 
@@ -37,9 +38,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const mamaLifePosts = posts.filter((p) => p.category === "mama-life");
   const buildDate = new Date();
 
-  // Static pages that don't paginate (excludes noindexed /favorites, /shop, /search)
+  // Static pages that don't paginate (excludes noindexed /favorites, /search).
+  // The cookbook pages join once the shop is open; they are noindex until then.
+  const cookbookPages = isShopPublic() ? ["/shop", "/checklist", "/cookbook-resources"] : [];
   const staticPages: MetadataRoute.Sitemap = [
     "",
+    ...cookbookPages,
     "/start-here",
     "/about",
     "/contact",

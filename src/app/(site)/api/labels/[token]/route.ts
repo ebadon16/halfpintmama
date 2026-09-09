@@ -20,8 +20,17 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
   const claim = verifyDeliveryToken(token);
   if (!claim) return new NextResponse("Not found", NOT_FOUND);
 
-  const order = await getOrder(claim.session);
-  if (!order || !order.paid || order.email !== claim.email.toLowerCase()) {
+  let order;
+  try {
+    order = await getOrder(claim.session);
+  } catch (err) {
+    console.error("Labels PDF: Stripe lookup failed", err);
+    return new NextResponse("Could not check your order just now. Please try again in a minute.", {
+      status: 503,
+      headers: { "Cache-Control": "no-store", "Retry-After": "60" },
+    });
+  }
+  if (!order || !order.paid || !order.email) {
     return new NextResponse("Not found", NOT_FOUND);
   }
   if (order.refunded || !orderEntitlements(order).includes("labels")) {
@@ -31,7 +40,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ tok
     });
   }
 
-  const pdf = await buildLabelsPdf({ email: order.email! });
+  const pdf = await buildLabelsPdf({ email: order.email });
   return new NextResponse(Buffer.from(pdf), {
     status: 200,
     headers: {
