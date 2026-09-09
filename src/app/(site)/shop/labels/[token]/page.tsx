@@ -6,7 +6,7 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { verifyDeliveryToken } from "@/lib/shop/entitlement";
 import { getOrder, orderEntitlements } from "@/lib/shop/orders";
 import { LABEL_SHEET } from "@/lib/shop/labels-pdf";
-import { LabelSheetPreview } from "@/components/shop/LabelSheetPreview";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -83,7 +83,17 @@ export default async function LabelsDeliveryPage({ params }: { params: Promise<{
       <section className="py-10">
         <div className="max-w-4xl mx-auto px-4 md:flex gap-10 items-start">
           <div className="md:w-1/2 mb-8 md:mb-0">
-            <LabelSheetPreview />
+            {/* A real render of a filled-in sheet (scripts/shop/labels-preview.mjs),
+                so the phone view, where the PDF's fields render flat, still shows
+                what the finished product looks like. */}
+            <Image
+              src="/images/labels-preview.png"
+              alt="A filled-in sheet of ten freezer labels: each shows a recipe name, the date it was made, and a reheating note"
+              width={695}
+              height={900}
+              sizes="(min-width: 768px) 420px, 90vw"
+              className="w-full h-auto rounded-lg shadow-xl border border-warm-beige bg-white"
+            />
             <p className="text-charcoal/80 text-xs text-center mt-3">
               A filled-in sheet. Yours starts blank: pick a recipe from the list or type your own.
             </p>
