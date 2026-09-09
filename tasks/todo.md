@@ -163,3 +163,26 @@ Stripe-facing code is exercised only up to the SDK boundary; a real test-mode pu
 remaining verification and needs the key. With no `STRIPE_SECRET_KEY` the live site is
 unchanged except for two new noindex pages (`/shop/labels`, `/shop/labels/[token]`) and the API routes,
 which all refuse cleanly.
+
+## Launch review (Sep 9 2026)
+
+Independent code review of the shop diff found 12 issues; all fixed and re-verified in the
+sandbox: opaque delivery tokens (no email in URLs) + GA page-view scrubbing; 100%-off codes
+(zero-total, no PaymentIntent) fulfil with the marker on the session; recovery searches a
+lowercased `buyer_email` stamped on the PaymentIntent (Stripe matches emails AS TYPED; an
+`ERICKBADON@` order recovered from a lowercase query); one on-brand order confirmation per paid
+order; shop survives a price-lookup failure; delivery page/PDF survive a Stripe outage; expired
+and never-cleared checkout copy; config-derived shipping copy; JSON guards; real forgery tests.
+
+Emails rebuilt to the newsletter design (cream, Playfair, #073704/#093E06/#A0562F, mason-jar
+logo, "Hi friend" / "With love, Keegan"). Preview: `npx tsx scripts/shop/send-sample-email.mjs`.
+⚠ The email logo loads from halfpintmama.com/images/email-logo.png, so it shows only after deploy.
+
+Free checklist restored: /checklist (URL printed in the book), /cookbook-resources, /shop card.
+Shop/checklist/resources indexable + in sitemap once preorders open; Book+Offer schema on /shop;
+terms gained Orders, Shipping & Refunds. Screenshots verified in waitlist/preorder/launched,
+desktop + mobile.
+
+Dev-server gotchas: Turbopack dev panicked repeatedly here, use `next dev --webpack`; dev CSP now
+allows eval; a dev server started inside a tool call dies with it, launch detached
+(`scratchpad/launch_dev.mjs` pattern: child_process.spawn detached + unref).
