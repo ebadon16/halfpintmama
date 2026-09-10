@@ -30,8 +30,9 @@ const bytes = await buildLabelsPdf({ email: "you@example.com", createdAt: new Da
 const doc = await PDFDocument.load(bytes);
 doc.registerFontkit(fontkit);
 const form = doc.getForm();
-const body = await doc.embedFont(fs.readFileSync("private/shop/fonts/CrimsonText-Regular.ttf"), { subset: false });
-const heading = await doc.embedFont(fs.readFileSync("private/shop/fonts/CrimsonText-SemiBold.ttf"), { subset: false });
+const opts = { subset: false, features: { liga: false, rlig: false, calt: false } };
+const body = await doc.embedFont(fs.readFileSync("private/shop/fonts/CrimsonText-Regular.ttf"), opts);
+const heading = await doc.embedFont(fs.readFileSync("private/shop/fonts/CrimsonText-SemiBold.ttf"), opts);
 SAMPLE.forEach(([recipe, date, note], i) => {
   const n = `p1_${i + 1}`;
   const dd = form.getDropdown(`recipe_${n}`); dd.select(recipe); dd.updateAppearances(heading);
