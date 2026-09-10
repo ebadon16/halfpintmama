@@ -4,7 +4,7 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { Tag, BookOpen, ClipboardCheck } from "lucide-react";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 import { getShopStatus, isShopPublic } from "@/lib/shop/status";
-import { CHECKLIST_PDF } from "@/lib/shop/checklist";
+import { PrintablesGrid } from "@/components/shop/PrintablesGrid";
 
 export function generateMetadata(): Metadata {
   return metadataFor(isShopPublic());
@@ -91,30 +91,14 @@ export default function CookbookResourcesPage() {
           <div className="flex items-center gap-3 mb-6">
             <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />
             <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold">
-              The Freezer Prep Checklist
+              Free Printables
             </h2>
           </div>
-          <div className="bg-cream rounded-2xl p-8 shadow-md text-center">
-            <p className="text-charcoal/80 mb-4">
-              The whole Chapter 11 plan on one page: thirteen prep sessions across weeks 30 to 36,
-              with a freezer inventory sheet on the back. Free to download and print.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href={CHECKLIST_PDF}
-                download="rest-and-rise-freezer-prep-checklist.pdf"
-                className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
-              >
-                Download the Checklist (PDF)
-              </a>
-              <Link
-                href="/checklist"
-                className="inline-block px-6 py-3 border-2 border-deep-sage text-deep-sage font-semibold rounded-full hover:bg-deep-sage hover:text-white transition-all text-sm"
-              >
-                How to use it
-              </Link>
-            </div>
-          </div>
+          <p className="text-charcoal/80 mb-6">
+            Every fill-in page from Chapter 11 and the one-page session checklist, free to download
+            and print as many times as you need.
+          </p>
+          <PrintablesGrid compact />
         </div>
       </section>
 

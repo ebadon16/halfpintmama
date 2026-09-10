@@ -4,13 +4,14 @@ import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { EmailSignup } from "@/components/EmailSignup";
 import { BuyButton } from "@/components/shop/BuyButton";
+import { PrintablesGrid } from "@/components/shop/PrintablesGrid";
 import { BookOpen, CalendarCheck, HeartPulse, Croissant, Tag, Printer, Truck, ClipboardCheck } from "lucide-react";
 import { AUTHOR_REF, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, SITE_URL, jsonLdHtml } from "@/lib/seo";
 import { PRODUCTS, shopCopy, type ShopStatus } from "@/lib/shop/catalog";
 import { LABEL_SHEET } from "@/lib/shop/labels-pdf";
 import { getDisplayPrice, type DisplayPrice } from "@/lib/shop/prices";
 import { getShopStatus } from "@/lib/shop/status";
-import { CHECKLIST_PDF } from "@/lib/shop/checklist";
+import { CHECKLIST_PDF } from "@/lib/shop/printables";
 import { getShipCountries, getShipEstimate } from "@/lib/shop/stripe";
 
 // Prices are read live from Stripe; re-render at most every five minutes so a
@@ -178,30 +179,24 @@ export default async function ShopPage() {
           </div>
         </section>
 
-        {/* Everything that goes with the book. The checklist is free in every
-            phase; the labels card explains how to get them in this one. */}
+        {/* The book sends readers here (page 143) for every fill-in page in
+            Chapter 11, and (pages 23 and 165) for the labels. Free in every phase. */}
+        <section id="printables" className="mb-16 max-w-5xl mx-auto scroll-mt-24">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />
+            <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold">
+              Free Printables From the Book
+            </h2>
+          </div>
+          <p className="text-charcoal/80 text-center max-w-2xl mx-auto mb-8">
+            Every fill-in page from Chapter 11, plus the one-page session checklist. Print as many
+            as you need. No signup.
+          </p>
+          <PrintablesGrid compact />
+        </section>
+
         <section className="mb-16 max-w-5xl mx-auto">
-          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-8 text-center">
-            Goes With the Book
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-2xl p-6 shadow-md flex gap-4 items-start">
-              <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />
-              <div>
-                <h3 className="font-semibold text-charcoal mb-1">The Freezer Prep Checklist</h3>
-                <p className="text-charcoal/80 text-sm mb-3">
-                  The Chapter 11 plan on one page: thirteen sessions across weeks 30 to 36, plus a
-                  freezer inventory sheet. Free, no signup.
-                </p>
-                <a
-                  href={CHECKLIST_PDF}
-                  download="rest-and-rise-freezer-prep-checklist.pdf"
-                  className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
-                >
-                  Download the checklist (PDF) &rarr;
-                </a>
-              </div>
-            </div>
+          <div className="grid md:grid-cols-1 gap-6 max-w-2xl mx-auto">
             <div className="bg-white rounded-2xl p-6 shadow-md flex gap-4 items-start">
               <ThemedIcon icon={Tag} size="lg" color="terracotta" />
               <div>

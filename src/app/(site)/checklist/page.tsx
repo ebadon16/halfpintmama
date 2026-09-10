@@ -5,7 +5,8 @@ import { Download, BookOpen, Tag } from "lucide-react";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
 import { shopCopy } from "@/lib/shop/catalog";
-import { CHECKLIST_PDF } from "@/lib/shop/checklist";
+import { CHECKLIST_PDF } from "@/lib/shop/printables";
+import { PrintablesGrid } from "@/components/shop/PrintablesGrid";
 import { getShopStatus, isShopPublic } from "@/lib/shop/status";
 
 // The URL printed in the book. Free, no email gate: a reader holding the book
@@ -108,6 +109,20 @@ export default function ChecklistPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* The rest of Chapter 11's fill-in pages, free as well. */}
+      <section className="py-12 bg-cream">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold mb-3 text-center">
+            All the Chapter 11 Printables
+          </h2>
+          <p className="text-charcoal/80 text-center max-w-2xl mx-auto mb-8">
+            The prep day planner, both stock-up lists, and the freezer inventory checklist, exactly as
+            they appear in the book.
+          </p>
+          <PrintablesGrid />
         </div>
       </section>
     </div>
