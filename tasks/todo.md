@@ -95,9 +95,15 @@ Stripe objects EXIST in the sandbox (`npm run shop:setup` created them; values a
 
 1. Vercel env: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_BOOK`, `SHOP_TOKEN_SECRET` (48 random chars),
    `SHOP_PHASE=preorder`, `SHOP_SHIP_ESTIMATE="<month year>"`, optional `STRIPE_SHIPPING_RATE`.
-2. Stripe → Developers → Webhooks → add `https://halfpintmama.com/api/stripe/webhook` with
-   `checkout.session.completed` + `checkout.session.async_payment_succeeded`; copy the signing
-   secret into `STRIPE_WEBHOOK_SECRET`. Redeploy (env edits do not touch the live deploy).
+2. **Deploy FIRST, then register the webhook.** Push and let Vercel build, confirm
+   `POST https://halfpintmama.com/api/stripe/webhook` is no longer a 404, and only then add the
+   endpoint in Stripe → Developers → Webhooks (LIVE mode) with `checkout.session.completed` +
+   `checkout.session.async_payment_succeeded`. Copy its signing secret into
+   `STRIPE_WEBHOOK_SECRET` on Vercel and redeploy (env edits do not touch the live deploy).
+   ⚠ Registering before the route exists makes Stripe retry against a 404 and email you about a
+   failing endpoint (this happened Sep 8-12; that test-mode endpoint is now disabled).
+   ⚠ Never point a TEST-mode endpoint at halfpintmama.com: production holds the live signing
+   secret, so test events can never verify. Local test-mode work uses `stripe listen`.
 3. Test-mode purchase with card 4242…; confirm delivery email, `/shop/success` link, PDF download,
    Keegan's order email, then refund in Stripe and confirm the labels page shows the refunded state.
 4. Fill `[PRICE]` + `[SHIP DATE]` in the MailerLite draft, fix the subject, send.

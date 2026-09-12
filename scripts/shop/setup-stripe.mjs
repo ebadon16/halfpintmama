@@ -105,8 +105,33 @@ async function ensureShippingRate() {
   return rate;
 }
 
+// A registered endpoint only belongs in LIVE mode. Test-mode events delivered
+// to the production URL can never verify: production holds the live signing
+// secret, so the signature check fails even once the code is deployed. Worse,
+// registering it before the code ships means Stripe retries against a 404 and
+// emails the account owner about a failing endpoint. Local test-mode work goes
+// through `stripe listen`, which mints its own secret.
 async function ensureWebhook() {
+  if (mode !== "live") {
+    console.log("  webhook: skipped in test mode. For local testing run:");
+    console.log("    stripe listen --api-key $STRIPE_SECRET_KEY --forward-to localhost:3000/api/stripe/webhook");
+    console.log("    then put the whsec_... it prints into STRIPE_WEBHOOK_SECRET for that dev server only.");
+    return { endpoint: null, secret: null };
+  }
+
   const url = `${site}/api/stripe/webhook`;
+  // Registering before the route is deployed guarantees failed deliveries.
+  try {
+    const probe = await fetch(url, { method: "POST", headers: { "stripe-signature": "probe" }, body: "{}" });
+    if (probe.status === 404) {
+      console.error(`  webhook: ${url} returns 404 — deploy the site first, then re-run. Skipping.`);
+      return { endpoint: null, secret: null };
+    }
+  } catch (err) {
+    console.error(`  webhook: could not reach ${url} (${err instanceof Error ? err.message : err}). Deploy first, then re-run. Skipping.`);
+    return { endpoint: null, secret: null };
+  }
+
   const events = ["checkout.session.completed", "checkout.session.async_payment_succeeded"];
   const all = await stripe.webhookEndpoints.list({ limit: 100 });
   const mine = all.data.find((w) => w.url === url);
@@ -142,7 +167,7 @@ STRIPE_SECRET_KEY=${key.slice(0, 12)}…            # already have it
 ${book ? `STRIPE_PRICE_BOOK=${book.id}` : "# STRIPE_PRICE_BOOK=   (run again with --book=<cents>)"}
 ${labels ? `STRIPE_PRICE_LABELS=${labels.id}` : "# STRIPE_PRICE_LABELS=   (needed only when SHOP_PHASE=launched)"}
 ${shipping ? `STRIPE_SHIPPING_RATE=${shipping.id}` : "# STRIPE_SHIPPING_RATE=   (optional)"}
-${secret ? `STRIPE_WEBHOOK_SECRET=${secret}` : "STRIPE_WEBHOOK_SECRET=   # copy from Stripe → Developers → Webhooks"}
+${secret ? `STRIPE_WEBHOOK_SECRET=${secret}` : mode === "live" ? "STRIPE_WEBHOOK_SECRET=   # register the endpoint after deploying, then copy its secret" : "# STRIPE_WEBHOOK_SECRET=   # test mode: use the secret `stripe listen` prints, locally only"}
 SHOP_TOKEN_SECRET=${process.env.SHOP_TOKEN_SECRET || randomBytes(36).toString("base64url")}
 SHOP_PHASE=preorder
 SHOP_SHIP_ESTIMATE=${process.env.SHOP_SHIP_ESTIMATE || "<month year, e.g. November 2026>"}
