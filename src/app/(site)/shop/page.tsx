@@ -171,6 +171,19 @@ export default async function ShopPage() {
               ) : (
                 <BookOffer status={status} price={bookPrice} />
               )}
+              {/* Page 140 of the book sends readers to this URL for the
+                  printables. Without this they land on the hero and have to
+                  scroll past everything to find what they were told was here. */}
+              <p className="text-charcoal/80 text-sm mt-4">
+                Here from the book?{" "}
+                <a
+                  href="#printables"
+                  className="text-terracotta hover:text-deep-sage font-medium transition-colors"
+                >
+                  Jump to the free printables
+                </a>
+                .
+              </p>
             </div>
           </div>
         </section>
