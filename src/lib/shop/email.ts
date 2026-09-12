@@ -186,7 +186,7 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
 
   const closing = p(
     hasBook
-      ? "In the meantime, the free freezer prep checklist is on the site if you want to start planning: <a href=\"" + SITE_URL + "/checklist\" style=\"color: " + T.link + ";\">halfpintmama.com/checklist</a>."
+      ? "In the meantime, every fill-in page from the book is a free printable on the site: <a href=\"" + SITE_URL + "/shop\" style=\"color: " + T.link + ";\">halfpintmama.com/shop</a>."
       : "Label everything: what it is, the date, and how to reheat it. Future you will thank you."
   ) + (labelsUrl ? LOST_LINK_HTML : `<p style="${SMALL}">Questions about your order? Just reply to this email.</p>`);
 
@@ -204,7 +204,7 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
     (preorder ? "Changed your mind? Reply to this email any time before your book ships and I will refund it in full.\n\n" : "") +
     `Order reference ${order.sessionId}\n\n` +
     (labelsUrl ? `${preorder ? "Your preorder bonus is ready now. The printable freezer labels for every recipe in the book" : "Here are your labels"}: ${labelsUrl}\n\n${LABELS_HOWTO_TEXT}` : "") +
-    (hasBook ? `In the meantime, the free freezer prep checklist is on the site if you want to start planning: ${SITE_URL}/checklist\n\n` : "Label everything: what it is, the date, and how to reheat it. Future you will thank you.\n\n") +
+    (hasBook ? `In the meantime, every fill-in page from the book is a free printable on the site: ${SITE_URL}/shop\n\n` : "Label everything: what it is, the date, and how to reheat it. Future you will thank you.\n\n") +
     (labelsUrl ? LOST_LINK_TEXT : "Questions about your order? Just reply to this email.\n") +
     SIGN_OFF_TEXT;
 
@@ -222,14 +222,14 @@ export function renderShippedNotice(order: Order): RenderedEmail {
     p("Hi friend,") +
       p(`Good news: ${copies} in the mail. I packed it myself this morning.`) +
       (shipTo.length ? panel(`<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};"><strong>${escapeHtml(items)}</strong><br />Heading to ${shipTo.map(escapeHtml).join(", ")}</p>`) : "") +
-      p("While you wait, the freezer prep checklist is the best place to start: <a href=\"" + SITE_URL + "/checklist\" style=\"color: " + T.link + ";\">halfpintmama.com/checklist</a>. Week 30 is setup week, so there is no rush.") +
+      p("While you wait, the prep day planner and both stock-up lists are free to print: <a href=\"" + SITE_URL + "/shop\" style=\"color: " + T.link + ";\">halfpintmama.com/shop</a>. Week 30 is setup week, so there is no rush.") +
       p("Thank you for being one of the first. I hope it earns a spot on your counter.") +
       `<p style="${SMALL}">Questions about delivery? Just reply to this email.</p>`
   );
   const text =
     `Hi friend,\n\nGood news: ${copiesText} in the mail. I packed it myself this morning.\n\n` +
     `${items}\n` + (shipTo.length ? `Heading to ${shipTo.join(", ")}\n` : "") +
-    `\nWhile you wait, the freezer prep checklist is the best place to start: ${SITE_URL}/checklist\n\n` +
+    `\nWhile you wait, the prep day planner and both stock-up lists are free to print: ${SITE_URL}/shop\n\n` +
     `Thank you for being one of the first. I hope it earns a spot on your counter.\n\nQuestions about delivery? Just reply to this email.\n` +
     SIGN_OFF_TEXT;
   return { subject: "Your Rest and Rise is on its way", html, text };

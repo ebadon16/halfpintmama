@@ -11,7 +11,6 @@ import { PRODUCTS, shopCopy, type ShopStatus } from "@/lib/shop/catalog";
 import { LABEL_SHEET } from "@/lib/shop/labels-pdf";
 import { getDisplayPrice, type DisplayPrice } from "@/lib/shop/prices";
 import { getShopStatus } from "@/lib/shop/status";
-import { CHECKLIST_PDF } from "@/lib/shop/printables";
 import { getShipCountries, getShipEstimate } from "@/lib/shop/stripe";
 
 // Prices are read live from Stripe; re-render at most every five minutes so a
@@ -205,8 +204,8 @@ export default async function ShopPage() {
             </h2>
           </div>
           <p className="text-charcoal/80 text-center max-w-2xl mx-auto mb-8">
-            Every fill-in page from Chapter 11, plus the one-page session checklist. Print as many
-            as you need. No signup.
+            Every fill-in page from Chapter 11: the prep day planner, both stock-up lists, and the
+            freezer inventory checklist. Print as many as you need. No signup.
           </p>
           <PrintablesGrid compact />
         </section>
@@ -362,8 +361,8 @@ function BookOffer({ status, price }: { status: "preorder" | "launched"; price: 
           <li className="flex gap-2 items-start">
             <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
             The labels are a fillable PDF you print at home or at a print shop onto Avery{" "}
-            {LABEL_SHEET.avery}, or any 2&quot; &times; 4&quot;, 10-per-sheet label. Fill them in on a
-            computer.
+            {LABEL_SHEET.avery} freezer-safe sheets, or any 2&quot; &times; 4&quot;, 10-per-sheet
+            waterproof label. Fill them in on a computer.
           </li>
         )}
       </ul>
@@ -406,7 +405,7 @@ async function LabelsOffer() {
             <li className="flex gap-2 items-start">
               <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
               You will need a printer (or a print shop) and Avery {LABEL_SHEET.avery}, or any
-              2&quot; &times; 4&quot;, 10-per-sheet label. Fill them in on a computer.
+              2&quot; &times; 4&quot;, 10-per-sheet freezer-safe label. Fill them in on a computer.
             </li>
           </ul>
         </div>

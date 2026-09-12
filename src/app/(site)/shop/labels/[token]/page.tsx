@@ -140,8 +140,9 @@ export default async function LabelsDeliveryPage({ params }: { params: Promise<{
                   and any reheating note. Two pages are fillable; the third is blank for handwriting.
                 </li>
                 <li>
-                  Load Avery {LABEL_SHEET.avery} sheets, or any 2&quot; &times; 4&quot;, 10-per-sheet
-                  compatible label. Freezer-safe sheets hold up best.
+                  Load Avery {LABEL_SHEET.avery} sheets, which are 2&quot; &times; 4&quot;, ten to a
+                  page, and waterproof so they last in the freezer. Any 2&quot; &times; 4&quot;,
+                  10-per-sheet label fits the same layout; plain paper will not last.
                 </li>
                 <li>
                   Print at <strong>100% / actual size</strong>. Turn off &quot;fit to page&quot; or the

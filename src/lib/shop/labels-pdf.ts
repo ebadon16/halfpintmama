@@ -20,11 +20,13 @@ import fontkit from "@pdf-lib/fontkit";
 import { PDFDocument, PDFFont, PDFPage, StandardFonts, degrees, rgb } from "pdf-lib";
 import { BOOK_RECIPES } from "./recipes";
 
-// Avery 5163 (2" x 4", 10 per US Letter sheet), the geometry assumed until
-// Keegan confirms the freezer-safe product code. Points, 72 per inch.
-// ⚠ Change ONLY here when the product code is confirmed.
+// Avery 5523: 2" x 4", 10 per US Letter sheet, waterproof polyester film.
+// Same grid as the far more common 5163, but 5163 is plain paper and will not
+// survive a freezer, so the buyer is pointed at the temperature-resistant
+// version of the identical layout. Any 2x4 10-up sheet fits. Points, 72 per inch.
+// ⚠ Change ONLY here if the layout ever moves.
 export const LABEL_SHEET = {
-  avery: "5163",
+  avery: "5523",
   pageWidth: 612,
   pageHeight: 792,
   columns: 2,

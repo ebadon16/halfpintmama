@@ -2,7 +2,7 @@
 // recipe combo box on each label. The box is editable, so a buyer can still
 // type anything — "not everyone makes the same recipes."
 //
-// Keep in sync with scripts/checklist-pdf/checklist.html if the book changes.
+// Taken from the book's recipe index. Keep in sync if the book changes.
 
 export const BOOK_RECIPES: readonly string[] = [
   "Classic Artisan Sourdough Loaf",

@@ -67,6 +67,14 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        // The book prints only halfpintmama.com and halfpintmama.com/shop.
+        // /checklist was never one of them; anyone who guesses it lands on the
+        // resources page. Temporary, in case a checklist ships as a real product.
+        source: "/checklist",
+        destination: "/cookbook-resources",
+        permanent: false,
+      },
+      {
         // The "Mama Life Guide" lead magnet was never produced (no asset, no
         // delivery automation), so the page promised a guide it couldn't send.
         // Point mama-life visitors at the real mama-life content instead.

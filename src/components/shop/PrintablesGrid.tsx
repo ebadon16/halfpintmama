@@ -2,8 +2,8 @@ import Image from "next/image";
 import { Download } from "lucide-react";
 import { PRINTABLES } from "@/lib/shop/printables";
 
-// The five free downloads, as a grid of preview cards. Used on /shop (the URL
-// the book prints), /checklist, and /cookbook-resources.
+// The four free downloads the book promises, as a grid of preview cards. Used
+// on /shop, which is the URL the book prints, and on /cookbook-resources.
 export function PrintablesGrid({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`grid gap-6 ${compact ? "sm:grid-cols-2 lg:grid-cols-5" : "sm:grid-cols-2 lg:grid-cols-3"}`}>

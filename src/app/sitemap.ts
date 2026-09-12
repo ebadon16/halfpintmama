@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Static pages that don't paginate (excludes noindexed /favorites, /search).
   // The cookbook pages join once the shop is open; they are noindex until then.
-  const cookbookPages = isShopPublic() ? ["/shop", "/checklist", "/cookbook-resources"] : [];
+  const cookbookPages = isShopPublic() ? ["/shop", "/cookbook-resources"] : [];
   const staticPages: MetadataRoute.Sitemap = [
     "",
     ...cookbookPages,

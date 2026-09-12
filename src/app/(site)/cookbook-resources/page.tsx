@@ -85,7 +85,8 @@ export default function CookbookResourcesPage() {
         </div>
       </section>
 
-      {/* Freezer prep checklist: free, no gate. The book prints /checklist. */}
+      {/* The fill-in pages the book promises at halfpintmama.com/shop, free and
+          ungated. This page is where /checklist lands, so they live here too. */}
       <section className="py-12 bg-white">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-6">
@@ -95,8 +96,7 @@ export default function CookbookResourcesPage() {
             </h2>
           </div>
           <p className="text-charcoal/80 mb-6">
-            Every fill-in page from Chapter 11 and the one-page session checklist, free to download
-            and print as many times as you need.
+            Every fill-in page from Chapter 11, free to download and print as many times as you need.
           </p>
           <PrintablesGrid compact />
         </div>

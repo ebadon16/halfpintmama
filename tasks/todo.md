@@ -153,35 +153,44 @@ showing a buy button that cannot work, and logs exactly why.
 
 Verified against the Texas Comptroller, September 2026.
 
-- **Texas sales must be taxed.** "Texas sellers must collect sales tax on taxable items,
-  including shipping and delivery charges, sold online in Texas." Keegan is in Round Rock, so
-  this applies from the first sale; there is no small-seller threshold for an in-state seller.
-- **Rate is 6.25% state plus up to 2% local, 8.25% maximum, destination-based.** If the buyer's
-  local rate is higher than Round Rock's, the difference is owed as local use tax.
-- **Out-of-state orders owe no Texas tax.** Another state's tax only starts mattering if she
-  crosses that state's economic nexus threshold, typically $100,000 or 200 transactions. A book
-  selling in the hundreds will not come close.
-- **Shipping is taxable in Texas**, so the tax is calculated on the book plus the shipping.
+- **Texas sales must be taxed.** "Texas sellers must collect sales tax on taxable items, including
+  shipping and delivery charges, sold online in Texas." Keegan is in Round Rock, so this applies
+  from the first sale; there is no small-seller threshold for a seller inside the state.
+- **6.25% state plus up to 2% local, 8.25% maximum, destination-based.** If the buyer's local rate
+  is higher than Round Rock's, the difference is owed as local use tax.
+- **Out-of-state orders owe no Texas tax.** Another state only matters past its own nexus
+  threshold, typically $100,000 or 200 transactions, which a book selling in the hundreds will not
+  approach.
+- **Shipping is taxable**, so the tax lands on the book plus the postage.
 
-The code is already wired for this and switched off. `SHOP_COLLECT_TAX=on` turns on Stripe's
-automatic tax; the products carry the right tax codes (`txcd_35010000` Books for the hardcover,
-`txcd_10505001` Digital Finished Artwork for the labels), so Stripe applies each product's own
-treatment rather than guessing. Proven in the sandbox: a Texas order came out at $34.00 + $5.00
-shipping + $3.22 tax = $42.22, which is 8.25% on the taxable total.
+**Keegan's one action: apply for the permit.** Online at https://security.app.cpa.state.tx.us/,
+free, and she needs her Social Security number plus a NAICS code (459210, Book Retailers, fits).
+Allow two to three weeks. It has to exist before the first taxable sale, so this is the thing to
+start earliest; everything else here waits on prices, but this waits on the state.
 
-**Before flipping it on, in this order:**
+Then, in order:
 
-1. Keegan applies for a Texas Sales and Use Tax Permit (free, comptroller.texas.gov/taxes/permit).
-2. In Stripe, Settings → Tax: set the head office to the Round Rock address and add the Texas
-   registration with its start date.
-3. Set `SHOP_COLLECT_TAX=on` in Vercel and redeploy.
-4. She files Texas returns on the schedule the permit assigns, monthly or quarterly.
+1. In Stripe, Settings → Tax: set the head office to the Round Rock address, and add the Texas
+   registration with the start date from the permit.
+2. Set `SHOP_COLLECT_TAX=on` in Vercel and redeploy.
+3. File Texas returns on whatever schedule the permit assigns.
 
-Cost: Stripe Tax bills per transaction only where you are registered, so only Texas orders carry
-it. Everything shipped elsewhere is free.
+The code is already wired and switched off. Products carry their own tax codes, `txcd_35010000`
+for the hardcover and `txcd_10505001` for the labels, so Stripe applies the right treatment to
+each rather than a generic guess. Proven in the sandbox: a Texas order came out at $34.00 plus
+$5.00 shipping plus $3.22 tax, which is 8.25% of the taxable total. Stripe Tax bills only where
+you are registered, so orders shipped outside Texas cost nothing.
 
-⚠ Do not enable it before the permit exists. Collecting tax you are not registered to collect is
-a worse problem than not collecting it.
+⚠ Do not switch it on before the permit exists. Collecting tax you are not registered to collect
+is a worse problem than not collecting it.
+
+### Labels: which sheets buyers need
+
+**Avery 5523.** Two inches by four, ten to a page, waterproof polyester film, temperature
+resistant. The far more common Avery 5163 is the same grid but plain paper and will not survive a
+freezer, so the site names 5523 and says any 2x4 ten-up waterproof sheet fits the same layout.
+There is no verified Avery inkjet part number in this size, so the site names none; the generic
+description covers inkjet buyers.
 
 ### What stops the shop opening
 

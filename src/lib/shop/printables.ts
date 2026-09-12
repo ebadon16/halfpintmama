@@ -1,12 +1,16 @@
 // The free downloads the book points readers to at halfpintmama.com/shop.
 // Book page 140: "Every fill-in page in this chapter is also a free printable
-// at halfpintmama.com/shop." That is every fill-in page from Chapter 11 (book
-// pages 141-145), plus the one-page session checklist. The labels the book
-// names on pages 34 and 165 are the separate paid product.
+// at halfpintmama.com/shop. Download the prep day planner, both stock-up lists,
+// and the freezer inventory checklist."
+//
+// That sentence is the whole list. These four are the fill-in pages from the
+// book, pages 141 to 145, word for word. Nothing else belongs here: the labels
+// the book names on pages 34 and 165 are the separate paid product, and the
+// book promises no other download.
 //
 // The files carry hashed names and next.config.ts serves /downloads with
 // X-Robots-Tag: noindex, so the pages that present them rank rather than the
-// bare PDFs. Sources live in scripts/chapter11-printables and scripts/checklist-pdf.
+// bare PDFs. Sources live in scripts/chapter11-printables.
 
 export interface Printable {
   slug: string;
@@ -50,14 +54,4 @@ export const PRINTABLES: readonly Printable[] = [
     preview: "/images/printables/freezer-inventory-checklist.png",
     pages: 1,
   },
-  {
-    slug: "freezer-prep-checklist",
-    name: "The Freezer Prep Checklist",
-    blurb: "The whole thirteen-session plan on one page, weeks 30 to 36, with a freezer inventory on the back.",
-    file: "/downloads/rest-and-rise-checklist-2a418ce2.pdf",
-    preview: "/images/freezer-prep-checklist-preview.png",
-    pages: 2,
-  },
 ];
-
-export const CHECKLIST_PDF = PRINTABLES[4].file;
