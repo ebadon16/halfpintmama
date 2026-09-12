@@ -164,7 +164,9 @@ Verified against the Texas Comptroller, September 2026.
 - **Shipping is taxable**, so the tax lands on the book plus the postage.
 
 **Keegan's one action: apply for the permit.** Online at https://security.app.cpa.state.tx.us/,
-free, and she needs her Social Security number plus a NAICS code (459210, Book Retailers, fits).
+free, and she needs her Social Security number plus a NAICS code. Use **513130, Book Publishers**:
+she publishes her own title rather than reselling other people's, and the retail code 459210
+explicitly excludes publishing. The code is statistical only and does not change what is owed.
 Allow two to three weeks. It has to exist before the first taxable sale, so this is the thing to
 start earliest; everything else here waits on prices, but this waits on the state.
 
