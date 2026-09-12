@@ -19,7 +19,6 @@ export function BuyButton({ product, label, className = "" }: BuyButtonProps) {
   async function handleClick() {
     setBusy(true);
     setError("");
-    trackEvent("begin_checkout", { product });
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -33,6 +32,9 @@ export function BuyButton({ product, label, className = "" }: BuyButtonProps) {
         throw new Error("Could not start checkout. Please try again.");
       }
       if (!res.ok || !data.url) throw new Error(data.error || "Could not start checkout");
+      // Fired only once Stripe has actually returned a session, so refused and
+      // failed attempts cannot inflate the top of the funnel.
+      trackEvent("begin_checkout", { product });
       window.location.assign(data.url);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not start checkout. Please try again.");

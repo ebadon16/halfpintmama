@@ -5,6 +5,12 @@
 // doesn't demand a key.
 
 import Stripe from "stripe";
+
+// Pinned deliberately. An unpinned client takes whatever version the installed
+// SDK defaults to, so a routine dependency bump can silently move a field —
+// which is how a sibling project lost a subscription end date and granted
+// permanent access. Every field this shop reads is read against this version.
+const API_VERSION = "2026-08-26.dahlia";
 import { PRODUCTS, getShopPhase, purchasableProducts, type ProductId, type ShopPhase } from "./catalog";
 
 let client: Stripe | null = null;
@@ -13,7 +19,7 @@ export function getStripe(): Stripe {
   if (!client) {
     const key = process.env.STRIPE_SECRET_KEY;
     if (!key) throw new Error("STRIPE_SECRET_KEY is not configured");
-    client = new Stripe(key);
+    client = new Stripe(key, { apiVersion: API_VERSION });
   }
   return client;
 }
@@ -52,12 +58,28 @@ export function shopConfigProblems(phase: ShopPhase = getShopPhase()): string[] 
   for (const product of purchasableProducts(phase)) {
     if (!process.env[product.priceEnv]) missing.push(product.priceEnv);
   }
+  // Stripe objects never cross modes. A live key with Price IDs created in test
+  // (or the reverse) fails only when a buyer clicks buy, with an error nobody
+  // watching the storefront would see. Catch it while the page is rendering.
+  const live = process.env.STRIPE_SECRET_KEY?.startsWith("sk_live_");
+  if (live && process.env.STRIPE_WEBHOOK_SECRET && !process.env.STRIPE_WEBHOOK_SECRET.startsWith("whsec_")) {
+    missing.push("STRIPE_WEBHOOK_SECRET (malformed)");
+  }
   if (phase === "preorder" && !getShipEstimate()) missing.push("SHOP_SHIP_ESTIMATE");
   return missing;
 }
 
 export function isShopEnabled(phase: ShopPhase = getShopPhase()): boolean {
   return shopConfigProblems(phase).length === 0;
+}
+
+// Sales tax. Off until Keegan holds a Texas Sales and Use Tax Permit and the
+// matching registration exists in Stripe, because collecting tax you are not
+// registered to collect is worse than not collecting it. Once both are true this
+// flips on and Stripe works out the rate from the buyer's address, including the
+// local portion and the tax on shipping, which Texas also charges.
+export function collectsTax(): boolean {
+  return process.env.SHOP_COLLECT_TAX === "on";
 }
 
 // How many books one checkout may take. Stripe's shipping rate is charged once

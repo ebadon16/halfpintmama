@@ -316,3 +316,40 @@ export async function sendOrderNotification(
 ): Promise<void> {
   await send(ownerAddress(), renderOrderNotification(order, labelsSentTo, opts), order.email ?? REPLY_TO);
 }
+
+// A refund or a chargeback on one of our own orders. Access is revoked
+// automatically at read time; this exists so Keegan does not mail a book for an
+// order whose money has already gone back.
+export interface MoneyReversed {
+  kind: "refund" | "dispute";
+  email: string | null;
+  amount: number;
+  currency: string;
+  sessionId: string;
+  products: string;
+}
+
+export async function sendMoneyReversedNotice(r: MoneyReversed): Promise<void> {
+  const isDispute = r.kind === "dispute";
+  const money = formatMoney(r.amount, r.currency);
+  const subject = isDispute
+    ? `\u26A0\uFE0F Chargeback opened: ${money} — do not ship`
+    : `Refunded: ${money}`;
+  const html = shell(
+    isDispute ? "A buyer has disputed a charge" : "An order was refunded",
+    p(
+      isDispute
+        ? `<strong>${escapeHtml(money)} has been disputed by ${escapeHtml(r.email ?? "the buyer")}.</strong> Do not ship this order. Respond in the Stripe dashboard before the deadline or the money is lost by default.`
+        : `${escapeHtml(money)} was refunded to ${escapeHtml(r.email ?? "the buyer")}. If the book has not gone out yet, pull it from the pile.`
+    ) +
+      panel(
+        `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; color: ${T.text};">${escapeHtml(r.products)}<br />Order ${escapeHtml(r.sessionId)}</p>`
+      ) +
+      p("Any labels that came with this order stopped working the moment the money went back.")
+  );
+  const text =
+    `${isDispute ? "CHARGEBACK" : "Refund"}: ${money} — ${r.email ?? "unknown buyer"}\n` +
+    `${r.products}\nOrder ${r.sessionId}\n` +
+    (isDispute ? "Do not ship. Respond in Stripe before the deadline.\n" : "If the book has not shipped, pull it.\n");
+  await send(ownerAddress(), { subject, html, text });
+}

@@ -4,7 +4,7 @@
 import { SITE_URL } from "@/lib/seo";
 import { signDeliveryToken } from "./entitlement";
 import { sendOrderConfirmation, sendOrderNotification } from "./email";
-import { markFulfilled, orderEntitlements, type Order } from "./orders";
+import { getOrder, markFulfilled, orderEntitlements, type Order } from "./orders";
 
 export function deliveryPath(token: string): string {
   return `/shop/labels/${token}`;
@@ -23,13 +23,25 @@ export function deliveryLinkFor(order: Order, origin = SITE_URL): string | null 
   return `${origin}${deliveryPath(token)}`;
 }
 
-export type FulfilResult = "unpaid" | "already-fulfilled" | "fulfilled";
+export type FulfilResult = "not-ours" | "unpaid" | "already-fulfilled" | "fulfilled";
 
 export async function fulfilOrder(order: Order): Promise<FulfilResult> {
+  // The webhook fires for every Checkout Session on the account, not just ours.
+  // A Payment Link made in the dashboard, or anything else sold from this
+  // Stripe account, arrives here too. Without this guard such a session would
+  // be marked fulfilled and its buyer emailed about a cookbook they never
+  // ordered. No products stamped by our checkout route means not our sale.
+  if (!order.productIds.length) return "not-ours";
   if (!order.paid) return "unpaid";
   if (order.fulfilledAt) return "already-fulfilled";
 
   const link = deliveryLinkFor(order);
+
+  // Re-read the marker immediately before claiming. Stripe can deliver the same
+  // event twice, and this collapses the common case where the second delivery
+  // arrives after the first has already claimed the order.
+  const fresh = await getOrder(order.sessionId);
+  if (fresh?.fulfilledAt) return "already-fulfilled";
 
   // Claim the order FIRST. If this write fails the webhook returns 500, Stripe
   // retries, and nothing has been sent yet, so a retry is clean. Sending first

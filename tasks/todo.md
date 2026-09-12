@@ -149,6 +149,40 @@ price, moves the lookup key, archives the old one and prints the new env value. 
 redeploy. If that redeploy is forgotten the storefront falls back to the waitlist rather than
 showing a buy button that cannot work, and logs exactly why.
 
+### Sales tax
+
+Verified against the Texas Comptroller, September 2026.
+
+- **Texas sales must be taxed.** "Texas sellers must collect sales tax on taxable items,
+  including shipping and delivery charges, sold online in Texas." Keegan is in Round Rock, so
+  this applies from the first sale; there is no small-seller threshold for an in-state seller.
+- **Rate is 6.25% state plus up to 2% local, 8.25% maximum, destination-based.** If the buyer's
+  local rate is higher than Round Rock's, the difference is owed as local use tax.
+- **Out-of-state orders owe no Texas tax.** Another state's tax only starts mattering if she
+  crosses that state's economic nexus threshold, typically $100,000 or 200 transactions. A book
+  selling in the hundreds will not come close.
+- **Shipping is taxable in Texas**, so the tax is calculated on the book plus the shipping.
+
+The code is already wired for this and switched off. `SHOP_COLLECT_TAX=on` turns on Stripe's
+automatic tax; the products carry the right tax codes (`txcd_35010000` Books for the hardcover,
+`txcd_10505001` Digital Finished Artwork for the labels), so Stripe applies each product's own
+treatment rather than guessing. Proven in the sandbox: a Texas order came out at $34.00 + $5.00
+shipping + $3.22 tax = $42.22, which is 8.25% on the taxable total.
+
+**Before flipping it on, in this order:**
+
+1. Keegan applies for a Texas Sales and Use Tax Permit (free, comptroller.texas.gov/taxes/permit).
+2. In Stripe, Settings → Tax: set the head office to the Round Rock address and add the Texas
+   registration with its start date.
+3. Set `SHOP_COLLECT_TAX=on` in Vercel and redeploy.
+4. She files Texas returns on the schedule the permit assigns, monthly or quarterly.
+
+Cost: Stripe Tax bills per transaction only where you are registered, so only Texas orders carry
+it. Everything shipped elsewhere is free.
+
+⚠ Do not enable it before the permit exists. Collecting tax you are not registered to collect is
+a worse problem than not collecting it.
+
 ### What stops the shop opening
 
 `shopConfigProblems()` keeps the storefront on the waitlist unless every one of these is set:

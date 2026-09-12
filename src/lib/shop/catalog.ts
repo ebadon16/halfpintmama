@@ -19,6 +19,10 @@ export interface Product {
   // and Keegan can reprice without a deploy. This names the env var carrying
   // the Stripe Price ID.
   priceEnv: string;
+  // Stripe Tax product code. Books and digital artwork are taxed differently
+  // from one another and from generic goods, and several states treat books
+  // specially, so guessing with a generic code would collect the wrong amount.
+  taxCode: string;
 }
 
 export const PRODUCTS: Record<ProductId, Product> = {
@@ -27,12 +31,16 @@ export const PRODUCTS: Record<ProductId, Product> = {
     name: "Rest and Rise",
     kind: "physical",
     priceEnv: "STRIPE_PRICE_BOOK",
+    taxCode: "txcd_35010000", // Books
   },
   labels: {
     id: "labels",
     name: "Printable Freezer Labels",
     kind: "digital",
     priceEnv: "STRIPE_PRICE_LABELS",
+    // Digital Finished Artwork, downloaded, permanent rights: a finished design
+    // the buyer downloads and keeps, which is what the label sheet is.
+    taxCode: "txcd_10505001",
   },
 };
 

@@ -37,6 +37,7 @@ const PRODUCTS = {
     lookup: "hpm_book",
     amount: Number(args.book || 0),
     shippable: true,
+    taxCode: "txcd_35010000", // Books
   },
   labels: {
     name: "Printable Freezer Labels",
@@ -45,6 +46,7 @@ const PRODUCTS = {
     lookup: "hpm_labels",
     amount: Number(args.labels || 0),
     shippable: false,
+    taxCode: "txcd_10505001", // Digital Finished Artwork, downloaded, permanent rights
   },
 };
 
@@ -76,6 +78,7 @@ async function ensurePrice(id) {
         name: spec.name,
         description: spec.description,
         shippable: spec.shippable,
+        tax_code: spec.taxCode,
         url: `${site}/shop`,
         metadata: { hpm_product: id },
       }));
@@ -161,7 +164,13 @@ async function ensureWebhook() {
     return { endpoint: null, secret: null };
   }
 
-  const events = ["checkout.session.completed", "checkout.session.async_payment_succeeded"];
+  const events = [
+    "checkout.session.completed",
+    "checkout.session.async_payment_succeeded",
+    // Money leaving after the sale: Keegan needs to know before she ships.
+    "charge.refunded",
+    "charge.dispute.created",
+  ];
   const all = await stripe.webhookEndpoints.list({ limit: 100 });
   const mine = all.data.find((w) => w.url === url);
   if (mine) {

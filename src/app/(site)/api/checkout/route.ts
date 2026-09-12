@@ -5,6 +5,7 @@ import { SITE_URL } from "@/lib/seo";
 import { PRODUCTS, getShopPhase, isPurchasable, requiresShipping, type ProductId } from "@/lib/shop/catalog";
 import { META_PHASE, META_PRODUCTS, META_SHIP_ESTIMATE } from "@/lib/shop/orders";
 import {
+  collectsTax,
   getMaxBooksPerOrder,
   getPriceId,
   getShipCountries,
@@ -96,6 +97,15 @@ export async function POST(request: Request) {
         description: `${PRODUCTS[product].name}${phase === "preorder" && physical ? " (preorder)" : ""}`,
       },
       allow_promotion_codes: true,
+      // Stripe calculates from the shipping address on a physical order. A
+      // digital-only order has no shipping address, so the billing address has
+      // to be collected or there is nothing to calculate against.
+      ...(collectsTax()
+        ? {
+            automatic_tax: { enabled: true },
+            ...(physical ? {} : { billing_address_collection: "required" as const }),
+          }
+        : {}),
       ...(physical
         ? {
             shipping_address_collection: { allowed_countries: getShipCountries() },
@@ -118,7 +128,21 @@ export async function POST(request: Request) {
     }
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    console.error("Shop checkout error:", err);
+    // Loud and specific: a failure here drops the buyer straight out of the
+    // funnel, and the storefront gives no sign anything is wrong.
+    const message = err instanceof Error ? err.message : String(err);
+    console.error(
+      `Shop checkout FAILED: product=${(await request.clone().json().catch(() => ({}))).product ?? "?"} ` +
+        `phase=${getShopPhase()} :: ${message}`
+    );
+    // "No such price" means the Price ID is missing, archived, or belongs to the
+    // other mode. Retrying will never work, so do not ask the buyer to.
+    if (/No such price|similar object exists in (test|live) mode/i.test(message)) {
+      return NextResponse.json(
+        { error: "This item is not available right now. Please let Keegan know." },
+        { status: 503 }
+      );
+    }
     return NextResponse.json({ error: "Could not start checkout. Please try again." }, { status: 500 });
   }
 }

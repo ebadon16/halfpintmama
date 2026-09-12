@@ -5,6 +5,7 @@ import { ThemedIcon } from "@/components/ThemedIcon";
 import { PRODUCTS } from "@/lib/shop/catalog";
 import { deliveryLinkFor } from "@/lib/shop/fulfil";
 import { getOrder, orderEntitlements } from "@/lib/shop/orders";
+import { PurchaseTracking } from "@/components/shop/PurchaseTracking";
 
 export const dynamic = "force-dynamic";
 
@@ -80,6 +81,12 @@ export default async function ShopSuccessPage({
 
   return (
     <Shell title="Thank you!">
+      <PurchaseTracking
+        orderId={order.sessionId}
+        value={(order.amountTotal ?? 0) / 100}
+        currency={(order.currency ?? "usd").toUpperCase()}
+        items={order.productIds.join(",")}
+      />
       {hasBook && (
         <div className="bg-white rounded-2xl shadow-md p-6 mb-5 flex gap-4 items-start text-left">
           <ThemedIcon icon={PackageCheck} size="lg" color="sage" />

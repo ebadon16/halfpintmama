@@ -169,6 +169,16 @@ Object.assign(process.env, env);
 check("copy: waitlist", shopCopy("waitlist").cta === "Join the Waitlist");
 check("copy: preorder", shopCopy("preorder").cta === "Preorder the Book");
 
+console.log("\n-- foreign sessions --");
+const { fulfilOrder } = await import(`${lib}/fulfil.ts`);
+// The webhook fires for every Checkout Session on the account. A Payment Link
+// or another product's sale must never be fulfilled as a cookbook order.
+const foreignSession = orderFromSession(session({ metadata: {} }));
+check("session with no products is refused before any Stripe call", (await fulfilOrder(foreignSession)) === "not-ours");
+const junkMeta = orderFromSession(session({ metadata: { product_ids: "widget", shop_phase: "preorder" } }));
+check("session whose products we do not sell is refused", (await fulfilOrder(junkMeta)) === "not-ours");
+check("our own paid session is not refused as foreign", orderFromSession(session()).productIds.length > 0);
+
 console.log("\n-- owner notification --");
 const paidOrder = orderFromSession(session());
 const okNote = renderOrderNotification(paidOrder, "jane@example.com");
