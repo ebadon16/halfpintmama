@@ -62,6 +62,13 @@ export async function POST(request: Request) {
 
     const session = await getStripe().checkout.sessions.create({
       mode: "payment",
+      // Opt out of Managed Payments, Stripe's merchant-of-record product, which
+      // is on by default for this account. It rejects both the shipping address
+      // collection a physical book needs and the custom_text that states the
+      // preorder ship date, so with it enabled this call fails outright. Set per
+      // request rather than trusting the dashboard toggle, which Stripe changed
+      // under us once already.
+      managed_payments: { enabled: false },
       line_items: [
         {
           price: getPriceId(product),
