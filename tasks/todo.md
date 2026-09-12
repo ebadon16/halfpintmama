@@ -88,25 +88,73 @@ At launch the book stops including them and they become a paid standalone item.
       email (mixed case), identical reply for unknown → refund → API 410, page "no longer
       available", recovery silent. Launched-phase order path is covered by the self-test only.
 
-## Go-live runbook
+## Go-live runbook (verified Sep 12 2026)
 
-Stripe objects EXIST in the sandbox (`npm run shop:setup` created them; values are in
-`.env.local`). The same command with the LIVE key creates the live set and prints the env block.
+### What I need from you, once
 
-1. Vercel env: `STRIPE_SECRET_KEY`, `STRIPE_PRICE_BOOK`, `SHOP_TOKEN_SECRET` (48 random chars),
-   `SHOP_PHASE=preorder`, `SHOP_SHIP_ESTIMATE="<month year>"`, optional `STRIPE_SHIPPING_RATE`.
-2. **Deploy FIRST, then register the webhook.** Push and let Vercel build, confirm
-   `POST https://halfpintmama.com/api/stripe/webhook` is no longer a 404, and only then add the
-   endpoint in Stripe → Developers → Webhooks (LIVE mode) with `checkout.session.completed` +
-   `checkout.session.async_payment_succeeded`. Copy its signing secret into
-   `STRIPE_WEBHOOK_SECRET` on Vercel and redeploy (env edits do not touch the live deploy).
-   ⚠ Registering before the route exists makes Stripe retry against a 404 and email you about a
-   failing endpoint (this happened Sep 8-12; that test-mode endpoint is now disabled).
-   ⚠ Never point a TEST-mode endpoint at halfpintmama.com: production holds the live signing
-   secret, so test events can never verify. Local test-mode work uses `stripe listen`.
-3. Test-mode purchase with card 4242…; confirm delivery email, `/shop/success` link, PDF download,
-   Keegan's order email, then refund in Stripe and confirm the labels page shows the refunded state.
-4. Fill `[PRICE]` + `[SHIP DATE]` in the MailerLite draft, fix the subject, send.
+1. **Book price**, **labels price**, **shipping charge** (or "free shipping").
+2. **Ship month** for preorders, currently set to November 2026. Must include KDP's
+   author-copy lead time, roughly 2-3 weeks after the interior is approved, plus packing.
+3. **The live secret key** `sk_live_...` from the Half Pint Mama account, Developers -> API keys.
+4. **Copies per order**: default is 1. More than one only makes sense with a shipping rate
+   priced for the bigger box, because Stripe charges shipping once per order, not per book.
+
+Nothing else. Every other decision is made and in code.
+
+### Step 1 — push, any time before launch (safe on its own)
+
+Pushing deploys the shop code but NOT the shop: with no Stripe env on Vercel the storefront
+still renders today's waitlist page. What it does turn on is everything the printed book points
+at, which has to exist before a reader holds a copy:
+
+- `/checklist` becomes a real page instead of a redirect, with the free session checklist.
+- `/shop` and `/cookbook-resources` list all four Chapter 11 printables, free and ungated.
+- The five PDFs go live at their hashed URLs.
+
+All three pages stay `noindex` and out of the sitemap until the shop opens, so nothing changes
+in search. Doing this early is what makes launch day a single step.
+
+### Step 2 — launch day, one command and one paste
+
+```
+STRIPE_SECRET_KEY=sk_live_... npm run shop:setup -- --book=<cents> --labels=<cents> --shipping=<cents>
+```
+
+It creates the products, both prices, the shipping rate, registers the webhook (only because
+step 1 already deployed the route: it probes the URL and refuses if it 404s), and prints the
+complete env block including the webhook signing secret. Paste that block into Vercel and
+redeploy. The shop is open.
+
+⚠ Keep `SHOP_TOKEN_SECRET` stable forever. Changing it invalidates every delivery link already
+emailed. The script prints the existing one unchanged and shouts if it has to mint a new one.
+
+### Step 3 — prove it with real money
+
+Buy the book with a real card, confirm the confirmation email and the labels link arrive, then
+refund it in the Stripe dashboard and confirm the labels link stops working. Ten minutes.
+
+### Step 4 — when the books actually ship
+
+- Set `SHOP_PHASE=launched` and redeploy. The book becomes a normal order, the labels go on sale
+  as their own item, and `/shop` becomes indexable with Book and Offer schema.
+- Tell every preorder buyer their copy is on its way:
+  `node --env-file=.env.local node_modules/.bin/tsx scripts/shop/notify-shipped.mjs` to see the
+  list, then `--send`. It marks each order so nobody is emailed twice.
+- Fill the price and ship date into the MailerLite draft (campaign `198049723307787316`) and send.
+
+### Changing a price later
+
+Re-run the setup command with the new number. Stripe prices are immutable, so it creates a new
+price, moves the lookup key, archives the old one and prints the new env value. Paste and
+redeploy. If that redeploy is forgotten the storefront falls back to the waitlist rather than
+showing a buy button that cannot work, and logs exactly why.
+
+### What stops the shop opening
+
+`shopConfigProblems()` keeps the storefront on the waitlist unless every one of these is set:
+`STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `RESEND_API_KEY`, `SHOP_TOKEN_SECRET` (32+ chars),
+the price for everything on sale in the current phase, and `SHOP_SHIP_ESTIMATE` during preorder.
+That last one is the FTC rule: a preorder must state its ship date before taking money.
 
 ## Blocked on someone else
 
