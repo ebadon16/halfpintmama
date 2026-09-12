@@ -144,9 +144,9 @@ export default async function ShopPage() {
               <div className="relative max-w-xs mx-auto">
                 <Image
                   src="/images/rest-and-rise-cover.jpg"
-                  alt="Rest and Rise cookbook cover: Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery, by ER nurse and mom of three Keegan Badon, RN"
-                  width={1303}
-                  height={1931}
+                  alt="Rest and Rise cookbook cover: a loaf of sourdough lifted from a Dutch oven, under the title Rest and Rise, Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery, by Keegan Badon"
+                  width={1401}
+                  height={2001}
                   priority
                   sizes="320px"
                   className="w-full h-auto rounded-2xl shadow-xl border-4 border-terracotta/20"
@@ -215,20 +215,30 @@ export default async function ShopPage() {
             <div className="bg-white rounded-2xl p-6 shadow-md flex gap-4 items-start">
               <ThemedIcon icon={Tag} size="lg" color="terracotta" />
               <div>
-                <h3 className="font-semibold text-charcoal mb-1">Printable Freezer Labels</h3>
-                <p className="text-charcoal/80 text-sm mb-3">
+                <div className="flex flex-wrap items-center gap-2 mb-1">
+                  <h3 className="font-semibold text-charcoal">Printable Freezer Labels</h3>
+                  {/* The book names these on pages 34 and 165, so a reader may
+                      arrive looking for them before they exist. Say so plainly
+                      rather than describing them as though they were on sale. */}
+                  {status === "waitlist" && (
+                    <span className="text-[11px] font-semibold uppercase tracking-wide text-terracotta bg-terracotta/10 rounded-full px-2 py-0.5">
+                      Not out yet
+                    </span>
+                  )}
+                  {status === "preorder" && (
+                    <span className="text-[11px] font-semibold uppercase tracking-wide text-deep-sage bg-sage/20 rounded-full px-2 py-0.5">
+                      Free with preorder
+                    </span>
+                  )}
+                </div>
+                <p className="text-charcoal/80 text-sm">
+                  A fillable PDF: every recipe in the book waiting in a dropdown, or type your own.{" "}
                   {status === "launched"
-                    ? "A fillable PDF: every recipe in the book waiting in a dropdown, or type your own. Sold above as its own item."
+                    ? "Sold above as its own item."
                     : status === "preorder"
-                      ? "A fillable PDF: every recipe in the book waiting in a dropdown, or type your own. Free with every preorder, emailed as soon as your payment clears."
-                      : "A fillable PDF: every recipe in the book waiting in a dropdown, or type your own. Coming as a preorder-only bonus with the book."}
+                      ? "Yours free with the book, emailed as soon as your payment clears."
+                      : "They are not for sale yet. When preorders open they come free with the book, and they become a separate item after that. Join the waitlist above and you will hear first."}
                 </p>
-                <Link
-                  href="/cookbook-resources"
-                  className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
-                >
-                  About the labels &rarr;
-                </Link>
               </div>
             </div>
           </div>
@@ -280,8 +290,8 @@ function Waitlist() {
       <p className="text-charcoal/80 text-xs mt-3">
         Join and both my free guides arrive right away: the Postpartum Freezer Prep
         Guide, so you can start filling the freezer now, and my Sourdough Starter
-        Guide, so your starter is ready before the book is. Printable freezer labels
-        for every recipe will be a preorder-only bonus. Preorders coming soon.
+        Guide, so your starter is ready before the book is. The printable freezer labels
+        are not out yet; when preorders open they come free with the book.
       </p>
     </div>
   );
