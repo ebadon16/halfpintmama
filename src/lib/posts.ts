@@ -416,6 +416,9 @@ export async function getSiteStats(): Promise<{
   totalPosts: number;
   cookingPosts: number;
   averageRating: number;
+  // How many ratings the average is built from. Callers need this: an average
+  // drawn from one rating is not evidence of anything and should not be shown.
+  ratingCount: number;
 }> {
   const result = await client.fetch<{
     totalPosts: number;
@@ -429,13 +432,18 @@ export async function getSiteStats(): Promise<{
 
   // Weighted average across all rated posts
   let averageRating = 0;
-  if (result.ratedPosts.length > 0) {
+  const ratingCount = result.ratedPosts.reduce((sum, p) => sum + p.cnt, 0);
+  if (ratingCount > 0) {
     const totalWeighted = result.ratedPosts.reduce((sum, p) => sum + p.avg * p.cnt, 0);
-    const totalCount = result.ratedPosts.reduce((sum, p) => sum + p.cnt, 0);
-    averageRating = totalCount > 0 ? totalWeighted / totalCount : 0;
+    averageRating = totalWeighted / ratingCount;
   }
 
-  return { totalPosts: result.totalPosts, cookingPosts: result.cookingPosts, averageRating };
+  return {
+    totalPosts: result.totalPosts,
+    cookingPosts: result.cookingPosts,
+    averageRating,
+    ratingCount,
+  };
 }
 
 // Comment count for a post (top-level only)

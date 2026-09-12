@@ -13,14 +13,14 @@ export function generateMetadata(): Metadata {
 const metadataFor = (indexable: boolean): Metadata => ({
   title: "Cookbook Resources | Half Pint Mama",
   description:
-    "The free freezer prep checklist and the printable freezer labels that go with Rest and Rise, the postpartum sourdough cookbook from Half Pint Mama.",
+    "Free printables from Rest and Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist, plus the printable freezer labels.",
   alternates: { canonical: "https://halfpintmama.com/cookbook-resources" },
   robots: { index: indexable, follow: true },
   openGraph: {
     images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Cookbook Resources | Half Pint Mama",
     description:
-      "Printable freezer labels that go with Rest and Rise.",
+      "Free printables from Rest and Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist.",
     type: "website",
     url: "https://halfpintmama.com/cookbook-resources",
   },
@@ -29,7 +29,7 @@ const metadataFor = (indexable: boolean): Metadata => ({
     card: "summary_large_image" as const,
     title: "Cookbook Resources | Half Pint Mama",
     description:
-      "Printable freezer labels that go with Rest and Rise.",
+      "Free printables from Rest and Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist.",
   },
 });
 

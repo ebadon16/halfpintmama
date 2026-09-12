@@ -244,7 +244,8 @@ export function FreeGuideContent({ cookingPosts, shopStatus }: FreeGuideContentP
               </div>
               <h3 className="font-semibold text-charcoal mb-2">Beginner Recipes</h3>
               <p className="text-charcoal/80 text-sm">
-                4 recipes to try with your new starter, from simple loaves to sourdough pancakes.
+                4 discard recipes to try with your new starter, from crackers to chocolate chip
+                cookies.
               </p>
             </div>
           </div>

@@ -14,6 +14,8 @@ import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml } from "@/lib/seo"
 import { LazyComments } from "@/components/LazyComments";
 const CommentsPreview = dynamic(() => import("@/components/Comments").then(m => m.CommentsPreview));
 const RecipeCard = dynamic(() => import("@/components/RecipeCard").then(m => m.RecipeCard));
+// Static: a tiny pure predicate, so the card itself stays lazily loaded.
+import { hasRenderableRecipe } from "@/lib/recipe";
 import { PortableTextRenderer } from "@/components/PortableTextRenderer";
 
 // Sourdough journey: the hub's "Start Here" path continues on the posts
@@ -244,7 +246,7 @@ export default async function PostPage({ params }: PageProps) {
             {/* Recipe Action Buttons - Pill style, aligned left */}
             {post.category === "cooking" && (
               <div className="flex flex-wrap items-center gap-2">
-                {post.recipe && (
+                {hasRenderableRecipe(post.recipe) && (
                   <a
                     href="#recipe-card"
                     className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-charcoal bg-cream border-2 border-terracotta rounded-full hover:bg-terracotta hover:text-white transition-all"

@@ -70,7 +70,7 @@ export function HomeEmailSignup({ segment = "kitchen" }: { segment?: "kitchen" |
         <p className="text-white mb-6 max-w-xl mx-auto">
           {segment === "mama-life"
             ? "Get my free Sourdough Starter Guide and Postpartum Freezer Prep Guide, plus first word on new recipes and honest mama moments. Join 35,000+ families already following along."
-            : "Get my free Sourdough Starter Guide and Postpartum Freezer Prep Guide, plus first word on new from-scratch recipes and the upcoming cookbook. Join 35,000+ families already in the community."}
+            : "Get my free Sourdough Starter Guide and Postpartum Freezer Prep Guide, plus first word on new from-scratch recipes and the cookbook. Join 35,000+ families already in the community."}
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
           <input

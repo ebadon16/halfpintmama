@@ -128,11 +128,14 @@ export default async function Home() {
       {/* Social Proof Bar */}
       <div className="bg-white/60 border-y border-warm-beige/50">
         <div className="max-w-4xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-charcoal/80">
-          {siteStats.averageRating > 0 && (
+          {/* Only worth showing once it means something. A single five-star
+              rating on one post rendered as "5.0 average rating" in the social
+              proof bar, which reads as a verdict on all 70-odd recipes. */}
+          {siteStats.ratingCount >= 10 && (
             <>
               <span className="flex items-center gap-1">
                 <span className="text-yellow-500">&#9733;</span>
-                {siteStats.averageRating.toFixed(1)} average rating
+                {siteStats.averageRating.toFixed(1)} from {siteStats.ratingCount} ratings
               </span>
               <span className="hidden sm:inline text-charcoal/30">|</span>
             </>

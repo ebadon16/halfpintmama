@@ -17,7 +17,6 @@ import path from "node:path";
 const src = process.argv[2];
 if (!src || !fs.existsSync(src)) throw new Error("pass the path to the KDP cover PDF");
 
-const { default: fitz } = { default: null };
 const py = `
 import fitz, sys
 d = fitz.open(sys.argv[1]); p = d[0]

@@ -5,6 +5,8 @@ import { getClientIp, safeEquals } from "@/lib/http";
 
 // IndexNow key is public by design — engines verify it by fetching
 // https://halfpintmama.com/<key>.txt (lives in /public).
+// ⚠ public/8ccf223b112147fbc477181f2a358e29.txt is that file. Its NAME must stay
+// equal to this constant; renaming or deleting it breaks submissions silently.
 const INDEXNOW_KEY = "8ccf223b112147fbc477181f2a358e29";
 
 function pingIndexNow(urls: string[]) {

@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
 
         <div className="bg-white rounded-2xl p-8 shadow-md prose prose-sage max-w-none">
           <p className="text-charcoal/80 mb-6">
-            <strong>Last updated:</strong> February 4, 2026
+            <strong>Last updated:</strong> September 12, 2026
           </p>
 
           <p className="text-charcoal/80 mb-6">
@@ -48,6 +48,17 @@ export default function PrivacyPolicyPage() {
             <li>Fill out a contact form</li>
             <li>Leave comments on blog posts</li>
             <li>Participate in surveys or promotions</li>
+            <li>
+              Place an order in our shop. Payment is handled entirely by Stripe and we never see or
+              store your card details. For a physical order we receive your name and shipping
+              address so we can post it to you, and your email address so we can send your
+              confirmation.
+            </li>
+            <li>
+              Buy a digital product. Your email address is printed in the footer of the PDF you
+              download and recorded in the file&apos;s properties, which is how the copy is licensed
+              to you.
+            </li>
           </ul>
           <p className="text-charcoal/80 mb-6">
             This information may include your name, email address, and any other information you choose to provide.
@@ -95,8 +106,9 @@ export default function PrivacyPolicyPage() {
             We may use third-party services that collect, monitor, and analyze information. These include:
           </p>
           <ul className="list-disc pl-6 text-charcoal/80 mb-6 space-y-2">
-            <li>Google Analytics (website analytics)</li>
-            <li>Email service providers (newsletter delivery)</li>
+            <li>Google Analytics and Vercel Analytics (website analytics)</li>
+            <li>Email service providers (newsletter and order email delivery)</li>
+            <li>Stripe (payment processing, and shipping address collection for physical orders)</li>
             <li>Social media platforms (embedded content)</li>
           </ul>
 

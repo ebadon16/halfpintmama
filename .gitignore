@@ -42,3 +42,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# macOS junk that has no business in a published directory
+.DS_Store

@@ -92,6 +92,10 @@ export async function POST(request: NextRequest) {
     const MAILERLITE_GROUP_ID = "177682078317413870"; // New Subscribers group
     const KITCHEN_GROUP_ID = process.env.MAILERLITE_KITCHEN_GROUP_ID || MAILERLITE_GROUP_ID;
     const MAMA_GROUP_ID = process.env.MAILERLITE_MAMA_GROUP_ID;
+    // "Be the first to know when it launches" has to mean something. Without
+    // this, everyone who joined the cookbook waitlist landed in the general
+    // newsletter with no way to mail them separately on launch day.
+    const COOKBOOK_GROUP_ID = process.env.MAILERLITE_COOKBOOK_GROUP_ID;
 
     // Route to correct group based on segment
     const validSegment = VALID_SEGMENTS.includes(segment) ? segment : "kitchen";
@@ -103,6 +107,10 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedSource = VALID_SOURCES.includes(source) ? source : "website";
+    const COOKBOOK_SOURCES = ["shop-waitlist", "cookbook-resources", "cookbook-checklist"];
+    if (COOKBOOK_GROUP_ID && COOKBOOK_SOURCES.includes(normalizedSource)) {
+      groups.push(COOKBOOK_GROUP_ID);
+    }
 
     let failureReason = "";
     try {
