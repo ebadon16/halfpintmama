@@ -45,6 +45,12 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        // The printables are free and linked from indexable pages, but the PDFs
+        // themselves should not compete with those pages in search results.
+        source: "/downloads/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
         // Studio is excluded from the relaxed CSP above, but must still not be
         // framable by third-party origins (clickjacking on the login).
         source: "/studio/:path*",

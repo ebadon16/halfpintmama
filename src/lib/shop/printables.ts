@@ -1,8 +1,12 @@
-// The free downloads the book points readers to at halfpintmama.com/shop
-// (page 143): every fill-in page from Chapter 11, plus the one-page session
-// checklist. Hashed filenames keep the raw files out of search; the pages that
-// list them are the front door. Sources live in scripts/chapter11-printables
-// and scripts/checklist-pdf.
+// The free downloads the book points readers to at halfpintmama.com/shop.
+// Book page 140: "Every fill-in page in this chapter is also a free printable
+// at halfpintmama.com/shop." That is every fill-in page from Chapter 11 (book
+// pages 141-145), plus the one-page session checklist. The labels the book
+// names on pages 34 and 165 are the separate paid product.
+//
+// The files carry hashed names and next.config.ts serves /downloads with
+// X-Robots-Tag: noindex, so the pages that present them rank rather than the
+// bare PDFs. Sources live in scripts/chapter11-printables and scripts/checklist-pdf.
 
 export interface Printable {
   slug: string;

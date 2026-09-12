@@ -24,6 +24,9 @@ if (!key) {
 }
 const mode = key.startsWith("sk_live_") ? "live" : "test";
 const stripe = new Stripe(key);
+
+const money = (amount, currency = "usd") =>
+  amount == null ? "no fixed amount" : `$${(amount / 100).toFixed(2)} ${currency.toUpperCase()}`;
 const site = args.site || "https://halfpintmama.com";
 
 const PRODUCTS = {
@@ -45,72 +48,98 @@ const PRODUCTS = {
   },
 };
 
+// Stripe Prices are immutable: a new amount means a new Price. The lookup key
+// is moved onto the new one so there is a single stable name per product, and
+// the old Price is archived so it can never be charged again. Re-running with
+// the same amount is a no-op.
 async function ensurePrice(id) {
   const spec = PRODUCTS[id];
   const existing = await stripe.prices.list({ lookup_keys: [spec.lookup], active: true, limit: 1 });
-  if (existing.data[0]) {
-    const p = existing.data[0];
-    console.log(`  ${id}: price ${p.id} exists (${p.unit_amount} ${p.currency}), product ${p.product}`);
-    return p;
+  const current = existing.data[0];
+
+  if (current && (!spec.amount || current.unit_amount === spec.amount)) {
+    console.log(`  ${id}: price ${current.id} unchanged (${money(current.unit_amount, current.currency)})`);
+    return current;
   }
+
   if (!spec.amount) {
     console.error(`  ${id}: no price exists and no --${id}=<cents> given; skipping`);
     return null;
   }
-  // Product: reuse one we made before (by metadata) even if its price was archived.
-  const found = await stripe.products.search({ query: `metadata["hpm_product"]:"${id}" AND active:"true"`, limit: 1 });
-  const product =
-    found.data[0] ??
-    (await stripe.products.create({
-      name: spec.name,
-      description: spec.description,
-      shippable: spec.shippable,
-      url: `${site}/shop`,
-      metadata: { hpm_product: id },
-    }));
+
+  const product = current
+    ? current.product
+    : (
+        await stripe.products.search({ query: `metadata["hpm_product"]:"${id}" AND active:"true"`, limit: 1 })
+      ).data[0] ??
+      (await stripe.products.create({
+        name: spec.name,
+        description: spec.description,
+        shippable: spec.shippable,
+        url: `${site}/shop`,
+        metadata: { hpm_product: id },
+      }));
+
   const price = await stripe.prices.create({
-    product: product.id,
+    product: typeof product === "string" ? product : product.id,
     unit_amount: spec.amount,
     currency: "usd",
     lookup_key: spec.lookup,
+    transfer_lookup_key: true,
     metadata: { hpm_product: id },
   });
-  console.log(`  ${id}: created product ${product.id} + price ${price.id} (${spec.amount} usd)`);
+
+  if (current) {
+    await stripe.prices.update(current.id, { active: false });
+    console.log(
+      `  ${id}: REPRICED ${money(current.unit_amount, current.currency)} -> ${money(price.unit_amount, price.currency)}`
+    );
+    console.log(`         new price ${price.id} (old ${current.id} archived) — update the env var and redeploy`);
+  } else {
+    console.log(`  ${id}: created price ${price.id} (${money(price.unit_amount, price.currency)})`);
+  }
   return price;
 }
 
+// Shipping rates are immutable too. A changed amount archives the old rate and
+// creates a new one carrying the same marker.
 async function ensureShippingRate() {
   const rates = await stripe.shippingRates.list({ active: true, limit: 100 });
   const mine = rates.data.find((r) => r.metadata?.hpm === "standard");
-  if (mine) {
-    console.log(`  shipping: ${mine.id} exists (${mine.fixed_amount?.amount} ${mine.fixed_amount?.currency})`);
+  const wanted = args.shipping === undefined ? null : Number(args.shipping);
+
+  if (mine && (wanted === null || mine.fixed_amount?.amount === wanted)) {
+    console.log(`  shipping: ${mine.id} unchanged (${money(mine.fixed_amount?.amount, mine.fixed_amount?.currency)})`);
     return mine;
   }
-  const amount = Number(args.shipping || 0);
-  if (!amount && args.shipping !== "0") {
+  if (wanted === null) {
     console.log("  shipping: none exists and no --shipping=<cents> given; skipping (shipping will be free)");
     return null;
   }
+
   const rate = await stripe.shippingRates.create({
     display_name: "Standard shipping (US)",
     type: "fixed_amount",
-    fixed_amount: { amount, currency: "usd" },
+    fixed_amount: { amount: wanted, currency: "usd" },
     delivery_estimate: {
       minimum: { unit: "business_day", value: 3 },
       maximum: { unit: "business_day", value: 7 },
     },
     metadata: { hpm: "standard" },
   });
-  console.log(`  shipping: created ${rate.id} (${amount} usd)`);
+
+  if (mine) {
+    await stripe.shippingRates.update(mine.id, { active: false });
+    console.log(
+      `  shipping: REPRICED ${money(mine.fixed_amount?.amount, mine.fixed_amount?.currency)} -> ${money(rate.fixed_amount?.amount, rate.fixed_amount?.currency)}`
+    );
+    console.log(`            new rate ${rate.id} (old ${mine.id} archived) — update the env var and redeploy`);
+  } else {
+    console.log(`  shipping: created ${rate.id} (${money(rate.fixed_amount?.amount, rate.fixed_amount?.currency)})`);
+  }
   return rate;
 }
 
-// A registered endpoint only belongs in LIVE mode. Test-mode events delivered
-// to the production URL can never verify: production holds the live signing
-// secret, so the signature check fails even once the code is deployed. Worse,
-// registering it before the code ships means Stripe retries against a 404 and
-// emails the account owner about a failing endpoint. Local test-mode work goes
-// through `stripe listen`, which mints its own secret.
 async function ensureWebhook() {
   if (mode !== "live") {
     console.log("  webhook: skipped in test mode. For local testing run:");
@@ -168,7 +197,14 @@ ${book ? `STRIPE_PRICE_BOOK=${book.id}` : "# STRIPE_PRICE_BOOK=   (run again wit
 ${labels ? `STRIPE_PRICE_LABELS=${labels.id}` : "# STRIPE_PRICE_LABELS=   (needed only when SHOP_PHASE=launched)"}
 ${shipping ? `STRIPE_SHIPPING_RATE=${shipping.id}` : "# STRIPE_SHIPPING_RATE=   (optional)"}
 ${secret ? `STRIPE_WEBHOOK_SECRET=${secret}` : mode === "live" ? "STRIPE_WEBHOOK_SECRET=   # register the endpoint after deploying, then copy its secret" : "# STRIPE_WEBHOOK_SECRET=   # test mode: use the secret `stripe listen` prints, locally only"}
-SHOP_TOKEN_SECRET=${process.env.SHOP_TOKEN_SECRET || randomBytes(36).toString("base64url")}
+${
+  process.env.SHOP_TOKEN_SECRET
+    ? `SHOP_TOKEN_SECRET=${process.env.SHOP_TOKEN_SECRET}   # unchanged`
+    : `SHOP_TOKEN_SECRET=${randomBytes(36).toString("base64url")}
+#   ^ NEW secret, generated because none was set. Use it ONLY for a first launch.
+#   Replacing an existing one invalidates every delivery link already emailed,
+#   against a product that promises the link works forever.`
+}
 SHOP_PHASE=preorder
 SHOP_SHIP_ESTIMATE=${process.env.SHOP_SHIP_ESTIMATE || "<month year, e.g. November 2026>"}
 SHOP_SHIP_COUNTRIES=US

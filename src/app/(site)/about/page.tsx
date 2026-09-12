@@ -34,10 +34,13 @@ const personSchema = {
   description: "A Pediatric ER RN and mama of three on a mission to get back to the basics with real food, simple recipes, and intentional living.",
   url: "https://halfpintmama.com/about",
   image: "https://halfpintmama.com/keegan.jpg",
+  // The five platforms the book prints (pages 162 and 165), plus the link hub.
   sameAs: [
     "https://www.instagram.com/halfpint.mama",
+    "https://www.facebook.com/HalfPintMama",
     "https://www.youtube.com/@HalfPintMama",
     "https://www.tiktok.com/@halfpint.mama",
+    "https://www.pinterest.com/halfpintmamakeegan",
     "https://linktr.ee/Halfpintmama",
   ],
   worksFor: {

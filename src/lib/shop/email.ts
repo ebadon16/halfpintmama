@@ -180,13 +180,17 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
       LABELS_HOWTO_HTML
     : "";
 
+  const cancel = preorder
+    ? p("Changed your mind? Reply to this email any time before your book ships and I will refund it in full.")
+    : "";
+
   const closing = p(
     hasBook
       ? "In the meantime, the free freezer prep checklist is on the site if you want to start planning: <a href=\"" + SITE_URL + "/checklist\" style=\"color: " + T.link + ";\">halfpintmama.com/checklist</a>."
       : "Label everything: what it is, the date, and how to reheat it. Future you will thank you."
   ) + (labelsUrl ? LOST_LINK_HTML : `<p style="${SMALL}">Questions about your order? Just reply to this email.</p>`);
 
-  const html = shell(preorder ? "You are in!" : "Thank you!", opening + summary + labels + closing);
+  const html = shell(preorder ? "You are in!" : "Thank you!", opening + summary + labels + cancel + closing);
 
   const text =
     "Hi friend,\n\n" +
@@ -197,6 +201,7 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
         : "Thank you for your order. Your printable freezer labels are ready right now.") +
     `\n\n${items}${total ? ` - ${total}` : ""}\n` +
     (shipTo.length ? `Shipping to ${shipTo.join(", ")}\n` : "") +
+    (preorder ? "Changed your mind? Reply to this email any time before your book ships and I will refund it in full.\n\n" : "") +
     `Order reference ${order.sessionId}\n\n` +
     (labelsUrl ? `${preorder ? "Your preorder bonus is ready now. The printable freezer labels for every recipe in the book" : "Here are your labels"}: ${labelsUrl}\n\n${LABELS_HOWTO_TEXT}` : "") +
     (hasBook ? `In the meantime, the free freezer prep checklist is on the site if you want to start planning: ${SITE_URL}/checklist\n\n` : "Label everything: what it is, the date, and how to reheat it. Future you will thank you.\n\n") +
@@ -252,11 +257,21 @@ export function renderLabelsRecovery(deliveryUrl: string): RenderedEmail {
 
 // Keegan's copy of every paid order. For a book this is the packing slip, so
 // it is plain and scannable rather than pretty.
-export function renderOrderNotification(order: Order, labelsSentTo: string | null): RenderedEmail {
+export function renderOrderNotification(
+  order: Order,
+  labelsSentTo: string | null,
+  opts: { buyerEmailFailed?: boolean } = {}
+): RenderedEmail {
   const { items, total, shipTo } = orderLines(order);
-  const subject = `🛒 New order: ${items}${total ? ` (${total})` : ""}${order.phase === "preorder" && order.productIds.includes("book") ? " preorder" : ""}`;
+  const failed = !!opts.buyerEmailFailed;
+  const subject = failed
+    ? `⚠️ ORDER NEEDS ATTENTION: ${items}${total ? ` (${total})` : ""} — buyer email did not send`
+    : `🛒 New order: ${items}${total ? ` (${total})` : ""}${order.phase === "preorder" && order.productIds.includes("book") ? " preorder" : ""}`;
   const html = shell(
-    "New order",
+    failed ? "Order paid, but the email failed" : "New order",
+    (failed
+      ? p(`<strong>This order is paid, but the confirmation email to ${escapeHtml(order.email ?? "the buyer")} did not go out.</strong> Reply to them directly, and if the order includes labels send a fresh link from halfpintmama.com/shop/labels.`)
+      : "") +
     panel(
       `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 16px; color: ${T.text};"><strong>${escapeHtml(items)}</strong>${total ? ` &middot; ${escapeHtml(total)}` : ""} &middot; ${order.phase}</p>` +
         `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 14px; color: ${T.text};">Buyer: ${escapeHtml(order.email ?? "unknown")}</p>` +
@@ -264,10 +279,11 @@ export function renderOrderNotification(order: Order, labelsSentTo: string | nul
           ? `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};"><strong>Ship to</strong><br />${shipTo.map(escapeHtml).join("<br />")}</p>`
           : `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; color: ${T.text};">Digital only, nothing to ship.</p>`)
     ) +
-      p(`Labels: ${labelsSentTo ? `sent to ${escapeHtml(labelsSentTo)}` : "not included in this order"}.`) +
+      p(`Labels: ${labelsSentTo ? `sent to ${escapeHtml(labelsSentTo)}` : failed ? "included, but NOT sent — resend the link" : "not included in this order"}.`) +
       `<p style="${SMALL}">Stripe session ${escapeHtml(order.sessionId)}</p>`
   );
   const text =
+    (failed ? `THIS ORDER IS PAID BUT THE BUYER'S CONFIRMATION EMAIL FAILED. Contact them directly.\n\n` : "") +
     `${items}${total ? ` - ${total}` : ""} (${order.phase})\nBuyer: ${order.email ?? "unknown"}\n` +
     (shipTo.length ? `Ship to: ${shipTo.join(", ")}\n` : "Digital only, nothing to ship.\n") +
     `Labels: ${labelsSentTo ? `sent to ${labelsSentTo}` : "not included"}\nStripe session ${order.sessionId}\n`;
@@ -293,6 +309,10 @@ export async function sendShippedNotice(order: Order, to: string): Promise<void>
   await send(to, renderShippedNotice(order));
 }
 
-export async function sendOrderNotification(order: Order, labelsSentTo: string | null): Promise<void> {
-  await send(ownerAddress(), renderOrderNotification(order, labelsSentTo), order.email ?? REPLY_TO);
+export async function sendOrderNotification(
+  order: Order,
+  labelsSentTo: string | null,
+  opts: { buyerEmailFailed?: boolean } = {}
+): Promise<void> {
+  await send(ownerAddress(), renderOrderNotification(order, labelsSentTo, opts), order.email ?? REPLY_TO);
 }

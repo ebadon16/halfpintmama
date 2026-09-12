@@ -4,7 +4,14 @@ import { getClientIp, isSameOrigin } from "@/lib/http";
 import { SITE_URL } from "@/lib/seo";
 import { PRODUCTS, getShopPhase, isPurchasable, requiresShipping, type ProductId } from "@/lib/shop/catalog";
 import { META_PHASE, META_PRODUCTS, META_SHIP_ESTIMATE } from "@/lib/shop/orders";
-import { getPriceId, getShipCountries, getShipEstimate, getStripe, shopConfigProblems } from "@/lib/shop/stripe";
+import {
+  getMaxBooksPerOrder,
+  getPriceId,
+  getShipCountries,
+  getShipEstimate,
+  getStripe,
+  shopConfigProblems,
+} from "@/lib/shop/stripe";
 
 // Starts a Stripe Checkout session for one product and returns its URL. The
 // browser redirects there; no card data ever touches this server.
@@ -45,6 +52,7 @@ export async function POST(request: Request) {
     }
 
     const shipEstimate = getShipEstimate();
+    const maxBooks = getMaxBooksPerOrder();
     // Stamped at purchase time. Fulfilment and every later access check read
     // these back, never the live env, so a phase flip mid-payment cannot change
     // what this buyer was promised.
@@ -73,8 +81,11 @@ export async function POST(request: Request) {
         {
           price: getPriceId(product),
           quantity: 1,
-          // A gift-giver often wants two. Digital labels stay at one.
-          ...(physical ? { adjustable_quantity: { enabled: true, minimum: 1, maximum: 5 } } : {}),
+          // Only offered when more than one copy can ship on the configured
+          // rate; see getMaxBooksPerOrder. Digital labels stay at one.
+          ...(physical && maxBooks > 1
+            ? { adjustable_quantity: { enabled: true, minimum: 1, maximum: maxBooks } }
+            : {}),
         },
       ],
       success_url: `${origin}/shop/success?session_id={CHECKOUT_SESSION_ID}`,

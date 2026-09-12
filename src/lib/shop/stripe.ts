@@ -36,9 +36,16 @@ export function getShipEstimate(): string | null {
 // Returns the list of missing pieces; an empty list means the shop is live.
 // The shop page uses this to fall back to the waitlist, and the checkout
 // route uses it to refuse rather than half-work.
+//
+// This deliberately covers fulfilment, not just payment. Without the webhook
+// secret the webhook 503s and no order is ever fulfilled or even reported to
+// Keegan; without the Resend key no email can be sent. Taking money in either
+// state is worse than not opening, so both belong in the gate.
 export function shopConfigProblems(phase: ShopPhase = getShopPhase()): string[] {
   const missing: string[] = [];
   if (!process.env.STRIPE_SECRET_KEY) missing.push("STRIPE_SECRET_KEY");
+  if (!process.env.STRIPE_WEBHOOK_SECRET) missing.push("STRIPE_WEBHOOK_SECRET (fulfilment cannot run without it)");
+  if (!process.env.RESEND_API_KEY) missing.push("RESEND_API_KEY (no order email can be sent without it)");
   if (!process.env.SHOP_TOKEN_SECRET || process.env.SHOP_TOKEN_SECRET.length < 32) {
     missing.push("SHOP_TOKEN_SECRET (32+ chars)");
   }
@@ -51,6 +58,16 @@ export function shopConfigProblems(phase: ShopPhase = getShopPhase()): string[] 
 
 export function isShopEnabled(phase: ShopPhase = getShopPhase()): boolean {
   return shopConfigProblems(phase).length === 0;
+}
+
+// How many books one checkout may take. Stripe's shipping rate is charged once
+// per order, not per item, so every extra copy ships on Keegan's margin. The
+// default is 1 for that reason; raise it only alongside a shipping rate priced
+// for the larger box.
+export function getMaxBooksPerOrder(): number {
+  const raw = Number(process.env.SHOP_MAX_BOOKS_PER_ORDER);
+  if (!Number.isFinite(raw)) return 1;
+  return Math.min(Math.max(Math.trunc(raw), 1), 10);
 }
 
 // Where physical orders can ship. Stripe Checkout collects the address itself;

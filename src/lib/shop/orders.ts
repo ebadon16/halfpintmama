@@ -60,9 +60,12 @@ export function orderEntitlements(order: Order): Entitlement[] {
 
 // The buyer keeps their labels only while the payment stands. A full refund
 // revokes; a partial refund (say, shipping refunded on a damaged box) does not.
+// A dispute counts too: on a chargeback Stripe pulls the funds back without
+// touching the refund fields, so without this a buyer could keep both the money
+// and a perpetual download link.
 function isRefunded(charge: Stripe.Charge | null): boolean {
   if (!charge) return false;
-  if (charge.refunded) return true;
+  if (charge.refunded || charge.disputed) return true;
   const captured = charge.amount_captured ?? charge.amount;
   return captured > 0 && charge.amount_refunded >= captured;
 }
@@ -135,9 +138,10 @@ export async function getOrder(sessionId: string): Promise<Order | null> {
 }
 
 // Every paid book order that has not been marked shipped. Drives the
-// "it's on its way" email Keegan sends once the print run lands. Found
-// through the product_ids stamped at checkout, so zero-total book orders
-// (no PaymentIntent) are the one case this misses; they are listed separately.
+// "it's on its way" email Keegan sends once the print run lands. Found through
+// the PaymentIntent metadata stamped at checkout, so a comped book order taken
+// with a 100%-off code has no PaymentIntent to find and will not appear here;
+// send those by hand, there will be a handful at most.
 export async function findUnshippedBookOrders(): Promise<Order[]> {
   const stripe = getStripe();
   const orders: Order[] = [];
@@ -161,7 +165,8 @@ export async function findUnshippedBookOrders(): Promise<Order[]> {
 // purchase-time metadata, not from "a book order exists" — after launch a book
 // order alone does not include labels.
 //
-// Two lookups, because Stripe matches emails exactly as the buyer typed them:
+// Takes the address AS THE BUYER TYPED IT. Two lookups, because Stripe matches
+// emails byte-for-byte:
 //  1. PaymentIntent search on the lowercased copy fulfilment stamped (case-proof,
 //     covers every paid order; the search index can lag a minute behind).
 //  2. The session list filtered by the address as typed and lowercased, which
@@ -170,6 +175,8 @@ export async function findLabelOrdersByEmail(email: string): Promise<Order[]> {
   const stripe = getStripe();
   const typed = email.trim();
   const lower = typed.toLowerCase();
+  // If the caller already lowercased, the second lookup is a duplicate and the
+  // Set collapses it; passing the raw address is what makes it do real work.
   const seen = new Set<string>();
   const orders: Order[] = [];
   const consider = (session: Stripe.Checkout.Session) => {

@@ -27,13 +27,16 @@ export async function POST(request: Request) {
     }
 
     const body = (await request.json()) as { email?: unknown };
-    const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 254) : "";
+    // Kept as typed. Stripe's email filter is byte-exact, so lowercasing here
+    // would silently disable the case-exact half of the lookup in orders.ts.
+    const email = typeof body.email === "string" ? body.email.trim().slice(0, 254) : "";
     if (!EMAIL_REGEX.test(email)) {
       return NextResponse.json({ error: "Please enter a valid email address" }, { status: 400 });
     }
+    const emailKey = email.toLowerCase();
     // Per-address cap as well. Best-effort only: the limiter is in-process
     // memory, so each serverless instance counts separately.
-    if (!rateLimit(`labels-recover:${email}`, 3, 24 * 60 * 60_000)) {
+    if (!rateLimit(`labels-recover:${emailKey}`, 3, 24 * 60 * 60_000)) {
       return NextResponse.json(REPLY);
     }
 

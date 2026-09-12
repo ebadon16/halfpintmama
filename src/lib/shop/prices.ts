@@ -8,6 +8,10 @@ export interface DisplayPrice {
   amount: number; // minor units, as Stripe stores it
   currency: string;
   formatted: string;
+  // False once a Price has been archived, which is what happens to the old one
+  // when a product is repriced. An archived Price still reads back fine but
+  // Checkout refuses it, so the shop must not offer a buy button for it.
+  active: boolean;
 }
 
 export function formatMoney(amount: number, currency: string): string {
@@ -36,6 +40,7 @@ export async function getDisplayPrice(id: ProductId): Promise<DisplayPrice> {
     amount: price.unit_amount,
     currency: price.currency,
     formatted: formatMoney(price.unit_amount, price.currency),
+    active: price.active,
   };
   cache.set(priceId, { value, expires: Date.now() + TTL_MS });
   return value;

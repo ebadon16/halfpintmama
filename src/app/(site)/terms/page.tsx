@@ -19,6 +19,16 @@ export const metadata = {
 
 import Link from "next/link";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
+import { getShipCountries } from "@/lib/shop/stripe";
+
+// Read from the same configuration the shop sells under, so the terms cannot
+// drift from the countries actually offered at checkout.
+function shippingDestinations(): string {
+  const names = new Intl.DisplayNames(["en"], { type: "region" });
+  const list = getShipCountries().map((c) => (c === "US" ? "United States" : (names.of(c) ?? c)));
+  if (list.length <= 1) return `${list[0] ?? "United States"} `;
+  return `${list.slice(0, -1).join(", ")} and ${list.at(-1)} `;
+}
 
 export default function TermsOfServicePage() {
   return (
@@ -103,15 +113,18 @@ export default function TermsOfServicePage() {
               before your order ships.
             </li>
             <li>
-              <strong>Shipping.</strong> Physical orders ship to United States addresses at the rate
-              shown at checkout. A book that arrives damaged, or does not arrive, will be replaced or
-              refunded: contact us within 30 days of the expected delivery.
+              <strong>Shipping.</strong> Physical orders ship to {shippingDestinations()}addresses at
+              the rate shown at checkout. A book that arrives damaged, or does not arrive, will be
+              replaced or refunded: contact us within 30 days of the expected delivery. If your order
+              included the printable labels, replacing or refunding a damaged book does not affect
+              them and your labels link keeps working.
             </li>
             <li>
-              <strong>Digital products.</strong> The printable freezer labels are delivered instantly
-              by email as a PDF made for you. Because they cannot be returned, they are not refundable
-              once delivered, except where the law requires it. When a book order that included the
-              labels as a bonus is refunded, the labels link is deactivated.
+              <strong>Digital products.</strong> The printable freezer labels are delivered by email
+              as a download link, usually within a minute of your payment clearing. The PDF is made
+              for you and carries your email address. Because they cannot be returned, the labels are
+              not refundable once delivered, except where the law requires it. If a whole order is
+              refunded or charged back, the labels link that came with it stops working.
             </li>
             <li>
               <strong>Everything else.</strong> Each book is packed by hand. If something is not right

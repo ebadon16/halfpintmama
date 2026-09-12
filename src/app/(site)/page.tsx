@@ -74,6 +74,10 @@ export default async function Home() {
     },
     sameAs: [
       "https://www.instagram.com/halfpint.mama",
+      "https://www.facebook.com/HalfPintMama",
+      "https://www.youtube.com/@HalfPintMama",
+      "https://www.tiktok.com/@halfpint.mama",
+      "https://www.pinterest.com/halfpintmamakeegan",
       "https://www.amazon.com/shop/influencer-f4dc3b3f",
     ],
   };

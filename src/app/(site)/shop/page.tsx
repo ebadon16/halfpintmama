@@ -108,17 +108,29 @@ function bookJsonLd(status: "preorder" | "launched", price: DisplayPrice) {
 
 export default async function ShopPage() {
   const status = getShopStatus();
-  const { badge } = shopCopy(status);
-  // A Stripe blip must not take the storefront down: the offer renders without
-  // a price line and Checkout still charges the real Price.
+  // Two different failures, two different answers. A transient Stripe error
+  // leaves the offer up without a price line, because Checkout charges the
+  // Price directly and will work the moment Stripe recovers. An archived Price
+  // means the product was repriced and this deploy still points at the old one,
+  // so the buy button cannot work and the page falls back to the waitlist
+  // rather than taking a click that is certain to fail.
   const bookPrice = status === "waitlist" ? null : await getDisplayPrice("book").catch((err) => {
     console.error("Shop: could not read the book price", err);
     return null;
   });
+  const bookSellable = status !== "waitlist" && bookPrice?.active !== false;
+  if (status !== "waitlist" && !bookSellable) {
+    console.error("Shop: STRIPE_PRICE_BOOK points at an archived Price — reprice env not deployed");
+  }
+  // The badge and the structured data describe whether the book can actually be
+  // bought, not merely which phase the env says we are in. Otherwise a page
+  // showing the waitlist would still announce "Preorders Open" and publish an
+  // Offer that search engines would surface with a price nobody can pay.
+  const { badge } = shopCopy(bookSellable ? status : "waitlist");
 
   return (
     <div className="bg-cream">
-      {status !== "waitlist" && bookPrice && (
+      {bookSellable && bookPrice && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdHtml(bookJsonLd(status, bookPrice)) }}
@@ -155,7 +167,11 @@ export default async function ShopPage() {
                 itself. <em>Rest and Rise</em> pairs 35 make-ahead, freezer-friendly recipes with
                 honest, nurse-informed guidance for the fourth trimester.
               </p>
-              {status === "waitlist" ? <Waitlist /> : <BookOffer status={status} price={bookPrice} />}
+              {status === "waitlist" || !bookSellable ? (
+                <Waitlist />
+              ) : (
+                <BookOffer status={status} price={bookPrice} />
+              )}
             </div>
           </div>
         </section>
@@ -203,10 +219,10 @@ export default async function ShopPage() {
                 <h3 className="font-semibold text-charcoal mb-1">Printable Freezer Labels</h3>
                 <p className="text-charcoal/80 text-sm mb-3">
                   {status === "launched"
-                    ? "A fillable PDF with a label for every recipe, sold above as its own item."
+                    ? "A fillable PDF: every recipe in the book waiting in a dropdown, or type your own. Sold above as its own item."
                     : status === "preorder"
-                      ? "A fillable PDF with a label for every recipe. Free with every preorder, delivered by email the moment you order."
-                      : "A fillable PDF with a label for every recipe. Coming as a preorder-only bonus with the book."}
+                      ? "A fillable PDF: every recipe in the book waiting in a dropdown, or type your own. Free with every preorder, emailed as soon as your payment clears."
+                      : "A fillable PDF: every recipe in the book waiting in a dropdown, or type your own. Coming as a preorder-only bonus with the book."}
                 </p>
                 <Link
                   href="/cookbook-resources"
@@ -314,8 +330,9 @@ function BookOffer({ status, price }: { status: "preorder" | "launched"; price: 
           <ThemedIcon icon={Tag} size="md" color="terracotta" />
           <p className="text-charcoal/80 text-sm">
             <strong className="text-charcoal">Preorder bonus:</strong> the printable freezer
-            labels for every recipe, free, delivered by email the moment you order. Only with a
-            preorder. After launch they become a separate item.
+            labels, free, emailed as soon as your payment clears. Only with a preorder; after
+            launch they become a separate item. Changed your mind? Cancel any time before your
+            book ships for a full refund.
           </p>
         </div>
       )}
@@ -345,7 +362,8 @@ function BookOffer({ status, price }: { status: "preorder" | "launched"; price: 
           <li className="flex gap-2 items-start">
             <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
             The labels are a fillable PDF you print at home or at a print shop onto Avery{" "}
-            {LABEL_SHEET.avery} (2&quot; &times; 4&quot;) label sheets. Fill them in on a computer.
+            {LABEL_SHEET.avery}, or any 2&quot; &times; 4&quot;, 10-per-sheet label. Fill them in on a
+            computer.
           </li>
         )}
       </ul>
@@ -359,6 +377,12 @@ async function LabelsOffer() {
     console.error("Shop: could not read the labels price", err);
     return null;
   });
+  // Same rule as the book: an archived Price cannot be bought, so say nothing
+  // rather than show a button that fails.
+  if (price?.active === false) {
+    console.error("Shop: STRIPE_PRICE_LABELS points at an archived Price — reprice env not deployed");
+    return null;
+  }
   return (
     <section className="mb-16 max-w-3xl mx-auto">
       <div className="bg-white rounded-2xl shadow-lg p-6 md:flex gap-6 items-start">
@@ -373,16 +397,16 @@ async function LabelsOffer() {
             <p className="text-2xl font-bold text-charcoal">{price ? price.formatted : <span className="text-base font-medium text-charcoal/80">Price at checkout</span>}</p>
           </div>
           <p className="text-charcoal/80 text-sm mb-4">
-            A fillable PDF with a label for every recipe in the book: pick a recipe from the
-            list or type your own, add the date, print. Two sheets of fillable labels plus one
-            to hand-write, and unlimited reprints, forever.
+            A fillable PDF: pick any recipe in the book from the dropdown or type your own, add
+            the date, print. Two sheets of fillable labels plus one to hand-write, and unlimited
+            reprints, so you can make as many as your freezer needs.
           </p>
           <BuyButton product="labels" label="Buy the Labels" />
           <ul className="text-charcoal/80 text-xs mt-4 space-y-1.5">
             <li className="flex gap-2 items-start">
               <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
-              You will need a printer (or a print shop) and Avery {LABEL_SHEET.avery} (2&quot;
-              &times; 4&quot;, 10 per sheet) label sheets. Fill them in on a computer.
+              You will need a printer (or a print shop) and Avery {LABEL_SHEET.avery}, or any
+              2&quot; &times; 4&quot;, 10-per-sheet label. Fill them in on a computer.
             </li>
           </ul>
         </div>

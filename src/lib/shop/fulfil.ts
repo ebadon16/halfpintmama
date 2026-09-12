@@ -30,23 +30,40 @@ export async function fulfilOrder(order: Order): Promise<FulfilResult> {
   if (order.fulfilledAt) return "already-fulfilled";
 
   const link = deliveryLinkFor(order);
-  // Every paid order gets one confirmation; the labels link rides inside it.
+
+  // Claim the order FIRST. If this write fails the webhook returns 500, Stripe
+  // retries, and nothing has been sent yet, so a retry is clean. Sending first
+  // would mean a failed marker re-sends the buyer's confirmation on every retry
+  // for as long as Stripe keeps trying.
+  await markFulfilled(order);
+
+  // The buyer's confirmation carries the labels link. A failure here must not
+  // throw: the order is already claimed, so a retry would skip it and the
+  // buyer would get nothing with nobody the wiser. Instead it is recorded and
+  // handed to Keegan in the notification below, which she can act on.
+  let buyerEmailed = false;
   if (order.email) {
-    await sendOrderConfirmation(order, order.email, link);
+    try {
+      await sendOrderConfirmation(order, order.email, link);
+      buyerEmailed = true;
+    } catch (err) {
+      console.error("Shop: BUYER CONFIRMATION FAILED for", order.sessionId, err);
+    }
   } else {
-    // Checkout always collects an email, so this is a Stripe anomaly worth a
-    // loud log rather than a silent skip; the owner copy below still goes out.
+    // Checkout always collects an email, so this is a Stripe anomaly.
     console.error("Shop: paid session has no customer email", order.sessionId);
   }
 
-  // Best-effort: the buyer already has their goods, so Keegan's copy failing
-  // must not make the webhook fail and re-send the buyer's email on retry.
+  // Keegan's copy is the packing slip and, when the buyer's email failed, the
+  // only signal that a paid order needs attention. Best-effort so a mail
+  // problem cannot fail an order that is already paid for and claimed.
   try {
-    await sendOrderNotification(order, link ? order.email : null);
+    await sendOrderNotification(order, link && buyerEmailed ? order.email : null, {
+      buyerEmailFailed: !!order.email && !buyerEmailed,
+    });
   } catch (err) {
     console.error("Shop: owner notification failed", err);
   }
 
-  await markFulfilled(order);
   return "fulfilled";
 }

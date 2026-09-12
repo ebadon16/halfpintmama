@@ -58,11 +58,11 @@ export default async function ShopSuccessPage({
               Some payment methods take a little while to clear. As soon as it does, your
               confirmation (and your labels link, if your order includes them) will arrive by email
               at <span className="font-medium text-charcoal">{order.email}</span>. If nothing arrives
-              within three days, the payment did not go through:{" "}
+              within three days,{" "}
               <Link href="/contact" className="text-terracotta hover:text-deep-sage font-medium">
                 contact Keegan
               </Link>{" "}
-              and she will check.
+              and she will check what happened.
             </>
           )}
         </p>

@@ -26,7 +26,10 @@ export function GoogleAnalytics() {
             var path = location.pathname;
             if (path.indexOf('/shop/labels/') === 0) path = '/shop/labels/[token]';
             var scrubbed = location.origin + path + (path === '/shop/success' ? '' : location.search);
-            gtag('event', 'page_view', { page_location: scrubbed, page_path: path, page_title: document.title });
+            // page_referrer defaults to document.referrer, and the same-origin
+            // referrer policy sends the FULL url — which on a delivery page is a
+            // working download link for that buyer's personalised PDF.
+            gtag('event', 'page_view', { page_location: scrubbed, page_path: path, page_title: document.title, page_referrer: '' });
           })();
         `}
       </Script>

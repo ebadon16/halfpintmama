@@ -148,11 +148,16 @@ check("every email carries the logo and sign-off", [conf, renderShippedNotice(o)
 
 console.log("\n-- shop config gate --");
 const env = { ...process.env };
-delete process.env.STRIPE_SECRET_KEY; delete process.env.STRIPE_PRICE_BOOK; delete process.env.STRIPE_PRICE_LABELS; delete process.env.SHOP_SHIP_ESTIMATE;
+for (const k of ["STRIPE_SECRET_KEY","STRIPE_PRICE_BOOK","STRIPE_PRICE_LABELS","SHOP_SHIP_ESTIMATE","STRIPE_WEBHOOK_SECRET","RESEND_API_KEY"]) delete process.env[k];
 check("nothing configured -> shop closed", shopConfigProblems("preorder").length > 0);
 process.env.STRIPE_SECRET_KEY = "sk_test_x"; process.env.STRIPE_PRICE_BOOK = "price_book";
 check("preorder without ship estimate is refused (FTC)", shopConfigProblems("preorder").includes("SHOP_SHIP_ESTIMATE"));
 process.env.SHOP_SHIP_ESTIMATE = "November 2026";
+// Taking money with no way to fulfil or even report the order is worse than staying shut.
+check("no webhook secret keeps the shop shut", shopConfigProblems("preorder").some((m) => m.startsWith("STRIPE_WEBHOOK_SECRET")));
+process.env.STRIPE_WEBHOOK_SECRET = "whsec_x";
+check("no Resend key keeps the shop shut", shopConfigProblems("preorder").some((m) => m.startsWith("RESEND_API_KEY")));
+process.env.RESEND_API_KEY = "re_x";
 check("preorder fully configured", shopConfigProblems("preorder").length === 0);
 check("launched needs the labels price too", shopConfigProblems("launched").includes("STRIPE_PRICE_LABELS"));
 process.env.STRIPE_PRICE_LABELS = "price_labels";
@@ -163,6 +168,21 @@ for (const k of Object.keys(process.env)) if (!(k in env)) delete process.env[k]
 Object.assign(process.env, env);
 check("copy: waitlist", shopCopy("waitlist").cta === "Join the Waitlist");
 check("copy: preorder", shopCopy("preorder").cta === "Preorder the Book");
+
+console.log("\n-- owner notification --");
+const paidOrder = orderFromSession(session());
+const okNote = renderOrderNotification(paidOrder, "jane@example.com");
+check("normal owner note is a plain new-order", okNote.subject.startsWith("\u{1F6D2}") && !/ATTENTION/.test(okNote.subject));
+const failNote = renderOrderNotification(paidOrder, null, { buyerEmailFailed: true });
+check("failed buyer email shouts in the subject", /NEEDS ATTENTION/.test(failNote.subject));
+check("failed buyer email tells Keegan what to do", /did not go out/.test(failNote.html) && /resend the link/i.test(failNote.html));
+check("failed buyer email says so in plain text too", /CONFIRMATION EMAIL FAILED/.test(failNote.text));
+
+console.log("\n-- price shape --");
+const { formatMoney } = await import(`${lib}/prices.ts`);
+check("money formats whole dollars without cents", formatMoney(3400, "usd") === "$34");
+check("money formats part dollars with cents", formatMoney(3450, "usd") === "$34.50");
+check("money respects currency", formatMoney(3400, "eur").includes("34"));
 
 console.log("\n-- labels PDF --");
 const geometry = LABEL_SHEET.marginLeft * 2 + LABEL_SHEET.columns * LABEL_SHEET.labelWidth + (LABEL_SHEET.columns - 1) * LABEL_SHEET.gutterX;
