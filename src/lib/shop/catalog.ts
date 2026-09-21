@@ -28,7 +28,7 @@ export interface Product {
 export const PRODUCTS: Record<ProductId, Product> = {
   book: {
     id: "book",
-    name: "Rest and Rise",
+    name: "Rest & Rise",
     kind: "physical",
     priceEnv: "STRIPE_PRICE_BOOK",
     taxCode: "txcd_35010000", // Books

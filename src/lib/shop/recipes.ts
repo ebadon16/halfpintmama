@@ -1,4 +1,4 @@
-// The 35 recipes in Rest and Rise, as they appear in the book. These seed the
+// The 35 recipes in Rest & Rise, as they appear in the book. These seed the
 // recipe combo box on each label. The box is editable, so a buyer can still
 // type anything — "not everyone makes the same recipes."
 //

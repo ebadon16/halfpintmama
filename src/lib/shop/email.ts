@@ -156,16 +156,16 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
   const ships = order.shipEstimate ? ` It ships ${escapeHtml(order.shipEstimate)}, and I will email you the moment it is on its way.` : "";
 
   const subject = preorder
-    ? `Your Rest and Rise preorder is in${labelsUrl ? " (and your labels are ready)" : ""}`
+    ? `Your Rest & Rise preorder is in${labelsUrl ? " (and your labels are ready)" : ""}`
     : hasBook
-      ? "Your Rest and Rise order is in"
-      : "Your Rest and Rise freezer labels are ready";
+      ? "Your Rest & Rise order is in"
+      : "Your Rest & Rise freezer labels are ready";
 
   const opening = preorder
     ? p("Hi friend,") +
-      p(`Thank you for preordering <em>Rest and Rise</em>. Your copy is spoken for, and I will pack it myself.${ships}`)
+      p(`Thank you for preordering <em>Rest &amp; Rise</em>. Your copy is spoken for, and I will pack it myself.${ships}`)
     : hasBook
-      ? p("Hi friend,") + p(`Thank you for your order. Your copy of <em>Rest and Rise</em> is spoken for, and I will pack it myself.${ships}`)
+      ? p("Hi friend,") + p(`Thank you for your order. Your copy of <em>Rest &amp; Rise</em> is spoken for, and I will pack it myself.${ships}`)
       : p("Hi friend,") + p("Thank you for your order. Your printable freezer labels are ready right now.");
 
   const summary = panel(
@@ -195,9 +195,9 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
   const text =
     "Hi friend,\n\n" +
     (preorder
-      ? `Thank you for preordering Rest and Rise. Your copy is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}, and I will email you the moment it is on its way.` : ""}`
+      ? `Thank you for preordering Rest & Rise. Your copy is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}, and I will email you the moment it is on its way.` : ""}`
       : hasBook
-        ? `Thank you for your order. Your copy of Rest and Rise is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""}`
+        ? `Thank you for your order. Your copy of Rest & Rise is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""}`
         : "Thank you for your order. Your printable freezer labels are ready right now.") +
     `\n\n${items}${total ? ` - ${total}` : ""}\n` +
     (shipTo.length ? `Shipping to ${shipTo.join(", ")}\n` : "") +
@@ -215,8 +215,8 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
 // book order is in the mail. Keeps the promise the confirmation makes.
 export function renderShippedNotice(order: Order): RenderedEmail {
   const { items, shipTo } = orderLines(order);
-  const copies = order.quantity > 1 ? `your ${order.quantity} copies of <em>Rest and Rise</em> are` : `your copy of <em>Rest and Rise</em> is`;
-  const copiesText = order.quantity > 1 ? `your ${order.quantity} copies of Rest and Rise are` : `your copy of Rest and Rise is`;
+  const copies = order.quantity > 1 ? `your ${order.quantity} copies of <em>Rest &amp; Rise</em> are` : `your copy of <em>Rest &amp; Rise</em> is`;
+  const copiesText = order.quantity > 1 ? `your ${order.quantity} copies of Rest & Rise are` : `your copy of Rest & Rise is`;
   const html = shell(
     "It is on its way!",
     p("Hi friend,") +
@@ -232,7 +232,7 @@ export function renderShippedNotice(order: Order): RenderedEmail {
     `\nWhile you wait, the prep day planner and both stock-up lists are free to print: ${SITE_URL}/shop\n\n` +
     `Thank you for being one of the first. I hope it earns a spot on your counter.\n\nQuestions about delivery? Just reply to this email.\n` +
     SIGN_OFF_TEXT;
-  return { subject: "Your Rest and Rise is on its way", html, text };
+  return { subject: "Your Rest & Rise is on its way", html, text };
 }
 
 // "Lost your link": the same link again, nothing else.
@@ -252,7 +252,7 @@ export function renderLabelsRecovery(deliveryUrl: string): RenderedEmail {
     LABELS_HOWTO_TEXT +
     LOST_LINK_TEXT +
     SIGN_OFF_TEXT;
-  return { subject: "Your Rest and Rise freezer labels link", html, text };
+  return { subject: "Your Rest & Rise freezer labels link", html, text };
 }
 
 // Keegan's copy of every paid order. For a book this is the packing slip, so

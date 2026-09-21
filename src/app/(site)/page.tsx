@@ -270,7 +270,7 @@ export default async function Home() {
                 <p className="text-terracotta text-xs font-semibold uppercase tracking-wide">{shop.badge}</p>
               </div>
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
-                Rest and Rise
+                Rest & Rise
               </h3>
               <p className="text-charcoal/80 text-sm mb-4">
                 My postpartum cookbook: 35 make-ahead, freezer-friendly recipes for the fourth trimester.

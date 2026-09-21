@@ -198,7 +198,7 @@ async function loadArtwork(doc: PDFDocument) {
 
 function stampFooter(page: PDFPage, fonts: Fonts, email: string) {
   const s = LABEL_SHEET;
-  const text = `Licensed to ${email}  |  Rest and Rise by Half Pint Mama  |  halfpintmama.com  |  Avery ${s.avery} or any 2" x 4" 10-up label, print at 100% (actual size)`;
+  const text = `Licensed to ${email}  |  Rest & Rise by Half Pint Mama  |  halfpintmama.com  |  Avery ${s.avery} or any 2" x 4" 10-up label, print at 100% (actual size)`;
   page.drawText(text, {
     x: s.marginLeft,
     y: 14,
@@ -264,7 +264,7 @@ export async function buildLabelsPdf({ email, createdAt }: LabelsPdfOptions): Pr
   form.updateFieldAppearances(fonts.body);
 
   const when = createdAt ?? new Date();
-  doc.setTitle("Rest and Rise Freezer Labels");
+  doc.setTitle("Rest & Rise Freezer Labels");
   doc.setAuthor("Half Pint Mama");
   doc.setSubject(`Licensed to ${email}`);
   doc.setProducer("halfpintmama.com");

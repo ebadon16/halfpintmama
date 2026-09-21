@@ -1,4 +1,4 @@
-# Rest and Rise store — build checklist
+# Rest & Rise store — build checklist
 
 `/shop` sells the physical hardcover (shipped by Keegan) and the printable freezer
 labels (instant digital delivery). During preorder the labels are a **free bonus with
@@ -287,7 +287,7 @@ allows eval; a dev server started inside a tool call dies with it, launch detach
 (`scratchpad/launch_dev.mjs` pattern: child_process.spawn detached + unref).
 
 ## Sep 9, later: quantity, shipped notice, Amazon
-- Book quantity 1-5 at checkout; emails show "Rest and Rise x N".
+- Book quantity 1-5 at checkout; emails show "Rest & Rise x N".
 - Shipped notice: `node --env-file=.env.local node_modules/.bin/tsx scripts/shop/notify-shipped.mjs`
   (dry run) then `--send`. Marks `shipped_at` on the PaymentIntent. Verified once in the sandbox.
 - `SHOP_AMAZON_URL` (optional, launched phase only) adds "Prefer Amazon? Find it there." Direct

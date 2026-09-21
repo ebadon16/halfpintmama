@@ -19,11 +19,11 @@ export const revalidate = 300;
 
 const DESCRIPTION: Record<ShopStatus, string> = {
   waitlist:
-    "Coming soon from Half Pint Mama: Rest and Rise, a post-partum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
+    "Coming soon from Half Pint Mama: Rest & Rise, a post-partum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   preorder:
-    "Preorder Rest and Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Printable freezer labels free with every preorder.",
+    "Preorder Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Printable freezer labels free with every preorder.",
   launched:
-    "Rest and Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Plus printable freezer labels for every recipe.",
+    "Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Plus printable freezer labels for every recipe.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -79,7 +79,7 @@ const whatsInside = [
   },
 ];
 
-const BOOK_TITLE = "Rest and Rise: Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery";
+const BOOK_TITLE = "Rest & Rise: Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery";
 
 // Book + Offer structured data, only when there is a real offer to describe.
 function bookJsonLd(status: "preorder" | "launched", price: DisplayPrice) {
@@ -144,7 +144,7 @@ export default async function ShopPage() {
               <div className="relative max-w-xs mx-auto">
                 <Image
                   src="/images/rest-and-rise-cover.jpg"
-                  alt="Rest and Rise cookbook cover: a loaf of sourdough lifted from a Dutch oven, under the title Rest and Rise, Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery, by Keegan Badon"
+                  alt="Rest & Rise cookbook cover: a loaf of sourdough lifted from a Dutch oven, under the title Rest & Rise, Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery, by Keegan Badon"
                   width={1401}
                   height={2001}
                   priority
@@ -163,7 +163,7 @@ export default async function ShopPage() {
               </h1>
               <p className="text-charcoal/80 text-lg mb-6">
                 Stock your freezer before baby arrives, then rest while dinner takes care of
-                itself. <em>Rest and Rise</em> pairs 35 make-ahead, freezer-friendly recipes with
+                itself. <em>Rest & Rise</em> pairs 35 make-ahead, freezer-friendly recipes with
                 honest, nurse-informed guidance for the fourth trimester.
               </p>
               {status === "waitlist" || !bookSellable ? (

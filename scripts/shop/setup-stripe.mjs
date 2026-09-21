@@ -31,7 +31,7 @@ const site = args.site || "https://halfpintmama.com";
 
 const PRODUCTS = {
   book: {
-    name: "Rest and Rise",
+    name: "Rest & Rise",
     description:
       "Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery. Hardcover, packed and shipped by Keegan.",
     lookup: "hpm_book",
@@ -42,7 +42,7 @@ const PRODUCTS = {
   labels: {
     name: "Printable Freezer Labels",
     description:
-      "Fillable PDF freezer labels for every recipe in Rest and Rise. Digital download, unlimited reprints.",
+      "Fillable PDF freezer labels for every recipe in Rest & Rise. Digital download, unlimited reprints.",
     lookup: "hpm_labels",
     amount: Number(args.labels || 0),
     shippable: false,

@@ -13,14 +13,14 @@ export function generateMetadata(): Metadata {
 const metadataFor = (indexable: boolean): Metadata => ({
   title: "Cookbook Resources | Half Pint Mama",
   description:
-    "Free printables from Rest and Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist, plus the printable freezer labels.",
+    "Free printables from Rest & Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist, plus the printable freezer labels.",
   alternates: { canonical: "https://halfpintmama.com/cookbook-resources" },
   robots: { index: indexable, follow: true },
   openGraph: {
     images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Cookbook Resources | Half Pint Mama",
     description:
-      "Free printables from Rest and Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist.",
+      "Free printables from Rest & Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist.",
     type: "website",
     url: "https://halfpintmama.com/cookbook-resources",
   },
@@ -29,7 +29,7 @@ const metadataFor = (indexable: boolean): Metadata => ({
     card: "summary_large_image" as const,
     title: "Cookbook Resources | Half Pint Mama",
     description:
-      "Free printables from Rest and Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist.",
+      "Free printables from Rest & Rise: the prep day planner, both stock-up lists, and the freezer inventory checklist.",
   },
 });
 
@@ -38,7 +38,7 @@ const LABELS_COPY = {
     text: (
       <>
         The label sheets are designed for the exact recipes in the book. Preorders are coming
-        soon: the labels come free as a preorder-only bonus with <em>Rest and Rise</em>, then
+        soon: the labels come free as a preorder-only bonus with <em>Rest & Rise</em>, then
         join the shop as their own item after launch. Join the waitlist to hear when
         preorders open.
       </>
@@ -49,7 +49,7 @@ const LABELS_COPY = {
     text: (
       <>
         The label sheets are designed for the exact recipes in the book, and they are a
-        preorder-only bonus: preorder <em>Rest and Rise</em> and the printable labels are
+        preorder-only bonus: preorder <em>Rest & Rise</em> and the printable labels are
         yours free, delivered by email right after checkout. After launch they join the shop
         as their own item.
       </>
@@ -79,7 +79,7 @@ export default function CookbookResourcesPage() {
             Cookbook Resources
           </h1>
           <p className="text-charcoal/80 text-lg max-w-2xl mx-auto">
-            Everything that goes with <em>Rest and Rise</em>, all in one place. Print the plan,
+            Everything that goes with <em>Rest & Rise</em>, all in one place. Print the plan,
             print the labels, and let future you find dinner without doing any mental math.
           </p>
         </div>
@@ -134,7 +134,7 @@ export default function CookbookResourcesPage() {
               New here?
             </h3>
             <p className="text-charcoal/80 text-sm mb-4">
-              These resources go with <em>Rest and Rise</em>: make-ahead, freezer-friendly
+              These resources go with <em>Rest & Rise</em>: make-ahead, freezer-friendly
               sourdough meals for postpartum recovery, from a Pediatric ER RN and mama of three.
             </p>
             <Link
