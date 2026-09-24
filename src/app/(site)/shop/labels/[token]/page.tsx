@@ -148,7 +148,8 @@ export default async function LabelsDeliveryPage({ params }: { params: Promise<{
                 </li>
                 <li>
                   Print pages {LABEL_PAGE_RANGE} only, at <strong>100% / actual size</strong>. Turn off
-                  &quot;fit to page&quot; or the labels will not line up with the sheet.
+                  &quot;fit to page&quot; or the labels will not line up with the sheet. Colour or black
+                  and white is your call in the print dialog; the labels read clearly either way.
                 </li>
               </ol>
             </div>

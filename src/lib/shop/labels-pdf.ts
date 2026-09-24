@@ -315,6 +315,7 @@ function drawGuide(page: PDFPage, fonts: Fonts, email: string) {
     `Print pages ${LABEL_PAGE_RANGE} only. This page is for you, not the label sheet.`,
     `Set your printer to Actual Size, or 100 percent. Never Fit to Page. This is the one setting that keeps the text lined up with the labels.`,
     `Do a test run on plain paper first, then hold it against a blank label sheet up to a window to check the alignment. Once it lines up, load your labels and print.`,
+    `Colour or black and white is up to you and your printer; choose either in the print dialog. The labels are drawn to read clearly both ways.`,
     `The last page is a hand-write sheet: the same card with writing lines, for your own recipes or anything not in the book.`,
   ]);
 

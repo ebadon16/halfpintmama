@@ -240,15 +240,15 @@ export default async function ShopPage() {
               href="/images/labels-preview.png"
               target="_blank"
               rel="noopener"
-              className="block flex-shrink-0 w-40 md:w-48 mx-auto md:mx-0 mb-5 md:mb-0 rounded-lg overflow-hidden border border-warm-beige shadow-sm hover:shadow-md transition-shadow"
+              className="block flex-shrink-0 w-64 md:w-72 mx-auto md:mx-0 mb-5 md:mb-0 rounded-lg overflow-hidden border border-warm-beige shadow-sm hover:shadow-md transition-shadow"
               aria-label="Open a full-size preview of a filled-in label sheet"
             >
               <Image
-                src="/images/labels-preview.png"
-                alt="A sheet of ten Rest & Rise freezer labels, each filled in with a recipe, a made-on date, and reheating notes"
-                width={695}
-                height={900}
-                sizes="(min-width: 768px) 192px, 160px"
+                src="/images/labels-preview-label.png"
+                alt="One Rest & Rise freezer label, filled in: the recipe name, the date it was made, how long it keeps, and the from-the-freezer directions"
+                width={864}
+                height={720}
+                sizes="(min-width: 768px) 288px, 256px"
                 className="w-full h-auto"
               />
             </a>

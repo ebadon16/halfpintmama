@@ -1,8 +1,11 @@
-// Renders public/images/labels-preview.png: one label sheet with six recipes
-// filled in, so the shop, the delivery page and the emails can show what a
-// finished sheet looks like (phones render the real form flat). Uses the same
-// fonts, geometry and card art as the buyer's PDF; the text is drawn statically
-// so the image is deterministic. Re-run whenever the label design changes:
+// Renders two images from the same drawing as the buyer's PDF (fonts, geometry,
+// card art), with static text so they are deterministic:
+//   public/images/labels-preview.png        one filled sheet of six (delivery page,
+//                                           and what the thumbnails open)
+//   public/images/labels-preview-label.png  one label, close up (the shop and
+//                                           resources thumbnails, where a whole
+//                                           sheet reads as a blur)
+// Re-run whenever the label design changes:
 //   npx tsx scripts/shop/labels-preview.mjs
 import { execSync } from "node:child_process";
 import fs from "node:fs";
@@ -38,6 +41,12 @@ _internals.slots().forEach((slot, i) => {
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "labels-preview-"));
 const pdf = path.join(tmp, "sheet.pdf");
 fs.writeFileSync(pdf, await doc.save());
-// 695x900 keeps the site's existing <Image> dimensions.
-execSync(`python3 -c "import fitz,sys; d=fitz.open(sys.argv[1]); d[0].get_pixmap(matrix=fitz.Matrix(695/612, 900/792), alpha=False).save(sys.argv[2])" ${JSON.stringify(pdf)} public/images/labels-preview.png`);
-console.log("wrote public/images/labels-preview.png", fs.statSync("public/images/labels-preview.png").size, "bytes");
+// 695x900 keeps the site's existing <Image> dimensions. The close-up is the
+// first label (top-left) at 3x, a 288x240pt die-cut, so 864x720.
+const first = _internals.slots()[0];
+const clip = { x0: first.x, y0: LABEL_SHEET.pageHeight - first.y - LABEL_SHEET.labelHeight, x1: first.x + LABEL_SHEET.labelWidth, y1: LABEL_SHEET.pageHeight - first.y };
+execSync(
+  `python3 -c "import fitz,sys,json; d=fitz.open(sys.argv[1]); p=d[0]; p.get_pixmap(matrix=fitz.Matrix(695/612, 900/792), alpha=False).save(sys.argv[2]); c=json.loads(sys.argv[3]); p.get_pixmap(matrix=fitz.Matrix(3,3), clip=fitz.Rect(c['x0'],c['y0'],c['x1'],c['y1']), alpha=False).save(sys.argv[4])" ` +
+    `${JSON.stringify(pdf)} public/images/labels-preview.png ${JSON.stringify(JSON.stringify(clip))} public/images/labels-preview-label.png`
+);
+for (const f of ["public/images/labels-preview.png", "public/images/labels-preview-label.png"]) console.log("wrote", f, fs.statSync(f).size, "bytes");
