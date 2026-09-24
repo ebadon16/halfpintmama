@@ -198,10 +198,8 @@ function labelGeometry(slot: Slot) {
   const rowY = title.y - 18;
   const madeLabelW = 50;
   const made = { x: x + madeLabelW, y: rowY, width: 96, height: 14 };
-  // Two lines: "Best by 3 months, use within 12 months · serves 6–8 · slow cooker".
-  // Viewers set multiline text at about 1.5x the font size, so 30pt holds two
-  // lines of 8.5pt with their padding.
-  const meta = { x, y: rowY - 32, width: w, height: 30 };
+  // One line: "Best by 3 months, use within 12 months".
+  const meta = { x, y: rowY - 20, width: w, height: 15 };
   const dirTop = meta.y - 12; // leaves room for the caption
   const dir = { x, y: card.y + 16, width: w, height: dirTop - (card.y + 16) };
   return { card, x, w, top, title, made, meta, dir, madeLabelW };
@@ -222,7 +220,6 @@ function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolea
 
   if (handwrite) {
     // Writing guides where the fields would be.
-    page.drawLine({ start: { x: g.x, y: g.meta.y + 11 }, end: { x: g.x + g.w, y: g.meta.y + 11 }, thickness: 0.5, color: STEEL, opacity: 0.7, dashArray: [0.8, 1.6] });
     page.drawLine({ start: { x: g.x, y: g.meta.y - 1 }, end: { x: g.x + g.w, y: g.meta.y - 1 }, thickness: 0.5, color: STEEL, opacity: 0.7, dashArray: [0.8, 1.6] });
     const lines = Math.floor(g.dir.height / 15);
     for (let i = 1; i <= lines; i++) {
@@ -244,7 +241,7 @@ export function previewLabel(page: PDFPage, slot: Slot, fonts: Fonts, name: stri
   const size = Math.min(11, (11 * g.w) / Math.max(g.w, fonts.bold.widthOfTextAtSize(upper, 11)));
   page.drawText(upper, { x: g.x, y: g.title.y + 5, size, font: fonts.bold, color: NAVY });
   page.drawText(made, { x: g.made.x + 3, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
-  paragraph(page, meta, g.x, g.meta.y + g.meta.height - 9, g.w, 8.5, fonts.italic, STEEL_TEXT, 11.5);
+  page.drawText(meta, { x: g.x, y: g.meta.y + 3, size: 8.5, font: fonts.italic, color: STEEL_TEXT });
   paragraph(page, directions, g.x, g.dir.y + g.dir.height - 9, g.w, 8, fonts.body, INK, 11.2);
 }
 
@@ -421,8 +418,7 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
       made.updateAppearances(fonts.body);
 
       const meta = form.createTextField(`meta_${n}`);
-      meta.enableMultiline();
-      meta.setMaxLength(120);
+      meta.setMaxLength(80);
       meta.addToPage(page, { ...g.meta, borderWidth: 0, backgroundColor: WHITE, textColor: STEEL_TEXT, font: fonts.italic });
       meta.setFontSize(8.5);
       if (pre) meta.setText(recipeMeta(pre));

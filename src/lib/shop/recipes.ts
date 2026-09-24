@@ -324,11 +324,11 @@ export const RECIPES: readonly Recipe[] = [
 // Names only, in book order: the dropdown's option list.
 export const BOOK_RECIPES: readonly string[] = RECIPES.map((r) => r.name);
 
-// What the label prints under the name: "Best by 3 months, use within 12
-// months · serves 6–8 · slow cooker". The cooker lives here rather than in the
-// title so the longest titles still fit the recipe box.
+// What the label prints under the name: only the best-by line. Yields are
+// deliberately left off (a buyer may portion a batch differently than the
+// book), and the cooker is already named in the directions.
 export function recipeMeta(r: Recipe): string {
-  return [r.keeps, r.yield, r.cooker].filter(Boolean).join(" · ");
+  return r.keeps;
 }
 
 // The dropdown shows the book title exactly.

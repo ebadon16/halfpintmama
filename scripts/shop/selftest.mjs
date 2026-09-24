@@ -18,7 +18,7 @@ const { entitlementsFor, purchasableProducts, isPurchasable, requiresShipping, g
 const { orderFromSession, orderEntitlements } = await import(`${lib}/orders.ts`);
 const { shopConfigProblems } = await import(`${lib}/stripe.ts`);
 const { buildLabelsPdf, LABEL_SHEET, FILLABLE_PAGES, TOTAL_PAGES } = await import(`${lib}/labels-pdf.ts`);
-const { BOOK_RECIPES, RECIPES } = await import(`${lib}/recipes.ts`);
+const { BOOK_RECIPES, RECIPES, recipeMeta } = await import(`${lib}/recipes.ts`);
 const { renderOrderConfirmation, renderShippedNotice, renderLabelsRecovery, renderOrderNotification } = await import(`${lib}/email.ts`);
 const { PDFDocument, PDFName } = await import("pdf-lib");
 
@@ -222,7 +222,8 @@ check("recipe box is editable (type your own)", dd.isEditable());
 check("recipe box commits on selection", (dd.acroField.getFlags() & (1 << 26)) !== 0);
 check("recipe box carries the auto-fill action", String(dd.acroField.dict.get(PDFName.of("AA"))).includes("rrFill"));
 check("document carries the directions script", String(pdf.catalog.lookup(PDFName.of("Names"))).includes("JavaScript"));
-check("every recipe has directions, a best-by line and a yield", RECIPES.every((r) => r.directions.length > 20 && /^Best by .*use within 12 months$/.test(r.keeps) && r.yield));
+check("every recipe has directions and a best-by line", RECIPES.every((r) => r.directions.length > 20 && /^Best by .*use within 12 months$/.test(r.keeps)));
+check("the printed line is the best-by line alone, no yield", RECIPES.every((r) => recipeMeta(r) === r.keeps));
 check("only the sealed sandwiches are best by 1–2 months", RECIPES.filter((r) => r.keeps.startsWith("Best by 1–2")).map((r) => r.name).join() === "Little Sealed Sandwiches");
 check("directions fit the label field", RECIPES.every((r) => r.directions.length <= 420));
 check("directions never say Instant Pot or Crockpot", RECIPES.every((r) => !/instant pot|crock ?pot/i.test(r.directions + r.name)));
