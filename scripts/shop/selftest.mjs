@@ -155,7 +155,10 @@ check("quantity shows in the plain-text order line", renderOrderConfirmation(two
 check("shipped notice pluralises", /2 copies/.test(renderShippedNotice(two).html) && /your copy/.test(renderShippedNotice(o).html));
 check("recovery email is just the link", renderLabelsRecovery("https://halfpintmama.com/shop/labels/x.y").html.includes("/shop/labels/x.y"));
 check("owner notification carries the address", renderOrderNotification(o, "jane@example.com").html.includes("Austin"));
-check("every email carries the logo and sign-off", [conf, renderShippedNotice(o), renderLabelsRecovery("https://x/y"), renderOrderNotification(o, null)].every((m) => m.html.includes("email-logo.png") && m.html.includes("With love,")));
+check("every buyer email carries the logo and sign-off", [conf, renderShippedNotice(o), renderLabelsRecovery("https://x/y")].every((m) => m.html.includes("email-logo.png") && m.html.includes("With love,")));
+check("the owner packing slip carries the logo but is not signed to Keegan by Keegan", renderOrderNotification(o, null).html.includes("email-logo.png") && !renderOrderNotification(o, null).html.includes("With love,"));
+check("digital-only order total does not say shipping included", !renderOrderConfirmation({ ...o, productIds: ["labels"], shipping: null, phase: "launched" }, "https://x/y").html.includes("shipping included"));
+check("shipping notice lists only the parcel, not the free labels", !renderShippedNotice(o).html.includes("free with preorder"));
 
 console.log("\n-- shop config gate --");
 const env = { ...process.env };

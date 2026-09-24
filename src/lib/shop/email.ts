@@ -2,10 +2,13 @@
 // A newsletter unsubscribe must never suppress a paid delivery, so the two
 // systems are kept apart on purpose.
 //
-// Design matches the Half Pint Mama newsletter: cream ground, Playfair Display
-// (serif fallback), deep green text and button, terracotta links, and Keegan
-// signing off in the first person. Every message is rendered by a pure
-// render*() so it can be previewed and tested without sending.
+// Design follows the SITE (globals.css), not the old newsletter: cream ground,
+// a white card with the terracotta-to-pink accent bar the site's buttons use,
+// Crimson Text headings in deep sage, a clean sans body in charcoal, terracotta
+// links and pill buttons, sage tints for panels. Every colour pair clears
+// WCAG AA (terracotta on white 5.4:1, white on terracotta 5.4:1, deep sage on
+// cream 7+:1). Every message is rendered by a pure render*() so it can be
+// previewed and tested without sending.
 
 import { Resend } from "resend";
 import { escapeHtml } from "@/lib/sanitize";
@@ -17,17 +20,21 @@ import type { Order } from "./orders";
 const FROM = "Keegan at Half Pint Mama <orders@halfpintmama.com>";
 const REPLY_TO = "keegan@halfpintmama.com";
 
-// The newsletter palette, byte for byte (see the MailerLite campaign source).
+// The site palette, from globals.css.
 const T = {
-  bg: "#FEF4E8",
-  text: "#073704", // on cream: 12.9
-  heading: "#073704",
-  button: "#093E06", // cream text on it: 12.4
-  buttonText: "#FEF4E8",
-  link: "#A0562F", // on cream: 5.0
-  rule: "#CFBC9A",
-  panel: "#FFFFFF",
-  font: "'Playfair Display', Georgia, 'Times New Roman', serif",
+  bg: "#F5F1E8", // --cream
+  card: "#FFFFFF",
+  text: "#3A3A38", // --charcoal
+  muted: "#6B6B66",
+  heading: "#4A5845", // --deep-sage
+  sage: "#7B8F6E", // --sage
+  sageTint: "#EEF2EA", // light-sage, lightened for a panel ground
+  beige: "#E6DFD3", // --warm-beige
+  terracotta: "#A0562F", // links, buttons (white on it 5.4:1)
+  terracottaDeep: "#8A4A2E",
+  pink: "#D4A894", // --soft-pink, accent only, never for text
+  serif: "'Crimson Text', Georgia, 'Times New Roman', serif",
+  sans: "'Helvetica Neue', Helvetica, Arial, sans-serif",
 } as const;
 
 let client: Resend | null = null;
@@ -52,64 +59,111 @@ export interface RenderedEmail {
 
 // ---- building blocks -------------------------------------------------------
 
-const P = `margin: 0 0 16px; font-family: ${T.font}; font-size: 16px; line-height: 150%; color: ${T.text};`;
-const SMALL = `margin: 0 0 12px; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};`;
+const P = `margin: 0 0 16px; font-family: ${T.sans}; font-size: 16px; line-height: 160%; color: ${T.text};`;
+const SMALL = `margin: 0 0 12px; font-family: ${T.sans}; font-size: 14px; line-height: 155%; color: ${T.muted};`;
+const LINK = `color: ${T.terracotta}; text-decoration: underline; text-underline-offset: 2px;`;
 
 function p(inner: string): string {
   return `<p style="${P}">${inner}</p>`;
 }
 
+function a(href: string, label: string): string {
+  return `<a href="${href}" style="${LINK}">${label}</a>`;
+}
+
+// The site's pill button: terracotta, white text.
 function button(href: string, label: string): string {
   return `
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 4px 0 20px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 6px 0 22px;">
       <tr>
-        <td align="center" bgcolor="${T.button}" style="border-radius: 8px;">
-          <a href="${href}" style="display: inline-block; padding: 13px 24px; font-family: ${T.font}; font-size: 15px; font-weight: 500; color: ${T.buttonText}; text-decoration: none; border-radius: 8px;">${label}</a>
+        <td align="center" bgcolor="${T.terracotta}" style="border-radius: 999px;">
+          <a href="${href}" style="display: inline-block; padding: 14px 28px; font-family: ${T.sans}; font-size: 15px; font-weight: 700; letter-spacing: 0.2px; color: #FFFFFF; text-decoration: none; border-radius: 999px;">${label}</a>
         </td>
       </tr>
     </table>`;
 }
 
-function panel(inner: string): string {
+// A quiet tinted panel: the site's card-within-a-card.
+function panel(inner: string, tint: string = T.sageTint): string {
   return `
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin: 0 0 20px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin: 0 0 22px;">
       <tr>
-        <td bgcolor="${T.panel}" style="padding: 16px 20px; border-radius: 8px; border-left: 4px solid ${T.button};">${inner}</td>
+        <td bgcolor="${tint}" style="padding: 18px 20px; border-radius: 14px;">${inner}</td>
       </tr>
     </table>`;
 }
 
-// One shell for every message: heading, body, Keegan's sign-off, site footer.
-function shell(heading: string, body: string): string {
+// A small tracked label in sage, the site's eyebrow style.
+function eyebrow(text: string): string {
+  return `<p style="margin: 0 0 6px; font-family: ${T.sans}; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: ${T.sage};">${text}</p>`;
+}
+
+// Image + text side by side; stacks on narrow screens because the image cell
+// has a fixed small width and the text cell is fluid.
+function media(imgHtml: string, textHtml: string, imgWidth: number): string {
+  return `
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="stack">
+      <tr>
+        <td width="${imgWidth}" valign="top" class="stack-img" style="padding: 0 18px 0 0; width: ${imgWidth}px;">${imgHtml}</td>
+        <td valign="top" class="stack-txt">${textHtml}</td>
+      </tr>
+    </table>`;
+}
+
+const COVER = `<img src="${SITE_URL}/images/rest-and-rise-cover.jpg" width="96" height="137" alt="Rest & Rise cover" style="display: block; width: 96px; height: auto; border: 0; border-radius: 6px; box-shadow: 0 6px 16px rgba(58,58,56,0.18);" />`;
+const LABEL_THUMB = `<img src="${SITE_URL}/images/labels-preview-label.png" width="150" height="125" alt="One filled-in freezer label" style="display: block; width: 150px; max-width: 100%; height: auto; border: 0; border-radius: 8px; border: 1px solid ${T.beige};" />`;
+
+// One shell for every message: logo, accent bar, heading, body, Keegan's
+// sign-off, site footer.
+function shell(heading: string, body: string, lede?: string, signOff = true): string {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="light" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Phones: image-and-text rows stack. Clients that ignore this keep the
+       side-by-side layout, which still reads. */
+    @media only screen and (max-width: 480px) {
+      .stack td.stack-img, .stack td.stack-txt { display: block !important; width: 100% !important; padding: 0 0 12px 0 !important; }
+    }
+  </style>
   <title>${escapeHtml(heading)}</title>
 </head>
 <body style="margin: 0; padding: 0; background: ${T.bg};">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${T.bg}" style="background: ${T.bg};">
     <tr>
-      <td align="center" style="padding: 32px 16px;">
+      <td align="center" style="padding: 28px 12px 36px;">
         <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
           <tr>
-            <td style="padding: 0 8px;">
-              <p style="margin: 0 0 24px; text-align: center;">
-                <a href="${SITE_URL}" style="text-decoration: none;"><img src="${SITE_URL}/images/email-logo.png" width="96" height="96" alt="Half Pint Mama" style="display: inline-block; width: 96px; height: 96px; border: 0;" /></a>
-              </p>
-              <h1 style="margin: 0 0 20px; font-family: ${T.font}; font-size: 30px; font-weight: 600; line-height: 130%; color: ${T.heading};">${heading}</h1>
-              ${body}
-              ${p("With love,")}
-              ${p("Keegan")}
-              <p style="${SMALL}"><a href="${SITE_URL}" style="color: ${T.link};">halfpintmama.com</a> | <a href="https://www.instagram.com/halfpint.mama" style="color: ${T.link};">@halfpint.mama</a></p>
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top: 28px;">
-                <tr><td style="border-top: 1px solid ${T.rule}; padding-top: 16px;">
-                  <p style="margin: 0; font-family: ${T.font}; font-size: 12px; line-height: 150%; color: ${T.text};">Half Pint Mama &middot; Round Rock, Texas &middot; You are receiving this because you ordered from halfpintmama.com. Reply any time and it comes straight to me.</p>
-                </td></tr>
+            <td align="center" style="padding: 0 0 18px;">
+              <a href="${SITE_URL}" style="text-decoration: none;"><img src="${SITE_URL}/images/email-logo.png" width="84" height="84" alt="Half Pint Mama" style="display: inline-block; width: 84px; height: 84px; border: 0;" /></a>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="${T.card}" style="background: ${T.card}; border-radius: 18px; overflow: hidden;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr><td height="5" bgcolor="${T.terracotta}" style="height: 5px; line-height: 5px; font-size: 5px; background: linear-gradient(90deg, ${T.terracotta}, ${T.pink});">&nbsp;</td></tr>
+                <tr>
+                  <td style="padding: 30px 32px 10px;">
+                    <h1 style="margin: 0 0 ${lede ? "8px" : "18px"}; font-family: ${T.serif}; font-size: 34px; font-weight: 600; line-height: 120%; color: ${T.heading};">${heading}</h1>
+                    ${lede ? `<p style="margin: 0 0 22px; font-family: ${T.serif}; font-size: 19px; font-style: italic; line-height: 140%; color: ${T.sage};">${lede}</p>` : ""}
+                    ${body}
+                    ${signOff ? `<p style="margin: 8px 0 0; font-family: ${T.serif}; font-size: 20px; line-height: 140%; color: ${T.heading};">With love,</p>
+                    <p style="margin: 0 0 26px; font-family: ${T.serif}; font-size: 20px; font-style: italic; line-height: 140%; color: ${T.heading};">Keegan</p>` : `<p style="margin: 0 0 16px;">&nbsp;</p>`}
+                  </td>
+                </tr>
               </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 22px 16px 0;">
+              <p style="margin: 0 0 8px; font-family: ${T.sans}; font-size: 13px; line-height: 150%; color: ${T.muted};">
+                <a href="${SITE_URL}" style="${LINK}">halfpintmama.com</a> &nbsp;&middot;&nbsp; <a href="https://www.instagram.com/halfpint.mama" style="${LINK}">@halfpint.mama</a>
+              </p>
+              <p style="margin: 0; font-family: ${T.sans}; font-size: 12px; line-height: 150%; color: ${T.muted};">Half Pint Mama &middot; Round Rock, Texas<br />You are receiving this because you ordered from halfpintmama.com. Reply any time and it comes straight to me.</p>
             </td>
           </tr>
         </table>
@@ -122,8 +176,8 @@ function shell(heading: string, body: string): string {
 
 const SIGN_OFF_TEXT = "\nWith love,\nKeegan\nhalfpintmama.com | @halfpint.mama\n";
 
-function orderLines(order: Order): { items: string; total: string; shipTo: string[] } {
-  const qty = order.quantity > 1 ? ` \u00d7 ${order.quantity}` : "";
+function orderLines(order: Order): { items: string; bought: string; total: string; shipTo: string[] } {
+  const qty = order.quantity > 1 ? ` × ${order.quantity}` : "";
   const bought = order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "your order";
   // The preorder bonus is not a purchased line, but the buyer should see it
   // named on their order all the same.
@@ -131,6 +185,7 @@ function orderLines(order: Order): { items: string; total: string; shipTo: strin
     ? " + Printable Freezer Labels (free with preorder)"
     : "";
   const items = bought + qty + bonus;
+  const parcel = bought + qty;
   const total = order.amountTotal != null && order.currency ? formatMoney(order.amountTotal, order.currency) : "";
   const ship = order.shipping;
   const shipTo = ship
@@ -138,7 +193,7 @@ function orderLines(order: Order): { items: string; total: string; shipTo: strin
         (l): l is string => !!l
       )
     : [];
-  return { items, total, shipTo };
+  return { items, bought: parcel, total, shipTo };
 }
 
 const LABELS_HOWTO_HTML =
@@ -147,8 +202,30 @@ const LABELS_HOWTO_HTML =
 const LABELS_HOWTO_TEXT =
   "One thing to know: open the labels on a computer to fill them in. A phone will show you the sheet, but the boxes only type on a computer. In Acrobat Reader, Chrome, Edge or Firefox, picking a recipe fills in its freezer directions for you.\n\n" +
   "The link is yours to keep. Print as many sheets as you like, whenever you like. The PDF is made just for you, with your email in the footer.\n\n";
-const LOST_LINK_HTML = `<p style="${SMALL}">Lose this email one day? Get a fresh labels link any time at <a href="${SITE_URL}/shop/labels" style="color: ${T.link};">halfpintmama.com/shop/labels</a>.</p>`;
+const LOST_LINK_HTML = `<p style="${SMALL}">Lose this email one day? Get a fresh labels link any time at ${a(`${SITE_URL}/shop/labels`, "halfpintmama.com/shop/labels")}.</p>`;
 const LOST_LINK_TEXT = `Lose this email one day? Get a fresh labels link any time at ${SITE_URL}/shop/labels\n`;
+
+// The order summary: cover thumbnail beside what was bought, the total, where
+// it ships, and the reference. Digital-only orders skip the cover.
+function summaryPanel(order: Order, items: string, total: string, shipTo: string[], showCover: boolean): string {
+  const text =
+    eyebrow("Your order") +
+    `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 20px; line-height: 130%; color: ${T.heading};"><strong>${escapeHtml(items)}</strong></p>` +
+    (total ? `<p style="margin: 0 0 8px; font-family: ${T.sans}; font-size: 15px; color: ${T.text};">${escapeHtml(total)} total${shipTo.length ? ", shipping included" : ""}</p>` : "") +
+    (shipTo.length ? `<p style="margin: 0 0 8px; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">Shipping to ${shipTo.map(escapeHtml).join(", ")}</p>` : "") +
+    `<p style="margin: 0; font-family: ${T.sans}; font-size: 12px; color: ${T.muted};">Order reference ${escapeHtml(order.sessionId)}</p>`;
+  return panel(showCover ? media(COVER, text, 96) : text);
+}
+
+// The labels block: a bonus callout with the label thumbnail and the button.
+function labelsBlock(labelsUrl: string, preorder: boolean): string {
+  const text =
+    eyebrow(preorder ? "Your preorder bonus, ready now" : "Your labels") +
+    `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 20px; line-height: 130%; color: ${T.heading};"><strong>Printable freezer labels for every recipe in the book</strong></p>` +
+    `<p style="margin: 0 0 12px; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">Pick a recipe and the label fills in its best-by line and freezer directions. Print onto Avery 5524 sheets, or any 4&quot; &times; 3&#8531;&quot; label.</p>` +
+    button(escapeHtml(labelsUrl), "Open my labels");
+  return panel(media(LABEL_THUMB, text, 150), "#FBF6EC") + LABELS_HOWTO_HTML;
+}
 
 // ---- the messages ------------------------------------------------------------
 
@@ -168,35 +245,27 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
       : "Your Rest & Rise freezer labels are ready";
 
   const opening = preorder
-    ? p("Hi friend,") +
-      p(`Thank you for preordering <em>Rest &amp; Rise</em>. Your copy is spoken for, and I will pack it myself.${ships}`)
+    ? p(`Thank you for preordering <em>Rest &amp; Rise</em>. Your copy is spoken for, and I will pack it myself.${ships}`)
     : hasBook
-      ? p("Hi friend,") + p(`Thank you for your order. Your copy of <em>Rest &amp; Rise</em> is spoken for, and I will pack it myself.${ships}`)
-      : p("Hi friend,") + p("Thank you for your order. Your printable freezer labels are ready right now.");
+      ? p(`Thank you for your order. Your copy of <em>Rest &amp; Rise</em> is spoken for, and I will pack it myself.${ships}`)
+      : p("Thank you for your order. Your printable freezer labels are ready right now.");
 
-  const summary = panel(
-    `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 16px; color: ${T.text};"><strong>${escapeHtml(items)}</strong>${total ? ` &middot; ${escapeHtml(total)}` : ""}</p>` +
-      (shipTo.length ? `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};">Shipping to ${shipTo.map(escapeHtml).join(", ")}</p>` : "") +
-      `<p style="margin: 6px 0 0; font-family: ${T.font}; font-size: 12px; color: ${T.text};">Order reference ${escapeHtml(order.sessionId)}</p>`
-  );
-
-  const labels = labelsUrl
-    ? p(preorder ? "<strong>Your preorder bonus is ready now.</strong> The printable freezer labels for every recipe in the book:" : "<strong>Here are your labels:</strong>") +
-      button(escapeHtml(labelsUrl), "Open my labels") +
-      LABELS_HOWTO_HTML
-    : "";
-
+  const summary = summaryPanel(order, items, total, shipTo, hasBook);
+  const labels = labelsUrl ? labelsBlock(labelsUrl, preorder) : "";
   const cancel = preorder
     ? p("Changed your mind? Reply to this email any time before your book ships and I will refund it in full.")
     : "";
-
   const closing = p(
     hasBook
-      ? "In the meantime, every fill-in page from the book is a free printable on the site: <a href=\"" + SITE_URL + "/shop\" style=\"color: " + T.link + ";\">halfpintmama.com/shop</a>."
+      ? `In the meantime, every fill-in page from the book is a free printable on the site: ${a(`${SITE_URL}/shop`, "halfpintmama.com/shop")}.`
       : "Label everything: what it is, the date, and how to reheat it. Future you will thank you."
   ) + (labelsUrl ? LOST_LINK_HTML : `<p style="${SMALL}">Questions about your order? Just reply to this email.</p>`);
 
-  const html = shell(preorder ? "You are in!" : "Thank you!", opening + summary + labels + cancel + closing);
+  const html = shell(
+    preorder ? "You are in!" : "Thank you!",
+    opening + summary + labels + cancel + closing,
+    preorder ? "Hi friend, your freezer is about to get a lot more interesting." : "Hi friend,"
+  );
 
   const text =
     "Hi friend,\n\n" +
@@ -220,17 +289,21 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
 // "It's on its way": sent by Keegan (scripts/shop/notify-shipped.mjs) once a
 // book order is in the mail. Keeps the promise the confirmation makes.
 export function renderShippedNotice(order: Order): RenderedEmail {
-  const { items, shipTo } = orderLines(order);
+  // Only the physical goods are in the mail; the labels went by email already.
+  const { bought: items, shipTo } = orderLines(order);
   const copies = order.quantity > 1 ? `your ${order.quantity} copies of <em>Rest &amp; Rise</em> are` : `your copy of <em>Rest &amp; Rise</em> is`;
   const copiesText = order.quantity > 1 ? `your ${order.quantity} copies of Rest & Rise are` : `your copy of Rest & Rise is`;
+  const where = shipTo.length
+    ? panel(media(COVER, eyebrow("In the mail") + `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 20px; line-height: 130%; color: ${T.heading};"><strong>${escapeHtml(items)}</strong></p><p style="margin: 0; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">Heading to ${shipTo.map(escapeHtml).join(", ")}</p>`, 96))
+    : "";
   const html = shell(
     "It is on its way!",
-    p("Hi friend,") +
-      p(`Good news: ${copies} in the mail. I packed it myself this morning.`) +
-      (shipTo.length ? panel(`<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};"><strong>${escapeHtml(items)}</strong><br />Heading to ${shipTo.map(escapeHtml).join(", ")}</p>`) : "") +
-      p("While you wait, the prep day planner and both stock-up lists are free to print: <a href=\"" + SITE_URL + "/shop\" style=\"color: " + T.link + ";\">halfpintmama.com/shop</a>. Week 30 is setup week, so there is no rush.") +
+    p(`Good news: ${copies} in the mail. I packed it myself this morning.`) +
+      where +
+      p(`While you wait, the prep day planner and both stock-up lists are free to print: ${a(`${SITE_URL}/shop`, "halfpintmama.com/shop")}. Week 30 is setup week, so there is no rush.`) +
       p("Thank you for being one of the first. I hope it earns a spot on your counter.") +
-      `<p style="${SMALL}">Questions about delivery? Just reply to this email.</p>`
+      `<p style="${SMALL}">Questions about delivery? Just reply to this email.</p>`,
+    "Hi friend,"
   );
   const text =
     `Hi friend,\n\nGood news: ${copiesText} in the mail. I packed it myself this morning.\n\n` +
@@ -243,14 +316,12 @@ export function renderShippedNotice(order: Order): RenderedEmail {
 
 // "Lost your link": the same link again, nothing else.
 export function renderLabelsRecovery(deliveryUrl: string): RenderedEmail {
-  const url = escapeHtml(deliveryUrl);
   const html = shell(
     "Here are your labels",
-    p("Hi friend,") +
-      p("Here is your labels link again. It is the same one as before, and it never expires.") +
-      button(url, "Open my labels") +
-      LABELS_HOWTO_HTML +
-      LOST_LINK_HTML
+    p("Here is your labels link again. It is the same one as before, and it never expires.") +
+      labelsBlock(deliveryUrl, false) +
+      LOST_LINK_HTML,
+    "Hi friend,"
   );
   const text =
     "Hi friend,\n\nHere is your labels link again. It is the same one as before, and it never expires.\n\n" +
@@ -279,14 +350,16 @@ export function renderOrderNotification(
       ? p(`<strong>This order is paid, but the confirmation email to ${escapeHtml(order.email ?? "the buyer")} did not go out.</strong> Reply to them directly, and if the order includes labels send a fresh link from halfpintmama.com/shop/labels.`)
       : "") +
     panel(
-      `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 16px; color: ${T.text};"><strong>${escapeHtml(items)}</strong>${total ? ` &middot; ${escapeHtml(total)}` : ""} &middot; ${order.phase}</p>` +
-        `<p style="margin: 0 0 6px; font-family: ${T.font}; font-size: 14px; color: ${T.text};">Buyer: ${escapeHtml(order.email ?? "unknown")}</p>` +
+      `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 20px; color: ${T.heading};"><strong>${escapeHtml(items)}</strong>${total ? ` &middot; ${escapeHtml(total)}` : ""} &middot; ${order.phase}</p>` +
+        `<p style="margin: 0 0 6px; font-family: ${T.sans}; font-size: 14px; color: ${T.text};">Buyer: ${escapeHtml(order.email ?? "unknown")}</p>` +
         (shipTo.length
-          ? `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; line-height: 150%; color: ${T.text};"><strong>Ship to</strong><br />${shipTo.map(escapeHtml).join("<br />")}</p>`
-          : `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; color: ${T.text};">Digital only, nothing to ship.</p>`)
+          ? `<p style="margin: 0; font-family: ${T.sans}; font-size: 15px; line-height: 155%; color: ${T.text};"><strong>Ship to</strong><br />${shipTo.map(escapeHtml).join("<br />")}</p>`
+          : `<p style="margin: 0; font-family: ${T.sans}; font-size: 14px; color: ${T.text};">Digital only, nothing to ship.</p>`)
     ) +
       p(`Labels: ${labelsSentTo ? `sent to ${escapeHtml(labelsSentTo)}` : failed ? "included, but NOT sent — resend the link" : "not included in this order"}.`) +
-      `<p style="${SMALL}">Stripe session ${escapeHtml(order.sessionId)}</p>`
+      `<p style="${SMALL}">Stripe session ${escapeHtml(order.sessionId)}</p>`,
+    undefined,
+    false
   );
   const text =
     (failed ? `THIS ORDER IS PAID BUT THE BUYER'S CONFIRMATION EMAIL FAILED. Contact them directly.\n\n` : "") +
@@ -349,7 +422,7 @@ export async function sendMoneyReversedNotice(r: MoneyReversed): Promise<void> {
         : `${escapeHtml(money)} was refunded to ${escapeHtml(r.email ?? "the buyer")}. If the book has not gone out yet, pull it from the pile.`
     ) +
       panel(
-        `<p style="margin: 0; font-family: ${T.font}; font-size: 14px; color: ${T.text};">${escapeHtml(r.products)}<br />Order ${escapeHtml(r.sessionId)}</p>`
+        `<p style="margin: 0; font-family: ${T.sans}; font-size: 14px; color: ${T.text};">${escapeHtml(r.products)}<br />Order ${escapeHtml(r.sessionId)}</p>`
       ) +
       p("Any labels that came with this order stopped working the moment the money went back.")
   );
