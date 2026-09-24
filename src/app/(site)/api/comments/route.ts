@@ -215,7 +215,6 @@ export async function POST(request: NextRequest) {
     const escapedReplyToAuthor = replyToAuthor ? escapeHtml(String(replyToAuthor).trim().slice(0, 100)) : "";
 
     const postUrl = `https://halfpintmama.com/posts/${safePostSlug}#comments-section`;
-    const ratingText = rating > 0 ? `${"⭐".repeat(rating)} (${rating}/5)` : "No rating";
 
     // Notifications are best-effort and must not delay the response. The comment
     // is already saved, so run all email sends after the response is flushed.

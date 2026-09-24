@@ -11,11 +11,11 @@ import { getShopStatus } from "@/lib/shop/status";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three in Central Texas. Real food, real life, real mama.",
+  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN, mama of three, and author of Rest & Rise, in Central Texas. Real food, real life, real mama.",
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN, mama of three, and author of Rest & Rise.",
     type: "website",
     url: "https://halfpintmama.com",
   },
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       images: [DEFAULT_OG_IMAGE.url],
     card: "summary_large_image",
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN, mama of three, and author of Rest & Rise.",
   },
   alternates: { canonical: "https://halfpintmama.com" },
 };
@@ -49,7 +49,7 @@ export default async function Home() {
     "@type": "WebSite",
     name: "Half Pint Mama",
     url: "https://halfpintmama.com",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three in Central Texas.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN, mama of three, and author of Rest & Rise, in Central Texas.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -66,11 +66,11 @@ export default async function Home() {
     name: "Half Pint Mama",
     url: "https://halfpintmama.com",
     logo: "https://halfpintmama.com/logo.jpg",
-    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN and mama of three.",
+    description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN, mama of three, and author of Rest & Rise.",
     founder: {
       "@type": "Person",
       name: "Keegan",
-      jobTitle: "Pediatric ER RN & Blogger",
+      jobTitle: "Pediatric ER RN & Author",
     },
     sameAs: [
       "https://www.instagram.com/halfpint.mama",
@@ -253,7 +253,7 @@ export default async function Home() {
                 Hey, I&apos;m Keegan
               </h3>
               <p className="text-charcoal/80 text-sm mb-4">
-                Pediatric ER RN and mama of three. I apply the same care to feeding my family as I do to my patients: real ingredients, tested recipes, no shortcuts.
+                Pediatric ER RN, mama of three, and author of <em>Rest &amp; Rise</em>. I apply the same care to feeding my family as I do to my patients: real ingredients, tested recipes, no shortcuts.
               </p>
               <Link
                 href="/about"
@@ -264,8 +264,18 @@ export default async function Home() {
             </div>
 
             {/* Cookbook card. Badge and button follow the shop's status. */}
-            <div className="bg-white p-6 rounded-2xl shadow-md mb-6 border-2 border-terracotta/20">
-              <div className="flex items-center gap-2 mb-2">
+            <div className="bg-white p-6 rounded-2xl shadow-md mb-6 border-2 border-terracotta/20 text-center">
+              <Link href="/shop" className="inline-block mb-4">
+                <Image
+                  src="/images/rest-and-rise-cover.jpg"
+                  alt="Rest & Rise cookbook cover"
+                  width={140}
+                  height={200}
+                  sizes="140px"
+                  className="w-[140px] h-auto rounded-md shadow-lg mx-auto"
+                />
+              </Link>
+              <div className="flex items-center justify-center gap-2 mb-2">
                 <BookOpen className="w-5 h-5 text-terracotta" />
                 <p className="text-terracotta text-xs font-semibold uppercase tracking-wide">{shop.badge}</p>
               </div>

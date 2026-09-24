@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
-import { PartyPopper, Wheat, Check, Calendar, Wrench, BookOpen } from "lucide-react";
+import { PartyPopper, Wheat, Check, Calendar, Wrench } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 import { shopCopy, type ShopStatus } from "@/lib/shop/catalog";
 
@@ -284,7 +285,16 @@ export function FreeGuideContent({ cookingPosts, shopStatus }: FreeGuideContentP
             {shop.badge}
           </h3>
           <div className="max-w-md mx-auto bg-white rounded-2xl p-6 shadow-md">
-            <div className="flex justify-center mb-3"><ThemedIcon icon={BookOpen} size="lg" color="deep-sage" /></div>
+            <Link href="/shop" className="inline-block mb-4">
+              <Image
+                src="/images/rest-and-rise-cover.jpg"
+                alt="Rest & Rise cookbook cover"
+                width={140}
+                height={200}
+                sizes="140px"
+                className="w-[140px] h-auto rounded-md shadow-lg mx-auto"
+              />
+            </Link>
             <h4 className="font-[family-name:var(--font-crimson)] text-lg font-semibold text-charcoal mb-2">
               Rest & Rise
             </h4>
