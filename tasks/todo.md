@@ -92,14 +92,16 @@ At launch the book stops including them and they become a paid standalone item.
 
 ### What I need from you, once
 
-1. **Book price**, **labels price**, **shipping charge** (or "free shipping").
-2. **Ship month** for preorders, currently set to November 2026. Must include KDP's
-   author-copy lead time, roughly 2-3 weeks after the interior is approved, plus packing.
-3. **The live secret key** `sk_live_...` from the Half Pint Mama account, Developers -> API keys.
-4. **Copies per order**: default is 1. More than one only makes sense with a shipping rate
+1. **Ship month** for preorders. `.env.local` still says November 2026 as a placeholder. Count
+   back from it: KDP proof (about a week after submission), approval, author copies (two to
+   three weeks), packing. The FTC Mail Order Rule holds us to the stated month, so pick one
+   with slack; a later month costs nothing, an earlier one costs a refund round.
+2. **The live secret key** `sk_live_...` from the Half Pint Mama account, Developers -> API keys.
+3. **Copies per order**: default is 1. More than one only makes sense with a shipping rate
    priced for the bigger box, because Stripe charges shipping once per order, not per book.
 
-Nothing else. Every other decision is made and in code.
+Decided already: book $39.99 (Sep 19), shipping $5, labels $9 standalone after launch, Texas
+permit in hand (Sep 23). Nothing else. Every other decision is made and in code.
 
 ### Step 1 — push, any time before launch (safe on its own)
 
@@ -117,13 +119,16 @@ in search. Doing this early is what makes launch day a single step.
 ### Step 2 — launch day, one command and one paste
 
 ```
-STRIPE_SECRET_KEY=sk_live_... npm run shop:setup -- --book=<cents> --labels=<cents> --shipping=<cents>
+STRIPE_SECRET_KEY=sk_live_... SHOP_SHIP_ESTIMATE="<Month YYYY>" npm run shop:setup -- --book=3999 --labels=900 --shipping=500 --tax-from=<permit date YYYY-MM-DD>
 ```
 
 It creates the products, both prices, the shipping rate, registers the webhook (only because
-step 1 already deployed the route: it probes the URL and refuses if it 404s), and prints the
-complete env block including the webhook signing secret. Paste that block into Vercel and
-redeploy. The shop is open.
+step 1 already deployed the route: it probes the URL and refuses if it 404s), sets the Stripe
+Tax head office and the Texas registration, and prints the complete env block including the
+webhook signing secret and `SHOP_COLLECT_TAX=on`. Paste that block into Vercel and redeploy.
+The shop is open. `SHOP_TOKEN_SECRET`, `SHOP_PHASE` and `SHOP_SHIP_COUNTRIES` were staged on
+Vercel production on Sep 23 2026 already; the paste only adds the Stripe values, the ship
+estimate and the tax flag.
 
 ⚠ Keep `SHOP_TOKEN_SECRET` stable forever. Changing it invalidates every delivery link already
 emailed. The script prints the existing one unchanged and shouts if it has to mint a new one.
@@ -170,12 +175,13 @@ explicitly excludes publishing. The code is statistical only and does not change
 Allow two to three weeks. It has to exist before the first taxable sale, so this is the thing to
 start earliest; everything else here waits on prices, but this waits on the state.
 
-Then, in order:
+**Permit obtained Sep 23 2026.** Then, in order:
 
-1. In Stripe, Settings → Tax: set the head office to the Round Rock address, and add the Texas
-   registration with the start date from the permit.
-2. Set `SHOP_COLLECT_TAX=on` in Vercel and redeploy.
-3. File Texas returns on whatever schedule the permit assigns.
+1. `npm run shop:setup` with the live key does the Stripe side (head office + Texas
+   registration, idempotent, `--tax-from=` the permit's effective date) and prints
+   `SHOP_COLLECT_TAX=on` once Stripe Tax reports active.
+2. Paste that with the rest of the env block into Vercel and redeploy.
+3. File Texas returns on whatever schedule the permit assigns, including zero-sale periods.
 
 The code is already wired and switched off. Products carry their own tax codes, `txcd_35010000`
 for the hardcover and `txcd_10505001` for the labels, so Stripe applies the right treatment to
@@ -295,3 +301,38 @@ allows eval; a dev server started inside a tool call dies with it, launch detach
 - Decisions still open for Keegan/Erick: Stripe's own receipt emails (recommend OFF, ours covers
   it); ship date must include KDP author-copy lead time; sales tax; book p.23/p.172 copy; terms
   refund wording.
+
+## Where this stands (Sep 23 2026)
+
+Shipped to master today (`9f1eb0a`, `dad970a`, verified on halfpintmama.com):
+
+- Keegan's portrait sized to its source (was upscaling, read as blurry).
+- `/shop` has its own share card: final cover + title + the phase badge, generated at
+  `src/app/(site)/shop/opengraph-image.tsx` from `private/shop/og-cover.jpg`. Metadata no longer
+  points at the site-wide banner.
+- Site cover regenerated from `RestAndRise-COVER-FINAL.pdf` (now carries "Nurse & Mama").
+  `cover-from-print-file.mjs` finds the front panel from the title + photo centres; the old
+  back-panel mirror broke because the back is left-aligned.
+- Recipe names in the labels combo box match the final interior (cooker rename, "and" not "&",
+  "Easy", "Make-Ahead", "Overnight Sourdough" prefixes). Preview sheet regenerated.
+- "Slow cooker, pressure cooker" replaces the trademarks in shop copy, preview, announcement.
+- Sanity post `transitioning-from-two-to-three-kids…` now says "check out my postpartum meal
+  prep cookbook, Rest & Rise!" (phase-neutral; backup `~/Downloads/sanity-waitlist-backup-2026-09-23.json`).
+- MailerLite draft `198049723307787316`: "Rest & Rise", cooker wording, price filled ($39.99).
+  `[SHIP DATE]` placeholder remains in body and subject on purpose.
+- Sandbox Stripe: book product renamed "Rest & Rise", tax codes set on both products.
+- Vercel production: `SHOP_TOKEN_SECRET`, `SHOP_PHASE=preorder`, `SHOP_SHIP_COUNTRIES=US` staged
+  (shop stays on the waitlist until the Stripe values land).
+- `setup-stripe.mjs` now also does Stripe Tax (head office + Texas registration) and emits
+  `SHOP_COLLECT_TAX=on`.
+
+Still manual, not code:
+
+- **Welcome automation** (`Welcome email`, id 177692768818169374) is unchanged since Aug 2 and
+  still says "Thirty-five freezer-friendly sourdough recipes", "Fall 2026", buttons `#bf6428`
+  / `#d35400`, three thumbnails from bloghalfpintmama.wordpress.com. Dashboard only. Edit list
+  in the Sep 23 session summary.
+- Freezer Prep Guide PDF (lead magnet) says "When Rest and Rise launches this fall, I am
+  releasing... printable freezer labels" and "Coming Fall 2026". Not a free-labels promise;
+  optional Canva touch-up to "Rest & Rise" and to drop the season.
+- Ship month, live key: see "What I need from you".

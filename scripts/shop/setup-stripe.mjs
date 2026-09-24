@@ -1,7 +1,7 @@
 // One-shot, idempotent setup of everything the shop needs inside Stripe.
 // Safe to re-run: every object is found by a stable key before it is created.
 //
-//   STRIPE_SECRET_KEY=sk_test_... npm run shop:setup -- --book=3400 --labels=900 --shipping=500
+//   STRIPE_SECRET_KEY=sk_test_... npm run shop:setup -- --book=3999 --labels=900 --shipping=500 [--tax-from=YYYY-MM-DD] [--no-tax]
 //
 // Amounts are in cents and only used when the Price does not exist yet (a
 // Stripe Price is immutable; to reprice, create a new Price in the dashboard
@@ -193,11 +193,73 @@ async function ensureWebhook() {
   return { endpoint, secret: endpoint.secret };
 }
 
+// Sales tax. Texas requires a seller inside the state to collect on Texas
+// orders from the first sale, and Stripe Tax only calculates where a
+// registration exists, so the account needs (1) a head office and (2) a Texas
+// state registration before SHOP_COLLECT_TAX can be switched on. Both are
+// idempotent here. Run only once Keegan holds the Texas Sales and Use Tax
+// Permit: --tax-from=YYYY-MM-DD is the permit's effective date (default today).
+// Pass --no-tax to leave the account's tax setup alone.
+const HEAD_OFFICE = {
+  line1: "2800 Joe DiMaggio Blvd Unit 79",
+  city: "Round Rock",
+  state: "TX",
+  postal_code: "78665",
+  country: "US",
+};
+
+async function ensureTax() {
+  if (args["no-tax"]) {
+    console.log("  tax: skipped (--no-tax)");
+    return false;
+  }
+  const settings = await stripe.tax.settings.retrieve();
+  const office = settings.head_office?.address;
+  if (!office || office.postal_code !== HEAD_OFFICE.postal_code) {
+    await stripe.tax.settings.update({
+      head_office: { address: HEAD_OFFICE },
+      // Prices are tax-exclusive: the buyer sees the book price, then tax on top,
+      // which is how the storefront and the announcement email describe it.
+      defaults: { tax_behavior: "exclusive", tax_code: PRODUCTS.book.taxCode },
+    });
+    console.log(`  tax: head office set to ${HEAD_OFFICE.city}, ${HEAD_OFFICE.state}`);
+  } else if (settings.defaults?.tax_behavior !== "exclusive") {
+    await stripe.tax.settings.update({ defaults: { tax_behavior: "exclusive", tax_code: PRODUCTS.book.taxCode } });
+    console.log("  tax: default tax behaviour set to exclusive");
+  } else {
+    console.log(`  tax: head office already ${office.city}, ${office.state}`);
+  }
+
+  const regs = await stripe.tax.registrations.list({ status: "all", limit: 100 });
+  const tx = regs.data.find(
+    (r) => r.country === "US" && r.country_options?.us?.state === "TX" && r.status !== "expired"
+  );
+  if (tx) {
+    console.log(`  tax: Texas registration ${tx.id} exists (${tx.status})`);
+  } else {
+    const from = args["tax-from"];
+    if (from && !/^\d{4}-\d{2}-\d{2}$/.test(from)) throw new Error("--tax-from must be YYYY-MM-DD");
+    const reg = await stripe.tax.registrations.create({
+      country: "US",
+      country_options: { us: { type: "state_sales_tax", state: "TX" } },
+      active_from: from ? Math.floor(Date.parse(`${from}T00:00:00-05:00`) / 1000) : "now",
+    });
+    console.log(`  tax: created Texas registration ${reg.id} (active from ${from || "now"})`);
+  }
+  const after = await stripe.tax.settings.retrieve();
+  if (after.status !== "active") {
+    console.error(`  tax: Stripe Tax status is "${after.status}" — finish activation in Dashboard → Settings → Tax before switching collection on`);
+    return false;
+  }
+  return true;
+}
+
 console.log(`\nStripe (${mode} mode) setup for ${site}\n`);
 const book = await ensurePrice("book");
 const labels = await ensurePrice("labels");
 const shipping = await ensureShippingRate();
 const { secret } = await ensureWebhook();
+const taxReady = await ensureTax();
 
 console.log(`
 # ---- paste into Vercel (${mode}) / .env.local ----
@@ -217,4 +279,5 @@ ${
 SHOP_PHASE=preorder
 SHOP_SHIP_ESTIMATE=${process.env.SHOP_SHIP_ESTIMATE || "<month year, e.g. November 2026>"}
 SHOP_SHIP_COUNTRIES=US
+${taxReady ? "SHOP_COLLECT_TAX=on" : "# SHOP_COLLECT_TAX=on   # only once Stripe Tax is active with a Texas registration"}
 `);
