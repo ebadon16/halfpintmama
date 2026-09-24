@@ -2,7 +2,7 @@ import { Resend } from "resend";
 import { NextRequest, NextResponse, after } from "next/server";
 import { createClient } from "@sanity/client";
 import { escapeHtml } from "@/lib/sanitize";
-import { EMAIL } from "@/lib/email-theme";
+import { emailButton, emailEyebrow, emailP, emailPanel, emailQuote, emailShell, emailSmall } from "@/lib/email-theme";
 import { rateLimit } from "@/lib/rate-limit";
 import { getClientIp, isSameOrigin } from "@/lib/http";
 
@@ -220,58 +220,22 @@ export async function POST(request: NextRequest) {
     // Notifications are best-effort and must not delay the response. The comment
     // is already saved, so run all email sends after the response is flushed.
     after(async () => {
-    // Send notification to site owner
+    // Keegan's copy: same shell as everything else, no sign-off (it is to her).
     try { await getResend().emails.send({
       from: "Half Pint Mama <notifications@halfpintmama.com>",
       to: NOTIFICATION_EMAIL,
       subject: isReply
-        ? `💬 New Reply on "${rawPostTitle}"`
-        : `⭐ New Review on "${rawPostTitle}"`,
-      html: `
-        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <div style="background: linear-gradient(135deg, ${EMAIL.terracottaFrom}, ${EMAIL.terracottaTo}); padding: 20px; border-radius: 12px 12px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 24px;">
-              ${isReply ? "💬 New Reply" : "⭐ New Review"}
-            </h1>
-          </div>
-
-          <div style="background: ${EMAIL.cream}; padding: 24px; border: 1px solid ${EMAIL.border}; border-top: none; border-radius: 0 0 12px 12px;">
-            <p style="color: ${EMAIL.text}; margin: 0 0 16px;">
-              <strong>${escapedAuthor}</strong> left a ${isReply ? "reply" : "review"} on <strong>"${escapedPostTitle}"</strong>
-            </p>
-
-            ${!isReply ? `
-            <p style="color: ${EMAIL.text}; margin: 0 0 16px;">
-              <strong>Rating:</strong> ${ratingText}
-            </p>
-            ` : ""}
-
-            ${isReply ? `
-            <p style="color: ${EMAIL.muted}; margin: 0 0 8px; font-size: 14px;">
-              In reply to ${escapedReplyToAuthor}:
-            </p>
-            ` : ""}
-
-            <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid ${EMAIL.accent}; margin: 16px 0;">
-              <p style="color: ${EMAIL.text}; margin: 0; line-height: 1.6;">
-                "${escapedContent}"
-              </p>
-            </div>
-
-            <p style="color: ${EMAIL.muted}; font-size: 14px; margin: 16px 0 0;">
-              <strong>From:</strong> ${escapedAuthor} (${escapeHtml(safeEmail)})
-            </p>
-
-            <a href="${postUrl}" style="display: inline-block; background: linear-gradient(135deg, ${EMAIL.terracottaFrom}, ${EMAIL.terracottaTo}); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; margin-top: 20px; font-weight: bold;">
-              View on Site →
-            </a>
-          </div>
-
-          <p style="color: ${EMAIL.footer}; font-size: 12px; text-align: center; margin-top: 20px;">
-            Half Pint Mama | halfpintmama.com
-          </p>
-        </div>
-      `,
+        ? `💬 New reply on "${rawPostTitle}"`
+        : `⭐ New review on "${rawPostTitle}"`,
+      html: emailShell(
+        isReply ? "New reply" : "New review",
+        emailP(`<strong>${escapedAuthor}</strong> left a ${isReply ? "reply" : "review"} on <em>${escapedPostTitle}</em>${!isReply && rating > 0 ? ` and rated it ${rating}/5` : ""}.`) +
+          (isReply && escapedReplyToAuthor ? emailSmall(`In reply to ${escapedReplyToAuthor}.`) : "") +
+          emailPanel(emailEyebrow(isReply ? "Their reply" : "Their review") + emailQuote(escapedContent)) +
+          emailSmall(`From ${escapedAuthor} (${escapeHtml(safeEmail)})`) +
+          emailButton(postUrl, "View on the site"),
+        { signOff: false, reason: "Sent to you because a reader wrote on halfpintmama.com." }
+      ),
     }); } catch (emailErr) { console.error("Failed to send owner notification:", emailErr); }
 
     // If this is a reply, notify the parent commenter — but ONLY at an address
@@ -293,38 +257,17 @@ export async function POST(request: NextRequest) {
       // notifications per parent comment per day.
       if (parentEmail && EMAIL_REGEX.test(parentEmail.trim()) && parentEmail !== safeEmail && rateLimit(`reply-notify:${parentId}`, 3, 24 * 60 * 60 * 1000)) {
       try { await getResend().emails.send({
-        from: "Half Pint Mama <notifications@halfpintmama.com>",
+        from: "Keegan at Half Pint Mama <notifications@halfpintmama.com>",
         to: parentEmail,
         subject: `${rawAuthorSubject} replied to your comment on Half Pint Mama`,
-        html: `
-          <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: linear-gradient(135deg, ${EMAIL.sageFrom}, ${EMAIL.sageTo}); padding: 20px; border-radius: 12px 12px 0 0;">
-              <h1 style="color: white; margin: 0; font-size: 24px;">
-                💬 Someone Replied to Your Comment!
-              </h1>
-            </div>
-
-            <div style="background: ${EMAIL.cream}; padding: 24px; border: 1px solid ${EMAIL.border}; border-top: none; border-radius: 0 0 12px 12px;">
-              <p style="color: ${EMAIL.text}; margin: 0 0 16px;">
-                Hi ${escapedReplyToAuthor}! <strong>${escapedAuthor}</strong> replied to your comment on <strong>"${escapedPostTitle}"</strong>
-              </p>
-
-              <div style="background: white; padding: 16px; border-radius: 8px; border-left: 4px solid ${EMAIL.accent}; margin: 16px 0;">
-                <p style="color: ${EMAIL.text}; margin: 0; line-height: 1.6;">
-                  "${escapedContent}"
-                </p>
-              </div>
-
-              <a href="${postUrl}" style="display: inline-block; background: linear-gradient(135deg, ${EMAIL.sageFrom}, ${EMAIL.sageTo}); color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; margin-top: 20px; font-weight: bold;">
-                View the Conversation →
-              </a>
-            </div>
-
-            <p style="color: ${EMAIL.footer}; font-size: 12px; text-align: center; margin-top: 20px;">
-              Half Pint Mama | halfpintmama.com
-            </p>
-          </div>
-        `,
+        html: emailShell(
+          "Someone wrote back",
+          emailP(`<strong>${escapedAuthor}</strong> replied to your comment on <em>${escapedPostTitle}</em>:`) +
+            emailPanel(emailQuote(escapedContent)) +
+            emailButton(postUrl, "Read the conversation") +
+            emailSmall("I only send these when someone answers you, never for anything else."),
+          { lede: `Hi ${escapedReplyToAuthor || "friend"}, Keegan here.`, reason: "You are receiving this because you left a comment on halfpintmama.com." }
+        ),
       }); } catch (emailErr) { console.error("Failed to send reply notification:", emailErr); }
       }
     }

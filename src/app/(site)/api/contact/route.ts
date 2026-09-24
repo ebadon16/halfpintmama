@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { T, emailEyebrow, emailPanel, emailQuote, emailShell, emailSmall } from "@/lib/email-theme";
 import { escapeHtml } from "@/lib/sanitize";
 import { rateLimit } from "@/lib/rate-limit";
 import { getClientIp, isSameOrigin } from "@/lib/http";
@@ -71,15 +72,17 @@ export async function POST(request: Request) {
         to: CONTACT_EMAIL,
         reply_to: rawEmail,
         subject: `Contact Form: ${rawSubject || "New Message"}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${safeName || "Not provided"}</p>
-          <p><strong>Email:</strong> ${safeEmail}</p>
-          <p><strong>Subject:</strong> ${safeSubject || "Not provided"}</p>
-          <hr />
-          <p><strong>Message:</strong></p>
-          <p>${safeMessage}</p>
-        `,
+        html: emailShell(
+          "New message from the contact form",
+          emailPanel(
+            emailEyebrow("From") +
+              `<p style="margin: 0 0 4px; font-family: ${T.sans}; font-size: 15px; color: ${T.text};"><strong>${safeName || "No name given"}</strong> &middot; ${safeEmail}</p>` +
+              `<p style="margin: 0; font-family: ${T.sans}; font-size: 14px; color: ${T.muted};">Subject: ${safeSubject || "Not provided"}</p>`
+          ) +
+            emailPanel(emailEyebrow("Message") + emailQuote(safeMessage), T.creamTint) +
+            emailSmall("Reply to this email and it goes straight to them."),
+          { signOff: false, reason: "Sent to you from the contact form on halfpintmama.com." }
+        ),
       }),
     });
 

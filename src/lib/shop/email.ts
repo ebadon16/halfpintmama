@@ -2,40 +2,21 @@
 // A newsletter unsubscribe must never suppress a paid delivery, so the two
 // systems are kept apart on purpose.
 //
-// Design follows the SITE (globals.css), not the old newsletter: cream ground,
-// a white card with the terracotta-to-pink accent bar the site's buttons use,
-// Crimson Text headings in deep sage, a clean sans body in charcoal, terracotta
-// links and pill buttons, sage tints for panels. Every colour pair clears
-// WCAG AA (terracotta on white 5.4:1, white on terracotta 5.4:1, deep sage on
-// cream 7+:1). Every message is rendered by a pure render*() so it can be
-// previewed and tested without sending.
+// Look and voice come from src/lib/email-theme.ts, shared with the blog's
+// comment notifications so every email the site sends matches. Every message
+// is rendered by a pure render*() so it can be previewed and tested without
+// sending.
 
 import { Resend } from "resend";
 import { escapeHtml } from "@/lib/sanitize";
 import { SITE_URL } from "@/lib/seo";
+import { T, SMALL_STYLE, emailButton, emailEyebrow, emailLink, emailMedia, emailP, emailPanel, emailShell } from "@/lib/email-theme";
 import { PRODUCTS } from "./catalog";
 import { formatMoney } from "./prices";
 import type { Order } from "./orders";
 
 const FROM = "Keegan at Half Pint Mama <orders@halfpintmama.com>";
 const REPLY_TO = "keegan@halfpintmama.com";
-
-// The site palette, from globals.css.
-const T = {
-  bg: "#F5F1E8", // --cream
-  card: "#FFFFFF",
-  text: "#3A3A38", // --charcoal
-  muted: "#6B6B66",
-  heading: "#4A5845", // --deep-sage
-  sage: "#7B8F6E", // --sage
-  sageTint: "#EEF2EA", // light-sage, lightened for a panel ground
-  beige: "#E6DFD3", // --warm-beige
-  terracotta: "#A0562F", // links, buttons (white on it 5.4:1)
-  terracottaDeep: "#8A4A2E",
-  pink: "#D4A894", // --soft-pink, accent only, never for text
-  serif: "'Crimson Text', Georgia, 'Times New Roman', serif",
-  sans: "'Helvetica Neue', Helvetica, Arial, sans-serif",
-} as const;
 
 let client: Resend | null = null;
 function resend(): Resend {
@@ -57,122 +38,21 @@ export interface RenderedEmail {
   text: string;
 }
 
-// ---- building blocks -------------------------------------------------------
+// ---- building blocks (shared with the rest of the site in email-theme.ts) ----
 
-const P = `margin: 0 0 16px; font-family: ${T.sans}; font-size: 16px; line-height: 160%; color: ${T.text};`;
-const SMALL = `margin: 0 0 12px; font-family: ${T.sans}; font-size: 14px; line-height: 155%; color: ${T.muted};`;
-const LINK = `color: ${T.terracotta}; text-decoration: underline; text-underline-offset: 2px;`;
-
-function p(inner: string): string {
-  return `<p style="${P}">${inner}</p>`;
-}
-
-function a(href: string, label: string): string {
-  return `<a href="${href}" style="${LINK}">${label}</a>`;
-}
-
-// The site's pill button: terracotta, white text.
-function button(href: string, label: string): string {
-  return `
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 6px 0 22px;">
-      <tr>
-        <td align="center" bgcolor="${T.terracotta}" style="border-radius: 999px;">
-          <a href="${href}" style="display: inline-block; padding: 14px 28px; font-family: ${T.sans}; font-size: 15px; font-weight: 700; letter-spacing: 0.2px; color: #FFFFFF; text-decoration: none; border-radius: 999px;">${label}</a>
-        </td>
-      </tr>
-    </table>`;
-}
-
-// A quiet tinted panel: the site's card-within-a-card.
-function panel(inner: string, tint: string = T.sageTint): string {
-  return `
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin: 0 0 22px;">
-      <tr>
-        <td bgcolor="${tint}" style="padding: 18px 20px; border-radius: 14px;">${inner}</td>
-      </tr>
-    </table>`;
-}
-
-// A small tracked label in sage, the site's eyebrow style.
-function eyebrow(text: string): string {
-  return `<p style="margin: 0 0 6px; font-family: ${T.sans}; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: ${T.sage};">${text}</p>`;
-}
-
-// Image + text side by side; stacks on narrow screens because the image cell
-// has a fixed small width and the text cell is fluid.
-function media(imgHtml: string, textHtml: string, imgWidth: number): string {
-  return `
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="stack">
-      <tr>
-        <td width="${imgWidth}" valign="top" class="stack-img" style="padding: 0 18px 0 0; width: ${imgWidth}px;">${imgHtml}</td>
-        <td valign="top" class="stack-txt">${textHtml}</td>
-      </tr>
-    </table>`;
+const SMALL = SMALL_STYLE;
+const p = emailP;
+const a = emailLink;
+const button = emailButton;
+const panel = emailPanel;
+const eyebrow = emailEyebrow;
+const media = emailMedia;
+function shell(heading: string, body: string, lede?: string, signOff = true): string {
+  return emailShell(heading, body, { lede, signOff });
 }
 
 const COVER = `<img src="${SITE_URL}/images/rest-and-rise-cover.jpg" width="96" height="137" alt="Rest & Rise cover" style="display: block; width: 96px; height: auto; border: 0; border-radius: 6px; box-shadow: 0 6px 16px rgba(58,58,56,0.18);" />`;
 const LABEL_THUMB = `<img src="${SITE_URL}/images/labels-preview-label.png" width="150" height="125" alt="One filled-in freezer label" style="display: block; width: 150px; max-width: 100%; height: auto; border: 0; border-radius: 8px; border: 1px solid ${T.beige};" />`;
-
-// One shell for every message: logo, accent bar, heading, body, Keegan's
-// sign-off, site footer.
-function shell(heading: string, body: string, lede?: string, signOff = true): string {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light" />
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    /* Phones: image-and-text rows stack. Clients that ignore this keep the
-       side-by-side layout, which still reads. */
-    @media only screen and (max-width: 480px) {
-      .stack td.stack-img, .stack td.stack-txt { display: block !important; width: 100% !important; padding: 0 0 12px 0 !important; }
-    }
-  </style>
-  <title>${escapeHtml(heading)}</title>
-</head>
-<body style="margin: 0; padding: 0; background: ${T.bg};">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${T.bg}" style="background: ${T.bg};">
-    <tr>
-      <td align="center" style="padding: 28px 12px 36px;">
-        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width: 600px; width: 100%;">
-          <tr>
-            <td align="center" style="padding: 0 0 18px;">
-              <a href="${SITE_URL}" style="text-decoration: none;"><img src="${SITE_URL}/images/email-logo.png" width="84" height="84" alt="Half Pint Mama" style="display: inline-block; width: 84px; height: 84px; border: 0;" /></a>
-            </td>
-          </tr>
-          <tr>
-            <td bgcolor="${T.card}" style="background: ${T.card}; border-radius: 18px; overflow: hidden;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr><td height="5" bgcolor="${T.terracotta}" style="height: 5px; line-height: 5px; font-size: 5px; background: linear-gradient(90deg, ${T.terracotta}, ${T.pink});">&nbsp;</td></tr>
-                <tr>
-                  <td style="padding: 30px 32px 10px;">
-                    <h1 style="margin: 0 0 ${lede ? "8px" : "18px"}; font-family: ${T.serif}; font-size: 34px; font-weight: 600; line-height: 120%; color: ${T.heading};">${heading}</h1>
-                    ${lede ? `<p style="margin: 0 0 22px; font-family: ${T.serif}; font-size: 19px; font-style: italic; line-height: 140%; color: ${T.sage};">${lede}</p>` : ""}
-                    ${body}
-                    ${signOff ? `<p style="margin: 8px 0 0; font-family: ${T.serif}; font-size: 20px; line-height: 140%; color: ${T.heading};">With love,</p>
-                    <p style="margin: 0 0 26px; font-family: ${T.serif}; font-size: 20px; font-style: italic; line-height: 140%; color: ${T.heading};">Keegan</p>` : `<p style="margin: 0 0 16px;">&nbsp;</p>`}
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td align="center" style="padding: 22px 16px 0;">
-              <p style="margin: 0 0 8px; font-family: ${T.sans}; font-size: 13px; line-height: 150%; color: ${T.muted};">
-                <a href="${SITE_URL}" style="${LINK}">halfpintmama.com</a> &nbsp;&middot;&nbsp; <a href="https://www.instagram.com/halfpint.mama" style="${LINK}">@halfpint.mama</a>
-              </p>
-              <p style="margin: 0; font-family: ${T.sans}; font-size: 12px; line-height: 150%; color: ${T.muted};">Half Pint Mama &middot; Round Rock, Texas<br />You are receiving this because you ordered from halfpintmama.com. Reply any time and it comes straight to me.</p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>`;
-}
 
 const SIGN_OFF_TEXT = "\nWith love,\nKeegan\nhalfpintmama.com | @halfpint.mama\n";
 
@@ -224,7 +104,7 @@ function labelsBlock(labelsUrl: string, preorder: boolean): string {
     `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 20px; line-height: 130%; color: ${T.heading};"><strong>Printable freezer labels for every recipe in the book</strong></p>` +
     `<p style="margin: 0 0 12px; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">Pick a recipe and the label fills in its best-by line and freezer directions. Print onto Avery 5524 sheets, or any 4&quot; &times; 3&#8531;&quot; label.</p>` +
     button(escapeHtml(labelsUrl), "Open my labels");
-  return panel(media(LABEL_THUMB, text, 150), "#FBF6EC") + LABELS_HOWTO_HTML;
+  return panel(media(LABEL_THUMB, text, 150), T.creamTint) + LABELS_HOWTO_HTML;
 }
 
 // ---- the messages ------------------------------------------------------------
