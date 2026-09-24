@@ -336,3 +336,17 @@ Still manual, not code:
   releasing... printable freezer labels" and "Coming Fall 2026". Not a free-labels promise;
   optional Canva touch-up to "Rest & Rise" and to drop the season.
 - Ship month, live key: see "What I need from you".
+
+## PREORDERS LIVE (Sep 23 2026, deploy 942271a)
+
+Live Stripe (`acct_1UDXYGBR2BAygII2`, descriptor HALFPINTMAMA): book `price_1UJ2JdBR2BAygII2EI5RZjSR`
+$39.99, labels `price_1UJ2JeBR2BAygII2vqvKIO4D` $9.00, shipping `shr_1UJ2JfBR2BAygII2SDk0OsRA` $5.00,
+webhook `we_1UJ2JgBR2BAygII22IQZZPA3` (4 events, enabled), Stripe Tax active with Texas registration
+`taxreg_1UJ2JhBR2BAygII2Di0tfzOU`. Full env block on Vercel production incl. `SHOP_SHIP_ESTIMATE=Late
+October 2026` and `SHOP_COLLECT_TAX=on`. The live key lives ONLY in Vercel (never in the repo or .env.local).
+Verified on halfpintmama.com: /shop indexable, "Preorders Open", $39.99, Book/Offer PreOrder schema, sitemap
+carries /shop + /cookbook-resources, homepage card says "Preorder the Book", webhook rejects a bad signature
+with 400, a live Checkout session created through /api/checkout carried US address collection, the $5 rate,
+automatic tax, the ship-date note and the phase/product metadata (then expired).
+STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send MailerLite "Preorders open
+(ready to send)" 198049723307787316 after (1); (3) welcome automation edits (dashboard); (4) Step 4 at ship.
