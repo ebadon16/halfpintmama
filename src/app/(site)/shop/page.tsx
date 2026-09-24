@@ -117,6 +117,13 @@ export default async function ShopPage() {
     console.error("Shop: could not read the book price", err);
     return null;
   });
+  // The labels' standalone price is quoted during preorder too: it is what the
+  // free bonus is worth, and the honest answer to "what happens after launch".
+  const labelsPrice = status === "waitlist" ? null : await getDisplayPrice("labels").catch((err) => {
+    console.error("Shop: could not read the labels price", err);
+    return null;
+  });
+  const labelsLater = labelsPrice && labelsPrice.active !== false ? labelsPrice.formatted : null;
   const bookSellable = status !== "waitlist" && bookPrice?.active !== false;
   if (status !== "waitlist" && !bookSellable) {
     console.error("Shop: STRIPE_PRICE_BOOK points at an archived Price — reprice env not deployed");
@@ -169,7 +176,7 @@ export default async function ShopPage() {
               {status === "waitlist" || !bookSellable ? (
                 <Waitlist />
               ) : (
-                <BookOffer status={status} price={bookPrice} />
+                <BookOffer status={status} price={bookPrice} labelsLater={labelsLater} />
               )}
               {/* Page 140 of the book sends readers to this URL for the
                   printables. Without this they land on the hero and have to
@@ -223,36 +230,63 @@ export default async function ShopPage() {
           <PrintablesGrid compact />
         </section>
 
-        <section className="mb-16 max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-1 gap-6 max-w-2xl mx-auto">
-            <div className="bg-white rounded-2xl p-6 shadow-md flex gap-4 items-start">
-              <ThemedIcon icon={Tag} size="lg" color="terracotta" />
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-1">
-                  <h3 className="font-semibold text-charcoal">Printable Freezer Labels</h3>
-                  {/* The book names these on pages 34 and 165, so a reader may
-                      arrive looking for them before they exist. Say so plainly
-                      rather than describing them as though they were on sale. */}
-                  {status === "waitlist" && (
-                    <span className="text-[11px] font-semibold uppercase tracking-wide text-terracotta bg-terracotta/10 rounded-full px-2 py-0.5">
-                      Not out yet
-                    </span>
-                  )}
-                  {status === "preorder" && (
-                    <span className="text-[11px] font-semibold uppercase tracking-wide text-deep-sage bg-sage/20 rounded-full px-2 py-0.5">
-                      Free with preorder
-                    </span>
-                  )}
-                </div>
-                <p className="text-charcoal/80 text-sm">
-                  A fillable PDF: every recipe in the book waiting in a dropdown, or type your own.{" "}
-                  {status === "launched"
-                    ? "Sold above as its own item."
-                    : status === "preorder"
-                      ? "Yours free with the book, emailed as soon as your payment clears."
-                      : "They are not for sale yet. When preorders open they come free with the book, and they become a separate item after that. Join the waitlist above and you will hear first."}
-                </p>
+        {/* The labels: the book names them on pages 34 and 165, and during
+            preorder they are the bonus, so buyers need to SEE what they are
+            getting. The image is a real render of a filled sheet
+            (scripts/shop/labels-preview.mjs). */}
+        <section id="labels" className="mb-16 max-w-5xl mx-auto scroll-mt-24">
+          <div className="bg-white rounded-2xl shadow-md p-6 md:p-8 max-w-3xl mx-auto md:flex gap-8 items-start">
+            <a
+              href="/images/labels-preview.png"
+              target="_blank"
+              rel="noopener"
+              className="block flex-shrink-0 w-40 md:w-48 mx-auto md:mx-0 mb-5 md:mb-0 rounded-lg overflow-hidden border border-warm-beige shadow-sm hover:shadow-md transition-shadow"
+              aria-label="Open a full-size preview of a filled-in label sheet"
+            >
+              <Image
+                src="/images/labels-preview.png"
+                alt="A sheet of ten Rest & Rise freezer labels, each filled in with a recipe, a made-on date, and reheating notes"
+                width={695}
+                height={900}
+                sizes="(min-width: 768px) 192px, 160px"
+                className="w-full h-auto"
+              />
+            </a>
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <h3 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold">
+                  Printable Freezer Labels
+                </h3>
+                {status === "waitlist" && (
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-terracotta bg-terracotta/10 rounded-full px-2 py-0.5">
+                    Not out yet
+                  </span>
+                )}
+                {status === "preorder" && (
+                  <span className="text-[11px] font-semibold uppercase tracking-wide text-deep-sage bg-sage/20 rounded-full px-2 py-0.5">
+                    Free with preorder
+                  </span>
+                )}
               </div>
+              <p className="text-charcoal/80 text-sm mb-3">
+                A fillable PDF made for your freezer: every recipe in the book waits in a dropdown, or
+                type your own, add the date you made it and how to reheat it, then print. Two sheets
+                of fillable labels plus one to hand-write, ten labels per sheet, unlimited reprints.
+              </p>
+              <p className="text-charcoal/80 text-sm">
+                {status === "launched"
+                  ? "Sold above as its own item."
+                  : status === "preorder"
+                    ? `Yours free with the book, emailed as soon as your payment clears. After launch they sell on their own${labelsLater ? ` for ${labelsLater}` : ""}.`
+                    : "They are not for sale yet. When preorders open they come free with the book, and they become a separate item after that. Join the waitlist above and you will hear first."}
+              </p>
+              <ul className="text-charcoal/80 text-xs mt-4 space-y-1.5">
+                <li className="flex gap-2 items-start">
+                  <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
+                  Prints on Avery {LABEL_SHEET.avery} freezer-safe sheets, or any 2&quot; × 4&quot;, 10-per-sheet
+                  waterproof label. Fill them in on a computer.
+                </li>
+              </ul>
             </div>
           </div>
         </section>
@@ -328,7 +362,7 @@ function amazonUrl(status: "preorder" | "launched"): string | null {
   return status === "launched" && url && /^https:\/\/(www\.)?amazon\./.test(url) ? url : null;
 }
 
-function BookOffer({ status, price }: { status: "preorder" | "launched"; price: DisplayPrice | null }) {
+function BookOffer({ status, price, labelsLater }: { status: "preorder" | "launched"; price: DisplayPrice | null; labelsLater: string | null }) {
   const shipEstimate = getShipEstimate();
   const preorder = status === "preorder";
 
@@ -351,10 +385,13 @@ function BookOffer({ status, price }: { status: "preorder" | "launched"; price: 
         <div className="flex gap-3 items-start bg-cream rounded-xl p-4 mb-4">
           <ThemedIcon icon={Tag} size="md" color="terracotta" />
           <p className="text-charcoal/80 text-sm">
-            <strong className="text-charcoal">Preorder bonus:</strong> the printable freezer
-            labels, free, emailed as soon as your payment clears. Only with a preorder; after
-            launch they become a separate item. Changed your mind? Cancel any time before your
-            book ships for a full refund.
+            <strong className="text-charcoal">Preorder bonus:</strong> the{" "}
+            <a href="#labels" className="text-terracotta hover:text-deep-sage font-medium underline-offset-2 hover:underline">
+              printable freezer labels
+            </a>
+            , free, emailed as soon as your payment clears. Only with a preorder; after launch
+            they sell on their own{labelsLater ? ` for ${labelsLater}` : ""}. Changed your mind? Cancel any
+            time before your book ships for a full refund.
           </p>
         </div>
       )}

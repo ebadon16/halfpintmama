@@ -100,7 +100,7 @@ At launch the book stops including them and they become a paid standalone item.
 3. **Copies per order**: default is 1. More than one only makes sense with a shipping rate
    priced for the bigger box, because Stripe charges shipping once per order, not per book.
 
-Decided already: book $39.99 (Sep 19), shipping $5, labels $9 standalone after launch, Texas
+Decided already: book $39.99 (Sep 19), shipping $5, labels $10 standalone after launch, Texas
 permit in hand (Sep 23). Nothing else. Every other decision is made and in code.
 
 ### Step 1 — push, any time before launch (safe on its own)
@@ -119,7 +119,7 @@ in search. Doing this early is what makes launch day a single step.
 ### Step 2 — launch day, one command and one paste
 
 ```
-STRIPE_SECRET_KEY=sk_live_... SHOP_SHIP_ESTIMATE="<Month YYYY>" npm run shop:setup -- --book=3999 --labels=900 --shipping=500 --tax-from=<permit date YYYY-MM-DD>
+STRIPE_SECRET_KEY=sk_live_... SHOP_SHIP_ESTIMATE="<Month YYYY>" npm run shop:setup -- --book=3999 --labels=1000 --shipping=500 --tax-from=<permit date YYYY-MM-DD>
 ```
 
 It creates the products, both prices, the shipping rate, registers the webhook (only because

@@ -66,6 +66,19 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // The four Chapter 11 printables were re-cut from the final print file on
+      // Sep 23 2026 and their content hashes changed. Anyone who saved the old
+      // link gets the current file.
+      ...[
+        ["6d34777c", "prep-day-planner-450adfff"],
+        ["d362b64b", "postpartum-household-stock-up-list-9b38d264"],
+        ["3080694a", "pantry-staples-stock-up-list-6d7fa061"],
+        ["37797fa7", "freezer-inventory-checklist-c30d0350"],
+      ].map(([oldHash, current]) => ({
+        source: `/downloads/rest-and-rise-${current.replace(/-[0-9a-f]{8}$/, "")}-${oldHash}.pdf`,
+        destination: `/downloads/rest-and-rise-${current}.pdf`,
+        permanent: true,
+      })),
       {
         // The book prints only halfpintmama.com and halfpintmama.com/shop.
         // /checklist was never one of them; anyone who guesses it lands on the

@@ -1,7 +1,7 @@
 // One-shot, idempotent setup of everything the shop needs inside Stripe.
 // Safe to re-run: every object is found by a stable key before it is created.
 //
-//   STRIPE_SECRET_KEY=sk_test_... npm run shop:setup -- --book=3999 --labels=900 --shipping=500 [--tax-from=YYYY-MM-DD] [--no-tax]
+//   STRIPE_SECRET_KEY=sk_test_... npm run shop:setup -- --book=3999 --labels=1000 --shipping=500 [--tax-from=YYYY-MM-DD] [--no-tax]
 //
 // Amounts are in cents and only used when the Price does not exist yet (a
 // Stripe Price is immutable; to reprice, create a new Price in the dashboard

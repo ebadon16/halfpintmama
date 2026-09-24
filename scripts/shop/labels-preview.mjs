@@ -14,16 +14,17 @@ process.env.SHOP_TOKEN_SECRET ||= "x".repeat(48);
 const { buildLabelsPdf } = await import(path.join(process.cwd(), "src/lib/shop/labels-pdf.ts"));
 
 const SAMPLE = [
-  ["Nesting Ziti", "Oct 14", "350°F, 45 min"],
-  ["The House Chili", "Oct 14", "Stovetop, low"],
-  ["Aloha Meatballs", "Oct 21", "Slow cooker, 3 hr"],
-  ["Sourdough English Muffins", "Oct 21", "Toast from frozen"],
-  ["Honey Garlic Chicken", "Oct 28", "Pressure cooker, 12 min"],
-  ["Lactation Banana Bread", "Oct 28", "Thaw overnight"],
-  ["Freezer Waffles", "Nov 4", "Toaster"],
-  ["Weeknight Butter Chicken", "Nov 4", "Stovetop, low"],
-  ["Overnight Sourdough French Toast Bake", "Nov 11", "350°F, 40 min"],
-  ["Italian Mini Quiches", "Nov 11", "350°F, 15 min"],
+  // Reheat notes match the book's STORAGE blocks (final interior, Sep 22 2026).
+  ["Nesting Ziti", "Oct 14", "375°F, 90 min from frozen"],
+  ["The House Chili", "Oct 14", "Thaw, slow cooker 6–8 h"],
+  ["Aloha Meatballs", "Oct 21", "Thaw, slow cooker 4–6 h"],
+  ["Sourdough English Muffins", "Oct 21", "Toaster, from frozen"],
+  ["Honey Garlic Chicken", "Oct 28", "Pressure cooker, 15 min"],
+  ["Lactation Banana Bread", "Oct 28", "Microwave 45–60 sec"],
+  ["Freezer Waffles", "Nov 4", "Toaster, from frozen"],
+  ["Weeknight Butter Chicken", "Nov 4", "Pressure cooker, 15 min"],
+  ["Overnight Sourdough French Toast Bake", "Nov 11", "350°F, 8–10 min"],
+  ["Italian Mini Quiches", "Nov 11", "350°F, 10–12 min"],
 ];
 
 const bytes = await buildLabelsPdf({ email: "you@example.com", createdAt: new Date("2026-01-01") });

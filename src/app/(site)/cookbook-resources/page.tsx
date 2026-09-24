@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Tag, BookOpen, ClipboardCheck } from "lucide-react";
 import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo";
@@ -111,14 +112,34 @@ export default function CookbookResourcesPage() {
               Printable Freezer Labels
             </h2>
           </div>
-          <div className="bg-white rounded-2xl p-8 shadow-md text-center">
+          <div className="bg-white rounded-2xl p-8 shadow-md md:flex gap-8 items-center text-center md:text-left">
+            {/* A real render of a filled sheet (scripts/shop/labels-preview.mjs),
+                so a reader sent here by the book sees what the labels are. */}
+            <a
+              href="/images/labels-preview.png"
+              target="_blank"
+              rel="noopener"
+              className="block flex-shrink-0 w-36 md:w-44 mx-auto md:mx-0 mb-5 md:mb-0 rounded-lg overflow-hidden border border-warm-beige shadow-sm hover:shadow-md transition-shadow"
+              aria-label="Open a full-size preview of a filled-in label sheet"
+            >
+              <Image
+                src="/images/labels-preview.png"
+                alt="A sheet of ten Rest & Rise freezer labels, each filled in with a recipe, a made-on date, and reheating notes"
+                width={695}
+                height={900}
+                sizes="(min-width: 768px) 176px, 144px"
+                className="w-full h-auto"
+              />
+            </a>
+            <div className="flex-1">
             <p className="text-charcoal/80 mb-4">{labels.text}</p>
             <Link
-              href="/shop"
+              href="/shop#labels"
               className="inline-block px-6 py-3 gradient-cta text-white font-semibold rounded-full hover:shadow-lg transition-all text-sm"
             >
               {labels.cta}
             </Link>
+            </div>
           </div>
         </div>
       </section>

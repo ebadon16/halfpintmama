@@ -3,21 +3,22 @@
 The four free downloads the book promises at halfpintmama.com/shop (page 140):
 the Prep Day Planner, both stock-up lists, and the Freezer Inventory Checklist.
 
-Since September 21, 2026 these are Keegan's own pages, cut straight out of the
-Canva "Rest & Rise- ch 11" design (pages 141 to 145 of the book), not a rebuilt
-HTML copy. That way they can never drift from the printed book.
+Since September 23, 2026 these are cut straight out of the FINAL KDP interior PDF
+(the exact file the printer receives), pages 141 to 145, so they cannot drift from the
+printed book. Before that they came from a Canva export of the ch 11 design, which
+drifted once (a Sep 22 text change never made it to the site) and whose folio
+detection broke when Canva changed its bleed.
 
-To refresh after Keegan edits the design:
+To refresh after the interior is rebuilt:
 
-1. Export the design as PDF (Print preset, no crop marks, no flatten), for example
-   with `~/.research/_cv_export2.mjs DAHQU5HYCmU out.pdf`.
-2. Run `python3 ~/.research/_hpm_printables_from_canva.py out.pdf <dir>`. It finds
-   each page by its heading, trims any bleed to the 7 x 10 page, removes the printed
-   page number, and writes one PDF per printable (content-hashed name) plus a
-   695 x 900 page-one preview PNG.
-3. Copy the PDFs into `public/downloads/` and the PNGs into
-   `public/images/printables/`, delete the superseded PDFs, and update the `file`
-   and `pages` fields in `src/lib/shop/printables.ts`.
+1. `python3 scripts/chapter11-printables/from-kdp-interior.py ~/Downloads/RestAndRise-INTERIOR-KDP-FINAL-300ppi.pdf`
+   It writes four content-hashed PDFs to `public/downloads/` and four previews to
+   `public/images/printables/`, and refuses if a heading, page size or folio is not
+   where it expects.
+2. Delete the superseded PDFs from `public/downloads/` and update the `file` fields in
+   `src/lib/shop/printables.ts` (page counts are unchanged unless the book changes).
+3. Verify: extract each PDF's text and diff it against the same book pages; the only
+   difference should be nothing at all.
 
 `next.config.ts` serves `/downloads` with `X-Robots-Tag: noindex`, so the pages that
 present them rank rather than the bare PDFs.

@@ -3,8 +3,10 @@
 // type anything — "not everyone makes the same recipes."
 //
 // Titles match the recipe pages of the final KDP interior (Sep 22 2026), in
-// book order. The one liberty is Freezer Waffles, which drops its parenthetical
-// subtitle so it fits a label. Keep in sync if the book changes.
+// book order. Two liberties so every name fits the 244pt recipe field at 12pt:
+// Freezer Waffles drops its parenthetical subtitle, and the muffin sandwiches
+// drop "Make-Ahead" (271pt with it; every label is make-ahead). Keep in sync
+// if the book changes.
 
 export const BOOK_RECIPES: readonly string[] = [
   "Classic Artisan Sourdough Loaf",
@@ -15,7 +17,7 @@ export const BOOK_RECIPES: readonly string[] = [
   "Sourdough English Muffins",
   "Sourdough Naan",
   "Loaded Breakfast Tacos",
-  "Make-Ahead Bacon Egg and Cheese Muffin Sandwiches",
+  "Bacon Egg and Cheese Muffin Sandwiches",
   "One-Handed Breakfast Pockets",
   "Italian Mini Quiches",
   "Freezer Waffles",
