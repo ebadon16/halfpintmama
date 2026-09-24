@@ -244,10 +244,10 @@ export default async function Home() {
               <Image
                 src="/keegan.jpg"
                 alt="Keegan, the Pediatric ER RN and mama behind Half Pint Mama"
-                width={96}
-                height={96}
-                sizes="96px"
-                className="w-24 h-24 rounded-full object-cover border-4 border-sage shadow-md mx-auto mb-3"
+                width={80}
+                height={80}
+                sizes="80px"
+                className="w-20 h-20 rounded-full object-cover border-4 border-sage shadow-md mx-auto mb-3"
               />
               <h3 className="font-[family-name:var(--font-crimson)] text-xl text-deep-sage font-semibold mb-2">
                 Hey, I&apos;m Keegan

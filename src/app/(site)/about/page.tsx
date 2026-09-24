@@ -71,10 +71,13 @@ export default function AboutPage() {
           <Image
             src="/keegan.jpg"
             alt="Keegan, the Pediatric ER RN and mama behind Half Pint Mama"
-            width={112}
-            height={112}
-            sizes="112px"
-            className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-4 border-sage shadow-md flex-shrink-0"
+            width={80}
+            height={80}
+            sizes="80px"
+            // Source is 268px after the square object-cover crop. At 80px the 3x
+            // request is 240px, so it still downsamples; at the old 112px it was
+            // 336px and the browser had to enlarge, which is what read as blurry.
+            className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover border-4 border-sage shadow-md flex-shrink-0"
           />
           <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-semibold">
             Hey, I&apos;m Keegan
