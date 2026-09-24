@@ -117,7 +117,7 @@ async function loadFonts(doc: PDFDocument): Promise<Fonts> {
   return {
     body: await doc.embedFont(await read("Lora-Regular.ttf"), field),
     bold: await doc.embedFont(await read("Lora-Bold.ttf"), field),
-    italic: await doc.embedFont(await read("Lora-Italic.ttf"), draw),
+    italic: await doc.embedFont(await read("Lora-Italic.ttf"), field),
     boldItalic: await doc.embedFont(await read("Lora-BoldItalic.ttf"), draw),
     caps: await doc.embedFont(await read("Lato-Bold.ttf"), draw),
     stamp: await doc.embedFont(StandardFonts.Helvetica),
@@ -190,16 +190,16 @@ function labelGeometry(slot: Slot) {
   const x = card.x + pad;
   const w = card.w - pad * 2;
   const top = card.y + card.h;
-  const title = { x, y: top - pad - 17, width: w, height: 17 };
+  const title = { x, y: top - 12 - 17, width: w, height: 17 };
   const rowY = title.y - 18;
-  const madeLabelW = 34;
+  const madeLabelW = 50;
   const made = { x: x + madeLabelW, y: rowY, width: 96, height: 14 };
   // Two lines: "Best by 3 months, use within 12 months · serves 6–8 · slow cooker".
   // Viewers set multiline text at about 1.5x the font size, so 30pt holds two
   // lines of 8.5pt with their padding.
   const meta = { x, y: rowY - 32, width: w, height: 30 };
-  const dirTop = meta.y - 4;
-  const dir = { x, y: card.y + 18, width: w, height: dirTop - (card.y + 18) };
+  const dirTop = meta.y - 12; // leaves room for the caption
+  const dir = { x, y: card.y + 16, width: w, height: dirTop - (card.y + 16) };
   return { card, x, w, top, title, made, meta, dir, madeLabelW };
 }
 
@@ -207,14 +207,14 @@ function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolea
   const g = labelGeometry(slot);
   roundedRect(page, g.card.x, g.card.y, g.card.w, g.card.h, 10, WHITE);
 
-  // The Made-on line, in the book's body face. (Best-by is printed by the
-  // auto-fill, not written in.)
-  page.drawText("Made", { x: g.x, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
+  // Captions in the book's section-head style: Lato Bold, tracked, terracotta.
+  tracked(page, "MADE ON", g.x, g.made.y + 4, 6.5, fonts.caps, TERRACOTTA, 1.2);
+  tracked(page, "FROM THE FREEZER", g.x, g.dir.y + g.dir.height + 3, 6.5, fonts.caps, TERRACOTTA, 1.2);
   // Rules sit just BELOW each field box, where the field's white fill cannot
   // cover them: a writing line on the hand-write sheet, a "type here" cue on
   // the fillable ones.
   page.drawLine({ start: { x: g.made.x, y: g.made.y - 1.5 }, end: { x: g.made.x + g.made.width, y: g.made.y - 1.5 }, thickness: 0.8, color: INK, opacity: 0.85 });
-  page.drawLine({ start: { x: g.x, y: g.title.y - 2 }, end: { x: g.x + g.w, y: g.title.y - 2 }, thickness: 0.6, color: TERRACOTTA, opacity: handwrite ? 0.7 : 0.45 });
+  page.drawLine({ start: { x: g.x, y: g.title.y - 2 }, end: { x: g.x + g.w, y: g.title.y - 2 }, thickness: 0.6, color: STEEL, opacity: handwrite ? 0.8 : 0.45 });
 
   if (handwrite) {
     // Writing guides where the fields would be.
@@ -229,17 +229,19 @@ function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolea
 
   // Quiet footer, like the running foot of the book.
   const foot = "Rest & Rise  ·  halfpintmama.com";
-  page.drawText(foot, { x: g.card.x + g.card.w - 12 - fonts.italic.widthOfTextAtSize(foot, 6.5), y: g.card.y + 8, size: 6.5, font: fonts.italic, color: STEEL });
+  page.drawText(foot, { x: g.card.x + g.card.w - 12 - fonts.italic.widthOfTextAtSize(foot, 6.5), y: g.card.y + 6, size: 6.5, font: fonts.italic, color: STEEL });
 }
 
 // Renders a recipe onto a hand-write label as static text (used only for the
 // preview image, never in a buyer's file).
 export function previewLabel(page: PDFPage, slot: Slot, fonts: Fonts, name: string, made: string, meta: string, directions: string) {
   const g = labelGeometry(slot);
-  page.drawText(name, { x: g.x, y: g.title.y + 5, size: 11, font: fonts.bold, color: TERRACOTTA });
+  const upper = name.toUpperCase();
+  const size = Math.min(11, (11 * g.w) / Math.max(g.w, fonts.bold.widthOfTextAtSize(upper, 11)));
+  page.drawText(upper, { x: g.x, y: g.title.y + 5, size, font: fonts.bold, color: NAVY });
   page.drawText(made, { x: g.made.x + 3, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
-  paragraph(page, meta, g.x, g.meta.y + g.meta.height - 9, g.w, 8.5, fonts.body, STEEL, 11.5);
-  paragraph(page, directions, g.x, g.dir.y + g.dir.height - 9, g.w, 8.5, fonts.body, INK, 11.8);
+  paragraph(page, meta, g.x, g.meta.y + g.meta.height - 9, g.w, 8.5, fonts.italic, STEEL, 11.5);
+  paragraph(page, directions, g.x, g.dir.y + g.dir.height - 9, g.w, 8, fonts.body, INK, 11.2);
 }
 
 function stampFooter(page: PDFPage, fonts: Fonts, email: string) {
@@ -327,13 +329,13 @@ function jsString(value: string): string {
 }
 
 function directionsScript(): string {
-  const entries = RECIPES.map((r) => `${jsString(recipeLabel(r))}:[${jsString(recipeMeta(r))},${jsString(r.directions)}]`);
+  const entries = RECIPES.map((r) => `${jsString(recipeLabel(r).toUpperCase())}:[${jsString(recipeMeta(r))},${jsString(r.directions)}]`);
   return (
     `var RR_LABELS = {${entries.join(",")}};\n` +
     // Called from each recipe box's validate action with the label's suffix.
     // Leaves the text alone when the buyer typed a recipe of their own.
     `function rrFill(value, n) {\n` +
-    `  var r = RR_LABELS[value];\n` +
+    `  var r = RR_LABELS[String(value).toUpperCase()];\n` +
     `  if (!r) return;\n` +
     `  var m = this.getField("meta_" + n); if (m) m.value = r[0];\n` +
     `  var d = this.getField("dir_" + n); if (d) d.value = r[1];\n` +
@@ -358,7 +360,8 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
   const fonts = await loadFonts(doc);
   const form = doc.getForm();
   const s = LABEL_SHEET;
-  const options = RECIPES.map(recipeLabel);
+  // Recipe titles are set in capitals, as on the book's recipe pages.
+  const options = RECIPES.map((r) => recipeLabel(r).toUpperCase());
 
   doc.addJavaScript("restAndRiseLabels", directionsScript());
 
@@ -383,7 +386,7 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
       const recipe = form.createDropdown(`recipe_${n}`);
       recipe.setOptions(options);
       recipe.enableEditing(); // pick a book recipe OR type anything
-      recipe.addToPage(page, { ...g.title, borderWidth: 0, backgroundColor: WHITE, textColor: TERRACOTTA, font: fonts.bold });
+      recipe.addToPage(page, { ...g.title, borderWidth: 0, backgroundColor: WHITE, textColor: NAVY, font: fonts.bold });
       // Auto-size (0): the longest book titles shrink to fit the box and a
       // buyer's own long name never clips.
       recipe.setFontSize(0);
@@ -395,7 +398,7 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
         doc.context.obj({ V: { Type: "Action", S: "JavaScript", JS: PDFString.of(`rrFill(event.value, "${n}");`) } })
       );
       const pre = prefill?.[n] ? RECIPES.find((r) => r.name === prefill[n]) : undefined;
-      if (pre) recipe.select(pre.name);
+      if (pre) recipe.select(pre.name.toUpperCase());
       recipe.updateAppearances(fonts.bold);
 
       const made = form.createTextField(`made_${n}`);
@@ -408,16 +411,16 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
       const meta = form.createTextField(`meta_${n}`);
       meta.enableMultiline();
       meta.setMaxLength(120);
-      meta.addToPage(page, { ...g.meta, borderWidth: 0, backgroundColor: WHITE, textColor: STEEL, font: fonts.body });
+      meta.addToPage(page, { ...g.meta, borderWidth: 0, backgroundColor: WHITE, textColor: STEEL, font: fonts.italic });
       meta.setFontSize(8.5);
       if (pre) meta.setText(recipeMeta(pre));
-      meta.updateAppearances(fonts.body);
+      meta.updateAppearances(fonts.italic);
 
       const dir = form.createTextField(`dir_${n}`);
       dir.enableMultiline();
       dir.setMaxLength(420);
       dir.addToPage(page, { ...g.dir, borderWidth: 0, backgroundColor: WHITE, textColor: INK, font: fonts.body });
-      dir.setFontSize(8.5);
+      dir.setFontSize(8);
       if (pre) dir.setText(pre.directions);
       dir.updateAppearances(fonts.body);
     });

@@ -207,7 +207,7 @@ check("pdf has guide + fillable + hand-write pages", pdf.getPageCount() === TOTA
 const fields = pdf.getForm().getFields();
 check("four fields per label on fillable pages only", fields.length === FILLABLE_PAGES * perPage * 4);
 const dd = pdf.getForm().getDropdown("recipe_p1_1");
-check("recipe box lists the book's recipes", dd.getOptions().length === BOOK_RECIPES.length);
+check("recipe box lists the book's recipes, in capitals", dd.getOptions().length === BOOK_RECIPES.length && dd.getOptions().every((o) => o === o.toUpperCase()));
 check("recipe box is editable (type your own)", dd.isEditable());
 check("recipe box commits on selection", (dd.acroField.getFlags() & (1 << 26)) !== 0);
 check("recipe box carries the auto-fill action", String(dd.acroField.dict.get(PDFName.of("AA"))).includes("rrFill"));
