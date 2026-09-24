@@ -270,8 +270,8 @@ export default async function ShopPage() {
               </div>
               <p className="text-charcoal/80 text-sm mb-3">
                 A fillable PDF made for your freezer: pick a recipe from the book and the label fills
-                in its own keeps-for line and freezer directions, or type your own. Add the date you
-                made it and the best-by date, then print. Three sheets of fillable labels plus one to
+                in its own best-by line and freezer directions, or type your own. Add the date you
+                made it, then print. Three sheets of fillable labels plus one to
                 hand-write, six {LABEL_SHEET.size} labels per sheet, unlimited reprints.
               </p>
               <p className="text-charcoal/80 text-sm">
@@ -458,7 +458,7 @@ async function LabelsOffer() {
           </div>
           <p className="text-charcoal/80 text-sm mb-4">
             A fillable PDF: pick any recipe in the book from the dropdown or type your own, add
-            the dates, print. Picking a book recipe fills in its freezer directions for you. Three
+            the date, print. Picking a book recipe fills in its best-by line and freezer directions for you. Three
             sheets of fillable labels plus one to hand-write, and unlimited
             reprints, so you can make as many as your freezer needs.
           </p>

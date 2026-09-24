@@ -21,14 +21,15 @@ export interface Recipe {
   // Shown after the name on the label, e.g. "slow cooker". Book wording, not
   // brand names.
   cooker?: "slow cooker" | "pressure cooker";
-  // "about 3 months" for almost everything: the book's "best within 3 months,
-  // use within 12". Little Sealed Sandwiches are the one exception.
+  // "Best by 3 months, use within 12 months" for everything but Little Sealed
+  // Sandwiches (1–2 months for the bread's sake), straight from the book's
+  // storage blocks. Printed on the label, so there is no best-by box to fill.
   keeps: string;
   yield: string;
   directions: string;
 }
 
-const KEEPS = "about 3 months";
+const KEEPS = "Best by 3 months, use within 12 months";
 
 export const RECIPES: readonly Recipe[] = [
   {
@@ -284,7 +285,7 @@ export const RECIPES: readonly Recipe[] = [
   {
     name: "Little Sealed Sandwiches",
     page: 114,
-    keeps: "best within 1–2 months",
+    keeps: "Best by 1–2 months, use within 12 months",
     yield: "12 sandwiches",
     directions:
       "LUNCHBOX pack frozen with an ice pack; thawed by lunch.\n" +
@@ -349,9 +350,9 @@ export const RECIPES: readonly Recipe[] = [
 // Names only, in book order: the dropdown's option list.
 export const BOOK_RECIPES: readonly string[] = RECIPES.map((r) => r.name);
 
-// What the label prints under the name: "about 3 months · serves 6–8 · slow
-// cooker". The cooker lives here rather than in the title so the longest
-// titles still fit the recipe box.
+// What the label prints under the name: "Best by 3 months, use within 12
+// months · serves 6–8 · slow cooker". The cooker lives here rather than in the
+// title so the longest titles still fit the recipe box.
 export function recipeMeta(r: Recipe): string {
   return [r.keeps, r.yield, r.cooker].filter(Boolean).join(" · ");
 }

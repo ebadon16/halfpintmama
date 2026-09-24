@@ -2,8 +2,8 @@
 //
 // Page 1 is the guide. Then FILLABLE_PAGES of label sheets and one page of
 // hand-write labels. Each label carries a recipe dropdown (the book's 35, or
-// type anything), Made and Best-by dates, a keeps/yield line and the freezer
-// directions. Picking a book recipe fills the keeps line and the directions
+// type anything), a Made-on date, a best-by/yield line and the freezer
+// directions. Picking a book recipe fills the best-by line and the directions
 // automatically (document JavaScript, honoured by Acrobat Reader, Chrome, Edge
 // and Firefox; Apple Preview shows the fields but does not run it, so the text
 // can also be typed). The buyer's email is stamped on every page and in the
@@ -190,36 +190,35 @@ function labelGeometry(slot: Slot) {
   const x = card.x + pad;
   const w = card.w - pad * 2;
   const top = card.y + card.h;
-  const title = { x, y: top - pad - 18, width: w, height: 18 };
-  const rowY = title.y - 21;
+  const title = { x, y: top - pad - 17, width: w, height: 17 };
+  const rowY = title.y - 18;
   const madeLabelW = 34;
-  const bestLabelW = 46;
-  const dateW = 58;
-  const made = { x: x + madeLabelW, y: rowY, width: dateW, height: 14 };
-  const best = { x: made.x + dateW + 16 + bestLabelW, y: rowY, width: dateW, height: 14 };
-  const meta = { x, y: rowY - 18, width: w, height: 13 };
-  const dirTop = meta.y - 6;
-  const dir = { x, y: card.y + 22, width: w, height: dirTop - (card.y + 22) };
-  return { card, x, w, top, title, made, best, meta, dir, madeLabelW, bestLabelW };
+  const made = { x: x + madeLabelW, y: rowY, width: 96, height: 14 };
+  // Two lines: "Best by 3 months, use within 12 months · serves 6–8 · slow cooker".
+  // Viewers set multiline text at about 1.5x the font size, so 30pt holds two
+  // lines of 8.5pt with their padding.
+  const meta = { x, y: rowY - 32, width: w, height: 30 };
+  const dirTop = meta.y - 4;
+  const dir = { x, y: card.y + 18, width: w, height: dirTop - (card.y + 18) };
+  return { card, x, w, top, title, made, meta, dir, madeLabelW };
 }
 
 function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolean) {
   const g = labelGeometry(slot);
   roundedRect(page, g.card.x, g.card.y, g.card.w, g.card.h, 10, WHITE);
 
-  // Row of Made / Best by, in the book's body face.
+  // The Made-on line, in the book's body face. (Best-by is printed by the
+  // auto-fill, not written in.)
   page.drawText("Made", { x: g.x, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
-  page.drawText("Best by", { x: g.best.x - g.bestLabelW, y: g.best.y + 3, size: 9.5, font: fonts.body, color: INK });
   // Rules sit just BELOW each field box, where the field's white fill cannot
   // cover them: a writing line on the hand-write sheet, a "type here" cue on
   // the fillable ones.
-  for (const box of [g.made, g.best]) {
-    page.drawLine({ start: { x: box.x, y: box.y - 1.5 }, end: { x: box.x + box.width, y: box.y - 1.5 }, thickness: 0.8, color: INK, opacity: 0.85 });
-  }
+  page.drawLine({ start: { x: g.made.x, y: g.made.y - 1.5 }, end: { x: g.made.x + g.made.width, y: g.made.y - 1.5 }, thickness: 0.8, color: INK, opacity: 0.85 });
   page.drawLine({ start: { x: g.x, y: g.title.y - 2 }, end: { x: g.x + g.w, y: g.title.y - 2 }, thickness: 0.6, color: TERRACOTTA, opacity: handwrite ? 0.7 : 0.45 });
 
   if (handwrite) {
     // Writing guides where the fields would be.
+    page.drawLine({ start: { x: g.x, y: g.meta.y + 11 }, end: { x: g.x + g.w, y: g.meta.y + 11 }, thickness: 0.5, color: STEEL, opacity: 0.7, dashArray: [0.8, 1.6] });
     page.drawLine({ start: { x: g.x, y: g.meta.y - 1 }, end: { x: g.x + g.w, y: g.meta.y - 1 }, thickness: 0.5, color: STEEL, opacity: 0.7, dashArray: [0.8, 1.6] });
     const lines = Math.floor(g.dir.height / 15);
     for (let i = 1; i <= lines; i++) {
@@ -235,12 +234,11 @@ function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolea
 
 // Renders a recipe onto a hand-write label as static text (used only for the
 // preview image, never in a buyer's file).
-export function previewLabel(page: PDFPage, slot: Slot, fonts: Fonts, name: string, made: string, best: string, meta: string, directions: string) {
+export function previewLabel(page: PDFPage, slot: Slot, fonts: Fonts, name: string, made: string, meta: string, directions: string) {
   const g = labelGeometry(slot);
   page.drawText(name, { x: g.x, y: g.title.y + 5, size: 11, font: fonts.bold, color: TERRACOTTA });
   page.drawText(made, { x: g.made.x + 3, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
-  page.drawText(best, { x: g.best.x + 3, y: g.best.y + 3, size: 9.5, font: fonts.body, color: INK });
-  page.drawText(meta, { x: g.x, y: g.meta.y + 2, size: 8.5, font: fonts.body, color: STEEL });
+  paragraph(page, meta, g.x, g.meta.y + g.meta.height - 9, g.w, 8.5, fonts.body, STEEL, 11.5);
   paragraph(page, directions, g.x, g.dir.y + g.dir.height - 9, g.w, 8.5, fonts.body, INK, 11.8);
 }
 
@@ -298,9 +296,9 @@ function drawGuide(page: PDFPage, fonts: Fonts, email: string) {
   ]);
 
   section("Filling them in", [
-    `Open this file on a computer in Adobe Acrobat Reader (free), Chrome, Edge or Firefox. On each label, click the recipe box and pick a recipe from the book, or type your own. When you pick a book recipe, the keeps-for line and the freezer directions fill themselves in. Every box stays editable, so shorten or add to anything you like.`,
+    `Open this file on a computer in Adobe Acrobat Reader (free), Chrome, Edge or Firefox. On each label, click the recipe box and pick a recipe from the book, or type your own. When you pick a book recipe, the best-by line and the freezer directions fill themselves in. Every box stays editable, so shorten or add to anything you like.`,
     `Apple Preview shows the boxes but will not fill them in for you; type the directions from the book instead, or use one of the readers above.`,
-    `Write the date you made the meal, then add about three months for the best-by date. Most meals are best within three months and safe to use within twelve. Save a copy when you are done so your sheet is there next time.`,
+    `Write the date you made the meal. The best-by line fills itself in: most meals are best by three months and safe to use within twelve. Save a copy when you are done so your sheet is there next time.`,
   ]);
 
   section("Before you print", [
@@ -310,15 +308,15 @@ function drawGuide(page: PDFPage, fonts: Fonts, email: string) {
   ]);
 
   section("On the bag", [
-    `Stick the label on while the bag or foil is dry and flat, before it goes in the freezer. The directions are the book's from-frozen method; for cooking from thawed and for leftovers, see the recipe page.`,
+    `Stick the label on while the bag or foil is dry and flat, before it goes in the freezer. The directions are the book's from-frozen method, kept short to fit the label. For more detailed instructions, and for cooking from thawed and for leftovers, see the recipe page in Rest & Rise.`,
   ]);
 
   // Tinted note box, the book's Nurse's Note treatment.
-  const noteH = 46;
-  y -= 2;
-  roundedRect(page, L, y - noteH + 12, W, noteH, 8, TINT);
-  tracked(page, "FOR YOUR KITCHEN ONLY", L + 14, y - 4, 8.5, fonts.caps, NAVY, 1.3);
-  paragraph(page, `These labels are made for ${email} and are for personal use. Please do not resell or share the file. Thank you for keeping this little shop running.`, L + 14, y - 19, W - 28, 9.5, fonts.body, INK, 13);
+  const noteH = 66;
+  y -= 4;
+  roundedRect(page, L, y - noteH + 14, W, noteH, 8, TINT);
+  tracked(page, "FOR YOUR KITCHEN ONLY", L + 20, y - 6, 8.5, fonts.caps, NAVY, 1.3);
+  paragraph(page, `These labels are made for ${email} and are for personal use. Please do not resell or share the file. Thank you for keeping this little shop running.`, L + 20, y - 25, W - 40, 9.5, fonts.body, INK, 14.5);
 }
 
 // ---- document JavaScript -----------------------------------------------------
@@ -407,15 +405,9 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
       if (pre) made.setText("Oct 14");
       made.updateAppearances(fonts.body);
 
-      const best = form.createTextField(`best_${n}`);
-      best.setMaxLength(16);
-      best.addToPage(page, { ...g.best, borderWidth: 0, backgroundColor: WHITE, textColor: INK, font: fonts.body });
-      best.setFontSize(9.5);
-      if (pre) best.setText("Jan 14");
-      best.updateAppearances(fonts.body);
-
       const meta = form.createTextField(`meta_${n}`);
-      meta.setMaxLength(60);
+      meta.enableMultiline();
+      meta.setMaxLength(120);
       meta.addToPage(page, { ...g.meta, borderWidth: 0, backgroundColor: WHITE, textColor: STEEL, font: fonts.body });
       meta.setFontSize(8.5);
       if (pre) meta.setText(recipeMeta(pre));

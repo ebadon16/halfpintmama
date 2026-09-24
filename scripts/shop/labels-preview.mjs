@@ -14,14 +14,14 @@ process.env.SHOP_TOKEN_SECRET ||= "x".repeat(48);
 const { LABEL_SHEET, _internals, previewLabel } = await import(path.join(process.cwd(), "src/lib/shop/labels-pdf.ts"));
 const { RECIPES, recipeMeta } = await import(path.join(process.cwd(), "src/lib/shop/recipes.ts"));
 
-// Six recipes across the book's chapters, each with a plausible made/best-by pair.
+// Six recipes across the book's chapters, each with a plausible made-on date.
 const SAMPLE = [
-  ["Nesting Ziti", "Oct 14", "Jan 14"],
-  ["Honey Garlic Chicken", "Oct 14", "Jan 14"],
-  ["Sourdough English Muffins", "Oct 21", "Jan 21"],
-  ["Loaded Breakfast Tacos", "Oct 21", "Jan 21"],
-  ["The House Chili", "Oct 28", "Jan 28"],
-  ["Lactation Banana Bread", "Nov 4", "Feb 4"],
+  ["Nesting Ziti", "Oct 14"],
+  ["Honey Garlic Chicken", "Oct 14"],
+  ["Sourdough English Muffins", "Oct 21"],
+  ["Loaded Breakfast Tacos", "Oct 21"],
+  ["The House Chili", "Oct 28"],
+  ["Lactation Banana Bread", "Nov 4"],
 ];
 
 const doc = await PDFDocument.create();
@@ -29,11 +29,11 @@ const fonts = await _internals.loadFonts(doc);
 const page = doc.addPage([LABEL_SHEET.pageWidth, LABEL_SHEET.pageHeight]);
 page.drawRectangle({ x: 0, y: 0, width: LABEL_SHEET.pageWidth, height: LABEL_SHEET.pageHeight, color: _internals.CREAM });
 _internals.slots().forEach((slot, i) => {
-  const [name, made, best] = SAMPLE[i];
+  const [name, made] = SAMPLE[i];
   const r = RECIPES.find((x) => x.name === name);
   if (!r) throw new Error(`no recipe named ${name}`);
   _internals.drawLabelArt(page, slot, fonts, false);
-  previewLabel(page, slot, fonts, r.name, made, best, recipeMeta(r), r.directions);
+  previewLabel(page, slot, fonts, r.name, made, recipeMeta(r), r.directions);
 });
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "labels-preview-"));
 const pdf = path.join(tmp, "sheet.pdf");
