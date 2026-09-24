@@ -1,53 +1,43 @@
-// Renders public/images/labels-preview.png: page one of the labels PDF with
-// sample recipes filled in, so the delivery page can show what a finished
-// sheet looks like (phones render the real form flat). Re-run whenever the
-// label artwork or geometry changes:
+// Renders public/images/labels-preview.png: one label sheet with six recipes
+// filled in, so the shop, the delivery page and the emails can show what a
+// finished sheet looks like (phones render the real form flat). Uses the same
+// fonts, geometry and card art as the buyer's PDF; the text is drawn statically
+// so the image is deterministic. Re-run whenever the label design changes:
 //   npx tsx scripts/shop/labels-preview.mjs
 import { execSync } from "node:child_process";
 import fs from "node:fs";
-import path from "node:path";
 import os from "node:os";
+import path from "node:path";
 import { PDFDocument } from "pdf-lib";
-import fontkit from "@pdf-lib/fontkit";
 
 process.env.SHOP_TOKEN_SECRET ||= "x".repeat(48);
-const { buildLabelsPdf } = await import(path.join(process.cwd(), "src/lib/shop/labels-pdf.ts"));
+const { LABEL_SHEET, _internals, previewLabel } = await import(path.join(process.cwd(), "src/lib/shop/labels-pdf.ts"));
+const { RECIPES, recipeMeta } = await import(path.join(process.cwd(), "src/lib/shop/recipes.ts"));
 
+// Six recipes across the book's chapters, each with a plausible made/best-by pair.
 const SAMPLE = [
-  // Reheat notes match the book's STORAGE blocks (final interior, Sep 22 2026).
-  ["Nesting Ziti", "Oct 14", "375°F, 90 min from frozen"],
-  ["The House Chili", "Oct 14", "Thaw, slow cooker 6–8 h"],
-  ["Aloha Meatballs", "Oct 21", "Thaw, slow cooker 4–6 h"],
-  ["Sourdough English Muffins", "Oct 21", "Toaster, from frozen"],
-  ["Honey Garlic Chicken", "Oct 28", "Pressure cooker, 15 min"],
-  ["Lactation Banana Bread", "Oct 28", "Microwave 45–60 sec"],
-  ["Freezer Waffles", "Nov 4", "Toaster, from frozen"],
-  ["Weeknight Butter Chicken", "Nov 4", "Pressure cooker, 15 min"],
-  ["Overnight Sourdough French Toast Bake", "Nov 11", "350°F, 8–10 min"],
-  ["Italian Mini Quiches", "Nov 11", "350°F, 10–12 min"],
+  ["Nesting Ziti", "Oct 14", "Jan 14"],
+  ["Honey Garlic Chicken", "Oct 14", "Jan 14"],
+  ["Sourdough English Muffins", "Oct 21", "Jan 21"],
+  ["Loaded Breakfast Tacos", "Oct 21", "Jan 21"],
+  ["The House Chili", "Oct 28", "Jan 28"],
+  ["Lactation Banana Bread", "Nov 4", "Feb 4"],
 ];
 
-const bytes = await buildLabelsPdf({ email: "you@example.com", createdAt: new Date("2026-01-01") });
-const doc = await PDFDocument.load(bytes);
-doc.registerFontkit(fontkit);
-const form = doc.getForm();
-const opts = { subset: false, features: { liga: false, rlig: false, calt: false } };
-const body = await doc.embedFont(fs.readFileSync("private/shop/fonts/CrimsonText-Regular.ttf"), opts);
-const heading = await doc.embedFont(fs.readFileSync("private/shop/fonts/CrimsonText-SemiBold.ttf"), opts);
-SAMPLE.forEach(([recipe, date, note], i) => {
-  const n = `p1_${i + 1}`;
-  const dd = form.getDropdown(`recipe_${n}`); dd.select(recipe); dd.updateAppearances(heading);
-  const d = form.getTextField(`date_${n}`); d.setText(date); d.updateAppearances(body);
-  const t = form.getTextField(`note_${n}`); t.setText(note); t.updateAppearances(body);
+const doc = await PDFDocument.create();
+const fonts = await _internals.loadFonts(doc);
+const page = doc.addPage([LABEL_SHEET.pageWidth, LABEL_SHEET.pageHeight]);
+page.drawRectangle({ x: 0, y: 0, width: LABEL_SHEET.pageWidth, height: LABEL_SHEET.pageHeight, color: _internals.CREAM });
+_internals.slots().forEach((slot, i) => {
+  const [name, made, best] = SAMPLE[i];
+  const r = RECIPES.find((x) => x.name === name);
+  if (!r) throw new Error(`no recipe named ${name}`);
+  _internals.drawLabelArt(page, slot, fonts, false);
+  previewLabel(page, slot, fonts, r.name, made, best, recipeMeta(r), r.directions);
 });
-form.flatten();
-const one = await PDFDocument.create();
-const [page] = await one.copyPages(doc, [0]);
-one.addPage(page);
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "labels-preview-"));
-const pdfPath = path.join(tmp, "preview.pdf");
-fs.writeFileSync(pdfPath, await one.save());
-execSync(`qlmanage -t -s 1200 -o "${tmp}" "${pdfPath}"`, { stdio: "ignore" });
-const png = path.join(tmp, "preview.pdf.png");
-execSync(`sips -Z 900 "${png}" --out public/images/labels-preview.png`, { stdio: "ignore" });
+const pdf = path.join(tmp, "sheet.pdf");
+fs.writeFileSync(pdf, await doc.save());
+// 695x900 keeps the site's existing <Image> dimensions.
+execSync(`python3 -c "import fitz,sys; d=fitz.open(sys.argv[1]); d[0].get_pixmap(matrix=fitz.Matrix(695/612, 900/792), alpha=False).save(sys.argv[2])" ${JSON.stringify(pdf)} public/images/labels-preview.png`);
 console.log("wrote public/images/labels-preview.png", fs.statSync("public/images/labels-preview.png").size, "bytes");

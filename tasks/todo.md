@@ -194,11 +194,11 @@ is a worse problem than not collecting it.
 
 ### Labels: which sheets buyers need
 
-**Avery 5523.** Two inches by four, ten to a page, waterproof polyester film, temperature
-resistant. The far more common Avery 5163 is the same grid but plain paper and will not survive a
-freezer, so the site names 5523 and says any 2x4 ten-up waterproof sheet fits the same layout.
-There is no verified Avery inkjet part number in this size, so the site names none; the generic
-description covers inkjet buyers.
+**Avery 5524** (waterproof film) in the **Avery 5164** layout: 4" x 3 1/3", six to a US Letter
+sheet, 2 across and 3 down (top margin 0.5", sides 0.15625", horizontal pitch 4.1875", vertical
+pitch 3.3333"). Keegan chose this size in her Canva "freezer labels" draft (Sep 23 2026) because the
+directions need the room; 5164 is plain paper and will not survive a freezer, so the site names
+5524. The PDF is: page 1 guide, pages 2-4 fillable (18 labels), page 5 hand-write.
 
 ### What stops the shop opening
 

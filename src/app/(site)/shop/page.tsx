@@ -269,9 +269,10 @@ export default async function ShopPage() {
                 )}
               </div>
               <p className="text-charcoal/80 text-sm mb-3">
-                A fillable PDF made for your freezer: every recipe in the book waits in a dropdown, or
-                type your own, add the date you made it and how to reheat it, then print. Two sheets
-                of fillable labels plus one to hand-write, ten labels per sheet, unlimited reprints.
+                A fillable PDF made for your freezer: pick a recipe from the book and the label fills
+                in its own keeps-for line and freezer directions, or type your own. Add the date you
+                made it and the best-by date, then print. Three sheets of fillable labels plus one to
+                hand-write, six {LABEL_SHEET.size} labels per sheet, unlimited reprints.
               </p>
               <p className="text-charcoal/80 text-sm">
                 {status === "launched"
@@ -283,8 +284,8 @@ export default async function ShopPage() {
               <ul className="text-charcoal/80 text-xs mt-4 space-y-1.5">
                 <li className="flex gap-2 items-start">
                   <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
-                  Prints on Avery {LABEL_SHEET.avery} freezer-safe sheets, or any 2&quot; × 4&quot;, 10-per-sheet
-                  waterproof label. Fill them in on a computer.
+                  Prints on Avery {LABEL_SHEET.averyWaterproof} freezer-safe sheets (the {LABEL_SHEET.avery} layout),
+                  or any {LABEL_SHEET.size}, 6-per-sheet waterproof label. Fill them in on a computer.
                 </li>
               </ul>
             </div>
@@ -421,7 +422,7 @@ function BookOffer({ status, price, labelsLater }: { status: "preorder" | "launc
           <li className="flex gap-2 items-start">
             <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
             The labels are a fillable PDF you print at home or at a print shop onto Avery{" "}
-            {LABEL_SHEET.avery} freezer-safe sheets, or any 2&quot; &times; 4&quot;, 10-per-sheet
+            {LABEL_SHEET.averyWaterproof} freezer-safe sheets, or any {LABEL_SHEET.size}, 6-per-sheet
             waterproof label. Fill them in on a computer.
           </li>
         )}
@@ -457,7 +458,8 @@ async function LabelsOffer() {
           </div>
           <p className="text-charcoal/80 text-sm mb-4">
             A fillable PDF: pick any recipe in the book from the dropdown or type your own, add
-            the date, print. Two sheets of fillable labels plus one to hand-write, and unlimited
+            the dates, print. Picking a book recipe fills in its freezer directions for you. Three
+            sheets of fillable labels plus one to hand-write, and unlimited
             reprints, so you can make as many as your freezer needs.
           </p>
           <BuyButton product="labels" label="Buy the Labels" />
@@ -465,7 +467,7 @@ async function LabelsOffer() {
             <li className="flex gap-2 items-start">
               <Printer className="w-4 h-4 text-sage flex-shrink-0" aria-hidden="true" />
               You will need a printer (or a print shop) and Avery {LABEL_SHEET.avery}, or any
-              2&quot; &times; 4&quot;, 10-per-sheet freezer-safe label. Fill them in on a computer.
+              {LABEL_SHEET.size}, 6-per-sheet freezer-safe label. Fill them in on a computer.
             </li>
           </ul>
         </div>

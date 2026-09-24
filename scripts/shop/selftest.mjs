@@ -17,10 +17,10 @@ const { entitlementsFor, purchasableProducts, isPurchasable, requiresShipping, g
   await import(`${lib}/catalog.ts`);
 const { orderFromSession, orderEntitlements } = await import(`${lib}/orders.ts`);
 const { shopConfigProblems } = await import(`${lib}/stripe.ts`);
-const { buildLabelsPdf, LABEL_SHEET, FILLABLE_PAGES, BLANK_PAGES } = await import(`${lib}/labels-pdf.ts`);
-const { BOOK_RECIPES } = await import(`${lib}/recipes.ts`);
+const { buildLabelsPdf, LABEL_SHEET, FILLABLE_PAGES, TOTAL_PAGES } = await import(`${lib}/labels-pdf.ts`);
+const { BOOK_RECIPES, RECIPES } = await import(`${lib}/recipes.ts`);
 const { renderOrderConfirmation, renderShippedNotice, renderLabelsRecovery, renderOrderNotification } = await import(`${lib}/email.ts`);
-const { PDFDocument } = await import("pdf-lib");
+const { PDFDocument, PDFName } = await import("pdf-lib");
 
 let pass = 0;
 let fail = 0;
@@ -203,12 +203,20 @@ check("35 book recipes seed the combo box", BOOK_RECIPES.length === 35 && new Se
 const bytes = await buildLabelsPdf({ email: "jane@example.com", createdAt: new Date("2026-09-08T00:00:00Z") });
 const pdf = await PDFDocument.load(bytes);
 const perPage = LABEL_SHEET.columns * LABEL_SHEET.rows;
-check("pdf has fillable + blank pages", pdf.getPageCount() === FILLABLE_PAGES + BLANK_PAGES);
+check("pdf has guide + fillable + hand-write pages", pdf.getPageCount() === TOTAL_PAGES);
 const fields = pdf.getForm().getFields();
-check("three fields per label on fillable pages only", fields.length === FILLABLE_PAGES * perPage * 3);
+check("five fields per label on fillable pages only", fields.length === FILLABLE_PAGES * perPage * 5);
 const dd = pdf.getForm().getDropdown("recipe_p1_1");
 check("recipe box lists the book's recipes", dd.getOptions().length === BOOK_RECIPES.length);
 check("recipe box is editable (type your own)", dd.isEditable());
+check("recipe box commits on selection", (dd.acroField.getFlags() & (1 << 26)) !== 0);
+check("recipe box carries the auto-fill action", String(dd.acroField.dict.get(PDFName.of("AA"))).includes("rrFill"));
+check("document carries the directions script", String(pdf.catalog.lookup(PDFName.of("Names"))).includes("JavaScript"));
+check("every recipe has directions, a keeps line and a yield", RECIPES.every((r) => r.directions.length > 20 && r.keeps && r.yield));
+check("directions fit the label field", RECIPES.every((r) => r.directions.length <= 420));
+check("directions never say Instant Pot or Crockpot", RECIPES.every((r) => !/instant pot|crock ?pot/i.test(r.directions + r.name)));
+check("casseroles bake from frozen per the book", ["Nesting Ziti", "Better Than the Box Beef and Pasta Bake"].every((n) => /375°F covered 75 min/.test(RECIPES.find((r) => r.name === n).directions)));
+check("freezer bags rinse under cool water, never warm", RECIPES.every((r) => !/warm (tap )?water/i.test(r.directions)));
 check("buyer email stamped in metadata", pdf.getSubject() === "Licensed to jane@example.com");
 const again = await buildLabelsPdf({ email: "jane@example.com", createdAt: new Date("2026-09-08T00:00:00Z") });
 check("deterministic for the same buyer", Buffer.compare(Buffer.from(bytes), Buffer.from(again)) === 0);

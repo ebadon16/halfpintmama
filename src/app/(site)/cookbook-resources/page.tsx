@@ -61,7 +61,7 @@ const LABELS_COPY = {
     text: (
       <>
         The label sheets are designed for the exact recipes in the book. They are a fillable
-        PDF you print yourself onto standard 2&quot; &times; 4&quot; label sheets, and they are
+        PDF you print yourself onto standard 4&quot; &times; 3⅓&quot; label sheets, and they are
         available in the shop as their own item.
       </>
     ),

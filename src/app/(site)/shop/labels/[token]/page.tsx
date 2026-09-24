@@ -5,7 +5,7 @@ import { Monitor, Printer, Download } from "lucide-react";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { verifyDeliveryToken } from "@/lib/shop/entitlement";
 import { getOrder, orderEntitlements } from "@/lib/shop/orders";
-import { LABEL_SHEET } from "@/lib/shop/labels-pdf";
+import { LABEL_PAGE_RANGE, LABEL_SHEET } from "@/lib/shop/labels-pdf";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
@@ -132,21 +132,23 @@ export default async function LabelsDeliveryPage({ params }: { params: Promise<{
               </div>
               <ol className="list-decimal list-inside text-charcoal/80 text-sm space-y-2">
                 <li>
-                  Open the PDF in Adobe Acrobat Reader (free) or Preview on a Mac. Browser viewers
-                  may not save what you type.
+                  Open the PDF on a computer in Adobe Acrobat Reader (free), Chrome, Edge or Firefox.
+                  Apple Preview shows the boxes but will not fill them in for you.
                 </li>
                 <li>
-                  On each label, pick a recipe from the list or type your own, then add the date
-                  and any reheating note. Two pages are fillable; the third is blank for handwriting.
+                  On each label, pick a recipe from the list and the keeps-for line and the freezer
+                  directions fill themselves in, or type your own. Add the date you made it and a
+                  best-by date about three months out. Page 1 is the guide, pages {LABEL_PAGE_RANGE} are
+                  labels, and the last page is blank for handwriting.
                 </li>
                 <li>
-                  Load Avery {LABEL_SHEET.avery} sheets, which are 2&quot; &times; 4&quot;, ten to a
-                  page, and waterproof so they last in the freezer. Any 2&quot; &times; 4&quot;,
-                  10-per-sheet label fits the same layout; plain paper will not last.
+                  Load Avery {LABEL_SHEET.averyWaterproof} sheets: {LABEL_SHEET.size}, six to a page, and
+                  waterproof so they last in the freezer. Any {LABEL_SHEET.size}, 6-per-sheet label in the
+                  Avery {LABEL_SHEET.avery} layout fits; plain paper will not last in the cold.
                 </li>
                 <li>
-                  Print at <strong>100% / actual size</strong>. Turn off &quot;fit to page&quot; or the
-                  labels will not line up with the sheet.
+                  Print pages {LABEL_PAGE_RANGE} only, at <strong>100% / actual size</strong>. Turn off
+                  &quot;fit to page&quot; or the labels will not line up with the sheet.
                 </li>
               </ol>
             </div>

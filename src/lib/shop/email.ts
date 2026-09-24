@@ -136,10 +136,10 @@ function orderLines(order: Order): { items: string; total: string; shipTo: strin
 }
 
 const LABELS_HOWTO_HTML =
-  p("<strong>One thing to know: open the labels on a computer to fill them in.</strong> A phone will show you the sheet, but the boxes only type on a computer.") +
+  p("<strong>One thing to know: open the labels on a computer to fill them in.</strong> A phone will show you the sheet, but the boxes only type on a computer. In Acrobat Reader, Chrome, Edge or Firefox, picking a recipe fills in its freezer directions for you.") +
   p("The link is yours to keep. Print as many sheets as you like, whenever you like. The PDF is made just for you, with your email in the footer.");
 const LABELS_HOWTO_TEXT =
-  "One thing to know: open the labels on a computer to fill them in. A phone will show you the sheet, but the boxes only type on a computer.\n\n" +
+  "One thing to know: open the labels on a computer to fill them in. A phone will show you the sheet, but the boxes only type on a computer. In Acrobat Reader, Chrome, Edge or Firefox, picking a recipe fills in its freezer directions for you.\n\n" +
   "The link is yours to keep. Print as many sheets as you like, whenever you like. The PDF is made just for you, with your email in the footer.\n\n";
 const LOST_LINK_HTML = `<p style="${SMALL}">Lose this email one day? Get a fresh labels link any time at <a href="${SITE_URL}/shop/labels" style="color: ${T.link};">halfpintmama.com/shop/labels</a>.</p>`;
 const LOST_LINK_TEXT = `Lose this email one day? Get a fresh labels link any time at ${SITE_URL}/shop/labels\n`;

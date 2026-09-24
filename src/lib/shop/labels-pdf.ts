@@ -1,64 +1,90 @@
 // The printable freezer labels: a fillable PDF built per buyer.
 //
-// One page of the buyer's sheet = one Avery label sheet. Each label carries an
-// editable recipe combo box (the book's recipes, or type anything), a date
-// field, and a note field. Two fillable pages, then one page of blank labels
-// to hand-write. The buyer's email is stamped in the footer of every page and
-// in the document metadata — it survives the download, which is worth more
-// than any link security.
+// Page 1 is the guide. Then FILLABLE_PAGES of label sheets and one page of
+// hand-write labels. Each label carries a recipe dropdown (the book's 35, or
+// type anything), Made and Best-by dates, a keeps/yield line and the freezer
+// directions. Picking a book recipe fills the keeps line and the directions
+// automatically (document JavaScript, honoured by Acrobat Reader, Chrome, Edge
+// and Firefox; Apple Preview shows the fields but does not run it, so the text
+// can also be typed). The buyer's email is stamped on every page and in the
+// document metadata: it survives the download, which is worth more than any
+// link security.
 //
-// Artwork: the label is drawn here from brand fonts and colours, so nothing
-// on it is licensed from a stock library (Canva Pro content cannot be sold as a
-// downloadable file). If a PNG ever lands at private/shop/label.png it is used
-// instead. No border is ever drawn at the label edge — printer drift of a
-// millimetre or two turns an edge border lopsided on every label.
+// Design follows Keegan's Canva "freezer labels" draft (Sep 23 2026), which in
+// turn follows the book: cream page, white rounded card, Lora throughout, the
+// book's terracotta for the recipe name and its steel blue for the quiet
+// lines. The book's display face (TAN Pearl) is a paid licence and is not
+// embedded. No stock artwork anywhere (Canva Pro content cannot be sold as a
+// downloadable file). No border is drawn at the die-cut edge: a millimetre of
+// printer drift would make it lopsided on every label, so the card sits inset.
 
-import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import fontkit from "@pdf-lib/fontkit";
-import { PDFDocument, PDFFont, PDFPage, StandardFonts, degrees, rgb } from "pdf-lib";
-import { BOOK_RECIPES } from "./recipes";
+import {
+  AcroChoiceFlags,
+  PDFDocument,
+  PDFFont,
+  PDFName,
+  PDFPage,
+  PDFString,
+  StandardFonts,
+  rgb,
+  type Color,
+} from "pdf-lib";
+import { RECIPES, recipeLabel, recipeMeta } from "./recipes";
 
-// Avery 5523: 2" x 4", 10 per US Letter sheet, waterproof polyester film.
-// Same grid as the far more common 5163, but 5163 is plain paper and will not
-// survive a freezer, so the buyer is pointed at the temperature-resistant
-// version of the identical layout. Any 2x4 10-up sheet fits. Points, 72 per inch.
+// Avery 5164 (paper) / 5524 (waterproof film, the one to buy for a freezer):
+// 4" x 3 1/3", 6 per US Letter sheet, 2 across and 3 down. Avery's published
+// geometry: top margin 0.5", side margins 0.15625", horizontal pitch 4.1875",
+// vertical pitch 3.3333", no vertical gap. Points, 72 per inch.
 // ⚠ Change ONLY here if the layout ever moves.
 export const LABEL_SHEET = {
-  avery: "5523",
+  avery: "5164",
+  averyWaterproof: "5524",
+  size: '4" × 3⅓"',
+  // Same size in characters Helvetica can encode, for the footer stamp.
+  sizeAscii: '4 x 3-1/3 in',
+  perSheet: 6,
   pageWidth: 612,
   pageHeight: 792,
   columns: 2,
-  rows: 5,
+  rows: 3,
   labelWidth: 288,
-  labelHeight: 144,
+  labelHeight: 240,
   marginTop: 36,
   marginLeft: 11.25,
   gutterX: 13.5,
   gutterY: 0,
-  // Content stays this far inside the die-cut so drift never clips it.
-  safeInset: 14,
+  // The white card sits this far inside the die-cut so drift never clips it
+  // unevenly; the cream page colour fills the rest of the label.
+  safeInset: 6,
 } as const;
 
-export const FILLABLE_PAGES = 2;
+export const GUIDE_PAGES = 1;
+export const FILLABLE_PAGES = 3;
 export const BLANK_PAGES = 1;
+export const TOTAL_PAGES = GUIDE_PAGES + FILLABLE_PAGES + BLANK_PAGES;
+// What the guide tells the buyer to feed to the printer.
+export const LABEL_PAGE_RANGE = `${GUIDE_PAGES + 1}–${TOTAL_PAGES}`;
 
 const ASSET_DIR = path.join(process.cwd(), "private", "shop");
 
-// Brand palette (matches globals.css).
-const DEEP_SAGE = rgb(0x6b / 255, 0x7f / 255, 0x5f / 255);
-const SAGE = rgb(0x9c / 255, 0xaf / 255, 0x88 / 255);
-const LIGHT_SAGE = rgb(0xd4 / 255, 0xe0 / 255, 0xcc / 255);
-const TERRACOTTA = rgb(0xa0 / 255, 0x56 / 255, 0x2f / 255);
-const CREAM = rgb(0xfa / 255, 0xf7 / 255, 0xf2 / 255);
-const CHARCOAL = rgb(0x3d / 255, 0x3d / 255, 0x3d / 255);
-const MUTED = rgb(0x6b / 255, 0x6b / 255, 0x66 / 255);
+// The book's palette, sampled from the KDP interior and Keegan's label draft.
+const INK = rgb(0x2d / 255, 0x3a / 255, 0x43 / 255);
+const NAVY = rgb(0x27 / 255, 0x4f / 255, 0x6a / 255);
+const STEEL = rgb(0x6f / 255, 0x94 / 255, 0xae / 255);
+const TERRACOTTA = rgb(0xc5 / 255, 0x7b / 255, 0x57 / 255);
+const TINT = rgb(0xe0 / 255, 0xe9 / 255, 0xee / 255);
+const CREAM = rgb(0xfb / 255, 0xf6 / 255, 0xec / 255);
+const WHITE = rgb(1, 1, 1);
 
 interface Fonts {
-  body: PDFFont;
-  heading: PDFFont;
-  italic: PDFFont;
+  body: PDFFont; // Lora Regular: field text, body copy
+  bold: PDFFont; // Lora Bold: recipe names, headings
+  italic: PDFFont; // Lora Italic
+  boldItalic: PDFFont; // Lora Bold Italic: the guide title
+  caps: PDFFont; // Lato Bold: small tracked captions
   stamp: PDFFont;
 }
 
@@ -83,185 +109,329 @@ function slots(): Slot[] {
 async function loadFonts(doc: PDFDocument): Promise<Fonts> {
   doc.registerFontkit(fontkit);
   const read = (name: string) => readFile(path.join(ASSET_DIR, "fonts", name));
-  // subset:false — the fonts back editable fields, so every glyph a buyer might
-  // type must be present, not just the ones we drew.
-  // Ligatures off: viewers rasterise form-field text glyph by glyph, and the
-  // "ffi" in Muffins otherwise renders with a gap.
-  const opts = { subset: false, features: { liga: false, rlig: false, calt: false } };
+  // The two field fonts embed unsubsetted: every glyph a buyer might type has
+  // to be present, not just the ones we drew. Ligatures off, because viewers
+  // rasterise field text glyph by glyph and "ffi" in Muffins otherwise gaps.
+  const field = { subset: false, features: { liga: false, rlig: false, calt: false } };
+  const draw = { subset: true, features: { liga: false, rlig: false, calt: false } };
   return {
-    body: await doc.embedFont(await read("CrimsonText-Regular.ttf"), opts),
-    heading: await doc.embedFont(await read("CrimsonText-SemiBold.ttf"), opts),
-    italic: await doc.embedFont(await read("CrimsonText-Italic.ttf"), opts),
+    body: await doc.embedFont(await read("Lora-Regular.ttf"), field),
+    bold: await doc.embedFont(await read("Lora-Bold.ttf"), field),
+    italic: await doc.embedFont(await read("Lora-Italic.ttf"), draw),
+    boldItalic: await doc.embedFont(await read("Lora-BoldItalic.ttf"), draw),
+    caps: await doc.embedFont(await read("Lato-Bold.ttf"), draw),
     stamp: await doc.embedFont(StandardFonts.Helvetica),
   };
 }
 
-// Field boxes inside a label, relative to the label's bottom-left.
-function fieldBoxes(slot: Slot) {
-  const s = LABEL_SHEET;
-  const inset = s.safeInset + 8;
-  const innerW = s.labelWidth - inset * 2;
-  const recipeH = 24;
-  const smallH = 18;
-  const recipeY = slot.y + s.labelHeight - inset - 34 - recipeH;
-  const smallY = recipeY - 16 - smallH;
-  return {
-    recipe: { x: slot.x + inset, y: recipeY, width: innerW, height: recipeH },
-    date: { x: slot.x + inset, y: smallY, width: innerW * 0.4, height: smallH },
-    note: { x: slot.x + inset + innerW * 0.48, y: smallY, width: innerW * 0.52, height: smallH },
-  };
+// ---- drawing helpers ---------------------------------------------------------
+
+function roundedRect(page: PDFPage, x: number, y: number, w: number, h: number, r: number, color: Color) {
+  // drawSvgPath takes y-down coordinates relative to (x, y) = top-left.
+  const d = [
+    `M ${r} 0`,
+    `H ${w - r}`,
+    `A ${r} ${r} 0 0 1 ${w} ${r}`,
+    `V ${h - r}`,
+    `A ${r} ${r} 0 0 1 ${w - r} ${h}`,
+    `H ${r}`,
+    `A ${r} ${r} 0 0 1 0 ${h - r}`,
+    `V ${r}`,
+    `A ${r} ${r} 0 0 1 ${r} 0`,
+    "Z",
+  ].join(" ");
+  page.drawSvgPath(d, { x, y: y + h, color, borderWidth: 0 });
 }
 
-// A small wheat sprig: a curved stem with paired grains, drawn from
-// primitives so nothing on the label comes from a stock library.
-function drawSprig(page: PDFPage, x: number, y: number, size: number) {
-  const stemH = size;
-  page.drawLine({ start: { x, y }, end: { x, y: y + stemH }, thickness: 0.8, color: SAGE });
-  const grains = 5;
-  for (let i = 0; i < grains; i++) {
-    const gy = y + stemH * (0.35 + (0.65 * i) / grains);
-    const scale = 1 - i * 0.08;
-    for (const side of [-1, 1]) {
-      page.drawEllipse({
-        x: x + side * size * 0.11 * scale,
-        y: gy + size * 0.06,
-        xScale: size * 0.075 * scale,
-        yScale: size * 0.13 * scale,
-        rotate: degrees(side * -28),
-        color: LIGHT_SAGE,
-        borderColor: SAGE,
-        borderWidth: 0.6,
-      });
-    }
+function tracked(page: PDFPage, text: string, x: number, y: number, size: number, font: PDFFont, color: Color, spacing: number) {
+  let cx = x;
+  for (const ch of text) {
+    page.drawText(ch, { x: cx, y, size, font, color });
+    cx += font.widthOfTextAtSize(ch, size) + spacing;
   }
-  page.drawEllipse({ x, y: y + stemH + size * 0.06, xScale: size * 0.07, yScale: size * 0.13, color: LIGHT_SAGE, borderColor: SAGE, borderWidth: 0.6 });
+  return cx - x - spacing;
 }
 
-// The label design. Everything is drawn here from brand fonts and colours;
-// no stock artwork. A cream panel sits well inside the die-cut so a
-// millimetre of printer drift never shows as a crooked edge.
+function wrap(text: string, font: PDFFont, size: number, width: number): string[] {
+  const lines: string[] = [];
+  for (const para of text.split("\n")) {
+    const words = para.split(" ");
+    let line = "";
+    for (const w of words) {
+      const probe = line ? `${line} ${w}` : w;
+      if (font.widthOfTextAtSize(probe, size) <= width) line = probe;
+      else {
+        if (line) lines.push(line);
+        line = w;
+      }
+    }
+    lines.push(line);
+  }
+  return lines;
+}
+
+function paragraph(page: PDFPage, text: string, x: number, y: number, width: number, size: number, font: PDFFont, color: Color, leading = size * 1.42): number {
+  let cy = y;
+  for (const line of wrap(text, font, size, width)) {
+    page.drawText(line, { x, y: cy, size, font, color });
+    cy -= leading;
+  }
+  return cy;
+}
+
+// ---- the label ---------------------------------------------------------------
+
+// Everything inside one label, relative to its slot. The card is the white
+// panel; content sits a further inset inside it.
+function labelGeometry(slot: Slot) {
+  const s = LABEL_SHEET;
+  const card = { x: slot.x + s.safeInset, y: slot.y + s.safeInset, w: s.labelWidth - s.safeInset * 2, h: s.labelHeight - s.safeInset * 2 };
+  const pad = 14;
+  const x = card.x + pad;
+  const w = card.w - pad * 2;
+  const top = card.y + card.h;
+  const title = { x, y: top - pad - 18, width: w, height: 18 };
+  const rowY = title.y - 21;
+  const madeLabelW = 34;
+  const bestLabelW = 46;
+  const dateW = 58;
+  const made = { x: x + madeLabelW, y: rowY, width: dateW, height: 14 };
+  const best = { x: made.x + dateW + 16 + bestLabelW, y: rowY, width: dateW, height: 14 };
+  const meta = { x, y: rowY - 18, width: w, height: 13 };
+  const dirTop = meta.y - 6;
+  const dir = { x, y: card.y + 22, width: w, height: dirTop - (card.y + 22) };
+  return { card, x, w, top, title, made, best, meta, dir, madeLabelW, bestLabelW };
+}
+
 function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolean) {
-  const s = LABEL_SHEET;
-  const inset = s.safeInset;
-  const top = slot.y + s.labelHeight;
-  const panel = { x: slot.x + inset, y: slot.y + inset, w: s.labelWidth - inset * 2, h: s.labelHeight - inset * 2 };
+  const g = labelGeometry(slot);
+  roundedRect(page, g.card.x, g.card.y, g.card.w, g.card.h, 10, WHITE);
 
-  page.drawRectangle({ x: panel.x, y: panel.y, width: panel.w, height: panel.h, color: CREAM, borderColor: LIGHT_SAGE, borderWidth: 0.75, borderDashArray: [1.5, 2.5] });
+  // Row of Made / Best by, in the book's body face.
+  page.drawText("Made", { x: g.x, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
+  page.drawText("Best by", { x: g.best.x - g.bestLabelW, y: g.best.y + 3, size: 9.5, font: fonts.body, color: INK });
+  // Rules sit just BELOW each field box, where the field's white fill cannot
+  // cover them: a writing line on the hand-write sheet, a "type here" cue on
+  // the fillable ones.
+  for (const box of [g.made, g.best]) {
+    page.drawLine({ start: { x: box.x, y: box.y - 1.5 }, end: { x: box.x + box.width, y: box.y - 1.5 }, thickness: 0.8, color: INK, opacity: 0.85 });
+  }
+  page.drawLine({ start: { x: g.x, y: g.title.y - 2 }, end: { x: g.x + g.w, y: g.title.y - 2 }, thickness: 0.6, color: TERRACOTTA, opacity: handwrite ? 0.7 : 0.45 });
 
-  // Header: title, tagline, sprig.
-  const hx = panel.x + 10;
-  const hy = top - inset - 22;
-  page.drawText("Rest", { x: hx, y: hy, size: 14, font: fonts.heading, color: DEEP_SAGE });
-  const restW = fonts.heading.widthOfTextAtSize("Rest", 14);
-  page.drawText("&", { x: hx + restW + 4, y: hy, size: 14, font: fonts.italic, color: TERRACOTTA });
-  const ampW = fonts.italic.widthOfTextAtSize("&", 14);
-  page.drawText("Rise", { x: hx + restW + ampW + 8, y: hy, size: 14, font: fonts.heading, color: DEEP_SAGE });
-  page.drawText("from the freezer, with love", { x: hx, y: hy - 12, size: 8, font: fonts.italic, color: MUTED });
-  drawSprig(page, panel.x + panel.w - 16, hy - 12, 26);
-
-  page.drawLine({ start: { x: hx, y: hy - 20 }, end: { x: panel.x + panel.w - 30, y: hy - 20 }, thickness: 0.6, color: SAGE });
-
-  const boxes = fieldBoxes(slot);
-  const captions: Array<[string, { x: number; y: number; width: number }]> = [
-    ["RECIPE", boxes.recipe],
-    ["MADE ON", boxes.date],
-    ["REHEAT", boxes.note],
-  ];
-  for (const [label, box] of captions) {
-    // Small-caps style caption with tracking, below the writing line.
-    let cx = box.x;
-    for (const ch of label) {
-      page.drawText(ch, { x: cx, y: box.y - 9, size: 6, font: fonts.body, color: MUTED });
-      cx += fonts.body.widthOfTextAtSize(ch, 6) + 1.1;
+  if (handwrite) {
+    // Writing guides where the fields would be.
+    page.drawLine({ start: { x: g.x, y: g.meta.y - 1 }, end: { x: g.x + g.w, y: g.meta.y - 1 }, thickness: 0.5, color: STEEL, opacity: 0.7, dashArray: [0.8, 1.6] });
+    const lines = Math.floor(g.dir.height / 15);
+    for (let i = 1; i <= lines; i++) {
+      const y = g.dir.y + g.dir.height - i * 15;
+      page.drawLine({ start: { x: g.x, y }, end: { x: g.x + g.w, y }, thickness: 0.5, color: STEEL, opacity: 0.6, dashArray: [0.8, 1.6] });
     }
-    // A dotted writing line: a guide for handwriting on the blank page, a quiet
-    // marker of where the box sits on the fillable ones.
-    page.drawLine({
-      start: { x: box.x, y: box.y - 1.5 },
-      end: { x: box.x + box.width, y: box.y - 1.5 },
-      thickness: handwrite ? 0.7 : 0.5,
-      color: handwrite ? CHARCOAL : SAGE,
-      opacity: handwrite ? 0.55 : 0.9,
-      dashArray: [0.8, 1.6],
-    });
   }
 
-  const site = "halfpintmama.com";
-  page.drawText(site, { x: panel.x + panel.w - 8 - fonts.italic.widthOfTextAtSize(site, 6.5), y: panel.y + 6, size: 6.5, font: fonts.italic, color: MUTED });
+  // Quiet footer, like the running foot of the book.
+  const foot = "Rest & Rise  ·  halfpintmama.com";
+  page.drawText(foot, { x: g.card.x + g.card.w - 12 - fonts.italic.widthOfTextAtSize(foot, 6.5), y: g.card.y + 8, size: 6.5, font: fonts.italic, color: STEEL });
 }
 
-async function loadArtwork(doc: PDFDocument) {
-  const file = path.join(ASSET_DIR, "label.png");
-  if (!existsSync(file)) return null;
-  return doc.embedPng(await readFile(file));
+// Renders a recipe onto a hand-write label as static text (used only for the
+// preview image, never in a buyer's file).
+export function previewLabel(page: PDFPage, slot: Slot, fonts: Fonts, name: string, made: string, best: string, meta: string, directions: string) {
+  const g = labelGeometry(slot);
+  page.drawText(name, { x: g.x, y: g.title.y + 5, size: 11, font: fonts.bold, color: TERRACOTTA });
+  page.drawText(made, { x: g.made.x + 3, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
+  page.drawText(best, { x: g.best.x + 3, y: g.best.y + 3, size: 9.5, font: fonts.body, color: INK });
+  page.drawText(meta, { x: g.x, y: g.meta.y + 2, size: 8.5, font: fonts.body, color: STEEL });
+  paragraph(page, directions, g.x, g.dir.y + g.dir.height - 9, g.w, 8.5, fonts.body, INK, 11.8);
 }
 
 function stampFooter(page: PDFPage, fonts: Fonts, email: string) {
   const s = LABEL_SHEET;
-  const text = `Licensed to ${email}  |  Rest & Rise by Half Pint Mama  |  halfpintmama.com  |  Avery ${s.avery} or any 2" x 4" 10-up label, print at 100% (actual size)`;
-  page.drawText(text, {
-    x: s.marginLeft,
-    y: 14,
-    size: 6.5,
-    font: fonts.stamp,
-    color: MUTED,
-  });
+  const text = `Licensed to ${email}  |  Rest & Rise by Half Pint Mama  |  halfpintmama.com  |  Avery ${s.averyWaterproof} (or ${s.avery}) ${s.sizeAscii}, ${s.perSheet} per sheet, print at 100% (actual size)`;
+  page.drawText(text, { x: s.marginLeft, y: 14, size: 6.5, font: fonts.stamp, color: STEEL });
 }
+
+// ---- the guide page ----------------------------------------------------------
+
+function drawGuide(page: PDFPage, fonts: Fonts, email: string) {
+  const s = LABEL_SHEET;
+  page.drawRectangle({ x: 0, y: 0, width: s.pageWidth, height: s.pageHeight, color: CREAM });
+  const L = 60;
+  const W = s.pageWidth - L * 2;
+  let y = s.pageHeight - 78;
+
+  const cx = s.pageWidth / 2;
+  const title = "make-ahead freezer labels";
+  page.drawText(title, { x: cx - fonts.boldItalic.widthOfTextAtSize(title, 30) / 2, y, size: 30, font: fonts.boldItalic, color: STEEL });
+  y -= 26;
+  const sub = "A printable companion to Rest & Rise";
+  page.drawText(sub, { x: cx - fonts.body.widthOfTextAtSize(sub, 14) / 2, y, size: 14, font: fonts.body, color: INK });
+  y -= 18;
+  const by = "Half Pint Mama";
+  page.drawText(by, { x: cx - fonts.italic.widthOfTextAtSize(by, 12) / 2, y, size: 12, font: fonts.italic, color: STEEL });
+  y -= 18;
+  // A quiet ornament in the book's two accent colours, drawn, not imported.
+  for (let i = -3; i <= 3; i++) {
+    page.drawCircle({ x: cx + i * 14, y, size: i === 0 ? 3.2 : 2.2, color: i % 2 === 0 ? TERRACOTTA : STEEL });
+  }
+  y -= 24;
+
+  const intro =
+    "You did the work of filling your freezer. These labels make sure none of it goes to waste. " +
+    "Every label is built for the recipes in Rest & Rise, with the freezer directions already written out, " +
+    "so future you, the one running on very little sleep, does not have to remember a thing. " +
+    "Pull a meal from the freezer, read the label, and dinner takes care of itself.";
+  y = paragraph(page, intro, L + 30, y, W - 60, 10.5, fonts.body, INK, 15);
+  y -= 8;
+
+  const section = (head: string, body: string[]) => {
+    tracked(page, head.toUpperCase(), L, y, 9, fonts.caps, TERRACOTTA, 1.4);
+    y -= 15;
+    for (const b of body) {
+      y = paragraph(page, b, L, y, W, 10, fonts.body, INK, 14);
+      y -= 4;
+    }
+    y -= 8;
+  };
+
+  section("What you will need", [
+    `Label sheets 4 by 3 1/3 inches, ${s.perSheet} to a page, in the Avery ${s.avery} layout. For the freezer choose the waterproof film version, Avery ${s.averyWaterproof}, so labels do not lift in the cold; plain paper ${s.avery} is fine for the pantry. Match the sheet to your printer: laser sheets in a laser printer, inkjet in an inkjet.`,
+  ]);
+
+  section("Filling them in", [
+    `Open this file on a computer in Adobe Acrobat Reader (free), Chrome, Edge or Firefox. On each label, click the recipe box and pick a recipe from the book, or type your own. When you pick a book recipe, the keeps-for line and the freezer directions fill themselves in. Every box stays editable, so shorten or add to anything you like.`,
+    `Apple Preview shows the boxes but will not fill them in for you; type the directions from the book instead, or use one of the readers above.`,
+    `Write the date you made the meal, then add about three months for the best-by date. Most meals are best within three months and safe to use within twelve. Save a copy when you are done so your sheet is there next time.`,
+  ]);
+
+  section("Before you print", [
+    `Print pages ${LABEL_PAGE_RANGE} only. This page is for you, not the label sheet.`,
+    `Set your printer to Actual Size, or 100 percent. Never Fit to Page. This is the one setting that keeps the text lined up with the labels.`,
+    `Do a test run on plain paper first, then hold it against a blank label sheet up to a window to check the alignment. Once it lines up, load your labels and print. The last label page has no text boxes; it is for handwriting.`,
+  ]);
+
+  section("On the bag", [
+    `Stick the label on while the bag or foil is dry and flat, before it goes in the freezer. The directions are the book's from-frozen method; for cooking from thawed and for leftovers, see the recipe page.`,
+  ]);
+
+  // Tinted note box, the book's Nurse's Note treatment.
+  const noteH = 46;
+  y -= 2;
+  roundedRect(page, L, y - noteH + 12, W, noteH, 8, TINT);
+  tracked(page, "FOR YOUR KITCHEN ONLY", L + 14, y - 4, 8.5, fonts.caps, NAVY, 1.3);
+  paragraph(page, `These labels are made for ${email} and are for personal use. Please do not resell or share the file. Thank you for keeping this little shop running.`, L + 14, y - 19, W - 28, 9.5, fonts.body, INK, 13);
+}
+
+// ---- document JavaScript -----------------------------------------------------
+
+// Escapes to ASCII so the script survives PDFDocEncoding untouched.
+function jsString(value: string): string {
+  return JSON.stringify(value).replace(/[\u007f-￿]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, "0")}`);
+}
+
+function directionsScript(): string {
+  const entries = RECIPES.map((r) => `${jsString(recipeLabel(r))}:[${jsString(recipeMeta(r))},${jsString(r.directions)}]`);
+  return (
+    `var RR_LABELS = {${entries.join(",")}};\n` +
+    // Called from each recipe box's validate action with the label's suffix.
+    // Leaves the text alone when the buyer typed a recipe of their own.
+    `function rrFill(value, n) {\n` +
+    `  var r = RR_LABELS[value];\n` +
+    `  if (!r) return;\n` +
+    `  var m = this.getField("meta_" + n); if (m) m.value = r[0];\n` +
+    `  var d = this.getField("dir_" + n); if (d) d.value = r[1];\n` +
+    `}\n`
+  );
+}
+
+// ---- build -------------------------------------------------------------------
 
 export interface LabelsPdfOptions {
   email: string;
   // Fixed creation date so output is reproducible (and so a buyer's two
   // downloads of the same product are byte-identical). Defaults to now.
   createdAt?: Date;
+  // QA only: recipe names to pre-select by label suffix ("p1_1"), so a review
+  // can see the real appearance streams. Buyers' files never set this.
+  prefill?: Record<string, string>;
 }
 
-export async function buildLabelsPdf({ email, createdAt }: LabelsPdfOptions): Promise<Uint8Array> {
+export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOptions): Promise<Uint8Array> {
   const doc = await PDFDocument.create();
   const fonts = await loadFonts(doc);
-  const art = await loadArtwork(doc);
   const form = doc.getForm();
   const s = LABEL_SHEET;
+  const options = RECIPES.map(recipeLabel);
 
-  const totalPages = FILLABLE_PAGES + BLANK_PAGES;
-  for (let p = 0; p < totalPages; p++) {
+  doc.addJavaScript("restAndRiseLabels", directionsScript());
+
+  const guide = doc.addPage([s.pageWidth, s.pageHeight]);
+  drawGuide(guide, fonts, email);
+  stampFooter(guide, fonts, email);
+
+  for (let p = 0; p < FILLABLE_PAGES + BLANK_PAGES; p++) {
     const fillable = p < FILLABLE_PAGES;
     const page = doc.addPage([s.pageWidth, s.pageHeight]);
+    page.drawRectangle({ x: 0, y: 0, width: s.pageWidth, height: s.pageHeight, color: CREAM });
 
     slots().forEach((slot, i) => {
-      if (art) {
-        page.drawImage(art, { x: slot.x, y: slot.y, width: s.labelWidth, height: s.labelHeight });
-      } else {
-        drawLabelArt(page, slot, fonts, !fillable);
-      }
+      drawLabelArt(page, slot, fonts, !fillable);
       if (!fillable) return;
 
-      const boxes = fieldBoxes(slot);
+      const g = labelGeometry(slot);
       const n = `p${p + 1}_${i + 1}`;
 
       // addToPage with a font writes the field's default appearance (/DA);
       // setFontSize edits that entry, so it has to come after.
       const recipe = form.createDropdown(`recipe_${n}`);
-      recipe.setOptions([...BOOK_RECIPES]);
+      recipe.setOptions(options);
       recipe.enableEditing(); // pick a book recipe OR type anything
-      recipe.addToPage(page, { ...boxes.recipe, borderWidth: 0, backgroundColor: CREAM, font: fonts.heading });
-      recipe.setFontSize(12);
+      recipe.addToPage(page, { ...g.title, borderWidth: 0, backgroundColor: WHITE, textColor: TERRACOTTA, font: fonts.bold });
+      // Auto-size (0): the longest book titles shrink to fit the box and a
+      // buyer's own long name never clips.
+      recipe.setFontSize(0);
+      // Commit on selection so the auto-fill runs the moment a recipe is picked,
+      // and run rrFill as the field's validate action.
+      recipe.acroField.setFlagTo(AcroChoiceFlags.CommitOnSelChange, true);
+      recipe.acroField.dict.set(
+        PDFName.of("AA"),
+        doc.context.obj({ V: { Type: "Action", S: "JavaScript", JS: PDFString.of(`rrFill(event.value, "${n}");`) } })
+      );
+      const pre = prefill?.[n] ? RECIPES.find((r) => r.name === prefill[n]) : undefined;
+      if (pre) recipe.select(pre.name);
+      recipe.updateAppearances(fonts.bold);
 
-      const date = form.createTextField(`date_${n}`);
-      date.setMaxLength(24);
-      date.addToPage(page, { ...boxes.date, borderWidth: 0, backgroundColor: CREAM, font: fonts.body });
-      date.setFontSize(10);
+      const made = form.createTextField(`made_${n}`);
+      made.setMaxLength(16);
+      made.addToPage(page, { ...g.made, borderWidth: 0, backgroundColor: WHITE, textColor: INK, font: fonts.body });
+      made.setFontSize(9.5);
+      if (pre) made.setText("Oct 14");
+      made.updateAppearances(fonts.body);
 
-      const note = form.createTextField(`note_${n}`);
-      note.setMaxLength(40);
-      note.addToPage(page, { ...boxes.note, borderWidth: 0, backgroundColor: CREAM, font: fonts.body });
-      note.setFontSize(10);
+      const best = form.createTextField(`best_${n}`);
+      best.setMaxLength(16);
+      best.addToPage(page, { ...g.best, borderWidth: 0, backgroundColor: WHITE, textColor: INK, font: fonts.body });
+      best.setFontSize(9.5);
+      if (pre) best.setText("Jan 14");
+      best.updateAppearances(fonts.body);
+
+      const meta = form.createTextField(`meta_${n}`);
+      meta.setMaxLength(60);
+      meta.addToPage(page, { ...g.meta, borderWidth: 0, backgroundColor: WHITE, textColor: STEEL, font: fonts.body });
+      meta.setFontSize(8.5);
+      if (pre) meta.setText(recipeMeta(pre));
+      meta.updateAppearances(fonts.body);
+
+      const dir = form.createTextField(`dir_${n}`);
+      dir.enableMultiline();
+      dir.setMaxLength(420);
+      dir.addToPage(page, { ...g.dir, borderWidth: 0, backgroundColor: WHITE, textColor: INK, font: fonts.body });
+      dir.setFontSize(8.5);
+      if (pre) dir.setText(pre.directions);
+      dir.updateAppearances(fonts.body);
     });
 
     stampFooter(page, fonts, email);
   }
-
-  // Bake appearances with the brand font, or typed text renders in Helvetica.
-  form.updateFieldAppearances(fonts.body);
 
   const when = createdAt ?? new Date();
   doc.setTitle("Rest & Rise Freezer Labels");
@@ -272,5 +442,10 @@ export async function buildLabelsPdf({ email, createdAt }: LabelsPdfOptions): Pr
   doc.setCreationDate(when);
   doc.setModificationDate(when);
 
-  return doc.save();
+  // Appearances were baked per field with their own fonts above; a second pass
+  // here would repaint them all in one font.
+  return doc.save({ updateFieldAppearances: false });
 }
+
+// For the preview renderer: same fonts and geometry as the real file.
+export const _internals = { loadFonts, slots, drawLabelArt, labelGeometry, CREAM };
