@@ -6,7 +6,7 @@ import { EmailSignup } from "@/components/EmailSignup";
 import { BuyButton } from "@/components/shop/BuyButton";
 import { PrintablesGrid } from "@/components/shop/PrintablesGrid";
 import { BookOpen, CalendarCheck, HeartPulse, Croissant, Tag, Printer, Truck, ClipboardCheck } from "lucide-react";
-import { AUTHOR_REF, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, SITE_URL, jsonLdHtml } from "@/lib/seo";
+import { AUTHOR_REF, SITE_URL, jsonLdHtml } from "@/lib/seo";
 import { PRODUCTS, shopCopy, type ShopStatus } from "@/lib/shop/catalog";
 import { LABEL_SHEET } from "@/lib/shop/labels-pdf";
 import { getDisplayPrice, type DisplayPrice } from "@/lib/shop/prices";
@@ -36,15 +36,15 @@ export async function generateMetadata(): Promise<Metadata> {
     // Indexable the moment the shop can take an order; the sitemap and the
     // Book schema below flip with the same status.
     robots: { index: status !== "waitlist", follow: true },
+    // No images here: the colocated opengraph-image.tsx (the book cover) is
+    // picked up for both Open Graph and Twitter automatically.
     openGraph: {
-      images: DEFAULT_OG_IMAGE_ARRAY,
       title: "Shop | Half Pint Mama",
       description,
       type: "website",
       url: "https://halfpintmama.com/shop",
     },
     twitter: {
-      images: [DEFAULT_OG_IMAGE.url],
       card: "summary_large_image" as const,
       title: "Shop | Half Pint Mama",
       description,
@@ -57,7 +57,7 @@ const whatsInside = [
     icon: BookOpen,
     color: "terracotta" as const,
     title: "35 Make-Ahead Recipes",
-    description: "Crockpot, Instant Pot, and sourdough meals designed to be cooked before baby arrives and pulled from the freezer after.",
+    description: "Slow cooker, pressure cooker, and sourdough meals designed to be cooked before baby arrives and pulled from the freezer after.",
   },
   {
     icon: CalendarCheck,

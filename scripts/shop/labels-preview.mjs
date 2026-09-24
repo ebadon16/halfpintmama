@@ -16,13 +16,13 @@ const { buildLabelsPdf } = await import(path.join(process.cwd(), "src/lib/shop/l
 const SAMPLE = [
   ["Nesting Ziti", "Oct 14", "350°F, 45 min"],
   ["The House Chili", "Oct 14", "Stovetop, low"],
-  ["Aloha Meatballs", "Oct 21", "Crockpot, 3 hr"],
+  ["Aloha Meatballs", "Oct 21", "Slow cooker, 3 hr"],
   ["Sourdough English Muffins", "Oct 21", "Toast from frozen"],
-  ["Honey Garlic Chicken", "Oct 28", "Instant Pot, 12 min"],
+  ["Honey Garlic Chicken", "Oct 28", "Pressure cooker, 12 min"],
   ["Lactation Banana Bread", "Oct 28", "Thaw overnight"],
   ["Freezer Waffles", "Nov 4", "Toaster"],
   ["Weeknight Butter Chicken", "Nov 4", "Stovetop, low"],
-  ["Overnight French Toast Bake", "Nov 11", "350°F, 40 min"],
+  ["Overnight Sourdough French Toast Bake", "Nov 11", "350°F, 40 min"],
   ["Italian Mini Quiches", "Nov 11", "350°F, 15 min"],
 ];
 
