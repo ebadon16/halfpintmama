@@ -350,3 +350,21 @@ with 400, a live Checkout session created through /api/checkout carried US addre
 automatic tax, the ship-date note and the phase/product metadata (then expired).
 STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send MailerLite "Preorders open
 (ready to send)" 198049723307787316 after (1); (3) welcome automation edits (dashboard); (4) Step 4 at ship.
+
+## Sep 23 2026, review pass after go-live (deploys `8ea20ef`)
+
+- **Labels are $10 after launch** (Erick). Live `price_1UJ2aFBR2BAygII2cktt5l92`, sandbox repriced too,
+  Vercel + .env.local updated. The shop page reads it live and quotes it in the bonus box and labels card.
+- **Labels preview on the site**: the filled sample sheet (`public/images/labels-preview.png`) now sits in the
+  /shop labels card (`#labels`, linked from the bonus box) and on /cookbook-resources. Sample reheat notes
+  match the book's STORAGE blocks. Recipe list = final interior; "Make-Ahead" dropped from the muffin
+  sandwiches so every name fits the 244pt field at 12pt (it measured 271pt).
+- **Printables re-cut from the KDP interior** (`scripts/chapter11-printables/from-kdp-interior.py`). The
+  Canva-cut copies had drifted ("homemade meatballs" vs "the Aloha Meatballs"; "Sourdough Sandwich Bread"
+  vs "Easy…") and the old script's folio removal silently failed on the Sep 22 export. Text parity with the
+  book verified word-for-word; old hashed URLs 308 to the new files.
+- **Webhook endpoint recreated** (`we_1UJ2VnBR2BAygII2IXseYAFK`) so the signing secret could be re-pasted and
+  proven with a signed replay. ⚠ Vercel stores these vars as *sensitive*: `vercel env pull` returns them
+  EMPTY, so a secret you did not keep cannot be recovered from Vercel; recreate the endpoint instead.
+- `SHOP_SHIP_ESTIMATE` is now lower-case "late October 2026" (it appears mid-sentence everywhere).
+- ⚠ `vercel redeploy <url>` fails with "belongs to a different team" from this checkout; push a commit.
