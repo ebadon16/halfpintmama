@@ -368,3 +368,18 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   EMPTY, so a secret you did not keep cannot be recovered from Vercel; recreate the endpoint instead.
 - `SHOP_SHIP_ESTIMATE` is now lower-case "late October 2026" (it appears mid-sentence everywhere).
 - ⚠ `vercel redeploy <url>` fails with "belongs to a different team" from this checkout; push a commit.
+
+## Sep 23 2026, labels rebuilt and cart wiring (deploys through `17650d1` and later)
+
+- Labels PDF rebuilt on Keegan's Canva draft (design DAHMgc0Znzw): Avery 5164/5524, six per sheet, page 1
+  guide, pages 2-4 fillable, page 5 hand-write. Picking a recipe auto-fills the best-by line and the
+  directions (document JS, validate action on the dropdown). Every direction verified against the book;
+  the Canva draft's casserole times, warm-water rinses, honey-garlic timing, thaw times and several
+  yields were wrong and were corrected from the book. Typography follows the book. Small text darkened
+  a step so it prints in black and white; label sheets have no page tint.
+- Checkout: preorder carries the labels as a $0.00 line (`hpm_labels_bonus` price, found by lookup key,
+  created by setup in sandbox and live) with the pay-page note saying they are included; after launch
+  the pay page offers them as an add-on (`optional_items`). `orderFromSession` now unions products from
+  the paid line items, so an add-on is fulfilled. Confirmation email names the free labels.
+- Verified: sandbox pay pages screenshotted in both phases; a live session created through the deployed
+  route carried both lines, then was expired. Self-test 105/105.
