@@ -74,7 +74,11 @@ const ASSET_DIR = path.join(process.cwd(), "private", "shop");
 const INK = rgb(0x2d / 255, 0x3a / 255, 0x43 / 255);
 const NAVY = rgb(0x27 / 255, 0x4f / 255, 0x6a / 255);
 const STEEL = rgb(0x6f / 255, 0x94 / 255, 0xae / 255);
-const TERRACOTTA = rgb(0xc5 / 255, 0x7b / 255, 0x57 / 255);
+// Small text in the two accent colours is darkened a step from the book's
+// values so it still reads when a buyer prints in black and white: the book's
+// steel and terracotta both grey out to about 55% and vanish at 8pt.
+const STEEL_TEXT = rgb(0x4f / 255, 0x78 / 255, 0x94 / 255);
+const TERRACOTTA = rgb(0xb3 / 255, 0x6a / 255, 0x46 / 255);
 const TINT = rgb(0xe0 / 255, 0xe9 / 255, 0xee / 255);
 const CREAM = rgb(0xfb / 255, 0xf6 / 255, 0xec / 255);
 const WHITE = rgb(1, 1, 1);
@@ -126,7 +130,7 @@ async function loadFonts(doc: PDFDocument): Promise<Fonts> {
 
 // ---- drawing helpers ---------------------------------------------------------
 
-function roundedRect(page: PDFPage, x: number, y: number, w: number, h: number, r: number, color: Color) {
+function roundedRect(page: PDFPage, x: number, y: number, w: number, h: number, r: number, color: Color, border?: { color: Color; width: number; opacity?: number }) {
   // drawSvgPath takes y-down coordinates relative to (x, y) = top-left.
   const d = [
     `M ${r} 0`,
@@ -140,7 +144,7 @@ function roundedRect(page: PDFPage, x: number, y: number, w: number, h: number, 
     `A ${r} ${r} 0 0 1 ${r} 0`,
     "Z",
   ].join(" ");
-  page.drawSvgPath(d, { x, y: y + h, color, borderWidth: 0 });
+  page.drawSvgPath(d, { x, y: y + h, color, borderWidth: border?.width ?? 0, borderColor: border?.color, borderOpacity: border?.opacity });
 }
 
 function tracked(page: PDFPage, text: string, x: number, y: number, size: number, font: PDFFont, color: Color, spacing: number) {
@@ -205,7 +209,7 @@ function labelGeometry(slot: Slot) {
 
 function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolean) {
   const g = labelGeometry(slot);
-  roundedRect(page, g.card.x, g.card.y, g.card.w, g.card.h, 10, WHITE);
+  roundedRect(page, g.card.x, g.card.y, g.card.w, g.card.h, 10, WHITE, { color: STEEL, width: 0.6, opacity: 0.55 });
 
   // Captions in the book's section-head style: Lato Bold, tracked, terracotta.
   tracked(page, "MADE ON", g.x, g.made.y + 4, 6.5, fonts.caps, TERRACOTTA, 1.2);
@@ -229,7 +233,7 @@ function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolea
 
   // Quiet footer, like the running foot of the book.
   const foot = "Rest & Rise  ·  halfpintmama.com";
-  page.drawText(foot, { x: g.card.x + g.card.w - 12 - fonts.italic.widthOfTextAtSize(foot, 6.5), y: g.card.y + 6, size: 6.5, font: fonts.italic, color: STEEL });
+  page.drawText(foot, { x: g.card.x + g.card.w - 12 - fonts.italic.widthOfTextAtSize(foot, 6.5), y: g.card.y + 6, size: 6.5, font: fonts.italic, color: STEEL_TEXT });
 }
 
 // Renders a recipe onto a hand-write label as static text (used only for the
@@ -240,14 +244,18 @@ export function previewLabel(page: PDFPage, slot: Slot, fonts: Fonts, name: stri
   const size = Math.min(11, (11 * g.w) / Math.max(g.w, fonts.bold.widthOfTextAtSize(upper, 11)));
   page.drawText(upper, { x: g.x, y: g.title.y + 5, size, font: fonts.bold, color: NAVY });
   page.drawText(made, { x: g.made.x + 3, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
-  paragraph(page, meta, g.x, g.meta.y + g.meta.height - 9, g.w, 8.5, fonts.italic, STEEL, 11.5);
+  paragraph(page, meta, g.x, g.meta.y + g.meta.height - 9, g.w, 8.5, fonts.italic, STEEL_TEXT, 11.5);
   paragraph(page, directions, g.x, g.dir.y + g.dir.height - 9, g.w, 8, fonts.body, INK, 11.2);
 }
 
-function stampFooter(page: PDFPage, fonts: Fonts, email: string) {
+function stampFooter(page: PDFPage, fonts: Fonts, email: string, note?: string) {
   const s = LABEL_SHEET;
-  const text = `Licensed to ${email}  |  Rest & Rise by Half Pint Mama  |  halfpintmama.com  |  Avery ${s.averyWaterproof} (or ${s.avery}) ${s.sizeAscii}, ${s.perSheet} per sheet, print at 100% (actual size)`;
-  page.drawText(text, { x: s.marginLeft, y: 14, size: 6.5, font: fonts.stamp, color: STEEL });
+  // The hand-write sheet says what it is instead of repeating the sheet spec,
+  // which the guide already gives; the line has to fit the page.
+  const text = note
+    ? `${note}  |  Licensed to ${email}  |  Rest & Rise by Half Pint Mama  |  halfpintmama.com`
+    : `Licensed to ${email}  |  Rest & Rise by Half Pint Mama  |  halfpintmama.com  |  Avery ${s.averyWaterproof} (or ${s.avery}) ${s.sizeAscii}, ${s.perSheet} per sheet, print at 100% (actual size)`;
+  page.drawText(text, { x: s.marginLeft, y: 14, size: 6.5, font: fonts.stamp, color: STEEL_TEXT });
 }
 
 // ---- the guide page ----------------------------------------------------------
@@ -298,7 +306,7 @@ function drawGuide(page: PDFPage, fonts: Fonts, email: string) {
   ]);
 
   section("Filling them in", [
-    `Open this file on a computer in Adobe Acrobat Reader (free), Chrome, Edge or Firefox. On each label, click the recipe box and pick a recipe from the book, or type your own. When you pick a book recipe, the best-by line and the freezer directions fill themselves in. Every box stays editable, so shorten or add to anything you like.`,
+    `Open this file on a computer in Adobe Acrobat Reader (free), Chrome, Edge or Firefox. On each label, click the recipe box and pick a recipe from the book, or type your own. Then click anywhere outside the box (or press Tab): the best-by line and the freezer directions fill themselves in. Every box stays editable, so shorten or add to anything you like.`,
     `Apple Preview shows the boxes but will not fill them in for you; type the directions from the book instead, or use one of the readers above.`,
     `Write the date you made the meal. The best-by line fills itself in: most meals are best by three months and safe to use within twelve. Save a copy when you are done so your sheet is there next time.`,
   ]);
@@ -306,7 +314,8 @@ function drawGuide(page: PDFPage, fonts: Fonts, email: string) {
   section("Before you print", [
     `Print pages ${LABEL_PAGE_RANGE} only. This page is for you, not the label sheet.`,
     `Set your printer to Actual Size, or 100 percent. Never Fit to Page. This is the one setting that keeps the text lined up with the labels.`,
-    `Do a test run on plain paper first, then hold it against a blank label sheet up to a window to check the alignment. Once it lines up, load your labels and print. The last label page has no text boxes; it is for handwriting.`,
+    `Do a test run on plain paper first, then hold it against a blank label sheet up to a window to check the alignment. Once it lines up, load your labels and print.`,
+    `The last page is a hand-write sheet: the same card with writing lines, for your own recipes or anything not in the book.`,
   ]);
 
   section("On the bag", [
@@ -371,8 +380,10 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
 
   for (let p = 0; p < FILLABLE_PAGES + BLANK_PAGES; p++) {
     const fillable = p < FILLABLE_PAGES;
+    // Label pages get no page colour: they print onto white label stock, and a
+    // tinted page would just be toner over the whole sheet (and a grey wash in
+    // black and white). The guide page keeps the book's cream.
     const page = doc.addPage([s.pageWidth, s.pageHeight]);
-    page.drawRectangle({ x: 0, y: 0, width: s.pageWidth, height: s.pageHeight, color: CREAM });
 
     slots().forEach((slot, i) => {
       drawLabelArt(page, slot, fonts, !fillable);
@@ -411,7 +422,7 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
       const meta = form.createTextField(`meta_${n}`);
       meta.enableMultiline();
       meta.setMaxLength(120);
-      meta.addToPage(page, { ...g.meta, borderWidth: 0, backgroundColor: WHITE, textColor: STEEL, font: fonts.italic });
+      meta.addToPage(page, { ...g.meta, borderWidth: 0, backgroundColor: WHITE, textColor: STEEL_TEXT, font: fonts.italic });
       meta.setFontSize(8.5);
       if (pre) meta.setText(recipeMeta(pre));
       meta.updateAppearances(fonts.italic);
@@ -425,7 +436,7 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
       dir.updateAppearances(fonts.body);
     });
 
-    stampFooter(page, fonts, email);
+    stampFooter(page, fonts, email, fillable ? undefined : "HAND-WRITE SHEET: for your own recipes or anything not in the book");
   }
 
   const when = createdAt ?? new Date();
@@ -443,4 +454,4 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
 }
 
 // For the preview renderer: same fonts and geometry as the real file.
-export const _internals = { loadFonts, slots, drawLabelArt, labelGeometry, CREAM };
+export const _internals = { loadFonts, slots, drawLabelArt, labelGeometry, CREAM, WHITE };

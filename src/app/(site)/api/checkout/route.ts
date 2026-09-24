@@ -4,6 +4,7 @@ import { getClientIp, isSameOrigin } from "@/lib/http";
 import { SITE_URL } from "@/lib/seo";
 import { PRODUCTS, getShopPhase, isPurchasable, requiresShipping, type ProductId } from "@/lib/shop/catalog";
 import { META_PHASE, META_PRODUCTS, META_SHIP_ESTIMATE } from "@/lib/shop/orders";
+import { getLabelsBonusPriceId } from "@/lib/shop/prices";
 import {
   collectsTax,
   getMaxBooksPerOrder,
@@ -69,6 +70,16 @@ export async function POST(request: Request) {
     const physical = requiresShipping([product]);
     const shippingRate = process.env.STRIPE_SHIPPING_RATE;
 
+    // The labels ride along with the book: during preorder as a $0.00 line the
+    // buyer can see in the cart, after launch as an optional add-on on the pay
+    // page. Neither changes what the metadata promises; fulfilment reads the
+    // paid lines back from Stripe.
+    const bonusPriceId = phase === "preorder" && product === "book" ? await getLabelsBonusPriceId() : null;
+    const labelsAddOn =
+      phase === "launched" && product === "book" && process.env.STRIPE_PRICE_LABELS
+        ? { optional_items: [{ price: process.env.STRIPE_PRICE_LABELS, quantity: 1 }] }
+        : {};
+
     const session = await getStripe().checkout.sessions.create({
       mode: "payment",
       // Opt out of Managed Payments, Stripe's merchant-of-record product, which
@@ -88,7 +99,9 @@ export async function POST(request: Request) {
             ? { adjustable_quantity: { enabled: true, minimum: 1, maximum: maxBooks } }
             : {}),
         },
+        ...(bonusPriceId ? [{ price: bonusPriceId, quantity: 1 }] : []),
       ],
+      ...labelsAddOn,
       success_url: `${origin}/shop/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/shop`,
       metadata,
@@ -117,7 +130,9 @@ export async function POST(request: Request) {
             // The stated ship date, on the payment page itself (FTC Mail Order
             // Rule: a preorder must say when it ships before taking money).
             custom_text: {
-              submit: { message: `This is a preorder. Your book ships ${shipEstimate}.` },
+              submit: {
+                message: `This is a preorder. Your book ships ${shipEstimate}. Your printable freezer labels are included free and arrive by email as soon as payment clears.`,
+              },
             },
           }
         : {}),

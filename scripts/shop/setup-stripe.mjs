@@ -104,6 +104,31 @@ async function ensurePrice(id) {
   return price;
 }
 
+// The preorder bonus shows up on the Stripe pay page as its own $0.00 line,
+// so the buyer sees the labels in the cart. One zero-amount Price on the labels
+// product, found by lookup key at checkout; nothing to paste into env.
+async function ensureBonusPrice(labelsPrice) {
+  if (!labelsPrice) {
+    console.log("  bonus: skipped (no labels price yet)");
+    return null;
+  }
+  const existing = await stripe.prices.list({ lookup_keys: ["hpm_labels_bonus"], active: true, limit: 1 });
+  if (existing.data[0]) {
+    console.log(`  bonus: ${existing.data[0].id} unchanged ($0.00, free with preorder)`);
+    return existing.data[0];
+  }
+  const price = await stripe.prices.create({
+    product: typeof labelsPrice.product === "string" ? labelsPrice.product : labelsPrice.product.id,
+    unit_amount: 0,
+    currency: "usd",
+    nickname: "Free with preorder",
+    lookup_key: "hpm_labels_bonus",
+    metadata: { hpm_product: "labels_bonus" },
+  });
+  console.log(`  bonus: created ${price.id} ($0.00, free with preorder)`);
+  return price;
+}
+
 // Shipping rates are immutable too. A changed amount archives the old rate and
 // creates a new one carrying the same marker.
 async function ensureShippingRate() {
@@ -257,6 +282,7 @@ async function ensureTax() {
 console.log(`\nStripe (${mode} mode) setup for ${site}\n`);
 const book = await ensurePrice("book");
 const labels = await ensurePrice("labels");
+await ensureBonusPrice(labels);
 const shipping = await ensureShippingRate();
 const { secret } = await ensureWebhook();
 const taxReady = await ensureTax();

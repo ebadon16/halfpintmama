@@ -45,3 +45,19 @@ export async function getDisplayPrice(id: ProductId): Promise<DisplayPrice> {
   cache.set(priceId, { value, expires: Date.now() + TTL_MS });
   return value;
 }
+
+// The $0 "free with preorder" Price on the labels product, created by
+// scripts/shop/setup-stripe.mjs and found by its lookup key so there is no env
+// var to forget. Null when it does not exist; checkout then simply omits the
+// line rather than failing.
+export const LABELS_BONUS_LOOKUP_KEY = "hpm_labels_bonus";
+let bonusCache: { id: string | null; expires: number } | null = null;
+
+export async function getLabelsBonusPriceId(): Promise<string | null> {
+  if (bonusCache && bonusCache.expires > Date.now()) return bonusCache.id;
+  const found = await getStripe().prices.list({ lookup_keys: [LABELS_BONUS_LOOKUP_KEY], active: true, limit: 1 });
+  const price = found.data[0];
+  const id = price && price.unit_amount === 0 ? price.id : null;
+  bonusCache = { id, expires: Date.now() + TTL_MS };
+  return id;
+}

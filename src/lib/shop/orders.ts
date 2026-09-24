@@ -70,6 +70,16 @@ function isRefunded(charge: Stripe.Charge | null): boolean {
   return captured > 0 && charge.amount_refunded >= captured;
 }
 
+// Which product a Stripe Price belongs to, by the env the shop is configured
+// with. Unknown or missing prices map to nothing.
+export function productForPrice(priceId: string | undefined | null): ProductId | null {
+  if (!priceId) return null;
+  for (const id of Object.keys(PRODUCTS) as ProductId[]) {
+    if (process.env[PRODUCTS[id].priceEnv] === priceId) return id;
+  }
+  return null;
+}
+
 // Pure: builds an Order from a session that was retrieved with
 // `payment_intent.latest_charge` expanded. Fails closed — a session without our
 // metadata (not created by our checkout route) has no products and so grants
@@ -77,10 +87,19 @@ function isRefunded(charge: Stripe.Charge | null): boolean {
 export function orderFromSession(session: Stripe.Checkout.Session): Order {
   const meta = session.metadata ?? {};
   const phase: ShopPhase = meta[META_PHASE] === "launched" ? "launched" : "preorder";
-  const productIds = (meta[META_PRODUCTS] ?? "")
+  const stamped = (meta[META_PRODUCTS] ?? "")
     .split(",")
     .map((s) => s.trim())
     .filter((s): s is ProductId => s in PRODUCTS);
+  // After launch the pay page offers the labels as an add-on, which only ever
+  // appears in the line items. Map each paid line back to a product by its
+  // Price ID. The $0 preorder bonus line uses a different Price and so maps to
+  // nothing here; that entitlement comes from the phase, not the cart.
+  const lines = session.line_items?.data ?? [];
+  const fromCart = lines
+    .map((li) => productForPrice(li.price?.id))
+    .filter((id): id is ProductId => id !== null);
+  const productIds = [...new Set([...stamped, ...fromCart])];
 
   const pi = typeof session.payment_intent === "object" ? session.payment_intent : null;
   const charge = pi && typeof pi.latest_charge === "object" ? pi.latest_charge : null;
@@ -100,7 +119,8 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
       }
     : null;
 
-  const quantity = session.line_items?.data?.[0]?.quantity ?? 1;
+  const bookLine = lines.find((li) => productForPrice(li.price?.id) === "book") ?? lines[0];
+  const quantity = bookLine?.quantity ?? 1;
 
   return {
     sessionId: session.id,

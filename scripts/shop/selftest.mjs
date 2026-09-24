@@ -97,6 +97,16 @@ const session = (over = {}) => ({
 });
 const o = orderFromSession(session());
 check("email lowercased", o.email === "jane@example.com");
+// Cart-aware products: the launched-phase add-on only exists as a line item.
+const savedBook = process.env.STRIPE_PRICE_BOOK, savedLabels = process.env.STRIPE_PRICE_LABELS;
+process.env.STRIPE_PRICE_BOOK = "price_book_test"; process.env.STRIPE_PRICE_LABELS = "price_labels_test";
+const withAddOn = orderFromSession(session({ metadata: { shop_phase: "launched", product_ids: "book" }, line_items: { data: [{ quantity: 2, price: { id: "price_book_test" } }, { quantity: 1, price: { id: "price_labels_test" } }] } }));
+check("labels added on the pay page land in the order", withAddOn.productIds.includes("labels") && withAddOn.productIds.includes("book"));
+check("quantity read from the book line, not the add-on", withAddOn.quantity === 2);
+const withBonus = orderFromSession(session({ line_items: { data: [{ quantity: 1, price: { id: "price_book_test" } }, { quantity: 1, price: { id: "price_bonus_zero" } }] } }));
+check("the $0 preorder bonus line adds no product", JSON.stringify(withBonus.productIds) === '["book"]');
+check("preorder confirmation names the free labels", renderOrderConfirmation(withBonus, "https://x/y").text.includes("Printable Freezer Labels (free with preorder)"));
+process.env.STRIPE_PRICE_BOOK = savedBook; process.env.STRIPE_PRICE_LABELS = savedLabels;
 check("phase read from purchase-time metadata", o.phase === "preorder");
 check("products read from metadata", JSON.stringify(o.productIds) === '["book"]');
 check("ship estimate read from metadata", o.shipEstimate === "November 2026");

@@ -124,7 +124,13 @@ const SIGN_OFF_TEXT = "\nWith love,\nKeegan\nhalfpintmama.com | @halfpint.mama\n
 
 function orderLines(order: Order): { items: string; total: string; shipTo: string[] } {
   const qty = order.quantity > 1 ? ` \u00d7 ${order.quantity}` : "";
-  const items = (order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "your order") + qty;
+  const bought = order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "your order";
+  // The preorder bonus is not a purchased line, but the buyer should see it
+  // named on their order all the same.
+  const bonus = order.phase === "preorder" && order.productIds.includes("book") && !order.productIds.includes("labels")
+    ? " + Printable Freezer Labels (free with preorder)"
+    : "";
+  const items = bought + qty + bonus;
   const total = order.amountTotal != null && order.currency ? formatMoney(order.amountTotal, order.currency) : "";
   const ship = order.shipping;
   const shipTo = ship

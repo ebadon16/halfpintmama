@@ -136,8 +136,9 @@ export default async function LabelsDeliveryPage({ params }: { params: Promise<{
                   Apple Preview shows the boxes but will not fill them in for you.
                 </li>
                 <li>
-                  On each label, pick a recipe from the list and the best-by line and the freezer
-                  directions fill themselves in, or type your own. Add the date you made it. Page 1 is the guide, pages {LABEL_PAGE_RANGE} are
+                  On each label, pick a recipe from the list, then click outside the box or press
+                  Tab: the best-by line and the freezer directions fill themselves in. Or type your
+                  own. Add the date you made it. Page 1 is the guide, pages {LABEL_PAGE_RANGE} are
                   labels, and the last page is blank for handwriting.
                 </li>
                 <li>

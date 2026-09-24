@@ -27,7 +27,7 @@ const SAMPLE = [
 const doc = await PDFDocument.create();
 const fonts = await _internals.loadFonts(doc);
 const page = doc.addPage([LABEL_SHEET.pageWidth, LABEL_SHEET.pageHeight]);
-page.drawRectangle({ x: 0, y: 0, width: LABEL_SHEET.pageWidth, height: LABEL_SHEET.pageHeight, color: _internals.CREAM });
+page.drawRectangle({ x: 0, y: 0, width: LABEL_SHEET.pageWidth, height: LABEL_SHEET.pageHeight, color: _internals.WHITE });
 _internals.slots().forEach((slot, i) => {
   const [name, made] = SAMPLE[i];
   const r = RECIPES.find((x) => x.name === name);
