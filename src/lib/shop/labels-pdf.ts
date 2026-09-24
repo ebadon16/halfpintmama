@@ -233,18 +233,6 @@ function drawLabelArt(page: PDFPage, slot: Slot, fonts: Fonts, handwrite: boolea
   page.drawText(foot, { x: g.card.x + g.card.w - 12 - fonts.italic.widthOfTextAtSize(foot, 6.5), y: g.card.y + 6, size: 6.5, font: fonts.italic, color: STEEL_TEXT });
 }
 
-// Renders a recipe onto a hand-write label as static text (used only for the
-// preview image, never in a buyer's file).
-export function previewLabel(page: PDFPage, slot: Slot, fonts: Fonts, name: string, made: string, meta: string, directions: string) {
-  const g = labelGeometry(slot);
-  const upper = name.toUpperCase();
-  const size = Math.min(11, (11 * g.w) / Math.max(g.w, fonts.bold.widthOfTextAtSize(upper, 11)));
-  page.drawText(upper, { x: g.x, y: g.title.y + 5, size, font: fonts.bold, color: NAVY });
-  page.drawText(made, { x: g.made.x + 3, y: g.made.y + 3, size: 9.5, font: fonts.body, color: INK });
-  page.drawText(meta, { x: g.x, y: g.meta.y + 3, size: 8.5, font: fonts.italic, color: STEEL_TEXT });
-  paragraph(page, directions, g.x, g.dir.y + g.dir.height - 9, g.w, 8, fonts.body, INK, 11.2);
-}
-
 function stampFooter(page: PDFPage, fonts: Fonts, email: string, note?: string) {
   const s = LABEL_SHEET;
   // The hand-write sheet says what it is instead of repeating the sheet spec,
@@ -449,6 +437,3 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
   // here would repaint them all in one font.
   return doc.save({ updateFieldAppearances: false });
 }
-
-// For the preview renderer: same fonts and geometry as the real file.
-export const _internals = { loadFonts, slots, drawLabelArt, labelGeometry, CREAM, WHITE };
