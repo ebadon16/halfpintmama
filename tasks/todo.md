@@ -383,3 +383,8 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   the paid line items, so an add-on is fulfilled. Confirmation email names the free labels.
 - Verified: sandbox pay pages screenshotted in both phases; a live session created through the deployed
   route carried both lines, then was expired. Self-test 105/105.
+- Sep 23 (late): best-by line prints alone ("Best by 3 months, use within 12 months"; sandwiches 1–2), no
+  yield, no cooker tag; thumbnails on /shop and /cookbook-resources are a single-label close-up
+  (`public/images/labels-preview-label.png`) that opens the full sheet; guide says colour or black and
+  white is the printer dialog's choice; all 35 recipes verified through the real form path with no
+  field clipping (105 filled fields checked). Sample confirmation email delivered via Resend to Erick.
