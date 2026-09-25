@@ -296,7 +296,7 @@ allows eval; a dev server started inside a tool call dies with it, launch detach
 - Book quantity 1-5 at checkout; emails show "Rest & Rise x N".
 - Shipped notice: `node --env-file=.env.local node_modules/.bin/tsx scripts/shop/notify-shipped.mjs`
   (dry run) then `--send`. Marks `shipped_at` on the PaymentIntent. Verified once in the sandbox.
-- `SHOP_AMAZON_URL` (optional, launched phase only) adds "Prefer Amazon? Find it there." Direct
+- (Removed Sep 25 2026, Erick's call: no link from the site to Amazon. Direct sales net several times more; customers who find Amazon on their own are fine.) Was: `SHOP_AMAZON_URL` added "Prefer Amazon? Find it there." Direct
   sales lead: they net several times what a KDP sale does, and KDP cannot preorder print books.
 - Decisions still open for Keegan/Erick: Stripe's own receipt emails (recommend OFF, ours covers
   it); ship date must include KDP author-copy lead time; sales tax; book p.23/p.172 copy; terms
