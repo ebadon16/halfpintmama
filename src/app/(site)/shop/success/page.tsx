@@ -91,9 +91,9 @@ export default async function ShopSuccessPage({
         <div className="bg-white rounded-2xl shadow-md p-6 mb-5 flex gap-4 items-start text-left">
           <ThemedIcon icon={PackageCheck} size="lg" color="sage" />
           <div>
-            <p className="font-semibold text-charcoal mb-1">{PRODUCTS.book.name}</p>
+            <p className="font-semibold text-charcoal mb-1">{PRODUCTS.book.name}, signed hardcover</p>
             <p className="text-charcoal/80 text-sm">
-              Keegan will pack your copy herself
+              Keegan will sign and pack your copy herself
               {shipTo ? ` and ship it to ${shipTo}` : ""}.
               {order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""} A confirmation is on
               its way to {order.email}.

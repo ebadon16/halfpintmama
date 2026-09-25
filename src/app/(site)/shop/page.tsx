@@ -21,9 +21,9 @@ const DESCRIPTION: Record<ShopStatus, string> = {
   waitlist:
     "Coming soon from Half Pint Mama: Rest & Rise, a post-partum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   preorder:
-    "Preorder Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Printable freezer labels free with every preorder.",
+    "Preorder a signed copy of Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Printable freezer labels free with every preorder.",
   launched:
-    "Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Plus printable freezer labels for every recipe.",
+    "Signed copies of Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Plus printable freezer labels for every recipe.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -371,14 +371,14 @@ function BookOffer({ status, price, labelsLater }: { status: "preorder" | "launc
     <div className="bg-white rounded-2xl shadow-lg p-6">
       <div className="flex items-baseline justify-between gap-4 mb-1">
         <p className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold">
-          {PRODUCTS.book.name}, hardcover
+          {PRODUCTS.book.name}, signed hardcover
         </p>
         <p className="text-2xl font-bold text-charcoal">{price ? price.formatted : <span className="text-base font-medium text-charcoal/80">Price at checkout</span>}</p>
       </div>
       <p className="text-charcoal/80 text-sm mb-4">
         {preorder && shipEstimate
-          ? `Preorder now. Ships ${shipEstimate}, packed and mailed by Keegan.`
-          : "Packed and mailed by Keegan."}{" "}
+          ? `Preorder now. Every copy from this site is signed by Keegan. Ships ${shipEstimate}, packed and mailed by her.`
+          : "Every copy from this site is signed by Keegan, then packed and mailed by her."}{" "}
         {shippingLine()}
       </p>
 

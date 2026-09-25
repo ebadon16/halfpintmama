@@ -283,7 +283,7 @@ export default async function Home() {
                 Rest & Rise
               </h3>
               <p className="text-charcoal/80 text-sm mb-4">
-                My postpartum cookbook: 35 make-ahead, freezer-friendly recipes for the fourth trimester.
+                My postpartum cookbook: 35 make-ahead, freezer-friendly recipes for the fourth trimester. Every copy from my shop is signed.
               </p>
               <Link
                 href="/shop"

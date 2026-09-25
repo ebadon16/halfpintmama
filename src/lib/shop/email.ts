@@ -58,7 +58,7 @@ const SIGN_OFF_TEXT = "\nWith love,\nKeegan\nhalfpintmama.com | @halfpint.mama\n
 
 function orderLines(order: Order): { items: string; bought: string; total: string; shipTo: string[] } {
   const qty = order.quantity > 1 ? ` × ${order.quantity}` : "";
-  const bought = order.productIds.map((id) => PRODUCTS[id].name).join(" + ") || "your order";
+  const bought = order.productIds.map((id) => (id === "book" ? `${PRODUCTS[id].name}, signed hardcover` : PRODUCTS[id].name)).join(" + ") || "your order";
   // The preorder bonus is not a purchased line, but the buyer should see it
   // named on their order all the same.
   const bonus = order.phase === "preorder" && order.productIds.includes("book") && !order.productIds.includes("labels")
@@ -125,9 +125,9 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
       : "Your Rest & Rise freezer labels are ready";
 
   const opening = preorder
-    ? p(`Thank you for preordering <em>Rest &amp; Rise</em>. Your copy is spoken for, and I will pack it myself.${ships}`)
+    ? p(`Thank you for preordering <em>Rest &amp; Rise</em>. Your copy is spoken for, and I will sign it and pack it myself.${ships}`)
     : hasBook
-      ? p(`Thank you for your order. Your copy of <em>Rest &amp; Rise</em> is spoken for, and I will pack it myself.${ships}`)
+      ? p(`Thank you for your order. Your copy of <em>Rest &amp; Rise</em> is spoken for, and I will sign it and pack it myself.${ships}`)
       : p("Thank you for your order. Your printable freezer labels are ready right now.");
 
   const summary = summaryPanel(order, items, total, shipTo, hasBook);
@@ -150,9 +150,9 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
   const text =
     "Hi friend,\n\n" +
     (preorder
-      ? `Thank you for preordering Rest & Rise. Your copy is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}, and I will email you the moment it is on its way.` : ""}`
+      ? `Thank you for preordering Rest & Rise. Your copy is spoken for, and I will sign it and pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}, and I will email you the moment it is on its way.` : ""}`
       : hasBook
-        ? `Thank you for your order. Your copy of Rest & Rise is spoken for, and I will pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""}`
+        ? `Thank you for your order. Your copy of Rest & Rise is spoken for, and I will sign it and pack it myself.${order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""}`
         : "Thank you for your order. Your printable freezer labels are ready right now.") +
     `\n\n${items}${total ? ` - ${total}` : ""}\n` +
     (shipTo.length ? `Shipping to ${shipTo.join(", ")}\n` : "") +
@@ -178,7 +178,7 @@ export function renderShippedNotice(order: Order): RenderedEmail {
     : "";
   const html = shell(
     "It is on its way!",
-    p(`Good news: ${copies} in the mail. I packed it myself this morning.`) +
+    p(`Good news: ${copies} in the mail, signed and packed by me this morning.`) +
       where +
       p(`While you wait, the prep day planner and both stock-up lists are free to print: ${a(`${SITE_URL}/shop`, "halfpintmama.com/shop")}. Week 30 is setup week, so there is no rush.`) +
       p("Thank you for being one of the first. I hope it earns a spot on your counter.") +
@@ -186,7 +186,7 @@ export function renderShippedNotice(order: Order): RenderedEmail {
     "Hi friend,"
   );
   const text =
-    `Hi friend,\n\nGood news: ${copiesText} in the mail. I packed it myself this morning.\n\n` +
+    `Hi friend,\n\nGood news: ${copiesText} in the mail, signed and packed by me this morning.\n\n` +
     `${items}\n` + (shipTo.length ? `Heading to ${shipTo.join(", ")}\n` : "") +
     `\nWhile you wait, the prep day planner and both stock-up lists are free to print: ${SITE_URL}/shop\n\n` +
     `Thank you for being one of the first. I hope it earns a spot on your counter.\n\nQuestions about delivery? Just reply to this email.\n` +

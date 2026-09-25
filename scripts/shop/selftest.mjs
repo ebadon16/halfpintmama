@@ -150,8 +150,8 @@ check("confirmation carries the labels link", conf.html.includes("/shop/labels/a
 check("preorder confirmation says preorder", /preorder/i.test(conf.subject));
 const launchedBookConf = renderOrderConfirmation(orderFromSession(session({ metadata: { shop_phase: "launched", product_ids: "book" } })), null);
 check("launched book confirmation has no labels section", !launchedBookConf.html.includes("Open my labels") && !/preorder/i.test(launchedBookConf.subject));
-check("quantity shows in the order line", renderOrderConfirmation(two, null).html.includes("Rest &amp; Rise \u00d7 2"));
-check("quantity shows in the plain-text order line", renderOrderConfirmation(two, null).text.includes("Rest & Rise \u00d7 2"));
+check("quantity shows in the order line", renderOrderConfirmation(two, null).html.includes("Rest &amp; Rise, signed hardcover \u00d7 2"));
+check("quantity shows in the plain-text order line", renderOrderConfirmation(two, null).text.includes("Rest & Rise, signed hardcover \u00d7 2"));
 check("shipped notice pluralises", /2 copies/.test(renderShippedNotice(two).html) && /your copy/.test(renderShippedNotice(o).html));
 check("recovery email is just the link", renderLabelsRecovery("https://halfpintmama.com/shop/labels/x.y").html.includes("/shop/labels/x.y"));
 check("owner notification carries the address", renderOrderNotification(o, "jane@example.com").html.includes("Austin"));

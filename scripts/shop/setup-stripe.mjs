@@ -33,7 +33,7 @@ const PRODUCTS = {
   book: {
     name: "Rest & Rise",
     description:
-      "Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery. Hardcover, packed and shipped by Keegan.",
+      "Make-Ahead, Freezer-Friendly Sourdough Meals for Postpartum Recovery. Signed hardcover, packed and shipped by Keegan.",
     lookup: "hpm_book",
     amount: Number(args.book || 0),
     shippable: true,
