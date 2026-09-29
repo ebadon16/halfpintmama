@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EmailSignup } from "@/components/EmailSignup";
 import { PackageCheck, Tag } from "lucide-react";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { PRODUCTS } from "@/lib/shop/catalog";
@@ -123,6 +124,23 @@ export default async function ShopSuccessPage({
           </Link>
         </div>
       )}
+
+      {/* Buying does not subscribe anyone (order email and newsletter are kept
+          apart on purpose). This is the opt-in, offered at the warmest moment. */}
+      <div className="bg-white rounded-2xl shadow-md p-6 mb-5 text-left">
+        <p className="font-semibold text-charcoal mb-1">Want recipes and updates too?</p>
+        <p className="text-charcoal/80 text-sm mb-4">
+          Join my email list for my two free guides, the Postpartum Freezer Prep Guide and the
+          Sourdough Starter Guide, plus new from-scratch recipes. Your order emails come either way.
+        </p>
+        <EmailSignup
+          source="shop-buyer"
+          buttonText="Join"
+          placeholder="Your email"
+          buttonClassName="bg-terracotta text-white hover:bg-terracotta/90"
+          inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
+        />
+      </div>
 
       <p className="text-charcoal/80 text-sm">
         Questions about your order? Reply to the confirmation email or{" "}

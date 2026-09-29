@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EmailSignup } from "@/components/EmailSignup";
 import Image from "next/image";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { Tag, BookOpen, ClipboardCheck } from "lucide-react";
@@ -141,6 +142,26 @@ export default function CookbookResourcesPage() {
             </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Book readers land here from the printed pages: invite them onto the list. */}
+      <section className="py-12 bg-white">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
+            Get new recipes by email
+          </h2>
+          <p className="text-charcoal/80 text-sm mb-5 max-w-md mx-auto">
+            Join my list for my two free guides, the Postpartum Freezer Prep Guide and the
+            Sourdough Starter Guide, plus new from-scratch recipes as I make them.
+          </p>
+          <EmailSignup
+            source="cookbook-resources"
+            buttonText="Join"
+            placeholder="Your email"
+            buttonClassName="bg-terracotta text-white hover:bg-terracotta/90"
+            inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
+          />
         </div>
       </section>
 

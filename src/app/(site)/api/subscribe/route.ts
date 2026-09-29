@@ -3,7 +3,7 @@ import { rateLimit } from "@/lib/rate-limit";
 import { getClientIp, isSameOrigin } from "@/lib/http";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const VALID_SOURCES = ["website", "popup", "homepage", "post-mid", "post-bottom", "free-guide-hero", "mama-guide-hero", "shop-waitlist", "search-results", "footer", "cookbook-checklist", "cookbook-resources"];
+const VALID_SOURCES = ["website", "popup", "homepage", "post-mid", "post-bottom", "free-guide-hero", "mama-guide-hero", "shop-waitlist", "search-results", "footer", "cookbook-checklist", "cookbook-resources", "shop-updates", "shop-buyer"];
 const VALID_SEGMENTS = ["kitchen", "mama-life"];
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -107,7 +107,7 @@ export async function POST(request: NextRequest) {
     }
 
     const normalizedSource = VALID_SOURCES.includes(source) ? source : "website";
-    const COOKBOOK_SOURCES = ["shop-waitlist", "cookbook-resources", "cookbook-checklist"];
+    const COOKBOOK_SOURCES = ["shop-waitlist", "cookbook-resources", "cookbook-checklist", "shop-updates"];
     if (COOKBOOK_GROUP_ID && COOKBOOK_SOURCES.includes(normalizedSource)) {
       groups.push(COOKBOOK_GROUP_ID);
     }

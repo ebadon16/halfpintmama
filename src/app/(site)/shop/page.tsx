@@ -181,7 +181,16 @@ export default async function ShopPage() {
               {/* Page 140 of the book sends readers to this URL for the
                   printables. Without this they land on the hero and have to
                   scroll past everything to find what they were told was here. */}
-              <p className="text-charcoal/80 text-sm mt-4">
+              {status !== "waitlist" && bookSellable && (
+                <p className="text-charcoal/80 text-sm mt-4">
+                  Not ready yet?{" "}
+                  <a href="#updates" className="text-terracotta hover:text-deep-sage font-medium">
+                    Get my free guides and book updates
+                  </a>
+                  .
+                </p>
+              )}
+              <p className="text-charcoal/80 text-sm mt-2">
                 Here from the book?{" "}
                 <a
                   href="#printables"
@@ -292,6 +301,30 @@ export default async function ShopPage() {
           </div>
         </section>
 
+        {/* For visitors not ready to buy: a quiet way to stay in touch. Sits
+            below the offer and the labels so it never competes with the
+            Preorder button; the link under the offer points here. */}
+        {status !== "waitlist" && bookSellable && (
+          <section id="updates" className="mb-16 max-w-2xl mx-auto scroll-mt-24">
+            <div className="bg-white rounded-2xl shadow-md p-6 md:p-8 text-center">
+              <h2 className="font-[family-name:var(--font-crimson)] text-2xl text-deep-sage font-semibold mb-2">
+                Not ready to preorder yet?
+              </h2>
+              <p className="text-charcoal/80 text-sm mb-5 max-w-md mx-auto">
+                Get my two free guides right away, the Postpartum Freezer Prep Guide and the
+                Sourdough Starter Guide, plus first word on new recipes and the book.
+              </p>
+              <EmailSignup
+                source="shop-updates"
+                buttonText="Send My Free Guides"
+                placeholder="Your email"
+                buttonClassName="bg-terracotta text-white hover:bg-terracotta/90"
+                inputClassName="!border-terracotta/30 focus:!border-terracotta focus:!ring-terracotta/30"
+              />
+            </div>
+          </section>
+        )}
+
         <section className="max-w-md mx-auto text-center">
           <div className="space-y-3">
             <Link
@@ -306,7 +339,7 @@ export default async function ShopPage() {
             >
               Explore mama life posts &rarr;
             </Link>
-            <div className="pt-2 border-t border-warm-beige/50">
+            <div className={`pt-2 border-t border-warm-beige/50 ${status !== "waitlist" && bookSellable ? "hidden" : ""}`}>
               <Link
                 href="/free-guide"
                 className="text-terracotta hover:text-deep-sage text-sm font-medium transition-colors"
