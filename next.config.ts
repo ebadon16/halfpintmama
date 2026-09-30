@@ -71,9 +71,9 @@ const nextConfig: NextConfig = {
       // Sep 29 2026). Anyone who saved an older link gets the current file.
       ...[
         ["prep-day-planner", "5c0d46ed", ["6d34777c", "450adfff"]],
-        ["postpartum-household-stock-up-list", "25e1def2", ["d362b64b", "9b38d264"]],
+        ["postpartum-household-stock-up-list", "b87c09eb", ["d362b64b", "9b38d264", "25e1def2"]],
         ["pantry-staples-stock-up-list", "cb75a011", ["3080694a", "6d7fa061"]],
-        ["freezer-inventory-checklist", "b0f887b4", ["37797fa7", "c30d0350"]],
+        ["freezer-inventory-checklist", "225e89ed", ["37797fa7", "c30d0350", "b0f887b4"]],
       ].flatMap(([slug, current, old]) =>
         (old as string[]).map((oldHash) => ({
           source: `/downloads/rest-and-rise-${slug}-${oldHash}.pdf`,
