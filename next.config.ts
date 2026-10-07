@@ -67,12 +67,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // The four Chapter 11 printables are cut from the final print file, so
-      // their content-hashed names change whenever the book does (Sep 23 and
-      // Sep 29 2026). Anyone who saved an older link gets the current file.
+      // their content-hashed names change whenever the book does (Sep 23, Sep 29
+      // and Oct 6 2026). Anyone who saved an older link gets the current file.
       ...[
         ["prep-day-planner", "5c0d46ed", ["6d34777c", "450adfff"]],
-        ["postpartum-household-stock-up-list", "b87c09eb", ["d362b64b", "9b38d264", "25e1def2"]],
-        ["pantry-staples-stock-up-list", "cb75a011", ["3080694a", "6d7fa061"]],
+        ["postpartum-household-stock-up-list", "cb91187f", ["d362b64b", "9b38d264", "25e1def2", "b87c09eb"]],
+        ["pantry-staples-stock-up-list", "eff03b8a", ["3080694a", "6d7fa061", "cb75a011"]],
         ["freezer-inventory-checklist", "225e89ed", ["37797fa7", "c30d0350", "b0f887b4"]],
       ].flatMap(([slug, current, old]) =>
         (old as string[]).map((oldHash) => ({
