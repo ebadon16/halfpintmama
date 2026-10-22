@@ -3,7 +3,7 @@
 // freezer to the table. This is the data behind the label PDF's recipe
 // dropdown and its auto-fill.
 //
-// Every line was cross-checked against the FINAL KDP interior (Sep 22 2026):
+// Every line was cross-checked against the FINAL KDP interior (Oct 22 2026):
 // the recipe's STORAGE block and its cook-day step. Where Keegan's Canva
 // "freezer labels" draft (Sep 23 2026) disagreed with the book, the book won:
 // the five casseroles bake 60-75 minutes covered from frozen, not 35-60;
@@ -119,7 +119,7 @@ export const RECIPES: readonly Recipe[] = [
     keeps: KEEPS,
     yield: "12 mini quiches",
     directions:
-      "Reheating from frozen: on parchment at 350°F for 10–12 minutes, until steaming hot through. No thawing needed.\nFaster: microwave 60–90 seconds (softer crust).",
+      "Reheating from frozen: on parchment at 350°F for 15–18 minutes, until steaming hot through. No thawing needed.\nFaster: microwave 60–90 seconds (softer crust).",
   },
   {
     name: "Freezer Waffles",
@@ -135,7 +135,7 @@ export const RECIPES: readonly Recipe[] = [
     keeps: KEEPS,
     yield: "about 9 portions",
     directions:
-      "Reheating from frozen: microwave a portion 60–90 seconds, or 350°F oven for 8–10 minutes until heated through. The oven brings the streusel back best.",
+      "Reheating from frozen: microwave a portion 2–3 minutes, or bake covered with foil at 350°F for 20–25 minutes, uncovering for the last 5, until steaming hot in the center. The oven brings the streusel back best.",
   },
   {
     name: "Aloha Meatballs",
@@ -224,7 +224,7 @@ export const RECIPES: readonly Recipe[] = [
       "Baking from frozen: remove the plastic, keep the foil on. 375°F covered 70 minutes, then uncovered 15–20 minutes until bubbly and golden; center 165°F. Rest 5–10 minutes.\nBaking from thawed (24–36 hours in the refrigerator): 375°F covered 30 minutes, uncovered 10–15 minutes; center 165°F.",
   },
   {
-    name: "Barbecue Chicken and Sweet Potato Casserole",
+    name: "BBQ Chicken and Sweet Potato Casserole",
     page: 104,
     keeps: KEEPS,
     yield: "serves 6–8",
@@ -253,7 +253,7 @@ export const RECIPES: readonly Recipe[] = [
     keeps: KEEPS,
     yield: "30 pinwheels",
     directions:
-      "Frozen baked: pack frozen with an ice pack for lunch (soft by midday), or air fryer 350°F for 3–4 minutes.\nFrozen unbaked: bake from frozen at 375°F for 20–26 minutes, until golden.",
+      "Frozen baked: pack frozen with an ice pack for lunch (soft by midday), or air fryer 350°F for 6–8 minutes until steaming hot.\nFrozen unbaked: bake from frozen at 375°F for 20–26 minutes, until golden.",
   },
   {
     name: "Little Sealed Sandwiches",

@@ -10,7 +10,7 @@
 //
 // The files carry hashed names and next.config.ts serves /downloads with
 // X-Robots-Tag: noindex, so the pages that present them rank rather than the
-// bare PDFs. The files are cut from Keegan's Canva chapter 11 design; see
+// bare PDFs. The files are cut from the FINAL KDP interior PDF; see
 // scripts/chapter11-printables/README.md for the refresh steps.
 
 export interface Printable {
@@ -27,7 +27,7 @@ export const PRINTABLES: readonly Printable[] = [
     slug: "prep-day-planner",
     name: "Your Prep Day Planner",
     blurb: "Map out any session before you start it: what you are making, what must be ready, and the rhythm of the day.",
-    file: "/downloads/rest-and-rise-prep-day-planner-5c0d46ed.pdf",
+    file: "/downloads/rest-and-rise-prep-day-planner-9a91b83a.pdf",
     preview: "/images/printables/prep-day-planner.png",
     pages: 2,
   },
@@ -35,7 +35,7 @@ export const PRINTABLES: readonly Printable[] = [
     slug: "postpartum-household-stock-up-list",
     name: "Postpartum Household Stock-Up List",
     blurb: "Kitchen consumables, equipment, recovery essentials, feeding supplies, baby basics, and the everyday household things to have before baby arrives.",
-    file: "/downloads/rest-and-rise-postpartum-household-stock-up-list-9324ae19.pdf",
+    file: "/downloads/rest-and-rise-postpartum-household-stock-up-list-7947685c.pdf",
     preview: "/images/printables/postpartum-household-stock-up-list.png",
     pages: 1,
   },
@@ -43,7 +43,7 @@ export const PRINTABLES: readonly Printable[] = [
     slug: "pantry-staples-stock-up-list",
     name: "Pantry Staples Stock-Up List",
     blurb: "Every ingredient that shows up again and again in the book, so the weekly run only needs the fresh items.",
-    file: "/downloads/rest-and-rise-pantry-staples-stock-up-list-8f3fc938.pdf",
+    file: "/downloads/rest-and-rise-pantry-staples-stock-up-list-c038bb63.pdf",
     preview: "/images/printables/pantry-staples-stock-up-list.png",
     pages: 1,
   },
@@ -51,7 +51,7 @@ export const PRINTABLES: readonly Printable[] = [
     slug: "freezer-inventory-checklist",
     name: "Freezer Inventory Checklist",
     blurb: "Every recipe in the book with a quantity and date line. Fill it in as you finish each session, cross items off as you pull them out.",
-    file: "/downloads/rest-and-rise-freezer-inventory-checklist-225e89ed.pdf",
+    file: "/downloads/rest-and-rise-freezer-inventory-checklist-8aeb7f16.pdf",
     preview: "/images/printables/freezer-inventory-checklist.png",
     pages: 1,
   },
