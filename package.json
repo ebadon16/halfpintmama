@@ -18,7 +18,7 @@
     "@sanity/vision": "^6.18.0",
     "@vercel/analytics": "^1.6.1",
     "lucide-react": "^0.563.0",
-    "next": "^16.3.8",
+    "next": "^16.4.2",
     "next-sanity": "^13.3.4",
     "pdf-lib": "^1.17.1",
     "react": "19.2.3",
@@ -34,12 +34,13 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "^16.3.5",
+    "eslint-config-next": "^16.4.2",
     "tailwindcss": "^4",
     "tsx": "^4.23.13",
     "typescript": "^5"
   },
   "overrides": {
+    "dompurify": "^3.4.17",
     "@vercel/frameworks": {
       "js-yaml": "^3.15.1",
       "smol-toml": "^1.8.0"

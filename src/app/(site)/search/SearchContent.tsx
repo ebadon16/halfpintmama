@@ -36,13 +36,6 @@ export function SearchContent({ popularTags }: SearchContentProps) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  useEffect(() => {
-    if (initialQuery) {
-      performSearch(initialQuery);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialQuery]);
-
   // Monotonic id so a slow earlier response can't overwrite a newer one
   const searchSeqRef = useRef(0);
 
@@ -74,6 +67,16 @@ export function SearchContent({ popularTags }: SearchContentProps) {
       if (seq === searchSeqRef.current) setIsSearching(false);
     }
   };
+
+  // Run the search for a ?q= landing. It is a fetch against the API (an
+  // external system); the loading flags it flips are the fetch's own state.
+  useEffect(() => {
+    if (initialQuery) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      performSearch(initialQuery);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialQuery]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
