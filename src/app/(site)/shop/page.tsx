@@ -19,7 +19,7 @@ export const revalidate = 300;
 
 const DESCRIPTION: Record<ShopStatus, string> = {
   waitlist:
-    "Coming soon from Half Pint Mama: Rest & Rise, a post-partum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
+    "Coming soon from Half Pint Mama: Rest & Rise, a postpartum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   preorder:
     "Preorder a signed copy of Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Printable freezer labels free with every preorder.",
   launched:
@@ -303,8 +303,8 @@ export default async function ShopPage() {
           </div>
         </section>
 
-        {/* The book sends readers here (page 143) for every fill-in page in
-            Chapter 11, and (pages 23 and 165) for the labels. Free in every phase. */}
+        {/* The book sends readers here (page 140) for every fill-in page in
+            Chapter 11, and (pages 34 and 165) for the labels. Free in every phase. */}
         <section id="printables" className="mb-16 max-w-5xl mx-auto scroll-mt-24">
           <div className="flex items-center justify-center gap-3 mb-3">
             <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />

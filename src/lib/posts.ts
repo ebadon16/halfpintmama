@@ -189,10 +189,14 @@ export async function getAllTags(): Promise<{ tag: string; count: number }[]> {
 export function formatDate(dateString: string): string {
   const date = new Date(dateString);
   if (isNaN(date.getTime())) return "";
+  // Post dates are stored as plain "YYYY-MM-DD", which Date parses as UTC
+  // midnight. Format in UTC too, or a server west of Greenwich (a local
+  // `next start`, or a region change on Vercel) prints the day before.
   return date.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "UTC",
   });
 }
 
