@@ -259,7 +259,7 @@ export default async function ShopPage() {
                 sizes="(min-width: 768px) 288px, 256px"
                 className="w-full h-auto"
               />
-              <span className="block text-[11px] text-charcoal/60 text-center px-2 py-1.5 bg-cream/60 border-t border-warm-beige">
+              <span className="block text-[11px] text-charcoal/80 text-center px-2 py-1.5 bg-cream/60 border-t border-warm-beige">
                 Sample: one label, filled in for Nesting Ziti. Tap to see a full sheet.
               </span>
             </a>
