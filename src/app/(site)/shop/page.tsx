@@ -223,27 +223,26 @@ export default async function ShopPage() {
           </div>
         </section>
 
-        {/* The book sends readers here (page 143) for every fill-in page in
-            Chapter 11, and (pages 23 and 165) for the labels. Free in every phase. */}
-        <section id="printables" className="mb-16 max-w-5xl mx-auto scroll-mt-24">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />
-            <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold">
-              Free Printables From the Book
-            </h2>
-          </div>
-          <p className="text-charcoal/80 text-center max-w-2xl mx-auto mb-8">
-            Every fill-in page from Chapter 11: the prep day planner, both stock-up lists, and the
-            freezer inventory checklist. Print as many as you need. No signup.
-          </p>
-          <PrintablesGrid compact />
-        </section>
-
         {/* The labels: the book names them on pages 34 and 165, and during
             preorder they are the bonus, so buyers need to SEE what they are
             getting. The image is a real render of a filled sheet
-            (scripts/shop/labels-preview.mjs). */}
+            (scripts/shop/labels-preview.mjs). They sit ABOVE the free
+            printables with their own heading: placed under that heading with
+            none of their own they read as a fifth free download (Oct 22). */}
         <section id="labels" className="mb-16 max-w-5xl mx-auto scroll-mt-24">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <ThemedIcon icon={Tag} size="lg" color="terracotta" />
+            <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold">
+              {status === "preorder" ? "Your Preorder Bonus" : "The Freezer Label Kit"}
+            </h2>
+          </div>
+          <p className="text-charcoal/80 text-center max-w-2xl mx-auto mb-8">
+            {status === "preorder"
+              ? "The one thing here that is not a free download: the label kit sells on its own after launch, and every preorder gets it free."
+              : status === "launched"
+                ? "Sold as its own item, separate from the free printables below."
+                : "A paid label kit, coming with the book. Not one of the free printables below."}
+          </p>
           <div className="bg-white rounded-2xl shadow-md p-6 md:p-8 max-w-3xl mx-auto md:flex gap-8 items-start">
             <a
               href="/images/labels-preview.png"
@@ -299,6 +298,22 @@ export default async function ShopPage() {
               </ul>
             </div>
           </div>
+        </section>
+
+        {/* The book sends readers here (page 143) for every fill-in page in
+            Chapter 11, and (pages 23 and 165) for the labels. Free in every phase. */}
+        <section id="printables" className="mb-16 max-w-5xl mx-auto scroll-mt-24">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <ThemedIcon icon={ClipboardCheck} size="lg" color="sage" />
+            <h2 className="font-[family-name:var(--font-crimson)] text-3xl text-deep-sage font-semibold">
+              Free Printables From the Book
+            </h2>
+          </div>
+          <p className="text-charcoal/80 text-center max-w-2xl mx-auto mb-8">
+            Every fill-in page from Chapter 11: the prep day planner, both stock-up lists, and the
+            freezer inventory checklist. Print as many as you need. No signup.
+          </p>
+          <PrintablesGrid compact />
         </section>
 
         {/* For visitors not ready to buy: a quiet way to stay in touch. Sits
