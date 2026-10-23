@@ -74,7 +74,7 @@ export default async function Home() {
     },
     sameAs: [
       "https://www.instagram.com/halfpint.mama",
-      "https://www.facebook.com/HalfPintMama",
+      "https://www.facebook.com/profile.php?id=61562318824668",
       "https://www.youtube.com/@HalfPintMama",
       "https://www.tiktok.com/@halfpint.mama",
       "https://www.pinterest.com/halfpintmamakeegan",

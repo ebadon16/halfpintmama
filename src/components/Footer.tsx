@@ -92,7 +92,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.facebook.com/HalfPintMama"
+                href="https://www.facebook.com/profile.php?id=61562318824668"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-charcoal/10 rounded-full flex items-center justify-center hover:bg-terracotta hover:text-white text-charcoal/80 transition-all"

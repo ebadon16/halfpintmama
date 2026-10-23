@@ -37,7 +37,7 @@ const personSchema = {
   // The five platforms the book prints (pages 162 and 165), plus the link hub.
   sameAs: [
     "https://www.instagram.com/halfpint.mama",
-    "https://www.facebook.com/HalfPintMama",
+    "https://www.facebook.com/profile.php?id=61562318824668",
     "https://www.youtube.com/@HalfPintMama",
     "https://www.tiktok.com/@halfpint.mama",
     "https://www.pinterest.com/halfpintmamakeegan",

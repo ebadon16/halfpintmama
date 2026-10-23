@@ -252,7 +252,7 @@ export function ContactForm() {
                 <span>@halfpint.mama</span>
               </a>
               <a
-                href="https://www.facebook.com/HalfPintMama"
+                href="https://www.facebook.com/profile.php?id=61562318824668"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-charcoal hover:text-terracotta transition-colors"
