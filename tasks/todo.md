@@ -152,7 +152,9 @@ refund it in the Stripe dashboard and confirm the labels link stops working. Ten
 1. Change `SHOP_SHIP_ESTIMATE` on Vercel production to the new wording (lower-case, it sits
    mid-sentence) and push a commit so it deploys. New buyers now see the new date on /shop, on the
    Stripe pay page and in their confirmation.
-2. Tell everyone who already paid, with the LIVE key pasted into the env:
+2. Tell everyone who already paid. Easiest: the deployed route, no key needed locally:
+   `curl -X POST https://halfpintmama.com/api/shop/admin/notify -H "Authorization: Bearer $SHOP_ADMIN_SECRET" -H "Content-Type: application/json" -d '{"kind":"delay","to":"<new wording>"}'`
+   lists who gets it; add `"send":true` (8 per call, repeat until `remaining` is 0). Or locally with the live key:
    `STRIPE_SECRET_KEY=sk_live_... node --env-file=.env.local node_modules/.bin/tsx scripts/shop/notify-delay.mjs --to="<new wording>"`
    (a shell variable beats the env file, so only the live key is pasted; `.env.local` must already carry
    the new `SHOP_SHIP_ESTIMATE` and the Resend key)
@@ -414,7 +416,11 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   `shipEstimateRevised` + `delayNoticeAt`, success page reads `effectiveShipEstimate()`. Self-test 118/118.
   Proven in the sandbox: one order sent (landed in Erick's inbox), marker written, re-run skipped it,
   env-mismatch guard refuses a wrong `--to`.
-- ⚠ Live send still to do by Erick (live key is only in Vercel): step 2 of "If the ship date slips".
+- **Live send DONE Nov 1 2026, 09:3x CT: 17/17 preorder buyers emailed, 0 failed**, all stamped
+  `ship_estimate_revised="late November 2026"`; a follow-up dry run reports 0 due. Ran through the new
+  `POST /api/shop/admin/notify` (Bearer `SHOP_ADMIN_SECRET`, in Vercel prod + .env.local) because the live
+  key is a sensitive Vercel var that cannot be pulled. The same route sends the shipped notice
+  (`{"kind":"shipped","send":true}`), so Step 4 no longer needs the live key on a laptop either.
 - 16 CFR 435.2(b)(1)(i) wants a "definite revised shipping date"; Erick chose "late November 2026", the
   same shape as the original "late October 2026" promise and 30 days or less after it, so silence counts
   as consent.
