@@ -206,12 +206,14 @@ export function renderDelayNotice(order: Order, revised: string): RenderedEmail 
     `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 22px; line-height: 130%; color: ${T.heading};"><strong>${escapeHtml(capitalize(revised))}</strong></p>` +
     `<p style="margin: 0 0 8px; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">${escapeHtml(items)}${where.length ? `, heading to ${escapeHtml(where[0])}` : ""}</p>` +
     `<p style="margin: 0; font-family: ${T.sans}; font-size: 12px; color: ${T.muted};">Order reference ${escapeHtml(order.sessionId)}</p>`;
+  // Wording must hold whether this goes out before or after the promised date
+  // has passed (the Nov 1 2026 notice went out a day after "late October").
   const toldDate = original ? `would ship ${escapeHtml(original)}` : "would ship by now";
   const toldDateText = original ? `would ship ${original}` : "would ship by now";
 
   const html = shell(
     "Your book is running late",
-    p(`I owe you an update. I told you your copy of <em>Rest &amp; Rise</em> ${toldDate}, and it is not going to make that. The print run is running later than I planned, and I would rather tell you now than let the date pass quietly.`) +
+    p(`I owe you an update. I told you your copy of <em>Rest &amp; Rise</em> ${toldDate}, and I have to move that date. The print run is running later than I planned, and I would rather tell you directly than leave you wondering.`) +
       panel(media(COVER, detail, 96)) +
       p(`<strong>You do not need to do anything to keep your order.</strong> Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you before your book ships, I will take that as a yes to the new date.`) +
       p(`<strong>If the wait does not work for you, reply to this email and I will refund you in full</strong>, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.`) +
@@ -220,7 +222,7 @@ export function renderDelayNotice(order: Order, revised: string): RenderedEmail 
     "Hi friend,"
   );
   const text =
-    `Hi friend,\n\nI owe you an update. I told you your copy of Rest & Rise ${toldDateText}, and it is not going to make that. The print run is running later than I planned, and I would rather tell you now than let the date pass quietly.\n\n` +
+    `Hi friend,\n\nI owe you an update. I told you your copy of Rest & Rise ${toldDateText}, and I have to move that date. The print run is running later than I planned, and I would rather tell you directly than leave you wondering.\n\n` +
     `NEW SHIP DATE: ${capitalize(revised)}\n${items}${where.length ? `, heading to ${where[0]}` : ""}\nOrder reference ${order.sessionId}\n\n` +
     `You do not need to do anything to keep your order. Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you before your book ships, I will take that as a yes to the new date.\n\n` +
     `If the wait does not work for you, reply to this email and I will refund you in full, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.\n\n` +
