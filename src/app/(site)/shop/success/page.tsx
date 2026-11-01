@@ -5,7 +5,7 @@ import { PackageCheck, Tag } from "lucide-react";
 import { ThemedIcon } from "@/components/ThemedIcon";
 import { PRODUCTS } from "@/lib/shop/catalog";
 import { deliveryLinkFor } from "@/lib/shop/fulfil";
-import { getOrder, orderEntitlements } from "@/lib/shop/orders";
+import { effectiveShipEstimate, getOrder, orderEntitlements } from "@/lib/shop/orders";
 import { PurchaseTracking } from "@/components/shop/PurchaseTracking";
 
 export const dynamic = "force-dynamic";
@@ -96,7 +96,7 @@ export default async function ShopSuccessPage({
             <p className="text-charcoal/80 text-sm">
               Keegan will sign and pack your copy herself
               {shipTo ? ` and ship it to ${shipTo}` : ""}.
-              {order.shipEstimate ? ` It ships ${order.shipEstimate}.` : ""} A confirmation is on
+              {effectiveShipEstimate(order) ? ` It ships ${effectiveShipEstimate(order)}.` : ""} A confirmation is on
               its way to {order.email}.
             </p>
           </div>

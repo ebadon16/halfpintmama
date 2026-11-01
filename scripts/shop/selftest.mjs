@@ -15,11 +15,11 @@ const lib = `${here}../../src/lib/shop`;
 const { signDeliveryToken, verifyDeliveryToken } = await import(`${lib}/entitlement.ts`);
 const { entitlementsFor, purchasableProducts, isPurchasable, requiresShipping, getShopPhase, shopCopy } =
   await import(`${lib}/catalog.ts`);
-const { orderFromSession, orderEntitlements } = await import(`${lib}/orders.ts`);
+const { orderFromSession, orderEntitlements, effectiveShipEstimate } = await import(`${lib}/orders.ts`);
 const { shopConfigProblems } = await import(`${lib}/stripe.ts`);
 const { buildLabelsPdf, LABEL_SHEET, FILLABLE_PAGES, TOTAL_PAGES } = await import(`${lib}/labels-pdf.ts`);
 const { BOOK_RECIPES, RECIPES, recipeMeta } = await import(`${lib}/recipes.ts`);
-const { renderOrderConfirmation, renderShippedNotice, renderLabelsRecovery, renderOrderNotification } = await import(`${lib}/email.ts`);
+const { renderOrderConfirmation, renderShippedNotice, renderLabelsRecovery, renderOrderNotification, renderDelayNotice } = await import(`${lib}/email.ts`);
 const { PDFDocument, PDFName } = await import("pdf-lib");
 
 let pass = 0;
@@ -111,6 +111,18 @@ check("phase read from purchase-time metadata", o.phase === "preorder");
 check("products read from metadata", JSON.stringify(o.productIds) === '["book"]');
 check("ship estimate read from metadata", o.shipEstimate === "November 2026");
 check("preorder book order carries labels", orderEntitlements(o).includes("labels"));
+// A slipped date: the original promise stays on the session, the revision rides the PaymentIntent.
+check("no revision -> effective date is the original", effectiveShipEstimate(o) === "November 2026");
+const slipped = orderFromSession(session({ payment_intent: { id: "pi_1", metadata: { ship_estimate_revised: "mid to late December 2026", delay_notice_at: "2026-11-01T00:00:00Z" }, latest_charge: null } }));
+check("revised date read from PaymentIntent", slipped.shipEstimateRevised === "mid to late December 2026" && slipped.delayNoticeAt === "2026-11-01T00:00:00Z");
+check("original promise kept alongside the revision", slipped.shipEstimate === "November 2026" && effectiveShipEstimate(slipped) === "mid to late December 2026");
+const delay = renderDelayNotice(o, "mid to late December 2026");
+check("delay notice names the new date", delay.text.includes("NEW SHIP DATE: Mid to late December 2026") && delay.html.includes("Mid to late December 2026"));
+check("delay notice names the date that was promised", delay.text.includes("would ship November 2026"));
+check("delay notice offers the full refund and says silence keeps the order (FTC)", /refund you in full/.test(delay.text) && /do not need to do anything/.test(delay.text) && /take that as a yes/.test(delay.text));
+check("delay notice warns the labels link closes on refund", /labels link/.test(delay.text));
+check("delay notice carries the order reference", delay.text.includes("Order reference cs_test_123") || delay.text.includes(`Order reference ${o.sessionId}`));
+check("delay notice has no em dashes", !/\u2014/.test(delay.text + delay.html));
 check("shipping address mapped", o.shipping?.city === "Austin" && o.shipping?.postalCode === "78701");
 check("not refunded", o.refunded === false && o.paid === true);
 check("fulfilment marker absent", o.fulfilledAt === null);

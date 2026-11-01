@@ -22,6 +22,11 @@ export const META_FULFILLED_AT = "fulfilled_at";
 export const META_BUYER_EMAIL = "buyer_email";
 // Set on the PaymentIntent when Keegan sends the "it's on its way" email.
 export const META_SHIPPED_AT = "shipped_at";
+// A slipped ship date. The original promise stays on the session untouched;
+// the revised date and the time the buyer was told live on the PaymentIntent
+// (scripts/shop/notify-delay.mjs), so every later read shows the current date.
+export const META_SHIP_REVISED = "ship_estimate_revised";
+export const META_DELAY_NOTICE_AT = "delay_notice_at";
 
 export interface ShippingAddress {
   name: string | null;
@@ -41,7 +46,10 @@ export interface Order {
   productIds: ProductId[];
   // How many of the (single) line item; books can be bought up to 5 at a time.
   quantity: number;
+  // The ship date promised at checkout, from the session metadata.
   shipEstimate: string | null;
+  // Set once a delay notice went out; use effectiveShipEstimate() to display.
+  shipEstimateRevised: string | null;
   paid: boolean;
   // Stripe's session status: "complete", "open", or "expired".
   status: string | null;
@@ -52,6 +60,12 @@ export interface Order {
   paymentIntentId: string | null;
   fulfilledAt: string | null;
   shippedAt: string | null;
+  delayNoticeAt: string | null;
+}
+
+// The date the buyer was most recently told.
+export function effectiveShipEstimate(order: Order): string | null {
+  return order.shipEstimateRevised ?? order.shipEstimate;
 }
 
 export function orderEntitlements(order: Order): Entitlement[] {
@@ -129,6 +143,7 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
     productIds,
     quantity: quantity > 0 ? quantity : 1,
     shipEstimate: meta[META_SHIP_ESTIMATE]?.trim() || null,
+    shipEstimateRevised: pi?.metadata?.[META_SHIP_REVISED]?.trim() || meta[META_SHIP_REVISED]?.trim() || null,
     // A 100%-off promotion code completes the session with no payment at all;
     // the buyer is still owed their goods.
     paid: session.payment_status === "paid" || session.payment_status === "no_payment_required",
@@ -140,6 +155,7 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
     paymentIntentId,
     fulfilledAt: pi?.metadata?.[META_FULFILLED_AT] ?? meta[META_FULFILLED_AT] ?? null,
     shippedAt: pi?.metadata?.[META_SHIPPED_AT] ?? meta[META_SHIPPED_AT] ?? null,
+    delayNoticeAt: pi?.metadata?.[META_DELAY_NOTICE_AT] ?? meta[META_DELAY_NOTICE_AT] ?? null,
   };
 }
 
@@ -235,6 +251,10 @@ export async function findLabelOrdersByEmail(email: string): Promise<Order[]> {
 
 export async function markShipped(order: Order, when = new Date()): Promise<void> {
   await writeMarker(order, { [META_SHIPPED_AT]: when.toISOString() });
+}
+
+export async function markDelayNotified(order: Order, revisedEstimate: string, when = new Date()): Promise<void> {
+  await writeMarker(order, { [META_SHIP_REVISED]: revisedEstimate, [META_DELAY_NOTICE_AT]: when.toISOString() });
 }
 
 export async function markFulfilled(order: Order, when = new Date()): Promise<void> {

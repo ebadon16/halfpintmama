@@ -147,6 +147,20 @@ refund it in the Stripe dashboard and confirm the labels link stops working. Ten
   list, then `--send`. It marks each order so nobody is emailed twice.
 - Fill the price and ship date into the MailerLite draft (campaign `198049723307787316`) and send.
 
+### If the ship date slips (FTC Mail Order Rule)
+
+1. Change `SHOP_SHIP_ESTIMATE` on Vercel production to the new wording (lower-case, it sits
+   mid-sentence) and push a commit so it deploys. New buyers now see the new date on /shop, on the
+   Stripe pay page and in their confirmation.
+2. Tell everyone who already paid, with the LIVE key pasted into the env:
+   `STRIPE_SECRET_KEY=sk_live_... SHOP_SHIP_ESTIMATE="<new wording>" RESEND_API_KEY=... node node_modules/.bin/tsx scripts/shop/notify-delay.mjs --to="<new wording>"`
+   lists who gets it; add `--send` to send. The email states the new date, the full-refund right,
+   and that silence keeps the order. It stamps `ship_estimate_revised` + `delay_notice_at` on the
+   PaymentIntent, so a re-run skips anyone already told, buyers who ordered after the flip are
+   skipped (they were quoted the new date), and the success page shows the revised date.
+   `--to` must equal `SHOP_SHIP_ESTIMATE` or the script refuses.
+3. A second slip repeats both steps with the newer wording; the script re-notifies everyone.
+
 ### Changing a price later
 
 Re-run the setup command with the new number. Stripe prices are immutable, so it creates a new
@@ -388,3 +402,15 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   (`public/images/labels-preview-label.png`) that opens the full sheet; guide says colour or black and
   white is the printer dialog's choice; all 35 recipes verified through the real form path with no
   field clipping (105 filled fields checked). Sample confirmation email delivered via Resend to Erick.
+
+## Nov 1 2026, ship date slipped (late October -> mid to late November 2026)
+
+- Vercel `SHOP_SHIP_ESTIMATE` = "mid to late November 2026", deployed with this commit. The sent
+  Sep 24 announcement (`scripts/shop/emails/preorder-open.html`) still says late October; it is a
+  record of what went out, not a template, so it is left alone.
+- New `renderDelayNotice` / `sendDelayNotice` + `scripts/shop/notify-delay.mjs`; `Order` gained
+  `shipEstimateRevised` + `delayNoticeAt`, success page reads `effectiveShipEstimate()`. Self-test 118/118.
+  Proven in the sandbox: one order sent (landed in Erick's inbox), marker written, re-run skipped it,
+  env-mismatch guard refuses a wrong `--to`.
+- ⚠ Live send still to do by Erick (live key is only in Vercel): step 2 of "If the ship date slips".
+

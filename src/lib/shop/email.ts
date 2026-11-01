@@ -194,6 +194,45 @@ export function renderShippedNotice(order: Order): RenderedEmail {
   return { subject: "Your Rest & Rise is on its way", html, text };
 }
 
+// The ship date slipped. The FTC Mail Order Rule requires this: the revised
+// date, the right to cancel for a full refund, and that silence keeps the order.
+// Sent by Keegan (scripts/shop/notify-delay.mjs), once per revised date.
+export function renderDelayNotice(order: Order, revised: string): RenderedEmail {
+  const { bought: items } = orderLines(order);
+  const original = order.shipEstimate;
+  const where = [[order.shipping?.city, order.shipping?.state].filter(Boolean).join(", ")].filter(Boolean);
+  const detail =
+    eyebrow("New ship date") +
+    `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 22px; line-height: 130%; color: ${T.heading};"><strong>${escapeHtml(capitalize(revised))}</strong></p>` +
+    `<p style="margin: 0 0 8px; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">${escapeHtml(items)}${where.length ? `, heading to ${escapeHtml(where[0])}` : ""}</p>` +
+    `<p style="margin: 0; font-family: ${T.sans}; font-size: 12px; color: ${T.muted};">Order reference ${escapeHtml(order.sessionId)}</p>`;
+  const toldDate = original ? `would ship ${escapeHtml(original)}` : "would ship by now";
+  const toldDateText = original ? `would ship ${original}` : "would ship by now";
+
+  const html = shell(
+    "Your book is running late",
+    p(`I owe you an update. I told you your copy of <em>Rest &amp; Rise</em> ${toldDate}, and it is not going to make that. The print run is running later than I planned, and I would rather tell you now than let the date pass quietly.`) +
+      panel(media(COVER, detail, 96)) +
+      p(`<strong>You do not need to do anything to keep your order.</strong> Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you, I will take that as a yes to the new date.`) +
+      p(`<strong>If the wait does not work for you, reply to this email and I will refund you in full</strong>, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.`) +
+      p("Thank you for your patience, and for trusting me with this book before it was even printed. I am sorry for the wait.") +
+      `<p style="${SMALL}">Questions? Just reply to this email.</p>`,
+    "Hi friend,"
+  );
+  const text =
+    `Hi friend,\n\nI owe you an update. I told you your copy of Rest & Rise ${toldDateText}, and it is not going to make that. The print run is running later than I planned, and I would rather tell you now than let the date pass quietly.\n\n` +
+    `NEW SHIP DATE: ${capitalize(revised)}\n${items}${where.length ? `, heading to ${where[0]}` : ""}\nOrder reference ${order.sessionId}\n\n` +
+    `You do not need to do anything to keep your order. Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you, I will take that as a yes to the new date.\n\n` +
+    `If the wait does not work for you, reply to this email and I will refund you in full, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.\n\n` +
+    `Thank you for your patience, and for trusting me with this book before it was even printed. I am sorry for the wait.\n\nQuestions? Just reply to this email.\n` +
+    SIGN_OFF_TEXT;
+  return { subject: "Your Rest & Rise preorder: a new ship date", html, text };
+}
+
+function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 // "Lost your link": the same link again, nothing else.
 export function renderLabelsRecovery(deliveryUrl: string): RenderedEmail {
   const html = shell(
@@ -266,6 +305,10 @@ export async function sendLabelsDelivery({ to, deliveryUrl }: { to: string; deli
 
 export async function sendShippedNotice(order: Order, to: string): Promise<void> {
   await send(to, renderShippedNotice(order));
+}
+
+export async function sendDelayNotice(order: Order, to: string, revised: string): Promise<void> {
+  await send(to, renderDelayNotice(order, revised));
 }
 
 export async function sendOrderNotification(
