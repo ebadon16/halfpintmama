@@ -405,9 +405,9 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   white is the printer dialog's choice; all 35 recipes verified through the real form path with no
   field clipping (105 filled fields checked). Sample confirmation email delivered via Resend to Erick.
 
-## Nov 1 2026, ship date slipped (late October -> mid to late November 2026)
+## Nov 1 2026, ship date slipped (late October -> late November 2026)
 
-- Vercel `SHOP_SHIP_ESTIMATE` = "mid to late November 2026", deployed with this commit. The sent
+- Vercel `SHOP_SHIP_ESTIMATE` = "late November 2026" (Erick; first set as "mid to late November", changed the same morning), deployed. The sent
   Sep 24 announcement (`scripts/shop/emails/preorder-open.html`) still says late October; it is a
   record of what went out, not a template, so it is left alone.
 - New `renderDelayNotice` / `sendDelayNotice` + `scripts/shop/notify-delay.mjs`; `Order` gained
@@ -415,7 +415,7 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   Proven in the sandbox: one order sent (landed in Erick's inbox), marker written, re-run skipped it,
   env-mismatch guard refuses a wrong `--to`.
 - ⚠ Live send still to do by Erick (live key is only in Vercel): step 2 of "If the ship date slips".
-- ⚠ 16 CFR 435.2(b)(1)(i) wants a "definite revised shipping date"; "mid to late November 2026" is a
-  range. Recommended wording "by November 30, 2026": definite, and 30 days or less after late October,
-  which is what lets silence count as consent. Erick's call before the live send.
+- 16 CFR 435.2(b)(1)(i) wants a "definite revised shipping date"; Erick chose "late November 2026", the
+  same shape as the original "late October 2026" promise and 30 days or less after it, so silence counts
+  as consent.
 
