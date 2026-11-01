@@ -213,7 +213,7 @@ export function renderDelayNotice(order: Order, revised: string): RenderedEmail 
     "Your book is running late",
     p(`I owe you an update. I told you your copy of <em>Rest &amp; Rise</em> ${toldDate}, and it is not going to make that. The print run is running later than I planned, and I would rather tell you now than let the date pass quietly.`) +
       panel(media(COVER, detail, 96)) +
-      p(`<strong>You do not need to do anything to keep your order.</strong> Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you, I will take that as a yes to the new date.`) +
+      p(`<strong>You do not need to do anything to keep your order.</strong> Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you before your book ships, I will take that as a yes to the new date.`) +
       p(`<strong>If the wait does not work for you, reply to this email and I will refund you in full</strong>, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.`) +
       p("Thank you for your patience, and for trusting me with this book before it was even printed. I am sorry for the wait.") +
       `<p style="${SMALL}">Questions? Just reply to this email.</p>`,
@@ -222,7 +222,7 @@ export function renderDelayNotice(order: Order, revised: string): RenderedEmail 
   const text =
     `Hi friend,\n\nI owe you an update. I told you your copy of Rest & Rise ${toldDateText}, and it is not going to make that. The print run is running later than I planned, and I would rather tell you now than let the date pass quietly.\n\n` +
     `NEW SHIP DATE: ${capitalize(revised)}\n${items}${where.length ? `, heading to ${where[0]}` : ""}\nOrder reference ${order.sessionId}\n\n` +
-    `You do not need to do anything to keep your order. Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you, I will take that as a yes to the new date.\n\n` +
+    `You do not need to do anything to keep your order. Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you before your book ships, I will take that as a yes to the new date.\n\n` +
     `If the wait does not work for you, reply to this email and I will refund you in full, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.\n\n` +
     `Thank you for your patience, and for trusting me with this book before it was even printed. I am sorry for the wait.\n\nQuestions? Just reply to this email.\n` +
     SIGN_OFF_TEXT;

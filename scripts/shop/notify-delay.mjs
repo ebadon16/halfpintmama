@@ -38,6 +38,8 @@ for (const o of orders) {
     await markDelayNotified(o, to);
     sent++;
     console.log("  sent  " + line);
+    // Resend allows 2 requests a second; a failed send is left unmarked and picked up by a re-run.
+    await new Promise((r) => setTimeout(r, 600));
   } catch (err) {
     console.log("  FAILED " + line + "  " + (err instanceof Error ? err.message : err));
   }
