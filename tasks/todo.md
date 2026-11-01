@@ -153,7 +153,9 @@ refund it in the Stripe dashboard and confirm the labels link stops working. Ten
    mid-sentence) and push a commit so it deploys. New buyers now see the new date on /shop, on the
    Stripe pay page and in their confirmation.
 2. Tell everyone who already paid, with the LIVE key pasted into the env:
-   `STRIPE_SECRET_KEY=sk_live_... SHOP_SHIP_ESTIMATE="<new wording>" RESEND_API_KEY=... node node_modules/.bin/tsx scripts/shop/notify-delay.mjs --to="<new wording>"`
+   `STRIPE_SECRET_KEY=sk_live_... node --env-file=.env.local node_modules/.bin/tsx scripts/shop/notify-delay.mjs --to="<new wording>"`
+   (a shell variable beats the env file, so only the live key is pasted; `.env.local` must already carry
+   the new `SHOP_SHIP_ESTIMATE` and the Resend key)
    lists who gets it; add `--send` to send. The email states the new date, the full-refund right,
    and that silence keeps the order. It stamps `ship_estimate_revised` + `delay_notice_at` on the
    PaymentIntent, so a re-run skips anyone already told, buyers who ordered after the flip are
@@ -413,4 +415,7 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   Proven in the sandbox: one order sent (landed in Erick's inbox), marker written, re-run skipped it,
   env-mismatch guard refuses a wrong `--to`.
 - ⚠ Live send still to do by Erick (live key is only in Vercel): step 2 of "If the ship date slips".
+- ⚠ 16 CFR 435.2(b)(1)(i) wants a "definite revised shipping date"; "mid to late November 2026" is a
+  range. Recommended wording "by November 30, 2026": definite, and 30 days or less after late October,
+  which is what lets silence count as consent. Erick's call before the live send.
 
