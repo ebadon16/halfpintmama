@@ -231,6 +231,32 @@ export function renderDelayNotice(order: Order, revised: string): RenderedEmail 
   return { subject: "Your Rest & Rise preorder: a new ship date", html, text };
 }
 
+// Two weeks after the book is in the mail: one honest ask for a few words,
+// sent once per order (scripts via /api/shop/admin/notify, kind "review").
+// Never incentivised; Amazon's rules and ours both forbid it.
+export function renderReviewRequest(order: Order): RenderedEmail {
+  const amazon = process.env.SHOP_AMAZON_REVIEW_URL?.trim() || null;
+  const copies = order.quantity > 1 ? "your copies" : "your copy";
+  const html = shell(
+    "Has it earned a spot on your counter?",
+    p(`It has been a couple of weeks since ${copies} of <em>Rest &amp; Rise</em> went in the mail, and I would love to know how it is landing in your kitchen. Which recipe did you make first? Did anything surprise you? Is there something you wish I had included?`) +
+      p("<strong>Reply to this email with a line or two.</strong> I read every reply myself, and with your permission a few of them will go on the shop page so the next mama deciding whether to buy hears from someone who actually cooked from it, not just from me.") +
+      (amazon
+        ? p(`If you bought a copy for a friend or found the book on Amazon, an honest review there helps more than anything I could write: ${a(escapeHtml(amazon), "leave a review on Amazon")}.`)
+        : "") +
+      p("Thank you for being one of the first. Truly.") +
+      `<p style="${SMALL}">If the book has not arrived yet, reply and I will chase it down.</p>`,
+    "Hi friend,"
+  );
+  const text =
+    `Hi friend,\n\nIt has been a couple of weeks since ${copies} of Rest & Rise went in the mail, and I would love to know how it is landing in your kitchen. Which recipe did you make first? Did anything surprise you? Is there something you wish I had included?\n\n` +
+    `Reply to this email with a line or two. I read every reply myself, and with your permission a few of them will go on the shop page so the next mama deciding whether to buy hears from someone who actually cooked from it, not just from me.\n\n` +
+    (amazon ? `If you bought a copy for a friend or found the book on Amazon, an honest review there helps more than anything I could write: ${amazon}\n\n` : "") +
+    `Thank you for being one of the first. Truly.\n\nIf the book has not arrived yet, reply and I will chase it down.\n` +
+    SIGN_OFF_TEXT;
+  return { subject: "How is Rest & Rise treating you?", html, text };
+}
+
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -307,6 +333,10 @@ export async function sendLabelsDelivery({ to, deliveryUrl }: { to: string; deli
 
 export async function sendShippedNotice(order: Order, to: string): Promise<void> {
   await send(to, renderShippedNotice(order));
+}
+
+export async function sendReviewRequest(order: Order, to: string): Promise<void> {
+  await send(to, renderReviewRequest(order));
 }
 
 export async function sendDelayNotice(order: Order, to: string, revised: string): Promise<void> {

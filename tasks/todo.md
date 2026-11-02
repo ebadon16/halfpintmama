@@ -78,7 +78,8 @@ At launch the book stops including them and they become a paid standalone item.
       ("DRAFT: Preorders open"), audience New Subscribers (739), placeholders `[PRICE]` and
       `[SHIP DATE]` in body AND subject. Source: `scripts/shop/emails/preorder-open.html`.
 - [ ] Launch-day deploy bundle: `SHOP_PHASE=launched` (+ `STRIPE_PRICE_LABELS`) — robots
-      un-noindex is automatic; still TODO: sitemap entry, Book/Product schema, own OG image
+      un-noindex is automatic; sitemap entry, Book/Offer schema and the own OG image (cover card,
+      `shop/opengraph-image.tsx`, badge follows the phase) are all DONE; nothing left but the flip
 - [x] Verify offline: `npm run lint`, `npm run build`, `npm run test:shop` = 61/61,
       `next start` smoke (no key → waitlist; checkout 503; webhook 503; recover generic)
 - [x] Verify with keys (Sep 8 2026, HalfPintMama sandbox `acct_1UDXYVPX2TePaQIt`): real Checkout
@@ -424,4 +425,15 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
 - 16 CFR 435.2(b)(1)(i) wants a "definite revised shipping date"; Erick chose "late November 2026", the
   same shape as the original "late October 2026" promise and 30 days or less after it, so silence counts
   as consent.
+
+## Nov 1 2026 (later), launch prep: order attribution + review ask
+
+- `utm_source` / `utm_medium` / `utm_campaign` (or `?ref=`) on ANY landing URL is kept for the browser session
+  (`src/lib/attribution.ts`, `AttributionCapture` in the site layout), sent with the buy click and stamped on
+  the Stripe session + PaymentIntent as lower-case slugs. Verified in the sandbox: a session carried
+  `utm_source=email`, `utm_campaign=waitlist-labels`, junk `utm_medium` dropped.
+- `/api/shop/admin/notify` grew `{"kind":"report"}` (every paid book order grouped by source, "direct" when
+  no utm) and `{"kind":"review","send":true}` (review ask to shipped orders not yet asked, marker
+  `review_asked_at`; `SHOP_AMAZON_REVIEW_URL` optional, unset = reply-only ask). Launch emails must link
+  `/shop?utm_source=email&utm_campaign=<name>` or the report cannot tell them apart.
 

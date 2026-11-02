@@ -5,6 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { AttributionCapture } from "@/components/AttributionCapture";
 
 const EmailPopup = dynamic(() => import("@/components/EmailPopup").then((m) => m.EmailPopup));
 const BackToTop = dynamic(() => import("@/components/BackToTop").then((m) => m.BackToTop));
@@ -47,6 +48,7 @@ export default function SiteLayout({
         <BackToTop />
         <Analytics />
         <GoogleAnalytics />
+        <AttributionCapture />
       </body>
     </html>
   );

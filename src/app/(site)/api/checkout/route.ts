@@ -4,6 +4,7 @@ import { getClientIp, isSameOrigin } from "@/lib/http";
 import { SITE_URL } from "@/lib/seo";
 import { PRODUCTS, getShopPhase, isPurchasable, requiresShipping, type ProductId } from "@/lib/shop/catalog";
 import { META_PHASE, META_PRODUCTS, META_SHIP_ESTIMATE } from "@/lib/shop/orders";
+import { sanitizeAttribution } from "@/lib/attribution";
 import { getLabelsBonusPriceId } from "@/lib/shop/prices";
 import {
   collectsTax,
@@ -37,9 +38,9 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "The shop is not open yet." }, { status: 503 });
     }
 
-    let body: { product?: unknown };
+    let body: { product?: unknown; attribution?: unknown };
     try {
-      body = (await request.json()) as { product?: unknown };
+      body = (await request.json()) as { product?: unknown; attribution?: unknown };
     } catch {
       return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
     }
@@ -62,6 +63,9 @@ export async function POST(request: Request) {
       [META_PHASE]: phase,
       [META_PRODUCTS]: product,
       ...(phase === "preorder" && shipEstimate ? { [META_SHIP_ESTIMATE]: shipEstimate } : {}),
+      // Where the buyer came from (utm_* from the landing URL), validated to
+      // short slugs. Reporting only; nothing downstream depends on it.
+      ...sanitizeAttribution(body.attribution),
     };
 
     // In production every link must be the canonical host. Locally, follow the

@@ -7,21 +7,23 @@
 //     -d '{"kind":"delay","to":"late November 2026"}'                    # dry run: who, and the date each was told
 //     -d '{"kind":"delay","to":"late November 2026","send":true}'        # sends + marks, up to `limit` (default 8) per call
 //     -d '{"kind":"shipped","send":true}'                                # the "on its way" notice, same shape
+//     -d '{"kind":"review","send":true}'                                 # review ask, shipped orders not yet asked
+//     -d '{"kind":"report"}'                                             # every paid book order, grouped by utm source
 //
 // Each buyer is marked in Stripe as they are sent, so the call is safe to
 // repeat until it reports nobody left. `only` narrows to listed session ids.
 import { NextRequest, NextResponse } from "next/server";
 import { getClientIp, safeEquals } from "@/lib/http";
 import { rateLimit } from "@/lib/rate-limit";
-import { effectiveShipEstimate, findUnshippedBookOrders, markDelayNotified, markShipped, type Order } from "@/lib/shop/orders";
-import { sendDelayNotice, sendShippedNotice } from "@/lib/shop/email";
+import { effectiveShipEstimate, findBookOrders, findReviewableBookOrders, findUnshippedBookOrders, markDelayNotified, markReviewAsked, markShipped, type Order } from "@/lib/shop/orders";
+import { sendDelayNotice, sendReviewRequest, sendShippedNotice } from "@/lib/shop/email";
 import { getShipEstimate } from "@/lib/shop/stripe";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 
 interface Body {
-  kind?: "delay" | "shipped";
+  kind?: "delay" | "shipped" | "review" | "report";
   to?: string;
   send?: boolean;
   only?: string[];
@@ -36,7 +38,31 @@ function row(o: Order, result: string) {
     phase: o.phase,
     told: effectiveShipEstimate(o),
     where: [o.shipping?.city, o.shipping?.state].filter(Boolean).join(", "),
+    source: o.attribution.utm_source ?? null,
+    campaign: o.attribution.utm_campaign ?? null,
     result,
+  };
+}
+
+// Orders by where the buyer came from, so an email or a post can be judged by
+// what it sold. "direct" is an order with no utm on the landing URL.
+function report(orders: Order[]) {
+  const by = new Map<string, { orders: number; copies: number; revenue: number }>();
+  for (const o of orders) {
+    const key = [o.attribution.utm_source ?? "direct", o.attribution.utm_campaign].filter(Boolean).join(" / ");
+    const row = by.get(key) ?? { orders: 0, copies: 0, revenue: 0 };
+    row.orders++;
+    row.copies += o.quantity;
+    row.revenue += o.amountTotal ?? 0;
+    by.set(key, row);
+  }
+  return {
+    orders: orders.length,
+    copies: orders.reduce((n, o) => n + o.quantity, 0),
+    bySource: Object.fromEntries([...by.entries()].sort((a, b) => b[1].orders - a[1].orders)),
+    rows: orders
+      .sort((a, b) => (b.created?.getTime() ?? 0) - (a.created?.getTime() ?? 0))
+      .map((o) => ({ ...row(o, o.shippedAt ? "shipped" : o.phase), when: o.created?.toISOString().slice(0, 10) ?? null })),
   };
 }
 
@@ -60,7 +86,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "JSON body required" }, { status: 400 });
   }
   const kind = body.kind;
-  if (kind !== "delay" && kind !== "shipped") return NextResponse.json({ error: 'kind must be "delay" or "shipped"' }, { status: 400 });
+  if (kind !== "delay" && kind !== "shipped" && kind !== "review" && kind !== "report") {
+    return NextResponse.json({ error: 'kind must be "delay", "shipped", "review" or "report"' }, { status: 400 });
+  }
+  if (kind === "report") return NextResponse.json({ kind, ...report(await findBookOrders()) });
   const send = body.send === true;
   const only = Array.isArray(body.only) ? body.only.filter((s): s is string => typeof s === "string") : [];
   const limit = Math.min(Math.max(Number(body.limit) || 8, 1), 25);
@@ -76,7 +105,8 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  const all = (await findUnshippedBookOrders()).filter((o) => !only.length || only.includes(o.sessionId));
+  const pool = kind === "review" ? await findReviewableBookOrders() : await findUnshippedBookOrders();
+  const all = pool.filter((o) => !only.length || only.includes(o.sessionId));
   const skipped = kind === "delay" ? all.filter((o) => (effectiveShipEstimate(o) ?? "").toLowerCase() === to.toLowerCase()) : [];
   const due = kind === "delay" ? all.filter((o) => !skipped.includes(o)) : all;
 
@@ -91,6 +121,9 @@ export async function POST(request: NextRequest) {
       if (kind === "delay") {
         await sendDelayNotice(o, o.email, to);
         await markDelayNotified(o, to);
+      } else if (kind === "review") {
+        await sendReviewRequest(o, o.email);
+        await markReviewAsked(o);
       } else {
         await sendShippedNotice(o, o.email);
         await markShipped(o);

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { trackEvent } from "@/lib/analytics";
+import { getAttribution } from "@/lib/attribution";
 import type { ProductId } from "@/lib/shop/catalog";
 
 interface BuyButtonProps {
@@ -23,7 +24,7 @@ export function BuyButton({ product, label, className = "" }: BuyButtonProps) {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product }),
+        body: JSON.stringify({ product, attribution: getAttribution() }),
       });
       let data: { url?: string; error?: string } = {};
       try {

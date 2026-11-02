@@ -19,7 +19,7 @@ const { orderFromSession, orderEntitlements, effectiveShipEstimate } = await imp
 const { shopConfigProblems } = await import(`${lib}/stripe.ts`);
 const { buildLabelsPdf, LABEL_SHEET, FILLABLE_PAGES, TOTAL_PAGES } = await import(`${lib}/labels-pdf.ts`);
 const { BOOK_RECIPES, RECIPES, recipeMeta } = await import(`${lib}/recipes.ts`);
-const { renderOrderConfirmation, renderShippedNotice, renderLabelsRecovery, renderOrderNotification, renderDelayNotice } = await import(`${lib}/email.ts`);
+const { renderOrderConfirmation, renderShippedNotice, renderLabelsRecovery, renderOrderNotification, renderDelayNotice, renderReviewRequest } = await import(`${lib}/email.ts`);
 const { PDFDocument, PDFName } = await import("pdf-lib");
 
 let pass = 0;
@@ -123,6 +123,18 @@ check("delay notice offers the full refund and says silence keeps the order (FTC
 check("delay notice warns the labels link closes on refund", /labels link/.test(delay.text));
 check("delay notice carries the order reference", delay.text.includes("Order reference cs_test_123") || delay.text.includes(`Order reference ${o.sessionId}`));
 check("delay notice has no em dashes", !/\u2014/.test(delay.text + delay.html));
+// Attribution: utm_* from the landing URL, validated to slugs, stamped on the order.
+const { sanitizeAttribution, attributionFromSearch } = await import(`${process.cwd()}/src/lib/attribution.ts`);
+check("utm slugs kept, lowercased", JSON.stringify(sanitizeAttribution({ utm_source: "Instagram", utm_campaign: "launch-1" })) === '{"utm_source":"instagram","utm_campaign":"launch-1"}');
+check("utm junk dropped", Object.keys(sanitizeAttribution({ utm_source: "<script>", utm_medium: "a".repeat(41), utm_campaign: " ", extra: "x" })).length === 0);
+check("?ref= is a short utm_source", attributionFromSearch("?ref=Bio&utm_campaign=Launch").utm_source === "bio");
+check("utm_source beats ref", attributionFromSearch("?ref=bio&utm_source=email").utm_source === "email");
+const attributed = orderFromSession(session({ metadata: { shop_phase: "preorder", product_ids: "book", utm_source: "email", utm_campaign: "launch-1" } }));
+check("attribution read back from the order", attributed.attribution.utm_source === "email" && attributed.attribution.utm_campaign === "launch-1");
+check("no attribution -> empty object", Object.keys(o.attribution).length === 0);
+const review = renderReviewRequest(o);
+check("review ask asks for a reply, never offers anything", /Reply to this email/.test(review.text) && !/discount|coupon|free|gift/i.test(review.text));
+check("review ask skips Amazon when no URL is configured", !/amazon/i.test(review.text));
 check("shipping address mapped", o.shipping?.city === "Austin" && o.shipping?.postalCode === "78701");
 check("not refunded", o.refunded === false && o.paid === true);
 check("fulfilment marker absent", o.fulfilledAt === null);

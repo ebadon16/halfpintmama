@@ -3,6 +3,7 @@
 // PDF download, link recovery) re-reads the real order from Stripe.
 
 import type Stripe from "stripe";
+import { ATTRIBUTION_KEYS, type Attribution } from "@/lib/attribution";
 import { PRODUCTS, entitlementsFor, type Entitlement, type ProductId, type ShopPhase } from "./catalog";
 import { getStripe } from "./stripe";
 
@@ -27,6 +28,8 @@ export const META_SHIPPED_AT = "shipped_at";
 // (scripts/shop/notify-delay.mjs), so every later read shows the current date.
 export const META_SHIP_REVISED = "ship_estimate_revised";
 export const META_DELAY_NOTICE_AT = "delay_notice_at";
+// The review request went out (scripts via /api/shop/admin/notify, kind "review").
+export const META_REVIEW_ASKED_AT = "review_asked_at";
 
 export interface ShippingAddress {
   name: string | null;
@@ -61,6 +64,10 @@ export interface Order {
   fulfilledAt: string | null;
   shippedAt: string | null;
   delayNoticeAt: string | null;
+  reviewAskedAt: string | null;
+  // utm_* stamped at checkout, if the buyer arrived with any.
+  attribution: Attribution;
+  created: Date | null;
 }
 
 // The date the buyer was most recently told.
@@ -156,6 +163,9 @@ export function orderFromSession(session: Stripe.Checkout.Session): Order {
     fulfilledAt: pi?.metadata?.[META_FULFILLED_AT] ?? meta[META_FULFILLED_AT] ?? null,
     shippedAt: pi?.metadata?.[META_SHIPPED_AT] ?? meta[META_SHIPPED_AT] ?? null,
     delayNoticeAt: pi?.metadata?.[META_DELAY_NOTICE_AT] ?? meta[META_DELAY_NOTICE_AT] ?? null,
+    reviewAskedAt: pi?.metadata?.[META_REVIEW_ASKED_AT] ?? meta[META_REVIEW_ASKED_AT] ?? null,
+    attribution: Object.fromEntries(ATTRIBUTION_KEYS.flatMap((k) => (meta[k] ? [[k, meta[k]]] : []))) as Attribution,
+    created: session.created ? new Date(session.created * 1000) : null,
   };
 }
 
@@ -173,27 +183,34 @@ export async function getOrder(sessionId: string): Promise<Order | null> {
   }
 }
 
-// Every paid book order that has not been marked shipped. Drives the
-// "it's on its way" email Keegan sends once the print run lands. Found through
-// the PaymentIntent metadata stamped at checkout, so a comped book order taken
-// with a 100%-off code has no PaymentIntent to find and will not appear here;
-// send those by hand, there will be a handful at most.
-export async function findUnshippedBookOrders(): Promise<Order[]> {
+// Every paid, unrefunded book order, found through the PaymentIntent metadata
+// stamped at checkout. A comped order taken with a 100%-off code has no
+// PaymentIntent to find and will not appear here; handle those by hand, there
+// will be a handful at most.
+export async function findBookOrders(): Promise<Order[]> {
   const stripe = getStripe();
   const orders: Order[] = [];
   for await (const pi of stripe.paymentIntents.search({
-    // In Stripe's search syntax `:null` means "not set".
-    query: `metadata["${META_PRODUCTS}"]:"book" AND metadata["${META_SHIPPED_AT}"]:null`,
+    query: `metadata["${META_PRODUCTS}"]:"book"`,
     limit: 100,
   })) {
-    if (pi.metadata?.[META_SHIPPED_AT]) continue;
     const sessions = await stripe.checkout.sessions.list({ payment_intent: pi.id, limit: 1, expand: EXPAND.map((e) => `data.${e}`) });
     const session = sessions.data[0];
     if (!session) continue;
     const order = orderFromSession(session);
-    if (order.paid && !order.refunded && order.productIds.includes("book") && !order.shippedAt) orders.push(order);
+    if (order.paid && !order.refunded && order.productIds.includes("book")) orders.push(order);
   }
   return orders;
+}
+
+// Drives the "it's on its way" email Keegan sends once the print run lands.
+export async function findUnshippedBookOrders(): Promise<Order[]> {
+  return (await findBookOrders()).filter((o) => !o.shippedAt);
+}
+
+// Shipped, and not yet asked for a review.
+export async function findReviewableBookOrders(): Promise<Order[]> {
+  return (await findBookOrders()).filter((o) => !!o.shippedAt && !o.reviewAskedAt);
 }
 
 // Every paid, unrefunded order for this email that carries the labels
@@ -255,6 +272,10 @@ export async function markShipped(order: Order, when = new Date()): Promise<void
 
 export async function markDelayNotified(order: Order, revisedEstimate: string, when = new Date()): Promise<void> {
   await writeMarker(order, { [META_SHIP_REVISED]: revisedEstimate, [META_DELAY_NOTICE_AT]: when.toISOString() });
+}
+
+export async function markReviewAsked(order: Order, when = new Date()): Promise<void> {
+  await writeMarker(order, { [META_REVIEW_ASKED_AT]: when.toISOString() });
 }
 
 export async function markFulfilled(order: Order, when = new Date()): Promise<void> {
