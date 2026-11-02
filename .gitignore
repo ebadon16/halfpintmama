@@ -45,3 +45,6 @@ next-env.d.ts
 
 # macOS junk that has no business in a published directory
 .DS_Store
+
+# generated previews (MailerLite tags stripped), rebuild with make-campaigns.mjs --preview
+scripts/shop/emails/*.preview.html
