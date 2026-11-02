@@ -437,3 +437,14 @@ STILL TO DO: (1) Step 3 real-card purchase + refund by Erick/Keegan; (2) send Ma
   `review_asked_at`; `SHOP_AMAZON_REVIEW_URL` optional, unset = reply-only ask). Launch emails must link
   `/shop?utm_source=email&utm_campaign=<name>` or the report cannot tell them apart.
 
+## Nov 1 2026 (later), launch assets READY, nothing sent
+
+- Plan doc for Keegan: https://claude.ai/artifact/6NMcGzCFSxqGJHTcf1qC9K (private until shared).
+- MailerLite DRAFTS (sender Half Pint Mama <keegan@>, HTML from `scripts/shop/emails/make-campaigns.mjs`):
+  - `202987...` "Waitlist: labels last call (send this week)" -> group `202987525093984044` "Book waitlist, not yet
+    bought" (= signup_source shop-waitlist minus the 17 buyers, ~476). Send after Keegan reads the draft.
+  - `202987711305352562` "Launch 1: It is here" -> New Subscribers. Send on ship day after the flip.
+  - `202987713201178123` "Launch 2: The gift" -> New Subscribers. Day 3; REPLACE [ORDER-BY DATE] first.
+  Drafts of all three were sent to Erick's inbox ("[DRAFT n of 3 ...]"). Rebuild HTML: `node scripts/shop/emails/make-campaigns.mjs --preview`.
+- Review ask: `{"kind":"review","send":true}` on the admin route ~2 weeks after the shipped notices.
+
