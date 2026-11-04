@@ -29,6 +29,30 @@ export function paginatedTitle(baseTitle: string, currentPage: number): string {
   return `${baseTitle} (Page ${currentPage})`;
 }
 
+export const SITE_NAME = "Half Pint Mama";
+const TITLE_MAX = 60;
+const DESCRIPTION_MAX = 155;
+
+// "<page> | Half Pint Mama" while that fits the ~60-character SERP title slot;
+// a long page title stands alone rather than being cut mid-word by Google.
+export function pageTitle(base: string): string {
+  const full = `${base} | ${SITE_NAME}`;
+  return full.length <= TITLE_MAX ? full : base;
+}
+
+// Fit a description into the SERP snippet: whole sentences when they fit,
+// otherwise cut on a word boundary with an ellipsis.
+export function clampDescription(text: string, max = DESCRIPTION_MAX): string {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const head = t.slice(0, max + 1);
+  const sentenceEnd = Math.max(head.lastIndexOf(". "), head.lastIndexOf("! "), head.lastIndexOf("? "));
+  if (sentenceEnd >= max * 0.5) return head.slice(0, sentenceEnd + 1);
+  const cut = head.slice(0, max - 1);
+  const space = cut.lastIndexOf(" ");
+  return `${(space > max * 0.5 ? cut.slice(0, space) : cut).replace(/[,;:\s]+$/, "")}…`;
+}
+
 // Shared author reference so post schemas link to the Person entity on /about.
 export const AUTHOR_REF = { "@id": `${SITE_URL}/about#person` } as const;
 

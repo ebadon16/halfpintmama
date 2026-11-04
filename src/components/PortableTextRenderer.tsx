@@ -259,6 +259,21 @@ interface PortableTextRendererProps {
   value: PortableTextBlock[];
 }
 
+// Post bodies sit under the page's single h1, so their top heading level should
+// be h2 and levels should not skip. Keegan's editor often starts at h3, or uses
+// h2 + h4 with no h3; remap whichever levels a body uses onto h2, h3, h4 in order.
+function normalizeHeadings(value: PortableTextBlock[]): PortableTextBlock[] {
+  const levelOf = (b: PortableTextBlock) =>
+    b._type === "block" && typeof b.style === "string" ? /^h([2-4])$/.exec(b.style)?.[1] : undefined;
+  const used = [...new Set(value.map(levelOf).filter((l): l is string => !!l))].sort();
+  const map = new Map(used.map((l, i) => [l, `h${i + 2}`]));
+  if (used.every((l) => map.get(l) === `h${l}`)) return value;
+  return value.map((b) => {
+    const l = levelOf(b);
+    return l ? { ...b, style: map.get(l) } : b;
+  });
+}
+
 export function PortableTextRenderer({ value }: PortableTextRendererProps) {
-  return <PortableText value={value} components={components} />;
+  return <PortableText value={normalizeHeadings(value)} components={components} />;
 }

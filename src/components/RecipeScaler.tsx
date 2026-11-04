@@ -32,7 +32,7 @@ export function RecipeScaler({ baseServings, currentServings, onServingsChange }
   return (
     <div className="recipe-scaler">
       <div className="flex items-center justify-between mb-2">
-        <h4 className="font-semibold text-charcoal text-sm">Adjust Servings</h4>
+        <p className="font-semibold text-charcoal text-sm">Adjust Servings</p>
         <span className="text-xs text-charcoal/80">
           {scale !== 1 && `(${parseFloat(scale.toFixed(2))}x recipe)`}
         </span>

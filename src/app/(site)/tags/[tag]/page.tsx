@@ -4,7 +4,7 @@ import { PostCard } from "@/components/PostCard";
 import { Pagination } from "@/components/Pagination";
 import { HomeEmailSignup } from "@/components/HomeEmailSignup";
 import { notFound } from "next/navigation";
-import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml } from "@/lib/seo";
+import { paginatedCanonical, paginatedTitle, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml, pageTitle, clampDescription } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -33,10 +33,10 @@ export async function generateMetadata({ params, searchParams }: TagPageProps) {
     };
   }
 
-  const baseTitle = `Posts tagged "${normalizedTag}" | Half Pint Mama`;
+  const baseTitle = pageTitle(`Posts tagged "${normalizedTag}"`);
   const title = paginatedTitle(baseTitle, currentPage);
   const canonical = paginatedCanonical(`/tags/${encodeURIComponent(normalizedTag)}`, currentPage);
-  const description = `Explore all Half Pint Mama posts tagged with "${normalizedTag}". Find recipes, parenting tips, DIY projects, and travel guides related to ${normalizedTag}.`;
+  const description = clampDescription(`Every Half Pint Mama post tagged "${normalizedTag}": from-scratch recipes, sourdough, and mama-life posts about ${normalizedTag}.`);
   return {
     title,
     description,

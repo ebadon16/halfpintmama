@@ -21,9 +21,9 @@ const DESCRIPTION: Record<ShopStatus, string> = {
   waitlist:
     "Coming soon from Half Pint Mama: Rest & Rise, a postpartum cookbook with nurse-informed recovery tips, easy freezer meals, and sourdough recipes for new mamas.",
   preorder:
-    "Preorder a signed copy of Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Printable freezer labels free with every preorder.",
+    "Preorder a signed copy of Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals, nurse-informed recovery tips, free freezer labels.",
   launched:
-    "Signed copies of Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals and nurse-informed recovery tips. Plus printable freezer labels for every recipe.",
+    "Signed copies of Rest & Rise, the postpartum cookbook from Half Pint Mama: 35 make-ahead freezer meals, nurse-informed recovery tips, printable freezer labels.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -90,6 +90,9 @@ function bookJsonLd(status: "preorder" | "launched", price: DisplayPrice) {
     name: BOOK_TITLE,
     author: AUTHOR_REF,
     bookFormat: "https://schema.org/Hardcover",
+    isbn: "9798998062704",
+    numberOfPages: 166,
+    inLanguage: "en",
     image: `${SITE_URL}/images/rest-and-rise-cover.jpg`,
     url: `${SITE_URL}/shop`,
     description: DESCRIPTION[status],

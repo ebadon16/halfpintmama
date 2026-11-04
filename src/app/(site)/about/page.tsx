@@ -7,7 +7,7 @@ import { jsonLdHtml, DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY } from "@/lib/seo"
 
 export const metadata = {
   title: "About | Half Pint Mama",
-  description: "Meet Keegan, a Pediatric ER RN, mama of three, and author of Rest & Rise, sharing from-scratch recipes, sourdough baking tips, and honest motherhood stories from Central Texas.",
+  description: "Meet Keegan, a Pediatric ER RN, mama of three, and author of Rest & Rise, sharing from-scratch recipes, sourdough, and honest motherhood from Central Texas.",
   alternates: { canonical: "https://halfpintmama.com/about" },
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,

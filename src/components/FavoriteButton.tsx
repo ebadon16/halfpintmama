@@ -51,8 +51,9 @@ export function FavoriteButton({ slug, title, className = "", showText = false }
     <button
       onClick={toggleFavorite}
       className={`flex items-center gap-1.5 transition-all ${className}`}
-      aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-      title={isFavorite ? "Remove from favorites" : "Save recipe"}
+      aria-label={isFavorite ? "Saved. Remove from favorites" : "Save to favorites"}
+      aria-pressed={mounted && isFavorite}
+      title={isFavorite ? "Saved. Remove from favorites" : "Save to favorites"}
     >
       <svg
         className={`w-5 h-5 transition-colors ${mounted && isFavorite ? "text-terracotta fill-terracotta" : "text-charcoal/60 hover:text-terracotta"}`}

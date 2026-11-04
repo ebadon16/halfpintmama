@@ -11,7 +11,7 @@ import { getShopStatus } from "@/lib/shop/status";
 
 export const metadata: Metadata = {
   title: "Half Pint Mama | Nourishing Motherhood From Scratch",
-  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN, mama of three, and author of Rest & Rise, in Central Texas. Real food, real life, real mama.",
+  description: "From-scratch recipes, sourdough baking, and honest motherhood from a Pediatric ER RN, mama of three, and author of Rest & Rise, in Central Texas.",
   openGraph: {
       images: DEFAULT_OG_IMAGE_ARRAY,
     title: "Half Pint Mama | Nourishing Motherhood From Scratch",

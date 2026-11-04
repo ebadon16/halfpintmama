@@ -9,7 +9,7 @@ import { PrintButton } from "@/components/PrintButton";
 import { RecipeSchema, BlogPostSchema, HowToSchema, hasRecipeSchemaData } from "@/components/RecipeSchema";
 import { PostEmailSignup, BottomEmailCTA } from "@/components/PostEmailSignup";
 import { FavoriteButton } from "@/components/FavoriteButton";
-import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, DEFAULT_OG_IMAGE_ARRAY, jsonLdHtml, pageTitle, clampDescription } from "@/lib/seo";
 
 import { LazyComments } from "@/components/LazyComments";
 const CommentsPreview = dynamic(() => import("@/components/Comments").then(m => m.CommentsPreview));
@@ -67,10 +67,10 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   const categoryLabel = post.category === "cooking" ? "From Scratch Kitchen" : post.category === "mama-life" ? "Mama Life" : post.category;
-  const description = post.excerpt || `${post.title}: a ${categoryLabel.toLowerCase()} post from Half Pint Mama.`;
+  const description = clampDescription(post.excerpt || `${post.title}: a ${categoryLabel.toLowerCase()} post from Half Pint Mama.`);
 
   return {
-    title: `${post.title} | Half Pint Mama`,
+    title: pageTitle(post.title),
     description,
     alternates: {
       canonical: `https://halfpintmama.com/posts/${slug}`,
