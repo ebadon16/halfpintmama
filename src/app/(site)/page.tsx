@@ -94,30 +94,30 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: jsonLdHtml(organizationSchema) }}
       />
       {/* Hero Section - Clear Value Proposition */}
-      <section className="bg-gradient-to-b from-light-sage/30 to-cream py-16 md:py-20">
+      <section className="bg-gradient-to-b from-light-sage/30 to-cream py-10 md:py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="inline-block px-4 py-2 bg-terracotta/10 text-terracotta font-semibold text-sm rounded-full mb-6">
+          <span className="inline-block px-4 py-2 bg-terracotta/10 text-terracotta font-semibold text-sm rounded-full mb-4">
             From the ER to the Kitchen
           </span>
-          <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl lg:text-6xl text-deep-sage font-bold mb-4">
+          <h1 className="font-[family-name:var(--font-crimson)] text-4xl md:text-5xl text-deep-sage font-bold mb-3">
             Nourishing Motherhood From Scratch
           </h1>
-          <p className="font-[family-name:var(--font-crimson)] text-xl md:text-2xl text-sage font-medium mb-6">
+          <p className="font-[family-name:var(--font-crimson)] text-lg md:text-xl text-sage font-medium mb-4">
             From a Pediatric ER RN & Mama of Three
           </p>
-          <p className="text-charcoal/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+          <p className="text-charcoal/80 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-6">
             The same care I give my patients goes into my kitchen: nurse-tested recipes, real ingredients, and nothing I wouldn&apos;t feed my own kids. From sourdough on the counter to babies on the hip.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center flex-wrap">
             <Link
               href="/free-guide"
-              className="px-8 py-4 gradient-cta text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg"
+              className="px-7 py-3 gradient-cta text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all text-lg"
             >
               Get My Free Guides
             </Link>
             <Link
               href="/start-here"
-              className="px-8 py-4 bg-terracotta/10 text-terracotta font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-terracotta hover:bg-terracotta hover:text-white transition-all text-lg"
+              className="px-7 py-3 bg-terracotta/10 text-terracotta font-semibold rounded-full shadow-md hover:shadow-lg border-2 border-terracotta hover:bg-terracotta hover:text-white transition-all text-lg"
             >
               Start Here
             </Link>
