@@ -165,6 +165,10 @@ refund it in the Stripe dashboard and confirm the labels link stops working. Ten
    skipped (they were quoted the new date), and the success page shows the revised date.
    `--to` must equal `SHOP_SHIP_ESTIMATE` or the script refuses.
 3. A second slip repeats both steps with the newer wording; the script re-notifies everyone.
+4. If existing buyers get their OWN date, apart from the storefront's (Nov 25 2026: preorder copies
+   bought ahead of the print run ship the week of December 8, new orders late January 2027), add
+   `"before":"YYYY-MM-DD"` to the route call. Only orders placed before that day get the notice and
+   `to` no longer has to equal `SHOP_SHIP_ESTIMATE`.
 
 ### Changing a price later
 
