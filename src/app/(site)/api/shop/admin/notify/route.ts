@@ -7,6 +7,7 @@
 //     -d '{"kind":"delay","to":"late November 2026"}'                    # dry run: who, and the date each was told
 //     -d '{"kind":"delay","to":"late November 2026","send":true}'        # sends + marks, up to `limit` (default 8) per call
 //     -d '{"kind":"delay","to":"the week of December 8","before":"2026-11-26"}'  # existing buyers get their OWN date: only orders placed before `before`
+//     -d '{"kind":"shipped","before":"2026-11-26","send":true}'                 # shipped notice for that batch only
 //     -d '{"kind":"shipped","send":true}'                                # the "on its way" notice, same shape
 //     -d '{"kind":"review","send":true}'                                 # review ask, shipped orders not yet asked
 //     -d '{"kind":"report"}'                                             # every paid book order, grouped by utm source
@@ -96,21 +97,24 @@ export async function POST(request: NextRequest) {
   const only = Array.isArray(body.only) ? body.only.filter((s): s is string => typeof s === "string") : [];
   const limit = Math.min(Math.max(Number(body.limit) || 8, 1), 25);
 
-  let to = "";
+  // `before` (YYYY-MM-DD) narrows any notice to orders placed before that day: a delay
+  // notice that gives earlier buyers their own date, or a shipped notice for the batch
+  // that went out while later orders are still waiting.
   let before: Date | null = null;
+  if (body.before !== undefined) {
+    if (typeof body.before !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(body.before) || Number.isNaN(Date.parse(`${body.before}T00:00:00Z`))) {
+      return NextResponse.json({ error: '"before" must be a date, YYYY-MM-DD' }, { status: 400 });
+    }
+    before = new Date(`${body.before}T00:00:00Z`);
+  }
+
+  let to = "";
   if (kind === "delay") {
     to = (body.to ?? "").trim();
     const current = getShipEstimate() ?? "";
     if (!to) return NextResponse.json({ error: 'delay needs "to": the new ship estimate' }, { status: 400 });
-    // `before` (YYYY-MM-DD) gives buyers who ordered before that day their own date,
-    // apart from the storefront's. Without it the notice must match what new buyers
-    // are quoted at checkout.
-    if (body.before !== undefined) {
-      if (typeof body.before !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(body.before) || Number.isNaN(Date.parse(`${body.before}T00:00:00Z`))) {
-        return NextResponse.json({ error: '"before" must be a date, YYYY-MM-DD' }, { status: 400 });
-      }
-      before = new Date(`${body.before}T00:00:00Z`);
-    } else if (to.toLowerCase() !== current.toLowerCase()) {
+    // Without `before` the notice must match what new buyers are quoted at checkout.
+    if (!before && to.toLowerCase() !== current.toLowerCase()) {
       return NextResponse.json({ error: `"to" must equal SHOP_SHIP_ESTIMATE ("${current}") so new buyers and this notice agree, or pass "before" to give earlier buyers their own date` }, { status: 400 });
     }
   }

@@ -169,6 +169,8 @@ refund it in the Stripe dashboard and confirm the labels link stops working. Ten
    bought ahead of the print run ship the week of December 8, new orders late January 2027), add
    `"before":"YYYY-MM-DD"` to the route call. Only orders placed before that day get the notice and
    `to` no longer has to equal `SHOP_SHIP_ESTIMATE`.
+   ⚠ The same `before` MUST go on the shipped notice for that batch (`{"kind":"shipped","before":"2026-11-26"}`),
+   or buyers still waiting on the later date are told their book is in the mail.
 
 ### Changing a price later
 

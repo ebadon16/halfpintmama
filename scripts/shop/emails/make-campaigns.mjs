@@ -120,13 +120,13 @@ export const CAMPAIGNS = {
     h1: "Before the free labels go away",
     lede: "Hi friend, a quick, honest update on Rest &amp; Rise.",
     body:
-      p("You asked me to tell you when the book was ready, so here is exactly where things stand. The signed hardcovers ship <strong>late November 2026</strong>. The print run ran later than I planned, and I would rather give you the real date than a hopeful one.") +
+      p("You asked me to tell you when the book was ready, so here is exactly where things stand. Printing has taken much longer than I expected, and the signed hardcovers now ship <strong>late January 2027</strong>. I would rather give you the real date than a hopeful one.") +
       bookPanel("waitlist-labels", "<strong>The signed hardcover is $39.99.</strong> I pack and mail every copy myself.") +
-      p("Here is the part with a deadline. <strong>Every preorder still gets my printable freezer labels free.</strong> The day the book ships, that ends and the labels become a $10 add-on. If you were going to get the book anyway, this is the week to do it.") +
+      p("Here is the part with a deadline. <strong>Every preorder still gets my printable freezer labels free.</strong> The day the book ships, that ends and the labels become a $10 add-on. If you were going to get the book anyway, preordering gets you the labels today.") +
       labelsPanel("Free with every preorder, until the book ships", "They land in your inbox the minute you order, so you can start filling the freezer before the book even arrives.") +
       button(shop("waitlist-labels"), "Preorder Rest &amp; Rise") +
       p("And if you are on the fence, I would genuinely like to know why. <strong>Hit reply and tell me in a sentence:</strong> the price, the wait, not sure it is for you, or something else. I read every reply, and it will shape what I do next.") +
-      p("Thank you for waiting with me. It is almost here."),
+      p("Thank you for waiting with me."),
   },
 
   // 2. Launch day, to the whole list.
@@ -154,9 +154,9 @@ export const CAMPAIGNS = {
     body:
       p("Every baby shower I go to, the registry is covered. Nobody has bought the mama a month of dinners. <em>Rest &amp; Rise</em> is that: the book, the plan, and the labels, so she stocks her freezer before the baby comes and eats real food after.") +
       bookPanel("launch-2", "<strong>Signed hardcover, $39.99, shipped by me.</strong> Add a note at checkout and I will write it inside the cover.") +
-      p("<strong>Ordering for Christmas or a shower?</strong> Place your order by <strong>[ORDER-BY DATE]</strong> and it will arrive in time. After that I can still ship, I just cannot promise the date.") +
+      p("<strong>Ordering for a baby shower?</strong> Place your order by <strong>[ORDER-BY DATE]</strong> and it will arrive in time. After that I can still ship, I just cannot promise the date.") +
       button(shop("launch-2"), "Order a signed copy") +
-      p("If you already have yours, thank you. Send this to the friend who is due in the spring; she will thank you in February."),
+      p("If you already have yours, thank you. Send this to the friend who is due in the spring; she will thank you when the baby is here."),
   },
 };
 
