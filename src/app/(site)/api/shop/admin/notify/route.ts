@@ -6,6 +6,7 @@
 //     -H "Authorization: Bearer $SHOP_ADMIN_SECRET" -H "Content-Type: application/json" \
 //     -d '{"kind":"delay","to":"late November 2026"}'                    # dry run: who, and the date each was told
 //     -d '{"kind":"delay","to":"late November 2026","send":true}'        # sends + marks, up to `limit` (default 8) per call
+//     -d '{"kind":"delay","to":"the week of December 8","before":"2026-11-26"}'  # existing buyers get their OWN date: only orders placed before `before`
 //     -d '{"kind":"shipped","send":true}'                                # the "on its way" notice, same shape
 //     -d '{"kind":"review","send":true}'                                 # review ask, shipped orders not yet asked
 //     -d '{"kind":"report"}'                                             # every paid book order, grouped by utm source
@@ -25,6 +26,7 @@ export const maxDuration = 60;
 interface Body {
   kind?: "delay" | "shipped" | "review" | "report";
   to?: string;
+  before?: string;
   send?: boolean;
   only?: string[];
   limit?: number;
@@ -95,18 +97,29 @@ export async function POST(request: NextRequest) {
   const limit = Math.min(Math.max(Number(body.limit) || 8, 1), 25);
 
   let to = "";
+  let before: Date | null = null;
   if (kind === "delay") {
     to = (body.to ?? "").trim();
     const current = getShipEstimate() ?? "";
     if (!to) return NextResponse.json({ error: 'delay needs "to": the new ship estimate' }, { status: 400 });
-    // New buyers are quoted SHOP_SHIP_ESTIMATE at checkout; the notice must say the same thing.
-    if (to.toLowerCase() !== current.toLowerCase()) {
-      return NextResponse.json({ error: `"to" must equal SHOP_SHIP_ESTIMATE ("${current}") so new buyers and this notice agree` }, { status: 400 });
+    // `before` (YYYY-MM-DD) gives buyers who ordered before that day their own date,
+    // apart from the storefront's. Without it the notice must match what new buyers
+    // are quoted at checkout.
+    if (body.before !== undefined) {
+      if (typeof body.before !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(body.before) || Number.isNaN(Date.parse(`${body.before}T00:00:00Z`))) {
+        return NextResponse.json({ error: '"before" must be a date, YYYY-MM-DD' }, { status: 400 });
+      }
+      before = new Date(`${body.before}T00:00:00Z`);
+    } else if (to.toLowerCase() !== current.toLowerCase()) {
+      return NextResponse.json({ error: `"to" must equal SHOP_SHIP_ESTIMATE ("${current}") so new buyers and this notice agree, or pass "before" to give earlier buyers their own date` }, { status: 400 });
     }
   }
 
   const pool = kind === "review" ? await findReviewableBookOrders() : await findUnshippedBookOrders();
-  const all = pool.filter((o) => !only.length || only.includes(o.sessionId));
+  const all = pool
+    .filter((o) => !only.length || only.includes(o.sessionId))
+    // An order with no timestamp cannot be proven to predate the cutoff, so it is left out.
+    .filter((o) => !before || (o.created !== null && o.created < before));
   const skipped = kind === "delay" ? all.filter((o) => (effectiveShipEstimate(o) ?? "").toLowerCase() === to.toLowerCase()) : [];
   const due = kind === "delay" ? all.filter((o) => !skipped.includes(o)) : all;
 
@@ -141,6 +154,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({
     kind,
     to: to || undefined,
+    before: before ? before.toISOString().slice(0, 10) : undefined,
     mode: send ? "send" : "dry-run",
     found: all.length,
     alreadyCurrent: skipped.length,

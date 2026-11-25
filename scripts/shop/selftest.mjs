@@ -116,11 +116,11 @@ check("no revision -> effective date is the original", effectiveShipEstimate(o) 
 const slipped = orderFromSession(session({ payment_intent: { id: "pi_1", metadata: { ship_estimate_revised: "mid to late December 2026", delay_notice_at: "2026-11-01T00:00:00Z" }, latest_charge: null } }));
 check("revised date read from PaymentIntent", slipped.shipEstimateRevised === "mid to late December 2026" && slipped.delayNoticeAt === "2026-11-01T00:00:00Z");
 check("original promise kept alongside the revision", slipped.shipEstimate === "November 2026" && effectiveShipEstimate(slipped) === "mid to late December 2026");
-const delay = renderDelayNotice(o, "mid to late December 2026");
-check("delay notice names the new date", delay.text.includes("NEW SHIP DATE: Mid to late December 2026") && delay.html.includes("Mid to late December 2026"));
-check("delay notice names the date that was promised", delay.text.includes("would ship November 2026"));
-check("delay notice offers the full refund and says silence keeps the order (FTC)", /refund you in full/.test(delay.text) && /do not need to do anything/.test(delay.text) && /take that as a yes/.test(delay.text));
-check("delay notice warns the labels link closes on refund", /labels link/.test(delay.text));
+const delay = renderDelayNotice(o, "the week of December 8");
+check("delay notice names the new date", delay.text.includes("NEW SHIP DATE: The week of December 8") && delay.html.includes("will ship the week of December 8") && delay.subject === "Your Rest & Rise preorder: shipping the week of December 8");
+check("delay notice offers the refund by reply", /rather have a refund/.test(delay.text) && /reply to this email/.test(delay.text) && /rather have a refund/.test(delay.html));
+check("delay notice covers the labels", /freezer labels are already in your inbox/.test(delay.text));
+check("delay notice does not quote the storefront date", !/January/.test(delay.text + delay.html));
 check("delay notice carries the order reference", delay.text.includes("Order reference cs_test_123") || delay.text.includes(`Order reference ${o.sessionId}`));
 check("delay notice has no em dashes", !/\u2014/.test(delay.text + delay.html));
 // Attribution: utm_* from the landing URL, validated to slugs, stamped on the order.

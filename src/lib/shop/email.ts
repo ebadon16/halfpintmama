@@ -198,37 +198,42 @@ export function renderShippedNotice(order: Order): RenderedEmail {
 // date, the right to cancel for a full refund, and that silence keeps the order.
 // Sent by Keegan (scripts/shop/notify-delay.mjs), once per revised date.
 export function renderDelayNotice(order: Order, revised: string): RenderedEmail {
+  // Copy is Keegan's, written for the Nov 2026 notice: preorder copies are being
+  // bought ahead of the main print run, so these buyers get an earlier date than
+  // the storefront quotes. `revised` reads mid-sentence, e.g. "the week of December 8".
   const { bought: items } = orderLines(order);
-  const original = order.shipEstimate;
   const where = [[order.shipping?.city, order.shipping?.state].filter(Boolean).join(", ")].filter(Boolean);
   const detail =
     eyebrow("New ship date") +
     `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 22px; line-height: 130%; color: ${T.heading};"><strong>${escapeHtml(capitalize(revised))}</strong></p>` +
     `<p style="margin: 0 0 8px; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">${escapeHtml(items)}${where.length ? `, heading to ${escapeHtml(where[0])}` : ""}</p>` +
     `<p style="margin: 0; font-family: ${T.sans}; font-size: 12px; color: ${T.muted};">Order reference ${escapeHtml(order.sessionId)}</p>`;
-  // Wording must hold whether this goes out before or after the promised date
-  // has passed (the Nov 1 2026 notice went out a day after "late October").
-  const toldDate = original ? `would ship ${escapeHtml(original)}` : "would ship by now";
-  const toldDateText = original ? `would ship ${original}` : "would ship by now";
 
   const html = shell(
-    "Your book is running late",
-    p(`I owe you an update. I told you your copy of <em>Rest &amp; Rise</em> ${toldDate}, and I have to move that date. The print run is running later than I planned, and I would rather tell you directly than leave you wondering.`) +
+    "An update on your book",
+    p("I owe you an update, and an apology.") +
+      p("Printing has taken much longer than I expected. Rather than make you wait into the new year, I found a faster option so your copy gets to you before Christmas.") +
+      p(`<strong>Your signed, personally packed copy will ship ${escapeHtml(revised)}.</strong>`) +
       panel(media(COVER, detail, 96)) +
-      p(`<strong>You do not need to do anything to keep your order.</strong> Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you before your book ships, I will take that as a yes to the new date.`) +
-      p(`<strong>If the wait does not work for you, reply to this email and I will refund you in full</strong>, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.`) +
-      p("Thank you for your patience, and for trusting me with this book before it was even printed. I am sorry for the wait.") +
-      `<p style="${SMALL}">Questions? Just reply to this email.</p>`,
+      p("I will email you the moment it is in the mail.") +
+      p("You were one of the very first people to believe in this book, and that means more to me than I can say.") +
+      p("If you would rather have a refund instead, just reply to this email and I will take care of it, no questions asked.") +
+      p("Your freezer labels are already in your inbox from checkout. If you can't find them, reply and I will resend them.") +
+      p("Thank you for your patience and for supporting <em>Rest &amp; Rise</em>."),
     "Hi friend,"
   );
   const text =
-    `Hi friend,\n\nI owe you an update. I told you your copy of Rest & Rise ${toldDateText}, and I have to move that date. The print run is running later than I planned, and I would rather tell you directly than leave you wondering.\n\n` +
+    `Hi friend,\n\nI owe you an update, and an apology.\n\n` +
+    `Printing has taken much longer than I expected. Rather than make you wait into the new year, I found a faster option so your copy gets to you before Christmas.\n\n` +
+    `Your signed, personally packed copy will ship ${revised}.\n\n` +
     `NEW SHIP DATE: ${capitalize(revised)}\n${items}${where.length ? `, heading to ${where[0]}` : ""}\nOrder reference ${order.sessionId}\n\n` +
-    `You do not need to do anything to keep your order. Your copy is still spoken for, I will still sign and pack it myself, and I will email you the moment it is in the mail. If I do not hear from you before your book ships, I will take that as a yes to the new date.\n\n` +
-    `If the wait does not work for you, reply to this email and I will refund you in full, no questions asked, any time before your book ships. A refund does close your freezer labels link, since the labels came free with the book.\n\n` +
-    `Thank you for your patience, and for trusting me with this book before it was even printed. I am sorry for the wait.\n\nQuestions? Just reply to this email.\n` +
+    `I will email you the moment it is in the mail.\n\n` +
+    `You were one of the very first people to believe in this book, and that means more to me than I can say.\n\n` +
+    `If you would rather have a refund instead, just reply to this email and I will take care of it, no questions asked.\n\n` +
+    `Your freezer labels are already in your inbox from checkout. If you can't find them, reply and I will resend them.\n\n` +
+    `Thank you for your patience and for supporting Rest & Rise.\n` +
     SIGN_OFF_TEXT;
-  return { subject: "Your Rest & Rise preorder: a new ship date", html, text };
+  return { subject: `Your Rest & Rise preorder: shipping ${revised}`, html, text };
 }
 
 // Two weeks after the book is in the mail: one honest ask for a few words,
