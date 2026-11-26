@@ -182,6 +182,10 @@ check("owner notification carries the address", renderOrderNotification(o, "jane
 check("every buyer email carries the logo and sign-off", [conf, renderShippedNotice(o), renderLabelsRecovery("https://x/y")].every((m) => m.html.includes("email-logo.png") && m.html.includes("With love,")));
 check("the owner packing slip carries the logo but is not signed to Keegan by Keegan", renderOrderNotification(o, null).html.includes("email-logo.png") && !renderOrderNotification(o, null).html.includes("With love,"));
 check("digital-only order total does not say shipping included", !renderOrderConfirmation({ ...o, productIds: ["labels"], shipping: null, phase: "launched" }, "https://x/y").html.includes("shipping included"));
+const early = renderShippedNotice({ ...o, created: new Date("2026-10-01T00:00:00Z") });
+const later = renderShippedNotice({ ...o, created: new Date("2026-12-01T00:00:00Z") });
+check("shipped notice tells earlier buyers to re-download the labels", /Download it again before you print/.test(early.html) && /shop\/labels/.test(early.text));
+check("shipped notice leaves later buyers alone about the labels", !/Download it again/.test(later.html + later.text));
 check("shipping notice lists only the parcel, not the free labels", !renderShippedNotice(o).html.includes("free with preorder"));
 
 console.log("\n-- shop config gate --");

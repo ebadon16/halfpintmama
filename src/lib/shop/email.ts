@@ -168,6 +168,8 @@ export function renderOrderConfirmation(order: Order, labelsUrl: string | null):
 
 // "It's on its way": sent by Keegan (scripts/shop/notify-shipped.mjs) once a
 // book order is in the mail. Keeps the promise the confirmation makes.
+const LABELS_FIXED_AT = new Date("2026-11-27T00:00:00Z");
+
 export function renderShippedNotice(order: Order): RenderedEmail {
   // Only the physical goods are in the mail; the labels went by email already.
   const { bought: items, shipTo } = orderLines(order);
@@ -176,11 +178,16 @@ export function renderShippedNotice(order: Order): RenderedEmail {
   const where = shipTo.length
     ? panel(media(COVER, eyebrow("In the mail") + `<p style="margin: 0 0 6px; font-family: ${T.serif}; font-size: 20px; line-height: 130%; color: ${T.heading};"><strong>${escapeHtml(items)}</strong></p><p style="margin: 0; font-family: ${T.sans}; font-size: 14px; line-height: 150%; color: ${T.text};">Heading to ${shipTo.map(escapeHtml).join(", ")}</p>`, 96))
     : "";
+  // Labels files downloaded before this date only filled in after a click outside
+  // the recipe box (fixed Nov 26 2026). The link itself serves the fixed file.
+  const oldLabels = order.phase === "preorder" && order.created !== null && order.created < LABELS_FIXED_AT;
+  const labelsLine = "Your freezer labels link now has an easier version: the label fills in the moment you pick a recipe. Download it again before you print.";
   const html = shell(
     "It is on its way!",
     p(`Good news: ${copies} in the mail, signed and packed by me this morning.`) +
       where +
       p(`While you wait, the prep day planner and both stock-up lists are free to print: ${a(`${SITE_URL}/shop`, "halfpintmama.com/shop")}. Week 30 is setup week, so there is no rush.`) +
+      (oldLabels ? p(`${labelsLine} The link is in your order confirmation email, or get a fresh one at ${a(`${SITE_URL}/shop/labels`, "halfpintmama.com/shop/labels")}.`) : "") +
       p("Thank you for being one of the first. I hope it earns a spot on your counter.") +
       `<p style="${SMALL}">Questions about delivery? Just reply to this email.</p>`,
     "Hi friend,"
@@ -189,6 +196,7 @@ export function renderShippedNotice(order: Order): RenderedEmail {
     `Hi friend,\n\nGood news: ${copiesText} in the mail, signed and packed by me this morning.\n\n` +
     `${items}\n` + (shipTo.length ? `Heading to ${shipTo.join(", ")}\n` : "") +
     `\nWhile you wait, the prep day planner and both stock-up lists are free to print: ${SITE_URL}/shop\n\n` +
+    (oldLabels ? `${labelsLine} The link is in your order confirmation email, or get a fresh one at ${SITE_URL}/shop/labels\n\n` : "") +
     `Thank you for being one of the first. I hope it earns a spot on your counter.\n\nQuestions about delivery? Just reply to this email.\n` +
     SIGN_OFF_TEXT;
   return { subject: "Your Rest & Rise is on its way", html, text };
