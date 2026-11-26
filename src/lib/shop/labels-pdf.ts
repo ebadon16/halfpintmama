@@ -392,7 +392,12 @@ export async function buildLabelsPdf({ email, createdAt, prefill }: LabelsPdfOpt
       recipe.acroField.setFlagTo(AcroChoiceFlags.CommitOnSelChange, true);
       recipe.acroField.dict.set(
         PDFName.of("AA"),
-        doc.context.obj({ V: { Type: "Action", S: "JavaScript", JS: PDFString.of(`rrFill(event.value, "${n}");`) } })
+        doc.context.obj({
+          V: { Type: "Action", S: "JavaScript", JS: PDFString.of(`rrFill(event.value, "${n}");`) },
+          // Chrome ignores commit-on-select and only validates once the box loses
+          // focus, so also fill from the keystroke event a list pick raises.
+          K: { Type: "Action", S: "JavaScript", JS: PDFString.of(`if (!event.willCommit) rrFill(event.changeEx || event.change, "${n}");`) },
+        })
       );
       const pre = prefill?.[n] ? RECIPES.find((r) => r.name === prefill[n]) : undefined;
       if (pre) recipe.select(pre.name.toUpperCase());
